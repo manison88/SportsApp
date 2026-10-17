@@ -35,6 +35,20 @@ extension Color {
         let lum = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
         return 1.05 / (lum + 0.05) >= 4.5 ? .white : .black
     }
+
+    /// The same hue, darkened just enough for white text to reach 4.5:1.
+    var deepenedForWhiteText: Color {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        UIColor(self).getRed(&r, green: &g, blue: &b, alpha: &a)
+        func lin(_ c: CGFloat) -> CGFloat { c <= 0.04045 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4) }
+        var k: CGFloat = 1
+        while k > 0.2 {
+            let lum = 0.2126 * lin(r * k) + 0.7152 * lin(g * k) + 0.0722 * lin(b * k)
+            if 1.05 / (lum + 0.05) >= 4.5 { break }
+            k -= 0.02
+        }
+        return Color(.sRGB, red: Double(r * k), green: Double(g * k), blue: Double(b * k))
+    }
 }
 
 enum Spacing {

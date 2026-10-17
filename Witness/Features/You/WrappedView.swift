@@ -53,14 +53,14 @@ struct WrappedView: View {
                 .padding(.bottom, 8)
             }
             .gutter()
-            .foregroundStyle(.white) // Large display type: white on team orange is 3.4:1, above the 3:1 large-text bar.
+            .foregroundStyle(.white)
         }
         .task(id: shownYear) { renderShareImage(shownYear) }
     }
 
     private var background: Color {
-        library.profile.favoriteTeamIds.compactMap { library.team($0) }
-            .first { $0.sport == .football }?.accent ?? Color(hex: "F05A1A")
+        let team = library.profile.favoriteTeamIds.compactMap { library.team($0) }.first { $0.sport == .football }
+        return (team?.accent ?? Color(hex: "F05A1A")).deepenedForWhiteText
     }
 
     /// The requested year, or the most recent year with games.
@@ -75,7 +75,7 @@ struct WrappedView: View {
             .padding(24)
             .frame(width: 360, height: 640, alignment: .top)
             .background(background)
-            .foregroundStyle(.white) // Large display type: white on team orange is 3.4:1, above the 3:1 large-text bar.
+            .foregroundStyle(.white)
             .environment(library)
         let renderer = ImageRenderer(content: card)
         renderer.scale = 3
