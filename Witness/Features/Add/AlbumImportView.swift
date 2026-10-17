@@ -329,54 +329,24 @@ struct AlbumImportView: View {
                               ticket: anchor.draft))
         }
 
-        // Each visit and each unplaced day is independent (schedule lookups, text recognition, scene check), so
-        // they run three at a time instead of one after another.
-        let width = 3
-        for start in stride(from: 0, to: items.count, by: width) {
-            let slice = Array(items.enumerated())[start..<min(start + width, items.count)]
-            progress = "Checking \(slice.first!.element.cluster.venue.name)"
-            let results = await withTaskGroup(of: (Int, FoundGame?, Bool, Bool).self,
-                                              returning: [(Int, FoundGame?, Bool, Bool)].self) { group in
-                for (i, item) in slice {
-                    group.addTask {
-                        let r = await Self.analyze(item.cluster, hasTicket: item.ticket != nil, venues: venues)
-                        return (i, r.game, r.onBoard, r.doubtful)
-                    }
-                }
-                var out: [(Int, FoundGame?, Bool, Bool)] = []
-                for await r in group { out.append(r) }
-                return out
-            }
-            for (i, game, onBoard, doubtful) in results {
-                items[i].game = game
-                items[i].onScoreboard = onBoard
-                if doubtful {
-                    items[i].doubtful = true
-                    items[i].included = false
-                }
+        for index in items.indices {
+            let item = items[index]
+            progress = "Checking \(item.cluster.venue.name)"
+            let r = await Self.analyze(item.cluster, hasTicket: item.ticket != nil, venues: venues)
+            items[index].game = r.game
+            items[index].onScoreboard = r.onBoard
+            if r.doubtful {
+                items[index].doubtful = true
+                items[index].included = false
             }
         }
 
         // Days without a stadium: try the scoreboard before asking, and drop days that don't look like a game.
         var stillUnplaced: [DayPile] = []
-        for start in stride(from: 0, to: days.count, by: width) {
-            let slice = Array(days[start..<min(start + width, days.count)])
-            progress = "Reading photos from \(Fmt.dayTitle(slice[0].day))"
-            let results = await withTaskGroup(of: (DayPile, Item?, Bool).self,
-                                              returning: [(DayPile, Item?, Bool)].self) { group in
-                for day in slice {
-                    group.addTask {
-                        let r = await Self.analyze(day, venues: venues)
-                        return (day, r.item, r.skipped)
-                    }
-                }
-                var out: [(DayPile, Item?, Bool)] = []
-                for await r in group { out.append(r) }
-                return out
-            }
-            for (day, item, skipped) in results.sorted(by: { $0.0.day < $1.0.day }) {
-                if let item { items.append(item) } else if skipped { skippedDays += 1 } else { stillUnplaced.append(day) }
-            }
+        for day in days {
+            progress = "Reading photos from \(Fmt.dayTitle(day.day))"
+            let r = await Self.analyze(day, venues: venues)
+            if let item = r.item { items.append(item) } else if r.skipped { skippedDays += 1 } else { stillUnplaced.append(day) }
         }
         unplaced = stillUnplaced
         items.sort { $0.cluster.start < $1.cluster.start }
