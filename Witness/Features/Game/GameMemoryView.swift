@@ -121,6 +121,12 @@ struct GameMemoryView: View {
                 Text([venue?.name, Fmt.dayTitle(game.date, in: tz)].compactMap { $0 }.joined(separator: ", "))
                     .font(.subheadline)
                     .foregroundStyle(Color.textSecondary)
+                if let kickoff = Fmt.kickoff(game, in: tz) {
+                    Label(kickoff, systemImage: game.weather?.symbol ?? "clock")
+                        .font(.subheadline)
+                        .foregroundStyle(Color.textSecondary)
+                        .accessibilityIdentifier("game-kickoff")
+                }
             }
             .gutter()
             .padding(.bottom, 8)
@@ -302,7 +308,7 @@ struct GameMemoryView: View {
         let venue = library.venue(game.venueId)
         let headline = headlineText(game, library)
         let matchup = matchupText(game, library)
-        let when = Fmt.dayTitle(game.date, in: venue?.tz ?? .current)
+        let when = Fmt.dayAndKickoff(game, in: venue?.tz ?? .current)
         var score = ""
         var result = ""
         if let hs = game.homeScore, let aw = game.awayScore {

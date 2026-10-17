@@ -141,4 +141,34 @@ final class GameLookupTests: XCTestCase {
         XCTAssertTrue(PackStore.isSupported(manifest, appVersion: "1.0"))
         XCTAssertFalse(PackStore.isSupported(PackManifest(schema: 1, minAppVersion: "2.0", packs: []), appVersion: "1.5"))
     }
+
+    // MARK: Weather at the game's start time
+
+    func testWeatherUsesTheHourOfTheGame() throws {
+        let json = #"{"hourly":{"time":["2016-10-30T23:00","2016-10-31T00:00","2016-10-31T01:00"],"temperature_2m":[58.2,54.04,50.9],"weather_code":[3,0,61]}}"#
+        let chicago = TimeZone(identifier: "America/Chicago")!
+        // 7:08 PM CDT = 00:08 UTC: the 00:00 UTC hour, 54 degrees, clear and (at 7 PM) not yet night.
+        let seven = ISO8601DateFormatter().date(from: "2016-10-31T00:08:00Z")!
+        let weather = try XCTUnwrap(WeatherLookup.parse(Data(json.utf8), at: seven, venueTimeZone: chicago))
+        XCTAssertEqual(weather.temperatureF, 54.0)
+        XCTAssertEqual(weather.condition, "Clear")
+        XCTAssertEqual(weather.symbol, "sun.max.fill")
+        // 7:40 PM CDT reads the next hour (01:00 UTC): rain, 50.9.
+        let later = ISO8601DateFormatter().date(from: "2016-10-31T00:40:00Z")!
+        XCTAssertEqual(WeatherLookup.parse(Data(json.utf8), at: later, venueTimeZone: chicago)?.condition, "Rain")
+        // An hour the service did not return is no weather, not a wrong one.
+        let missing = ISO8601DateFormatter().date(from: "2016-11-02T00:00:00Z")!
+        XCTAssertNil(WeatherLookup.parse(Data(json.utf8), at: missing, venueTimeZone: chicago))
+    }
+
+    func testIndoorVenuesGetNoWeather() {
+        let arena = Venue(id: "a", name: "United Center", city: "Chicago", region: "IL", country: "United States", countryCode: "US",
+                          latitude: 41.88, longitude: -87.67, sports: [.basketball, .hockey], timeZone: "America/Chicago",
+                          capacity: 23500, opened: 1994)
+        XCTAssertTrue(arena.likelyIndoor)
+        XCTAssertFalse(lambeau.likelyIndoor)
+        var dome = lambeau
+        dome.name = "Caesars Superdome"
+        XCTAssertTrue(dome.likelyIndoor)
+    }
 }

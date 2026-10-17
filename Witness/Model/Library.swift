@@ -123,10 +123,34 @@ final class Library {
            let i = games.firstIndex(where: { Self.sameGame($0, game) }) {
             games[i] = Self.merged(games[i], with: game)
             sortAndSave()
+            let id = games[i].id
+            Task { await fillWeather(id) }
             return
         }
         games.append(game)
         sortAndSave()
+        let id = game.id
+        Task { await fillWeather(id) }
+    }
+
+    // MARK: Weather
+
+    /// Looks up the temperature and sky at the game's start time and saves it on the game. Nothing is sent but the
+    /// stadium's public location and the day.
+    func fillWeather(_ id: String) async {
+        guard let g = game(id), g.weather == nil, let venue = venue(g.venueId) else { return }
+        guard let weather = await WeatherLookup.at(venue: venue, date: g.date) else { return }
+        // The fan may have changed the game while the lookup ran.
+        guard var latest = game(id), latest.weather == nil, latest.date == g.date, latest.venueId == g.venueId else { return }
+        latest.weather = weather
+        update(latest)
+    }
+
+    /// Fills weather for saved games that lack it, most recent first, a batch at a time.
+    func backfillWeather(limit: Int = 30) async {
+        let ids = games.filter { $0.weather == nil && $0.origin != .sample }
+            .sorted { $0.date > $1.date }.prefix(limit).map(\.id)
+        for id in ids { await fillWeather(id) }
     }
 
     // MARK: Duplicates
@@ -204,9 +228,16 @@ final class Library {
     }
 
     func update(_ game: GameEntry) {
+        var game = game
         guard let i = games.firstIndex(where: { $0.id == game.id }) else { return add(game) }
+        // A game moved to another time or stadium had different weather.
+        if games[i].date != game.date || games[i].venueId != game.venueId { game.weather = nil }
         games[i] = game
         sortAndSave()
+        if game.weather == nil {
+            let id = game.id
+            Task { await fillWeather(id) }
+        }
     }
 
     /// Sets a game's cover photo (nil clears it so it can be picked again).

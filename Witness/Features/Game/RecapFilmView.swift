@@ -256,7 +256,7 @@ struct RecapFilmView: View {
         var photo: UIImage?
         if let ref = game.photos.first { photo = await PhotoLoader.load(ref) }
         let venue = library.venue(game.venueId)?.name ?? ""
-        let day = Fmt.dayTitle(game.date, in: library.venue(game.venueId)?.tz ?? .current)
+        let day = Fmt.dayAndKickoff(game, in: library.venue(game.venueId)?.tz ?? .current)
         var score = ""
         if game.hasScore, let hs = game.homeScore, let aw = game.awayScore { score = "\(aw)–\(hs)" }
         let accent = library.team(library.rootingTeam(game))?.accent ?? Color.signal

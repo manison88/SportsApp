@@ -36,6 +36,11 @@ struct Stats {
     let expectedRate: Double?
     let runs: Int
     let coldestF: Double?
+    /// The warmest game in the set, by the temperature at its start time.
+    let hottestF: Double?
+    /// The coldest and the warmest game (by the temperature at the actual start time), when weather is known.
+    let coldestGame: GameEntry?
+    let hottestGame: GameEntry?
     let farthestVenue: Venue?
     let mlbParks: Set<String>
     let companions: [Companion]
@@ -76,6 +81,10 @@ struct Stats {
 
         runs = list.filter { $0.sport == .baseball }.reduce(0) { $0 + ($1.homeScore ?? 0) + ($1.awayScore ?? 0) }
         coldestF = list.compactMap { $0.weather?.temperatureF }.min()
+        hottestF = list.compactMap { $0.weather?.temperatureF }.max()
+        let withWeather = list.filter { $0.weather != nil }
+        coldestGame = withWeather.min { ($0.weather?.temperatureF ?? 0) < ($1.weather?.temperatureF ?? 0) }
+        hottestGame = withWeather.max { ($0.weather?.temperatureF ?? 0) < ($1.weather?.temperatureF ?? 0) }
         farthestVenue = venueList.max { home.distance(from: $0.location) < home.distance(from: $1.location) }
         let parkIds = Set(library.ballparks.map(\.venueId))
         // Ballparks visited for baseball only. Wrigley for a hockey game doesn't count.

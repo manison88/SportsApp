@@ -291,7 +291,7 @@ struct YouWereThereView: View {
 
         let venue = library.venue(game.venueId)
         let tz = venue?.tz ?? .current
-        let footer = [venue?.name, Fmt.dayTitle(game.date, in: tz)]
+        let footer = [venue?.name, Fmt.dayAndKickoff(game, in: tz)]
             .compactMap { $0 }.joined(separator: " \u{00B7} ")
 
         return ShareInfo(ref: on?.ref,

@@ -27,6 +27,7 @@ struct WitnessApp: App {
                     // Packs already on the phone first (instant), then ask the host for anything new.
                     await library.applyPacks()
                     if await PackStore.shared.refresh() { await library.applyPacks() }
+                    await library.backfillWeather()
                 }
         }
     }
