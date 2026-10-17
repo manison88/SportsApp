@@ -122,15 +122,20 @@
     // soft glow under the braid
     braid.append('path').attr('d', line(pts)).attr('fill', 'none').attr('stroke', '#ff9a80').attr('stroke-opacity', .35).attr('stroke-width', amp * 2.6).attr('filter', 'url(#glow)');
     // segments, drawn back-to-front so the strands weave over and under
-    const segs = [];
-    strands.forEach((st, si) => { for (let i = 0; i < st.length - 1; i += 1) segs.push({ si, a: st[i], b: st[i + 1], z: (st[i].z + st[i + 1].z) / 2 }); });
-    segs.sort((u, v) => u.z - v.z);
-    segs.forEach(s => {
-      const d = `M${s.a.x.toFixed(2)},${s.a.y.toFixed(2)}L${s.b.x.toFixed(2)},${s.b.y.toFixed(2)}`;
-      const col = s.si ? '#ff7a8a' : '#ffb547';
-      const lum = 0.55 + 0.45 * (s.z + 1) / 2;
-      braid.append('path').attr('d', d).attr('stroke', '#05060a').attr('stroke-width', 4.6).attr('stroke-linecap', 'round').attr('opacity', s.z > 0 ? .9 : 0);
-      braid.append('path').attr('d', d).attr('stroke', col).attr('stroke-width', 2.3).attr('stroke-linecap', 'round').attr('opacity', lum.toFixed(2));
+    // split each strand into runs that pass behind (z<0) or in front (z>=0)
+    const runs = { back: [], front: [] };
+    strands.forEach((st, si) => {
+      let cur = [st[0]], front = st[0].z >= 0;
+      for (let i = 1; i < st.length; i++) {
+        const f = st[i].z >= 0; cur.push(st[i]);
+        if (f !== front || i === st.length - 1) { runs[front ? 'front' : 'back'].push({ si, pts: cur }); cur = [st[i]]; front = f; }
+      }
+    });
+    const ln = d3.line().x(p => p.x).y(p => p.y).curve(d3.curveCatmullRom);
+    runs.back.forEach(r => braid.append('path').attr('d', ln(r.pts)).attr('fill', 'none').attr('stroke', r.si ? '#ff7a8a' : '#ffb547').attr('stroke-width', 2.2).attr('stroke-linecap', 'round').attr('opacity', .55));
+    runs.front.forEach(r => {
+      braid.append('path').attr('d', ln(r.pts)).attr('fill', 'none').attr('stroke', '#05060a').attr('stroke-width', 5.2).attr('stroke-linecap', 'butt').attr('opacity', .9);
+      braid.append('path').attr('d', ln(r.pts)).attr('fill', 'none').attr('stroke', r.si ? '#ff8b99' : '#ffc061').attr('stroke-width', 2.6).attr('stroke-linecap', 'round');
     });
   }
   drawBraid(P.CHI, P.BCN, 5.5, 5.5, 0.34);
@@ -152,12 +157,12 @@
   const L = document.getElementById('labels'); const lab = (k, t, s, dx, dy, right) => { const [x, y] = proj(P[k]);
     L.insertAdjacentHTML('beforeend', `<div class="lbl" style="left:${(x + dx).toFixed(0)}px;top:${(y + dy).toFixed(0)}px;${right ? 'transform:translateX(-100%);text-align:right' : ''}"><b>${t}</b>${s}</div>`); };
   lab('CHI', 'Chicago', 'Home · 14 together', 4, 14, false);
-  lab('GB', 'Lambeau', 'Jan 2025', 10, -38, false);
-  lab('BCN', 'Camp Nou', 'Feb 2020', 12, -34, true);
+  lab('GB', 'Lambeau', 'Jan 2025', -8, -56, false);
+  lab('BCN', 'Camp Nou', 'Feb 2020', 14, -60, true);
   lab('MAD', 'Bernabéu', 'Mar 2020', 0, 12, true);
 
   // legs list with mini braids
-  const legs = [['Chicago → Spain → Chicago', 'Mar ’20 · 8,690 mi'], ['Chicago → Green Bay', 'Jan ’25 · 410 mi'], ['Home: Wrigley, Soldier, UC', '14 games']];
+  const legs = [['Chicago ⇄ Spain', 'Feb–Mar ’20 · 8,690 mi'], ['Chicago → Green Bay', 'Jan ’25 · 410 mi'], ['Home: Wrigley, Soldier, UC', '14 games']];
   const mini = `<svg width="30" height="14" viewBox="0 0 30 14"><path d="M1 7 C5 1, 9 1, 13 7 S21 13, 25 7 29 3, 29 3" fill="none" stroke="#ffb547" stroke-width="2" stroke-linecap="round"/><path d="M1 7 C5 13, 9 13, 13 7 S21 1, 25 7 29 11, 29 11" fill="none" stroke="#ff7a8a" stroke-width="2" stroke-linecap="round"/></svg>`;
   document.getElementById('legs').innerHTML = legs.map(([a, b]) => `<div class="leg">${mini}<div class="t">${a}</div><div class="d">${b}</div></div>`).join('');
 })();

@@ -1,0 +1,115 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Ticket stack</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #17130f; }
+  .desk { position: absolute; inset: 0; background:
+    radial-gradient(80% 50% at 50% 30%, #3a2e22 0%, #241c15 60%, #15110d 100%); }
+  .desk::after { content: ""; position: absolute; inset: 0; opacity: .5; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='w'><feTurbulence type='fractalNoise' baseFrequency='.008 .22' numOctaves='3' seed='4'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.4 -.35'/></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>"); }
+
+  .top { position: absolute; top: 58px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; z-index: 50; }
+  .top h1 { font: 800 30px/1 var(--f-tight); letter-spacing: -.8px; color: #f6eee2; }
+  .top p { font: 500 13px/1 var(--f-ui); color: rgba(246,238,226,.55); margin-top: 6px; }
+  .top .btn-circle { background: rgba(255,255,255,.08); border: .5px solid rgba(255,255,255,.12); }
+
+  .t { position: absolute; left: 18px; width: 357px; height: 158px; border-radius: 10px; overflow: hidden;
+    -webkit-mask: radial-gradient(circle at 268px 0, transparent 9px, #000 9.5px) top/100% 51% no-repeat, radial-gradient(circle at 268px 100%, transparent 9px, #000 9.5px) bottom/100% 50% no-repeat;
+    display: flex; }
+  .tw { position: absolute; left: 0; right: 0; filter: drop-shadow(0 -2px 6px rgba(0,0,0,.35)) drop-shadow(0 10px 14px rgba(0,0,0,.35)); }
+  .t::after { content: ""; position: absolute; inset: 0; mix-blend-mode: multiply; opacity: .5; pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3'/><feColorMatrix values='0 0 0 0 .9  0 0 0 0 .86  0 0 0 0 .8  0 0 0 .4 0'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>"); }
+  .t .main { width: 268px; position: relative; padding: 12px 14px 0 16px; }
+  .t .stub { flex: 1; position: relative; border-left: 1.5px dashed rgba(0,0,0,.25); padding: 12px 10px 0 12px; }
+  .t .d { font: 700 9px/1 var(--f-mono); letter-spacing: 1px; text-transform: uppercase; opacity: .72; display: flex; justify-content: space-between; }
+  .t .m { font: 400 26px/1 var(--f-anton); letter-spacing: .2px; margin-top: 7px; white-space: nowrap; }
+  .t .v { font: 600 10px/1 var(--f-ui); letter-spacing: 1.2px; text-transform: uppercase; opacity: .7; margin-top: 5px; }
+  .t .sc { font: 400 22px/1 var(--f-anton); font-variant-numeric: tabular-nums; margin-top: 2px; white-space: nowrap; }
+  .t .sk { font: 700 8px/1 var(--f-ui); letter-spacing: 1.4px; opacity: .6; text-transform: uppercase; }
+
+  /* pulled-out hero ticket */
+  .hero { top: 124px; z-index: 40; transform: rotate(-2.4deg); }
+  .hero .tw { filter: drop-shadow(0 24px 30px rgba(0,0,0,.55)) drop-shadow(0 4px 6px rgba(0,0,0,.35)); }
+  .hero .t { height: 196px; background: #f7f3ea; color: #13221c;
+    -webkit-mask: radial-gradient(circle at 268px 0, transparent 10px, #000 10.5px) top/100% 51% no-repeat, radial-gradient(circle at 268px 100%, transparent 10px, #000 10.5px) bottom/100% 50% no-repeat; }
+  .hero .band { position: absolute; left: 0; top: 0; bottom: 0; width: 8px; background: linear-gradient(#203731 0 50%, #ffb612 50%); }
+  .hero .main { padding: 16px 14px 0 24px; }
+  .hero .m { font-size: 40px; margin-top: 8px; }
+  .hero .grid { display: flex; gap: 16px; margin-top: 14px; }
+  .hero .grid div { font: 700 8px/1 var(--f-ui); letter-spacing: 1.4px; color: #62706a; text-transform: uppercase; }
+  .hero .grid b { display: block; font: 400 22px/1 var(--f-anton); color: #13221c; margin-top: 4px; letter-spacing: .2px; }
+  .hero .foot { position: absolute; left: 24px; right: 14px; bottom: 12px; display: flex; justify-content: space-between; align-items: center;
+    font: 600 9px/1 var(--f-mono); color: #62706a; letter-spacing: .6px; }
+  .hero .stub { display: flex; flex-direction: column; align-items: center; padding: 16px 8px 0; }
+  .barcode { width: 28px; height: 120px; margin-top: 10px; background: repeating-linear-gradient(180deg, #13221c 0 2px, transparent 2px 3px, #13221c 3px 4px, transparent 4px 7px, #13221c 7px 10px, transparent 10px 11px); }
+  .hero .stub .no { font: 700 8px/1 var(--f-mono); color: #62706a; writing-mode: vertical-rl; transform: rotate(180deg); position: absolute; right: 10px; top: 30px; letter-spacing: 1px; }
+  .stamp { position: absolute; left: 146px; top: 96px; width: 116px; height: 54px; border: 2.5px solid rgba(200,40,30,.8); border-radius: 6px; transform: rotate(-9deg);
+    color: rgba(200,40,30,.85); text-align: center; mix-blend-mode: multiply; display: grid; place-items: center; z-index: 3; }
+  .stamp div { font: 800 8px/1.2 var(--f-ui); letter-spacing: 1.8px; }
+  .stamp big { display: block; font: 400 24px/1 var(--f-anton); letter-spacing: .5px; }
+  .avatars { display: flex; align-items: center; gap: 6px; }
+  .avatars b { width: 18px; height: 18px; border-radius: 9px; display: grid; place-items: center; font: 800 8px/1 var(--f-ui); color: #1a1010; margin-left: -10px; box-shadow: 0 0 0 1.5px #f7f3ea; }
+  .avatars b:first-child { margin-left: 0; }
+
+  .sect { position: absolute; left: 20px; right: 20px; top: 352px; display: flex; justify-content: space-between; z-index: 2;
+    font: 700 10px/1 var(--f-ui); letter-spacing: 2px; text-transform: uppercase; color: rgba(246,238,226,.45); }
+  .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 140px; z-index: 30; background: linear-gradient(rgba(21,17,13,0), rgba(21,17,13,.95) 75%); }
+  .scrub { position: absolute; right: 6px; top: 380px; z-index: 35; display: grid; gap: 9px; justify-items: end; }
+  .scrub span { font: 700 9px/1 var(--f-mono); color: rgba(246,238,226,.35); }
+  .scrub span.on { color: var(--signal); }
+  .add { position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%); z-index: 40; height: 48px; padding: 0 22px 0 18px; border-radius: 24px; display: flex; align-items: center; gap: 8px;
+    background: #f6eee2; color: #1a140e; font: 700 15px/1 var(--f-ui); box-shadow: 0 10px 24px rgba(0,0,0,.5); white-space: nowrap; }
+  .add svg { width: 18px; height: 18px; stroke: #1a140e; fill: none; stroke-width: 2.2; stroke-linecap: round; }
+</style></head>
+<body class="phone">
+<div class="desk"></div>
+<div class="top">
+  <div><h1>Stubs</h1><p>60 tickets · newest on top</p></div>
+  <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></svg></div>
+</div>
+
+<div class="tw hero">
+  <div class="t">
+    <div class="band"></div>
+    <div class="main">
+      <div class="d"><span>Week 18 · Admit one</span><span>Sun 05 Jan 2025</span></div>
+      <div class="m">CHI @ GB</div>
+      <div class="v">Lambeau Field · Green Bay, WI</div>
+      <div class="grid">
+        <div>Sec<b>112</b></div><div>Row<b>41</b></div><div>Seat<b>7</b></div>
+      </div>
+      <div class="foot"><span>NO. 0105-2025-112-41</span>
+        <div class="avatars"><b style="background:#ff7a8a">M</b><b style="background:#6fd3ff">L</b></div></div>
+      <div class="stamp"><div>FINAL · 0:00<big>24 – 22</big>WALK-OFF FG</div></div>
+    </div>
+    <div class="stub"><div class="sk">Stub</div><div class="barcode"></div><div class="no">0105 2025</div></div>
+  </div>
+</div>
+
+<div class="sect"><span>Earlier · 59 more</span><span>Tap a stub to pull it</span></div>
+<div id="stack"></div>
+<div class="fade"></div>
+
+<div class="add"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Add a stub</div>
+
+<script>
+const S = [
+  { bg: 'linear-gradient(90deg,#e0362e 0 10px,#fbf7f1 10px)', c: '#2a1714', d: 'Wed 04 Oct 2023', m: 'MIA 4 · CHI 1', v: 'Soldier Field', sc: 'L', r: 1.4 },
+  { bg: '#121212', c: '#f2f2f2', d: 'Sun 24 Oct 2021', m: 'US GRAND PRIX', v: 'COTA · Austin', sc: 'VER', k: 'Winner', r: -1.2, chk: true },
+  { bg: 'linear-gradient(90deg,#febe10 0 10px,#fffdf6 10px)', c: '#1c1a14', d: 'Dom 01 Mar 2020', m: 'RMA 2 · BAR 0', v: 'Bernabéu', sc: 'Clásico', k: 'Last game', r: .8 },
+  { bg: 'linear-gradient(90deg,#004d98 0 5px,#a50044 5px 10px,#f4efe6 10px)', c: '#1a1630', d: 'Sáb 22 Feb 2020', m: 'BAR 5 · EIB 0', v: 'Camp Nou', sc: '4 goals', k: 'One player', r: -1.6 },
+  { bg: 'linear-gradient(90deg,#f05a1a 0 10px,#0b162a 10px)', c: '#f3ece0', d: 'Sun 06 Jan 2019', m: 'PHI 16 · CHI 15', v: 'Wild Card', sc: 'Doink', k: 'Double', r: 1.1 },
+  { bg: '#fde100', c: '#141414', d: 'Sa 25 Nov 2017', m: 'BVB 4 · S04 4', v: 'Dortmund', sc: '4–4', k: 'Was 4–0', r: -.9 },
+  { bg: 'linear-gradient(90deg,#cc3433 0 10px,#f3ead6 10px)', c: '#0e3386', d: 'Sun 30 Oct 2016', m: 'CHI 3 · CLE 2', v: 'WS Game 5', sc: 'W', k: 'With Dad', r: 1.5 },
+];
+const st = document.getElementById('stack');
+S.forEach((s, i) => {
+  const w = document.createElement('div'); w.className = 'tw'; w.style.top = (378 + i * 64) + 'px'; w.style.zIndex = 10 + i; w.style.transform = `rotate(${s.r}deg)`;
+  w.innerHTML = `<div class="t" style="background:${s.bg};color:${s.c}">
+    <div class="main"><div class="d"><span>${s.d}</span><span>${s.v}</span></div><div class="m">${s.m}</div></div>
+    <div class="stub"><div class="sk">${s.k || 'Final'}</div><div class="sc">${s.sc}</div></div></div>`;
+  st.appendChild(w);
+});
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

@@ -14,10 +14,10 @@
   .head p { font: 400 13.5px/1.4 var(--f-ui); color: #6d6253; margin-top: 8px; }
 
   svg#tree { position: absolute; left: 0; top: 196px; width: 393px; height: 484px; z-index: 3; }
-  .keys { position: absolute; left: 16px; right: 16px; top: 652px; z-index: 5; display: flex; justify-content: center; gap: 14px; font: 700 17px/1 var(--f-hand); color: #a8344b; white-space: nowrap; }
+  .keys { position: absolute; left: 16px; right: 16px; top: 684px; z-index: 5; display: flex; justify-content: center; gap: 14px; font: 700 17px/1 var(--f-hand); color: #a8344b; white-space: nowrap; }
   .keys span { display: flex; align-items: center; gap: 5px; }
   .keys b { width: 17px; height: 17px; border-radius: 50%; border: 1.5px solid #c23a54; display: grid; place-items: center; font: 800 9px/1 var(--f-ui); }
-  .card { position: absolute; left: 16px; right: 16px; top: 694px; height: 92px; border-radius: 22px; z-index: 5; display: flex; align-items: center; gap: 14px; padding: 0 18px 0 16px;
+  .card { position: absolute; left: 16px; right: 16px; top: 716px; height: 84px; border-radius: 22px; z-index: 5; display: flex; align-items: center; gap: 14px; padding: 0 18px 0 16px;
     background: #fbf6ec; box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 10px 30px rgba(90,60,30,.16), 0 0 0 1px rgba(29,26,22,.06); }
   .card .av { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font: 400 26px/1 var(--f-serif); color: #fff;
     background: linear-gradient(135deg,#ff7a8a,#b6455a); flex: none; }
@@ -86,7 +86,7 @@
     // leaves along the outer 60% of the branch
     let out = '';
     for (let i = 0; i < b.c; i++) {
-      const t = 0.36 + 0.64 * (i / Math.max(1, b.c - 1));
+      const t = 0.34 + (hi ? 0.62 : 0.54) * (i / Math.max(1, b.c - 1));
       const p = bez(p0, p1, p2, t), d = tan(p0, p1, p2, t), side = i % 2 ? 1 : -1;
       const twig = 6 + rnd() * 5;
       const ang = Math.atan2(d[1], d[0]) * 180 / Math.PI + side * (52 + rnd() * 20);
@@ -101,7 +101,7 @@
     const lx = b.end[0], ly = b.end[1];
     const anchor = lx < 150 ? 'start' : lx > 250 ? 'end' : 'middle';
     const dx = anchor === 'start' ? -30 : anchor === 'end' ? 34 : 0;
-    const dy = hi ? -22 : -18;
+    const dy = hi ? -22 : (b.end[1] > 250 ? 40 : -18);
     labels += `<text x="${lx + dx}" y="${ly + dy}" text-anchor="${anchor}" font-family="Fraunces" font-style="italic" font-size="${hi ? 22 : 17}" fill="${hi ? '#c23a54' : '#3d3125'}">${b.n} <tspan font-family="Inter" font-style="normal" font-weight="700" font-size="${hi ? 13 : 11}" fill="${hi ? '#c23a54' : '#7d6c55'}">${b.c}</tspan></text>`;
   });
 

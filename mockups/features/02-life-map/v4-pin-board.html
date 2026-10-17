@@ -1,0 +1,130 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Pin board</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background:
+    radial-gradient(120% 70% at 50% 40%, rgba(255,220,170,.18), rgba(0,0,0,.28) 100%),
+    #b98a58; }
+  .cork { position: absolute; inset: 0; opacity: .9; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' seed='4'/><feColorMatrix values='0 0 0 0 .45  0 0 0 0 .28  0 0 0 0 .12  0 0 0 1.25 -.32'/></filter><rect width='100%' height='100%' filter='url(%23c)'/></svg>"); }
+  .cork2 { position: absolute; inset: 0; opacity: .5;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='d'><feTurbulence type='turbulence' baseFrequency='.06' numOctaves='2' seed='9'/><feColorMatrix values='0 0 0 0 .95  0 0 0 0 .78  0 0 0 0 .55  0 0 0 .6 -.15'/></filter><rect width='100%' height='100%' filter='url(%23d)'/></svg>"); mix-blend-mode: soft-light; }
+
+  .dymo { position: absolute; top: 60px; left: 18px; height: 30px; padding: 0 12px; display: flex; align-items: center; transform: rotate(-1.5deg);
+    background: linear-gradient(180deg, #1b1b1d, #0d0d0e); border-radius: 3px; box-shadow: 0 3px 6px rgba(0,0,0,.4);
+    font: 700 15px/1 var(--f-ui); letter-spacing: 3.5px; color: #f2f2f2; text-shadow: 0 -1px 0 rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.25); }
+  .dymo2 { top: 64px; left: auto; right: 18px; background: linear-gradient(180deg, #c8302a, #a2221d); transform: rotate(2deg); font-size: 12px; letter-spacing: 2.6px; height: 24px; }
+
+  .paper { position: absolute; background: #f3ead6; box-shadow: 0 2px 2px rgba(0,0,0,.18), 0 14px 26px rgba(40,20,0,.38); }
+  .paper svg { position: absolute; inset: 0; }
+  .paper .ttl { position: absolute; font: 400 9px/1 var(--f-type); letter-spacing: 1.2px; color: rgba(40,30,20,.6); }
+  .us { left: 10px; top: 104px; width: 373px; height: 252px; transform: rotate(-1.2deg); }
+  .eu { left: 206px; top: 362px; width: 172px; height: 150px; transform: rotate(3deg); }
+
+  .pin { position: absolute; width: 0; height: 0; z-index: 20; }
+  .pin::before { content: ""; position: absolute; left: -2px; top: 1px; width: 10px; height: 4px; border-radius: 50%; background: rgba(0,0,0,.35); filter: blur(1.5px); transform: translate(3px, 2px); }
+  .pin i { position: absolute; left: -6px; top: -9px; width: 12px; height: 12px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff 0 1.5px, var(--c, #d8312a) 3px, color-mix(in srgb, var(--c, #d8312a) 60%, #000) 100%);
+    box-shadow: 0 2px 2px rgba(0,0,0,.35); }
+  .pin.big i { left: -8px; top: -11px; width: 16px; height: 16px; }
+
+  .pol { position: absolute; background: #fbf8f1; padding: 9px 9px 0; box-shadow: 0 2px 2px rgba(0,0,0,.2), 0 16px 28px rgba(40,20,0,.42); z-index: 10; }
+  .pol .im { width: 100%; overflow: hidden; }
+  .pol .cap { height: 40px; display: flex; align-items: center; justify-content: center; font: 700 19px/1 var(--f-hand); color: #23324f; white-space: nowrap; }
+  .tape { position: absolute; width: 60px; height: 20px; background: rgba(255,250,230,.6); box-shadow: 0 1px 2px rgba(0,0,0,.1); z-index: 12; }
+
+  .stub { position: absolute; right: 16px; top: 722px; width: 170px; height: 78px; transform: rotate(-3deg); z-index: 9; padding: 10px 14px 0 22px;
+    background: #efe3c4; box-shadow: 0 10px 20px rgba(40,20,0,.38);
+    -webkit-mask: radial-gradient(circle at 0 50%, transparent 7px, #000 7.5px); }
+  .stub::before { content: ""; position: absolute; left: 12px; top: 6px; bottom: 6px; border-left: 1.5px dashed rgba(60,40,20,.35); }
+  .stub .k { font: 400 8.5px/1 var(--f-type); letter-spacing: 1.4px; color: rgba(60,40,20,.65); }
+  .stub .v { margin-top: 5px; font: 400 30px/1 var(--f-anton); letter-spacing: .5px; color: #2a1c10; }
+  .stub .s { margin-top: 3px; font: 400 9px/1 var(--f-type); letter-spacing: .8px; color: rgba(60,40,20,.8); }
+
+  #strings { position: absolute; inset: 0; z-index: 15; pointer-events: none; }
+</style></head>
+<body class="phone">
+  <div class="cork"></div><div class="cork2"></div>
+  <div class="dymo">SAM'S GAME MAP</div>
+  <div class="dymo dymo2">60 GAMES</div>
+
+  <div class="paper us" id="us"><svg id="usmap" width="373" height="252"></svg><div class="ttl" style="left:12px;bottom:9px">UNITED STATES · 17 VENUES</div></div>
+  <div class="paper eu" id="eu"><svg id="eumap" width="172" height="150"></svg><div class="ttl" style="left:10px;bottom:8px">EUROPE · 3</div></div>
+
+  <div class="pol" style="left:16px;top:376px;width:168px;transform:rotate(-5deg)" id="pWS">
+    <div class="im" style="height:132px"><img class="ph graded" src="../../photos/wrigley-night.jpg"></div>
+    <div class="cap">WS Game 5 · w/ Dad</div>
+  </div>
+  <div class="pol" style="left:198px;top:548px;width:170px;transform:rotate(4deg)" id="pES">
+    <div class="im" style="height:120px"><img class="ph graded" src="../../photos/camp-nou-aerial.jpg"></div>
+    <div class="cap">Spain ’20, all four of us</div>
+  </div>
+  <div class="pol" style="left:24px;top:586px;width:160px;transform:rotate(3deg)" id="pGB">
+    <div class="im" style="height:118px"><img class="ph graded" src="../../photos/lambeau-concourse.jpg"></div>
+    <div class="cap">19°F. Worth it.</div>
+  </div>
+  <div class="stub"><div class="k">TOTAL DISTANCE</div><div class="v">42,900 MI</div><div class="s">21 VENUES · 3 COUNTRIES</div></div>
+
+  <svg id="strings" width="393" height="852"></svg>
+
+<script src="../../kit/vendor/d3.min.js"></script>
+<script src="../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../kit/vendor/states-10m.js"></script>
+<script src="../../kit/vendor/countries-110m.js"></script>
+<script>
+(function(){
+  const st = __atlas['states-10m'];
+  const states = topojson.feature(st, st.objects.states).features.filter(f => !['02', '15', '72', '60', '66', '69', '78'].includes(f.id));
+  const col = { type: 'FeatureCollection', features: states };
+  const pu = d3.geoAlbersUsa().fitExtent([[14, 12], [359, 226]], col);
+  const pathU = d3.geoPath(pu);
+  const su = d3.select('#usmap');
+  const tints = ['#efe2c2', '#e9dcc0', '#f1e6cc', '#e4d6b6', '#ece0c6'];
+  states.forEach((f, i) => su.append('path').attr('d', pathU(f)).attr('fill', tints[(+f.id) % 5]).attr('stroke', 'rgba(90,60,30,.45)').attr('stroke-width', .5));
+  // fold creases
+  su.append('line').attr('x1', 186).attr('y1', 0).attr('x2', 186).attr('y2', 252).attr('stroke', 'rgba(0,0,0,.06)').attr('stroke-width', 2);
+  su.append('line').attr('x1', 0).attr('y1', 126).attr('x2', 373).attr('y2', 126).attr('stroke', 'rgba(255,255,255,.35)').attr('stroke-width', 1.5);
+
+  const world = __atlas['countries-110m'];
+  const eu = topojson.feature(world, world.objects.countries).features;
+  const pe = d3.geoMercator().fitExtent([[6, 8], [166, 132]], { type: 'MultiPoint', coordinates: [[-9.5, 36], [14, 54.5]] });
+  const pathE = d3.geoPath(pe);
+  const se = d3.select('#eumap');
+  se.append('rect').attr('width', 172).attr('height', 150).attr('fill', '#dfe7e4');
+  eu.forEach((f, i) => se.append('path').attr('d', pathE(f)).attr('fill', tints[i % 5]).attr('stroke', 'rgba(90,60,30,.45)').attr('stroke-width', .5));
+
+  const addPin = (parent, x, y, id, c, big) => { const p = document.createElement('div'); p.className = 'pin' + (big ? ' big' : ''); p.id = id; p.style.left = x + 'px'; p.style.top = y + 'px'; if (c) p.style.setProperty('--c', c); p.innerHTML = '<i></i>'; parent.appendChild(p); return p; };
+  const US = document.getElementById('us');
+  const V = [['fen', -71.097, 42.346], ['gb', -88.062, 44.501], ['mke', -87.971, 43.028], ['msp', -93.278, 44.982], ['kc', -94.480, 39.051], ['stl', -90.193, 38.623],
+    ['cin', -84.507, 39.097], ['det', -83.049, 42.339], ['pit', -80.006, 40.447], ['nyc', -73.926, 40.829], ['den', -104.994, 39.756], ['sf', -122.389, 37.778], ['la', -118.240, 34.074], ['aus', -97.641, 30.133]];
+  const palette = ['#d8312a', '#2f6bff', '#f2b630', '#2c9a5b', '#ffffff', '#d8312a'];
+  V.forEach(([id, lon, lat], i) => { const [x, y] = pu([lon, lat]); addPin(US, x, y, 'p-' + id, palette[i % 5]); });
+  const [cx, cy] = pu([-87.70, 41.92]);
+  addPin(US, cx - 5, cy + 4, 'p-chi2', '#2f6bff'); addPin(US, cx + 4, cy + 7, 'p-chi3', '#f2b630'); addPin(US, cx, cy, 'p-chi', '#d8312a', true);
+  const EU = document.getElementById('eu');
+  [['bcn', 2.123, 41.381], ['mad', -3.688, 40.453], ['dtm', 7.452, 51.493]].forEach(([id, lon, lat]) => { const [x, y] = pe([lon, lat]); addPin(EU, x, y, 'p-' + id, id === 'dtm' ? '#f2b630' : '#d8312a'); });
+  // pins on polaroids / stub
+  const pp = (el, x, y, id, c) => addPin(document.getElementById(el), x, y, id, c, true);
+  pp('pWS', 84, 6, 'q-ws', '#2f6bff'); pp('pES', 85, 6, 'q-es', '#d8312a'); pp('pGB', 80, 6, 'q-gb', '#f2b630');
+
+  window.afterPaint = async () => {
+    const S = d3.select('#strings');
+    const c = id => { const r = document.querySelector('#' + id + ' i').getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+    const yarn = (a, b, sag = .08) => {
+      const A = c(a), B = c(b), mx = (A[0] + B[0]) / 2, my = (A[1] + B[1]) / 2 + Math.hypot(B[0] - A[0], B[1] - A[1]) * sag;
+      const d = `M${A[0]},${A[1]} Q${mx},${my} ${B[0]},${B[1]}`;
+      S.append('path').attr('d', d).attr('fill', 'none').attr('stroke', 'rgba(0,0,0,.28)').attr('stroke-width', 2).attr('transform', 'translate(1.5,3)').attr('filter', 'blur(1px)');
+      S.append('path').attr('d', d).attr('fill', 'none').attr('stroke', '#c42a22').attr('stroke-width', 1.5);
+      S.append('path').attr('d', d).attr('fill', 'none').attr('stroke', 'rgba(255,170,150,.55)').attr('stroke-width', .5).attr('stroke-dasharray', '1.5 2');
+    };
+    ['p-fen', 'p-gb', 'p-aus', 'p-sf', 'p-la', 'p-den', 'p-nyc'].forEach(t => yarn('p-chi', t, .06));
+    yarn('p-chi', 'p-dtm', .16); yarn('p-chi', 'p-bcn', .16); yarn('p-bcn', 'p-mad', .1);
+    yarn('p-chi', 'q-ws', .05); yarn('p-gb', 'q-gb', .05); yarn('p-bcn', 'q-es', .04);
+    // re-raise pins above strings
+    document.querySelectorAll('.pin').forEach(p => p.style.zIndex = 30);
+    document.querySelectorAll('.paper, .pol').forEach(p => p.style.zIndex = p.classList.contains('pol') ? 16 : 14);
+  };
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

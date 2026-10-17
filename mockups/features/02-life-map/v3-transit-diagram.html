@@ -47,12 +47,12 @@
   const inter = (x, y, r = 7.5) => { el('circle', { cx: x, cy: y, r, fill: '#fff', stroke: '#141414', 'stroke-width': 3 }); };
   const count = (x, y, n, anchor = 'start') => text(x, y, n, { size: 10, weight: 700, fill: 'rgba(20,20,20,.38)', anchor });
 
-  const HX = 196, HY = 236;           // home
-  const MY = 134;                      // baseball trunk
+  const HX = 196, HY = 200;           // home
+  const MY = 104;                      // baseball trunk
   // --- Baseball: branch west + east from Wrigley ---
   const west = ['Dodger Stadium', 'Oracle Park', 'Coors Field', 'Kauffman', 'Target Field', 'Milwaukee'];
   const east = ['Rate Field', 'Busch Stadium', 'Cincinnati', 'Comerica Park', 'PNC Park', 'Yankee Stadium', 'Fenway Park'];
-  const x0 = 22, x1 = 371, step = (x1 - x0) / 13;
+  const x0 = 22, x1 = 332, step = (x1 - x0) / 13;
   const xs = i => x0 + i * step;       // 0..13, Wrigley at index 6
   const WX = xs(6);
   line([[HX, HY], [HX, MY + 14], [WX, MY]], C.mlb, 7);
@@ -63,17 +63,17 @@
     text(x + 2, MY - 13, n, { rot: -52, size: 11, weight: n === 'Fenway Park' || n === 'Rate Field' ? 700 : 600 });
   });
   // --- Football + Soccer to Soldier Field ---
-  const SX = 116, SY = 316;
+  const SX = 116, SY = 270;
   line([[HX - 4, HY], [HX - 4, HY + 12], [SX - 4, SY - 4 + 0], [SX - 4, SY + 72]], C.nfl, 7);          // to Lambeau
   line([[HX + 4, HY], [HX + 4, HY + 16], [SX + 4, SY + 4 - 0 + 0], [SX + 4, SY + 18], [60, SY + 74], [60, SY + 96]], C.soc, 7);
   line([[60, SY + 96], [60, SY + 132]], C.soc, 7, '2 7');          // ocean crossing
   line([[60, SY + 132], [60, SY + 222]], C.soc, 7);
   // --- Basketball + Hockey to United Center ---
-  const UX = 282, UY = 316;
+  const UX = 282, UY = 270;
   line([[HX + 2, HY], [HX + 2, HY + 12], [UX - 2, UY - 4], [UX - 2, UY + 8]], C.nba, 7);
   line([[HX + 10, HY], [HX + 10, HY + 4], [UX + 6, UY - 6], [UX + 6, UY + 8]], C.nhl, 7);
   // --- F1 straight south ---
-  line([[HX, HY], [HX, 436]], C.f1, 7);
+  line([[HX, HY], [HX, 400]], C.f1, 7);
 
   // stations
   inter(WX, MY, 9);
@@ -89,20 +89,20 @@
   count(SX - 18, SY + 18, '15 games', 'end');
   // Lambeau terminus
   tick(SX - 4, SY + 72, 'e', C.nfl); line([[SX - 10, SY + 72], [SX + 2, SY + 72]], C.nfl, 5);
-  text(SX + 10, SY + 76, 'Lambeau Field', { size: 12 }); count(SX + 10, SY + 90, 'Week 18 · ’25');
+  text(SX - 4, SY + 92, 'Lambeau Field', { size: 12, anchor: 'middle' }); count(SX - 4, SY + 106, 'Week 18 · ’25', 'middle');
   // United Center interchange
   el('rect', { x: UX - 12, y: UY - 2, width: 24, height: 18, rx: 9, fill: '#fff', stroke: '#141414', 'stroke-width': 3 });
   text(UX + 18, UY + 11, 'United Center', { size: 13, weight: 800 });
   count(UX + 18, UY + 25, '11 games');
   // soccer stations
-  text(72, SY + 118, 'Atlantic', { size: 10, weight: 600, fill: 'rgba(20,20,20,.4)' });
+  text(72, SY + 120, 'Atlantic', { size: 10, weight: 600, fill: 'rgba(20,20,20,.4)' });
   [['Signal Iduna Park', SY + 150, 'Dortmund · ’17'], ['Camp Nou', SY + 186, 'Barcelona · ’20'], ['Bernabéu', SY + 222, 'Madrid · ’20']].forEach(([n, y, sub], i) => {
     if (i < 2) tick(60, y, 'e', C.soc); else { line([[52, y], [68, y]], C.soc, 5); }
     text(74, y + 4, n, { size: 12 }); count(74, y + 17, sub);
   });
   // COTA terminus
-  line([[HX - 8, 436], [HX + 8, 436]], C.f1, 5);
-  text(HX + 14, 440, 'Circuit of the Americas', { size: 12 }); count(HX + 14, 453, 'Austin · US Grand Prix ’21');
+  line([[HX - 8, 400], [HX + 8, 400]], C.f1, 5);
+  text(HX + 14, 404, 'Circuit of the Americas', { size: 12 }); count(HX + 14, 417, 'Austin · US Grand Prix ’21');
   // you-are-here
   el('circle', { cx: HX, cy: HY, r: 16, fill: 'none', stroke: '#ffb547', 'stroke-width': 1.5, opacity: .8 });
 })();

@@ -24,7 +24,7 @@
   .st .k { font: 700 9px/1 var(--f-grot); letter-spacing: 1.6px; text-transform: uppercase; color: rgba(20,37,74,.55); }
   .st .v { margin-top: 6px; font: 400 26px/1 var(--f-black); letter-spacing: -.8px; }
   .st .s { margin-top: 5px; font: 500 11px/1.2 var(--f-ui); color: rgba(20,37,74,.65); }
-  .foot { position: absolute; left: 20px; right: 20px; top: 790px; display: flex; justify-content: space-between; font: 600 10px/1 var(--f-grot); letter-spacing: 1.5px; text-transform: uppercase; color: rgba(20,37,74,.5); }
+  .foot { position: absolute; left: 20px; right: 20px; top: 786px; display: flex; justify-content: space-between; font: 600 10px/1 var(--f-grot); letter-spacing: 1.5px; text-transform: uppercase; color: rgba(20,37,74,.5); }
 </style></head>
 <body class="phone" data-chrome="dark">
   <div class="paper-tex" style="opacity:.35"></div>
@@ -45,7 +45,7 @@
   </div>
   <div class="stats">
     <div class="st"><div class="k">Miles flown</div><div class="v">42,900</div><div class="s">1.7× around Earth</div></div>
-    <div class="st"><div class="k">Longest</div><div class="v">ORD–BCN</div><div class="s">4,413 mi · 2020</div></div>
+    <div class="st"><div class="k">Longest</div><div class="v">BCN</div><div class="s">4,413 mi from ORD</div></div>
     <div class="st"><div class="k">Venues</div><div class="v">21</div><div class="s">3 countries</div></div>
   </div>
   <div class="foot"><span>Sam Okafor · Frequent fan</span><span>60 games</span></div>
@@ -93,13 +93,13 @@
   // ---------- North America ----------
   const W = 369, H = 300;
   const NA = [
-    ['GRB', -88.062, 44.501, 6, -6], ['MKE', -87.971, 43.028, 7, 3], ['MSP', -93.278, 44.982, -6, -6, 'end'], ['MCI', -94.480, 39.051, -6, 3, 'end'],
+    ['GRB', -88.062, 44.501, 6, -6], ['MKE', -87.971, 43.028, -6, -4, 'end'], ['MSP', -93.278, 44.982, -6, -6, 'end'], ['MCI', -94.480, 39.051, -6, 3, 'end'],
     ['STL', -90.193, 38.623, -5, 13, 'end'], ['CVG', -84.507, 39.097, 2, 15], ['DTW', -83.049, 42.339, 6, -5], ['PIT', -80.006, 40.447, 6, 12],
     ['NYC', -73.926, 40.829, 6, 12], ['BOS', -71.097, 42.346, 6, -5], ['DEN', -104.994, 39.756, 0, -9, 'middle'], ['SFO', -122.389, 37.778, 6, -6],
     ['LAX', -118.240, 34.074, 6, 10], ['AUS', -97.641, 30.133, 6, 10]
   ];
   const pna = d3.geoConicConformal().parallels([33, 45]).rotate([96, 0]);
-  pna.fitExtent([[22, 34], [W - 20, H - 18]], { type: 'MultiPoint', coordinates: NA.map(v => [v[1], v[2]]).concat([[-87.7, 41.9]]) });
+  pna.fitExtent([[34, 50], [W - 44, H - 30]], { type: 'MultiPoint', coordinates: NA.map(v => [v[1], v[2]]).concat([[-87.7, 41.9]]) });
   const sn = base(document.getElementById('na'), pna, W, H, true);
   const ORD = pna([-87.70, 41.92]);
   NA.forEach(([c, lon, lat]) => { const p = pna([lon, lat]); const far = Math.hypot(p[0] - ORD[0], p[1] - ORD[1]); curve(sn, ORD, p, far > 60 ? .22 : .3); });
@@ -111,7 +111,8 @@
   // hub
   sn.append('circle').attr('cx', ORD[0]).attr('cy', ORD[1]).attr('r', 9).attr('fill', NAVY);
   sn.append('circle').attr('cx', ORD[0]).attr('cy', ORD[1]).attr('r', 3.5).attr('fill', '#f6f1e6');
-  const hl = sn.append('g').attr('transform', `translate(${ORD[0] - 8},${ORD[1] + 16})`);
+  sn.append('path').attr('d', `M${ORD[0]},${ORD[1]} L${ORD[0] + 18},${ORD[1] + 58}`).attr('stroke', NAVY).attr('stroke-width', 1);
+  const hl = sn.append('g').attr('transform', `translate(${ORD[0] + 54},${ORD[1] + 58})`);
   hl.append('rect').attr('x', -50).attr('y', 0).attr('width', 64).attr('height', 30).attr('rx', 2).attr('fill', NAVY);
   hl.append('text').attr('x', -18).attr('y', 13).attr('text-anchor', 'middle').attr('font-family', 'Archivo Black').attr('font-size', 11).attr('fill', '#fff').attr('letter-spacing', .5).text('CHICAGO');
   hl.append('text').attr('x', -18).attr('y', 24).attr('text-anchor', 'middle').attr('font-family', 'Space Grotesk').attr('font-weight', 700).attr('font-size', 7.5).attr('fill', 'rgba(255,255,255,.7)').attr('letter-spacing', .8).text('HUB · 46 GAMES');
