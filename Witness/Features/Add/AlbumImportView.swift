@@ -443,7 +443,7 @@ struct AlbumImportView: View {
         for item in chosen {
             let c = item.cluster
             var entry = GameEntry(sport: c.venue.sports.first ?? .baseball, date: item.game?.start ?? c.start,
-                                  venueId: c.venue.id, photos: c.assetIds.suffix(24).map { PhotoRef.library($0) },
+                                  venueId: c.venue.id, photos: c.assetIds.map { PhotoRef.library($0) },
                                   origin: item.ticket == nil ? .photos : .ticket)
             entry.seat = item.ticket?.seatLine
             if item.game == nil && item.ticket == nil && !GameLookup.leagues(for: c.venue).isEmpty {

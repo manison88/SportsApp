@@ -277,7 +277,7 @@ struct DiscoveryView: View {
     private func addAsGame(_ cluster: PhotoCluster, _ game: FoundGame) {
         let venue = GameLookup.venue(of: game, in: library.venues) ?? cluster.venue
         var entry = GameEntry(sport: game.sport, date: game.start, venueId: venue.id,
-                              photos: cluster.assetIds.prefix(12).map { PhotoRef.library($0) }, origin: .photos)
+                              photos: cluster.assetIds.map { PhotoRef.library($0) }, origin: .photos)
         GameLookup.apply(game, detail: nil, to: &entry, library: library)
         let id = entry.id
         Task {
@@ -292,7 +292,7 @@ struct DiscoveryView: View {
 
     private func addOther(_ cluster: PhotoCluster) {
         var entry = GameEntry(sport: cluster.venue.sports.first ?? .baseball, date: cluster.start, venueId: cluster.venue.id,
-                              photos: cluster.assetIds.prefix(12).map { PhotoRef.library($0) }, origin: .photos)
+                              photos: cluster.assetIds.map { PhotoRef.library($0) }, origin: .photos)
         entry.kind = .visit
         entry.competition = otherKind
         let title = otherTitle.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -439,7 +439,7 @@ struct DiscoveryView: View {
         var entry = GameEntry(sport: venue.sports.first ?? .baseball,
                               date: cluster.start,
                               venueId: venue.id,
-                              photos: cluster.assetIds.prefix(12).map { PhotoRef.library($0) },
+                              photos: cluster.assetIds.map { PhotoRef.library($0) },
                               origin: .photos)
         if let draft = tickets[cluster.id] {
             entry.seat = draft.seatLine
