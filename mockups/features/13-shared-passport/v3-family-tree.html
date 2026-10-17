@@ -14,6 +14,9 @@
   .head p { font: 400 13.5px/1.4 var(--f-ui); color: #6d6253; margin-top: 8px; }
 
   svg#tree { position: absolute; left: 0; top: 196px; width: 393px; height: 484px; z-index: 3; }
+  .keys { position: absolute; left: 16px; right: 16px; top: 652px; z-index: 5; display: flex; justify-content: center; gap: 14px; font: 700 17px/1 var(--f-hand); color: #a8344b; white-space: nowrap; }
+  .keys span { display: flex; align-items: center; gap: 5px; }
+  .keys b { width: 17px; height: 17px; border-radius: 50%; border: 1.5px solid #c23a54; display: grid; place-items: center; font: 800 9px/1 var(--f-ui); }
   .card { position: absolute; left: 16px; right: 16px; top: 694px; height: 92px; border-radius: 22px; z-index: 5; display: flex; align-items: center; gap: 14px; padding: 0 18px 0 16px;
     background: #fbf6ec; box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 10px 30px rgba(90,60,30,.16), 0 0 0 1px rgba(29,26,22,.06); }
   .card .av { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font: 400 26px/1 var(--f-serif); color: #fff;
@@ -38,6 +41,7 @@
 
   <svg id="tree" viewBox="0 0 393 484"></svg>
 
+  <div class="keys"><span><b>1</b>Her first, Wrigley ’14</span><span><b>2</b>Spain ’20</span><span><b>3</b>Lambeau ’25</span></div>
   <div class="card">
     <div class="av">M</div>
     <div><b>Maya’s branch</b><span>17 games · 6 venues · Chicago 11–6</span></div>
@@ -46,14 +50,14 @@
 <script>
   const svg = document.getElementById('tree');
   const INK = '#4a3a2a';
-  const base = [196, 452], fork = [196, 300];
+  const base = [196, 440], fork = [196, 330];
   // name, count, end, ctrl, color, leaf fill
   const B = [
-    { n: 'Maya',  c: 17, end: [214, 58],  ctrl: [176, 170], col: '#d24b62', hi: true },
-    { n: 'Leo',   c: 15, end: [330, 128], ctrl: [272, 250] },
-    { n: 'Dad',   c: 11, end: [66, 120],  ctrl: [120, 250] },
-    { n: 'Dana',  c: 9,  end: [338, 290], ctrl: [280, 300] },
-    { n: 'Chris', c: 6,  end: [56, 284],  ctrl: [110, 300] },
+    { n: 'Maya',  c: 17, end: [204, 44],  ctrl: [184, 180], col: '#d24b62', hi: true },
+    { n: 'Leo',   c: 15, end: [344, 150], ctrl: [262, 270] },
+    { n: 'Dad',   c: 11, end: [52, 156],  ctrl: [128, 272] },
+    { n: 'Dana',  c: 9,  end: [352, 300], ctrl: [272, 316] },
+    { n: 'Chris', c: 6,  end: [42, 300],  ctrl: [120, 316] },
   ];
   const bez = (p0, p1, p2, t) => [(1-t)*(1-t)*p0[0] + 2*(1-t)*t*p1[0] + t*t*p2[0], (1-t)*(1-t)*p0[1] + 2*(1-t)*t*p1[1] + t*t*p2[1]];
   const tan = (p0, p1, p2, t) => { const x = 2*(1-t)*(p1[0]-p0[0]) + 2*t*(p2[0]-p1[0]), y = 2*(1-t)*(p1[1]-p0[1]) + 2*t*(p2[1]-p1[1]); const l = Math.hypot(x, y); return [x/l, y/l]; };
@@ -72,7 +76,7 @@
   back += `<path d="M60,${base[1]+8} Q196,${base[1]-6} 333,${base[1]+8}" fill="none" stroke="${INK}" stroke-opacity=".25" stroke-width="1"/>`;
   back += `<path d="M190,${base[1]} q-18,8 -40,10 M202,${base[1]} q20,8 44,9 M196,${base[1]} q0,10 -4,16" fill="none" stroke="${INK}" stroke-width="2" stroke-linecap="round" opacity=".7"/>`;
   // trunk
-  back += `<path d="${taper(base, [200, 380], fork, 26, 16)}" fill="${INK}"/>`;
+  back += `<path d="${taper(base, [200, 390], fork, 26, 16)}" fill="${INK}"/>`;
 
   B.forEach(b => {
     const p0 = fork, p1 = b.ctrl, p2 = b.end, hi = !!b.hi;
@@ -103,16 +107,10 @@
 
   // annotations on Maya's branch
   const M = B[0];
-  const ann = (t, txt, dx, dy, anchor) => {
-    const p = bez(fork, M.ctrl, M.end, t);
-    return `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4" fill="#fff" stroke="#c23a54" stroke-width="2"/>
-      <path d="M${(p[0] + (dx > 0 ? 7 : -7)).toFixed(1)},${p[1].toFixed(1)} Q${(p[0] + dx * .5).toFixed(1)},${(p[1] + dy * .2).toFixed(1)} ${(p[0] + dx * .92).toFixed(1)},${(p[1] + dy * .82).toFixed(1)}" fill="none" stroke="#c23a54" stroke-width="1.2" stroke-dasharray="2 3"/>
-      <text x="${(p[0] + dx).toFixed(1)}" y="${(p[1] + dy).toFixed(1)}" text-anchor="${anchor}" font-family="Caveat" font-weight="700" font-size="17" fill="#a8344b">${txt}</text>`;
-  };
-  labels += ann(0.36, 'her first · Wrigley ’14, age 4', 40, 44, 'start');
-  labels += ann(0.62, 'Camp Nou & the Bernabéu ’20', -40, 26, 'end');
-  labels += ann(0.84, 'Lambeau, 19° ’25', 52, 10, 'start');
-
+  const mk = (t, n) => { const p = bez(fork, M.ctrl, M.end, t);
+    return `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="8.5" fill="#fffaf2" stroke="#c23a54" stroke-width="1.8"/>
+      <text x="${p[0].toFixed(1)}" y="${(p[1] + 3.6).toFixed(1)}" text-anchor="middle" font-family="Inter" font-weight="800" font-size="10" fill="#c23a54">${n}</text>`; };
+  labels += mk(0.36, 1) + mk(0.62, 2) + mk(0.86, 3);
   // trunk label
   labels += `<text x="196" y="${base[1] + 28}" text-anchor="middle" font-family="Inter" font-weight="700" font-size="9.5" letter-spacing="1.8" fill="#8a7a62">SAM · 60 GAMES · 22 ON YOUR OWN</text>`;
 

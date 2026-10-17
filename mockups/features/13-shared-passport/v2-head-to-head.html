@@ -81,7 +81,7 @@
 
   <div class="verdict">
     <div class="big">65%</div>
-    <div><b>Maya’s the real lucky charm.</b><span>Chicago is 11–6 with her there. You’re at 61%.</span></div>
+    <div><b>Maya’s the real lucky charm.</b><span>Chicago is 11–6 with her. You: 61%.</span></div>
   </div>
 <script>
   const rows = [
@@ -97,7 +97,7 @@
     return `<div class="r ${f === 'maya' ? 'win' : ''}">
       <span class="v l ${f === 'maya' ? 'dim' : ''}">${a}</span>
       <span class="bar l"><i style="width:${(x / m * 100).toFixed(0)}%"></i></span>
-      <span class="k">${k}${f === 'tie' ? ' · tie' : ''}</span>
+      <span class="k">${k}</span>
       <span class="bar rr"><i style="width:${(y / m * 100).toFixed(0)}%"></i></span>
       <span class="v rr">${b}${f === 'maya' ? '<span class="crown">▲</span>' : ''}</span></div>`;
   }).join('');

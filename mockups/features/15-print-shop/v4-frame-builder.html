@@ -1,0 +1,109 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Frame builder</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #fbf9f5; color: #1d1a16; }
+  .wall { position: absolute; left: 0; right: 0; top: 0; height: 520px;
+    background: radial-gradient(80% 70% at 35% 20%, #f1ebe1 0%, #e1d8ca 60%, #cdc2b1 100%); }
+  .wall::after { content: ""; position: absolute; inset: 0; opacity: .35; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.35' numOctaves='4' seed='7'/><feColorMatrix values='0 0 0 0 .8  0 0 0 0 .75  0 0 0 0 .68  0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>"); }
+  .sconce { position: absolute; left: 50%; top: -60px; width: 360px; height: 260px; transform: translateX(-50%); background: radial-gradient(50% 50% at 50% 30%, rgba(255,248,232,.85), rgba(255,248,232,0) 70%); }
+  .nav { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 20; }
+  .pbtn { width: 40px; height: 40px; border-radius: 20px; display: grid; place-items: center; background: rgba(255,252,246,.65); box-shadow: inset 0 0 0 .5px rgba(60,40,10,.15); }
+  .pbtn svg { width: 17px; height: 17px; stroke: #1d1a16; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .nav .t { font: 600 11px/1 var(--f-ui); letter-spacing: 2px; text-transform: uppercase; color: rgba(29,26,22,.55); }
+
+  .shadow { position: absolute; left: 100px; top: 140px; width: 210px; height: 286px; background: rgba(60,40,20,.5); filter: blur(16px); transform: translate(10px, 14px); }
+  .frame { position: absolute; left: 92px; top: 118px; width: 210px; height: 280px; padding: 13px;
+    background: linear-gradient(135deg, #6b4428, #4a2c18 45%, #5d3a21 70%, #3b2312);
+    box-shadow: inset 0 0 0 1px rgba(255,220,180,.18), inset 2px 2px 0 rgba(255,220,180,.18), inset -2px -2px 0 rgba(0,0,0,.35), 0 2px 3px rgba(0,0,0,.35); }
+  .frame::before { content: ""; position: absolute; inset: 0; opacity: .45; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='210' height='280'><filter id='w'><feTurbulence type='fractalNoise' baseFrequency='.02 .4' numOctaves='3' seed='5'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.6 -.3'/></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>"); }
+  .mat { position: relative; height: 100%; background: #f6f2ea; padding: 20px; box-shadow: inset 2px 2px 3px rgba(0,0,0,.35), inset -1px -1px 0 rgba(255,255,255,.6); }
+  .art { position: relative; height: 100%; background: #f3eee4; box-shadow: 0 0 0 1px #fffdf8, 0 0 0 2px #d6cdbd, -1px -1px 0 2px #c9bfae; overflow: hidden; }
+  .art .im { position: absolute; left: 0; right: 0; top: 0; height: 132px; overflow: hidden; }
+  .art .bot { position: absolute; left: 9px; right: 9px; top: 140px; }
+  .art .sc { display: flex; justify-content: space-between; align-items: baseline; font: 800 30px/1 var(--f-cond); letter-spacing: -.5px; color: #0e3386; }
+  .art .sc span { font: 700 7px/1 var(--f-ui); letter-spacing: 1.2px; color: #1d1a16; }
+  .art .sc em { font-style: normal; color: #b9b1a2; }
+  .art .rl { height: 1px; background: #1d1a16; margin: 6px 0 5px; opacity: .8; }
+  .art .m { font: 600 5px/1.5 var(--f-mono); letter-spacing: .6px; color: #4a4339; display: flex; justify-content: space-between; }
+  .glare { position: absolute; inset: 13px; background: linear-gradient(120deg, rgba(255,255,255,0) 35%, rgba(255,255,255,.22) 45%, rgba(255,255,255,0) 55%); pointer-events: none; }
+  .dim { position: absolute; left: 318px; top: 118px; height: 280px; width: 20px; }
+  .dim i { position: absolute; left: 6px; top: 0; bottom: 0; border-left: 1px solid rgba(29,26,22,.35); }
+  .dim i::before, .dim i::after { content: ""; position: absolute; left: -4px; width: 7px; border-top: 1px solid rgba(29,26,22,.35); }
+  .dim i::before { top: 0; } .dim i::after { bottom: 0; }
+  .dim span { position: absolute; left: 12px; top: 50%; transform: rotate(90deg) translateX(-50%); transform-origin: 0 0; white-space: nowrap; font: 600 9px/1 var(--f-mono); letter-spacing: 1px; color: rgba(29,26,22,.55); }
+  .console { position: absolute; left: 0; right: 0; top: 470px; height: 50px; background: linear-gradient(180deg, #b79b78, #a3865f); box-shadow: 0 -1px 0 rgba(255,255,255,.4) inset; }
+  .console::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 14px; background: linear-gradient(180deg, rgba(60,40,20,0), rgba(60,40,20,.18)); }
+  .vase { position: absolute; left: 34px; top: 404px; width: 30px; height: 66px; border-radius: 14px 14px 8px 8px; background: linear-gradient(90deg, #8d9a8b, #b7c2b2 40%, #7c8a79); }
+  .stem { position: absolute; left: 47px; top: 340px; width: 2px; height: 70px; background: #5e6b4f; transform: rotate(-8deg); }
+  .stem::after { content: ""; position: absolute; left: -8px; top: -4px; width: 14px; height: 24px; border-radius: 50%; background: #6f7d5c; transform: rotate(-30deg); }
+
+  .sheet { position: absolute; left: 0; right: 0; top: 500px; bottom: 0; background: #fbf9f5; border-radius: 26px 26px 0 0; padding: 18px 20px 0; box-shadow: 0 -10px 30px rgba(60,40,20,.12); }
+  .hd { display: flex; justify-content: space-between; align-items: baseline; }
+  .hd h1 { font: 400 25px/1 var(--f-serif); letter-spacing: -.3px; }
+  .hd span { font: 500 12px/1 var(--f-ui); color: rgba(29,26,22,.5); }
+  .lbl { font: 700 9.5px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: rgba(29,26,22,.45); margin: 16px 0 8px; display: flex; justify-content: space-between; }
+  .lbl b { font: 600 12px/1 var(--f-ui); letter-spacing: 0; text-transform: none; color: #1d1a16; }
+  .woods { display: flex; gap: 10px; }
+  .woods i { width: 48px; height: 48px; border-radius: 12px; position: relative; box-shadow: inset 0 0 0 4px rgba(0,0,0,.12), inset 0 0 0 12px rgba(255,255,255,.12); }
+  .woods i::after { content: ""; position: absolute; inset: 12px; border-radius: 3px; background: #f6f2ea; box-shadow: inset 1px 1px 2px rgba(0,0,0,.3); }
+  .woods i.on { box-shadow: 0 0 0 2px #fbf9f5, 0 0 0 3.5px #1d1a16, inset 0 0 0 4px rgba(0,0,0,.12); }
+  .row2 { display: flex; gap: 12px; }
+  .seg { flex: 1; display: flex; background: #efe9df; border-radius: 12px; padding: 3px; }
+  .seg span { flex: 1; height: 32px; border-radius: 9px; display: grid; place-items: center; font: 600 12px/1 var(--f-ui); color: rgba(29,26,22,.6); white-space: nowrap; }
+  .seg span.on { background: #fff; color: #1d1a16; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+  .lays { display: flex; gap: 10px; }
+  .lay { flex: 1; height: 54px; border-radius: 12px; background: #efe9df; display: flex; align-items: center; gap: 10px; padding: 0 10px; font: 600 12px/1 var(--f-ui); color: rgba(29,26,22,.7); }
+  .lay.on { background: #fff; box-shadow: 0 0 0 1.5px #1d1a16; color: #1d1a16; }
+  .lay .th { width: 26px; height: 34px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.12); position: relative; flex: none; overflow: hidden; }
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 34px; height: 54px; border-radius: 27px; background: #1d1a16; color: #fbf9f5; display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 22px; font: 600 16px/1 var(--f-ui); }
+  .cta small { display: block; font: 500 11px/1 var(--f-ui); color: rgba(251,249,245,.5); margin-top: 4px; }
+  .cta .pr { height: 40px; padding: 0 16px; border-radius: 20px; background: #fbf9f5; color: #1d1a16; font: 700 15px/40px var(--f-tight); }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="wall"></div><div class="sconce"></div>
+  <div class="nav">
+    <div class="pbtn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <span class="t">Frame it</span>
+    <div class="pbtn"><svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3"/></svg></div>
+  </div>
+
+  <div class="stem"></div><div class="vase"></div>
+  <div class="console"></div>
+  <div class="shadow"></div>
+  <div class="frame"><div class="mat"><div class="art">
+    <div class="im"><img class="ph graded" src="../../photos/wrigley-night.jpg"></div>
+    <div class="bot">
+      <div class="sc"><span>CHI</span>3<em>–</em>2<span>CLE</span></div>
+      <div class="rl"></div>
+      <div class="m"><span>WORLD SERIES · GAME 5</span><span>OCT 30 2016</span></div>
+      <div class="m"><span>WRIGLEY FIELD · BLEACHERS 314</span><span>63°F</span></div>
+    </div>
+  </div></div><div class="glare"></div></div>
+  <div class="dim"><i></i><span>18 × 24 IN</span></div>
+
+  <div class="sheet">
+    <div class="hd"><h1>Game 5, framed</h1><span>Live preview</span></div>
+    <div class="lbl"><span>Frame</span><b>Walnut</b></div>
+    <div class="woods">
+      <i class="on" style="background:linear-gradient(135deg,#6b4428,#4a2c18 50%,#5d3a21)"></i>
+      <i style="background:linear-gradient(135deg,#2b2a28,#141312 50%,#252321)"></i>
+      <i style="background:linear-gradient(135deg,#d9bf94,#c4a576 50%,#d2b588)"></i>
+      <i style="background:linear-gradient(135deg,#f6f3ee,#e6e1d8 50%,#f0ece5)"></i>
+      <i style="background:linear-gradient(135deg,#b08a4a,#8a6a2c 50%,#c4a160)"></i>
+    </div>
+    <div class="row2" style="margin-top:14px">
+      <div class="seg"><span>No mat</span><span class="on">Ivory mat</span><span>Black</span></div>
+      <div class="seg" style="flex:.8"><span>12×16</span><span class="on">18×24</span></div>
+    </div>
+    <div class="lays" style="margin-top:12px">
+      <div class="lay on"><div class="th"><div style="position:absolute;left:0;right:0;top:0;height:22px;background:#2a3a5a"></div><div style="position:absolute;left:4px;right:4px;top:25px;height:3px;background:#0e3386"></div></div>Photo</div>
+      <div class="lay"><div class="th"><div style="position:absolute;inset:4px;background:repeating-linear-gradient(0deg,#cfc6b6 0 1px,transparent 1px 4px),repeating-linear-gradient(90deg,#cfc6b6 0 1px,transparent 1px 4px)"></div></div>Scorecard</div>
+      <div class="lay"><div class="th"><div style="position:absolute;left:4px;top:8px;font:800 14px/1 var(--f-cond);color:#1d1a16">3–2</div></div>Type</div>
+    </div>
+    <div class="cta"><div>Add to bag<small>Ships framed in 8 days</small></div><span class="pr">$145</span></div>
+  </div>
+<script src="../../kit/kit.js"></script>
+</body></html>

@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Editorial</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #f3efe6; color: #141210; }
+  .top { position: absolute; top: 54px; left: 16px; right: 16px; height: 44px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+  .ico { width: 36px; height: 36px; display: grid; place-items: center; }
+  .ico svg { width: 21px; height: 21px; stroke: #141210; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .mast { font: 400 21px/1 var(--f-serif); letter-spacing: -.2px; }
+  .mast i { font-style: italic; }
+  .rule { position: absolute; left: 22px; right: 22px; height: 1px; background: #141210; }
+  .meta { position: absolute; left: 22px; right: 22px; top: 106px; display: flex; justify-content: space-between; font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: #6e675c; }
+
+  .kick { position: absolute; left: 22px; top: 134px; font: 600 10.5px/1 var(--f-ui); letter-spacing: 2px; text-transform: uppercase; color: #d2401f; }
+  .huge { position: absolute; left: 14px; top: 140px; font: 400 214px/.86 var(--f-serif); letter-spacing: -11px; color: #141210; }
+  .huge sup { font-size: 92px; letter-spacing: -2px; vertical-align: 0; position: relative; top: -98px; margin-left: 8px; font-style: italic; color: #d2401f; }
+  .dek { position: absolute; left: 22px; right: 22px; top: 336px; font: 400 23px/1.12 var(--f-serif); letter-spacing: -.2px; }
+  .dek em { color: #d2401f; }
+
+  .dots { position: absolute; left: 22px; top: 404px; display: grid; grid-template-columns: repeat(20, 12px); gap: 5px 5.2px; }
+  .dots i { width: 12px; height: 12px; border-radius: 6px; }
+  .dots i.w { background: #141210; }
+  .dots i.l { box-shadow: inset 0 0 0 1.2px #141210; }
+  .dots i.t { background: linear-gradient(90deg, #141210 50%, transparent 50%); box-shadow: inset 0 0 0 1.2px #141210; }
+  .dots i.x { background: #d2401f; }
+  .leg { position: absolute; left: 22px; right: 22px; top: 462px; font: 500 10.5px/1.3 var(--f-ui); color: #6e675c; }
+
+  .miles { position: absolute; left: 22px; right: 22px; top: 494px; display: flex; align-items: flex-end; gap: 14px; padding-top: 14px; border-top: 1px solid #141210; }
+  .miles .n { font: 400 66px/.85 var(--f-serif); letter-spacing: -2.5px; white-space: nowrap; }
+  .miles .c { font: 400 13px/1.3 var(--f-ui); color: #3f3a33; padding-bottom: 4px; }
+  .miles .c b { display: block; font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: #6e675c; margin-bottom: 5px; }
+
+  .trio { position: absolute; left: 22px; right: 22px; top: 584px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: .5px solid rgba(20,18,16,.35); border-bottom: .5px solid rgba(20,18,16,.35); }
+  .trio div { padding: 11px 0 11px; }
+  .trio div + div { padding-left: 14px; border-left: .5px solid rgba(20,18,16,.35); }
+  .trio .n { font: 400 34px/1 var(--f-serif); letter-spacing: -1px; }
+  .trio .k { font: 500 11px/1.2 var(--f-ui); color: #6e675c; margin-top: 3px; }
+
+  .pulls { position: absolute; left: 22px; right: 22px; top: 668px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .pull .k { font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: #d2401f; }
+  .pull .n { font: 400 30px/1 var(--f-serif); margin-top: 6px; letter-spacing: -.6px; }
+  .pull .n i { font-style: italic; }
+  .pull .c { font: 400 11.5px/1.35 var(--f-ui); color: #3f3a33; margin-top: 4px; }
+  .foot { position: absolute; left: 22px; right: 22px; top: 768px; padding-top: 10px; border-top: 1px solid #141210; display: flex; justify-content: space-between; font: 500 11px/1.2 var(--f-ui); color: #3f3a33; white-space: nowrap; }
+  .foot b { font-weight: 700; color: #141210; }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="paper-tex" style="opacity:.35"></div>
+  <div class="top">
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="mast">The <i>Long</i> View</div>
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+  <div class="rule" style="top:100px"></div>
+  <div class="meta"><span>Sam Okafor · Lifetime</span><span>2014 – 2026</span></div>
+
+  <div class="kick">Sixty games, by the numbers</div>
+  <div class="huge tnum">61<sup>%</sup></div>
+  <div class="dek">of the games Sam was in the stands for, <em>his team won.</em></div>
+
+  <div class="dots" id="dots"></div>
+  <div class="leg">● Win 35 &nbsp; ○ Loss 22 &nbsp; ◐ Draw 2 &nbsp; <span style="color:#d2401f">●</span> Race 1 &nbsp;·&nbsp; first game Jun 14, 2014</div>
+
+  <div class="miles">
+    <div class="n tnum">42,900</div>
+    <div class="c"><b>Miles traveled</b>Enough to circle the Earth 1.7 times.</div>
+  </div>
+
+  <div class="trio">
+    <div><div class="n tnum">487</div><div class="k">runs witnessed</div></div>
+    <div><div class="n tnum">1,204</div><div class="k">points</div></div>
+    <div><div class="n tnum">162</div><div class="k">goals</div></div>
+  </div>
+
+  <div class="pulls">
+    <div class="pull"><div class="k">Coldest</div><div class="n tnum">19°<i>F</i></div><div class="c">Lambeau Field, Jan 5, 2025. Won on the last kick.</div></div>
+    <div class="pull"><div class="k">Farthest</div><div class="n tnum">4,600 <i>mi</i></div><div class="c">Spain, 2020. Camp Nou, then the Bernabéu.</div></div>
+  </div>
+
+  <div class="foot"><span><b>21</b> venues</span><span><b>3</b> countries</span><span><b>17</b> games with Maya</span></div>
+<script>
+  // 60 games in order: W, L, D (draw) and the one F1 race
+  const seq = 'WLWLLWWWWWWLLWWLDWWLWLLWWLWWLXLWLWLWWDLWWWLWLWWLLWWWWLWLWLWW';
+  const d = document.getElementById('dots');
+  let s = seq;
+  [...s].forEach(c => { const i = document.createElement('i'); i.className = { W: 'w', L: 'l', D: 't', X: 'x' }[c]; d.appendChild(i); });
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

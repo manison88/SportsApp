@@ -60,7 +60,7 @@
 <script>
 (function () {
   const W = 393, H = 560;
-  const proj = d3.geoOrthographic().rotate([46, -36, 0]).scale(330).translate([196, 366]).clipAngle(90);
+  const proj = d3.geoOrthographic().rotate([43, -34, 0]).scale(268).translate([196, 404]).clipAngle(90);
   const path = d3.geoPath(proj);
   const land = topojson.feature(window.__atlas['land-50m'], window.__atlas['land-50m'].objects.land);
   const svg = d3.select('#map');
@@ -75,7 +75,7 @@
   const f = defs.append('filter').attr('id', 'glow').attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
   f.append('feGaussianBlur').attr('stdDeviation', 3.5);
 
-  svg.append('circle').attr('cx', 196).attr('cy', 366).attr('r', 342).attr('fill', 'url(#rim)');
+  svg.append('circle').attr('cx', 196).attr('cy', 404).attr('r', 280).attr('fill', 'url(#rim)');
   svg.append('path').datum({ type: 'Sphere' }).attr('d', path).attr('fill', 'url(#ocean)').attr('stroke', 'rgba(140,160,255,.18)');
   svg.append('path').datum(d3.geoGraticule10()).attr('d', path).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.035)');
   svg.append('path').datum(land).attr('d', path).attr('fill', '#1b1f2b').attr('stroke', 'rgba(255,255,255,.14)').attr('stroke-width', .5);
@@ -87,9 +87,9 @@
     KC: [-94.48, 39.05], DEN: [-104.99, 39.76], ATL: [-84.47, 33.89], PHI: [-75.17, 39.91],
   };
   // project a great-circle leg, lifted off the surface for long hops
-  function arcPts(a, b, n = 90) {
+  function arcPts(a, b, n = 90, liftK) {
     const interp = d3.geoInterpolate(a, b), dist = d3.geoDistance(a, b);
-    const lift = Math.min(0.16, dist * 0.17);
+    const lift = liftK != null ? liftK : Math.min(0.16, dist * 0.17);
     const c = proj.translate(), r = proj.scale();
     const pts = [];
     for (let i = 0; i <= n; i++) {
@@ -109,8 +109,8 @@
   });
 
   // braids: two strands twisting around the shared route
-  function drawBraid(a, b, twists, amp) {
-    const pts = arcPts(a, b, 220);
+  function drawBraid(a, b, twists, amp, liftK) {
+    const pts = arcPts(a, b, 260, liftK);
     const strands = [0, Math.PI].map(ph => pts.map((p, i) => {
       const t = i / (pts.length - 1);
       const q = pts[Math.min(i + 1, pts.length - 1)], o = pts[Math.max(i - 1, 0)];
@@ -133,11 +133,11 @@
       braid.append('path').attr('d', d).attr('stroke', col).attr('stroke-width', 2.3).attr('stroke-linecap', 'round').attr('opacity', lum.toFixed(2));
     });
   }
-  drawBraid(P.CHI, P.BCN, 9, 4.2);
+  drawBraid(P.CHI, P.BCN, 5.5, 5.5, 0.34);
   drawBraid(P.BCN, P.VLC, 1.5, 3);
   drawBraid(P.VLC, P.MAD, 1.5, 3);
-  drawBraid(P.MAD, P.CHI, 9, 4.2);
-  drawBraid(P.CHI, P.GB, 1.5, 2.6);
+  drawBraid(P.MAD, P.CHI, 5.5, 4.5, 0.12);
+  drawBraid(P.CHI, P.GB, 1.5, 2.6, 0.04);
 
   // venues
   const dot = (k, r, col, ring) => { const [x, y] = proj(P[k]);
@@ -151,15 +151,15 @@
   // labels
   const L = document.getElementById('labels'); const lab = (k, t, s, dx, dy, right) => { const [x, y] = proj(P[k]);
     L.insertAdjacentHTML('beforeend', `<div class="lbl" style="left:${(x + dx).toFixed(0)}px;top:${(y + dy).toFixed(0)}px;${right ? 'transform:translateX(-100%);text-align:right' : ''}"><b>${t}</b>${s}</div>`); };
-  lab('CHI', 'Chicago', 'Home · 14 together', 0, 14, false);
-  lab('GB', 'Lambeau', 'Jan 2025', -10, -34, true);
-  lab('BCN', 'Camp Nou', 'Feb 2020', -2, -38, true);
-  lab('MAD', 'Bernabéu', 'Mar 2020', -8, 10, true);
+  lab('CHI', 'Chicago', 'Home · 14 together', 4, 14, false);
+  lab('GB', 'Lambeau', 'Jan 2025', 10, -38, false);
+  lab('BCN', 'Camp Nou', 'Feb 2020', 12, -34, true);
+  lab('MAD', 'Bernabéu', 'Mar 2020', 0, 12, true);
 
   // legs list with mini braids
-  const legs = [['Chicago → Barcelona → Madrid', 'Feb–Mar 2020', '8,690 mi'], ['Chicago → Green Bay', 'Jan 2025', '410 mi'], ['Wrigley, Soldier, United Center', '2014–2026', '14 games']];
+  const legs = [['Chicago → Spain → Chicago', 'Mar ’20 · 8,690 mi'], ['Chicago → Green Bay', 'Jan ’25 · 410 mi'], ['Home: Wrigley, Soldier, UC', '14 games']];
   const mini = `<svg width="30" height="14" viewBox="0 0 30 14"><path d="M1 7 C5 1, 9 1, 13 7 S21 13, 25 7 29 3, 29 3" fill="none" stroke="#ffb547" stroke-width="2" stroke-linecap="round"/><path d="M1 7 C5 13, 9 13, 13 7 S21 1, 25 7 29 11, 29 11" fill="none" stroke="#ff7a8a" stroke-width="2" stroke-linecap="round"/></svg>`;
-  document.getElementById('legs').innerHTML = legs.map(([a, b, c]) => `<div class="leg">${mini}<div class="t">${a}</div><div class="d">${b} · ${c}</div></div>`).join('');
+  document.getElementById('legs').innerHTML = legs.map(([a, b]) => `<div class="leg">${mini}<div class="t">${a}</div><div class="d">${b}</div></div>`).join('');
 })();
 </script>
 <script src="../../kit/kit.js"></script>
