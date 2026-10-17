@@ -16,6 +16,7 @@ struct AddGameView: View {
     @State private var homeTeamId: String?
     @State private var awayTeamId: String?
     @State private var raceName = ""
+    @State private var competition = ""
     @State private var venueId: String?
     @State private var date = Calendar.current.date(bySettingHour: 19, minute: 0, second: 0, of: .now) ?? .now
     @State private var homeScore = ""
@@ -70,6 +71,12 @@ struct AddGameView: View {
                 } else {
                     teamPicker("Away", selection: $awayTeamId, id: "add-away-team")
                     teamPicker("Home", selection: $homeTeamId, id: "add-home-team")
+                }
+
+                if sport != .motorsport {
+                    TextField("Competition or event (optional)", text: $competition)
+                        .textInputAutocapitalization(.words)
+                        .accessibilityIdentifier("add-competition")
                 }
 
                 NavigationLink {
@@ -212,10 +219,9 @@ struct AddGameView: View {
             }
         }
         .onAppear(perform: prefill)
-        .onChange(of: sport) { _, newSport in
-            if let t = library.team(homeTeamId), t.sport != newSport { homeTeamId = nil }
-            if let t = library.team(awayTeamId), t.sport != newSport { awayTeamId = nil }
-            if let v = venueId.flatMap({ library.venue($0) }), !v.sports.isEmpty, !v.sports.contains(newSport) { venueId = nil }
+        .onChange(of: sport) { _, _ in
+            // Any team and any venue can host any sport (a national handball side in a basketball arena), so
+            // changing the sport keeps what was picked.
         }
         .onChange(of: homeTeamId) { _, _ in fixRooting() }
         .onChange(of: awayTeamId) { _, _ in fixRooting() }
@@ -256,14 +262,22 @@ struct AddGameView: View {
         }
     }
 
+    /// Any team for any game: opens the full team list (all sports) with a New team option.
     private func teamPicker(_ title: String, selection: Binding<String?>, id: String) -> some View {
-        Picker(title, selection: selection) {
-            Text("None").tag(String?.none)
-            ForEach(library.teams(for: sport)) { t in
-                Text("\(t.locationName) · \(t.abbreviation)").tag(Optional(t.id))
+        NavigationLink {
+            TeamPickerView(selection: selection, sport: sport)
+        } label: {
+            LabeledContent(title) {
+                if let t = library.team(selection.wrappedValue) {
+                    HStack(spacing: 8) {
+                        TeamTile(team: t, compact: true)
+                        Text(t.locationName).foregroundStyle(.white)
+                    }
+                } else {
+                    Text("Choose").foregroundStyle(Color.textTertiary)
+                }
             }
         }
-        .pickerStyle(.menu)
         .accessibilityIdentifier(id)
     }
 
@@ -285,6 +299,7 @@ struct AddGameView: View {
             homeTeamId = g.homeTeamId
             awayTeamId = g.awayTeamId
             raceName = g.sport == .motorsport ? (g.competition ?? "") : ""
+            competition = g.sport == .motorsport ? "" : (g.competition ?? "")
             venueId = g.venueId
             date = g.date
             homeScore = g.homeScore.map { String($0) } ?? ""
@@ -384,6 +399,9 @@ struct AddGameView: View {
         } else {
             g.homeTeamId = homeTeamId
             g.awayTeamId = awayTeamId
+            // Typed freely: "EHF Champions League", "Group stage", "Friendly". A title or playoff wording earns the badge.
+            let comp = competition.trimmingCharacters(in: .whitespacesAndNewlines)
+            g.competition = comp.isEmpty ? nil : comp
             g.homeScore = Int(homeScore.trimmingCharacters(in: .whitespaces))
             g.awayScore = Int(awayScore.trimmingCharacters(in: .whitespaces))
             g.rootingForTeamId = rootingForTeamId

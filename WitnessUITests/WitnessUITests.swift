@@ -226,6 +226,28 @@ final class WitnessUITests: XCTestCase {
         snap("add-game-detail")
     }
 
+    /// Any team against any team: a national side and a club from a league the catalog doesn't have, made by hand.
+    func testAddGameWithCustomTeams() {
+        launch(["-empty"])
+        tap("empty-add")
+        tap("add-away-team")
+        tap("team-new")
+        tap("team-new-name"); app.typeText("Croatia")
+        XCTAssertTrue(el("team-new-save").isEnabled, "A name and its suggested code are enough")
+        snap("add-team-new")
+        tap("team-new-save")
+        tap("add-home-team")
+        tap("team-new")
+        tap("team-new-name"); app.typeText("KK Zadar")
+        tap("team-new-league"); app.typeText("EuroLeague")
+        tap("team-new-save")
+        tap("add-competition"); app.typeText("EuroLeague Final")
+        // Both made-up teams now sit on the form, and the sport is still free to change.
+        XCTAssertTrue(el("add-away-team").label.contains("Croatia"), "Away should show Croatia: \(el("add-away-team").label)")
+        XCTAssertTrue(el("add-home-team").label.contains("Zadar"), "Home should show Zadar: \(el("add-home-team").label)")
+        snap("add-game-custom-teams")
+    }
+
     /// A venue that isn't in the catalog: created by hand with a pin.
     func testAddCustomVenue() {
         launch(["-empty"])
