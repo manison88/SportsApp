@@ -283,8 +283,8 @@ struct AddGameView: View {
             raceName = g.sport == .motorsport ? (g.competition ?? "") : ""
             venueId = g.venueId
             date = g.date
-            homeScore = g.homeScore.map(String.init) ?? ""
-            awayScore = g.awayScore.map(String.init) ?? ""
+            homeScore = g.homeScore.map { String($0) } ?? ""
+            awayScore = g.awayScore.map { String($0) } ?? ""
             rootingForTeamId = g.rootingForTeamId
             seat = g.seat ?? ""
             companionIds = Set(g.companionIds)
