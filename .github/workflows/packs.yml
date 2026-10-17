@@ -1,0 +1,33 @@
+# Rebuilds the downloadable data packs and publishes them to R2, so schedules update without an app release.
+# Secrets (repo settings): PACKS_SIGNING_KEY (from Tools/packs/make_keys.py), R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY.
+name: Publish data packs
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["Tools/teams/**", "Tools/schedules/**", "Tools/countries/**", "Tools/packs/**", "Witness/Resources/Catalog/**"]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install boto3 cryptography
+      - name: Refresh the current season from ESPN
+        run: python3 Tools/packs/refresh_current.py
+      - name: Build packs
+        env:
+          PACKS_SIGNING_KEY: ${{ secrets.PACKS_SIGNING_KEY }}
+        run: python3 Tools/packs/build_packs.py --version-note "$GITHUB_SHA"
+      - name: Publish to R2
+        env:
+          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+        run: python3 Tools/packs/publish.py
