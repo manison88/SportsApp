@@ -7,7 +7,7 @@ enum PackConfig {
     /// Public, read-only static host for `manifest.json` and the packs. Empty turns downloading off.
     static let baseURL = ""
     /// Base64 Ed25519 public key that signs `manifest.json`. Empty accepts unsigned manifests (development only).
-    static let publicKey = ""
+    static let publicKey = "nzhFUkb09SOOUu8voon7szwiGV25RgAMJfRR2i6oBOU="
 
     /// `-WitnessPackBaseURL <url>` on the command line (or the defaults key) overrides the built-in host, for testing.
     static var resolvedBaseURL: URL? {
