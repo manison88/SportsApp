@@ -1,0 +1,4024 @@
+[
+ {
+  "id": "mlb-ari",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ARI",
+  "locationName": "Arizona",
+  "teamName": "Diamondbacks",
+  "monogram": "A",
+  "colors": {
+   "primary": "A71930",
+   "secondary": "E3D4AD",
+   "accent": "D8304A"
+  },
+  "externalIds": {
+   "mlbStatsApi": 109,
+   "espn": "29",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-ari",
+  "founded": 1998,
+  "tier": 1
+ },
+ {
+  "id": "mlb-ath",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ATH",
+  "locationName": "Athletics",
+  "teamName": "Athletics",
+  "monogram": "ATH",
+  "colors": {
+   "primary": "003831",
+   "secondary": "EFB21E",
+   "accent": "EFB21E"
+  },
+  "externalIds": {
+   "espn": "11",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-ath",
+  "founded": 1901,
+  "tier": 1
+ },
+ {
+  "id": "mlb-atl",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ATL",
+  "locationName": "Atlanta",
+  "teamName": "Braves",
+  "monogram": "A",
+  "colors": {
+   "primary": "13274F",
+   "secondary": "CE1141",
+   "accent": "E0284F"
+  },
+  "externalIds": {
+   "mlbStatsApi": 144,
+   "espn": "15",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-atl",
+  "founded": 1871,
+  "tier": 1
+ },
+ {
+  "id": "mlb-bal",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BAL",
+  "locationName": "Baltimore",
+  "teamName": "Orioles",
+  "monogram": "BAL",
+  "colors": {
+   "primary": "DF4601",
+   "secondary": "000000",
+   "accent": "DF4601"
+  },
+  "externalIds": {
+   "espn": "1",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-bal",
+  "founded": 1901,
+  "tier": 1
+ },
+ {
+  "id": "mlb-bos",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BOS",
+  "locationName": "Boston",
+  "teamName": "Red Sox",
+  "monogram": "B",
+  "colors": {
+   "primary": "BD3039",
+   "secondary": "0C2340",
+   "accent": "E0443F"
+  },
+  "externalIds": {
+   "mlbStatsApi": 111,
+   "espn": "2",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "fenway",
+  "founded": 1901,
+  "tier": 1
+ },
+ {
+  "id": "mlb-chc",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CHC",
+  "locationName": "Chicago",
+  "teamName": "Cubs",
+  "monogram": "C",
+  "colors": {
+   "primary": "0E3386",
+   "secondary": "CC3433",
+   "accent": "2F6BFF"
+  },
+  "externalIds": {
+   "mlbStatsApi": 112,
+   "theSportsDb": "135269",
+   "espn": "16",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null
+  },
+  "homeVenueId": "wrigley",
+  "founded": 1876,
+  "tier": 1
+ },
+ {
+  "id": "mlb-cws",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CWS",
+  "locationName": "Chicago",
+  "teamName": "White Sox",
+  "monogram": "SOX",
+  "colors": {
+   "primary": "27251F",
+   "secondary": "C4CED4",
+   "accent": "C4CED4"
+  },
+  "externalIds": {
+   "mlbStatsApi": 145,
+   "espn": "4",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "rate-field",
+  "founded": 1901,
+  "tier": 1
+ },
+ {
+  "id": "mlb-cin",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CIN",
+  "locationName": "Cincinnati",
+  "teamName": "Reds",
+  "monogram": "C",
+  "colors": {
+   "primary": "C6011F",
+   "secondary": "000000",
+   "accent": "E8203A"
+  },
+  "externalIds": {
+   "mlbStatsApi": 113,
+   "espn": "17",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gabp",
+  "founded": 1881,
+  "tier": 1
+ },
+ {
+  "id": "mlb-cle",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CLE",
+  "locationName": "Cleveland",
+  "teamName": "Indians",
+  "monogram": "CLE",
+  "colors": {
+   "primary": "0C2340",
+   "secondary": "E31937",
+   "accent": "E8344A"
+  },
+  "externalIds": {
+   "mlbStatsApi": 114,
+   "espn": "5",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "progressive",
+  "founded": 1901,
+  "tier": 1
+ },
+ {
+  "id": "mlb-col",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "COL",
+  "locationName": "Colorado",
+  "teamName": "Rockies",
+  "monogram": "COL",
+  "colors": {
+   "primary": "33006F",
+   "secondary": "000000",
+   "accent": "7A59A1"
+  },
+  "externalIds": {
+   "espn": "27",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-col",
+  "founded": 1993,
+  "tier": 1
+ },
+ {
+  "id": "mlb-det",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DET",
+  "locationName": "Detroit",
+  "teamName": "Tigers",
+  "monogram": "D",
+  "colors": {
+   "primary": "0C2340",
+   "secondary": "FA4616",
+   "accent": "FA6A2E"
+  },
+  "externalIds": {
+   "mlbStatsApi": 116,
+   "espn": "6",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "comerica",
+  "founded": 1901,
+  "tier": 1
+ },
+ {
+  "id": "mlb-hou",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "HOU",
+  "locationName": "Houston",
+  "teamName": "Astros",
+  "monogram": "HOU",
+  "colors": {
+   "primary": "002D62",
+   "secondary": "EB6E1F",
+   "accent": "EB6E1F"
+  },
+  "externalIds": {
+   "espn": "18",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-hou",
+  "founded": 1962,
+  "tier": 1
+ },
+ {
+  "id": "mlb-kc",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "KC",
+  "locationName": "Kansas City",
+  "teamName": "Royals",
+  "monogram": "KC",
+  "colors": {
+   "primary": "004687",
+   "secondary": "BD9B60",
+   "accent": "3E8EDE"
+  },
+  "externalIds": {
+   "mlbStatsApi": 118,
+   "espn": "7",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "kauffman",
+  "founded": 1969,
+  "tier": 1
+ },
+ {
+  "id": "mlb-laa",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LAA",
+  "locationName": "Los Angeles",
+  "teamName": "Angels",
+  "monogram": "LAA",
+  "colors": {
+   "primary": "BA0021",
+   "secondary": "C4CED4",
+   "accent": "C4CED4"
+  },
+  "externalIds": {
+   "espn": "3",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-laa",
+  "founded": 1961,
+  "tier": 1
+ },
+ {
+  "id": "mlb-lad",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LAD",
+  "locationName": "Los Angeles",
+  "teamName": "Dodgers",
+  "monogram": "LA",
+  "colors": {
+   "primary": "005A9C",
+   "secondary": "EF3E42",
+   "accent": "3D8BFF"
+  },
+  "externalIds": {
+   "mlbStatsApi": 119,
+   "espn": "19",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "dodger",
+  "founded": 1883,
+  "tier": 1
+ },
+ {
+  "id": "mlb-mia",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MIA",
+  "locationName": "Miami",
+  "teamName": "Marlins",
+  "monogram": "MIA",
+  "colors": {
+   "primary": "00A3E0",
+   "secondary": "000000",
+   "accent": "00A3E0"
+  },
+  "externalIds": {
+   "espn": "28",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-mia",
+  "founded": 1993,
+  "tier": 1
+ },
+ {
+  "id": "mlb-mil",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MIL",
+  "locationName": "Milwaukee",
+  "teamName": "Brewers",
+  "monogram": "M",
+  "colors": {
+   "primary": "12284B",
+   "secondary": "FFC52F",
+   "accent": "FFC52F"
+  },
+  "externalIds": {
+   "mlbStatsApi": 158,
+   "espn": "8",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "amfam",
+  "founded": 1969,
+  "tier": 1
+ },
+ {
+  "id": "mlb-min",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MIN",
+  "locationName": "Minnesota",
+  "teamName": "Twins",
+  "monogram": "TC",
+  "colors": {
+   "primary": "002B5C",
+   "secondary": "D31145",
+   "accent": "E2245A"
+  },
+  "externalIds": {
+   "mlbStatsApi": 142,
+   "espn": "9",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "target-field",
+  "founded": 1901,
+  "tier": 1
+ },
+ {
+  "id": "mlb-nym",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NYM",
+  "locationName": "New York",
+  "teamName": "Mets",
+  "monogram": "NY",
+  "colors": {
+   "primary": "002D72",
+   "secondary": "FF5910",
+   "accent": "FF6A26"
+  },
+  "externalIds": {
+   "mlbStatsApi": 121,
+   "espn": "21",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-nym",
+  "founded": 1962,
+  "tier": 1
+ },
+ {
+  "id": "mlb-nyy",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NYY",
+  "locationName": "New York",
+  "teamName": "Yankees",
+  "monogram": "NY",
+  "colors": {
+   "primary": "0C2340",
+   "secondary": "C4CED3",
+   "accent": "8FA3C7"
+  },
+  "externalIds": {
+   "mlbStatsApi": 147,
+   "espn": "10",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "yankee",
+  "founded": 1901,
+  "tier": 1
+ },
+ {
+  "id": "mlb-phi",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PHI",
+  "locationName": "Philadelphia",
+  "teamName": "Phillies",
+  "monogram": "P",
+  "colors": {
+   "primary": "E81828",
+   "secondary": "002D72",
+   "accent": "F0303A"
+  },
+  "externalIds": {
+   "mlbStatsApi": 143,
+   "espn": "22",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-phi",
+  "founded": 1883,
+  "tier": 1
+ },
+ {
+  "id": "mlb-pit",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PIT",
+  "locationName": "Pittsburgh",
+  "teamName": "Pirates",
+  "monogram": "P",
+  "colors": {
+   "primary": "27251F",
+   "secondary": "FDB827",
+   "accent": "FDB827"
+  },
+  "externalIds": {
+   "mlbStatsApi": 134,
+   "espn": "23",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "pnc",
+  "founded": 1881,
+  "tier": 1
+ },
+ {
+  "id": "mlb-sd",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SD",
+  "locationName": "San Diego",
+  "teamName": "Padres",
+  "monogram": "SD",
+  "colors": {
+   "primary": "2F241D",
+   "secondary": "FFC425",
+   "accent": "FFC425"
+  },
+  "externalIds": {
+   "mlbStatsApi": 135,
+   "espn": "25",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-sd",
+  "founded": 1969,
+  "tier": 1
+ },
+ {
+  "id": "mlb-sf",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SF",
+  "locationName": "San Francisco",
+  "teamName": "Giants",
+  "monogram": "SF",
+  "colors": {
+   "primary": "FD5A1E",
+   "secondary": "27251F",
+   "accent": "FD5A1E"
+  },
+  "externalIds": {
+   "mlbStatsApi": 137,
+   "espn": "26",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "oracle",
+  "founded": 1883,
+  "tier": 1
+ },
+ {
+  "id": "mlb-sea",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SEA",
+  "locationName": "Seattle",
+  "teamName": "Mariners",
+  "monogram": "SEA",
+  "colors": {
+   "primary": "005C5C",
+   "secondary": "0C2C56",
+   "accent": "207070"
+  },
+  "externalIds": {
+   "espn": "12",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-sea",
+  "founded": 1977,
+  "tier": 1
+ },
+ {
+  "id": "mlb-stl",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "STL",
+  "locationName": "St. Louis",
+  "teamName": "Cardinals",
+  "monogram": "STL",
+  "colors": {
+   "primary": "C41E3A",
+   "secondary": "0C2340",
+   "accent": "E8384F"
+  },
+  "externalIds": {
+   "mlbStatsApi": 138,
+   "espn": "24",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "busch",
+  "founded": 1882,
+  "tier": 1
+ },
+ {
+  "id": "mlb-tb",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "TB",
+  "locationName": "Tampa Bay",
+  "teamName": "Rays",
+  "monogram": "TB",
+  "colors": {
+   "primary": "092C5C",
+   "secondary": "8FBCE6",
+   "accent": "8FBCE6"
+  },
+  "externalIds": {
+   "espn": "30",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-tb",
+  "founded": 1998,
+  "tier": 1
+ },
+ {
+  "id": "mlb-tex",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "TEX",
+  "locationName": "Texas",
+  "teamName": "Rangers",
+  "monogram": "TEX",
+  "colors": {
+   "primary": "003278",
+   "secondary": "C0111F",
+   "accent": "C0111F"
+  },
+  "externalIds": {
+   "espn": "13",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-tex",
+  "founded": 1961,
+  "tier": 1
+ },
+ {
+  "id": "mlb-tor",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "TOR",
+  "locationName": "Toronto",
+  "teamName": "Blue Jays",
+  "monogram": "TOR",
+  "colors": {
+   "primary": "134A8E",
+   "secondary": "6CACE5",
+   "accent": "6CACE5"
+  },
+  "externalIds": {
+   "espn": "14",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-tor",
+  "founded": 1977,
+  "tier": 1
+ },
+ {
+  "id": "mlb-wsh",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MLB",
+  "leagueKey": "baseball/mlb",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WSH",
+  "locationName": "Washington",
+  "teamName": "Nationals",
+  "monogram": "W",
+  "colors": {
+   "primary": "AB0003",
+   "secondary": "14225A",
+   "accent": "E3242B"
+  },
+  "externalIds": {
+   "mlbStatsApi": 120,
+   "espn": "20",
+   "espnLeague": "baseball/mlb",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mlb-wsh",
+  "founded": 1969,
+  "tier": 1
+ },
+ {
+  "id": "nfl-ari",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ARI",
+  "locationName": "Arizona",
+  "teamName": "Cardinals",
+  "monogram": "ARI",
+  "colors": {
+   "primary": "A40227",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "22",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "state-farm-stadium",
+  "founded": 1898,
+  "tier": 1
+ },
+ {
+  "id": "nfl-atl",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ATL",
+  "locationName": "Atlanta",
+  "teamName": "Falcons",
+  "monogram": "ATL",
+  "colors": {
+   "primary": "A71930",
+   "secondary": "000000",
+   "accent": "B43C4F"
+  },
+  "externalIds": {
+   "espn": "1",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mercedes-benz-stadium",
+  "founded": 1966,
+  "tier": 1
+ },
+ {
+  "id": "nfl-bal",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BAL",
+  "locationName": "Baltimore",
+  "teamName": "Ravens",
+  "monogram": "BAL",
+  "colors": {
+   "primary": "29126F",
+   "secondary": "000000",
+   "accent": "6F5F9E"
+  },
+  "externalIds": {
+   "espn": "33",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mt-bank-stadium",
+  "founded": 1996,
+  "tier": 1
+ },
+ {
+  "id": "nfl-buf",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BUF",
+  "locationName": "Buffalo",
+  "teamName": "Bills",
+  "monogram": "BUF",
+  "colors": {
+   "primary": "00338D",
+   "secondary": "D50A0A",
+   "accent": "D50A0A"
+  },
+  "externalIds": {
+   "espn": "2",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "highmark-stadium",
+  "founded": 1960,
+  "tier": 1
+ },
+ {
+  "id": "nfl-car",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CAR",
+  "locationName": "Carolina",
+  "teamName": "Panthers",
+  "monogram": "CAR",
+  "colors": {
+   "primary": "0085CA",
+   "secondary": "000000",
+   "accent": "0085CA"
+  },
+  "externalIds": {
+   "espn": "29",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "bank-of-america-stadium",
+  "founded": 1993,
+  "tier": 1
+ },
+ {
+  "id": "nfl-chi",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CHI",
+  "locationName": "Chicago",
+  "teamName": "Bears",
+  "monogram": "C",
+  "colors": {
+   "primary": "0B162A",
+   "secondary": "C83803",
+   "accent": "F05A1A"
+  },
+  "externalIds": {
+   "theSportsDb": "134938",
+   "espn": "3",
+   "espnLeague": "football/nfl",
+   "wikidata": null
+  },
+  "homeVenueId": "soldier",
+  "founded": 1919,
+  "tier": 1
+ },
+ {
+  "id": "nfl-cin",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CIN",
+  "locationName": "Cincinnati",
+  "teamName": "Bengals",
+  "monogram": "CIN",
+  "colors": {
+   "primary": "FB4F14",
+   "secondary": "000000",
+   "accent": "FB4F14"
+  },
+  "externalIds": {
+   "espn": "4",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "paycor-stadium",
+  "founded": 1968,
+  "tier": 1
+ },
+ {
+  "id": "nfl-cle",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CLE",
+  "locationName": "Cleveland",
+  "teamName": "Browns",
+  "monogram": "CLE",
+  "colors": {
+   "primary": "472A08",
+   "secondary": "FF3C00",
+   "accent": "FF3C00"
+  },
+  "externalIds": {
+   "espn": "5",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "huntington-bank-field",
+  "founded": 1944,
+  "tier": 1
+ },
+ {
+  "id": "nfl-dal",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DAL",
+  "locationName": "Dallas",
+  "teamName": "Cowboys",
+  "monogram": "D",
+  "colors": {
+   "primary": "041E42",
+   "secondary": "869397",
+   "accent": "4E7ACF"
+  },
+  "externalIds": {
+   "theSportsDb": "134934",
+   "espn": "6",
+   "espnLeague": "football/nfl",
+   "wikidata": null
+  },
+  "homeVenueId": "att-stadium",
+  "founded": 1960,
+  "tier": 1
+ },
+ {
+  "id": "nfl-den",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DEN",
+  "locationName": "Denver",
+  "teamName": "Broncos",
+  "monogram": "DEN",
+  "colors": {
+   "primary": "0A2343",
+   "secondary": "FC4C02",
+   "accent": "FC4C02"
+  },
+  "externalIds": {
+   "espn": "7",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "empower-field",
+  "founded": 1960,
+  "tier": 1
+ },
+ {
+  "id": "nfl-det",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DET",
+  "locationName": "Detroit",
+  "teamName": "Lions",
+  "monogram": "D",
+  "colors": {
+   "primary": "0076B6",
+   "secondary": "B0B7BC",
+   "accent": "2F9BE0"
+  },
+  "externalIds": {
+   "theSportsDb": "134939",
+   "espn": "8",
+   "espnLeague": "football/nfl",
+   "wikidata": null
+  },
+  "homeVenueId": "ford-field",
+  "founded": 1930,
+  "tier": 1
+ },
+ {
+  "id": "nfl-gb",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GB",
+  "locationName": "Green Bay",
+  "teamName": "Packers",
+  "monogram": "G",
+  "colors": {
+   "primary": "203731",
+   "secondary": "FFB612",
+   "accent": "FFB612"
+  },
+  "externalIds": {
+   "theSportsDb": "134940",
+   "espn": "9",
+   "espnLeague": "football/nfl",
+   "wikidata": null
+  },
+  "homeVenueId": "lambeau",
+  "founded": 1919,
+  "tier": 1
+ },
+ {
+  "id": "nfl-hou",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "HOU",
+  "locationName": "Houston",
+  "teamName": "Texans",
+  "monogram": "HOU",
+  "colors": {
+   "primary": "021018",
+   "secondary": "EB0028",
+   "accent": "EB0028"
+  },
+  "externalIds": {
+   "espn": "34",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "nrg-stadium",
+  "founded": 2002,
+  "tier": 1
+ },
+ {
+  "id": "nfl-ind",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "IND",
+  "locationName": "Indianapolis",
+  "teamName": "Colts",
+  "monogram": "IND",
+  "colors": {
+   "primary": "003B75",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "11",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lucas-oil-stadium",
+  "founded": 1953,
+  "tier": 1
+ },
+ {
+  "id": "nfl-jax",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "JAX",
+  "locationName": "Jacksonville",
+  "teamName": "Jaguars",
+  "monogram": "JAX",
+  "colors": {
+   "primary": "007487",
+   "secondary": "D7A22A",
+   "accent": "007487"
+  },
+  "externalIds": {
+   "espn": "30",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "everbank-stadium",
+  "founded": 1993,
+  "tier": 1
+ },
+ {
+  "id": "nfl-kc",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "KC",
+  "locationName": "Kansas City",
+  "teamName": "Chiefs",
+  "monogram": "KC",
+  "colors": {
+   "primary": "E31837",
+   "secondary": "FFB612",
+   "accent": "E31837"
+  },
+  "externalIds": {
+   "espn": "12",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "arrowhead",
+  "founded": 1960,
+  "tier": 1
+ },
+ {
+  "id": "nfl-lv",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LV",
+  "locationName": "Las Vegas",
+  "teamName": "Raiders",
+  "monogram": "LV",
+  "colors": {
+   "primary": "000000",
+   "secondary": "A5ACAF",
+   "accent": "A5ACAF"
+  },
+  "externalIds": {
+   "espn": "13",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "allegiant-stadium",
+  "founded": 1960,
+  "tier": 1
+ },
+ {
+  "id": "nfl-lac",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LAC",
+  "locationName": "Los Angeles",
+  "teamName": "Chargers",
+  "monogram": "LAC",
+  "colors": {
+   "primary": "0080C6",
+   "secondary": "FFC20E",
+   "accent": "0080C6"
+  },
+  "externalIds": {
+   "espn": "24",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "sofi",
+  "founded": 1960,
+  "tier": 1
+ },
+ {
+  "id": "nfl-lar",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LAR",
+  "locationName": "Los Angeles",
+  "teamName": "Rams",
+  "monogram": "LA",
+  "colors": {
+   "primary": "003594",
+   "secondary": "FFA300",
+   "accent": "FFA300"
+  },
+  "externalIds": {
+   "theSportsDb": "135907",
+   "espn": "14",
+   "espnLeague": "football/nfl",
+   "wikidata": null
+  },
+  "homeVenueId": "sofi",
+  "founded": 1936,
+  "tier": 1
+ },
+ {
+  "id": "nfl-mia",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MIA",
+  "locationName": "Miami",
+  "teamName": "Dolphins",
+  "monogram": "MIA",
+  "colors": {
+   "primary": "008E97",
+   "secondary": "FC4C02",
+   "accent": "008E97"
+  },
+  "externalIds": {
+   "espn": "15",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "hard-rock-stadium",
+  "founded": 1966,
+  "tier": 1
+ },
+ {
+  "id": "nfl-min",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MIN",
+  "locationName": "Minnesota",
+  "teamName": "Vikings",
+  "monogram": "M",
+  "colors": {
+   "primary": "4F2683",
+   "secondary": "FFC62F",
+   "accent": "8E5AE0"
+  },
+  "externalIds": {
+   "theSportsDb": "134941",
+   "espn": "16",
+   "espnLeague": "football/nfl",
+   "wikidata": null
+  },
+  "homeVenueId": "us-bank",
+  "founded": 1961,
+  "tier": 1
+ },
+ {
+  "id": "nfl-ne",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NE",
+  "locationName": "New England",
+  "teamName": "Patriots",
+  "monogram": "NE",
+  "colors": {
+   "primary": "002A5C",
+   "secondary": "C60C30",
+   "accent": "C60C30"
+  },
+  "externalIds": {
+   "espn": "17",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gillette-stadium",
+  "founded": 1959,
+  "tier": 1
+ },
+ {
+  "id": "nfl-no",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NO",
+  "locationName": "New Orleans",
+  "teamName": "Saints",
+  "monogram": "NO",
+  "colors": {
+   "primary": "D3BC8D",
+   "secondary": "000000",
+   "accent": "D3BC8D"
+  },
+  "externalIds": {
+   "espn": "18",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "caesars-superdome",
+  "founded": 1966,
+  "tier": 1
+ },
+ {
+  "id": "nfl-nyg",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NYG",
+  "locationName": "New York",
+  "teamName": "Giants",
+  "monogram": "NYG",
+  "colors": {
+   "primary": "003C7F",
+   "secondary": "C9243F",
+   "accent": "C9243F"
+  },
+  "externalIds": {
+   "espn": "19",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "metlife",
+  "founded": 1925,
+  "tier": 1
+ },
+ {
+  "id": "nfl-nyj",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NYJ",
+  "locationName": "New York",
+  "teamName": "Jets",
+  "monogram": "NYJ",
+  "colors": {
+   "primary": "115740",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "20",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "metlife",
+  "founded": 1959,
+  "tier": 1
+ },
+ {
+  "id": "nfl-phi",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PHI",
+  "locationName": "Philadelphia",
+  "teamName": "Eagles",
+  "monogram": "P",
+  "colors": {
+   "primary": "004C54",
+   "secondary": "A5ACAF",
+   "accent": "1E9AA4"
+  },
+  "externalIds": {
+   "theSportsDb": "134936",
+   "espn": "21",
+   "espnLeague": "football/nfl",
+   "wikidata": null
+  },
+  "homeVenueId": "lincoln-financial-field",
+  "founded": 1933,
+  "tier": 1
+ },
+ {
+  "id": "nfl-pit",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PIT",
+  "locationName": "Pittsburgh",
+  "teamName": "Steelers",
+  "monogram": "PIT",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFB612",
+   "accent": "FFB612"
+  },
+  "externalIds": {
+   "espn": "23",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "acrisure-stadium",
+  "founded": 1933,
+  "tier": 1
+ },
+ {
+  "id": "nfl-sf",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SF",
+  "locationName": "San Francisco",
+  "teamName": "49ers",
+  "monogram": "SF",
+  "colors": {
+   "primary": "AA0000",
+   "secondary": "B3995D",
+   "accent": "B3995D"
+  },
+  "externalIds": {
+   "espn": "25",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "levis-stadium",
+  "founded": 1946,
+  "tier": 1
+ },
+ {
+  "id": "nfl-sea",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SEA",
+  "locationName": "Seattle",
+  "teamName": "Seahawks",
+  "monogram": "SEA",
+  "colors": {
+   "primary": "002A5C",
+   "secondary": "69BE28",
+   "accent": "69BE28"
+  },
+  "externalIds": {
+   "espn": "26",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lumen-field",
+  "founded": 1974,
+  "tier": 1
+ },
+ {
+  "id": "nfl-tb",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "TB",
+  "locationName": "Tampa Bay",
+  "teamName": "Buccaneers",
+  "monogram": "TB",
+  "colors": {
+   "primary": "BD1C36",
+   "secondary": "3E3A35",
+   "accent": "BD1C36"
+  },
+  "externalIds": {
+   "espn": "27",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "raymond-james-stadium",
+  "founded": 1974,
+  "tier": 1
+ },
+ {
+  "id": "nfl-ten",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "TEN",
+  "locationName": "Tennessee",
+  "teamName": "Titans",
+  "monogram": "TEN",
+  "colors": {
+   "primary": "4495D2",
+   "secondary": "001532",
+   "accent": "4495D2"
+  },
+  "externalIds": {
+   "espn": "10",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "nissan-stadium",
+  "founded": 1960,
+  "tier": 1
+ },
+ {
+  "id": "nfl-wsh",
+  "kind": "club",
+  "sport": "football",
+  "league": "NFL",
+  "leagueKey": "football/nfl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WSH",
+  "locationName": "Washington",
+  "teamName": "Commanders",
+  "monogram": "WSH",
+  "colors": {
+   "primary": "5A1414",
+   "secondary": "FFB612",
+   "accent": "FFB612"
+  },
+  "externalIds": {
+   "espn": "28",
+   "espnLeague": "football/nfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "northwest-stadium",
+  "founded": 1932,
+  "tier": 1
+ },
+ {
+  "id": "nba-atl",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ATL",
+  "locationName": "Atlanta",
+  "teamName": "Hawks",
+  "monogram": "ATL",
+  "colors": {
+   "primary": "C8102E",
+   "secondary": "FDB927",
+   "accent": "C8102E"
+  },
+  "externalIds": {
+   "espn": "1",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "state-farm-arena",
+  "founded": 1946,
+  "tier": 1
+ },
+ {
+  "id": "nba-bos",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BOS",
+  "locationName": "Boston",
+  "teamName": "Celtics",
+  "monogram": "B",
+  "colors": {
+   "primary": "007A33",
+   "secondary": "BA9653",
+   "accent": "17A34A"
+  },
+  "externalIds": {
+   "theSportsDb": "134860",
+   "espn": "2",
+   "espnLeague": "basketball/nba",
+   "wikidata": null
+  },
+  "homeVenueId": "td-garden",
+  "founded": 1946,
+  "tier": 1
+ },
+ {
+  "id": "nba-bkn",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BKN",
+  "locationName": "Brooklyn",
+  "teamName": "Nets",
+  "monogram": "BKN",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "17",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "barclays-center",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nba-cha",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CHA",
+  "locationName": "Charlotte",
+  "teamName": "Hornets",
+  "monogram": "CHA",
+  "colors": {
+   "primary": "008CA8",
+   "secondary": "1D1060",
+   "accent": "008CA8"
+  },
+  "externalIds": {
+   "espn": "30",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "spectrum-center",
+  "founded": 1988,
+  "tier": 1
+ },
+ {
+  "id": "nba-chi",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CHI",
+  "locationName": "Chicago",
+  "teamName": "Bulls",
+  "monogram": "CHI",
+  "colors": {
+   "primary": "CE1141",
+   "secondary": "000000",
+   "accent": "E8213F"
+  },
+  "externalIds": {
+   "theSportsDb": "134870",
+   "espn": "4",
+   "espnLeague": "basketball/nba",
+   "wikidata": null
+  },
+  "homeVenueId": "united-center",
+  "founded": 1966,
+  "tier": 1
+ },
+ {
+  "id": "nba-cle",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CLE",
+  "locationName": "Cleveland",
+  "teamName": "Cavaliers",
+  "monogram": "CLE",
+  "colors": {
+   "primary": "860038",
+   "secondary": "BC945C",
+   "accent": "BC945C"
+  },
+  "externalIds": {
+   "espn": "5",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "rocket-arena",
+  "founded": 1970,
+  "tier": 1
+ },
+ {
+  "id": "nba-dal",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DAL",
+  "locationName": "Dallas",
+  "teamName": "Mavericks",
+  "monogram": "DAL",
+  "colors": {
+   "primary": "0064B1",
+   "secondary": "BBC4CA",
+   "accent": "0064B1"
+  },
+  "externalIds": {
+   "espn": "6",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "american-airlines-center",
+  "founded": 1980,
+  "tier": 1
+ },
+ {
+  "id": "nba-den",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DEN",
+  "locationName": "Denver",
+  "teamName": "Nuggets",
+  "monogram": "DEN",
+  "colors": {
+   "primary": "0E2240",
+   "secondary": "FEC524",
+   "accent": "FEC524"
+  },
+  "externalIds": {
+   "espn": "7",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ball-arena",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nba-det",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DET",
+  "locationName": "Detroit",
+  "teamName": "Pistons",
+  "monogram": "DET",
+  "colors": {
+   "primary": "1D428A",
+   "secondary": "C8102E",
+   "accent": "C8102E"
+  },
+  "externalIds": {
+   "espn": "8",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "little-caesars-arena",
+  "founded": 1941,
+  "tier": 1
+ },
+ {
+  "id": "nba-gsw",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GSW",
+  "locationName": "Golden State",
+  "teamName": "Warriors",
+  "monogram": "GS",
+  "colors": {
+   "primary": "1D428A",
+   "secondary": "FFC72C",
+   "accent": "FFC72C"
+  },
+  "externalIds": {
+   "theSportsDb": "134865",
+   "espn": "9",
+   "espnLeague": "basketball/nba",
+   "wikidata": null
+  },
+  "homeVenueId": "chase-center",
+  "founded": 1946,
+  "tier": 1
+ },
+ {
+  "id": "nba-hou",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "HOU",
+  "locationName": "Houston",
+  "teamName": "Rockets",
+  "monogram": "HOU",
+  "colors": {
+   "primary": "CE0E2D",
+   "secondary": "000000",
+   "accent": "CE0E2D"
+  },
+  "externalIds": {
+   "espn": "10",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "toyota-center",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nba-ind",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "IND",
+  "locationName": "Indiana",
+  "teamName": "Pacers",
+  "monogram": "IND",
+  "colors": {
+   "primary": "0C2340",
+   "secondary": "FFD520",
+   "accent": "FFD520"
+  },
+  "externalIds": {
+   "espn": "11",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gainbridge-fieldhouse",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nba-lac",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LAC",
+  "locationName": "LA",
+  "teamName": "Clippers",
+  "monogram": "LAC",
+  "colors": {
+   "primary": "12173F",
+   "secondary": "C8102E",
+   "accent": "C8102E"
+  },
+  "externalIds": {
+   "espn": "12",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "intuit-dome",
+  "founded": 1970,
+  "tier": 1
+ },
+ {
+  "id": "nba-lal",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LAL",
+  "locationName": "Los Angeles",
+  "teamName": "Lakers",
+  "monogram": "LA",
+  "colors": {
+   "primary": "552583",
+   "secondary": "FDB927",
+   "accent": "FDB927"
+  },
+  "externalIds": {
+   "theSportsDb": "134867",
+   "espn": "13",
+   "espnLeague": "basketball/nba",
+   "wikidata": null
+  },
+  "homeVenueId": "crypto-arena",
+  "founded": 1947,
+  "tier": 1
+ },
+ {
+  "id": "nba-mem",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MEM",
+  "locationName": "Memphis",
+  "teamName": "Grizzlies",
+  "monogram": "MEM",
+  "colors": {
+   "primary": "5D76A9",
+   "secondary": "12173F",
+   "accent": "5D76A9"
+  },
+  "externalIds": {
+   "espn": "29",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "fedexforum",
+  "founded": 1995,
+  "tier": 1
+ },
+ {
+  "id": "nba-mia",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MIA",
+  "locationName": "Miami",
+  "teamName": "Heat",
+  "monogram": "M",
+  "colors": {
+   "primary": "98002E",
+   "secondary": "F9A01B",
+   "accent": "F9A01B"
+  },
+  "externalIds": {
+   "theSportsDb": "134882",
+   "espn": "14",
+   "espnLeague": "basketball/nba",
+   "wikidata": null
+  },
+  "homeVenueId": "kaseya-center",
+  "founded": 1988,
+  "tier": 1
+ },
+ {
+  "id": "nba-mil",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MIL",
+  "locationName": "Milwaukee",
+  "teamName": "Bucks",
+  "monogram": "M",
+  "colors": {
+   "primary": "00471B",
+   "secondary": "EEE1C6",
+   "accent": "2FA35A"
+  },
+  "externalIds": {
+   "theSportsDb": "134874",
+   "espn": "15",
+   "espnLeague": "basketball/nba",
+   "wikidata": null
+  },
+  "homeVenueId": "fiserv-forum",
+  "founded": 1968,
+  "tier": 1
+ },
+ {
+  "id": "nba-min",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MIN",
+  "locationName": "Minnesota",
+  "teamName": "Timberwolves",
+  "monogram": "MIN",
+  "colors": {
+   "primary": "266092",
+   "secondary": "79BC43",
+   "accent": "79BC43"
+  },
+  "externalIds": {
+   "espn": "16",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "target-center",
+  "founded": 1989,
+  "tier": 1
+ },
+ {
+  "id": "nba-no",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NO",
+  "locationName": "New Orleans",
+  "teamName": "Pelicans",
+  "monogram": "NO",
+  "colors": {
+   "primary": "0A2240",
+   "secondary": "B4975A",
+   "accent": "B4975A"
+  },
+  "externalIds": {
+   "espn": "3",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "smoothie-king-center",
+  "founded": 2002,
+  "tier": 1
+ },
+ {
+  "id": "nba-nyk",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NYK",
+  "locationName": "New York",
+  "teamName": "Knicks",
+  "monogram": "NY",
+  "colors": {
+   "primary": "006BB6",
+   "secondary": "F58426",
+   "accent": "F58426"
+  },
+  "externalIds": {
+   "theSportsDb": "134862",
+   "espn": "18",
+   "espnLeague": "basketball/nba",
+   "wikidata": null
+  },
+  "homeVenueId": "msg",
+  "founded": 1946,
+  "tier": 1
+ },
+ {
+  "id": "nba-okc",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "OKC",
+  "locationName": "Oklahoma City",
+  "teamName": "Thunder",
+  "monogram": "OKC",
+  "colors": {
+   "primary": "007AC1",
+   "secondary": "EF3B24",
+   "accent": "007AC1"
+  },
+  "externalIds": {
+   "espn": "25",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "paycom-center",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nba-orl",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ORL",
+  "locationName": "Orlando",
+  "teamName": "Magic",
+  "monogram": "ORL",
+  "colors": {
+   "primary": "0150B5",
+   "secondary": "9CA0A3",
+   "accent": "9CA0A3"
+  },
+  "externalIds": {
+   "espn": "19",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "kia-center",
+  "founded": 1989,
+  "tier": 1
+ },
+ {
+  "id": "nba-phi",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PHI",
+  "locationName": "Philadelphia",
+  "teamName": "76ers",
+  "monogram": "PHI",
+  "colors": {
+   "primary": "1D428A",
+   "secondary": "E01234",
+   "accent": "E01234"
+  },
+  "externalIds": {
+   "espn": "20",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "xfinity-mobile-arena",
+  "founded": 1946,
+  "tier": 1
+ },
+ {
+  "id": "nba-phx",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PHX",
+  "locationName": "Phoenix",
+  "teamName": "Suns",
+  "monogram": "PHX",
+  "colors": {
+   "primary": "29127A",
+   "secondary": "E56020",
+   "accent": "E56020"
+  },
+  "externalIds": {
+   "espn": "21",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mortgage-matchup-center",
+  "founded": 1968,
+  "tier": 1
+ },
+ {
+  "id": "nba-por",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "POR",
+  "locationName": "Portland",
+  "teamName": "Trail Blazers",
+  "monogram": "POR",
+  "colors": {
+   "primary": "E03A3E",
+   "secondary": "000000",
+   "accent": "E03A3E"
+  },
+  "externalIds": {
+   "espn": "22",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "moda-center",
+  "founded": 1970,
+  "tier": 1
+ },
+ {
+  "id": "nba-sac",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SAC",
+  "locationName": "Sacramento",
+  "teamName": "Kings",
+  "monogram": "SAC",
+  "colors": {
+   "primary": "5A2D81",
+   "secondary": "6A7A82",
+   "accent": "6A7A82"
+  },
+  "externalIds": {
+   "espn": "23",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "golden-1-center",
+  "founded": 1945,
+  "tier": 1
+ },
+ {
+  "id": "nba-sa",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SA",
+  "locationName": "San Antonio",
+  "teamName": "Spurs",
+  "monogram": "SA",
+  "colors": {
+   "primary": "000000",
+   "secondary": "C4CED4",
+   "accent": "C4CED4"
+  },
+  "externalIds": {
+   "espn": "24",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "frost-bank-center",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nba-tor",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "TOR",
+  "locationName": "Toronto",
+  "teamName": "Raptors",
+  "monogram": "TOR",
+  "colors": {
+   "primary": "D91244",
+   "secondary": "000000",
+   "accent": "D91244"
+  },
+  "externalIds": {
+   "espn": "28",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "scotiabank-arena",
+  "founded": 1995,
+  "tier": 1
+ },
+ {
+  "id": "nba-utah",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UTAH",
+  "locationName": "Utah",
+  "teamName": "Jazz",
+  "monogram": "U",
+  "colors": {
+   "primary": "4E008E",
+   "secondary": "79A3DC",
+   "accent": "79A3DC"
+  },
+  "externalIds": {
+   "espn": "26",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "delta-center",
+  "founded": 1974,
+  "tier": 1
+ },
+ {
+  "id": "nba-wsh",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "NBA",
+  "leagueKey": "basketball/nba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WSH",
+  "locationName": "Washington",
+  "teamName": "Wizards",
+  "monogram": "WSH",
+  "colors": {
+   "primary": "E31837",
+   "secondary": "002B5C",
+   "accent": "E31837"
+  },
+  "externalIds": {
+   "espn": "27",
+   "espnLeague": "basketball/nba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "capital-one-arena",
+  "founded": 1961,
+  "tier": 1
+ },
+ {
+  "id": "nhl-ana",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ANA",
+  "locationName": "Anaheim",
+  "teamName": "Ducks",
+  "monogram": "ANA",
+  "colors": {
+   "primary": "FC4C02",
+   "secondary": "000000",
+   "accent": "FC4C02"
+  },
+  "externalIds": {
+   "espn": "25",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "honda-center",
+  "founded": 1993,
+  "tier": 1
+ },
+ {
+  "id": "nhl-bos",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BOS",
+  "locationName": "Boston",
+  "teamName": "Bruins",
+  "monogram": "BOS",
+  "colors": {
+   "primary": "231F20",
+   "secondary": "FDB71A",
+   "accent": "FDB71A"
+  },
+  "externalIds": {
+   "espn": "1",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "td-garden",
+  "founded": 1924,
+  "tier": 1
+ },
+ {
+  "id": "nhl-buf",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BUF",
+  "locationName": "Buffalo",
+  "teamName": "Sabres",
+  "monogram": "BUF",
+  "colors": {
+   "primary": "00468B",
+   "secondary": "FDB71A",
+   "accent": "FDB71A"
+  },
+  "externalIds": {
+   "espn": "2",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "keybank-center",
+  "founded": 1970,
+  "tier": 1
+ },
+ {
+  "id": "nhl-cgy",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "CGY",
+  "locationName": "Calgary",
+  "teamName": "Flames",
+  "monogram": "CGY",
+  "colors": {
+   "primary": "DD1A32",
+   "secondary": "000000",
+   "accent": "DD1A32"
+  },
+  "externalIds": {
+   "espn": "3",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "scotiabank-saddledome",
+  "founded": 1972,
+  "tier": 1
+ },
+ {
+  "id": "nhl-car",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CAR",
+  "locationName": "Carolina",
+  "teamName": "Hurricanes",
+  "monogram": "CAR",
+  "colors": {
+   "primary": "E30426",
+   "secondary": "000000",
+   "accent": "E30426"
+  },
+  "externalIds": {
+   "espn": "7",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lenovo-center",
+  "founded": 1972,
+  "tier": 1
+ },
+ {
+  "id": "nhl-chi",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CHI",
+  "locationName": "Chicago",
+  "teamName": "Blackhawks",
+  "monogram": "C",
+  "colors": {
+   "primary": "CF0A2C",
+   "secondary": "000000",
+   "accent": "E8243C"
+  },
+  "externalIds": {
+   "nhlTriCode": "CHI",
+   "espn": "4",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "united-center",
+  "founded": 1926,
+  "tier": 1
+ },
+ {
+  "id": "nhl-col",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "COL",
+  "locationName": "Colorado",
+  "teamName": "Avalanche",
+  "monogram": "COL",
+  "colors": {
+   "primary": "860038",
+   "secondary": "005EA3",
+   "accent": "A7466F"
+  },
+  "externalIds": {
+   "espn": "17",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ball-arena",
+  "founded": 1972,
+  "tier": 1
+ },
+ {
+  "id": "nhl-cbj",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CBJ",
+  "locationName": "Columbus",
+  "teamName": "Blue Jackets",
+  "monogram": "CBJ",
+  "colors": {
+   "primary": "002D62",
+   "secondary": "E31937",
+   "accent": "E31937"
+  },
+  "externalIds": {
+   "espn": "29",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "nationwide-arena",
+  "founded": 2000,
+  "tier": 1
+ },
+ {
+  "id": "nhl-dal",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DAL",
+  "locationName": "Dallas",
+  "teamName": "Stars",
+  "monogram": "DAL",
+  "colors": {
+   "primary": "20864C",
+   "secondary": "000000",
+   "accent": "20864C"
+  },
+  "externalIds": {
+   "espn": "9",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "american-airlines-center",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nhl-det",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DET",
+  "locationName": "Detroit",
+  "teamName": "Red Wings",
+  "monogram": "D",
+  "colors": {
+   "primary": "CE1126",
+   "secondary": "FFFFFF",
+   "accent": "E8243C"
+  },
+  "externalIds": {
+   "nhlTriCode": "DET",
+   "espn": "5",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "little-caesars-arena",
+  "founded": 1926,
+  "tier": 1
+ },
+ {
+  "id": "nhl-edm",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "EDM",
+  "locationName": "Edmonton",
+  "teamName": "Oilers",
+  "monogram": "EDM",
+  "colors": {
+   "primary": "00205B",
+   "secondary": "FF4C00",
+   "accent": "FF4C00"
+  },
+  "externalIds": {
+   "espn": "6",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "rogers-place",
+  "founded": 1972,
+  "tier": 1
+ },
+ {
+  "id": "nhl-fla",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FLA",
+  "locationName": "Florida",
+  "teamName": "Panthers",
+  "monogram": "FLA",
+  "colors": {
+   "primary": "E51937",
+   "secondary": "002D62",
+   "accent": "E51937"
+  },
+  "externalIds": {
+   "espn": "26",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "amerant-bank-arena",
+  "founded": 1993,
+  "tier": 1
+ },
+ {
+  "id": "nhl-la",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LA",
+  "locationName": "Los Angeles",
+  "teamName": "Kings",
+  "monogram": "LA",
+  "colors": {
+   "primary": "121212",
+   "secondary": "A2AAAD",
+   "accent": "A2AAAD"
+  },
+  "externalIds": {
+   "espn": "8",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "crypto-arena",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nhl-min",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MIN",
+  "locationName": "Minnesota",
+  "teamName": "Wild",
+  "monogram": "MN",
+  "colors": {
+   "primary": "154734",
+   "secondary": "A6192E",
+   "accent": "2E8B57"
+  },
+  "externalIds": {
+   "nhlTriCode": "MIN",
+   "espn": "30",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "grand-casino-arena",
+  "founded": 2000,
+  "tier": 1
+ },
+ {
+  "id": "nhl-mtl",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "MTL",
+  "locationName": "Montreal",
+  "teamName": "Canadiens",
+  "monogram": "MTL",
+  "colors": {
+   "primary": "C41230",
+   "secondary": "013A81",
+   "accent": "C41230"
+  },
+  "externalIds": {
+   "espn": "10",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "bell-centre",
+  "founded": 1909,
+  "tier": 1
+ },
+ {
+  "id": "nhl-nsh",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NSH",
+  "locationName": "Nashville",
+  "teamName": "Predators",
+  "monogram": "N",
+  "colors": {
+   "primary": "FFB81C",
+   "secondary": "041E42",
+   "accent": "FFB81C"
+  },
+  "externalIds": {
+   "nhlTriCode": "NSH",
+   "espn": "27",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "bridgestone-arena",
+  "founded": 1998,
+  "tier": 1
+ },
+ {
+  "id": "nhl-nj",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NJ",
+  "locationName": "New Jersey",
+  "teamName": "Devils",
+  "monogram": "NJ",
+  "colors": {
+   "primary": "E30B2B",
+   "secondary": "000000",
+   "accent": "E30B2B"
+  },
+  "externalIds": {
+   "espn": "11",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "prudential-center",
+  "founded": 1974,
+  "tier": 1
+ },
+ {
+  "id": "nhl-nyi",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NYI",
+  "locationName": "New York",
+  "teamName": "Islanders",
+  "monogram": "NYI",
+  "colors": {
+   "primary": "00529B",
+   "secondary": "F47D31",
+   "accent": "F47D31"
+  },
+  "externalIds": {
+   "espn": "12",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ubs-arena",
+  "founded": 1972,
+  "tier": 1
+ },
+ {
+  "id": "nhl-nyr",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NYR",
+  "locationName": "New York",
+  "teamName": "Rangers",
+  "monogram": "NYR",
+  "colors": {
+   "primary": "0056AE",
+   "secondary": "E51937",
+   "accent": "E51937"
+  },
+  "externalIds": {
+   "espn": "13",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "msg",
+  "founded": 1926,
+  "tier": 1
+ },
+ {
+  "id": "nhl-ott",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "OTT",
+  "locationName": "Ottawa",
+  "teamName": "Senators",
+  "monogram": "OTT",
+  "colors": {
+   "primary": "DD1A32",
+   "secondary": "B79257",
+   "accent": "DD1A32"
+  },
+  "externalIds": {
+   "espn": "14",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "canadian-tire-centre",
+  "founded": 1992,
+  "tier": 1
+ },
+ {
+  "id": "nhl-phi",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PHI",
+  "locationName": "Philadelphia",
+  "teamName": "Flyers",
+  "monogram": "PHI",
+  "colors": {
+   "primary": "FE5823",
+   "secondary": "000000",
+   "accent": "FE5823"
+  },
+  "externalIds": {
+   "espn": "15",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "xfinity-mobile-arena",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nhl-pit",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PIT",
+  "locationName": "Pittsburgh",
+  "teamName": "Penguins",
+  "monogram": "PIT",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FDB71A",
+   "accent": "FDB71A"
+  },
+  "externalIds": {
+   "espn": "16",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ppg-paints-arena",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nhl-sj",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SJ",
+  "locationName": "San Jose",
+  "teamName": "Sharks",
+  "monogram": "SJ",
+  "colors": {
+   "primary": "00788A",
+   "secondary": "070707",
+   "accent": "00788A"
+  },
+  "externalIds": {
+   "espn": "18",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "sap-center",
+  "founded": 1991,
+  "tier": 1
+ },
+ {
+  "id": "nhl-sea",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SEA",
+  "locationName": "Seattle",
+  "teamName": "Kraken",
+  "monogram": "SEA",
+  "colors": {
+   "primary": "000D33",
+   "secondary": "A3DCE4",
+   "accent": "A3DCE4"
+  },
+  "externalIds": {
+   "espn": "124292",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "climate-pledge-arena",
+  "founded": 2021,
+  "tier": 1
+ },
+ {
+  "id": "nhl-stl",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "STL",
+  "locationName": "St. Louis",
+  "teamName": "Blues",
+  "monogram": "STL",
+  "colors": {
+   "primary": "002F87",
+   "secondary": "FCB514",
+   "accent": "FCB514"
+  },
+  "externalIds": {
+   "nhlTriCode": "STL",
+   "espn": "19",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "enterprise-center",
+  "founded": 1967,
+  "tier": 1
+ },
+ {
+  "id": "nhl-tbl",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "TBL",
+  "locationName": "Tampa Bay",
+  "teamName": "Lightning",
+  "monogram": "TB",
+  "colors": {
+   "primary": "002868",
+   "secondary": "FFFFFF",
+   "accent": "3D74E0"
+  },
+  "externalIds": {
+   "nhlTriCode": "TBL",
+   "espn": "20",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "benchmark-international-arena",
+  "founded": 1992,
+  "tier": 1
+ },
+ {
+  "id": "nhl-tor",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "TOR",
+  "locationName": "Toronto",
+  "teamName": "Maple Leafs",
+  "monogram": "TOR",
+  "colors": {
+   "primary": "003E7E",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "21",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "scotiabank-arena",
+  "founded": 1917,
+  "tier": 1
+ },
+ {
+  "id": "nhl-utah",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UTAH",
+  "locationName": "Utah",
+  "teamName": "Mammoth",
+  "monogram": "U",
+  "colors": {
+   "primary": "000000",
+   "secondary": "7AB2E1",
+   "accent": "7AB2E1"
+  },
+  "externalIds": {
+   "espn": "129764",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "delta-center",
+  "founded": 2024,
+  "tier": 1
+ },
+ {
+  "id": "nhl-van",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "VAN",
+  "locationName": "Vancouver",
+  "teamName": "Canucks",
+  "monogram": "VAN",
+  "colors": {
+   "primary": "003E7E",
+   "secondary": "008752",
+   "accent": "008752"
+  },
+  "externalIds": {
+   "espn": "22",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "rogers-arena",
+  "founded": 1970,
+  "tier": 1
+ },
+ {
+  "id": "nhl-vgk",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "VGK",
+  "locationName": "Vegas",
+  "teamName": "Golden Knights",
+  "monogram": "VGK",
+  "colors": {
+   "primary": "344043",
+   "secondary": "B4975A",
+   "accent": "B4975A"
+  },
+  "externalIds": {
+   "espn": "37",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "t-mobile-arena",
+  "founded": 2017,
+  "tier": 1
+ },
+ {
+  "id": "nhl-wsh",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WSH",
+  "locationName": "Washington",
+  "teamName": "Capitals",
+  "monogram": "WSH",
+  "colors": {
+   "primary": "D71830",
+   "secondary": "0B1F41",
+   "accent": "D71830"
+  },
+  "externalIds": {
+   "espn": "23",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "capital-one-arena",
+  "founded": 1974,
+  "tier": 1
+ },
+ {
+  "id": "nhl-wpg",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NHL",
+  "leagueKey": "hockey/nhl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "WPG",
+  "locationName": "Winnipeg",
+  "teamName": "Jets",
+  "monogram": "WPG",
+  "colors": {
+   "primary": "002D62",
+   "secondary": "C41230",
+   "accent": "C41230"
+  },
+  "externalIds": {
+   "espn": "28",
+   "espnLeague": "hockey/nhl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "canada-life-centre",
+  "founded": 2011,
+  "tier": 1
+ },
+ {
+  "id": "wnba-atl",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ATL",
+  "locationName": "Atlanta",
+  "teamName": "Dream",
+  "monogram": "ATL",
+  "colors": {
+   "primary": "E31837",
+   "secondary": "5091CC",
+   "accent": "E31837"
+  },
+  "externalIds": {
+   "espn": "20",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gateway-center-arena",
+  "founded": 2008,
+  "tier": 1
+ },
+ {
+  "id": "wnba-chi",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CHI",
+  "locationName": "Chicago",
+  "teamName": "Sky",
+  "monogram": "CHI",
+  "colors": {
+   "primary": "5091CD",
+   "secondary": "FFD520",
+   "accent": "5091CD"
+  },
+  "externalIds": {
+   "espn": "19",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "wintrust-arena",
+  "founded": 2006,
+  "tier": 1
+ },
+ {
+  "id": "wnba-con",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CON",
+  "locationName": "Connecticut",
+  "teamName": "Sun",
+  "monogram": "CON",
+  "colors": {
+   "primary": "F05023",
+   "secondary": "0A2240",
+   "accent": "F05023"
+  },
+  "externalIds": {
+   "espn": "18",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mohegan-sun-arena",
+  "founded": 1999,
+  "tier": 1
+ },
+ {
+  "id": "wnba-dal",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DAL",
+  "locationName": "Dallas",
+  "teamName": "Wings",
+  "monogram": "DAL",
+  "colors": {
+   "primary": "002B5C",
+   "secondary": "C4D600",
+   "accent": "C4D600"
+  },
+  "externalIds": {
+   "espn": "3",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "american-airlines-center",
+  "founded": 1998,
+  "tier": 1
+ },
+ {
+  "id": "wnba-gs",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GS",
+  "locationName": "Golden State",
+  "teamName": "Valkyries",
+  "monogram": "GS",
+  "colors": {
+   "primary": "B38FCF",
+   "secondary": "000000",
+   "accent": "B38FCF"
+  },
+  "externalIds": {
+   "espn": "129689",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "chase-center",
+  "founded": 2025,
+  "tier": 1
+ },
+ {
+  "id": "wnba-ind",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "IND",
+  "locationName": "Indiana",
+  "teamName": "Fever",
+  "monogram": "IND",
+  "colors": {
+   "primary": "002D62",
+   "secondary": "E03A3E",
+   "accent": "E03A3E"
+  },
+  "externalIds": {
+   "espn": "5",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gainbridge-fieldhouse",
+  "founded": 2000,
+  "tier": 1
+ },
+ {
+  "id": "wnba-lv",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LV",
+  "locationName": "Las Vegas",
+  "teamName": "Aces",
+  "monogram": "LV",
+  "colors": {
+   "primary": "A7A8AA",
+   "secondary": "000000",
+   "accent": "A7A8AA"
+  },
+  "externalIds": {
+   "espn": "17",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "michelob-ultra-arena",
+  "founded": 1997,
+  "tier": 1
+ },
+ {
+  "id": "wnba-la",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LA",
+  "locationName": "Los Angeles",
+  "teamName": "Sparks",
+  "monogram": "LA",
+  "colors": {
+   "primary": "552583",
+   "secondary": "FDB927",
+   "accent": "FDB927"
+  },
+  "externalIds": {
+   "espn": "6",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "crypto-arena",
+  "founded": 1997,
+  "tier": 1
+ },
+ {
+  "id": "wnba-min",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MIN",
+  "locationName": "Minnesota",
+  "teamName": "Lynx",
+  "monogram": "MIN",
+  "colors": {
+   "primary": "266092",
+   "secondary": "79BC43",
+   "accent": "79BC43"
+  },
+  "externalIds": {
+   "espn": "8",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "target-center",
+  "founded": 1999,
+  "tier": 1
+ },
+ {
+  "id": "wnba-ny",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NY",
+  "locationName": "New York",
+  "teamName": "Liberty",
+  "monogram": "NY",
+  "colors": {
+   "primary": "86CEBC",
+   "secondary": "000000",
+   "accent": "86CEBC"
+  },
+  "externalIds": {
+   "espn": "9",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "barclays-center",
+  "founded": 1997,
+  "tier": 1
+ },
+ {
+  "id": "wnba-phx",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PHX",
+  "locationName": "Phoenix",
+  "teamName": "Mercury",
+  "monogram": "PHX",
+  "colors": {
+   "primary": "3C286E",
+   "secondary": "FA4B0A",
+   "accent": "FA4B0A"
+  },
+  "externalIds": {
+   "espn": "11",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mortgage-matchup-center",
+  "founded": 1997,
+  "tier": 1
+ },
+ {
+  "id": "wnba-por",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "POR",
+  "locationName": "Portland",
+  "teamName": "Fire",
+  "monogram": "POR",
+  "colors": {
+   "primary": "CEE5EB",
+   "secondary": "000000",
+   "accent": "CEE5EB"
+  },
+  "externalIds": {
+   "espn": "132052",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "moda-center",
+  "founded": 2026,
+  "tier": 1
+ },
+ {
+  "id": "wnba-sea",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SEA",
+  "locationName": "Seattle",
+  "teamName": "Storm",
+  "monogram": "SEA",
+  "colors": {
+   "primary": "2C5235",
+   "secondary": "FEE11A",
+   "accent": "FEE11A"
+  },
+  "externalIds": {
+   "espn": "14",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "climate-pledge-arena",
+  "founded": 1999,
+  "tier": 1
+ },
+ {
+  "id": "wnba-tor",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "TOR",
+  "locationName": "Toronto",
+  "teamName": "Tempo",
+  "monogram": "TOR",
+  "colors": {
+   "primary": "33476D",
+   "secondary": "7B1B38",
+   "accent": "994E65"
+  },
+  "externalIds": {
+   "espn": "131935",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "coca-cola-coliseum",
+  "founded": 2026,
+  "tier": 1
+ },
+ {
+  "id": "wnba-wsh",
+  "kind": "club",
+  "sport": "basketball",
+  "league": "WNBA",
+  "leagueKey": "basketball/wnba",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WSH",
+  "locationName": "Washington",
+  "teamName": "Mystics",
+  "monogram": "WSH",
+  "colors": {
+   "primary": "E03A3E",
+   "secondary": "002B5C",
+   "accent": "E03A3E"
+  },
+  "externalIds": {
+   "espn": "16",
+   "espnLeague": "basketball/wnba",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "carefirst-arena",
+  "founded": 1998,
+  "tier": 1
+ },
+ {
+  "id": "cfl-bcl",
+  "kind": "club",
+  "sport": "football",
+  "league": "CFL",
+  "leagueKey": "football/cfl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "BCL",
+  "locationName": "BC",
+  "teamName": "Lions",
+  "monogram": "BCL",
+  "colors": {
+   "primary": "F26522",
+   "secondary": "000000",
+   "accent": "F26522"
+  },
+  "externalIds": {
+   "espn": "79",
+   "espnLeague": "football/cfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "bc-place",
+  "founded": 1954,
+  "tier": 1
+ },
+ {
+  "id": "cfl-csp",
+  "kind": "club",
+  "sport": "football",
+  "league": "CFL",
+  "leagueKey": "football/cfl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "CSP",
+  "locationName": "Calgary",
+  "teamName": "Stampeders",
+  "monogram": "CSP",
+  "colors": {
+   "primary": "C8102E",
+   "secondary": "000000",
+   "accent": "C8102E"
+  },
+  "externalIds": {
+   "espn": "80",
+   "espnLeague": "football/cfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mcmahon-stadium",
+  "founded": 1945,
+  "tier": 1
+ },
+ {
+  "id": "cfl-ees",
+  "kind": "club",
+  "sport": "football",
+  "league": "CFL",
+  "leagueKey": "football/cfl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "EES",
+  "locationName": "Edmonton",
+  "teamName": "Elks",
+  "monogram": "EES",
+  "colors": {
+   "primary": "00573F",
+   "secondary": "FFB81C",
+   "accent": "FFB81C"
+  },
+  "externalIds": {
+   "espn": "81",
+   "espnLeague": "football/cfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "commonwealth-stadium",
+  "founded": 1949,
+  "tier": 1
+ },
+ {
+  "id": "cfl-htc",
+  "kind": "club",
+  "sport": "football",
+  "league": "CFL",
+  "leagueKey": "football/cfl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "HTC",
+  "locationName": "Hamilton",
+  "teamName": "Tiger-Cats",
+  "monogram": "HTC",
+  "colors": {
+   "primary": "FFB81C",
+   "secondary": "000000",
+   "accent": "FFB81C"
+  },
+  "externalIds": {
+   "espn": "82",
+   "espnLeague": "football/cfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "hamilton-stadium",
+  "founded": 1869,
+  "tier": 1
+ },
+ {
+  "id": "cfl-mta",
+  "kind": "club",
+  "sport": "football",
+  "league": "CFL",
+  "leagueKey": "football/cfl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "MTA",
+  "locationName": "Montreal",
+  "teamName": "Alouettes",
+  "monogram": "MTA",
+  "colors": {
+   "primary": "00205B",
+   "secondary": "C8102E",
+   "accent": "C8102E"
+  },
+  "externalIds": {
+   "espn": "83",
+   "espnLeague": "football/cfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "percival-molson-stadium",
+  "founded": 1946,
+  "tier": 1
+ },
+ {
+  "id": "cfl-orb",
+  "kind": "club",
+  "sport": "football",
+  "league": "CFL",
+  "leagueKey": "football/cfl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "ORB",
+  "locationName": "Ottawa",
+  "teamName": "Redblacks",
+  "monogram": "ORB",
+  "colors": {
+   "primary": "C8102E",
+   "secondary": "000000",
+   "accent": "C8102E"
+  },
+  "externalIds": {
+   "espn": "87",
+   "espnLeague": "football/cfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "td-place-stadium",
+  "founded": 2014,
+  "tier": 1
+ },
+ {
+  "id": "cfl-srr",
+  "kind": "club",
+  "sport": "football",
+  "league": "CFL",
+  "leagueKey": "football/cfl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "SRR",
+  "locationName": "Saskatchewan",
+  "teamName": "Roughriders",
+  "monogram": "SRR",
+  "colors": {
+   "primary": "00843D",
+   "secondary": "FFFFFF",
+   "accent": "00843D"
+  },
+  "externalIds": {
+   "espn": "84",
+   "espnLeague": "football/cfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mosaic-stadium",
+  "founded": 1910,
+  "tier": 1
+ },
+ {
+  "id": "cfl-tat",
+  "kind": "club",
+  "sport": "football",
+  "league": "CFL",
+  "leagueKey": "football/cfl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "TAT",
+  "locationName": "Toronto",
+  "teamName": "Argonauts",
+  "monogram": "TAT",
+  "colors": {
+   "primary": "0A2E5C",
+   "secondary": "A5ACAF",
+   "accent": "A5ACAF"
+  },
+  "externalIds": {
+   "espn": "85",
+   "espnLeague": "football/cfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "bmo-field",
+  "founded": 1873,
+  "tier": 1
+ },
+ {
+  "id": "cfl-wbb",
+  "kind": "club",
+  "sport": "football",
+  "league": "CFL",
+  "leagueKey": "football/cfl",
+  "country": "Canada",
+  "countryCode": "CA",
+  "abbreviation": "WBB",
+  "locationName": "Winnipeg",
+  "teamName": "Blue Bombers",
+  "monogram": "WBB",
+  "colors": {
+   "primary": "00205B",
+   "secondary": "FFB81C",
+   "accent": "FFB81C"
+  },
+  "externalIds": {
+   "espn": "86",
+   "espnLeague": "football/cfl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "princess-auto-stadium",
+  "founded": 1930,
+  "tier": 1
+ }
+]
