@@ -340,7 +340,7 @@ def table(cols, rows):
     for code, color, city, line, total, lose in rows:
         cells = "".join(f"<td>{v}</td>" for v in line)
         out += (f'<tr class="{"lose" if lose else ""}"><td class="tm"><div><span class="f-mono" style="--c:{color};box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)">{code}</span>'
-                f'{city}</div></td>{cells}<td class="t">{total}</td></tr>')
+                f'{city if len(cols) <= 4 else ""}</div></td>{cells}<td class="t">{total}</td></tr>')
     return out + "</table>"
 
 def guilloche_bg(color, cx=196, cy=230, n=36, rx=260, ry=70, op=.14):
@@ -410,7 +410,7 @@ def memories():
            "Two goals.<br>Injury time.", "Camp Nou, May 26, 1999", ["1H", "2H"],
            [("BAY", "#dc052d", "Munich", [1, 0], 1, True), ("MUN", "#da291c", "Manchester", [0, 2], 2, False)],
            tint='<div class="tint" style="background:linear-gradient(180deg,#081548cc,#08154833 60%,transparent)"></div>')
-    memory(5, "wc", "world-cup-1994", "soldier-soccer.jpg 0 380 1280 1000", "contrast(1.05) saturate(.85) brightness(.85)",
+    memory(5, "wc", "world-cup-1994", "soldier-soccer.jpg 0 270 1280 1000", "contrast(1.05) saturate(.85) brightness(.85)",
            "The world<br>came to<br>Chicago.", "Soldier Field, Jun 17, 1994", ["1H", "2H"],
            [("BOL", "#00843d", "Bolivia", [0, 0], 0, True), ("GER", "#2b2b30", "Germany", [0, 1], 1, False)],
            top=292, hsize=50)
@@ -473,7 +473,7 @@ def v9():
   .grid { position: absolute; top: 290px; left: 20px; right: 20px; display: grid; grid-template-columns: repeat(3, 1fr); row-gap: 34px; }
   .st { display: flex; flex-direction: column; align-items: center; gap: 10px; }
   .st .art { height: 76px; display: flex; align-items: flex-end; }
-  .st .hx-badge { filter: drop-shadow(0 3px 5px rgba(0,0,0,.55)); }
+  .st .hx-badge { filter: none; }
   .st .cap { font: 600 13px/1.2 var(--b-ui); color: rgba(255,255,255,.72); text-align: center; white-space: nowrap; }
   .st.ghost .cap { color: rgba(255,255,255,.55); }
 """
