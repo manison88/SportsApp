@@ -1,400 +1,400 @@
-    t =    15.83s Waiting 8.0s for "open-trip" Any to exist
-    t =    16.84s     Checking `Expect predicate `existsNoRetry == 1` for object "open-trip" Any`
-    t =    16.84s         Checking existence of `"open-trip" Any`
-    t =    17.14s Tap "open-trip" Any
-    t =    17.14s     Wait for app.witness.ios to idle
-    t =    17.14s     Find the "open-trip" Any
-    t =    17.43s     Check for interrupting elements affecting "open-trip" Button
-    t =    17.62s     Synthesize event
-    t =    17.63s         Scroll element to visible
-    t =    17.66s         Find the "open-trip" Button
-    t =    18.13s         Computed hit point {201, 645} after scrolling to visible
-    t =    18.42s     Wait for app.witness.ios to idle
-    t =    18.98s Waiting 5.0s for "trip-title" Any to exist
-    t =    20.05s     Checking `Expect predicate `existsNoRetry == 1` for object "trip-title" Any`
-    t =    20.06s         Checking existence of `"trip-title" Any`
-    t =    20.60s Added attachment named '14-trip'
-    t =    20.60s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testLambeauMemoryAndTrip]' passed (21.003 seconds).
-Test Case '-[WitnessUITests.WitnessUITests testLiveCheckIn]' started.
-    t =     0.00s Start Test at 2026-10-17 21:38:10.038
-    t =     0.06s Set Up
-    t =     0.06s Open app.witness.ios
-    t =     0.06s     Launch app.witness.ios
-    t =     0.06s         Terminate app.witness.ios:32844
-    t =     2.30s         Setting up automation session
-    t =     5.63s         Wait for app.witness.ios to idle
-    t =     7.83s Waiting 8.0s for "add-menu" Any to exist
-    t =     8.87s     Checking `Expect predicate `existsNoRetry == 1` for object "add-menu" Any`
-    t =     8.87s         Checking existence of `"add-menu" Any`
-    t =     9.00s Tap "add-menu" Any
-    t =     9.00s     Wait for app.witness.ios to idle
-    t =     9.02s     Find the "add-menu" Any
-    t =     9.18s     Check for interrupting elements affecting "add-menu" Other
-    t =     9.31s     Synthesize event
-    t =     9.62s     Wait for app.witness.ios to idle
-    t =     9.75s Tap "Check in live" Button
-    t =     9.75s     Wait for app.witness.ios to idle
-    t =     9.76s     Find the "Check in live" Button
-    t =     9.94s     Check for interrupting elements affecting "dot.radiowaves.left.and.right" Button
-    t =     9.99s     Synthesize event
-    t =    10.28s     Wait for app.witness.ios to idle
-    t =    10.69s Waiting 8.0s for "live-start" Any to exist
-    t =    11.74s     Checking `Expect predicate `existsNoRetry == 1` for object "live-start" Any`
-    t =    11.74s         Checking existence of `"live-start" Any`
-    t =    11.79s Tap "live-start" Any
-    t =    11.79s     Wait for app.witness.ios to idle
-    t =    11.81s     Find the "live-start" Any
-    t =    11.86s     Check for interrupting elements affecting "live-start" Other
-    t =    11.99s     Synthesize event
-    t =    12.28s     Wait for app.witness.ios to idle
-    t =    12.28s Waiting 5.0s for "live-save-moment" Any to exist
-    t =    13.30s     Checking `Expect predicate `existsNoRetry == 1` for object "live-save-moment" Any`
-    t =    13.30s         Checking existence of `"live-save-moment" Any`
-    t =    13.38s Waiting 8.0s for "live-home-plus" Any to exist
-    t =    14.43s     Checking `Expect predicate `existsNoRetry == 1` for object "live-home-plus" Any`
-    t =    14.43s         Checking existence of `"live-home-plus" Any`
-    t =    14.46s Tap "live-home-plus" Any
-    t =    14.46s     Wait for app.witness.ios to idle
-    t =    14.46s     Find the "live-home-plus" Any
-    t =    14.51s     Check for interrupting elements affecting "live-home-plus" Button
-    t =    14.58s     Synthesize event
-    t =    14.88s     Wait for app.witness.ios to idle
-    t =    14.89s Waiting 8.0s for "live-home-plus" Any to exist
-    t =    15.90s     Checking `Expect predicate `existsNoRetry == 1` for object "live-home-plus" Any`
-    t =    15.90s         Checking existence of `"live-home-plus" Any`
-    t =    15.93s Tap "live-home-plus" Any
-    t =    15.93s     Wait for app.witness.ios to idle
-    t =    15.94s     Find the "live-home-plus" Any
-    t =    15.97s     Check for interrupting elements affecting "live-home-plus" Button
-    t =    16.03s     Synthesize event
-    t =    16.32s     Wait for app.witness.ios to idle
-    t =    16.32s Waiting 8.0s for "live-away-plus" Any to exist
-    t =    17.38s     Checking `Expect predicate `existsNoRetry == 1` for object "live-away-plus" Any`
-    t =    17.38s         Checking existence of `"live-away-plus" Any`
-    t =    17.44s Tap "live-away-plus" Any
-    t =    17.44s     Wait for app.witness.ios to idle
-    t =    17.44s     Find the "live-away-plus" Any
-    t =    17.58s     Check for interrupting elements affecting "live-away-plus" Button
-    t =    17.69s     Synthesize event
-    t =    18.08s     Wait for app.witness.ios to idle
-    t =    18.09s Waiting 8.0s for "live-save-moment" Any to exist
-    t =    19.10s     Checking `Expect predicate `existsNoRetry == 1` for object "live-save-moment" Any`
-    t =    19.10s         Checking existence of `"live-save-moment" Any`
-    t =    19.23s Tap "live-save-moment" Any
-    t =    19.23s     Wait for app.witness.ios to idle
-    t =    19.24s     Find the "live-save-moment" Any
-    t =    19.40s     Check for interrupting elements affecting "live-save-moment" Button
-    t =    19.46s     Synthesize event
-    t =    19.77s     Wait for app.witness.ios to idle
-    t =    19.77s Waiting 8.0s for "live-save-moment" Any to exist
-    t =    20.80s     Checking `Expect predicate `existsNoRetry == 1` for object "live-save-moment" Any`
-    t =    20.80s         Checking existence of `"live-save-moment" Any`
-    t =    20.96s Tap "live-save-moment" Any
-    t =    20.96s     Wait for app.witness.ios to idle
-    t =    20.96s     Find the "live-save-moment" Any
-    t =    21.05s     Check for interrupting elements affecting "live-save-moment" Button
-    t =    21.12s     Synthesize event
-    t =    21.45s     Wait for app.witness.ios to idle
-    t =    21.46s Waiting 3.0s for "live-moment-count" Any to exist
-    t =    22.50s     Checking `Expect predicate `existsNoRetry == 1` for object "live-moment-count" Any`
-    t =    22.50s         Checking existence of `"live-moment-count" Any`
-    t =    22.75s Added attachment named '12-live'
-    t =    22.76s Waiting 8.0s for "live-end" Any to exist
-    t =    23.80s     Checking `Expect predicate `existsNoRetry == 1` for object "live-end" Any`
-    t =    23.80s         Checking existence of `"live-end" Any`
-    t =    23.90s Tap "live-end" Any
-    t =    23.90s     Wait for app.witness.ios to idle
-    t =    23.90s     Find the "live-end" Any
-    t =    23.98s     Check for interrupting elements affecting "live-end" Button
-    t =    24.05s     Synthesize event
-    t =    24.36s     Wait for app.witness.ios to idle
-    t =    24.49s Waiting 5.0s for "Timeline" Button to exist
-    t =    25.52s     Checking `Expect predicate `existsNoRetry == 1` for object "Timeline" Button`
-    t =    25.52s         Checking existence of `"Timeline" Button`
-    t =    25.56s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testLiveCheckIn]' passed (25.850 seconds).
-Test Case '-[WitnessUITests.WitnessUITests testSpainTrip]' started.
-    t =     0.00s Start Test at 2026-10-17 21:38:35.888
-    t =     0.05s Set Up
-    t =     0.05s Open app.witness.ios
-    t =     0.05s     Launch app.witness.ios
-    t =     0.05s         Terminate app.witness.ios:33713
-    t =     2.29s         Setting up automation session
-    t =     6.00s         Wait for app.witness.ios to idle
-    t =     8.22s Waiting 3.0s for SearchField (First Match) to exist
-    t =     9.27s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
-    t =     9.27s         Checking existence of `SearchField (First Match)`
-    t =     9.42s Waiting 5.0s for SearchField (First Match) to exist
-    t =    10.45s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
-    t =    10.45s         Checking existence of `SearchField (First Match)`
-    t =    10.50s Tap SearchField (First Match)
-    t =    10.50s     Wait for app.witness.ios to idle
-    t =    10.50s     Find the SearchField (First Match)
-    t =    10.59s     Check for interrupting elements affecting "Teams, places, years" SearchField
-    t =    10.68s     Synthesize event
-    t =    11.01s     Wait for app.witness.ios to idle
-    t =    11.71s Waiting 3.0s for Keyboard (First Match) to exist
-    t =    12.76s     Checking `Expect predicate `existsNoRetry == 1` for object Keyboard (First Match)`
-    t =    12.76s         Checking existence of `Keyboard (First Match)`
-    t =    12.80s Type 'Madrid' into Target Application 'app.witness.ios'
-    t =    12.80s     Wait for app.witness.ios to idle
-    t =    12.80s     Find the Target Application 'app.witness.ios'
-    t =    12.91s     Check for interrupting elements affecting "Witness" Application
-    t =    12.96s     Synthesize event
-    t =    12.97s         Get number of matches for: Elements containing elements matching predicate 'hasKeyboardFocus == 1'
-    t =    13.32s     Wait for app.witness.ios to idle
-    t =    13.48s Waiting 8.0s for "game-card-lal-2020-clasico" Any to exist
-    t =    14.51s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-lal-2020-clasico" Any`
-    t =    14.52s         Checking existence of `"game-card-lal-2020-clasico" Any`
-    t =    14.91s Tap "game-card-lal-2020-clasico" Any
-    t =    14.91s     Wait for app.witness.ios to idle
-    t =    14.91s     Find the "game-card-lal-2020-clasico" Any
-    t =    15.22s     Check for interrupting elements affecting "game-card-lal-2020-clasico" Button
-    t =    15.31s     Synthesize event
-    t =    15.62s     Wait for app.witness.ios to idle
-    t =    15.81s Waiting 8.0s for "open-trip" Any to exist
-    t =    16.83s     Checking `Expect predicate `existsNoRetry == 1` for object "open-trip" Any`
-    t =    16.83s         Checking existence of `"open-trip" Any`
-    t =    16.92s Tap "open-trip" Any
-    t =    16.92s     Wait for app.witness.ios to idle
-    t =    16.92s     Find the "open-trip" Any
-    t =    17.04s     Check for interrupting elements affecting "open-trip" Button
-    t =    17.11s     Synthesize event
-    t =    17.13s         Scroll element to visible
-    t =    17.13s         Find the "open-trip" Button
-    t =    17.25s         Computed hit point {201, 645} after scrolling to visible
-    t =    17.54s     Wait for app.witness.ios to idle
-    t =    17.68s Waiting 5.0s for "trip-title" Any to exist
-    t =    18.68s     Checking `Expect predicate `existsNoRetry == 1` for object "trip-title" Any`
-    t =    18.68s         Checking existence of `"trip-title" Any`
-    t =    22.94s         Capturing element debug description
-    t =    22.94s     Checking existence of `"trip-title" Any`
-    t =    35.55s Added attachment named '14-trip-spain'
-    t =    35.55s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testSpainTrip]' passed (35.811 seconds).
-Test Case '-[WitnessUITests.WitnessUITests testTabsTour]' started.
-    t =     0.00s Start Test at 2026-10-17 21:39:11.699
-    t =     0.03s Set Up
-    t =     0.03s Open app.witness.ios
-    t =     0.03s     Launch app.witness.ios
-    t =     0.03s         Terminate app.witness.ios:35352
-    t =     1.54s         Setting up automation session
-    t =     5.51s         Wait for app.witness.ios to idle
-    t =     7.79s Waiting 10.0s for "game-card-mlb-2026-0704" Any to exist
-    t =     8.81s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2026-0704" Any`
-    t =     8.81s         Checking existence of `"game-card-mlb-2026-0704" Any`
-    t =     9.46s Added attachment named '04-timeline'
-    t =     9.46s Waiting 5.0s for "Map" Button to exist
-    t =    10.47s     Checking `Expect predicate `existsNoRetry == 1` for object "Map" Button`
-    t =    10.47s         Checking existence of `"Map" Button`
-    t =    10.57s Tap "Map" Button
-    t =    10.57s     Wait for app.witness.ios to idle
-    t =    10.57s     Find the "Map" Button
-    t =    10.64s     Check for interrupting elements affecting "globe.americas.fill" Button
-    t =    10.69s     Synthesize event
-    t =    11.00s     Wait for app.witness.ios to idle
-    t =    11.78s Waiting 5.0s for "map-miles" Any to exist
-    t =    12.81s     Checking `Expect predicate `existsNoRetry == 1` for object "map-miles" Any`
-    t =    12.81s         Checking existence of `"map-miles" Any`
-    t =    13.28s Checking existence of `"map-legend" Any`
-    t =    13.39s Waiting 5.0s for "Expand map" Button to exist
-    t =    14.44s     Checking `Expect predicate `existsNoRetry == 1` for object "Expand map" Button`
-    t =    14.44s         Checking existence of `"Expand map" Button`
-    t =    14.55s Tap "Expand map" Button
-    t =    14.55s     Wait for app.witness.ios to idle
-    t =    14.56s     Find the "Expand map" Button
-    t =    14.71s     Check for interrupting elements affecting "map-expand" Button
-    t =    14.83s     Synthesize event
-    t =    15.14s     Wait for app.witness.ios to idle
-    t =    15.71s Waiting 5.0s for "life-map-expanded" Any to exist
-    t =    16.77s     Checking `Expect predicate `existsNoRetry == 1` for object "life-map-expanded" Any`
-    t =    16.77s         Checking existence of `"life-map-expanded" Any`
-    t =    16.85s Tap "Zoom in" Button
-    t =    16.85s     Wait for app.witness.ios to idle
-    t =    16.86s     Find the "Zoom in" Button
-    t =    17.13s     Check for interrupting elements affecting "map-zoom-in" Button
-    t =    17.30s     Synthesize event
-    t =    17.63s     Wait for app.witness.ios to idle
-    t =    18.12s Added attachment named '02b-map-expanded'
-    t =    18.12s Tap "Close map" Button
-    t =    18.12s     Wait for app.witness.ios to idle
-    t =    18.13s     Find the "Close map" Button
-    t =    18.67s     Check for interrupting elements affecting "map-close" Button
-    t =    18.99s     Synthesize event
-    t =    19.29s     Wait for app.witness.ios to idle
-    t =    22.48s Added attachment named '02-map'
-    t =    22.48s Waiting 5.0s for "Passport" Button to exist
-    t =    23.52s     Checking `Expect predicate `existsNoRetry == 1` for object "Passport" Button`
-    t =    23.52s         Checking existence of `"Passport" Button`
-    t =    23.58s Tap "Passport" Button
-    t =    23.58s     Wait for app.witness.ios to idle
-    t =    23.60s     Find the "Passport" Button
-    t =    23.66s     Check for interrupting elements affecting "person.text.rectangle.fill" Button
-    t =    23.73s     Synthesize event
-    t =    24.02s     Wait for app.witness.ios to idle
-    t =    24.07s Waiting 5.0s for "passport-count" Any to exist
-    t =    25.10s     Checking `Expect predicate `existsNoRetry == 1` for object "passport-count" Any`
-    t =    25.11s         Checking existence of `"passport-count" Any`
-    t =    25.40s Added attachment named '03-passport'
-    t =    25.40s Find the "stamp-wrigley" Any
-    t =    25.61s Waiting 8.0s for "stamp-wrigley" Any to exist
-    t =    26.64s     Checking `Expect predicate `existsNoRetry == 1` for object "stamp-wrigley" Any`
-    t =    26.64s         Checking existence of `"stamp-wrigley" Any`
-    t =    26.80s Tap "stamp-wrigley" Any
-    t =    26.80s     Wait for app.witness.ios to idle
-    t =    26.81s     Find the "stamp-wrigley" Any
-    t =    26.98s     Check for interrupting elements affecting "stamp-wrigley" Button
-    t =    27.08s     Synthesize event
-    t =    27.39s     Wait for app.witness.ios to idle
-    t =    27.42s Waiting 5.0s for "venue-title" Any to exist
-    t =    28.44s     Checking `Expect predicate `existsNoRetry == 1` for object "venue-title" Any`
-    t =    28.44s         Checking existence of `"venue-title" Any`
-    t =    28.85s Added attachment named '08-venue'
-    t =    28.85s Tap Button (Element at index 0)
-    t =    28.85s     Wait for app.witness.ios to idle
-    t =    28.86s     Find the Button (Element at index 0)
-    t =    29.03s     Check for interrupting elements affecting "BackButton" Button
-    t =    29.09s     Synthesize event
-    t =    29.40s     Wait for app.witness.ios to idle
-    t =    29.40s Waiting 5.0s for "You" Button to exist
-    t =    30.44s     Checking `Expect predicate `existsNoRetry == 1` for object "You" Button`
-    t =    30.44s         Checking existence of `"You" Button`
-    t =    30.51s Tap "You" Button
-    t =    30.51s     Wait for app.witness.ios to idle
-    t =    30.52s     Find the "You" Button
-    t =    30.59s     Check for interrupting elements affecting "person.crop.circle.fill" Button
-    t =    30.65s     Synthesize event
-    t =    30.97s     Wait for app.witness.ios to idle
-    t =    30.99s Waiting 5.0s for "you-lucky" Any to exist
-    t =    32.04s     Checking `Expect predicate `existsNoRetry == 1` for object "you-lucky" Any`
-    t =    32.04s         Checking existence of `"you-lucky" Any`
-    t =    32.33s Added attachment named '09-you'
-    t =    32.33s Waiting 8.0s for "you-lucky" Any to exist
-    t =    33.39s     Checking `Expect predicate `existsNoRetry == 1` for object "you-lucky" Any`
-    t =    33.39s         Checking existence of `"you-lucky" Any`
-    t =    33.49s Tap "you-lucky" Any
-    t =    33.49s     Wait for app.witness.ios to idle
-    t =    33.50s     Find the "you-lucky" Any
-    t =    33.67s     Check for interrupting elements affecting "you-lucky" Button
-    t =    33.74s     Synthesize event
-    t =    34.04s     Wait for app.witness.ios to idle
-    t =    34.04s Waiting 5.0s for "lucky-title" Any to exist
-    t =    35.07s     Checking `Expect predicate `existsNoRetry == 1` for object "lucky-title" Any`
-    t =    35.07s         Checking existence of `"lucky-title" Any`
-    t =    35.29s Added attachment named '10-lucky'
-    t =    35.29s Tap Button (Element at index 0)
-    t =    35.29s     Wait for app.witness.ios to idle
-    t =    35.30s     Find the Button (Element at index 0)
-    t =    35.34s     Check for interrupting elements affecting "BackButton" Button
-    t =    35.38s     Synthesize event
-    t =    35.69s     Wait for app.witness.ios to idle
-    t =    35.70s Waiting 8.0s for "you-big-games" Any to exist
-    t =    36.70s     Checking `Expect predicate `existsNoRetry == 1` for object "you-big-games" Any`
-    t =    36.70s         Checking existence of `"you-big-games" Any`
-    t =    37.05s Tap "you-big-games" Any
-    t =    37.05s     Wait for app.witness.ios to idle
-    t =    37.06s     Find the "you-big-games" Any
-    t =    37.38s     Check for interrupting elements affecting "you-big-games" Button
-    t =    37.47s     Synthesize event
-    t =    37.50s         Scroll element to visible
-    t =    37.50s         Find the "you-big-games" Button
-    t =    37.87s         Computed hit point {201, 643.00000000000011} after scrolling to visible
-    t =    38.18s     Wait for app.witness.ios to idle
-    t =    38.18s Waiting 5.0s for "big-games-count" Any to exist
-    t =    39.19s     Checking `Expect predicate `existsNoRetry == 1` for object "big-games-count" Any`
-    t =    39.19s         Checking existence of `"big-games-count" Any`
-    t =    39.59s Added attachment named '15-big-games'
-    t =    39.60s Tap Button (Element at index 0)
-    t =    39.60s     Wait for app.witness.ios to idle
-    t =    39.60s     Find the Button (Element at index 0)
-    t =    39.65s     Check for interrupting elements affecting "BackButton" Button
-    t =    39.87s     Synthesize event
-    t =    40.51s     Wait for app.witness.ios to idle
-    t =    40.51s Waiting 8.0s for "person-row-maya" Any to exist
-    t =    41.52s     Checking `Expect predicate `existsNoRetry == 1` for object "person-row-maya" Any`
-    t =    41.52s         Checking existence of `"person-row-maya" Any`
-    t =    41.91s Tap "person-row-maya" Any
-    t =    41.91s     Wait for app.witness.ios to idle
-    t =    41.94s     Find the "person-row-maya" Any
-    t =    42.46s     Check for interrupting elements affecting "person-row-maya" Button
-    t =    42.63s     Synthesize event
-    t =    42.97s     Wait for app.witness.ios to idle
-    t =    43.09s Waiting 5.0s for "shared-count" Any to exist
-    t =    44.17s     Checking `Expect predicate `existsNoRetry == 1` for object "shared-count" Any`
-    t =    44.17s         Checking existence of `"shared-count" Any`
-    t =    44.75s Added attachment named '13-shared-passport'
-    t =    44.75s Tap Button (Element at index 0)
-    t =    44.75s     Wait for app.witness.ios to idle
-    t =    44.75s     Find the Button (Element at index 0)
-    t =    44.82s     Check for interrupting elements affecting "BackButton" Button
-    t =    44.95s     Synthesize event
-    t =    45.26s     Wait for app.witness.ios to idle
-    t =    45.27s Waiting 8.0s for "you-wrapped" Any to exist
-    t =    46.31s     Checking `Expect predicate `existsNoRetry == 1` for object "you-wrapped" Any`
-    t =    46.31s         Checking existence of `"you-wrapped" Any`
-    t =    53.58s         Capturing element debug description
-    t =    53.58s     Checking existence of `"you-wrapped" Any`
-    t =    56.88s Tap "you-wrapped" Any
-    t =    56.88s     Wait for app.witness.ios to idle
-    t =    56.89s     Find the "you-wrapped" Any
-    t =    57.44s     Check for interrupting elements affecting "you-wrapped" Button
-    t =    57.65s     Synthesize event
-    t =    57.96s     Wait for app.witness.ios to idle
-    t =    57.97s Waiting 5.0s for "wrapped-record" Any to exist
-    t =    58.99s     Checking `Expect predicate `existsNoRetry == 1` for object "wrapped-record" Any`
-    t =    58.99s         Checking existence of `"wrapped-record" Any`
-    t =    59.30s Added attachment named '11-wrapped'
-    t =    59.30s Waiting 8.0s for "wrapped-close" Any to exist
-    t =    60.32s     Checking `Expect predicate `existsNoRetry == 1` for object "wrapped-close" Any`
-    t =    60.32s         Checking existence of `"wrapped-close" Any`
-    t =    60.49s Tap "wrapped-close" Any
-    t =    60.49s     Wait for app.witness.ios to idle
-    t =    60.49s     Find the "wrapped-close" Any
-    t =    60.64s     Check for interrupting elements affecting "wrapped-close" Button
-    t =    60.73s     Synthesize event
-    t =    61.04s     Wait for app.witness.ios to idle
-    t =    61.04s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testTabsTour]' passed (61.365 seconds).
-Test Case '-[WitnessUITests.WitnessUITests testWelcome]' started.
-    t =     0.00s Start Test at 2026-10-17 21:40:13.064
-    t =     0.03s Set Up
-    t =     0.03s Open app.witness.ios
-    t =     0.04s     Launch app.witness.ios
-    t =     0.04s         Terminate app.witness.ios:36770
-    t =     3.84s         Setting up automation session
-    t =     6.93s         Wait for app.witness.ios to idle
-    t =     8.66s Waiting 8.0s for "welcome-sample" Any to exist
-    t =     9.67s     Checking `Expect predicate `existsNoRetry == 1` for object "welcome-sample" Any`
-    t =     9.67s         Checking existence of `"welcome-sample" Any`
-    t =    10.05s Added attachment named '01-welcome'
-    t =    10.05s Waiting 8.0s for "welcome-sample" Any to exist
-    t =    11.07s     Checking `Expect predicate `existsNoRetry == 1` for object "welcome-sample" Any`
-    t =    11.07s         Checking existence of `"welcome-sample" Any`
-    t =    11.15s Tap "welcome-sample" Any
-    t =    11.15s     Wait for app.witness.ios to idle
-    t =    11.16s     Find the "welcome-sample" Any
-    t =    11.21s     Check for interrupting elements affecting "welcome-sample" Button
-    t =    11.28s     Synthesize event
-    t =    11.61s     Wait for app.witness.ios to idle
-    t =    13.82s Waiting 8.0s for "Timeline" Button to exist
-    t =    14.87s     Checking `Expect predicate `existsNoRetry == 1` for object "Timeline" Button`
-    t =    14.88s         Checking existence of `"Timeline" Button`
-    t =    15.02s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testWelcome]' passed (15.264 seconds).
-Test Suite 'WitnessUITests' passed at 2026-10-17 21:40:28.329.
-	 Executed 12 tests, with 0 failures (0 unexpected) in 477.240 (477.248) seconds
-Test Suite 'WitnessUITests.xctest' passed at 2026-10-17 21:40:28.330.
-	 Executed 12 tests, with 0 failures (0 unexpected) in 477.240 (477.249) seconds
-Test Suite 'All tests' passed at 2026-10-17 21:40:28.330.
-	 Executed 12 tests, with 0 failures (0 unexpected) in 477.240 (477.251) seconds
-2026-10-17 21:40:30.441 xcodebuild[12386:43631] [MT] IDETestOperationsObserverDebug: 540.596 elapsed -- Testing started completed.
-2026-10-17 21:40:30.442 xcodebuild[12386:43631] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
-2026-10-17 21:40:30.442 xcodebuild[12386:43631] [MT] IDETestOperationsObserverDebug: 540.596 sec, +540.596 sec -- end
+SwiftDriver\ Compilation\ Requirements Witness normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Witness -Onone -enforce-exclusivity\=checked @/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Index.noindex/DataStore -swift-version 5 -I /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-96ae0914227b19deccb34b33ba7b5dea.sdkstatcache -output-file-map /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-generated-files.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-own-target-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-project-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/DerivedSources/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness-Swift.h -working-directory /Users/runner/work/SportsApp/SportsApp -experimental-emit-module-separately -disable-cmo
 
-Test session results, code coverage, and logs:
-	/Users/runner/work/SportsApp/SportsApp/build/Results.xcresult
+ProcessInfoPlistFile /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Info.plist /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/empty-Witness.plist (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-infoPlistUtility /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/empty-Witness.plist -producttype com.apple.product-type.application -genpkginfo /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/assetcatalog_generated_info.plist -o /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Info.plist
 
-** TEST SUCCEEDED **
+SwiftMergeGeneratedHeaders /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/DerivedSources/Witness-Swift.h /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness-Swift.h (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-swiftHeaderTool -arch arm64 /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness-Swift.h -o /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/DerivedSources/Witness-Swift.h
 
-Testing started
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.swiftmodule/arm64-apple-ios-simulator.swiftmodule /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.swiftmodule (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.swiftmodule /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.swiftmodule/arm64-apple-ios-simulator.swiftdoc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.swiftdoc (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.swiftdoc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.swiftmodule/arm64-apple-ios-simulator.swiftdoc
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.swiftmodule/arm64-apple-ios-simulator.abi.json /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.abi.json (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.abi.json /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.swiftsourceinfo (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.swiftsourceinfo /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+SwiftCompile normal arm64 Compiling\ LocationService.swift,\ LuckyCharmView.swift,\ Models.swift,\ OnboardingView.swift,\ PassportView.swift,\ PhotoMatcher.swift,\ RecapFilmView.swift,\ RootView.swift,\ ScanModel.swift,\ ScanProgressView.swift,\ SceneCheck.swift,\ ScoreboardReader.swift,\ SharedPassportView.swift,\ Stats.swift,\ TeamPickerView.swift,\ TextRecognizer.swift /Users/runner/work/SportsApp/SportsApp/Witness/Services/LocationService.swift /Users/runner/work/SportsApp/SportsApp/Witness/Features/You/LuckyCharmView.swift /Users/runner/work/SportsApp/SportsApp/Witness/Model/Models.swift /Users/runner/work/SportsApp/SportsApp/Witness/Features/Onboarding/OnboardingView.swift /Users/runner/work/SportsApp/SportsApp/Witness/Features/Passport/PassportView.swift /Users/runner/work/SportsApp/SportsApp/Witness/Services/PhotoMatcher.swift /Users/runner/work/SportsApp/SportsApp/Witness/Features/Game/RecapFilmView.swift /Users/runner/work/SportsApp/SportsApp/Witness/App/RootView.swift /Users/runner/work/SportsApp/SportsApp/Witness/Services/ScanModel.swift /Users/runner/work/SportsApp/SportsApp/Witness/Features/Onboarding/ScanProgressView.swift /Users/runner/work/SportsApp/SportsApp/Witness/Services/SceneCheck.swift /Users/runner/work/SportsApp/SportsApp/Witness/Services/ScoreboardReader.swift /Users/runner/work/SportsApp/SportsApp/Witness/Features/Social/SharedPassportView.swift /Users/runner/work/SportsApp/SportsApp/Witness/Model/Stats.swift /Users/runner/work/SportsApp/SportsApp/Witness/Features/Add/TeamPickerView.swift /Users/runner/work/SportsApp/SportsApp/Witness/Services/TextRecognizer.swift (in target 'Witness' from project 'Witness')
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Services/LocationService.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Features/You/LuckyCharmView.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Model/Models.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Features/Onboarding/OnboardingView.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Features/Passport/PassportView.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Services/PhotoMatcher.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Features/Game/RecapFilmView.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/App/RootView.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Services/ScanModel.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Features/Onboarding/ScanProgressView.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Services/SceneCheck.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Services/ScoreboardReader.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Features/Social/SharedPassportView.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Model/Stats.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Features/Add/TeamPickerView.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/Witness/Services/TextRecognizer.swift (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling Theme.swift, TicketAnchors.swift, TicketImportView.swift, TicketParser.swift, TimelineView.swift, TripView.swift, VenuePickerView.swift, VenueView.swift, VisitGrouping.swift, WelcomeView.swift, WitnessApp.swift, WrappedView.swift, YouView.swift, YouWereThereView.swift, GeneratedAssetSymbols.swift (in target 'Witness' from project 'Witness')
+
+SwiftDriver WitnessUITests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-SwiftDriver -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name WitnessUITests -Onone -enforce-exclusivity\=checked @/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Index.noindex/DataStore -swift-version 5 -I /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -I /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk/Developer/Library/Frameworks -parse-as-library -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-96ae0914227b19deccb34b33ba7b5dea.sdkstatcache -output-file-map /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-generated-files.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-own-target-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-project-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests-Swift.h -working-directory /Users/runner/work/SportsApp/SportsApp -experimental-emit-module-separately -disable-cmo
+
+SwiftDriver WitnessTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-SwiftDriver -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name WitnessTests -Onone -enforce-exclusivity\=checked @/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Index.noindex/DataStore -swift-version 5 -I /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -I /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-96ae0914227b19deccb34b33ba7b5dea.sdkstatcache -output-file-map /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-generated-files.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-own-target-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-project-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests-Swift.h -working-directory /Users/runner/work/SportsApp/SportsApp -experimental-emit-module-separately -disable-cmo
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ WitnessUITests (in target 'WitnessUITests' from project 'Witness')
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessUITests/WitnessUITests.swift (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ WitnessTests (in target 'WitnessTests' from project 'Witness')
+
+EmitSwiftModule normal arm64 (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for WitnessUITests (in target 'WitnessUITests' from project 'Witness')
+
+SwiftDriver\ Compilation\ Requirements WitnessUITests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name WitnessUITests -Onone -enforce-exclusivity\=checked @/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Index.noindex/DataStore -swift-version 5 -I /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -I /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk/Developer/Library/Frameworks -parse-as-library -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-96ae0914227b19deccb34b33ba7b5dea.sdkstatcache -output-file-map /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-generated-files.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-own-target-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-project-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests-Swift.h -working-directory /Users/runner/work/SportsApp/SportsApp -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for WitnessTests (in target 'WitnessTests' from project 'Witness')
+
+SwiftDriver\ Compilation\ Requirements WitnessTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name WitnessTests -Onone -enforce-exclusivity\=checked @/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Index.noindex/DataStore -swift-version 5 -I /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -I /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-96ae0914227b19deccb34b33ba7b5dea.sdkstatcache -output-file-map /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-generated-files.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-own-target-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-project-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests-Swift.h -working-directory /Users/runner/work/SportsApp/SportsApp -experimental-emit-module-separately -disable-cmo
+
+SwiftMergeGeneratedHeaders /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources/WitnessUITests-Swift.h /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests-Swift.h (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-swiftHeaderTool -arch arm64 /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests-Swift.h -o /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources/WitnessUITests-Swift.h
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests.swiftmodule/arm64-apple-ios-simulator.swiftmodule /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftmodule (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftmodule /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests.swiftmodule/arm64-apple-ios-simulator.swiftdoc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftdoc (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftdoc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests.swiftmodule/arm64-apple-ios-simulator.swiftdoc
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests.swiftmodule/arm64-apple-ios-simulator.abi.json /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.abi.json (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.abi.json /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftsourceinfo (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftsourceinfo /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+SwiftMergeGeneratedHeaders /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources/WitnessTests-Swift.h /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests-Swift.h (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-swiftHeaderTool -arch arm64 /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests-Swift.h -o /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources/WitnessTests-Swift.h
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessTests.swiftmodule/arm64-apple-ios-simulator.swiftmodule /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.swiftmodule (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.swiftmodule /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessTests.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessTests.swiftmodule/arm64-apple-ios-simulator.swiftdoc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.swiftdoc (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.swiftdoc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessTests.swiftmodule/arm64-apple-ios-simulator.swiftdoc
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessTests.swiftmodule/arm64-apple-ios-simulator.abi.json /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.abi.json (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.abi.json /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessTests.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessTests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.swiftsourceinfo (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.swiftsourceinfo /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessTests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+SwiftCompile normal arm64 Compiling\ WitnessUITests.swift /Users/runner/work/SportsApp/SportsApp/WitnessUITests/WitnessUITests.swift (in target 'WitnessUITests' from project 'Witness')
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessUITests/WitnessUITests.swift (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 Compiling\ AlbumAndScoreboardTests.swift,\ BigGameTests.swift,\ DetectionTuningTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/AlbumAndScoreboardTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/BigGameTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/DetectionTuningTests.swift (in target 'WitnessTests' from project 'Witness')
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/AlbumAndScoreboardTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/BigGameTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/DetectionTuningTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling WitnessUITests.swift (in target 'WitnessUITests' from project 'Witness')
+
+SwiftDriverJobDiscovery normal arm64 Compiling AlbumAndScoreboardTests.swift, BigGameTests.swift, DetectionTuningTests.swift (in target 'WitnessTests' from project 'Witness')
+
+SwiftDriver\ Compilation WitnessUITests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-Swift-Compilation -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name WitnessUITests -Onone -enforce-exclusivity\=checked @/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Index.noindex/DataStore -swift-version 5 -I /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -I /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk/Developer/Library/Frameworks -parse-as-library -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-96ae0914227b19deccb34b33ba7b5dea.sdkstatcache -output-file-map /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-generated-files.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-own-target-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-project-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests-Swift.h -working-directory /Users/runner/work/SportsApp/SportsApp -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ TicketOCRTests.swift,\ TicketParserTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/TicketOCRTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/TicketParserTests.swift (in target 'WitnessTests' from project 'Witness')
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/TicketOCRTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/TicketParserTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 Compiling\ GameLookupTests.swift,\ LibraryTests.swift,\ PhotoMatcherTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/GameLookupTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/LibraryTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/PhotoMatcherTests.swift (in target 'WitnessTests' from project 'Witness')
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/GameLookupTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/LibraryTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/PhotoMatcherTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling TicketOCRTests.swift, TicketParserTests.swift (in target 'WitnessTests' from project 'Witness')
+
+SwiftDriverJobDiscovery normal arm64 Compiling GameLookupTests.swift, LibraryTests.swift, PhotoMatcherTests.swift (in target 'WitnessTests' from project 'Witness')
+
+SwiftDriver\ Compilation WitnessTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-Swift-Compilation -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name WitnessTests -Onone -enforce-exclusivity\=checked @/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.SwiftFileList -DDEBUG -plugin-path /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Index.noindex/DataStore -swift-version 5 -I /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -I /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk/Developer/Library/Frameworks -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-96ae0914227b19deccb34b33ba7b5dea.sdkstatcache -output-file-map /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-generated-files.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-own-target-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests-project-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests-Swift.h -working-directory /Users/runner/work/SportsApp/SportsApp -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Compiling LocationService.swift, LuckyCharmView.swift, Models.swift, OnboardingView.swift, PassportView.swift, PhotoMatcher.swift, RecapFilmView.swift, RootView.swift, ScanModel.swift, ScanProgressView.swift, SceneCheck.swift, ScoreboardReader.swift, SharedPassportView.swift, Stats.swift, TeamPickerView.swift, TextRecognizer.swift (in target 'Witness' from project 'Witness')
+
+SwiftDriverJobDiscovery normal arm64 Compiling AddGameView.swift, AddVenueView.swift, AlbumImportView.swift, AlbumImporter.swift, BigGame.swift, BigGamesView.swift, Components.swift, CoverPicker.swift, DiscoveryView.swift, EventTheme.swift, GameLookup.swift, GameMemoryView.swift, GamePhotosView.swift, Library.swift, LifeMapView.swift, LiveCheckInView.swift (in target 'Witness' from project 'Witness')
+
+SwiftDriver\ Compilation Witness normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-Swift-Compilation -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Witness -Onone -enforce-exclusivity\=checked @/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Index.noindex/DataStore -swift-version 5 -I /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-96ae0914227b19deccb34b33ba7b5dea.sdkstatcache -output-file-map /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-generated-files.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-own-target-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-project-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/DerivedSources/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness-Swift.h -working-directory /Users/runner/work/SportsApp/SportsApp -experimental-emit-module-separately -disable-cmo
+
+Ld /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness.debug.dylib normal (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios18.0-simulator -dynamiclib -isysroot /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -O0 -L/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -filelist /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.LinkFileList -install_name @rpath/Witness.debug.dylib -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.swiftmodule -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -o /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness.debug.dylib
+
+ConstructStubExecutorLinkFileList /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-ExecutorLinkFileList-normal-arm64.txt (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    construct-stub-executor-link-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness.debug.dylib /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'Witness' from project 'Witness')
+
+Ld /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness normal (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios18.0-simulator -isysroot /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -O0 -L/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness-ExecutorLinkFileList-normal-arm64.txt /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness.debug.dylib -o /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness
+
+ExtractAppIntentsMetadata (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name Witness --sdk-root /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --xcode-version 16F6 --platform-family iOS --deployment-target 18.0 --bundle-identifier app.witness.ios --output /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app --target-triple arm64-apple-ios18.0-simulator --binary-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness --dependency-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness_dependency_info.dat --stringsdata-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.SwiftFileList --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness.DependencyMetadataFileList --static-metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-17 21:54:53.086 appintentsmetadataprocessor[15433:48511] Starting appintentsmetadataprocessor export
+2026-10-17 21:54:53.102 appintentsmetadataprocessor[15433:48511] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness.debug.dylib --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Frameworks --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/SystemExtensions --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Extensions --platform iphonesimulator --toolchain /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+AppIntentsSSUTraining (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Info.plist --temp-dir-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/ssu --bundle-id app.witness.ios --product-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app --extracted-metadata-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Metadata.appintents --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness.DependencyMetadataFileList --archive-ssu-assets
+2026-10-17 21:54:53.151 appintentsnltrainingprocessor[15436:48520] Parsing options for appintentsnltrainingprocessor
+2026-10-17 21:54:53.152 appintentsnltrainingprocessor[15436:48520] No AppShortcuts found - Skipping.
+
+ProcessInfoPlistFile /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/Info.plist /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/empty-WitnessTests.plist (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-infoPlistUtility /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/empty-WitnessTests.plist -producttype com.apple.product-type.bundle.unit-test -expandbuildsettings -format binary -platform iphonesimulator -o /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/Info.plist
+
+Ld /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/WitnessTests normal (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios18.0-simulator -bundle -isysroot /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -O0 -L/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -L/Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk/Developer/Library/Frameworks -filelist /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.LinkFileList -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -bundle_loader /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness -Xlinker -object_path_lto -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.swiftmodule -framework XCTest -lXCTestSwiftSupport /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness.debug.dylib -o /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/WitnessTests
+
+CpResource /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/nfl-summary-401671844.json /Users/runner/work/SportsApp/SportsApp/WitnessTests/Fixtures/nfl-summary-401671844.json (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/SportsApp/SportsApp/WitnessTests/Fixtures/nfl-summary-401671844.json /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest
+
+CpResource /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/nfl-scoreboard-20250105.json /Users/runner/work/SportsApp/SportsApp/WitnessTests/Fixtures/nfl-scoreboard-20250105.json (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/runner/work/SportsApp/SportsApp/WitnessTests/Fixtures/nfl-scoreboard-20250105.json /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest
+
+ExtractAppIntentsMetadata (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name WitnessTests --sdk-root /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --xcode-version 16F6 --platform-family iOS --deployment-target 18.0 --bundle-identifier app.witness.WitnessTests --output /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest --target-triple arm64-apple-ios18.0-simulator --binary-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/WitnessTests --dependency-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests_dependency_info.dat --stringsdata-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.SwiftFileList --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests.DependencyMetadataFileList --static-metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-17 21:54:53.598 appintentsmetadataprocessor[15442:48554] Starting appintentsmetadataprocessor export
+2026-10-17 21:54:53.600 appintentsmetadataprocessor[15442:48554] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/WitnessTests --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/Frameworks --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/PlugIns --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/SystemExtensions --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+AppIntentsSSUTraining (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/Info.plist --temp-dir-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/ssu --bundle-id app.witness.WitnessTests --product-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest --extracted-metadata-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/Metadata.appintents --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests.DependencyMetadataFileList --archive-ssu-assets
+2026-10-17 21:54:53.620 appintentsnltrainingprocessor[15443:48555] Parsing options for appintentsnltrainingprocessor
+2026-10-17 21:54:53.621 appintentsnltrainingprocessor[15443:48555] No AppShortcuts found - Skipping.
+
+RegisterExecutionPolicyException /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-RegisterExecutionPolicyException /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest
+
+Touch /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /usr/bin/touch -c /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest
+
+RegisterExecutionPolicyException /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-RegisterExecutionPolicyException /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app
+
+Validate /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-validationUtility /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app -infoplist-subpath Info.plist
+
+Touch /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app (in target 'Witness' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /usr/bin/touch -c /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app
+
+Ld /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/WitnessUITests normal (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios18.0-simulator -bundle -isysroot /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -O0 -L/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -L/Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk/Developer/Library/Frameworks -filelist /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.LinkFileList -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -dead_strip -Xlinker -object_path_lto -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftmodule -framework XCTest -lXCTestSwiftSupport -o /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/WitnessUITests
+
+ProcessInfoPlistFile /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/Info.plist /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/empty-WitnessUITests.plist (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-infoPlistUtility /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/empty-WitnessUITests.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/ProductTypeInfoPlistAdditions.plist -o /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/Info.plist
+
+ExtractAppIntentsMetadata (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name WitnessUITests --sdk-root /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --xcode-version 16F6 --platform-family iOS --deployment-target 18.0 --bundle-identifier app.witness.WitnessUITests --output /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest --target-triple arm64-apple-ios18.0-simulator --binary-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/WitnessUITests --dependency-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests_dependency_info.dat --stringsdata-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.SwiftFileList --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests.DependencyMetadataFileList --static-metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-17 21:54:53.974 appintentsmetadataprocessor[15448:48566] Starting appintentsmetadataprocessor export
+2026-10-17 21:54:53.976 appintentsmetadataprocessor[15448:48566] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/WitnessUITests --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/Frameworks --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/PlugIns --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/SystemExtensions --scan-folder /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+AppIntentsSSUTraining (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/Info.plist --temp-dir-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/ssu --bundle-id app.witness.WitnessUITests --product-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest --extracted-metadata-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/Metadata.appintents --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests.DependencyMetadataFileList --archive-ssu-assets
+2026-10-17 21:54:54.003 appintentsnltrainingprocessor[15449:48567] Parsing options for appintentsnltrainingprocessor
+2026-10-17 21:54:54.004 appintentsnltrainingprocessor[15449:48567] No AppShortcuts found - Skipping.
+
+CopyAndPreserveArchs /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/WitnessUITests-Runner (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/XCTRunner -output /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/WitnessUITests-Runner -extract arm64
+
+MkDir /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /bin/mkdir -p /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app
+
+CopyPlistFile /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Info.plist /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/Info.plist (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copyPlist --validate --convert xml1 --macro-expansion WRAPPEDPRODUCTNAME WitnessUITests-Runner --macro-expansion WRAPPEDPRODUCTBUNDLEIDENTIFIER app.witness.WitnessUITests.xctrunner --macro-expansion TESTPRODUCTNAME WitnessUITests --macro-expansion TESTPRODUCTBUNDLEIDENTIFIER app.witness.WitnessUITests --copy-value UIDeviceFamily /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/Info.plist --outdir /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app -- /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/Info.plist
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PkgInfo /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/PkgInfo (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Xcode/Agents/XCTRunner.app/PkgInfo /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks/libXCTestSwiftSupport.dylib /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks/XCUnit.framework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCUnit.framework (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCUnit.framework /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks/XCUIAutomation.framework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCUIAutomation.framework /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks/XCTestSupport.framework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestSupport.framework /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks/XCTestCore.framework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTestCore.framework /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks/XCTest.framework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks/XCTAutomationSupport.framework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks/XCTAutomationSupport.framework /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks
+
+Copy /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks/Testing.framework /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/Testing.framework (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -exclude Headers -exclude PrivateHeaders -exclude Modules -exclude \*.tbd -resolve-src-symlinks /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/Testing.framework /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/Frameworks
+
+RegisterExecutionPolicyException /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    builtin-RegisterExecutionPolicyException /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest
+
+Touch /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest (in target 'WitnessUITests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    /usr/bin/touch -c /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest
+
