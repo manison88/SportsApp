@@ -23,30 +23,30 @@
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
   "failedTests" : 1,
-  "finishTime" : 1792264019.598,
+  "finishTime" : 1792265207.231,
   "passedTests" : 62,
   "result" : "Failed",
   "skippedTests" : 0,
-  "startTime" : 1792263406.682,
+  "startTime" : 1792264549.366,
   "statistics" : [
 
   ],
   "testFailures" : [
     {
-      "failureText" : "XCTAssertTrue failed - Missing game-photos-all",
+      "failureText" : "Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound",
       "targetName" : "WitnessUITests",
-      "testIdentifier" : 56,
-      "testIdentifierString" : "WitnessUITests/testGameMemoryRecapAndYouWereThere()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testGameMemoryRecapAndYouWereThere",
-      "testName" : "testGameMemoryRecapAndYouWereThere()"
+      "testIdentifier" : 53,
+      "testIdentifierString" : "WitnessUITests/testAddCustomVenue()",
+      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testAddCustomVenue",
+      "testName" : "testAddCustomVenue()"
     }
   ],
   "title" : "Test - Witness",
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "37% of duration",
-      "text" : "2 longest test runs with outlier durations exceeding 2.06s (three standard deviations)"
+      "impact" : "36% of duration",
+      "text" : "2 longest test runs with outlier durations exceeding 2.39s (three standard deviations)"
     }
   ],
   "totalTestCount" : 63
