@@ -1,0 +1,87 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Pick a place</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../final/system/final.css">
+<style>
+body.b { --b-text-3: rgba(255,255,255,.62); --amber:#ffb547; }
+.b-body{font-size:15px}
+.im{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(.92) brightness(.92)}
+.abs{position:absolute;inset:0}
+.ph{position:relative;overflow:hidden;background:#1a1c21}
+.amber{color:var(--amber)}
+.dim{color:rgba(255,255,255,.62)}
+.cta{position:absolute;left:20px;right:20px;bottom:36px;display:flex;flex-direction:column;gap:10px}
+.cta .b-btn{width:100%;height:54px;font-size:17px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(0,0,0,.25)}
+.cta .b-btn.ghost{box-shadow:inset 0 0 0 1px var(--b-line)}
+.row2{display:flex;gap:10px}.row2 .b-btn{flex:1}
+.link{height:44px;display:flex;align-items:center;justify-content:center;font:700 15px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.86)}
+.lock{display:flex;align-items:center;justify-content:center;gap:8px;color:rgba(255,255,255,.66);font:500 13px/1.3 var(--b-ui);text-align:center}
+.lock svg,.ico{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ico24{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.txtbtn{height:40px;padding:0 4px;display:flex;align-items:center;font:800 14px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;color:#fff}
+.col{top:112px;gap:24px}
+.mega{font:800 118px/.9 var(--b-cond);letter-spacing:-3px;margin-left:-3px;font-variant-numeric:tabular-nums}
+.hl{font:800 40px/.98 var(--b-cond);text-transform:uppercase;letter-spacing:.2px}
+.sub{font:500 15px/1.4 var(--b-ui);color:rgba(255,255,255,.7)}
+.bar{height:5px;border-radius:3px;background:rgba(255,255,255,.14);overflow:hidden}
+.bar i{display:block;height:100%;background:#fff}
+.cb{width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)}
+.cb svg{width:15px;height:15px;stroke:#000;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;display:none}
+.cb.on{background:#fff;box-shadow:none}.cb.on svg{display:block}
+.th{width:54px;height:54px;border-radius:10px;flex:none}
+.gr{display:flex;align-items:center;gap:12px;min-height:68px;box-shadow:inset 0 -1px 0 var(--b-line)}
+.gr:last-child{box-shadow:none}
+.gr .t{font:800 19px/1 var(--b-cond);letter-spacing:.5px;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.gr .t em{font-style:normal;opacity:.6;font-weight:700}
+.gr .s{font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.64);margin-top:4px}
+.gr .mid{flex:1;min-width:0}
+.gr .end{text-align:right;flex:none}
+.tag{font:800 12px/1 var(--b-cond);letter-spacing:1.3px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.tag.amb{color:var(--amber)}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#15171c;border-radius:26px 26px 0 0;padding:10px 20px 36px;box-shadow:inset 0 1px 0 rgba(255,255,255,.12);z-index:40}
+.sheet .grab{width:38px;height:5px;border-radius:3px;background:rgba(255,255,255,.25);margin:0 auto 18px}
+.scrimall{position:absolute;inset:0;background:rgba(0,0,0,.62);z-index:35}
+.opt{display:flex;align-items:center;gap:14px;min-height:64px;box-shadow:inset 0 -1px 0 var(--b-line)}
+.opt:last-child{box-shadow:none}
+.opt .t{font:800 19px/1 var(--b-cond);letter-spacing:.5px;text-transform:uppercase}
+.opt .s{font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.64);margin-top:4px}
+.opt .mid{flex:1}
+.rad{width:24px;height:24px;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4);flex:none}
+.rad.on{box-shadow:inset 0 0 0 7px #fff}
+.tg{width:52px;height:32px;border-radius:16px;background:rgba(255,255,255,.18);position:relative;flex:none}
+.tg::after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff}
+.tg.on{background:#fff}.tg.on::after{left:23px;background:#000}
+.ibox{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--b-panel-2);box-shadow:inset 0 0 0 1px var(--b-line);flex:none}
+.ibox svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.badge{position:absolute;top:-4px;left:50%;margin-left:4px;min-width:22px;height:20px;border-radius:10px;background:#fff;color:#000;font:800 13px/20px var(--b-cond);text-align:center;padding:0 5px}
+.wtile{width:38px;height:38px;border-radius:10px;background:#0b0c0f;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);display:grid;place-items:center;font:800 22px/1 var(--b-cond);flex:none}
+.b-bug.sm{height:28px;font-size:15px}
+.f-stats b{font-size:36px}
+.f-stats span{letter-spacing:1.6px}
+.map{position:absolute;inset:0;background:#0c0e12}
+.map svg{position:absolute;inset:0;width:100%;height:100%}</style></head>
+<body class="phone b">
+<div class="map"><svg viewBox="0 0 393 852" preserveAspectRatio="xMidYMid slice">
+<defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#fff" stroke-opacity=".05"/></pattern></defs>
+<rect width="393" height="852" fill="url(#g)"/>
+<path d="M290 0C300 120 330 160 318 260C310 340 350 420 340 560L393 560V0Z" fill="#101a2a"/>
+<path d="M290 0C300 120 330 160 318 260C310 340 350 420 340 560" fill="none" stroke="#2a4468" stroke-width="2"/>
+<path d="M0 300C90 280 160 330 250 300M110 120L140 700M20 520L300 470M190 80L205 650" stroke="#1d2129" stroke-width="7" fill="none"/>
+<path d="M0 300C90 280 160 330 250 300M110 120L140 700M20 520L300 470M190 80L205 650" stroke="#2a2f3a" stroke-width="1.500" fill="none"/>
+<path d="M60 380C140 400 200 360 260 400" stroke="#1b3350" stroke-width="5" fill="none"/>
+<g fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="2"><circle cx="150" cy="190" r="34" fill="#2f6bff" fill-opacity=".25" stroke="#2f6bff"/><circle cx="270" cy="400" r="34" fill="#f05a1a" fill-opacity=".25" stroke="#f05a1a"/><circle cx="104" cy="360" r="34" fill="#ce1141" fill-opacity=".25" stroke="#ce1141"/><circle cx="212" cy="506" r="34" fill="#3dd" fill-opacity=".0" stroke="#fff" stroke-opacity=".3"/></g>
+<g fill="#fff" font-family="Barlow Condensed" font-weight="800" font-size="15" letter-spacing="1"><circle cx="150" cy="190" r="6"/><circle cx="270" cy="400" r="6"/><circle cx="104" cy="360" r="6"/><circle cx="212" cy="506" r="5" opacity=".5"/>
+<text x="150" y="150" text-anchor="middle">WRIGLEY FIELD</text><text x="260" y="348" text-anchor="middle">SOLDIER FIELD</text><text x="100" y="412" text-anchor="middle">UNITED CENTER</text><text x="212" y="548" text-anchor="middle" opacity=".5">GUARANTEED RATE</text></g>
+</svg></div>
+<div style="position:absolute;left:20px;right:20px;top:56px;display:flex;gap:10px;z-index:20"><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+ <div style="flex:1;height:40px;border-radius:12px;background:rgba(21,23,28,.92);box-shadow:inset 0 0 0 1px var(--b-line);display:flex;align-items:center;gap:10px;padding:0 14px;font:600 16px/1 var(--b-ui)"><svg class="ico" style="opacity:.6" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.500"/><path d="M20 20l-4.500-4.500"/></svg> Chicago</div></div>
+<div class="sheet" style="padding-bottom:40px">
+  <div class="grab"></div>
+  <div class="f-between"><div class="hl" style="font-size:40px">Chicago</div><div class="tag">4 stadiums</div></div>
+  <div class="sub" style="margin:8px 0 14px">About 4,210 photos taken in this area. Dates: all.</div>
+  <div class="row2" style="margin-bottom:14px"><div class="b-pill" style="height:34px;padding:0 14px;font-size:13px">Boston</div><div class="b-pill" style="height:34px;padding:0 14px;font-size:13px">Barcelona</div><div class="b-pill" style="height:34px;padding:0 14px;font-size:13px">Madrid</div></div>
+  <div class="b-btn" style="width:100%;height:54px;font-size:17px">Scan Chicago</div>
+</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>
