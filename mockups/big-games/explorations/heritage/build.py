@@ -410,7 +410,7 @@ def memories():
            "Two goals.<br>Injury time.", "Camp Nou, May 26, 1999", ["1H", "2H"],
            [("BAY", "#dc052d", "Munich", [1, 0], 1, True), ("MUN", "#da291c", "Manchester", [0, 2], 2, False)],
            tint='<div class="tint" style="background:linear-gradient(180deg,#081548cc,#08154833 60%,transparent)"></div>')
-    memory(5, "wc", "world-cup-1994", "soldier-soccer.jpg 0 500 1280 1100", "contrast(1.05) saturate(.85) brightness(.85)",
+    memory(5, "wc", "world-cup-1994", "soldier-soccer.jpg 0 380 1280 1000", "contrast(1.05) saturate(.85) brightness(.85)",
            "The world<br>came to<br>Chicago.", "Soldier Field, Jun 17, 1994", ["1H", "2H"],
            [("BOL", "#00843d", "Bolivia", [0, 0], 0, True), ("GER", "#2b2b30", "Germany", [0, 1], 1, False)],
            top=292, hsize=50)
