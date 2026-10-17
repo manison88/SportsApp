@@ -35,7 +35,7 @@ struct RecapFilmView: View {
             Color.black.ignoresSafeArea()
 
             GeometryReader { geo in
-                frame(game, index: index)
+                photoLayer(game, index: index)
                     .frame(width: geo.size.width, height: geo.size.height)
                     .scaleEffect(reduceMotion ? 1 : 1 + 0.12 * local)
                     .offset(x: reduceMotion ? 0 : (index.isMultiple(of: 2) ? -14 : 14) * local,
@@ -93,7 +93,7 @@ struct RecapFilmView: View {
     // MARK: Layers
 
     @ViewBuilder
-    private func frame(_ game: GameEntry, index: Int) -> some View {
+    private func photoLayer(_ game: GameEntry, index: Int) -> some View {
         if game.photos.isEmpty {
             GameBackdrop(game: game)
         } else {
