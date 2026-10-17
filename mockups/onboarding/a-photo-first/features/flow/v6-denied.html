@@ -1,0 +1,71 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Photos access off</title>
+<link rel="stylesheet" href="../../../../kit/kit.css">
+<link rel="stylesheet" href="../../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../../final/system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.62); --amber: #ffb547; }
+  .b-body { font-size: 15px; }
+  .crop { position: relative; overflow: hidden; }
+  .crop img { filter: contrast(1.06) saturate(.9) brightness(.9); }
+  .abs { position: absolute; inset: 0; }
+  .amber { color: var(--amber); }
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 40px; display: flex; flex-direction: column; gap: 6px; }
+  .cta .b-btn { width: 100%; height: 54px; font-size: 17px; box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(0,0,0,.25); }
+  .cta .b-btn.ghost { box-shadow: inset 0 0 0 1px var(--b-line); }
+  .cta .row2 { display: flex; gap: 10px; }
+  .cta .row2 .b-btn { flex: 1; }
+  .link { height: 44px; display: flex; align-items: center; justify-content: center; font: 700 15px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,.86); }
+  .lock { display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--b-text-2); font: 500 13px/1.3 var(--b-ui); }
+  .lock svg, .ico { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .skipbtn { height: 40px; padding: 0 14px; border-radius: 12px; display: flex; align-items: center; font: 800 14px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; background: var(--b-panel-2); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .scrim { position: absolute; inset: 0; }
+  .note { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 14px; background: var(--b-panel); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .note .b-body { font-size: 14px; color: rgba(255,255,255,.78); flex: 1; }
+  .note .x { width: 28px; height: 28px; margin: -4px -4px 0 0; display: grid; place-items: center; flex: none; }
+  .note .x svg { width: 16px; height: 16px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 2.4; stroke-linecap: round; }
+
+  .band { position: absolute; left: 0; right: 0; top: 0; height: 330px; }
+  .band .crop img { filter: grayscale(1) contrast(1.05) brightness(.55); }
+  .band .scrim { background: linear-gradient(180deg, rgba(7,8,10,.5) 0%, rgba(7,8,10,.2) 40%, #07080a 100%); }
+  .badge { position: absolute; left: 20px; top: 232px; width: 56px; height: 56px; border-radius: 16px; background: var(--b-panel-2); box-shadow: inset 0 0 0 1px var(--b-line); display: grid; place-items: center; }
+  .badge svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .col { top: 312px; gap: 20px; }
+  .col .b-h1 { font-size: 44px; line-height: .95; }
+  .f-item { min-height: 58px; }
+  .f-item .t { font-size: 18px; }
+  .f-item .go { margin-left: auto; width: 16px; height: 16px; stroke: rgba(255,255,255,.55); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .cta .b-btn { }
+
+</style></head>
+<body class="phone b">
+
+<div class="band"><div class="crop abs" data-crop="wrigley-night.jpg 0 640 860 1024"></div><div class="scrim"></div></div>
+<div class="b-nav"><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div></div>
+<div class="badge"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="3"/><circle cx="12" cy="12.500" r="3.500"/><path d="M4 4l16 16"/></svg></div>
+<div class="f-col col">
+  <div class="stackh"><div class="b-h1" style="margin-top:44px">Photo access is off.</div></div>
+  <div class="b-body" style="margin-top:-8px">Nothing was read. You can turn it on in Settings, or start without it.</div>
+  <div class="f-list">
+    <div class="f-item"><div class="t">Choose a few photos</div><svg class="go" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
+    <div class="f-item"><div class="t">Add a game by hand</div><svg class="go" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
+    <div class="f-item"><div class="t">Explore sample games</div><svg class="go" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
+  </div>
+</div>
+<div class="cta"><div class="b-btn">Open Settings</div></div>
+
+<script>
+(function () {
+  const N = { 'wrigley-night.jpg': [1920, 2560], 'wrigley-night-2.jpg': [1920, 2560], 'lambeau-concourse.jpg': [1920, 1288], 'wrigley-bleachers.jpg': [1280, 853] };
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../../kit/kit.js"></script>
+</body></html>

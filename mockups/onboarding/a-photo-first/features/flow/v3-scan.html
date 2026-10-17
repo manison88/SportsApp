@@ -1,0 +1,81 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Scanning</title>
+<link rel="stylesheet" href="../../../../kit/kit.css">
+<link rel="stylesheet" href="../../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../../final/system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.62); --amber: #ffb547; }
+  .b-body { font-size: 15px; }
+  .crop { position: relative; overflow: hidden; }
+  .crop img { filter: contrast(1.06) saturate(.9) brightness(.9); }
+  .abs { position: absolute; inset: 0; }
+  .amber { color: var(--amber); }
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 40px; display: flex; flex-direction: column; gap: 6px; }
+  .cta .b-btn { width: 100%; height: 54px; font-size: 17px; box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(0,0,0,.25); }
+  .cta .b-btn.ghost { box-shadow: inset 0 0 0 1px var(--b-line); }
+  .cta .row2 { display: flex; gap: 10px; }
+  .cta .row2 .b-btn { flex: 1; }
+  .link { height: 44px; display: flex; align-items: center; justify-content: center; font: 700 15px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,.86); }
+  .lock { display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--b-text-2); font: 500 13px/1.3 var(--b-ui); }
+  .lock svg, .ico { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .skipbtn { height: 40px; padding: 0 14px; border-radius: 12px; display: flex; align-items: center; font: 800 14px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; background: var(--b-panel-2); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .scrim { position: absolute; inset: 0; }
+  .note { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 14px; background: var(--b-panel); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .note .b-body { font-size: 14px; color: rgba(255,255,255,.78); flex: 1; }
+  .note .x { width: 28px; height: 28px; margin: -4px -4px 0 0; display: grid; place-items: center; flex: none; }
+  .note .x svg { width: 16px; height: 16px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 2.4; stroke-linecap: round; }
+
+  .col { top: 112px; gap: 24px; }
+  .big { display: flex; align-items: baseline; gap: 10px; }
+  .big .b-mega { font-size: 118px; letter-spacing: -3px; margin-left: -3px; }
+  .big .b-h2 { font-size: 22px; color: rgba(255,255,255,.68); }
+  .bar { height: 4px; border-radius: 2px; background: rgba(255,255,255,.12); overflow: hidden; margin-top: 14px; }
+  .bar i { display: block; height: 100%; width: 60%; background: var(--amber); }
+  .f-stats b { font-size: 38px; }
+  .f-item { min-height: 52px; }
+  .f-item .t { font-size: 18px; }
+  .live { display: inline-flex; align-items: center; gap: 8px; }
+  .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 10px var(--amber); }
+  .cta { bottom: 36px; }
+
+</style></head>
+<body class="phone b">
+
+<div class="b-nav"><div class="b-label live" style="color:#fff"><span class="live"><i class="pulse"></i>Scanning on this iPhone</span></div><div class="skipbtn">Pause</div></div>
+<div class="f-col col">
+  <div>
+    <div class="big"><div class="b-mega">1,692</div></div>
+    <div class="b-h2" style="margin-top:10px;color:rgba(255,255,255,.68)">of 2,814 photos checked</div>
+    <div class="bar"><i></i></div>
+  </div>
+  <div class="f-stats">
+    <div><b>203</b><span>Near a stadium</span></div>
+    <div><b>9</b><span>Venues</span></div>
+    <div><b>31</b><span>Games</span></div>
+  </div>
+  <div class="f-list">
+    <div class="f-item"><div class="f-mono" style="--c:var(--chc)">CHC</div><div class="t">Wrigley Field</div><div class="end b-num" style="font-size:22px">12</div></div>
+    <div class="f-item"><div class="f-mono" style="--c:var(--chi)">CHI</div><div class="t">Soldier Field</div><div class="end b-num" style="font-size:22px">9</div></div>
+    <div class="f-item"><div class="f-mono" style="--c:#3b3f4a">UC</div><div class="t">United Center</div><div class="end b-num" style="font-size:22px">6</div></div>
+  </div>
+</div>
+<div class="cta">
+  <div class="note" style="margin-bottom:8px"><div class="b-body">This can take a few minutes. Keep using the app, your games appear as they are found.</div><div class="x"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div></div>
+  <div class="b-btn">Keep going in background</div>
+</div>
+
+<script>
+(function () {
+  const N = { 'wrigley-night.jpg': [1920, 2560], 'wrigley-night-2.jpg': [1920, 2560], 'lambeau-concourse.jpg': [1920, 1288], 'wrigley-bleachers.jpg': [1280, 853] };
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../../kit/kit.js"></script>
+</body></html>

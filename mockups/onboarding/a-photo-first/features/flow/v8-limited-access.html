@@ -1,0 +1,73 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Limited access</title>
+<link rel="stylesheet" href="../../../../kit/kit.css">
+<link rel="stylesheet" href="../../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../../final/system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.62); --amber: #ffb547; }
+  .b-body { font-size: 15px; }
+  .crop { position: relative; overflow: hidden; }
+  .crop img { filter: contrast(1.06) saturate(.9) brightness(.9); }
+  .abs { position: absolute; inset: 0; }
+  .amber { color: var(--amber); }
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 40px; display: flex; flex-direction: column; gap: 6px; }
+  .cta .b-btn { width: 100%; height: 54px; font-size: 17px; box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(0,0,0,.25); }
+  .cta .b-btn.ghost { box-shadow: inset 0 0 0 1px var(--b-line); }
+  .cta .row2 { display: flex; gap: 10px; }
+  .cta .row2 .b-btn { flex: 1; }
+  .link { height: 44px; display: flex; align-items: center; justify-content: center; font: 700 15px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,.86); }
+  .lock { display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--b-text-2); font: 500 13px/1.3 var(--b-ui); }
+  .lock svg, .ico { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .skipbtn { height: 40px; padding: 0 14px; border-radius: 12px; display: flex; align-items: center; font: 800 14px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; background: var(--b-panel-2); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .scrim { position: absolute; inset: 0; }
+  .note { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 14px; background: var(--b-panel); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .note .b-body { font-size: 14px; color: rgba(255,255,255,.78); flex: 1; }
+  .note .x { width: 28px; height: 28px; margin: -4px -4px 0 0; display: grid; place-items: center; flex: none; }
+  .note .x svg { width: 16px; height: 16px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 2.4; stroke-linecap: round; }
+
+  .col { top: 108px; gap: 22px; }
+  .count { display: flex; align-items: flex-end; gap: 14px; }
+  .count .b-mega { font-size: 150px; letter-spacing: -4px; margin-left: -5px; }
+  .count .b-h1 { font-size: 36px; padding-bottom: 4px; }
+  .card { position: relative; height: 360px; border-radius: 16px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--b-line); }
+  .card .scrim { background: linear-gradient(180deg, rgba(7,8,10,.25) 0%, rgba(7,8,10,0) 30%, rgba(7,8,10,.9) 100%); }
+  .card .tag { position: absolute; top: 14px; left: 14px; }
+  .card .copy { position: absolute; left: 16px; right: 16px; bottom: 14px; }
+  .card .copy .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 10px; }
+  .card .copy .b-h2 { font-size: 28px; line-height: .95; white-space: nowrap; }
+  .card .copy .b-small { margin-top: 8px; color: rgba(255,255,255,.8); font-size: 14px; }
+  .banner { display: flex; align-items: center; gap: 12px; }
+
+</style></head>
+<body class="phone b">
+
+<div class="b-nav"><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div></div>
+<div class="f-col col">
+  <div class="count"><div class="b-mega">6</div><div class="b-h1">Games<br>found</div></div>
+  <div class="card">
+    <div class="crop abs" data-crop="wrigley-bleachers.jpg 120 60 1000 700"></div><div class="scrim"></div>
+    <div class="tag"><span class="b-pill">Newest</span></div>
+    <div class="copy"><div class="row"><div class="b-h2">Wrigley Field</div><div class="b-bug"><span class="team" style="--c:var(--chc)">CHC</span><span class="score">4</span><span class="team" style="--c:var(--mil)">MIL</span><span class="score">3</span></div></div><div class="b-small">Jul 4, 2026 · Bleachers 314</div></div>
+  </div>
+  <div class="banner"><div class="b-body" style="flex:1;font-size:14px;color:rgba(255,255,255,.8)">Scanned the 148 photos you chose. Add more to find more games.</div><div class="skipbtn">Add photos</div></div>
+</div>
+<div class="cta">
+  <div class="b-btn">Review games</div>
+  <div class="lock"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Found on this iPhone. Nothing was uploaded.</div>
+</div>
+
+<script>
+(function () {
+  const N = { 'wrigley-night.jpg': [1920, 2560], 'wrigley-night-2.jpg': [1920, 2560], 'lambeau-concourse.jpg': [1920, 1288], 'wrigley-bleachers.jpg': [1280, 853] };
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../../kit/kit.js"></script>
+</body></html>

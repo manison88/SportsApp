@@ -1,0 +1,76 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Scanning</title>
+<link rel="stylesheet" href="../../../../kit/kit.css"><link rel="stylesheet" href="../../../../round2/system/broadcast.css"><link rel="stylesheet" href="../../../../final/system/final.css">
+<style>
+body.b{--b-text-3:rgba(255,255,255,.62);--amb:#ffb547}
+.top{position:absolute;top:56px;left:20px;right:20px;height:44px;display:flex;align-items:center;gap:14px;z-index:20}
+.top .b-icon-btn{flex:none}
+.top .spacer{width:40px;flex:none}
+.seg{flex:1;display:flex;gap:5px}
+.seg i{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.16)}
+.seg i.on{background:#fff}.seg i.cur{background:var(--amb)}
+.skip{flex:none;min-width:56px;height:44px;display:grid;place-items:center;font:800 17px/1 var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;color:#fff;text-align:right;justify-content:end}
+.step{font:700 13px/1 var(--b-cond);letter-spacing:2px;text-transform:uppercase;color:var(--amb)}
+.h{font:800 52px/.9 var(--b-cond);letter-spacing:-.5px;text-transform:uppercase}
+.sub{font:400 16px/1.4 var(--b-ui);color:rgba(255,255,255,.72)}
+.cta{position:absolute;left:20px;right:20px;bottom:38px;display:flex;flex-direction:column;gap:6px;align-items:center;z-index:20}
+.cta .b-btn{width:100%;height:56px;font-size:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(0,0,0,.25)}
+.cta .why{font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.62);text-align:center;margin-top:2px}
+.lnk{min-height:44px;display:grid;place-items:center;font:800 16px/1 var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.86);padding:0 8px}
+.lnkrow{display:flex;justify-content:center;gap:6px;width:100%}
+.priv{display:flex;gap:8px;align-items:center;font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.66)}
+.priv svg{width:15px;height:15px;flex:none}
+.field{height:54px;border-radius:14px;background:var(--b-panel);box-shadow:inset 0 0 0 1px var(--b-line);display:flex;align-items:center;gap:12px;padding:0 16px;font:500 17px/1 var(--b-ui)}
+.field svg{width:18px;height:18px;flex:none;stroke:rgba(255,255,255,.7);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.field.on{box-shadow:inset 0 0 0 2px #fff}
+.field .ph2{color:rgba(255,255,255,.55)}
+.chipbtn{height:44px;border-radius:22px;padding:0 16px;display:inline-flex;align-items:center;gap:8px;font:700 15px/1 var(--b-ui);background:var(--b-panel-2);box-shadow:inset 0 0 0 1px var(--b-line);align-self:flex-start}
+.chipbtn svg{width:16px;height:16px;stroke:var(--amb);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.st{height:68px;border-radius:16px;background:var(--b-panel);box-shadow:inset 0 0 0 1px var(--b-line);display:flex;align-items:center;gap:12px;padding:0 14px;font:800 20px/1 var(--b-cond);letter-spacing:.8px;text-transform:uppercase;position:relative}
+.st.on{background:color-mix(in srgb,var(--c) 18%,#0b0c10);box-shadow:inset 0 0 0 2px var(--c)}
+.st .ck{position:absolute;right:10px;top:10px;width:18px;height:18px;border-radius:50%;background:var(--c);color:#0a0a0a;display:grid;place-items:center}
+.st .ck svg{width:11px;height:11px}
+.st:not(.on) .gl{opacity:.55}.st:not(.on){color:rgba(255,255,255,.72)}
+.grp{display:flex;align-items:center;gap:8px;font:800 14px/1 var(--b-cond);letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px}
+.tm{display:flex;gap:8px}
+.tc{flex:1;max-width:80px;height:46px;border-radius:10px;display:grid;place-items:center;font:800 19px/1 var(--b-cond);letter-spacing:.8px;color:#fff;background:color-mix(in srgb,var(--c) 22%,#0e1015);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 55%,transparent);position:relative}
+.tc.on{background:var(--c);box-shadow:inset 0 0 0 2px #fff}
+.tc.dk{color:#111}
+.tc .ck{position:absolute;right:-5px;top:-6px;width:18px;height:18px;border-radius:50%;background:#fff;color:#000;display:grid;place-items:center}
+.tc .ck svg{width:11px;height:11px}
+.nd{display:flex;align-items:center;gap:14px;min-height:88px;box-shadow:inset 0 -1px 0 var(--b-line)}
+.nd:last-child{box-shadow:none}
+.nd .ic{width:44px;height:44px;border-radius:12px;background:var(--b-panel-2);display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px var(--b-line)}
+.nd .ic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nd .t{font:800 21px/1 var(--b-cond);letter-spacing:.6px;text-transform:uppercase}
+.nd .d{font:400 14px/1.35 var(--b-ui);color:rgba(255,255,255,.68);margin-top:5px}
+.tag{font:800 12px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;padding:5px 8px;border-radius:6px;background:rgba(255,255,255,.1);color:#fff;white-space:nowrap}
+.tag.req{background:#fff;color:#000}.tag.you{background:rgba(255,181,71,.18);color:var(--amb)}
+.sw{width:51px;height:31px;border-radius:16px;background:rgba(255,255,255,.18);position:relative;flex:none}
+.sw::after{content:"";position:absolute;left:2px;top:2px;width:27px;height:27px;border-radius:50%;background:#fff}
+.sw.on{background:#34c759}.sw.on::after{left:22px}
+.rt{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex:none}
+.bar{height:6px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar i{display:block;height:100%;background:#fff}
+.mega{font:800 150px/.8 var(--b-cond);letter-spacing:-4px;font-variant-numeric:tabular-nums}
+.f-stats b{font-size:32px}
+.yt{display:inline-flex;align-items:center;gap:6px;font:800 12px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;color:var(--amb)}
+.yt i{width:6px;height:6px;border-radius:50%;background:var(--amb)}
+.gt{font:800 17px/1.1 var(--b-cond);letter-spacing:.4px;text-transform:uppercase}
+.crop{position:absolute;inset:0;overflow:hidden}
+.crop img{filter:contrast(1.05) saturate(.9) brightness(.92)}
+</style></head><body class="phone b">
+<div class="b-nav"><div class="f-title">Scanning</div><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg></div></div>
+<div class="f-col" style="top:112px;gap:22px">
+<div class="f-stack" style="gap:8px"><div class="b-label">Games matched</div><div class="mega">21</div><div class="sub" style="font-size:15px">Looking at Chicago venues first, then baseball, football and 4 more sports.</div></div>
+<div><div style="display:flex;align-items:baseline;gap:10px"><b style="font:800 30px/1 var(--b-cond)">1,630</b><span style="font:500 15px/1 var(--b-ui);color:rgba(255,255,255,.7)">of 2,814 photos checked</span></div><div class="bar" style="margin-top:12px"><i style="width:57.9%"></i></div></div>
+<div class="f-stats"><div><b>212</b><span>Near a venue</span></div><div><b>8</b><span>Venues</span></div><div><b>9</b><span>Your teams</span></div></div>
+<div class="f-list"><div class="f-item" style="min-height:64px"><div style="display:flex;align-items:center"><span class="f-mono" style="--c:#2f6bff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)">CHC</span><span style="margin-left:6px"><span class="f-mono" style="--c:#e31937;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)">CLE</span></span></div><div><div class="t">Oct 30, 2016</div><div class="s">Wrigley Field</div></div><div class="end"><span class="yt"><i></i>Your Cubs</span></div></div><div class="f-item" style="min-height:64px"><div style="display:flex;align-items:center"><span class="f-mono" style="--c:#f05a1a;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)">CHI</span><span style="margin-left:6px"><span class="f-mono" style="--c:#ffb612;color:#111;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)">GB</span></span></div><div><div class="t">Jan 5, 2025</div><div class="s">Lambeau Field</div></div><div class="end"></div></div></div></div>
+<div class="cta"><div class="priv" style="margin-bottom:2px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Checked on this iPhone. Nothing leaves it.</div><div class="lnk">Keep going in the background</div></div>
+
+<script>
+(function(){const N={"wrigley-night.jpg":[1920,2560],"wrigley-bleachers.jpg":[1280,853]};
+document.querySelectorAll('[data-crop]').forEach(b=>{const[src,sx,sy,sw,sh]=b.dataset.crop.split(/\s+/).map((v,i)=>i?+v:v);
+const[nw,nh]=N[src],bw=b.clientWidth,bh=b.clientHeight,s=Math.max(bw/sw,bh/sh);const i=document.createElement('img');
+i.src='../../../../photos/'+src;i.style.cssText=`position:absolute;max-width:none;width:${nw*s}px;height:${nh*s}px;left:${bw/2-(sx+sw/2)*s}px;top:${bh/2-(sy+sh/2)*s}px`;b.prepend(i);});})();
+</script><script src="../../../../kit/kit.js"></script></body></html>

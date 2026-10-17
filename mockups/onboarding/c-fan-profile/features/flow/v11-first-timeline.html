@@ -1,0 +1,75 @@
+<!doctype html><html><head><meta charset="utf-8"><title>First run Timeline</title>
+<link rel="stylesheet" href="../../../../kit/kit.css"><link rel="stylesheet" href="../../../../round2/system/broadcast.css"><link rel="stylesheet" href="../../../../final/system/final.css">
+<style>
+body.b{--b-text-3:rgba(255,255,255,.62);--amb:#ffb547}
+.top{position:absolute;top:56px;left:20px;right:20px;height:44px;display:flex;align-items:center;gap:14px;z-index:20}
+.top .b-icon-btn{flex:none}
+.top .spacer{width:40px;flex:none}
+.seg{flex:1;display:flex;gap:5px}
+.seg i{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.16)}
+.seg i.on{background:#fff}.seg i.cur{background:var(--amb)}
+.skip{flex:none;min-width:56px;height:44px;display:grid;place-items:center;font:800 17px/1 var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;color:#fff;text-align:right;justify-content:end}
+.step{font:700 13px/1 var(--b-cond);letter-spacing:2px;text-transform:uppercase;color:var(--amb)}
+.h{font:800 52px/.9 var(--b-cond);letter-spacing:-.5px;text-transform:uppercase}
+.sub{font:400 16px/1.4 var(--b-ui);color:rgba(255,255,255,.72)}
+.cta{position:absolute;left:20px;right:20px;bottom:38px;display:flex;flex-direction:column;gap:6px;align-items:center;z-index:20}
+.cta .b-btn{width:100%;height:56px;font-size:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(0,0,0,.25)}
+.cta .why{font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.62);text-align:center;margin-top:2px}
+.lnk{min-height:44px;display:grid;place-items:center;font:800 16px/1 var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.86);padding:0 8px}
+.lnkrow{display:flex;justify-content:center;gap:6px;width:100%}
+.priv{display:flex;gap:8px;align-items:center;font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.66)}
+.priv svg{width:15px;height:15px;flex:none}
+.field{height:54px;border-radius:14px;background:var(--b-panel);box-shadow:inset 0 0 0 1px var(--b-line);display:flex;align-items:center;gap:12px;padding:0 16px;font:500 17px/1 var(--b-ui)}
+.field svg{width:18px;height:18px;flex:none;stroke:rgba(255,255,255,.7);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.field.on{box-shadow:inset 0 0 0 2px #fff}
+.field .ph2{color:rgba(255,255,255,.55)}
+.chipbtn{height:44px;border-radius:22px;padding:0 16px;display:inline-flex;align-items:center;gap:8px;font:700 15px/1 var(--b-ui);background:var(--b-panel-2);box-shadow:inset 0 0 0 1px var(--b-line);align-self:flex-start}
+.chipbtn svg{width:16px;height:16px;stroke:var(--amb);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.st{height:68px;border-radius:16px;background:var(--b-panel);box-shadow:inset 0 0 0 1px var(--b-line);display:flex;align-items:center;gap:12px;padding:0 14px;font:800 20px/1 var(--b-cond);letter-spacing:.8px;text-transform:uppercase;position:relative}
+.st.on{background:color-mix(in srgb,var(--c) 18%,#0b0c10);box-shadow:inset 0 0 0 2px var(--c)}
+.st .ck{position:absolute;right:10px;top:10px;width:18px;height:18px;border-radius:50%;background:var(--c);color:#0a0a0a;display:grid;place-items:center}
+.st .ck svg{width:11px;height:11px}
+.st:not(.on) .gl{opacity:.55}.st:not(.on){color:rgba(255,255,255,.72)}
+.grp{display:flex;align-items:center;gap:8px;font:800 14px/1 var(--b-cond);letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px}
+.tm{display:flex;gap:8px}
+.tc{flex:1;max-width:80px;height:46px;border-radius:10px;display:grid;place-items:center;font:800 19px/1 var(--b-cond);letter-spacing:.8px;color:#fff;background:color-mix(in srgb,var(--c) 22%,#0e1015);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 55%,transparent);position:relative}
+.tc.on{background:var(--c);box-shadow:inset 0 0 0 2px #fff}
+.tc.dk{color:#111}
+.tc .ck{position:absolute;right:-5px;top:-6px;width:18px;height:18px;border-radius:50%;background:#fff;color:#000;display:grid;place-items:center}
+.tc .ck svg{width:11px;height:11px}
+.nd{display:flex;align-items:center;gap:14px;min-height:88px;box-shadow:inset 0 -1px 0 var(--b-line)}
+.nd:last-child{box-shadow:none}
+.nd .ic{width:44px;height:44px;border-radius:12px;background:var(--b-panel-2);display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px var(--b-line)}
+.nd .ic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nd .t{font:800 21px/1 var(--b-cond);letter-spacing:.6px;text-transform:uppercase}
+.nd .d{font:400 14px/1.35 var(--b-ui);color:rgba(255,255,255,.68);margin-top:5px}
+.tag{font:800 12px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;padding:5px 8px;border-radius:6px;background:rgba(255,255,255,.1);color:#fff;white-space:nowrap}
+.tag.req{background:#fff;color:#000}.tag.you{background:rgba(255,181,71,.18);color:var(--amb)}
+.sw{width:51px;height:31px;border-radius:16px;background:rgba(255,255,255,.18);position:relative;flex:none}
+.sw::after{content:"";position:absolute;left:2px;top:2px;width:27px;height:27px;border-radius:50%;background:#fff}
+.sw.on{background:#34c759}.sw.on::after{left:22px}
+.rt{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex:none}
+.bar{height:6px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar i{display:block;height:100%;background:#fff}
+.mega{font:800 150px/.8 var(--b-cond);letter-spacing:-4px;font-variant-numeric:tabular-nums}
+.f-stats b{font-size:32px}
+.yt{display:inline-flex;align-items:center;gap:6px;font:800 12px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;color:var(--amb)}
+.yt i{width:6px;height:6px;border-radius:50%;background:var(--amb)}
+.gt{font:800 17px/1.1 var(--b-cond);letter-spacing:.4px;text-transform:uppercase}
+.crop{position:absolute;inset:0;overflow:hidden}
+.crop img{filter:contrast(1.05) saturate(.9) brightness(.92)}
+</style></head><body class="phone b">
+<div class="b-nav"><div class="f-title">Timeline</div><div class="b-icon-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div></div>
+<div class="f-col" style="top:112px;gap:12px"><div style="display:flex;gap:8px"><span class="b-pill" style="height:34px;padding:0 14px;font-size:14px;background:#fff;color:#000">All 47</span><span class="b-pill" style="height:34px;padding:0 14px;font-size:14px;box-shadow:inset 0 0 0 1px rgba(255,181,71,.6);color:var(--amb)">Cubs 12</span><span class="b-pill" style="height:34px;padding:0 14px;font-size:14px;">Bears 10</span><span class="b-pill" style="height:34px;padding:0 14px;font-size:14px;">Bulls 5</span></div>
+<div class="b-panel" style="padding:16px;display:flex;flex-direction:column;gap:6px"><div class="f-between"><span class="b-label" style="color:#fff">Finish setting up · 2 of 4</span><span style="font:600 13px/1 var(--b-ui);color:rgba(255,255,255,.62)">Hide</span></div>
+<div class="bar" style="margin:6px 0 4px"><i style="width:50%"></i></div><div style="display:flex;align-items:center;gap:12px;min-height:36px;font:500 15px/1.2 var(--b-ui);color:rgba(255,255,255,.6)"><span style="width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none;background:#fff;color:#000"><span style="width:12px;height:12px;display:block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></span>Found 47 games</div><div style="display:flex;align-items:center;gap:12px;min-height:36px;font:500 15px/1.2 var(--b-ui);color:rgba(255,255,255,.6)"><span style="width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none;background:#fff;color:#000"><span style="width:12px;height:12px;display:block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></span>Home set to Chicago</div><div style="display:flex;align-items:center;gap:12px;min-height:36px;font:700 15px/1.2 var(--b-ui);color:#fff"><span style="width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5)"><span style="width:12px;height:12px;display:block"></span></span>Confirm your 12 Cubs games</div><div style="display:flex;align-items:center;gap:12px;min-height:36px;font:700 15px/1.2 var(--b-ui);color:#fff"><span style="width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5)"><span style="width:12px;height:12px;display:block"></span></span>Turn on Check in live</div></div></div>
+<div class="f-col" style="top:442px"><div class="b-frame" style="height:290px;border-radius:16px"><div class="crop" data-crop="wrigley-night.jpg 380 800 807 800"></div><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,8,10,0) 40%,rgba(7,8,10,.9))"></div><div style="position:absolute;left:16px;bottom:16px;display:flex;flex-direction:column;gap:8px"><span class="yt"><i></i>Your Cubs · Wrigley Field</span><div class="b-h1" style="font-size:40px">Down 3–1.<br>Not tonight.</div></div></div></div>
+<nav class="b-tabs"><span class="on"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="9" rx="2"/><path d="M4 17h16M4 21h10"/></svg>Timeline</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.4 3.2 14.6 0 18M12 3c-3.2 3.4-3.2 14.6 0 18"/></svg>Map</span><span><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="11" r="3.5"/><path d="M9 17.5h6"/></svg>Passport</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>You</span></nav>
+
+<script>
+(function(){const N={"wrigley-night.jpg":[1920,2560],"wrigley-bleachers.jpg":[1280,853]};
+document.querySelectorAll('[data-crop]').forEach(b=>{const[src,sx,sy,sw,sh]=b.dataset.crop.split(/\s+/).map((v,i)=>i?+v:v);
+const[nw,nh]=N[src],bw=b.clientWidth,bh=b.clientHeight,s=Math.max(bw/sw,bh/sh);const i=document.createElement('img');
+i.src='../../../../photos/'+src;i.style.cssText=`position:absolute;max-width:none;width:${nw*s}px;height:${nh*s}px;left:${bw/2-(sx+sw/2)*s}px;top:${bh/2-(sy+sh/2)*s}px`;b.prepend(i);});})();
+</script><script src="../../../../kit/kit.js"></script></body></html>

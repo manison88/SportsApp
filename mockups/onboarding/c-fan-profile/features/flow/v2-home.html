@@ -1,0 +1,81 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Where is home</title>
+<link rel="stylesheet" href="../../../../kit/kit.css"><link rel="stylesheet" href="../../../../round2/system/broadcast.css"><link rel="stylesheet" href="../../../../final/system/final.css">
+<style>
+body.b{--b-text-3:rgba(255,255,255,.62);--amb:#ffb547}
+.top{position:absolute;top:56px;left:20px;right:20px;height:44px;display:flex;align-items:center;gap:14px;z-index:20}
+.top .b-icon-btn{flex:none}
+.top .spacer{width:40px;flex:none}
+.seg{flex:1;display:flex;gap:5px}
+.seg i{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.16)}
+.seg i.on{background:#fff}.seg i.cur{background:var(--amb)}
+.skip{flex:none;min-width:56px;height:44px;display:grid;place-items:center;font:800 17px/1 var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;color:#fff;text-align:right;justify-content:end}
+.step{font:700 13px/1 var(--b-cond);letter-spacing:2px;text-transform:uppercase;color:var(--amb)}
+.h{font:800 52px/.9 var(--b-cond);letter-spacing:-.5px;text-transform:uppercase}
+.sub{font:400 16px/1.4 var(--b-ui);color:rgba(255,255,255,.72)}
+.cta{position:absolute;left:20px;right:20px;bottom:38px;display:flex;flex-direction:column;gap:6px;align-items:center;z-index:20}
+.cta .b-btn{width:100%;height:56px;font-size:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(0,0,0,.25)}
+.cta .why{font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.62);text-align:center;margin-top:2px}
+.lnk{min-height:44px;display:grid;place-items:center;font:800 16px/1 var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.86);padding:0 8px}
+.lnkrow{display:flex;justify-content:center;gap:6px;width:100%}
+.priv{display:flex;gap:8px;align-items:center;font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.66)}
+.priv svg{width:15px;height:15px;flex:none}
+.field{height:54px;border-radius:14px;background:var(--b-panel);box-shadow:inset 0 0 0 1px var(--b-line);display:flex;align-items:center;gap:12px;padding:0 16px;font:500 17px/1 var(--b-ui)}
+.field svg{width:18px;height:18px;flex:none;stroke:rgba(255,255,255,.7);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.field.on{box-shadow:inset 0 0 0 2px #fff}
+.field .ph2{color:rgba(255,255,255,.55)}
+.chipbtn{height:44px;border-radius:22px;padding:0 16px;display:inline-flex;align-items:center;gap:8px;font:700 15px/1 var(--b-ui);background:var(--b-panel-2);box-shadow:inset 0 0 0 1px var(--b-line);align-self:flex-start}
+.chipbtn svg{width:16px;height:16px;stroke:var(--amb);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.st{height:68px;border-radius:16px;background:var(--b-panel);box-shadow:inset 0 0 0 1px var(--b-line);display:flex;align-items:center;gap:12px;padding:0 14px;font:800 20px/1 var(--b-cond);letter-spacing:.8px;text-transform:uppercase;position:relative}
+.st.on{background:color-mix(in srgb,var(--c) 18%,#0b0c10);box-shadow:inset 0 0 0 2px var(--c)}
+.st .ck{position:absolute;right:10px;top:10px;width:18px;height:18px;border-radius:50%;background:var(--c);color:#0a0a0a;display:grid;place-items:center}
+.st .ck svg{width:11px;height:11px}
+.st:not(.on) .gl{opacity:.55}.st:not(.on){color:rgba(255,255,255,.72)}
+.grp{display:flex;align-items:center;gap:8px;font:800 14px/1 var(--b-cond);letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px}
+.tm{display:flex;gap:8px}
+.tc{flex:1;max-width:80px;height:46px;border-radius:10px;display:grid;place-items:center;font:800 19px/1 var(--b-cond);letter-spacing:.8px;color:#fff;background:color-mix(in srgb,var(--c) 22%,#0e1015);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 55%,transparent);position:relative}
+.tc.on{background:var(--c);box-shadow:inset 0 0 0 2px #fff}
+.tc.dk{color:#111}
+.tc .ck{position:absolute;right:-5px;top:-6px;width:18px;height:18px;border-radius:50%;background:#fff;color:#000;display:grid;place-items:center}
+.tc .ck svg{width:11px;height:11px}
+.nd{display:flex;align-items:center;gap:14px;min-height:88px;box-shadow:inset 0 -1px 0 var(--b-line)}
+.nd:last-child{box-shadow:none}
+.nd .ic{width:44px;height:44px;border-radius:12px;background:var(--b-panel-2);display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px var(--b-line)}
+.nd .ic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nd .t{font:800 21px/1 var(--b-cond);letter-spacing:.6px;text-transform:uppercase}
+.nd .d{font:400 14px/1.35 var(--b-ui);color:rgba(255,255,255,.68);margin-top:5px}
+.tag{font:800 12px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;padding:5px 8px;border-radius:6px;background:rgba(255,255,255,.1);color:#fff;white-space:nowrap}
+.tag.req{background:#fff;color:#000}.tag.you{background:rgba(255,181,71,.18);color:var(--amb)}
+.sw{width:51px;height:31px;border-radius:16px;background:rgba(255,255,255,.18);position:relative;flex:none}
+.sw::after{content:"";position:absolute;left:2px;top:2px;width:27px;height:27px;border-radius:50%;background:#fff}
+.sw.on{background:#34c759}.sw.on::after{left:22px}
+.rt{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex:none}
+.bar{height:6px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar i{display:block;height:100%;background:#fff}
+.mega{font:800 150px/.8 var(--b-cond);letter-spacing:-4px;font-variant-numeric:tabular-nums}
+.f-stats b{font-size:32px}
+.yt{display:inline-flex;align-items:center;gap:6px;font:800 12px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;color:var(--amb)}
+.yt i{width:6px;height:6px;border-radius:50%;background:var(--amb)}
+.gt{font:800 17px/1.1 var(--b-cond);letter-spacing:.4px;text-transform:uppercase}
+.crop{position:absolute;inset:0;overflow:hidden}
+.crop img{filter:contrast(1.05) saturate(.9) brightness(.92)}
+</style></head><body class="phone b">
+<div class="top"><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div><div class="seg"><i class="on"></i><i class="cur"></i><i class=""></i><i class=""></i><i class=""></i></div><div class="skip">Skip</div></div>
+<div class="f-col" style="top:122px;gap:12px"><div class="step">1 of 4 · Your profile</div><div class="h">Where's<br>home?</div></div>
+<div class="f-col" style="top:290px;gap:14px"><div class="b-frame" style="height:230px;border-radius:16px"><svg viewBox="0 0 353 230" width="353" height="230" style="display:block"><rect width="353" height="230" fill="#0d0f13"/>
+<g stroke="rgba(255,255,255,.07)" stroke-width="1" fill="none"><path d="M0 40H353M0 90H353M0 140H353M0 190H353M60 0V230M120 0V230M180 0V230M240 0V230"/><path d="M0 200L260 0M0 120L200 -30M80 230L353 20" stroke="rgba(255,255,255,.05)"/></g>
+<path d="M300 0C290 50 312 90 300 140C294 175 310 200 304 230H353V0Z" fill="#0f1a24"/><path d="M300 0C290 50 312 90 300 140C294 175 310 200 304 230" stroke="rgba(90,200,250,.35)" fill="none"/>
+<g fill="none" stroke="#ffb547" stroke-dasharray="3 5"><circle cx="120" cy="108" r="46" opacity=".6"/><circle cx="120" cy="108" r="92" opacity=".35"/><circle cx="120" cy="108" r="140" opacity=".2"/></g>
+<circle cx="158" cy="84" r="5" fill="#FF5A4F"/><circle cx="224" cy="156" r="5" fill="#3DDC84"/><circle cx="196" cy="116" r="5" fill="#FFA42E"/><circle cx="196" cy="116" r="5" fill="#5AC8FA" transform="translate(6 4)"/>
+<circle cx="120" cy="108" r="22" fill="#ffb547" opacity=".18"/><circle cx="120" cy="108" r="9" fill="#ffb547" stroke="#07080a" stroke-width="3"/>
+<text x="136" y="132" font-family="Barlow Condensed" font-weight="800" font-size="15" letter-spacing="1.5" fill="#fff">HOME</text></svg></div>
+<div class="field on"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Chicago, Illinois</div>
+<div class="chipbtn"><svg viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8z"/></svg>Use current location</div></div>
+<div class="cta"><div class="why" style="margin-bottom:6px">Sets your home dot on the Map and measures travel miles. City only, never an address.</div><div class="b-btn">Continue</div></div>
+
+<script>
+(function(){const N={"wrigley-night.jpg":[1920,2560],"wrigley-bleachers.jpg":[1280,853]};
+document.querySelectorAll('[data-crop]').forEach(b=>{const[src,sx,sy,sw,sh]=b.dataset.crop.split(/\s+/).map((v,i)=>i?+v:v);
+const[nw,nh]=N[src],bw=b.clientWidth,bh=b.clientHeight,s=Math.max(bw/sw,bh/sh);const i=document.createElement('img');
+i.src='../../../../photos/'+src;i.style.cssText=`position:absolute;max-width:none;width:${nw*s}px;height:${nh*s}px;left:${bw/2-(sx+sw/2)*s}px;top:${bh/2-(sy+sh/2)*s}px`;b.prepend(i);});})();
+</script><script src="../../../../kit/kit.js"></script></body></html>

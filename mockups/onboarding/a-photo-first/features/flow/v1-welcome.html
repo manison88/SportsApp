@@ -1,0 +1,64 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Welcome</title>
+<link rel="stylesheet" href="../../../../kit/kit.css">
+<link rel="stylesheet" href="../../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../../final/system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.62); --amber: #ffb547; }
+  .b-body { font-size: 15px; }
+  .crop { position: relative; overflow: hidden; }
+  .crop img { filter: contrast(1.06) saturate(.9) brightness(.9); }
+  .abs { position: absolute; inset: 0; }
+  .amber { color: var(--amber); }
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 40px; display: flex; flex-direction: column; gap: 6px; }
+  .cta .b-btn { width: 100%; height: 54px; font-size: 17px; box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(0,0,0,.25); }
+  .cta .b-btn.ghost { box-shadow: inset 0 0 0 1px var(--b-line); }
+  .cta .row2 { display: flex; gap: 10px; }
+  .cta .row2 .b-btn { flex: 1; }
+  .link { height: 44px; display: flex; align-items: center; justify-content: center; font: 700 15px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,.86); }
+  .lock { display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--b-text-2); font: 500 13px/1.3 var(--b-ui); }
+  .lock svg, .ico { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .skipbtn { height: 40px; padding: 0 14px; border-radius: 12px; display: flex; align-items: center; font: 800 14px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; background: var(--b-panel-2); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .scrim { position: absolute; inset: 0; }
+  .note { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 14px; background: var(--b-panel); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .note .b-body { font-size: 14px; color: rgba(255,255,255,.78); flex: 1; }
+  .note .x { width: 28px; height: 28px; margin: -4px -4px 0 0; display: grid; place-items: center; flex: none; }
+  .note .x svg { width: 16px; height: 16px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 2.4; stroke-linecap: round; }
+
+  .hero { position: absolute; inset: 0; }
+  .hero .scrim { background: linear-gradient(180deg, rgba(7,8,10,.55) 0%, rgba(7,8,10,0) 24%, rgba(7,8,10,0) 34%, rgba(7,8,10,.78) 58%, #07080a 82%); }
+  .copy { position: absolute; left: 20px; right: 20px; top: 440px; }
+  .copy .b-display { font-size: 66px; }
+  .copy .b-body { margin-top: 16px; font-size: 17px; color: rgba(255,255,255,.82); max-width: 330px; }
+  .brand { position: absolute; top: 62px; left: 20px; font: 800 16px/1 var(--b-cond); letter-spacing: 4px; text-transform: uppercase; }
+  .cta { bottom: 36px; }
+
+</style></head>
+<body class="phone b">
+
+<div class="hero"><div class="crop abs" data-crop="wrigley-night.jpg 0 380 960 2080"></div><div class="scrim"></div></div>
+<div class="brand">Witness</div>
+<div class="copy">
+  <div class="b-display">Every game<br><span class="amber">you</span> were at.</div>
+  <div class="b-body">Witness finds them in the photos you already have. Private, on this iPhone.</div>
+</div>
+<div class="cta">
+  <div class="b-btn">Find my games</div>
+  <div class="row2"><div class="link" style="flex:1">Explore samples</div><div class="link" style="flex:1">Add a game</div></div>
+</div>
+
+<script>
+(function () {
+  const N = { 'wrigley-night.jpg': [1920, 2560], 'wrigley-night-2.jpg': [1920, 2560], 'lambeau-concourse.jpg': [1920, 1288], 'wrigley-bleachers.jpg': [1280, 853] };
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../../kit/kit.js"></script>
+</body></html>

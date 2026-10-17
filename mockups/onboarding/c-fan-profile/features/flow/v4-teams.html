@@ -1,0 +1,78 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Who do you cheer for</title>
+<link rel="stylesheet" href="../../../../kit/kit.css"><link rel="stylesheet" href="../../../../round2/system/broadcast.css"><link rel="stylesheet" href="../../../../final/system/final.css">
+<style>
+body.b{--b-text-3:rgba(255,255,255,.62);--amb:#ffb547}
+.top{position:absolute;top:56px;left:20px;right:20px;height:44px;display:flex;align-items:center;gap:14px;z-index:20}
+.top .b-icon-btn{flex:none}
+.top .spacer{width:40px;flex:none}
+.seg{flex:1;display:flex;gap:5px}
+.seg i{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.16)}
+.seg i.on{background:#fff}.seg i.cur{background:var(--amb)}
+.skip{flex:none;min-width:56px;height:44px;display:grid;place-items:center;font:800 17px/1 var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;color:#fff;text-align:right;justify-content:end}
+.step{font:700 13px/1 var(--b-cond);letter-spacing:2px;text-transform:uppercase;color:var(--amb)}
+.h{font:800 52px/.9 var(--b-cond);letter-spacing:-.5px;text-transform:uppercase}
+.sub{font:400 16px/1.4 var(--b-ui);color:rgba(255,255,255,.72)}
+.cta{position:absolute;left:20px;right:20px;bottom:38px;display:flex;flex-direction:column;gap:6px;align-items:center;z-index:20}
+.cta .b-btn{width:100%;height:56px;font-size:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(0,0,0,.25)}
+.cta .why{font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.62);text-align:center;margin-top:2px}
+.lnk{min-height:44px;display:grid;place-items:center;font:800 16px/1 var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.86);padding:0 8px}
+.lnkrow{display:flex;justify-content:center;gap:6px;width:100%}
+.priv{display:flex;gap:8px;align-items:center;font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.66)}
+.priv svg{width:15px;height:15px;flex:none}
+.field{height:54px;border-radius:14px;background:var(--b-panel);box-shadow:inset 0 0 0 1px var(--b-line);display:flex;align-items:center;gap:12px;padding:0 16px;font:500 17px/1 var(--b-ui)}
+.field svg{width:18px;height:18px;flex:none;stroke:rgba(255,255,255,.7);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.field.on{box-shadow:inset 0 0 0 2px #fff}
+.field .ph2{color:rgba(255,255,255,.55)}
+.chipbtn{height:44px;border-radius:22px;padding:0 16px;display:inline-flex;align-items:center;gap:8px;font:700 15px/1 var(--b-ui);background:var(--b-panel-2);box-shadow:inset 0 0 0 1px var(--b-line);align-self:flex-start}
+.chipbtn svg{width:16px;height:16px;stroke:var(--amb);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.st{height:68px;border-radius:16px;background:var(--b-panel);box-shadow:inset 0 0 0 1px var(--b-line);display:flex;align-items:center;gap:12px;padding:0 14px;font:800 20px/1 var(--b-cond);letter-spacing:.8px;text-transform:uppercase;position:relative}
+.st.on{background:color-mix(in srgb,var(--c) 18%,#0b0c10);box-shadow:inset 0 0 0 2px var(--c)}
+.st .ck{position:absolute;right:10px;top:10px;width:18px;height:18px;border-radius:50%;background:var(--c);color:#0a0a0a;display:grid;place-items:center}
+.st .ck svg{width:11px;height:11px}
+.st:not(.on) .gl{opacity:.55}.st:not(.on){color:rgba(255,255,255,.72)}
+.grp{display:flex;align-items:center;gap:8px;font:800 14px/1 var(--b-cond);letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:10px}
+.tm{display:flex;gap:8px}
+.tc{flex:1;max-width:80px;height:46px;border-radius:10px;display:grid;place-items:center;font:800 19px/1 var(--b-cond);letter-spacing:.8px;color:#fff;background:color-mix(in srgb,var(--c) 22%,#0e1015);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 55%,transparent);position:relative}
+.tc.on{background:var(--c);box-shadow:inset 0 0 0 2px #fff}
+.tc.dk{color:#111}
+.tc .ck{position:absolute;right:-5px;top:-6px;width:18px;height:18px;border-radius:50%;background:#fff;color:#000;display:grid;place-items:center}
+.tc .ck svg{width:11px;height:11px}
+.nd{display:flex;align-items:center;gap:14px;min-height:88px;box-shadow:inset 0 -1px 0 var(--b-line)}
+.nd:last-child{box-shadow:none}
+.nd .ic{width:44px;height:44px;border-radius:12px;background:var(--b-panel-2);display:grid;place-items:center;flex:none;box-shadow:inset 0 0 0 1px var(--b-line)}
+.nd .ic svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nd .t{font:800 21px/1 var(--b-cond);letter-spacing:.6px;text-transform:uppercase}
+.nd .d{font:400 14px/1.35 var(--b-ui);color:rgba(255,255,255,.68);margin-top:5px}
+.tag{font:800 12px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;padding:5px 8px;border-radius:6px;background:rgba(255,255,255,.1);color:#fff;white-space:nowrap}
+.tag.req{background:#fff;color:#000}.tag.you{background:rgba(255,181,71,.18);color:var(--amb)}
+.sw{width:51px;height:31px;border-radius:16px;background:rgba(255,255,255,.18);position:relative;flex:none}
+.sw::after{content:"";position:absolute;left:2px;top:2px;width:27px;height:27px;border-radius:50%;background:#fff}
+.sw.on{background:#34c759}.sw.on::after{left:22px}
+.rt{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex:none}
+.bar{height:6px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar i{display:block;height:100%;background:#fff}
+.mega{font:800 150px/.8 var(--b-cond);letter-spacing:-4px;font-variant-numeric:tabular-nums}
+.f-stats b{font-size:32px}
+.yt{display:inline-flex;align-items:center;gap:6px;font:800 12px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;color:var(--amb)}
+.yt i{width:6px;height:6px;border-radius:50%;background:var(--amb)}
+.gt{font:800 17px/1.1 var(--b-cond);letter-spacing:.4px;text-transform:uppercase}
+.crop{position:absolute;inset:0;overflow:hidden}
+.crop img{filter:contrast(1.05) saturate(.9) brightness(.92)}
+</style></head><body class="phone b">
+<div class="top"><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div><div class="seg"><i class="on"></i><i class="on"></i><i class="on"></i><i class="cur"></i><i class=""></i></div><div class="skip">Skip</div></div>
+<div class="f-col" style="top:122px;gap:12px"><div class="step">3 of 4 · Your profile</div><div class="h" style="font-size:46px">Who do you<br>cheer for?</div></div>
+<div class="f-col" style="top:262px;gap:16px"><div class="field"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span class="ph2">Search teams</span></div>
+<div class="b-label" style="margin-top:-4px">Suggested near Chicago</div>
+<div><div class="grp"><svg class="gl" width="20" height="20" viewBox="0 0 24 24" style="color:#FF5A4F" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6c2.4 2.6 2.4 10.2 0 12.8M18.4 5.6c-2.4 2.6-2.4 10.2 0 12.8"/></svg>MLB</div><div class="tm"><div class="tc on" style="--c:#2f6bff">CHC<span class=ck><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="tc" style="--c:#8a8f99">CHW</div><div class="tc dk" style="--c:#ffc52f">MIL</div><div class="tc" style="--c:#c41e3a">STL</div></div></div>
+<div><div class="grp"><svg class="gl" width="20" height="20" viewBox="0 0 24 24" style="color:#3DDC84" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20C3 11 9 4 20 4c1 9-5 16-16 16z"/><path d="M9 15l6-6M10.8 10.8l1.6 1.6M12.8 12.8l1.6 1.6"/></svg>NFL</div><div class="tm"><div class="tc on" style="--c:#f05a1a">CHI<span class=ck><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="tc dk" style="--c:#ffb612">GB</div><div class="tc" style="--c:#0076b6">DET</div><div class="tc" style="--c:#7d4fc0">MIN</div></div></div>
+<div><div class="grp"><svg class="gl" width="20" height="20" viewBox="0 0 24 24" style="color:#FFA42E" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M5.6 5.6c3 3 3 9.8 0 12.8M18.4 5.6c-3 3-3 9.8 0 12.8"/></svg>NBA</div><div class="tm"><div class="tc on" style="--c:#e8213f">CHI<span class=ck><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span></div><div class="tc" style="--c:#2d7a4f">MIL</div><div class="tc" style="--c:#c8102e">DET</div><div class="tc dk" style="--c:#fdbb30">IND</div></div></div>
+<div><div class="grp"><svg class="gl" width="20" height="20" viewBox="0 0 24 24" style="color:#5AC8FA" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="8.5" rx="8" ry="3.5"/><path d="M4 8.5v6c0 2 3.6 3.5 8 3.5s8-1.5 8-3.5v-6"/></svg>NHL</div><div class="tm"><div class="tc" style="--c:#e8243c">CHI</div><div class="tc" style="--c:#1f6fd0">STL</div><div class="tc" style="--c:#ce1126">DET</div><div class="tc" style="--c:#2c8f5a">MIN</div></div></div></div>
+<div class="cta"><div class="b-btn">Continue</div><div class="why">3 teams picked. Cheering for none is fine.</div></div>
+
+<script>
+(function(){const N={"wrigley-night.jpg":[1920,2560],"wrigley-bleachers.jpg":[1280,853]};
+document.querySelectorAll('[data-crop]').forEach(b=>{const[src,sx,sy,sw,sh]=b.dataset.crop.split(/\s+/).map((v,i)=>i?+v:v);
+const[nw,nh]=N[src],bw=b.clientWidth,bh=b.clientHeight,s=Math.max(bw/sw,bh/sh);const i=document.createElement('img');
+i.src='../../../../photos/'+src;i.style.cssText=`position:absolute;max-width:none;width:${nw*s}px;height:${nh*s}px;left:${bw/2-(sx+sw/2)*s}px;top:${bh/2-(sy+sh/2)*s}px`;b.prepend(i);});})();
+</script><script src="../../../../kit/kit.js"></script></body></html>

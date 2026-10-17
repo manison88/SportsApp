@@ -1,0 +1,80 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Photos access</title>
+<link rel="stylesheet" href="../../../../kit/kit.css">
+<link rel="stylesheet" href="../../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../../final/system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.62); --amber: #ffb547; }
+  .b-body { font-size: 15px; }
+  .crop { position: relative; overflow: hidden; }
+  .crop img { filter: contrast(1.06) saturate(.9) brightness(.9); }
+  .abs { position: absolute; inset: 0; }
+  .amber { color: var(--amber); }
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 40px; display: flex; flex-direction: column; gap: 6px; }
+  .cta .b-btn { width: 100%; height: 54px; font-size: 17px; box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(0,0,0,.25); }
+  .cta .b-btn.ghost { box-shadow: inset 0 0 0 1px var(--b-line); }
+  .cta .row2 { display: flex; gap: 10px; }
+  .cta .row2 .b-btn { flex: 1; }
+  .link { height: 44px; display: flex; align-items: center; justify-content: center; font: 700 15px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,255,255,.86); }
+  .lock { display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--b-text-2); font: 500 13px/1.3 var(--b-ui); }
+  .lock svg, .ico { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .skipbtn { height: 40px; padding: 0 14px; border-radius: 12px; display: flex; align-items: center; font: 800 14px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; background: var(--b-panel-2); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .scrim { position: absolute; inset: 0; }
+  .note { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 14px; background: var(--b-panel); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .note .b-body { font-size: 14px; color: rgba(255,255,255,.78); flex: 1; }
+  .note .x { width: 28px; height: 28px; margin: -4px -4px 0 0; display: grid; place-items: center; flex: none; }
+  .note .x svg { width: 16px; height: 16px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 2.4; stroke-linecap: round; }
+
+  .col { top: 112px; }
+  .col .b-h1 { font-size: 46px; line-height: .95; }
+  .demo { position: relative; height: 250px; border-radius: 16px; box-shadow: inset 0 0 0 1px var(--b-line); }
+  .demo .scrim { background: linear-gradient(180deg, rgba(7,8,10,0) 30%, rgba(7,8,10,.82) 100%); }
+  .demo .chips { position: absolute; left: 14px; right: 14px; bottom: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-radius: 8px; background: rgba(7,8,10,.82); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); font: 700 14px/1 var(--b-cond); letter-spacing: 1.1px; text-transform: uppercase; }
+  .chip .ico { width: 15px; height: 15px; color: var(--amber); }
+  .two { display: flex; }
+  .two > div { flex: 1; }
+  .two > div + div { padding-left: 16px; box-shadow: inset 1px 0 0 var(--b-line); }
+  .two .b-label { display: block; margin-bottom: 10px; }
+  .two p { font: 600 15px/1.35 var(--b-ui); color: #fff; padding: 3px 0; }
+  .two .no p { color: rgba(255,255,255,.7); }
+
+</style></head>
+<body class="phone b">
+
+<div class="b-nav"><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div></div>
+<div class="f-col col">
+  <div class="b-h1">Witness reads dates and places. Nothing else.</div>
+  <div class="demo">
+    <div class="crop abs" data-crop="wrigley-night-2.jpg 860 860 1000 660" style="border-radius:16px"></div><div class="scrim"></div>
+    <div class="chips">
+      <span class="chip"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>Oct 30, 2016 7:02 PM</span>
+      <span class="chip"><svg class="ico" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.800 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>Near a stadium</span>
+    </div>
+  </div>
+  <div class="two">
+    <div><span class="b-label">Reads</span><p>When it was taken</p><p>Where it was taken</p></div>
+    <div class="no"><span class="b-label">Never</span><p>Uploaded or shared</p><p>Needs an account</p></div>
+  </div>
+</div>
+<div class="cta">
+  <div class="b-btn">Allow photo access</div>
+  <div class="row2"><div class="link" style="flex:1">Choose photos</div><div class="link" style="flex:1">Not now</div></div>
+  <div class="lock"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Matched on this iPhone</div>
+</div>
+
+<script>
+(function () {
+  const N = { 'wrigley-night.jpg': [1920, 2560], 'wrigley-night-2.jpg': [1920, 2560], 'lambeau-concourse.jpg': [1920, 1288], 'wrigley-bleachers.jpg': [1280, 853] };
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../../kit/kit.js"></script>
+</body></html>
