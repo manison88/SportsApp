@@ -59,9 +59,15 @@ enum ScoreboardReader {
         return zip(n, n.dropFirst()).contains { ($0 == h && $1 == a) || ($0 == a && $1 == h) }
     }
 
+    /// A board showing one of the two teams ("TOR 0" beside a crest for the home side). Too weak to find a game,
+    /// but enough to back one the venue and time already point to.
+    static func oneTeam(_ reading: ScoreboardReading, for game: FoundGame) -> Bool {
+        position(of: game.home, in: reading.tokens) != nil || position(of: game.away, in: reading.tokens) != nil
+    }
+
     /// Whether a reading backs a game found from the venue and time.
     static func confirms(_ reading: ScoreboardReading, _ game: FoundGame) -> Bool {
-        support(reading, for: game) > 0 || scoreOnly(reading, for: game)
+        support(reading, for: game) > 0 || scoreOnly(reading, for: game) || oneTeam(reading, for: game)
     }
 
     // MARK: Reading photos

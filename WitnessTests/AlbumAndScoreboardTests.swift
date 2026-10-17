@@ -59,6 +59,42 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertTrue(GameLookup.leagues(for: library.venue("lumen-field")!).contains("soccer/fifa.world"))
     }
 
+    func testTailgateWithin500mJoinsOnlyAnExistingVisit() {
+        let wrigley = library.venue("wrigley")!
+        let metersPerDegree = 111_000.0
+        func point(_ id: String, _ time: String, north meters: Double) -> PhotoPoint {
+            PhotoPoint(id: id, date: date(time), latitude: wrigley.latitude + meters / metersPerDegree, longitude: wrigley.longitude)
+        }
+        let game = [point("inside", "2016-10-31T00:30:00Z", north: 50), point("tailgate", "2016-10-30T20:00:00Z", north: 430),
+                    point("walkout", "2016-10-31T04:10:00Z", north: 480)]
+        let visit = VisitGrouping.group(game, venues: library.venues).visits
+        XCTAssertEqual(visit.count, 1)
+        XCTAssertEqual(Set(visit[0].assetIds), ["inside", "tailgate", "walkout"], "Within 500 m on the day counts")
+
+        // The same pub crowd on a day with nothing inside the fence is not a visit.
+        let partyOnly = [point("p1", "2016-11-05T20:00:00Z", north: 430), point("p2", "2016-11-05T23:00:00Z", north: 450)]
+        let scan = VisitGrouping.group(partyOnly, venues: library.venues)
+        XCTAssertTrue(scan.visits.isEmpty)
+        XCTAssertEqual(scan.unplacedDays.count, 1)
+
+        // Discovery's stay rule counts only the photos inside the fence.
+        let walkBy = [point("in", "2016-10-31T00:30:00Z", north: 50), point("pub", "2016-10-30T20:00:00Z", north: 430)]
+        XCTAssertTrue(VisitGrouping.group(walkBy, venues: library.venues, minimumStay: 15 * 60).visits.isEmpty)
+    }
+
+    func testOneTeamOnTheBoardBacksAKnownGame() {
+        func side(_ code: String, _ name: String, _ score: Int) -> FoundGame.Side {
+            .init(espnId: code, abbreviation: code, location: name, name: name, color: nil, altColor: nil, score: score, line: [])
+        }
+        let fire = FoundGame(league: "soccer/usa.1", leagueName: "MLS", eventId: "1", sport: .soccer, start: .now,
+                             venueName: "Soldier Field", venueCity: "Chicago", home: side("CHI", "Chicago Fire FC", 2),
+                             away: side("TOR", "Toronto FC", 2), completed: true, note: nil)
+        let board = ScoreboardReader.reading(from: "0 TOR 0 20:33")
+        XCTAssertEqual(ScoreboardReader.support(board, for: fire), 0)
+        XCTAssertTrue(ScoreboardReader.confirms(board, fire))
+        XCTAssertFalse(ScoreboardReader.confirms(ScoreboardReader.reading(from: "GALP PORTUGAL STORE"), fire))
+    }
+
     // MARK: Scoreboards
 
     func testCrestBoardConfirmsByScoreAlone() {

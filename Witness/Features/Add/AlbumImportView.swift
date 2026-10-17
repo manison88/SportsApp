@@ -26,6 +26,7 @@ struct AlbumImportView: View {
     @State private var album: PhotoAlbum?
     @State private var items: [Item] = []
     @State private var unplaced: [DayPile] = []
+    @State private var skippedDays = 0
     @State private var undated: [String] = []
     @State private var progress = ""
     @State private var pickingDay: DayPile?
@@ -137,6 +138,13 @@ struct AlbumImportView: View {
                     VStack(spacing: 0) {
                         ForEach($items) { $item in visitRow($item) }
                     }
+                }
+
+                if skippedDays > 0 {
+                    Label("Skipped \(skippedDays == 1 ? "a day" : "\(skippedDays) days") that didn't look like a game",
+                          systemImage: "eye.slash")
+                        .font(.footnote).foregroundStyle(Color.textSecondary)
+                        .accessibilityIdentifier("album-skipped")
                 }
 
                 if !unplaced.isEmpty || !undated.isEmpty {
@@ -349,6 +357,9 @@ struct AlbumImportView: View {
                                            venue: venue, start: day.times.first ?? day.day, end: day.times.last ?? day.day,
                                            assetIds: day.assetIds, times: day.times)
                 items.append(Item(cluster: cluster, game: game, onScoreboard: true, foundByScoreboard: true))
+            } else if let scene = await SceneCheck.verdict(for: day.assetIds.map { PhotoRef.library($0) }), scene.sports < 0.15 {
+                // Sightseeing, dinner, a street: nothing here looks like a game, so don't ask where it was.
+                skippedDays += 1
             } else {
                 stillUnplaced.append(day)
             }

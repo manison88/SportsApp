@@ -26,14 +26,20 @@ struct PhotoScan: Hashable {
 
 /// Groups photos into stadium visits. Pure, so it's shared by library discovery and album import and unit tested.
 enum VisitGrouping {
-    /// - minimumStay: required spread of a visit's photos (library discovery uses 15 min to skip drive-bys;
-    ///   an album the fan chose is trusted, so it passes nil).
+    /// Photos this close to a stadium on a visit's day belong to the visit (the pub, the tailgate, the walk in).
+    /// They can't start a visit: only photos inside the venue's own fence do.
+    static let matchdayReach: CLLocationDistance = 500
+
+    /// - minimumStay: required spread of a visit's photos inside the fence (library discovery uses 15 min to
+    ///   skip drive-bys; an album the fan chose is trusted, so it passes nil).
     /// - skipping: "venueId|yyyy-MM-dd" keys of games already in the library.
     static func group(_ points: [PhotoPoint], venues: [Venue], radius: CLLocationDistance? = nil,
                       minimumStay: TimeInterval? = nil, skipping: Set<String> = []) -> PhotoScan {
         var scan = PhotoScan()
         var visits: [String: (Venue, [(String, Date)])] = [:]
         var loose: [(String, Date)] = []
+        var around: [(String, Date, Venue)] = []
+        var joined: [String: [(String, Date)]] = [:]
 
         for p in points {
             guard let date = p.date else { scan.undated.append(p.id); continue }
@@ -43,9 +49,18 @@ enum VisitGrouping {
                 var entry = visits[k] ?? (v, [])
                 entry.1.append((p.id, date))
                 visits[k] = entry
+            } else if let lat = p.latitude, let lon = p.longitude,
+                      let v = nearestVenue(lat: lat, lon: lon, in: venues, radius: matchdayReach) {
+                around.append((p.id, date, v))
             } else {
                 loose.append((p.id, date))
             }
+        }
+
+        // Within 500 m on a visit's day: part of the visit. With no visit that day, they wait like any other photo.
+        for (id, date, v) in around {
+            let k = key(venueId: v.id, date: date, tz: v.tz)
+            if visits[k] != nil { joined[k, default: []].append((id, date)) } else { loose.append((id, date)) }
         }
 
         // Photos without a stadium fix that were taken on a visit's day belong to that visit (edited copies,
@@ -63,10 +78,11 @@ enum VisitGrouping {
         }
 
         scan.visits = visits.compactMap { k, value -> PhotoCluster? in
-            let sorted = value.1.sorted { $0.1 < $1.1 }
+            let anchors = value.1.sorted { $0.1 < $1.1 }
             if let minimumStay {
-                guard sorted.count >= 2, sorted.last!.1.timeIntervalSince(sorted.first!.1) >= minimumStay else { return nil }
+                guard anchors.count >= 2, anchors.last!.1.timeIntervalSince(anchors.first!.1) >= minimumStay else { return nil }
             }
+            let sorted = (value.1 + (joined[k] ?? [])).sorted { $0.1 < $1.1 }
             return PhotoCluster(id: k, venue: value.0, start: sorted.first!.1, end: sorted.last!.1,
                                 assetIds: sorted.map(\.0), times: sorted.map(\.1))
         }

@@ -298,8 +298,9 @@ final class WitnessUITests: XCTestCase {
         album.tap()
         XCTAssertTrue(el("album-found").waitForExistence(timeout: 120), "Scanning the album should finish")
         XCTAssertTrue(el("album-scoreboard").waitForExistence(timeout: 5), "A game should be confirmed from a scoreboard photo")
-        XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'album-ask-'")).firstMatch.exists,
-                      "The downtown photo should prompt for a stadium")
+        // A skyline photo is either skipped as not-a-game or, where the classifier is unavailable, asked about.
+        let asked = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'album-ask-'")).firstMatch.exists
+        XCTAssertTrue(asked || el("album-skipped").exists, "The downtown photo should be skipped or prompt for a stadium")
         snap("album-review")
         tap("album-add")
         let card = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'game-card-'")).firstMatch
