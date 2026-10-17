@@ -30,6 +30,8 @@ struct AlbumImportView: View {
     @State private var undated: [String] = []
     @State private var progress = ""
     @State private var pickingDay: DayPile?
+    /// The day being placed, kept after the sheet closes (picking a venue dismisses it).
+    @State private var placingDay: DayPile?
     @State private var pickedVenueId: String?
     @State private var datingUndated = false
     @State private var undatedDate = Calendar.current.date(bySettingHour: 19, minute: 0, second: 0, of: .now) ?? .now
@@ -51,14 +53,8 @@ struct AlbumImportView: View {
                 }
         }
         .task { await start() }
-        .sheet(item: $pickingDay) { day in
+        .sheet(item: $pickingDay, onDismiss: placePicked) { _ in
             NavigationStack { VenuePickerView(venueId: $pickedVenueId, sport: nil) }
-                .onChange(of: pickedVenueId) { _, id in
-                    guard let id, let venue = library.venue(id) else { return }
-                    pickingDay = nil
-                    pickedVenueId = nil
-                    Task { await place(day, at: venue) }
-                }
         }
         .sheet(isPresented: $datingUndated) { undatedSheet }
     }
@@ -160,7 +156,7 @@ struct AlbumImportView: View {
                 if !unplaced.isEmpty || !undated.isEmpty {
                     VStack(alignment: .leading, spacing: 0) {
                         ForEach(unplaced) { day in
-                            Button { pickingDay = day } label: {
+                            Button { placingDay = day; pickingDay = day } label: {
                                 askRow(symbol: "mappin.and.ellipse", title: "Which stadium?",
                                        detail: "\(Fmt.dayTitle(day.day)) · \(photoCount(day.assetIds.count))")
                             }
@@ -403,6 +399,13 @@ struct AlbumImportView: View {
             if let game = await GameLookup.games(at: venue, from: cluster.start, to: cluster.end).first { return game }
         }
         return nil
+    }
+
+    /// The venue picker closed: if it picked a venue, that is where the day's photos were taken.
+    private func placePicked() {
+        defer { placingDay = nil; pickedVenueId = nil }
+        guard let day = placingDay, let id = pickedVenueId, let venue = library.venue(id) else { return }
+        Task { await place(day, at: venue) }
     }
 
     /// The fan told us where a day's photos were taken.
