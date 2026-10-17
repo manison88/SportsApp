@@ -1341,7 +1341,7 @@
   "region": "New York",
   "country": "United States",
   "countryCode": "US",
-  "latitude": 41.17,
+  "latitude": 41.1701,
   "longitude": -74.037,
   "sports": [
    "baseball"
@@ -1352,7 +1352,7 @@
   ],
   "timeZone": "America/New_York",
   "capacity": 8362,
-  "opened": 2011
+  "opened": null
  },
  {
   "id": "coca-cola-park",
@@ -2780,8 +2780,8 @@
   "region": "North Carolina",
   "country": "United States",
   "countryCode": "US",
-  "latitude": 35.27,
-  "longitude": -77.57417,
+  "latitude": 35.27011,
+  "longitude": -77.5742,
   "sports": [
    "baseball"
   ],
@@ -2791,7 +2791,7 @@
   ],
   "timeZone": "America/New_York",
   "capacity": 3400,
-  "opened": 1949
+  "opened": null
  },
  {
   "id": "greater-nevada-field",
@@ -5965,7 +5965,8 @@
   "id": "starfire-stadium",
   "name": "Starfire Stadium",
   "aliases": [
-   "Starfire Sports Complex"
+   "Starfire Sports Complex",
+   "Starfire Sports Stadium"
   ],
   "city": "Tukwila",
   "region": "Washington",
@@ -6200,27 +6201,6 @@
   "timeZone": "America/Los_Angeles",
   "capacity": 4329,
   "opened": 2022
- },
- {
-  "id": "texas-health-mansfield-stadium",
-  "name": "Texas Health Mansfield Stadium",
-  "aliases": [],
-  "city": "Mansfield",
-  "region": "Texas",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 32.55,
-  "longitude": -97.08,
-  "sports": [
-   "soccer"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "North Texas SC"
-  ],
-  "timeZone": "America/Chicago",
-  "capacity": 7000,
-  "opened": 2026
  },
  {
   "id": "the-ballpark-at-america-first-square",

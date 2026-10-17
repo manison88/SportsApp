@@ -818,9 +818,9 @@
   "teamName": "Sky Blue FC",
   "monogram": "S",
   "colors": {
-   "primary": "74C2E8",
+   "primary": "A9F1FD",
    "secondary": "000000",
-   "accent": "74C2E8"
+   "accent": "A9F1FD"
   },
   "externalIds": {
    "espn": "15364",
@@ -896,6 +896,68 @@
   "active": {
    "from": 2018,
    "to": 2020
+  }
+ },
+ {
+  "id": "hist-nwsl-nyny-gotham-fc",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "NWSL",
+  "leagueKey": "history/nwsl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NJNY",
+  "locationName": "New Jersey/New York",
+  "teamName": "NJ/NY Gotham FC",
+  "monogram": "N",
+  "colors": {
+   "primary": "A9F1FD",
+   "secondary": "000000",
+   "accent": "A9F1FD"
+  },
+  "externalIds": {
+   "espn": "15364",
+   "espnLeague": "soccer/usa.nwsl",
+   "wikidata": "Q1447181",
+   "theSportsDb": null
+  },
+  "homeVenueId": "sports-illustrated-stadium",
+  "founded": 2006,
+  "tier": 1,
+  "active": {
+   "from": 2021,
+   "to": 2023
+  }
+ },
+ {
+  "id": "hist-nwsl-sea-ol-reign",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "NWSL",
+  "leagueKey": "history/nwsl",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "OLR",
+  "locationName": "Seattle",
+  "teamName": "OL Reign",
+  "monogram": "O",
+  "colors": {
+   "primary": "292431",
+   "secondary": "2E407A",
+   "accent": "646069"
+  },
+  "externalIds": {
+   "espn": "15363",
+   "espnLeague": "soccer/usa.nwsl",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lumen-field",
+  "founded": 2012,
+  "tier": 1,
+  "active": {
+   "from": 2020,
+   "to": 2023
   }
  },
  {
