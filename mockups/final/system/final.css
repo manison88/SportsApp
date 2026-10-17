@@ -1,0 +1,56 @@
+/* WITNESS · FINAL SYSTEM
+   Broadcast, cleaned. Load AFTER ../../round2/system/broadcast.css; this file
+   only adds the spacing discipline and the few components the final screens share.
+
+   The five rules that make it "super clean":
+   1. One hero per screen: a giant number, a score, or a full-bleed photo. Never two.
+   2. Max three blocks under the hero. If a fourth wants in, cut something.
+   3. 20pt side gutters, 28pt between blocks, 12pt inside a block.
+   4. Smallest text is 11pt. Labels are .b-label; body is .b-body. No 9–10pt micro type.
+   5. Color is team color or white. Amber appears only as the single "you" highlight;
+      live red only for live. No textures, no LED dots, no gradients except photo scrims
+      and the one ambient team glow on live screens. */
+
+:root {
+  --f-gutter: 20px;
+  --f-block: 28px;
+  --f-inner: 12px;
+  --chc: #2f6bff; --cle: #e31937; --chi: #f05a1a; --gb: #ffb612; --mil: #ffc52f;
+  --maya: #ff7a8a; --leo: #6fd3ff;
+}
+
+/* layout: absolute top for the header, then a flowing column */
+.f-col { position: absolute; left: var(--f-gutter); right: var(--f-gutter); display: flex; flex-direction: column; gap: var(--f-block); }
+.f-stack { display: flex; flex-direction: column; gap: var(--f-inner); }
+.f-row { display: flex; align-items: center; gap: 12px; }
+.f-between { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+
+/* top-level page title, same on every tab screen: title left, one icon button right */
+.f-title { font: 800 30px/1 var(--b-cond); letter-spacing: .2px; text-transform: uppercase; }
+
+/* full-bleed photo hero with broadcast scrim; put <img class="ph graded"> inside */
+.f-hero { position: absolute; left: 0; right: 0; top: 0; overflow: hidden; }
+.f-hero::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(7,8,10,.6) 0%, rgba(7,8,10,0) 22%, rgba(7,8,10,0) 50%, rgba(7,8,10,.9) 86%, #07080a 100%); }
+
+/* list rows (games, legs, plays): 56pt tall, hairline separators, no boxes */
+.f-list { display: flex; flex-direction: column; }
+.f-item { display: flex; align-items: center; gap: 12px; min-height: 56px; box-shadow: inset 0 -1px 0 var(--b-line); }
+.f-item:last-child { box-shadow: none; }
+.f-item .t { font: 700 17px/1.1 var(--b-cond); letter-spacing: .4px; text-transform: uppercase; }
+.f-item .s { font: 500 12.5px/1.3 var(--b-ui); color: var(--b-text-3); margin-top: 3px; }
+.f-item .end { margin-left: auto; text-align: right; }
+
+/* stat pair row: 2 or 3 equal stats separated by hairlines, no boxes */
+.f-stats { display: flex; }
+.f-stats > div { flex: 1; padding-right: 12px; }
+.f-stats > div + div { padding-left: 16px; box-shadow: inset 1px 0 0 var(--b-line); }
+.f-stats b { display: block; font: 800 34px/1 var(--b-cond); font-variant-numeric: tabular-nums; }
+.f-stats span { display: block; margin-top: 6px; font: 700 11px/1.1 var(--b-cond); letter-spacing: 2px; text-transform: uppercase; color: var(--b-text-3); }
+
+/* team monogram tile */
+.f-mono { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; background: var(--c, #333); color: #fff; font: 800 14px/1 var(--b-cond); letter-spacing: .6px; flex: none; }
+
+/* initials avatar */
+.f-av { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--c, #555); color: #0a0a0a; font: 800 13px/1 var(--b-cond); box-shadow: 0 0 0 2px var(--b-bg); flex: none; }
+.f-av + .f-av { margin-left: -8px; }
