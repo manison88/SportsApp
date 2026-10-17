@@ -171,3 +171,11 @@ import shutil
 shutil.copy(os.path.join(SEED, "teams.json"), os.path.join(ROOT, "Catalog", "teams.json"))
 for name in ("trips.json", "people.json", "profile.json"):
     shutil.copy(os.path.join(SEED, name), os.path.join(OUT, name))
+
+themes_src = os.path.join(os.path.dirname(__file__), "themes", "events.json")
+if os.path.exists(themes_src):
+    themes = json.load(open(themes_src))
+    keep = ("id", "name", "edition", "year", "match", "palette", "motif")
+    with open(os.path.join(ROOT, "Catalog", "event-themes.json"), "w") as f:
+        json.dump([{k: t.get(k) for k in keep} for t in themes], f, ensure_ascii=False, indent=1)
+    print(len(themes), "event themes")
