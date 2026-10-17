@@ -34,6 +34,40 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(scan.undated, ["e"])
     }
 
+    /// A night game: photos at 22:30 local, then the walk home at 01:30 the next calendar day, are one visit.
+    func testPhotosAcrossMidnightAreOneVisit() {
+        let wrigley = library.venue("wrigley")!
+        let points = [
+            PhotoPoint(id: "late", date: date("2016-10-31T03:30:00Z"), latitude: wrigley.latitude, longitude: wrigley.longitude),
+            PhotoPoint(id: "after", date: date("2016-10-31T06:30:00Z"), latitude: wrigley.latitude + 0.001, longitude: wrigley.longitude),
+            // The next afternoon is another outing, not the same visit.
+            PhotoPoint(id: "next", date: date("2016-11-01T15:30:00Z"), latitude: wrigley.latitude, longitude: wrigley.longitude),
+        ]
+        let scan = VisitGrouping.group(points, venues: library.venues)
+        XCTAssertEqual(scan.visits.count, 2)
+        XCTAssertEqual(Set(scan.visits[0].assetIds), ["late", "after"])
+        XCTAssertEqual(scan.visits[1].assetIds, ["next"])
+    }
+
+    func testDuplicateGamesAreSpottedAndCombined() {
+        let when = date("2026-06-24T19:00:00Z")
+        let source = GameEntry.Source(provider: "espn", league: "soccer/fifa.world", eventId: "401")
+        var a = GameEntry(sport: .soccer, date: when, venueId: "lumen-field", photos: [.library("p1"), .library("p2")], origin: .photos)
+        a.source = source
+        var b = GameEntry(sport: .soccer, date: when, venueId: "lumen-field", photos: [.library("p2"), .library("p3")], origin: .photos)
+        b.source = source
+        XCTAssertTrue(Library.sameGame(a, b))
+        var other = b
+        other.id = "other"
+        other.source = GameEntry.Source(provider: "espn", league: "soccer/fifa.world", eventId: "402")
+        XCTAssertFalse(Library.sameGame(a, other), "Different schedule events at one stadium are two games")
+
+        library.add(a)
+        library.add(b)
+        XCTAssertEqual(library.games.filter { $0.venueId == "lumen-field" }.count, 1, "Photos for a game already saved join it")
+        XCTAssertEqual(library.games.first { $0.venueId == "lumen-field" }?.photos.count, 3)
+    }
+
     func testDiscoveryRuleSkipsDriveBys() {
         let wrigley = library.venue("wrigley")!
         let one = [PhotoPoint(id: "a", date: date("2016-10-31T00:10:00Z"), latitude: wrigley.latitude, longitude: wrigley.longitude)]

@@ -86,6 +86,10 @@ enum VisitGrouping {
     /// They can't start a visit: only photos inside the venue's own fence do.
     static let matchdayReach: CLLocationDistance = 500
 
+    /// A game that runs past midnight is photographed on two calendar days. Photos at one venue on consecutive
+    /// local days, with no more than this between the last of the first day and the first of the next, are one visit.
+    static let overnightGap: TimeInterval = 6 * 3600
+
     /// - minimumStay: required spread of a visit's photos inside the fence (library discovery uses 15 min to
     ///   skip drive-bys; an album the fan chose is trusted, so it passes nil).
     /// - skipping: "venueId|yyyy-MM-dd" keys of games already in the library.
@@ -115,9 +119,30 @@ enum VisitGrouping {
             }
         }
 
+        // Join visits that straddle midnight (a night game, the walk home). The later day's key points at the earlier.
+        var alias: [String: String] = [:]
+        let byVenue = Dictionary(grouping: Array(visits.keys), by: { String($0.split(separator: "|").first ?? "") })
+        for (venueId, keys) in byVenue where keys.count > 1 {
+            let ordered = keys.sorted()
+            var current = ordered[0]
+            for next in ordered.dropFirst() {
+                var merged = false
+                if let a = visits[current], let b = visits[next], let after = dayAfter(current), next == "\(venueId)|\(after)",
+                   let lastOfFirst = a.1.map({ $0.1 }).max(), let firstOfNext = b.1.map({ $0.1 }).min(),
+                   firstOfNext.timeIntervalSince(lastOfFirst) <= overnightGap {
+                    visits[current] = (a.0, a.1 + b.1)
+                    visits[next] = nil
+                    alias[next] = current
+                    merged = true
+                }
+                if !merged { current = next }
+            }
+        }
+
         // Within 500 m on a visit's day: part of the visit. With no visit that day, they wait like any other photo.
         for (id, date, v) in around {
-            let k = "\(v.id)|\(days.day(date, tz: v.tz))"
+            let own = "\(v.id)|\(days.day(date, tz: v.tz))"
+            let k = alias[own] ?? own
             if visits[k] != nil { joined[k, default: []].append((id, date)) } else { loose.append((id, date)) }
         }
 
@@ -131,6 +156,11 @@ enum VisitGrouping {
             zones[tz.identifier] = tz
             let dayKey = "\(tz.identifier)|\(k.split(separator: "|").last ?? "")"
             if visitByDay[dayKey] == nil { visitByDay[dayKey] = k }
+        }
+        for (from, to) in alias {
+            guard let tz = visits[to]?.0.tz else { continue }
+            let dayKey = "\(tz.identifier)|\(from.split(separator: "|").last ?? "")"
+            if visitByDay[dayKey] == nil { visitByDay[dayKey] = to }
         }
         var byDay: [String: [(String, Date)]] = [:]
         for (id, date) in loose {
@@ -180,6 +210,19 @@ enum VisitGrouping {
             if d <= (radius ?? v.geofence), d < (best?.1 ?? .infinity) { best = (v, d) }
         }
         return best?.0
+    }
+
+    /// The day after "venue|2016-10-30" (or "2016-10-30"), as "2016-10-31".
+    private static func dayAfter(_ key: String) -> String? {
+        let day = String(key.split(separator: "|").last ?? "")
+        let parts = day.split(separator: "-").compactMap { Int($0) }
+        guard parts.count == 3, let utc = TimeZone(identifier: "UTC") else { return nil }
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = utc
+        guard let start = cal.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2])),
+              let next = cal.date(byAdding: .day, value: 1, to: start) else { return nil }
+        let c = cal.dateComponents([.year, .month, .day], from: next)
+        return String(format: "%04d-%02d-%02d", c.year ?? 0, c.month ?? 0, c.day ?? 0)
     }
 
     /// "wrigley|2016-10-30", the venue's local calendar day.

@@ -39,12 +39,57 @@ struct TimelineView: View {
                 ContentUnavailableView.search(text: query)
             }
         }
-        .safeAreaInset(edge: .top, spacing: 0) { ScanBanner() }
+        .safeAreaInset(edge: .top, spacing: 0) {
+            VStack(spacing: 0) {
+                DuplicateBanner()
+                ScanBanner()
+            }
+        }
         .inkBackground()
         .tabTitle("Timeline")
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Teams, places, years")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) { AddMenu() }
+        }
+    }
+}
+
+/// Entries that look like the same game (a scan and an album both added it): offer to combine their photos.
+private struct DuplicateBanner: View {
+    @Environment(Library.self) private var library
+    @State private var confirming = false
+    @State private var hidden = false
+
+    var body: some View {
+        let groups = library.duplicateGroups
+        if !groups.isEmpty && !hidden {
+            Button { confirming = true } label: {
+                HStack(spacing: 12) {
+                    Image(systemName: "square.on.square")
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(groups.count == 1 ? "1 game appears twice" : "\(groups.count) games appear twice")
+                            .font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
+                        Text("Same game at the same stadium. Combine their photos?")
+                            .font(.footnote).foregroundStyle(Color.textSecondary)
+                    }
+                    Spacer()
+                    Text("Combine").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
+                        .foregroundStyle(Color.signal)
+                }
+                .foregroundStyle(.white)
+                .padding(14)
+                .background(Color.panel, in: .rect(cornerRadius: 14))
+                .gutter()
+                .padding(.vertical, 6)
+            }
+            .buttonStyle(.plain)
+            .accessibilityIdentifier("duplicate-banner")
+            .confirmationDialog("Combine duplicate games?", isPresented: $confirming, titleVisibility: .visible) {
+                Button("Combine") { for group in groups { library.combine(group) } }
+                Button("Not now", role: .cancel) { hidden = true }
+            } message: {
+                Text("Photos from each copy stay together on one game.")
+            }
         }
     }
 }

@@ -116,7 +116,88 @@ final class Library {
     // MARK: Mutations
 
     func add(_ game: GameEntry) {
+        // Photos or a ticket for a game already in the library join it instead of making a second card.
+        if game.origin == .photos || game.origin == .ticket,
+           let i = games.firstIndex(where: { Self.sameGame($0, game) }) {
+            games[i] = Self.merged(games[i], with: game)
+            sortAndSave()
+            return
+        }
         games.append(game)
+        sortAndSave()
+    }
+
+    // MARK: Duplicates
+
+    /// True when two entries are the same real game: the same schedule event, or, when either has no event to
+    /// compare, the same venue within a few hours.
+    nonisolated static func sameGame(_ a: GameEntry, _ b: GameEntry) -> Bool {
+        guard a.id != b.id else { return false }
+        if let x = a.source, let y = b.source {
+            return x.provider == y.provider && x.league == y.league && x.eventId == y.eventId
+        }
+        guard a.venueId == b.venueId else { return false }
+        return abs(a.date.timeIntervalSince(b.date)) < 8 * 3600
+    }
+
+    /// `keep` with everything `other` knows added: photos, schedule details, notes. What `keep` already has wins.
+    nonisolated static func merged(_ keep: GameEntry, with other: GameEntry) -> GameEntry {
+        var g = keep
+        var seen = Set(g.photos)
+        for ref in other.photos where seen.insert(ref).inserted { g.photos.append(ref) }
+        if g.kind == .visit && other.kind != .visit {
+            g.kind = nil
+            g.sport = other.sport
+            g.date = other.date
+        }
+        if g.source == nil { g.source = other.source }
+        if g.homeTeamId == nil { g.homeTeamId = other.homeTeamId }
+        if g.awayTeamId == nil { g.awayTeamId = other.awayTeamId }
+        if g.homeScore == nil { g.homeScore = other.homeScore }
+        if g.awayScore == nil { g.awayScore = other.awayScore }
+        if g.rootingForTeamId == nil { g.rootingForTeamId = other.rootingForTeamId }
+        if g.competition == nil { g.competition = other.competition }
+        if g.headline == nil { g.headline = other.headline }
+        if g.seat == nil { g.seat = other.seat }
+        if g.note == nil { g.note = other.note }
+        if g.tripId == nil { g.tripId = other.tripId }
+        if g.weather == nil { g.weather = other.weather }
+        if g.attendance == nil { g.attendance = other.attendance }
+        if g.stage == nil { g.stage = other.stage }
+        if g.plays.isEmpty { g.plays = other.plays }
+        if g.winProbability.isEmpty { g.winProbability = other.winProbability }
+        if g.lineHome.isEmpty { g.lineHome = other.lineHome }
+        if g.lineAway.isEmpty { g.lineAway = other.lineAway }
+        if g.podium.isEmpty { g.podium = other.podium }
+        if g.coverPhoto == nil { g.coverPhoto = other.coverPhoto; g.coverChosenByFan = other.coverChosenByFan }
+        for id in other.companionIds where !g.companionIds.contains(id) { g.companionIds.append(id) }
+        for moment in other.savedMoments where !g.savedMoments.contains(moment) { g.savedMoments.append(moment) }
+        return g
+    }
+
+    /// Groups of entries that look like the same game, such as a scan and an album that both added it.
+    var duplicateGroups: [[GameEntry]] {
+        let real = games.filter { $0.origin != .sample }
+        var groups: [[GameEntry]] = []
+        var used = Set<String>()
+        for g in real where !used.contains(g.id) {
+            let same = real.filter { $0.id == g.id || (!used.contains($0.id) && Self.sameGame($0, g)) }
+            guard same.count > 1 else { continue }
+            groups.append(same)
+            for member in same { used.insert(member.id) }
+        }
+        return groups
+    }
+
+    /// Folds a group of duplicates into one game: the entry with the schedule match (else the most photos) keeps going.
+    func combine(_ group: [GameEntry]) {
+        func weight(_ g: GameEntry) -> Int { (g.source == nil ? 0 : 1000) + g.photos.count }
+        guard let best = group.max(by: { weight($0) < weight($1) }) else { return }
+        var result = best
+        for other in group where other.id != best.id { result = Self.merged(result, with: other) }
+        let removed = Set(group.map(\.id))
+        games.removeAll { removed.contains($0.id) }
+        games.append(result)
         sortAndSave()
     }
 
