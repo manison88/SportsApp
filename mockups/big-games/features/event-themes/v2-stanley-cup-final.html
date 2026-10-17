@@ -1,0 +1,56 @@
+<html><head><meta charset="utf-8"><title>Stanley Cup Final</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../final/system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.6); --win:#E3E8EC; }
+  .f-hero { height: 470px; }
+  .f-hero .crop { position: absolute; inset: 0; overflow: hidden; }
+  .f-hero .crop img { filter: grayscale(.35) contrast(1.1) brightness(.85); }
+  .f-hero::after { background: linear-gradient(180deg, rgba(7,8,10,.55) 0%, rgba(7,8,10,0) 22%, rgba(7,8,10,0) 42%, rgba(7,8,10,.7) 76%, #07080a 100%); z-index: 2; }
+  .motif { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+  .head { top: 300px; z-index: 6; gap: 12px !important; }
+  .head .b-display { font-size: 56px; }
+  .head .where { font: 500 15px/1.3 var(--b-ui); color: rgba(255,255,255,.78); }
+  .chip { display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; height: 30px; padding: 0 12px;
+          border-radius: 15px; font: 800 13px/1 var(--b-cond); letter-spacing: 1.6px; text-transform: uppercase; }
+  .chip svg { width: 14px; height: 14px; }
+  .body { top: 506px; }
+  .ls { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .ls th { font: 700 12px/1 var(--b-cond); letter-spacing: 2px; color: var(--b-text-3); text-align: center; padding-bottom: 8px; }
+  .ls td { height: 48px; box-shadow: inset 0 1px 0 var(--b-line); text-align: center; font: 600 20px/1 var(--b-cond); color: var(--b-text-2); width: 30px; }
+  .ls td.tm { text-align: left; width: auto; }
+  .ls td.tm div { display: flex; align-items: center; gap: 12px; font: 700 20px/1 var(--b-cond); letter-spacing: .4px; text-transform: uppercase; color: #fff; }
+  .ls td.t { width: 56px; text-align: right; font: 800 32px/1 var(--b-cond); color: var(--win, #fff); }
+  .ls tr.lose td.tm div, .ls tr.lose td.t { color: rgba(255,255,255,.55); }
+  .strip { height: 6px; border-radius: 3px; }
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 40px; }
+  .cta .b-btn { width: 100%; height: 54px; font-size: 17px; }
+  .cta svg { width: 16px; height: 16px; fill: currentColor; }
+  
+</style></head>
+<body class="phone b">
+<div class="f-hero"><div class="crop" data-crop="united-center-court.jpg 300 120 680 853"></div><div class="motif"><div style="position:absolute;left:0;right:0;top:118px;height:15px;background:linear-gradient(180deg,#F4F6F8 0%,#C3CBD1 45%,#8E989F 55%,#DDE2E6 100%);opacity:.9;font:700 9px/15px var(--b-cond);letter-spacing:3px;color:rgba(20,24,28,.55);white-space:nowrap;overflow:hidden;text-indent:0px">CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · </div><div style="position:absolute;left:0;right:0;top:136px;height:15px;background:linear-gradient(180deg,#F4F6F8 0%,#C3CBD1 45%,#8E989F 55%,#DDE2E6 100%);opacity:.9;font:700 9px/15px var(--b-cond);letter-spacing:3px;color:rgba(20,24,28,.55);white-space:nowrap;overflow:hidden;text-indent:37px">CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · CHICAGO · 2015 · </div></div></div>
+<div class="b-nav" style="z-index:7">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+<div class="f-col head"><span class="chip" style="background:linear-gradient(180deg,#F4F6F8 0%,#C3CBD1 45%,#8E989F 55%,#DDE2E6 100%);color:#0b0d10"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v3h3v2a4 4 0 0 1-4 4h-.3A5 5 0 0 1 13 14.9V18h3v3H8v-3h3v-3.1A5 5 0 0 1 8.3 12H8a4 4 0 0 1-4-4V6h3zm0 5V6H6v2a2 2 0 0 0 1 1.7zm10 0a2 2 0 0 0 1-1.7V6h-1z"/></svg>Stanley Cup Final · Game 6</span><div class="b-display">Clinched<br>on home ice.</div><div class="where">United Center, Jun 15, 2015</div></div>
+<div class="f-col body"><table class="ls"><tr><th></th><th>1</th><th>2</th><th>3</th><th style="text-align:right">T</th></tr><tr class="lose"><td class="tm"><div><span class="f-mono" style="--c:#0b3d91;color:#fff">TB</span>Tampa Bay</div></td><td>0</td><td>0</td><td>0</td><td class="t">0</td></tr><tr class=""><td class="tm"><div><span class="f-mono" style="--c:#cf0a2c;color:#fff">CHI</span>Chicago</div></td><td>0</td><td>1</td><td>1</td><td class="t">2</td></tr></table><div class="strip" style="background:linear-gradient(180deg,#F4F6F8 0%,#C3CBD1 45%,#8E989F 55%,#DDE2E6 100%)"></div></div>
+
+<div class="cta"><div class="b-btn" style="background:linear-gradient(180deg,#F4F6F8 0%,#C3CBD1 45%,#8E989F 55%,#DDE2E6 100%);color:#0b0d10"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg>Play recap</div></div>
+<script>
+(function () {
+  const N = {"wrigley-night.jpg": [1920, 2560], "united-center-court.jpg": [1280, 853], "camp-nou-aerial.jpg": [1280, 960], "soldier-soccer.jpg": [1280, 1707], "lambeau-concourse.jpg": [1920, 1288]};
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>
