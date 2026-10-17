@@ -17,7 +17,8 @@ enum ScoreboardReader {
         let folded = text.folding(options: [.diacriticInsensitive], locale: nil).uppercased()
         var tokens: [String] = []
         var current = ""
-        func flush() { if !current.isEmpty { tokens.append(current); current = "" } }
+        // Text recognition often reads a scoreboard's zero as the letter O; no team is a lone "O".
+        func flush() { if !current.isEmpty { tokens.append(current == "O" ? "0" : current); current = "" } }
         for ch in folded {
             if ch.isLetter || ch.isNumber {
                 // A letter-digit boundary splits too: "CHC3" reads as CHC, 3.
