@@ -34,7 +34,8 @@
   "name": "Hubert H. Humphrey Metrodome",
   "aliases": [
    "Metrodome",
-   "Humphrey Metrodome"
+   "Humphrey Metrodome",
+   "Mall of America Field"
   ],
   "city": "Minneapolis",
   "region": "Minnesota",
@@ -190,7 +191,8 @@
    "Old Highmark Stadium",
    "Rich Stadium",
    "New Era Field",
-   "Orchard Park Stadium"
+   "Orchard Park Stadium",
+   "Highmark Stadium (Old)"
   ],
   "city": "Orchard Park",
   "region": "New York",
@@ -514,7 +516,8 @@
   "name": "Bowman Field",
   "aliases": [
    "Historic Bowman Field",
-   "Bowman Field Williamsport"
+   "Bowman Field Williamsport",
+   "Journey Bank Ballpark at Historic Bowman Field"
   ],
   "city": "Williamsport",
   "region": "Pennsylvania",
@@ -749,7 +752,8 @@
   "aliases": [
    "O2 Arena London",
    "The O2",
-   "North Greenwich Arena"
+   "North Greenwich Arena",
+   "O2 Arena (ENG)"
   ],
   "city": "London",
   "region": "England",
@@ -775,7 +779,8 @@
   "id": "arena-ciudad-de-mexico",
   "name": "Arena Ciudad de México",
   "aliases": [
-   "Arena CDMX"
+   "Arena CDMX",
+   "Mexico City Arena"
   ],
   "city": "Mexico City",
   "region": null,
@@ -1572,7 +1577,8 @@
   "id": "starfire-stadium",
   "name": "Starfire Stadium",
   "aliases": [
-   "Starfire Sports Complex"
+   "Starfire Sports Complex",
+   "Starfire Sports Stadium"
   ],
   "city": "Tukwila",
   "region": "Washington",
@@ -1600,7 +1606,8 @@
   "id": "memorial-stadium-seattle",
   "name": "Memorial Stadium",
   "aliases": [
-   "Seattle Memorial Stadium"
+   "Seattle Memorial Stadium",
+   "UW Medicine Pitch at Memorial Stadium"
   ],
   "city": "Seattle",
   "region": "Washington",
@@ -1682,7 +1689,8 @@
   "id": "maryland-soccerplex",
   "name": "Maryland SoccerPlex",
   "aliases": [
-   "Maryland SoccerPlex Germantown"
+   "Maryland SoccerPlex Germantown",
+   "Maureen Hendricks Field"
   ],
   "city": "Germantown",
   "region": "Maryland",
@@ -1816,5 +1824,323 @@
   "closed": 2016,
   "demolished": 2017,
   "note": "Roughriders home through 2016; replaced by the new Mosaic Stadium (catalog id mosaic-stadium)."
+ },
+ {
+  "id": "palace-of-auburn-hills",
+  "name": "The Palace of Auburn Hills",
+  "aliases": [
+   "Palace of Auburn Hills",
+   "The Palace"
+  ],
+  "city": "Auburn Hills",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.69694,
+  "longitude": -83.24556,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Detroit Pistons"
+  ],
+  "timeZone": "America/Detroit",
+  "capacity": 22076,
+  "opened": 1988,
+  "closed": 2016,
+  "demolished": 2019,
+  "note": "Pistons home through 2016-17 (last game April 2017); replaced by Little Caesars Arena; demolished 2019."
+ },
+ {
+  "id": "espn-wide-world-of-sports-complex",
+  "name": "ESPN Wide World of Sports Complex",
+  "aliases": [
+   "Disney Wide World of Sports",
+   "NBA Bubble",
+   "Walt Disney World Wide World of Sports"
+  ],
+  "city": "Lake Buena Vista",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 28.33708,
+  "longitude": -81.556,
+  "sports": [
+   "basketball",
+   "baseball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": 1997,
+  "closed": 2020,
+  "demolished": null,
+  "note": "Neutral site: NBA 2019-20 restart (bubble) games, July-Oct 2020."
+ },
+ {
+  "id": "img-academy-bradenton",
+  "name": "IMG Academy",
+  "aliases": [
+   "WNBA Bubble IMG Academy"
+  ],
+  "city": "Bradenton",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 27.44055,
+  "longitude": -82.60875,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null,
+  "closed": 2020,
+  "demolished": null,
+  "note": "Neutral site: WNBA 2020 season (bubble) games; coordinates are the campus centre (about 200-300 m)."
+ },
+ {
+  "id": "indiana-farmers-coliseum",
+  "name": "Indiana Farmers Coliseum",
+  "aliases": [
+   "Corteva Coliseum",
+   "Pepsi Coliseum",
+   "Indiana State Fairgrounds Coliseum"
+  ],
+  "city": "Indianapolis",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.828,
+  "longitude": -86.1337,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Indiana Fever"
+  ],
+  "timeZone": "America/Indiana/Indianapolis",
+  "capacity": 6500,
+  "opened": 1939,
+  "closed": 2022,
+  "demolished": null,
+  "note": "Indiana Fever home games 2021-2022 (as Corteva Coliseum); coordinates about 100 m."
+ },
+ {
+  "id": "los-angeles-convention-center",
+  "name": "Los Angeles Convention Center",
+  "aliases": [
+   "LACC"
+  ],
+  "city": "Los Angeles",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.0397,
+  "longitude": -118.27,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Los Angeles Sparks"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": 1971,
+  "closed": 2021,
+  "demolished": null,
+  "note": "Sparks played 11 home games here in 2021."
+ },
+ {
+  "id": "walter-pyramid-long-beach",
+  "name": "Walter Pyramid",
+  "aliases": [
+   "LBS Financial Credit Union Pyramid",
+   "The Pyramid",
+   "Long Beach State Pyramid"
+  ],
+  "city": "Long Beach",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.78726,
+  "longitude": -118.11439,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba",
+   "basketball/mens-college-basketball"
+  ],
+  "homeTeams": [
+   "Los Angeles Sparks"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 4200,
+  "opened": 1994,
+  "closed": 2024,
+  "demolished": null,
+  "note": "Sparks played occasional home games here 2016-2024."
+ },
+ {
+  "id": "eaglebank-arena",
+  "name": "EagleBank Arena",
+  "aliases": [
+   "Patriot Center",
+   "George Mason Patriot Center"
+  ],
+  "city": "Fairfax",
+  "region": "Virginia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.8269,
+  "longitude": -77.3097,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba",
+   "basketball/mens-college-basketball"
+  ],
+  "homeTeams": [
+   "Washington Mystics"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 10000,
+  "opened": 1985,
+  "closed": 2025,
+  "demolished": null,
+  "note": "Mystics played select home games 2018-2025."
+ },
+ {
+  "id": "charles-e-smith-center",
+  "name": "Charles E. Smith Center",
+  "aliases": [
+   "Smith Center"
+  ],
+  "city": "Washington",
+  "region": "District of Columbia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.8978,
+  "longitude": -77.0493,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba",
+   "basketball/mens-college-basketball"
+  ],
+  "homeTeams": [
+   "Washington Mystics"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 5000,
+  "opened": 1975,
+  "closed": 2018,
+  "demolished": null,
+  "note": "Mystics played 3 home games here in 2018."
+ },
+ {
+  "id": "cfg-bank-arena",
+  "name": "CFG Bank Arena",
+  "aliases": [
+   "Royal Farms Arena",
+   "1st Mariner Arena",
+   "Baltimore Arena",
+   "Baltimore Civic Center"
+  ],
+  "city": "Baltimore",
+  "region": "Maryland",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.28861,
+  "longitude": -76.61889,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Washington Mystics"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 14000,
+  "opened": 1962,
+  "closed": 2025,
+  "demolished": null,
+  "note": "Mystics played 2 home games here in 2025."
+ },
+ {
+  "id": "charles-schwab-field-omaha",
+  "name": "Charles Schwab Field Omaha",
+  "aliases": [
+   "TD Ameritrade Park Omaha",
+   "TD Ameritrade Park"
+  ],
+  "city": "Omaha",
+  "region": "Nebraska",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.26697,
+  "longitude": -95.93255,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 24000,
+  "opened": 2011,
+  "closed": null,
+  "demolished": null,
+  "note": "Neutral site: MLB game June 14, 2019 (Royals vs Tigers)."
+ },
+ {
+  "id": "edgewood-tahoe-resort",
+  "name": "Edgewood Tahoe Resort",
+  "aliases": [
+   "NHL Outdoors at Lake Tahoe",
+   "Edgewood Tahoe Golf Course"
+  ],
+  "city": "Stateline",
+  "region": "Nevada",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.968,
+  "longitude": -119.943,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": 2021,
+  "closed": 2021,
+  "demolished": null,
+  "note": "Neutral site: NHL Outdoors at Lake Tahoe, Feb 2021 (Bruins vs Flyers, Avalanche vs Golden Knights); rink was temporary, coordinates are the golf course (about 300 m)."
  }
 ]
