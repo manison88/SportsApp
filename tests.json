@@ -1,0 +1,293 @@
+{
+  "devices" : [
+    {
+      "architecture" : "arm64",
+      "deviceId" : "291E4B86-C951-41A7-8327-84BF0304D0A9",
+      "deviceName" : "iPhone 16 Pro",
+      "modelName" : "iPhone 16 Pro",
+      "osBuildNumber" : "23C54",
+      "osVersion" : "26.2",
+      "platform" : "iOS Simulator"
+    }
+  ],
+  "testNodes" : [
+    {
+      "children" : [
+        {
+          "children" : [
+            {
+              "children" : [
+                {
+                  "duration" : "0.088s",
+                  "durationInSeconds" : 0.08849501609802246,
+                  "name" : "testAddPersistsAndReloads()",
+                  "nodeIdentifier" : "LibraryTests/testAddPersistsAndReloads()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testAddPersistsAndReloads",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "0.011s",
+                  "durationInSeconds" : 0.010511994361877441,
+                  "name" : "testAddPerson()",
+                  "nodeIdentifier" : "LibraryTests/testAddPerson()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testAddPerson",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "0.052s",
+                  "durationInSeconds" : 0.05173897743225098,
+                  "name" : "testCustomVenueDedupesAndPersists()",
+                  "nodeIdentifier" : "LibraryTests/testCustomVenueDedupesAndPersists()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testCustomVenueDedupesAndPersists",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "1s",
+                  "durationInSeconds" : 1.1363519430160522,
+                  "name" : "testRemoveSampleKeepsUserGames()",
+                  "nodeIdentifier" : "LibraryTests/testRemoveSampleKeepsUserGames()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testRemoveSampleKeepsUserGames",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "0.96s",
+                  "durationInSeconds" : 0.9603420495986938,
+                  "name" : "testResetClearsEverything()",
+                  "nodeIdentifier" : "LibraryTests/testResetClearsEverything()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testResetClearsEverything",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "1s",
+                  "durationInSeconds" : 1.1691969633102417,
+                  "name" : "testSampleLibrary()",
+                  "nodeIdentifier" : "LibraryTests/testSampleLibrary()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testSampleLibrary",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "1s",
+                  "durationInSeconds" : 1.2280230522155762,
+                  "name" : "testStats()",
+                  "nodeIdentifier" : "LibraryTests/testStats()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testStats",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                }
+              ],
+              "name" : "LibraryTests",
+              "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests",
+              "nodeType" : "Test Suite",
+              "result" : "Passed"
+            },
+            {
+              "children" : [
+                {
+                  "duration" : "0.015s",
+                  "durationInSeconds" : 0.015484929084777832,
+                  "name" : "testAXSSoccerWithAccentsAndEuropeanDate()",
+                  "nodeIdentifier" : "TicketParserTests/testAXSSoccerWithAccentsAndEuropeanDate()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testAXSSoccerWithAccentsAndEuropeanDate",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "0.0051s",
+                  "durationInSeconds" : 0.005081057548522949,
+                  "name" : "testCatalogLoaded()",
+                  "nodeIdentifier" : "TicketParserTests/testCatalogLoaded()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testCatalogLoaded",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "0.0072s",
+                  "durationInSeconds" : 0.0071669816970825195,
+                  "name" : "testMLSAtSoldierFieldISODate()",
+                  "nodeIdentifier" : "TicketParserTests/testMLSAtSoldierFieldISODate()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testMLSAtSoldierFieldISODate",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "0.0097s",
+                  "durationInSeconds" : 0.009701013565063477,
+                  "name" : "testNothingUsefulGivesEmptyDraft()",
+                  "nodeIdentifier" : "TicketParserTests/testNothingUsefulGivesEmptyDraft()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testNothingUsefulGivesEmptyDraft",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "0.0072s",
+                  "durationInSeconds" : 0.007208108901977539,
+                  "name" : "testOCRScreenshotWithCodesOnly()",
+                  "nodeIdentifier" : "TicketParserTests/testOCRScreenshotWithCodesOnly()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testOCRScreenshotWithCodesOnly",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "0.0072s",
+                  "durationInSeconds" : 0.007176995277404785,
+                  "name" : "testSeatGeekFootballAtLambeauWithStackedLabels()",
+                  "nodeIdentifier" : "TicketParserTests/testSeatGeekFootballAtLambeauWithStackedLabels()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testSeatGeekFootballAtLambeauWithStackedLabels",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "0.0088s",
+                  "durationInSeconds" : 0.008801937103271484,
+                  "name" : "testStubHubConfirmation()",
+                  "nodeIdentifier" : "TicketParserTests/testStubHubConfirmation()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testStubHubConfirmation",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "0.013s",
+                  "durationInSeconds" : 0.013010978698730469,
+                  "name" : "testTicketmasterEmail()",
+                  "nodeIdentifier" : "TicketParserTests/testTicketmasterEmail()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testTicketmasterEmail",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                }
+              ],
+              "name" : "TicketParserTests",
+              "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests",
+              "nodeType" : "Test Suite",
+              "result" : "Passed"
+            }
+          ],
+          "name" : "WitnessTests",
+          "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests",
+          "nodeType" : "Unit test bundle",
+          "result" : "Passed"
+        },
+        {
+          "children" : [
+            {
+              "children" : [
+                {
+                  "duration" : "38s",
+                  "durationInSeconds" : 38.093408942222595,
+                  "name" : "testAddCustomVenue()",
+                  "nodeIdentifier" : "WitnessUITests/testAddCustomVenue()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testAddCustomVenue",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "37s",
+                  "durationInSeconds" : 37.60791003704071,
+                  "name" : "testAddGameManually()",
+                  "nodeIdentifier" : "WitnessUITests/testAddGameManually()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testAddGameManually",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "20s",
+                  "durationInSeconds" : 20.994195103645325,
+                  "name" : "testDiscoveryFromPhotos()",
+                  "nodeIdentifier" : "WitnessUITests/testDiscoveryFromPhotos()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testDiscoveryFromPhotos",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "33s",
+                  "durationInSeconds" : 33.508092045784,
+                  "name" : "testGameMemoryRecapAndYouWereThere()",
+                  "nodeIdentifier" : "WitnessUITests/testGameMemoryRecapAndYouWereThere()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testGameMemoryRecapAndYouWereThere",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "35s",
+                  "durationInSeconds" : 35.05046093463898,
+                  "name" : "testImportTicketFromPastedEmail()",
+                  "nodeIdentifier" : "WitnessUITests/testImportTicketFromPastedEmail()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testImportTicketFromPastedEmail",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "26s",
+                  "durationInSeconds" : 26.718942046165466,
+                  "name" : "testLambeauMemoryAndTrip()",
+                  "nodeIdentifier" : "WitnessUITests/testLambeauMemoryAndTrip()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testLambeauMemoryAndTrip",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "27s",
+                  "durationInSeconds" : 27.538380980491638,
+                  "name" : "testLiveCheckIn()",
+                  "nodeIdentifier" : "WitnessUITests/testLiveCheckIn()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testLiveCheckIn",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "21s",
+                  "durationInSeconds" : 21.512272000312805,
+                  "name" : "testSpainTrip()",
+                  "nodeIdentifier" : "WitnessUITests/testSpainTrip()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testSpainTrip",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "36s",
+                  "durationInSeconds" : 36.73756003379822,
+                  "name" : "testTabsTour()",
+                  "nodeIdentifier" : "WitnessUITests/testTabsTour()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testTabsTour",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                },
+                {
+                  "duration" : "12s",
+                  "durationInSeconds" : 12.476486921310425,
+                  "name" : "testWelcome()",
+                  "nodeIdentifier" : "WitnessUITests/testWelcome()",
+                  "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testWelcome",
+                  "nodeType" : "Test Case",
+                  "result" : "Passed"
+                }
+              ],
+              "name" : "WitnessUITests",
+              "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests",
+              "nodeType" : "Test Suite",
+              "result" : "Passed"
+            }
+          ],
+          "name" : "WitnessUITests",
+          "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests",
+          "nodeType" : "UI test bundle",
+          "result" : "Passed"
+        }
+      ],
+      "name" : "Witness",
+      "nodeType" : "Test Plan",
+      "result" : "Passed"
+    }
+  ],
+  "testPlanConfigurations" : [
+    {
+      "configurationId" : "1",
+      "configurationName" : "Test Scheme Action"
+    }
+  ]
+}
