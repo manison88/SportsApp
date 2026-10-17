@@ -204,6 +204,18 @@ struct DiscoveryView: View {
                     Text("\(otherIndex + 1) of \(others.count)").unitLabel()
                 }
 
+                if let note = presenter.scan.notes[cluster.id], let game = presenter.scan.matches[cluster.id] {
+                    VStack(alignment: .leading, spacing: Spacing.inner) {
+                        Label(note, systemImage: "exclamationmark.circle")
+                            .font(.footnote)
+                            .foregroundStyle(Color.textSecondary)
+                            .accessibilityIdentifier("discovery-other-note")
+                        Button("I was at the game") { addAsGame(cluster, game) }
+                            .buttonStyle(.secondary)
+                            .accessibilityIdentifier("discovery-other-was-game")
+                    }
+                }
+
                 VStack(alignment: .leading, spacing: Spacing.inner) {
                     Text(cluster.venue.name).font(.condensed(.title3, weight: .heavy)).textCase(.uppercase)
                     Text("\(Fmt.dayTitle(cluster.start, in: cluster.venue.tz)) \u{00B7} \(Fmt.time(cluster.start, in: cluster.venue.tz)) \u{00B7} \(cluster.assetIds.count) \(cluster.assetIds.count == 1 ? "photo" : "photos")")
@@ -259,6 +271,23 @@ struct DiscoveryView: View {
             .padding(.bottom, 24)
         }
         .scrollIndicators(.hidden)
+    }
+
+    /// The photos didn't look like a game, but the fan says it was: add it as that game from the schedule.
+    private func addAsGame(_ cluster: PhotoCluster, _ game: FoundGame) {
+        let venue = GameLookup.venue(of: game, in: library.venues) ?? cluster.venue
+        var entry = GameEntry(sport: game.sport, date: game.start, venueId: venue.id,
+                              photos: cluster.assetIds.prefix(12).map { PhotoRef.library($0) }, origin: .photos)
+        GameLookup.apply(game, detail: nil, to: &entry, library: library)
+        let id = entry.id
+        Task {
+            guard let detail = await GameLookup.detail(game), var saved = library.game(id) else { return }
+            GameLookup.apply(game, detail: detail, to: &saved, library: library)
+            library.update(saved)
+        }
+        library.add(entry)
+        confirmed += 1
+        advanceOther()
     }
 
     private func addOther(_ cluster: PhotoCluster) {

@@ -7,7 +7,7 @@ import Observation
 @Observable
 @MainActor
 final class ScanModel {
-    enum State: Equatable { case idle, scanning, matching, done, empty, denied }
+    enum State: Equatable { case idle, scanning, matching, verifying, done, empty, denied }
 
     private(set) var state: State = .idle
     private(set) var progress = PhotoMatcher.ScanProgress()
@@ -22,6 +22,13 @@ final class ScanModel {
     /// Visits checked against the schedule so far, and how many there are in all.
     private(set) var checkedVisits = 0
     private(set) var totalVisits = 0
+    /// Visits looked at so far in the last check (do the photos look like a game or an event?), and how many there are.
+    private(set) var verifiedVisits = 0
+    private(set) var verifyTotal = 0
+    /// Why a visit that matched a game was moved to "other", by visit id.
+    private(set) var notes: [String: String] = [:]
+    /// Visits near a stadium whose photos looked like neither a game nor an event (a home, a street), left out.
+    private(set) var skippedVisits = 0
     /// Set once the review screen has taken the results, so the Timeline banner goes away.
     private(set) var reviewed = false
     /// Set once the scan screen has walked the person through every step, so the results appear after it, not mid-count.
@@ -30,7 +37,7 @@ final class ScanModel {
     @ObservationIgnored private var task: Task<Void, Never>?
 
     var matchedCount: Int { matches.count }
-    var inProgress: Bool { state == .scanning || state == .matching }
+    var inProgress: Bool { state == .scanning || state == .matching || state == .verifying }
     /// The newest game's schedule entry, for the first-result card.
     var newest: FoundGame? { games.first.flatMap { matches[$0.id] } }
 
@@ -51,8 +58,12 @@ final class ScanModel {
         others = []
         matches = [:]
         tickets = [:]
+        notes = [:]
         checkedVisits = 0
         totalVisits = 0
+        verifiedVisits = 0
+        verifyTotal = 0
+        skippedVisits = 0
         reviewed = false
         shown = false
     }
@@ -60,8 +71,8 @@ final class ScanModel {
     private func run(library: Library) async {
         guard await PhotoMatcher.requestAccess() else { state = .denied; return }
         progress = .init()
-        games = []; others = []; matches = [:]; tickets = [:]
-        checkedVisits = 0; totalVisits = 0
+        games = []; others = []; matches = [:]; tickets = [:]; notes = [:]
+        checkedVisits = 0; totalVisits = 0; verifiedVisits = 0; verifyTotal = 0; skippedVisits = 0
         reviewed = false
         shown = false
         state = .scanning
@@ -116,10 +127,38 @@ final class ScanModel {
         }
         matches = matched
         tickets = ticketed
-        let isGame: (PhotoCluster) -> Bool = { matched[$0.id] != nil || ticketed[$0.id] != nil }
-        let ordered = visits.sorted { $0.start > $1.start }
-        games = ordered.filter(isGame)
-        others = ordered.filter { !isGame($0) }
+
+        // Location and a game on that date are not enough: a home near the stadium puts photos there on game day too.
+        // A game needs photos that look like one. A ticket is proof on its own.
+        state = .verifying
+        let ticketBacked = visits.filter { ticketed[$0.id] != nil }
+        let candidates = visits.filter { matched[$0.id] != nil && ticketed[$0.id] == nil }
+        let unmatched = visits.filter { matched[$0.id] == nil && ticketed[$0.id] == nil }
+        verifyTotal = candidates.count + unmatched.count
+        var confirmed = ticketBacked
+        var inOther: [PhotoCluster] = []
+        var skipped = 0
+        for cluster in candidates {
+            let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 8)
+            // Without the classifier (some simulators) there is nothing to go on, so the schedule match stands.
+            if look == nil || look!.sports >= 0.2 {
+                confirmed.append(cluster)
+            } else {
+                inOther.append(cluster)
+                if let game = matched[cluster.id] {
+                    notes[cluster.id] = "There was a game here that day (\(game.away.abbreviation) at \(game.home.abbreviation)), but these photos don't look like it."
+                }
+            }
+            verifiedVisits += 1
+        }
+        for cluster in unmatched {
+            let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 8)
+            if look == nil || look!.sports >= 0.15 || look!.event >= 0.25 { inOther.append(cluster) } else { skipped += 1 }
+            verifiedVisits += 1
+        }
+        skippedVisits = skipped
+        games = confirmed.sorted { $0.start > $1.start }
+        others = inOther.sorted { $0.start > $1.start }
         state = games.isEmpty && others.isEmpty ? .empty : .done
     }
 

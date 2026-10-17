@@ -172,6 +172,36 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(library.game(game.id)?.heroPhoto, .bundled("a"), "Clearing goes back to the first photo")
     }
 
+    func testHomeNearAStadiumIsNotAGame() {
+        // Photos from a kid's room and a document, taken the morning of a real game: nothing sports-like.
+        let home = SceneCheck.score([("indoor", 0.9), ("bedroom", 0.8), ("document", 0.6)])
+        XCTAssertLessThan(home.sports, 0.2, "A bedroom is not a game")
+        XCTAssertLessThan(home.event, 0.25)
+        // A seat's-eye view of an arena reads as both a game and an event.
+        let arena = SceneCheck.score([("stadium", 0.7), ("crowd", 0.5)])
+        XCTAssertGreaterThanOrEqual(arena.sports, 0.2)
+        XCTAssertGreaterThanOrEqual(arena.event, 0.25)
+        // A concert is an event without being a game.
+        let concert = SceneCheck.score([("concert", 0.6), ("stage", 0.5)])
+        XCTAssertLessThan(concert.sports, 0.15)
+        XCTAssertGreaterThanOrEqual(concert.event, 0.25)
+    }
+
+    func testPacedNumbersNeverPassTheRealOnesAndAlwaysArrive() {
+        var shown = 0
+        var ticks = 0
+        while shown < 16_274 && ticks < 400 {
+            let next = ScanPacing.approach(shown, 16_274)
+            XCTAssertGreaterThan(next, shown)
+            XCTAssertLessThanOrEqual(next, 16_274)
+            shown = next
+            ticks += 1
+        }
+        XCTAssertEqual(shown, 16_274)
+        XCTAssertLessThanOrEqual(ticks, 100, "About four seconds at 25 ticks a second, at most")
+        XCTAssertEqual(ScanPacing.approach(5, 3), 3, "Never shows more than the real number")
+    }
+
     // MARK: Scoreboards
 
     func testCrestBoardConfirmsByScoreAlone() {

@@ -20,7 +20,7 @@ struct OnboardingView: View {
                 ScanProgressView(scan: scan)
             } else {
                 switch scan.state {
-                case .idle, .denied, .scanning, .matching: pages(denied: scan.state == .denied)
+                case .idle, .denied, .scanning, .matching, .verifying: pages(denied: scan.state == .denied)
                 case .done: ResultScreen(scan: scan) { presenter.modal = .discovery }
                 case .empty: emptyScreen(scan)
                 }
@@ -523,6 +523,14 @@ private struct ResultScreen: View {
             newestCard
                 .opacity(beat >= 2 ? 1 : 0)
                 .offset(y: beat >= 2 ? 0 : 18)
+            if scan.skippedVisits > 0 {
+                Label("\(scan.skippedVisits) \(scan.skippedVisits == 1 ? "visit" : "visits") near a stadium left out: the photos didn't look like a game or an event.",
+                      systemImage: "eye.slash")
+                    .font(.footnote)
+                    .foregroundStyle(Color.textTertiary)
+                    .opacity(beat >= 3 ? 1 : 0)
+                    .accessibilityIdentifier("onboarding-skipped-note")
+            }
             if !scan.others.isEmpty {
                 Label("\(scan.others.count) other \(scan.others.count == 1 ? "visit" : "visits") near a stadium to look at after your games: a concert, a tour, a tailgate.",
                       systemImage: "ticket")
@@ -612,15 +620,15 @@ struct ScanBanner: View {
     var body: some View {
         let scan = presenter.scan
         switch scan.state {
-        case .scanning, .matching:
+        case .scanning, .matching, .verifying:
             HStack(spacing: 12) {
                 ProgressView().tint(.white)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(scan.state == .matching ? "Matching to the schedule" : "Scanning your photos")
+                    Text(scan.state == .scanning ? "Scanning your photos" : scan.state == .matching ? "Matching to the schedule" : "Checking your photos")
                         .font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
-                    Text(scan.state == .matching
-                         ? "\(scan.checkedVisits) of \(scan.totalVisits) visits, \(scan.matchedCount) games so far"
-                         : "\(scan.progress.scanned.formatted()) of \(scan.progress.total.formatted()), \(scan.progress.visits) visits so far")
+                    Text(scan.state == .scanning
+                         ? "\(scan.progress.scanned.formatted()) of \(scan.progress.total.formatted()), \(scan.progress.visits) visits so far"
+                         : "\(scan.checkedVisits) of \(scan.totalVisits) visits, \(scan.matchedCount) games so far")
                         .font(.footnote).foregroundStyle(Color.textSecondary)
                 }
                 Spacer()

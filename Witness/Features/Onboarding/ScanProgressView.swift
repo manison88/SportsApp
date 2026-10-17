@@ -6,13 +6,14 @@ import SwiftUI
 @MainActor
 final class ScanPacing {
     enum Step: Int, CaseIterable {
-        case reading, stadiums, matching, building
+        case reading, stadiums, matching, verifying, building
 
         var title: String {
             switch self {
             case .reading: "Reading dates and places"
             case .stadiums: "Finding stadiums"
             case .matching: "Matching to the real schedule"
+            case .verifying: "Checking the photos look like a game"
             case .building: "Building your timeline"
             }
         }
@@ -24,6 +25,7 @@ final class ScanPacing {
     private(set) var venues = 0
     private(set) var checked = 0
     private(set) var matched = 0
+    private(set) var verified = 0
     private(set) var found = 0
     /// How many of the stadiums found are listed so far; they appear one at a time.
     private(set) var venuesRevealed = 0
@@ -42,7 +44,7 @@ final class ScanPacing {
     func snapshot(_ scan: ScanModel) {
         step = .building
         photos = scan.progress.total; near = scan.progress.atStadiums; venues = scan.progress.venues.count
-        checked = scan.totalVisits; matched = scan.matchedCount; found = scan.games.count
+        checked = scan.totalVisits; matched = scan.matchedCount; verified = scan.verifyTotal; found = scan.games.count
         venuesRevealed = scan.progress.venues.count
     }
 
@@ -65,8 +67,12 @@ final class ScanPacing {
             case .matching:
                 checked = Self.approach(checked, scan.checkedVisits)
                 matched = Self.approach(matched, scan.matchedCount)
+                let over = scan.state != .scanning && scan.state != .matching && scan.state != .idle
+                if over && checked >= scan.totalVisits && matched >= scan.matchedCount && t >= 2.2 { advance(.verifying) }
+            case .verifying:
+                verified = Self.approach(verified, scan.verifiedVisits)
                 let over = scan.state == .done || scan.state == .empty
-                if over && checked >= scan.totalVisits && matched >= scan.matchedCount && t >= 2.2 { advance(.building) }
+                if over && verified >= scan.verifyTotal && t >= 1.8 { advance(.building) }
             case .building:
                 found = Self.approach(found, scan.games.count)
                 if t >= 1.4 && found >= scan.games.count {
@@ -100,9 +106,10 @@ final class ScanPacing {
         case .reading: within = Double(photos) / Double(max(p.total, 1))
         case .stadiums: within = Double(venuesRevealed) / Double(max(p.venues.count, 1))
         case .matching: within = Double(checked) / Double(max(scan.totalVisits, 1))
+        case .verifying: within = Double(verified) / Double(max(scan.verifyTotal, 1))
         case .building: within = Double(found) / Double(max(scan.games.count, 1))
         }
-        return (Double(step.rawValue) + min(max(within, 0), 1)) / 4
+        return (Double(step.rawValue) + min(max(within, 0), 1)) / Double(Step.allCases.count)
     }
 }
 
@@ -182,6 +189,7 @@ struct ScanProgressView: View {
         case .reading: pace.photos
         case .stadiums: pace.near
         case .matching: pace.matched
+        case .verifying: pace.verified
         case .building: pace.found
         }
     }
@@ -192,6 +200,7 @@ struct ScanProgressView: View {
         case .reading: return "of \(p.total.formatted()) photos read"
         case .stadiums: return "photos taken at a stadium \u{00B7} \(pace.venues) venues"
         case .matching: return "games matched \u{00B7} \(pace.checked) of \(scan.totalVisits) visits checked"
+        case .verifying: return "of \(scan.verifyTotal) visits looked at"
         case .building: return "games found"
         }
     }
