@@ -216,7 +216,7 @@ private struct VenueGlow: View {
     let labelLeading: Bool
 
     var body: some View {
-        let d = 5 + 7 * heat
+        let d: CGFloat = 5 + 7 * heat
         ZStack {
             Circle()
                 .fill(Palette.arc.opacity(0.35 + 0.35 * heat))
