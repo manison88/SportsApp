@@ -59,7 +59,7 @@ The library is saved as JSON in the app's Documents folder. Sample data comes fr
 
 `xcodebuild test -scheme Witness -destination 'platform=iOS Simulator,name=iPhone 16 Pro'`
 
-- **Unit tests** (`WitnessTests`): ticket parsing for 8 real-world formats, library persistence, custom venues, the sample library, outcomes and stats.
+- **Unit tests** (`WitnessTests`): ticket parsing for 8 real-world formats, a rendered ticket screenshot and a ticket PDF run through Vision OCR and the parser, library persistence, custom venues, the sample library, outcomes and stats.
 - **End-to-end UI tests** (`WitnessUITests`):
   - Welcome and a tour of every tab
   - Game memory, You were there and Recap
