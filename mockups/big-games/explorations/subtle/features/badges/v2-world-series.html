@@ -1,0 +1,59 @@
+<html><head><meta charset="utf-8"><title>World Series</title>
+<link rel="stylesheet" href="../../../../../kit/kit.css">
+<link rel="stylesheet" href="../../../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../../../final/system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.62); }
+  .crop { position: absolute; inset: 0; overflow: hidden; }
+  .hx-badge { display: block; filter: drop-shadow(0 12px 18px rgba(0,0,0,.55)) drop-shadow(0 1px 1px rgba(0,0,0,.7)); overflow: visible; }
+  .hx-glyph { display: block; flex: none; }
+  .hx-chip { display: inline-flex; align-items: center; gap: 7px; height: 28px; padding: 0 12px 0 6px; border-radius: 14px;
+             font: 700 12.5px/1 var(--b-cond); letter-spacing: 1.1px; text-transform: uppercase; white-space: nowrap;
+             box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); }
+  .ls { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .ls th { font: 700 12px/1 var(--b-cond); letter-spacing: 2px; color: var(--b-text-3); text-align: center; padding-bottom: 8px; }
+  .ls td { height: 48px; box-shadow: inset 0 1px 0 var(--b-line); text-align: center; font: 600 20px/1 var(--b-cond); color: var(--b-text-2); width: 28px; }
+  .ls td.tm { text-align: left; width: auto; }
+  .ls td.tm div { display: flex; align-items: center; gap: 12px; font: 700 20px/1 var(--b-cond); letter-spacing: .4px; text-transform: uppercase; color: #fff; }
+  .ls td.t { width: 52px; text-align: right; font: 800 32px/1 var(--b-cond); color: #fff; }
+  .ls tr.lose td.tm div, .ls tr.lose td.t { color: rgba(255,255,255,.58); }
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 40px; }
+  .cta .b-btn { width: 100%; height: 54px; font-size: 17px; box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(0,0,0,.25); }
+  .cta svg { width: 16px; height: 16px; fill: currentColor; }
+
+  .f-hero { height: 470px; }
+  .f-hero .crop img { filter: var(--grade); }
+  .f-hero::after { background: linear-gradient(180deg, rgba(7,8,10,.55) 0%, rgba(7,8,10,0) 20%, rgba(7,8,10,0) 40%, rgba(7,8,10,.72) 74%, #07080a 100%); z-index: 2; }
+  .tint { position: absolute; inset: 0; z-index: 1; }
+  .pin { position: absolute; left: 20px; top: 104px; z-index: 5; }
+  .head { top: 296px; z-index: 6; gap: 10px !important; }
+  .head .b-display { font-size: 54px; }
+  .head .where { font: 500 15px/1.3 var(--b-ui); color: rgba(255,255,255,.8); }
+  .body { top: 506px; }
+
+  .head { gap: 10px !important; }
+  .mark { display: flex; align-items: center; gap: 10px; }
+  .mark .hx-badge { filter: drop-shadow(0 3px 6px rgba(0,0,0,.6)); }
+  .mark .name { font: 800 14px/1.1 var(--b-cond); letter-spacing: 1.8px; text-transform: uppercase; }
+  .mark .sub { font: 600 12px/1.2 var(--b-cond); letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,.7); margin-top: 3px; }
+  .ribbon { height: 3px; width: 64px; border-radius: 2px; margin-top: 2px; }
+
+  body.b { --grade: contrast(1.05) saturate(.9) brightness(.9); }
+  .head { top: 276px; }
+  .head .b-display { font-size: 54px; }</style></head>
+<body class="phone b">
+<div class="f-hero"><div class="crop" data-crop="wrigley-night.jpg 0 640 860 1024"></div></div><div class="b-nav" style="z-index:7"><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div></div><div class="f-col head"><div class="mark"><svg class="hx-badge" style="" width="33.0" height="44" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hx1-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0.000" stop-color="#6e4f17"/><stop offset="0.200" stop-color="#e9cf86"/><stop offset="0.400" stop-color="#a77d2c"/><stop offset="0.600" stop-color="#fff0c2"/><stop offset="0.800" stop-color="#c79a3e"/><stop offset="1.000" stop-color="#7a5a1c"/></linearGradient><linearGradient id="hx1-txt" x1="0" y1="0" x2="1" y2="1"><stop offset="0.000" stop-color="#fff3cf"/><stop offset="0.333" stop-color="#e6c46c"/><stop offset="0.667" stop-color="#fbe7ad"/><stop offset="1.000" stop-color="#d9b45a"/></linearGradient><clipPath id="hx1-c"><path d="M14,10 H106 Q110,10 110,14 V78 C110,112 87,133 60,149 C33,133 10,112 10,78 V14 Q10,10 14,10 Z"/></clipPath></defs><path d="M10,3 H110 Q117,3 117,10 V78 C117,117 91,141 60,157 C29,141 3,117 3,78 V10 Q3,3 10,3 Z" fill="url(#hx1-rim)"/><path d="M14,10 H106 Q110,10 110,14 V78 C110,112 87,133 60,149 C33,133 10,112 10,78 V14 Q10,10 14,10 Z" fill="#0C2340" stroke="rgba(0,0,0,.55)" stroke-width="1"/><g clip-path="url(#hx1-c)"><rect x="0" y="106" width="120" height="13" fill="#C8102E"/><rect x="0" y="103.8" width="120" height="1" fill="#F1D88E" opacity=".8"/><rect x="0" y="120.2" width="120" height="1" fill="#F1D88E" opacity=".8"/></g><path d="M18,14.5 H102 Q105.5,14.5 105.5,18 V78 C105.5,109 84,128 60,143 C36,128 14.5,109 14.5,78 V18 Q14.5,14.5 18,14.5 Z" fill="none" stroke="url(#hx1-rim)" stroke-width=".9" opacity=".85"/><polygon points="43.00,41.00 44.48,44.96 48.71,45.15 45.40,47.78 46.53,51.85 43.00,49.52 39.47,51.85 40.60,47.78 37.29,45.15 41.52,44.96" fill="url(#hx1-txt)"/><polygon points="60.00,38.30 61.78,43.05 66.85,43.28 62.88,46.43 64.23,51.32 60.00,48.52 55.77,51.32 57.12,46.43 53.15,43.28 58.22,43.05" fill="url(#hx1-txt)"/><polygon points="77.00,41.00 78.48,44.96 82.71,45.15 79.40,47.78 80.53,51.85 77.00,49.52 73.47,51.85 74.60,47.78 71.29,45.15 75.52,44.96" fill="url(#hx1-txt)"/><text x="60" y="94" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="32" letter-spacing="0.64" style="font-variation-settings:'opsz' 72" fill="rgba(0,0,0,.6)" transform="translate(0 1.3)">2016</text><text x="60" y="94" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="32" letter-spacing="0.64" style="font-variation-settings:'opsz' 72" fill="url(#hx1-txt)">2016</text></svg><div><div class="name" style="color:#F1D88E">World Series</div><div class="sub">GAME 5</div></div></div><div class="b-display">Down 3–1.<br>Still alive.</div><div class="where">Wrigley Field, Oct 30, 2016</div><div class="ribbon" style="background:linear-gradient(90deg,#0C2340 0 34%,#C8102E 34% 67%,#C8102E 67%)"></div></div><div class="f-col body"><table class="ls"><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th style="text-align:right">T</th></tr><tr class="lose"><td class="tm"><div><span class="f-mono" style="--c:#e31937;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)">CLE</span></div></td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td class="t">2</td></tr><tr class=""><td class="tm"><div><span class="f-mono" style="--c:#2f6bff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)">CHC</span></div></td><td>0</td><td>0</td><td>0</td><td>3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="t">3</td></tr></table></div><div class="cta"><div class="b-btn"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg>Play recap</div></div><script>
+(function () {
+  const N = {"wrigley-night.jpg": [1920, 2560], "united-center-court.jpg": [1280, 853], "camp-nou-aerial.jpg": [1280, 960], "soldier-soccer.jpg": [1280, 1707], "wrigley-bleachers.jpg": [1280, 853]};
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../../../kit/kit.js"></script>
+</body></html>
