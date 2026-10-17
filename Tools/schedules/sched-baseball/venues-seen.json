@@ -527,7 +527,7 @@
 "city":"Atlanta",
 "region":"GA",
 "countryCode":"US",
-"catalogVenueId":"center-parc-stadium",
+"catalogVenueId":null,
 "latitude":33.735527,
 "longitude":-84.388651,
 "firstSeason":2011,
@@ -819,13 +819,13 @@
 "region":"TN",
 "countryCode":"US",
 "catalogVenueId":null,
-"latitude":31.5156,
-"longitude":-82.5269,
+"latitude":36.5157,
+"longitude":-82.257,
 "firstSeason":2025,
 "lastSeason":2025,
 "games":1,
 "aliases":[],
-"coordSource":"statsapi"
+"coordSource":"manual"
 },
 {
 "league":"baseball/milb-11",
