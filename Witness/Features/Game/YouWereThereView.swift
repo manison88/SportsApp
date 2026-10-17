@@ -277,7 +277,7 @@ private struct ProbabilityCurve: View {
         .chartYScale(domain: 0...1)
         .chartYAxis(.hidden)
         .chartXAxis {
-            AxisMarks(values: tickList.map(\.0)) { value in
+            AxisMarks(values: tickList.map { $0.0 }) { value in
                 AxisValueLabel {
                     if let date = value.as(Date.self),
                        let label = tickList.first(where: { abs($0.0.timeIntervalSince(date)) < 1 })?.1 {
