@@ -64,7 +64,7 @@ struct PassportView: View {
             .padding(.bottom, Spacing.block)
         }
         .inkBackground()
-        .navigationTitle("PASSPORT")
+        .tabTitle("Passport")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 ShareLink(item: "\(earned.count) \(heroLabel(earned: earned.count).lowercased()), witnessed in person.") {

@@ -80,7 +80,7 @@ struct LifeMapView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .inkBackground()
-        .navigationTitle("MAP")
+        .tabTitle("Map")
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

@@ -42,7 +42,7 @@ struct YouView: View {
             .padding(.bottom, Spacing.block)
         }
         .inkBackground()
-        .navigationTitle("YOU")
+        .tabTitle("You")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 ShareLink(item: shareText(stats)) {

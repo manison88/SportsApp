@@ -40,8 +40,8 @@ struct TimelineView: View {
             }
         }
         .inkBackground()
-        .navigationTitle("TIMELINE")
-        .searchable(text: $query, prompt: "Teams, places, years")
+        .tabTitle("Timeline")
+        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Teams, places, years")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) { AddMenu() }
         }

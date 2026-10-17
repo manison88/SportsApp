@@ -367,3 +367,24 @@ func headlineText(_ game: GameEntry, _ library: Library) -> String {
     }
     return hs >= as_ ? "\(home) \(hs), \(away) \(as_)." : "\(away) \(as_), \(home) \(hs)."
 }
+
+extension View {
+    /// Tab-screen title, as in the mockups: compressed title left, one action right,
+    /// on the same row. The system title still names the screen for back buttons.
+    func tabTitle(_ title: String) -> some View {
+        navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text(title.uppercased())
+                        .displayFont(30, relativeTo: .title)
+                        .foregroundStyle(.white)
+                        .fixedSize()
+                        .accessibilityAddTraits(.isHeader)
+                }
+                ToolbarItem(placement: .principal) {
+                    Color.clear.frame(width: 1, height: 1).accessibilityHidden(true)
+                }
+            }
+    }
+}
