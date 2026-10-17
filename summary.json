@@ -1,0 +1,61 @@
+{
+  "devicesAndConfigurations" : [
+    {
+      "device" : {
+        "architecture" : "arm64",
+        "deviceId" : "291E4B86-C951-41A7-8327-84BF0304D0A9",
+        "deviceName" : "iPhone 16 Pro",
+        "modelName" : "iPhone 16 Pro",
+        "osBuildNumber" : "23C54",
+        "osVersion" : "26.2",
+        "platform" : "iOS Simulator"
+      },
+      "expectedFailures" : 0,
+      "failedTests" : 2,
+      "passedTests" : 52,
+      "skippedTests" : 0,
+      "testPlanConfiguration" : {
+        "configurationId" : "1",
+        "configurationName" : "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription" : "Witness · Built with macOS 15.7.9",
+  "expectedFailures" : 0,
+  "failedTests" : 2,
+  "finishTime" : 1792247563.695,
+  "passedTests" : 52,
+  "result" : "Failed",
+  "skippedTests" : 0,
+  "startTime" : 1792247007.784,
+  "statistics" : [
+
+  ],
+  "testFailures" : [
+    {
+      "failureText" : "XCTAssertEqual failed: (\"0\") is not equal to (\"2\") - Vision read: TB O\nCHI 2\nFINAL",
+      "targetName" : "WitnessTests",
+      "testIdentifier" : 6,
+      "testIdentifierString" : "AlbumAndScoreboardTests/testVisionReadsARenderedScoreboard()",
+      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/AlbumAndScoreboardTests/testVisionReadsARenderedScoreboard",
+      "testName" : "testVisionReadsARenderedScoreboard()"
+    },
+    {
+      "failureText" : "XCTAssertTrue failed - A game should be confirmed from a scoreboard photo",
+      "targetName" : "WitnessUITests",
+      "testIdentifier" : 48,
+      "testIdentifierString" : "WitnessUITests/testImportAlbumWithScoreboardReading()",
+      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testImportAlbumWithScoreboardReading",
+      "testName" : "testImportAlbumWithScoreboardReading()"
+    }
+  ],
+  "title" : "Test - Witness",
+  "topInsights" : [
+    {
+      "category" : "Longest Test Runs",
+      "impact" : "35% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 2.42s (three standard deviations)"
+    }
+  ],
+  "totalTestCount" : 54
+}
