@@ -133,6 +133,22 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertLessThan(elapsed, 5, "Grouping 50k photos took \(elapsed)s")
     }
 
+    func testLiveCheckInOrdersTheGamesAtYourStadium() {
+        func game(_ id: String, start: String, done: Bool) -> FoundGame {
+            let side = FoundGame.Side(espnId: id, abbreviation: id, location: id, name: id, color: nil, altColor: nil, score: nil, line: [])
+            return FoundGame(league: "basketball/nba", leagueName: "NBA", eventId: id, sport: .basketball, start: date(start),
+                             venueName: "United Center", venueCity: "Chicago", home: side, away: side, completed: done, note: nil)
+        }
+        let now = date("2025-11-01T01:00:00Z")
+        let earlier = game("done", start: "2025-10-31T20:00:00Z", done: true)
+        let live = game("live", start: "2025-11-01T00:30:00Z", done: false)
+        let soon = game("soon", start: "2025-11-01T03:00:00Z", done: false)
+        XCTAssertEqual(LiveGames.ordered([earlier, soon, live], now: now).map(\.eventId), ["live", "soon", "done"])
+        XCTAssertEqual(LiveGames.status(live, now: now), "Live")
+        XCTAssertEqual(LiveGames.status(earlier, now: now), "Final")
+        XCTAssertTrue(LiveGames.status(soon, now: now).hasPrefix("Starts"))
+    }
+
     // MARK: Scoreboards
 
     func testCrestBoardConfirmsByScoreAlone() {

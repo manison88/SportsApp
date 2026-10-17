@@ -24,6 +24,11 @@ struct LiveCheckInView: View {
     @State private var bases = [false, false, false]
     @State private var moments: [Date] = []
     @State private var suggested = false
+    /// Games on the schedule at the stadium you're standing in, found from your location and the time.
+    @State private var nearby: [FoundGame] = []
+    @State private var nearbyVenue: Venue?
+    @State private var searchedNearby = false
+    @State private var chosen: FoundGame?
 
     private var isUITest: Bool { ProcessInfo.processInfo.arguments.contains("-uitest") }
 
@@ -41,6 +46,8 @@ struct LiveCheckInView: View {
                   let v = LocationService.nearestVenue(to: loc, in: library.venues) else { return }
             suggested = true
             selectVenue(v.id)
+            nearbyVenue = v
+            Task { await findNearby(v) }
         }
     }
 
@@ -49,8 +56,10 @@ struct LiveCheckInView: View {
     private var setup: some View {
         NavigationStack {
             Form {
+                nearbySection
                 Section {
                     Picker("Venue", selection: venueBinding) {
+                        if venueId.isEmpty { Text("Choose a venue").tag("") }
                         ForEach(library.venues(for: nil)) { v in
                             Text(v.name).tag(v.id)
                         }
@@ -104,6 +113,87 @@ struct LiveCheckInView: View {
         }
     }
 
+    // MARK: Games near you
+
+    /// The game on at your stadium right now (or starting soon), one tap to pick. Typing stays as the fallback.
+    @ViewBuilder
+    private var nearbySection: some View {
+        if !nearby.isEmpty {
+            Section("Your game") {
+                ForEach(LiveGames.ordered(nearby, now: .now)) { game in
+                    Button { select(game) } label: {
+                        HStack(spacing: 12) {
+                            VStack(alignment: .leading, spacing: 6) {
+                                HStack(spacing: 8) {
+                                    TeamTile(team: GameLookup.team(from: game.away, game: game), compact: true)
+                                    Text(game.away.location).lineLimit(1)
+                                }
+                                HStack(spacing: 8) {
+                                    TeamTile(team: GameLookup.team(from: game.home, game: game), compact: true)
+                                    Text(game.home.location).lineLimit(1)
+                                }
+                            }
+                            .font(.condensed(.headline, weight: .bold))
+                            .textCase(.uppercase)
+                            Spacer()
+                            VStack(alignment: .trailing, spacing: 4) {
+                                Text(LiveGames.status(game, now: .now)).unitLabel()
+                                if chosen?.id == game.id {
+                                    Image(systemName: "checkmark.circle.fill").foregroundStyle(Color.signal)
+                                }
+                            }
+                        }
+                        .foregroundStyle(.white)
+                        .frame(minHeight: 56)
+                        .contentShape(.rect)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityIdentifier("live-game-\(game.eventId)")
+                }
+            }
+            .accessibilityIdentifier("live-nearby")
+        } else if searchedNearby, let v = nearbyVenue {
+            Section {
+                Label("No game on the schedule at \(v.name) right now. Pick the teams below.", systemImage: "calendar.badge.exclamationmark")
+                    .font(.footnote)
+                    .foregroundStyle(Color.textSecondary)
+                    .accessibilityIdentifier("live-nearby-none")
+            }
+        } else if !isUITest, location.location == nil {
+            Section {
+                Label(location.authorized ? "Finding your stadium…" : "Allow location and Witness will find the game you're at.",
+                      systemImage: "location")
+                    .font(.footnote)
+                    .foregroundStyle(Color.textSecondary)
+                    .accessibilityIdentifier("live-locating")
+            }
+        }
+    }
+
+    private func findNearby(_ venue: Venue) async {
+        let now = Date.now
+        var found: [FoundGame] = []
+        for v in [venue] + PhotoMatcher.neighbors(of: venue, in: library.venues) {
+            // In progress (started up to five hours ago) or starting within three hours.
+            found += await GameLookup.games(at: v, from: now, to: now.addingTimeInterval(3 * 3600))
+        }
+        var seen = Set<String>()
+        nearby = found.filter { seen.insert($0.id).inserted }
+        searchedNearby = true
+        // One game on and not over: that's the one.
+        let open = nearby.filter { !$0.completed }
+        if open.count == 1, let only = open.first { select(only) }
+    }
+
+    private func select(_ game: FoundGame) {
+        chosen = game
+        sport = game.sport
+        if let v = GameLookup.venue(of: game, in: library.venues) ?? nearbyVenue { venueId = v.id }
+        homeId = library.addTeam(GameLookup.team(from: game.home, game: game)).id
+        awayId = library.addTeam(GameLookup.team(from: game.away, game: game)).id
+    }
+
     private func teamPicker(_ title: String, selection: Binding<String>) -> some View {
         Picker(title, selection: selection) {
             Text("None").tag("")
@@ -119,7 +209,7 @@ struct LiveCheckInView: View {
     }
 
     private var venueBinding: Binding<String> {
-        Binding(get: { venueId }, set: { selectVenue($0) })
+        Binding(get: { venueId }, set: { chosen = nil; selectVenue($0) })
     }
 
     // MARK: Board
@@ -380,10 +470,9 @@ struct LiveCheckInView: View {
 
     private func prefill() {
         guard venueId.isEmpty else { return }
-        if isUITest || library.venue("wrigley") != nil && location.location == nil {
+        // A real check-in waits for your location; the tests start on a known ballpark.
+        if isUITest {
             selectVenue(library.venue("wrigley")?.id ?? library.venues.first?.id ?? "")
-        } else if let first = library.venues.first {
-            selectVenue(first.id)
         }
     }
 
@@ -420,6 +509,25 @@ struct LiveCheckInView: View {
         entry.seat = seat.isEmpty ? nil : seat
         entry.companionIds = companionId.isEmpty ? [] : [companionId]
         entry.savedMoments = moments
+        if let game = chosen {
+            // The schedule fills in the competition, big-game stage and source; your own live score stands unless the game is over.
+            entry.date = game.start
+            GameLookup.apply(game, detail: nil, to: &entry, library: library)
+            if !game.completed {
+                entry.homeScore = homeScore
+                entry.awayScore = awayScore
+            }
+            let id = entry.id
+            Task {
+                guard let detail = await GameLookup.detail(game), var saved = library.game(id) else { return }
+                GameLookup.apply(game, detail: detail, to: &saved, library: library)
+                if !game.completed {
+                    saved.homeScore = entry.homeScore
+                    saved.awayScore = entry.awayScore
+                }
+                library.update(saved)
+            }
+        }
         library.add(entry)
         dismiss()
     }
@@ -438,5 +546,23 @@ private struct LivePillStyle: LabelStyle {
         .padding(.horizontal, 12)
         .frame(minHeight: 30)
         .background(Color.live, in: .rect(cornerRadius: 7))
+    }
+}
+
+
+/// Orders and labels the games found at your stadium for the check-in picker.
+enum LiveGames {
+    /// In progress first, then what starts next, then games already over.
+    static func ordered(_ games: [FoundGame], now: Date) -> [FoundGame] {
+        func rank(_ g: FoundGame) -> Int { g.completed ? 2 : (g.start <= now ? 0 : 1) }
+        return games.sorted { a, b in
+            rank(a) != rank(b) ? rank(a) < rank(b) : (rank(a) == 2 ? a.start > b.start : a.start < b.start)
+        }
+    }
+
+    static func status(_ game: FoundGame, now: Date) -> String {
+        if game.completed { return "Final" }
+        if game.start <= now { return "Live" }
+        return "Starts " + game.start.formatted(date: .omitted, time: .shortened)
     }
 }
