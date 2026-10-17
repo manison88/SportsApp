@@ -23,6 +23,9 @@ enum BigGame {
         "soccer/conmebol.sudamericana": "Sudamericana", "soccer/usa.1": "MLS",
     ]
 
+    /// Continental club cups: every match is an occasion, not only the knockouts (MLS is a league, so not here).
+    static let continentalLeagues = cupLeagues.filter { $0.key != "soccer/usa.1" }
+
     private static let titlePhrases = ["super bowl", "world series", "nba finals", "wnba finals", "stanley cup final",
                                        "national championship", "grey cup", "mls cup", "championship game"]
     private static let playoffPhrases = ["playoff", "wild card", "divisional", "conference final", "conference championship",
@@ -63,6 +66,16 @@ enum BigGame {
         }
         if let name = tournamentLeagues[league] {
             return .init(kind: .tournament, label: slug == "group-stage" ? "\(name) · Group stage" : name)
+        }
+        // National-team qualifying and the Nations League: every match counts (the playoff rounds were caught above).
+        if let name = qualifierLeagues[league] {
+            return .init(kind: .tournament, label: slug == "group-stage" ? "\(name) · Group stage" : name)
+        }
+        // Champions League, Europa League, Libertadores and the like: group and league-phase matches count too,
+        // but their early qualifying rounds do not.
+        if let name = continentalLeagues[league], !slug.contains("qualif"), !slug.contains("prelim") {
+            let phase = slug == "group-stage" ? "Group stage" : (slug == "league-phase" ? "League phase" : nil)
+            return .init(kind: .tournament, label: [name, phase].compactMap { $0 }.joined(separator: " · "))
         }
         let folded = lower.folding(options: .diacriticInsensitive, locale: nil)
         if rivalryPhrases.contains(where: { folded.contains($0) }) {

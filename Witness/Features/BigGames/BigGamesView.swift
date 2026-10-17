@@ -16,6 +16,14 @@ struct BigGamesView: View {
         let list = games
         let titles = list.filter { $0.bigGame?.kind == .championship }.count
         let playoffs = list.filter { $0.bigGame?.kind == .playoff }.count
+        let tournaments = list.filter { $0.bigGame?.kind == .tournament }.count
+        let other = list.count - titles - playoffs - tournaments
+        var stats: [StatRow.Item] = [
+            .init(value: "\(titles)", label: titles == 1 ? "Title game" : "Title games"),
+            .init(value: "\(playoffs)", label: "Playoffs"),
+            .init(value: "\(tournaments)", label: "Tournament"),
+        ]
+        if other > 0 { stats.append(.init(value: "\(other)", label: "Other")) }
 
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.block) {
@@ -31,11 +39,7 @@ struct BigGamesView: View {
                 .accessibilityElement(children: .combine)
                 .accessibilityAddTraits(.isHeader)
 
-                StatRow(items: [
-                    .init(value: "\(titles)", label: titles == 1 ? "Title game" : "Title games"),
-                    .init(value: "\(playoffs)", label: "Playoffs"),
-                    .init(value: "\(list.count - titles - playoffs)", label: "Other"),
-                ])
+                StatRow(items: stats, size: stats.count > 3 ? 28 : 34)
 
                 VStack(spacing: 0) {
                     ForEach(list) { game in
@@ -69,7 +73,8 @@ struct BigGamesView: View {
                     .font(.condensed(.headline, weight: .heavy))
                     .textCase(.uppercase)
                     .foregroundStyle(stage.kind == .championship ? Color.trophy : .white)
-                    .lineLimit(1)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
                 Text([venue?.name, Fmt.dayTitle(game.date, in: venue?.tz ?? .current)].compactMap { $0 }.joined(separator: " · "))
                     .font(.footnote)
                     .foregroundStyle(Color.textSecondary)

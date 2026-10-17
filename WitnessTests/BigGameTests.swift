@@ -35,6 +35,19 @@ final class BigGameTests: XCTestCase {
         XCTAssertNil(stage("soccer/fifa.friendly", nil, 1, []))
     }
 
+    func testQualifyingAndContinentalMatchesCountButLeagueGamesDoNot() {
+        XCTAssertEqual(stage("soccer/fifa.worldq.uefa", "group-stage", 1, []),
+                       .init(kind: .tournament, label: "World Cup qualifying · Group stage"))
+        XCTAssertEqual(stage("soccer/uefa.nations", nil, 1, []), .init(kind: .tournament, label: "Nations League"))
+        XCTAssertEqual(stage("soccer/uefa.champions", "league-phase", 12080, []),
+                       .init(kind: .tournament, label: "Champions League · League phase"))
+        XCTAssertEqual(stage("soccer/uefa.europa", "group-stage", 12080, []),
+                       .init(kind: .tournament, label: "Europa League · Group stage"))
+        XCTAssertNil(stage("soccer/uefa.champions", "1st-qualifying-round", 12079, []), "Early qualifying rounds are not big")
+        XCTAssertNil(stage("soccer/usa.1", "regular-season", 2, []), "MLS regular season is a league, not a cup")
+        XCTAssertEqual(stage("soccer/fifa.world", "round-of-16", 10950, []), .init(kind: .playoff, label: "World Cup · Round of 16"))
+    }
+
     func testTournamentsAllStarsAndOrdinaryGames() {
         XCTAssertEqual(stage("soccer/fifa.world", "group-stage", 10953, []), .init(kind: .tournament, label: "World Cup · Group stage"))
         XCTAssertEqual(stage("baseball/mlb", "regular-season", 2, ["MLB All-Star Game"])?.kind, .allStar)
