@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 1,
-      "passedTests" : 58,
+      "failedTests" : 0,
+      "passedTests" : 59,
       "skippedTests" : 0,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,31 +22,24 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 1,
-  "finishTime" : 1792253327.242,
-  "passedTests" : 58,
-  "result" : "Failed",
+  "failedTests" : 0,
+  "finishTime" : 1792254399.531,
+  "passedTests" : 59,
+  "result" : "Passed",
   "skippedTests" : 0,
-  "startTime" : 1792252735.302,
+  "startTime" : 1792253663.567,
   "statistics" : [
 
   ],
   "testFailures" : [
-    {
-      "failureText" : "Failed to get matching snapshots: Timed out while evaluating UI query.",
-      "targetName" : "WitnessUITests",
-      "testIdentifier" : 53,
-      "testIdentifierString" : "WitnessUITests/testImportAlbumWithScoreboardReading()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testImportAlbumWithScoreboardReading",
-      "testName" : "testImportAlbumWithScoreboardReading()"
-    }
+
   ],
   "title" : "Test - Witness",
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "42% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 3.90s (three standard deviations)"
+      "impact" : "28% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 3.18s (three standard deviations)"
     }
   ],
   "totalTestCount" : 59
