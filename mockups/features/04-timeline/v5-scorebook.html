@@ -1,0 +1,125 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Scorebook</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #2b2a26; }
+  .desk { position: absolute; inset: 0; background: radial-gradient(80% 60% at 50% 40%, #3b3933, #23221e); }
+  .page { position: absolute; left: 10px; right: 10px; top: 0; bottom: 0; background: #f4efe2; overflow: hidden;
+    box-shadow: 0 0 0 .5px rgba(0,0,0,.3), 0 10px 40px rgba(0,0,0,.5); }
+  .page::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(90,70,30,.12), rgba(90,70,30,0) 8%, rgba(90,70,30,0) 92%, rgba(90,70,30,.08)); }
+  .page .paper-tex { opacity: .6; }
+  :root { --g: #2f7a5a; --g2: rgba(47,122,90,.45); --g3: rgba(47,122,90,.2); --pen: #3c3c42; }
+  .graphite { filter: url(#graphite); color: var(--pen); }
+
+  .top { position: absolute; top: 56px; left: 10px; right: 10px; display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+  .top .btn-circle { width: 36px; height: 36px; background: rgba(47,122,90,.08); }
+  .top .btn-circle svg { stroke: var(--g); }
+  .top .bk { font: 700 10px/1 var(--f-cond); letter-spacing: 2.4px; text-transform: uppercase; color: var(--g); }
+
+  .hdr { position: absolute; left: 16px; right: 16px; top: 100px; z-index: 3; }
+  .hdr .title { font: 800 30px/1 var(--f-cond); letter-spacing: 5px; color: var(--g); text-transform: uppercase; display: flex; justify-content: space-between; align-items: baseline; }
+  .hdr .title span { font: 600 10px/1 var(--f-cond); letter-spacing: 2px; }
+  .field { display: flex; align-items: flex-end; gap: 6px; margin-top: 10px; }
+  .field label { font: 700 9px/1 var(--f-cond); letter-spacing: 1.6px; color: var(--g); text-transform: uppercase; white-space: nowrap; padding-bottom: 3px; }
+  .field .line { flex: 1; border-bottom: 1px solid var(--g2); font: 600 20px/1 var(--f-hand); padding-left: 4px; height: 22px; white-space: nowrap; }
+
+  /* line score */
+  .ls { position: absolute; left: 16px; right: 16px; top: 196px; z-index: 3; }
+  .ls table { width: 100%; border-collapse: collapse; }
+  .ls td, .ls th { border: 1px solid var(--g2); height: 30px; text-align: center; }
+  .ls th { height: 18px; font: 700 9px/1 var(--f-cond); color: var(--g); letter-spacing: 1px; background: var(--g3); }
+  .ls td { font: 600 22px/1 var(--f-hand); color: var(--pen); }
+  .ls td.tm { width: 52px; text-align: left; padding-left: 6px; font-size: 19px; }
+  .ls td.r { border-left: 2px solid var(--g); font-weight: 700; font-size: 24px; }
+  .ls th.r { border-left: 2px solid var(--g); }
+  .circle { position: absolute; border: 1.6px solid var(--pen); border-radius: 50%; opacity: .8; }
+  .note { position: absolute; font: 600 17px/1.05 var(--f-hand); color: var(--pen); z-index: 4; white-space: nowrap; }
+
+  /* log */
+  .log { position: absolute; left: 16px; right: 16px; top: 334px; z-index: 3; }
+  .row { position: relative; display: grid; grid-template-columns: 24px 48px 76px 88px 50px 22px 1fr; height: 37px; border-bottom: 1px solid var(--g2); align-items: end; }
+  .row > * { border-left: 1px solid var(--g3); height: 100%; display: flex; align-items: flex-end; padding: 0 0 6px 4px; white-space: nowrap; overflow: visible; }
+  .row > *:first-child { border-left: 0; }
+  .row.h { height: 20px; background: var(--g3); border-top: 1.5px solid var(--g); border-bottom: 1.5px solid var(--g); }
+  .row.h > * { font: 700 8.5px/1 var(--f-cond); letter-spacing: 1.2px; color: var(--g); text-transform: uppercase; padding-bottom: 5px; }
+  .row .w { font: 600 18px/1 var(--f-hand); }
+  .row .n { font: 600 15px/1 var(--f-hand); opacity: .75; }
+  .season { height: 30px; border-bottom: 1px solid var(--g2); display: flex; align-items: flex-end; gap: 8px; padding-bottom: 5px; }
+  .season b { font: 700 8.5px/1 var(--f-cond); letter-spacing: 2px; color: var(--g); text-transform: uppercase; padding-bottom: 3px; }
+  .season span { font: 700 21px/1 var(--f-hand); }
+  .hl { position: absolute; left: -4px; right: -4px; top: 3px; bottom: 2px; background: rgba(255,214,90,.42); border-radius: 3px 8px 4px 9px; transform: rotate(-.6deg); z-index: -1; }
+  .av { display: inline-grid; place-items: center; width: 17px; height: 17px; border-radius: 9px; font: 800 7.5px/1 var(--f-ui); color: #10261a; margin-bottom: 1px; }
+
+  /* pencil */
+  .pencil { position: absolute; left: 118px; top: 800px; width: 300px; height: 15px; transform: rotate(-10deg); transform-origin: 0 50%; z-index: 8;
+    filter: drop-shadow(0 9px 6px rgba(40,30,10,.35)); }
+  .pencil .tip { position: absolute; left: 0; top: 0; width: 42px; height: 15px; clip-path: polygon(0 50%, 100% 0, 100% 100%);
+    background: linear-gradient(180deg, #f1d3a3, #d9a96a 55%, #b9844a); }
+  .pencil .lead { position: absolute; left: 0; top: 0; width: 13px; height: 15px; clip-path: polygon(0 50%, 100% 32%, 100% 68%); background: #2a2a2e; }
+  .pencil .body { position: absolute; left: 42px; top: 0; width: 210px; height: 15px; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    background: linear-gradient(180deg, #ffe37a 0%, #f6c531 30%, #e2a91b 55%, #f2c02b 72%, #b8830f 100%); }
+  .pencil .body::before { content: ""; position: absolute; left: 0; top: 0; height: 15px; width: 8px; background: linear-gradient(90deg, #f6c531, rgba(0,0,0,0)); clip-path: polygon(0 0, 100% 15%, 100% 85%, 0 100%); }
+  .pencil .body span { position: absolute; left: 60px; top: 3px; font: 700 7px/1 var(--f-cond); letter-spacing: 1.5px; color: rgba(40,30,0,.55); }
+  .pencil .fer { position: absolute; left: 252px; top: -1px; width: 22px; height: 17px; border-radius: 1px;
+    background: repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 1px, rgba(0,0,0,0) 1px 5px), linear-gradient(180deg, #f2f2f2, #b9bcc0 45%, #8a8e94 60%, #d6d8db); }
+  .pencil .er { position: absolute; left: 274px; top: -.5px; width: 22px; height: 16px; border-radius: 0 5px 5px 0; background: linear-gradient(180deg, #ffb3b0, #e88480 55%, #c9625e); }
+</style></head>
+<body class="phone" data-chrome="dark">
+<svg width="0" height="0" style="position:absolute">
+  <filter id="graphite" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="4" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.2" result="d"/>
+    <feTurbulence type="fractalNoise" baseFrequency="2.4" numOctaves="1" seed="9" result="g"/>
+    <feColorMatrix in="g" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 -.6" result="ga"/>
+    <feComposite in="d" in2="ga" operator="in"/>
+  </filter>
+</svg>
+<div class="desk"></div>
+<div class="page">
+  <div class="paper-tex"></div>
+</div>
+
+<div class="top">
+  <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="bk">Book III · page 18 of 60</div>
+  <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 7l3 3"/></svg></div>
+</div>
+
+<div class="hdr">
+  <div class="title">Scorebook <span>Witness · No. 0003</span></div>
+  <div class="field" style="gap:6px">
+    <label>Game</label><div class="line graphite">World Series, Gm 5</div>
+    <label>Park</label><div class="line graphite" style="flex:.7">Wrigley</div>
+  </div>
+</div>
+
+<div class="ls graphite">
+  <table>
+    <tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th class="r">R</th></tr>
+    <tr><td class="tm">CLE</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td class="r">2</td></tr>
+    <tr><td class="tm">CHI</td><td>0</td><td>0</td><td>0</td><td>3</td><td>0</td><td>0</td><td>0</td><td>0</td><td>×</td><td class="r">3</td></tr>
+  </table>
+</div>
+<div class="circle graphite" style="left:160px;top:250px;width:30px;height:30px;transform:rotate(-8deg)"></div>
+<div class="note graphite" style="left:186px;top:290px;transform:rotate(-3deg)">↖ Bryant HR, then 2 more</div>
+<div class="note graphite" style="left:20px;top:290px;transform:rotate(-2deg)">Chapman · 8 outs</div>
+
+<div class="log">
+  <div class="row h"><span>No.</span><span>Date</span><span>Park</span><span>Game</span><span>Final</span><span>R</span><span>With</span></div>
+  <div class="season graphite"><b>Season</b><span>2015</span></div>
+  <div class="row graphite"><span class="n">07</span><span class="w">4/5</span><span class="w">Wrigley</span><span class="w">STL @ CHI</span><span class="w">0–3</span><span class="w">L</span><span><i class="av" style="background:#8fe3a0">R</i></span></div>
+  <div class="row graphite"><span class="n">11</span><span class="w">6/15</span><span class="w">United Ctr</span><span class="w">TB @ CHI</span><span class="w">2–0</span><span class="w">W</span><span><i class="av" style="background:#8fe3a0">R</i></span></div>
+  <div class="season graphite"><b>Season</b><span>2016</span></div>
+  <div class="row graphite"><span class="n">17</span><span class="w">10/22</span><span class="w">Wrigley</span><span class="w">LA @ CHI</span><span class="w">5–0</span><span class="w">W</span><span><i class="av" style="background:#8fe3a0">R</i></span></div>
+  <div class="row graphite"><div class="hl"></div><span class="n">18</span><span class="w">10/30</span><span class="w">Wrigley</span><span class="w">CLE @ CHI</span><span class="w">3–2</span><span class="w">W</span><span><i class="av" style="background:#8fe3a0">R</i></span></div>
+  <div class="season graphite"><b>Season</b><span>2017</span></div>
+  <div class="row graphite"><span class="n">23</span><span class="w">11/25</span><span class="w">Dortmund</span><span class="w">S04 @ BVB</span><span class="w">4–4</span><span class="w">T</span><span></span></div>
+  <div class="season graphite"><b>Season</b><span>2019</span></div>
+  <div class="row graphite"><span class="n">29</span><span class="w">1/6</span><span class="w">Soldier</span><span class="w">PHI @ CHI</span><span class="w">15–16</span><span class="w">L</span><span><i class="av" style="background:#8fe3a0">R</i></span></div>
+</div>
+<div class="note graphite" style="left:196px;top:362px;transform:rotate(-4deg);font-size:18px">the Cup, on home ice ↘</div>
+<div class="note graphite" style="left:236px;top:706px;transform:rotate(-4deg)">doink. doink. ugh.</div>
+
+<div class="pencil"><div class="tip"></div><div class="lead"></div><div class="body"><span>WITNESS Nº 2 · HB</span></div><div class="fer"></div><div class="er"></div></div>
+<script src="../../kit/kit.js"></script>
+</body></html>
