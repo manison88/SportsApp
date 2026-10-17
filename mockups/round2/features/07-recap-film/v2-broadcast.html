@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+  .film { position: absolute; inset: 0; overflow: hidden; }
+  .film img { position: absolute; left: 0; top: -330px; width: 393px; height: 1190px; transform: scale(1.08) translate(-8px, 4px); filter: sepia(.28) saturate(1.15) contrast(1.05) brightness(.82); }
+  .film .warm { position: absolute; inset: 0; background: radial-gradient(120% 70% at 70% 30%, rgba(255,170,80,.22), rgba(255,120,40,0) 60%); mix-blend-mode: screen; }
+  .film .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,8,10,.75) 0%, rgba(7,8,10,0) 16%, rgba(7,8,10,0) 34%, rgba(7,8,10,.78) 56%, rgba(7,8,10,.96) 100%); }
+
+  .card { top: 398px; }
+  .card .b-label { color: rgba(255,255,255,.82); margin-bottom: 14px; }
+  .card .b-mega { margin-left: -3px; }
+  .card .b-h2 { margin-top: 16px; font-size: 24px; color: var(--b-accent); }
+
+  .chap { top: 712px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+  .chap div .b-bar { height: 4px; --c: #fff; }
+  .chap div span { display: block; margin-top: 8px; font: 700 10.5px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; color: var(--b-text-3); white-space: nowrap; }
+  .chap div.on span { color: #fff; }
+
+  .ctl { bottom: 40px; display: flex; gap: 10px; align-items: center; }
+  .play { width: 50px; height: 50px; border-radius: 12px; background: rgba(255,255,255,.14); display: grid; place-items: center; flex: none; }
+  .play svg { width: 18px; height: 18px; fill: #fff; }
+  .ctl .b-btn { flex: 1; }
+  .ctl .b-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .time { font: 600 12px/1 var(--b-mono); color: var(--b-text-2); }
+  .ratio { display: inline-flex; background: rgba(23,26,33,.9); border-radius: 8px; padding: 3px; box-shadow: inset 0 0 0 1px var(--b-line); }
+  .ratio span { height: 26px; padding: 0 9px; border-radius: 6px; display: grid; place-items: center; font: 800 12px/1 var(--b-cond); letter-spacing: 1px; color: var(--b-text-3); }
+  .ratio span.on { background: #fff; color: #000; }
+</style></head>
+<body class="phone b">
+
+<div class="film">
+  <img class="ph" src="../../../photos/wrigley-night-2.jpg" style="object-position:50% 50%">
+  <div class="warm"></div>
+  <div class="scrim"></div>
+</div>
+
+<div class="b-nav">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+  <div class="ratio"><span class="on">9:16</span><span>16:9</span></div>
+</div>
+
+<div class="g card">
+  <div class="b-label">World Series · Game 5 · Oct 30, 2016</div>
+  <div class="b-mega">Down<br>3–1.</div>
+  <div class="b-h2">One more night at Wrigley.</div>
+</div>
+
+<div class="g chap">
+  <div><div class="b-bar"><i style="width:100%"></i></div><span>Arrival</span></div>
+  <div class="on"><div class="b-bar"><i style="width:46%"></i></div><span>The stakes</span></div>
+  <div><div class="b-bar"></div><span>Bryant</span></div>
+  <div><div class="b-bar"></div><span>8 outs</span></div>
+  <div><div class="b-bar"></div><span>Final out</span></div>
+</div>
+
+
+<div class="g ctl">
+  <div class="play"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></div>
+  <div class="b-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share as story</div>
+</div>
+
+<script src="../../../kit/kit.js"></script>
+</body></html>

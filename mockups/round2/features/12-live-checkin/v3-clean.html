@@ -1,0 +1,96 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Clean</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/clean.css">
+<style>
+  .glow { position: absolute; left: -120px; right: -120px; top: -160px; height: 640px; pointer-events: none;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(47,107,255,.42), rgba(47,107,255,.14) 45%, rgba(47,107,255,0) 72%); }
+  .ring { position: absolute; left: 50%; top: 290px; border-radius: 50%; transform: translate(-50%, -50%); box-shadow: inset 0 0 0 1px rgba(47,107,255,.14); }
+
+  .live { height: 30px; padding: 0 12px; border-radius: 15px; background: rgba(255,255,255,.8); backdrop-filter: blur(12px); display: inline-flex; align-items: center; gap: 7px; font: 700 12px/1 var(--c-ui); letter-spacing: 1px; color: #0c0c0e; box-shadow: inset 0 0 0 .5px var(--c-line); }
+  .live i { width: 7px; height: 7px; border-radius: 50%; background: #ff3b30; box-shadow: 0 0 0 3px rgba(255,59,48,.18); }
+
+  .where { position: absolute; top: 120px; left: 0; right: 0; text-align: center; }
+  .where .c-h3 { margin-top: 6px; }
+
+  .board { position: absolute; top: 178px; left: 20px; right: 20px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+  .team { display: grid; justify-items: center; gap: 10px; }
+  .team .c-mono { width: 44px; height: 44px; border-radius: 14px; font-size: 17px; }
+  .team .n { font: 700 140px/.82 var(--c-display); letter-spacing: -7px; font-variant-numeric: tabular-nums; }
+  .team.away .n { color: #b9bcc6; }
+  .team .c-small { font-weight: 600; }
+  .mid { display: grid; justify-items: center; gap: 12px; padding-top: 30px; }
+  .mid .inn { font: 700 15px/1 var(--c-display); letter-spacing: -.2px; display: flex; align-items: center; gap: 5px; }
+  .mid .inn svg { width: 9px; height: 9px; fill: #0c0c0e; }
+  .bases { width: 64px; height: 46px; position: relative; }
+  .bases i { position: absolute; width: 18px; height: 18px; transform: rotate(45deg); border-radius: 3px; box-shadow: inset 0 0 0 1.6px #c3c5cc; background: rgba(255,255,255,.6); }
+  .bases i.on { background: #2f6bff; box-shadow: none; }
+  .outs { display: flex; gap: 5px; }
+  .outs i { width: 7px; height: 7px; border-radius: 50%; box-shadow: inset 0 0 0 1.4px #c3c5cc; }
+  .outs i.on { background: #0c0c0e; box-shadow: none; }
+
+  .tonight { position: absolute; top: 410px; left: 50%; transform: translateX(-50%); white-space: nowrap; height: 40px; padding: 0 16px 0 6px; border-radius: 20px; background: rgba(255,255,255,.75); box-shadow: inset 0 0 0 .5px var(--c-line); display: flex; align-items: center; gap: 10px; }
+  .tonight .c-avatar { box-shadow: 0 0 0 2px #fff; width: 28px; height: 28px; font-size: 12px; }
+  .tonight .c-body { color: var(--c-text); font-weight: 500; font-size: 13.5px; }
+  .tonight .c-body b { font-weight: 700; }
+
+  .la-label { position: absolute; top: 478px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .la { position: absolute; top: 502px; left: 16px; right: 16px; height: 80px; border-radius: 24px; background: rgba(18,18,22,.92); color: #fff; padding: 16px 18px; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; box-shadow: 0 12px 30px rgba(10,20,60,.18); }
+  .la .score { display: flex; align-items: center; gap: 10px; font: 700 30px/1 var(--c-display); letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+  .la .score .c-mono { width: 26px; height: 26px; border-radius: 8px; font-size: 11px; }
+  .la .score .d { color: rgba(255,255,255,.4); }
+  .la .info { font: 500 12px/1.4 var(--c-ui); color: rgba(255,255,255,.6); text-align: right; }
+  .la .info b { display: block; color: #fff; font: 600 13px/1.3 var(--c-ui); }
+  .la .cam { width: 40px; height: 40px; border-radius: 20px; background: rgba(255,255,255,.14); display: grid; place-items: center; }
+  .la .cam svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .save { position: absolute; left: 16px; right: 16px; bottom: 40px; height: 168px; border-radius: 34px; background: #0c0c0e; color: #fff; display: grid; place-items: center; align-content: center; gap: 12px; box-shadow: 0 18px 40px rgba(12,12,14,.25); }
+  .save .shutter { width: 58px; height: 58px; border-radius: 50%; box-shadow: inset 0 0 0 3px #fff; display: grid; place-items: center; }
+  .save .shutter i { width: 44px; height: 44px; border-radius: 50%; background: #fff; }
+  .save b { font: 700 19px/1 var(--c-display); letter-spacing: -.4px; }
+  .save span { font: 500 12.5px/1 var(--c-ui); color: rgba(255,255,255,.55); margin-top: -4px; }
+</style></head>
+<body class="phone c" data-chrome="dark">
+  <div class="glow"></div>
+
+  <div class="c-nav">
+    <div class="c-icon-btn glass"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></div>
+    <div class="live"><i></i>LIVE</div>
+    <div class="c-icon-btn glass"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1" /><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></div>
+  </div>
+
+  <div class="where">
+    <div class="c-eyebrow">Checked in · Section 209</div>
+    <div class="c-h3">Wrigley Field</div>
+  </div>
+
+  <div class="board">
+    <div class="team"><div class="c-mono" style="--c:#0e3386">CHC</div><div class="n">4</div><div class="c-small">Chicago</div></div>
+    <div class="mid">
+      <div class="inn"><svg viewBox="0 0 10 10"><path d="M1 2h8L5 8z"/></svg>7th</div>
+      <div class="bases"><i style="left:40px;top:20px"></i><i class="on" style="left:23px;top:3px"></i><i style="left:6px;top:20px"></i></div>
+      <div class="outs"><i class="on"></i><i></i></div>
+      <div class="c-small">1 out</div>
+    </div>
+    <div class="team away"><div class="c-mono" style="--c:#12284b;color:#ffc52f">MIL</div><div class="n">3</div><div class="c-small">Milwaukee</div></div>
+  </div>
+
+  <div class="tonight">
+    <div style="display:flex"><div class="c-avatar" style="background:#0c0c0e">S</div><div class="c-avatar" style="background:#ff7a8a;margin-left:-8px">M</div></div>
+    <div class="c-body"><b>17th</b> Wrigley visit · <b>17th</b> game with Maya</div>
+  </div>
+
+  <div class="la-label"><span class="c-eyebrow">On your Lock Screen</span><span class="c-small">Live Activity</span></div>
+  <div class="la">
+    <div class="score"><div class="c-mono" style="--c:#0e3386">C</div>4<span class="d">–</span>3<div class="c-mono" style="--c:#12284b;color:#ffc52f">M</div></div>
+    <div class="info"><b>Bot 7th · 1 out</b>Runner on 2nd</div>
+    <div class="cam"><svg viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.5-2h6l1.5 2h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.2"/></svg></div>
+  </div>
+
+  <div class="save">
+    <div class="shutter"><i></i></div>
+    <b>Save this moment</b>
+    <span>Pins your photo to the score, inning and seat</span>
+  </div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

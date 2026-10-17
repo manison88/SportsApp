@@ -1,0 +1,110 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Clean</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/clean.css">
+<style>
+  .head { position: absolute; top: 62px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .head .who { display: flex; align-items: center; gap: 12px; }
+  .head .av { width: 40px; height: 40px; border-radius: 50%; background: #0c0c0e; color: #fff; display: grid; place-items: center; font: 700 15px/1 var(--c-display); }
+  .head .meta .c-h3 { line-height: 1.15; }
+
+  .hero { position: absolute; top: 128px; left: 20px; right: 20px; }
+  .big { font: 700 148px/.8 var(--c-display); letter-spacing: -8px; font-variant-numeric: tabular-nums; margin: 14px 0 0 -6px; display: flex; align-items: flex-start; }
+  .big sup { font-size: 64px; letter-spacing: -2px; margin: 4px 0 0 -2px; line-height: 1; }
+  .story { margin-top: 16px; font: 600 19px/1.3 var(--c-display); letter-spacing: -.3px; color: var(--c-text); max-width: 330px; }
+  .story span { color: var(--c-text-3); }
+
+  .dots { position: absolute; top: 374px; left: 20px; right: 20px; display: grid; grid-template-columns: repeat(15, 1fr); row-gap: 8px; justify-items: center; }
+  .dots i { width: 15px; height: 15px; border-radius: 50%; display: block; }
+  .dots i.w { background: #0c0c0e; }
+  .dots i.l { box-shadow: inset 0 0 0 1.6px #c9c9c4; }
+  .dots i.d { background: linear-gradient(90deg, #0c0c0e 50%, transparent 50%); box-shadow: inset 0 0 0 1.6px #0c0c0e; }
+  .dots i.r { background: #e8344a; }
+  .legend { position: absolute; top: 472px; left: 20px; right: 20px; display: flex; gap: 14px; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+  .grid { position: absolute; top: 518px; left: 16px; right: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { background: var(--c-surface); border-radius: 22px; padding: 16px 16px 14px; height: 100px; position: relative; box-shadow: 0 1px 2px rgba(0,0,0,.03); }
+  .tile .c-num { font-size: 26px; letter-spacing: -.9px; margin-top: 8px; display: block; }
+  .tile .c-num small { font-size: 15px; letter-spacing: -.2px; color: var(--c-text-3); margin-left: 5px; }
+  .tile .viz { position: absolute; left: 16px; right: 16px; bottom: 15px; }
+  /* thermometer */
+  .thermo { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #6fb6ff, #e9e9e4 55%, #ffb38a); position: relative; }
+  .thermo b { position: absolute; left: 14%; top: -4px; width: 3px; height: 14px; border-radius: 2px; background: #0c0c0e; }
+  /* parks */
+  .parks { display: grid; grid-template-columns: repeat(15, 1fr); gap: 3px; }
+  .parks i { height: 5px; border-radius: 2px; background: #e4e4df; }
+  .parks i.on { background: #0c0c0e; }
+  /* miles: route */
+  .route { height: 14px; }
+  /* witnessed bars */
+  .bars { display: flex; gap: 3px; align-items: flex-end; height: 18px; }
+  .bars i { flex: 1; border-radius: 1.5px; background: #0c0c0e; }
+  .bars i:nth-child(n+13) { background: #0c0c0e; }
+</style></head>
+<body class="phone c" data-chrome="dark">
+
+  <div class="head">
+    <div class="who">
+      <div class="av">SO</div>
+      <div class="meta"><div class="c-h3">Sam Okafor</div><div class="c-small">60 games · 2014–2026</div></div>
+    </div>
+    <div class="c-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7.5 7.5 12 3l4.5 4.5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+
+  <div class="hero">
+    <div class="c-eyebrow">Win rate with you there</div>
+    <div class="big">61<sup>%</sup></div>
+    <div class="story">Chicago wins when you're in the stands. <span>48% when you stay home.</span></div>
+  </div>
+
+  <div class="dots" id="dots"></div>
+  <div class="legend c-small">
+    <span><i style="background:#0c0c0e"></i>35 won</span>
+    <span><i style="box-shadow:inset 0 0 0 1.4px #c9c9c4"></i>22 lost</span>
+    <span><i style="background:linear-gradient(90deg,#0c0c0e 50%,#fff 50%);box-shadow:inset 0 0 0 1.2px #0c0c0e"></i>2 drawn</span>
+    <span><i style="background:#e8344a"></i>1 race</span>
+  </div>
+
+  <div class="grid">
+    <div class="tile">
+      <div class="c-eyebrow">Miles traveled</div>
+      <span class="c-num">42,900</span>
+      <svg class="viz route" viewBox="0 0 150 14" preserveAspectRatio="none"><path d="M3 11 C 40 -2, 100 -2, 147 9" fill="none" stroke="#0c0c0e" stroke-width="1.6" stroke-dasharray="3 3"/><circle cx="3" cy="11" r="2.6" fill="#0c0c0e"/><circle cx="147" cy="9" r="2.6" fill="#fff" stroke="#0c0c0e" stroke-width="1.6"/></svg>
+    </div>
+    <div class="tile">
+      <div class="c-eyebrow">Coldest game</div>
+      <span class="c-num">19°F<small>Lambeau</small></span>
+      <div class="viz thermo"><b></b></div>
+    </div>
+    <div class="tile">
+      <div class="c-eyebrow">MLB ballparks</div>
+      <span class="c-num">14<small>of 30</small></span>
+      <div class="viz parks" id="parks"></div>
+    </div>
+    <div class="tile">
+      <div class="c-eyebrow">Witnessed</div>
+      <span class="c-num">487<small>runs</small></span>
+      <div class="viz bars"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:65%"></i><i style="height:100%"></i><i style="height:45%"></i><i style="height:80%"></i><i style="height:60%"></i><i style="height:75%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:30%"></i><i style="height:50%"></i><i style="height:35%"></i><i style="height:60%"></i><i style="height:25%"></i><i style="height:45%"></i></div>
+    </div>
+  </div>
+
+  <nav class="c-tabs">
+    <span><svg viewBox="0 0 24 24"><rect x="4" y="3.5" width="16" height="11" rx="3"/><path d="M4 18.5h16M7 21.5h10"/></svg>Timeline</span>
+    <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.8 2.6 2.8 15.4 0 18M12 3c-2.8 2.6-2.8 15.4 0 18"/></svg>Map</span>
+    <span><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="3"/><circle cx="12" cy="10.5" r="3.2"/><path d="M9 16.5h6"/></svg>Passport</span>
+    <span class="on"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.4-3.6 4.2-5.5 7.5-5.5s6.1 1.9 7.5 5.5"/></svg>You</span>
+  </nav>
+
+<script>
+  // 60 games in chronological order: 35 W, 22 L, 2 D, 1 race
+  const seq = 'wlwllwwwlwlwllwwlwrw' + 'lwwlwwlwlwwlwlwwdwlw' + 'wwlwwlwlwwdwllwwlwlw';
+  const counts = {}; for (const c of seq) counts[c] = (counts[c] || 0) + 1;
+  const d = document.getElementById('dots');
+  for (const c of seq) { const i = document.createElement('i'); i.className = c; d.appendChild(i); }
+  const p = document.getElementById('parks');
+  for (let k = 0; k < 30; k++) { const i = document.createElement('i'); if (k < 14) i.className = 'on'; p.appendChild(i); }
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

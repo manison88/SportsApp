@@ -1,0 +1,127 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+  .b-nav .b-label { color: var(--b-text-2); }
+
+  .map { top: 104px; height: 290px; border-radius: 14px; overflow: hidden; background: #0d1016; box-shadow: inset 0 0 0 1px var(--b-line); }
+  .map svg { position: absolute; inset: 0; }
+  .map .word { position: absolute; left: 14px; top: 10px; font: 800 112px/.82 var(--b-cond); letter-spacing: -2px; text-transform: uppercase; color: #fff; }
+  .map .meta { position: absolute; left: 16px; top: 108px; }
+  .map .meta .b-label { color: var(--b-text-2); }
+  .map .avs { display: flex; margin-top: 8px; }
+  .av { width: 24px; height: 24px; border-radius: 7px; display: grid; place-items: center; font: 800 13px/1 var(--b-cond); color: #10131a; box-shadow: 0 0 0 2px #0d1016; }
+  .avs .av + .av { margin-left: -4px; }
+
+  .legs { top: 408px; display: grid; gap: 6px; }
+  .leg { height: 46px; display: grid; grid-template-columns: 52px 1fr auto; align-items: center; border-radius: 10px; background: var(--b-panel); box-shadow: inset 0 0 0 1px var(--b-line); position: relative; overflow: hidden; }
+  .leg .ic { height: 100%; display: grid; place-items: center; border-right: 1.5px dashed rgba(255,255,255,.14); }
+  .leg .ic svg { width: 18px; height: 18px; stroke: var(--b-text-2); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .leg .rt { padding-left: 14px; font: 800 20px/1 var(--b-cond); letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+  .leg .rt i { font-style: normal; color: var(--b-text-3); font-size: 15px; }
+  .leg .rt small { font: 700 11px/1 var(--b-cond); letter-spacing: 1.6px; color: var(--b-text-3); margin-left: 4px; }
+  .leg .d { padding-right: 14px; font: 700 12px/1 var(--b-cond); letter-spacing: 1.6px; color: var(--b-text-2); text-transform: uppercase; }
+  /* notches: one small playful ticket touch */
+  .leg::before, .leg::after { content: ""; position: absolute; left: 46px; width: 12px; height: 12px; border-radius: 50%; background: var(--b-bg); }
+  .leg::before { top: -6px; } .leg::after { bottom: -6px; }
+
+  .game { height: 46px; display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 0 14px 0 6px; border-radius: 10px; background: var(--c); }
+  .game .b-bug { justify-self: start; height: 32px; background: rgba(0,0,0,.28); box-shadow: none; }
+  .game .d { font: 700 12px/1 var(--b-cond); letter-spacing: 1.6px; text-transform: uppercase; color: rgba(255,255,255,.88); text-align: right; }
+  .game .d b { display: block; font-size: 15px; letter-spacing: .8px; color: #fff; margin-bottom: 3px; }
+
+  .quote { top: 742px; text-align: center; }
+  .quote .q { font: 700 23px/1 var(--f-hand); color: #fff; white-space: nowrap; }
+  .quote .b-label { margin-top: 8px; }
+  .game.light .b-bug { background: #10131a; }
+  .game.light .d { color: rgba(0,0,0,.6); } .game.light .d b { color: #10131a; }
+  .quote .b-label { white-space: nowrap; }
+</style></head>
+<body class="phone b">
+
+  <div class="b-nav">
+    <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div class="b-label">Trip · 12 days · 2 games</div>
+    <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+
+  <div class="g map">
+    <svg id="map" viewBox="0 0 357 290"></svg>
+    <div class="word">Spain</div>
+    <div class="meta">
+      <div class="b-label">Feb 20 – Mar 2, 2020</div>
+      <div class="avs"><div class="av" style="background:#ffb547">S</div><div class="av" style="background:#b79cff">D</div><div class="av" style="background:#ff7a8a">M</div><div class="av" style="background:#6fd3ff">L</div></div>
+    </div>
+  </div>
+
+  <div class="g legs">
+    <div class="leg">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" transform="rotate(90 12 12)"/></svg></div>
+      <div class="rt">ORD <i>→</i> BCN <small>Flight</small></div>
+      <div class="d">Feb 20</div>
+    </div>
+    <div class="game" style="--c:#a50044">
+      <div class="b-bug"><span class="team" style="--c:#004d98">BAR</span><span class="score">5</span><span class="team" style="--c:#3a3d46">EIB</span><span class="score">0</span></div>
+      <div class="d"><b>Camp Nou</b>Feb 22</div>
+    </div>
+    <div class="leg">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 11h12M9 21l1.5-4M15 21l-1.5-4"/></svg></div>
+      <div class="rt">BCN <i>→</i> VLC <small>Train</small></div>
+      <div class="d">Feb 24</div>
+    </div>
+    <div class="leg">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 11h12M9 21l1.5-4M15 21l-1.5-4"/></svg></div>
+      <div class="rt">VLC <i>→</i> MAD <small>Train</small></div>
+      <div class="d">Feb 27</div>
+    </div>
+    <div class="game light" style="--c:#f2f2f2">
+      <div class="b-bug"><span class="team" style="--c:#10131a">RMA</span><span class="score">2</span><span class="team" style="--c:#004d98">BAR</span><span class="score">0</span></div>
+      <div class="d"><b>Bernabéu</b>Mar 1</div>
+    </div>
+    <div class="leg">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z" transform="rotate(90 12 12)"/></svg></div>
+      <div class="rt">MAD <i>→</i> ORD <small>Flight</small></div>
+      <div class="d">Mar 2</div>
+    </div>
+  </div>
+
+  <div class="g quote"><div class="q">“the last game before the world went quiet.”</div><div class="b-label">Sam’s note · Mar 1, Madrid</div></div>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script src="../../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../../kit/vendor/countries-110m.js"></script>
+<script>
+  (function () {
+    const topo = window.__atlas['countries-110m'];
+    const all = topojson.feature(topo, topo.objects.countries).features;
+    const spain = all.find(f => f.properties && f.properties.name === 'Spain');
+    const W = 357, H = 290;
+    const proj = d3.geoMercator().center([-3.2, 40.1]).scale(1020).translate([222, 212]);
+    const path = d3.geoPath(proj);
+    const svg = d3.select('#map');
+    svg.append('g').selectAll('path').data(all).join('path').attr('d', path)
+      .attr('fill', d => d === spain ? '#262b37' : '#151820').attr('stroke', '#0d1016').attr('stroke-width', 1);
+    const C = { BCN: [2.17, 41.39], VLC: [-0.38, 39.47], MAD: [-3.70, 40.42] };
+    const P = k => proj(C[k]);
+    const route = ['BCN', 'VLC', 'MAD'].map(P);
+    svg.append('path').attr('d', d3.line().curve(d3.curveCatmullRom)(route)).attr('fill', 'none').attr('stroke', '#fff').attr('stroke-width', 2.4).attr('stroke-dasharray', '1 6').attr('stroke-linecap', 'round');
+    // flight in (from top-left edge) and out
+    const [bx, by] = P('BCN'), [mx, my] = P('MAD');
+    svg.append('path').attr('d', `M0 ${by + 6} Q ${bx - 120} ${by - 70} ${bx} ${by}`).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.28)').attr('stroke-width', 1.6).attr('stroke-dasharray', '4 5');
+    svg.append('path').attr('d', `M${mx} ${my} Q ${mx - 80} ${my + 10} 0 ${my + 40}`).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.28)').attr('stroke-width', 1.6).attr('stroke-dasharray', '4 5');
+    const stop = (k, game, color, dx, anchor, dy) => {
+      const [x, y] = P(k);
+      if (game) svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 11).attr('fill', color).attr('opacity', .28);
+      svg.append('circle').attr('cx', x).attr('cy', y).attr('r', game ? 6 : 4).attr('fill', game ? color : '#fff').attr('stroke', '#0d1016').attr('stroke-width', 2);
+      svg.append('text').attr('x', x + dx).attr('y', y + dy).attr('text-anchor', anchor).attr('fill', game ? '#fff' : 'rgba(255,255,255,.62)')
+        .attr('font-family', 'Barlow Condensed').attr('font-weight', 800).attr('font-size', game ? 14 : 12).attr('letter-spacing', 1.4).text(k === 'BCN' ? 'BARCELONA' : k === 'VLC' ? 'VALENCIA' : 'MADRID');
+    };
+    stop('VLC', false, '', 10, 'start', 4);
+    stop('BCN', true, '#d3125e', 0, 'middle', -18);
+    stop('MAD', true, '#ffffff', 0, 'middle', 26);
+  })();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

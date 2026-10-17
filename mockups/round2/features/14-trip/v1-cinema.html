@@ -1,0 +1,145 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cinema</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/cinema.css">
+<style>
+  .map { position: absolute; left: 0; top: 0; width: 393px; height: 360px; overflow: hidden; }
+  .map svg { position: absolute; inset: 0; }
+  .map::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(5,5,6,.7) 0%, rgba(5,5,6,0) 22%, rgba(5,5,6,0) 78%, #050506 100%); }
+  .title { position: absolute; left: 0; right: 0; top: 66px; text-align: center; font: 600 15px/1.2 var(--a-ui); z-index: 21; }
+
+  .head { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 352px; }
+  .head .top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .head .a-h1 em { font-style: italic; color: var(--a-text-2); }
+  
+  .avs { display: flex; }
+  .avs .a-avatar { width: 28px; height: 28px; font-size: 14px; }
+  .avs .a-avatar + .a-avatar { margin-left: -8px; }
+
+  .legs { position: absolute; left: 16px; right: 16px; top: 452px; display: flex; flex-direction: column; gap: 6px; }
+  .pass { position: relative; height: 54px; border-radius: 14px; background: var(--a-surface); box-shadow: inset 0 0 0 .5px var(--a-line);
+    display: grid; grid-template-columns: 38px 1fr 1px 82px; align-items: center; padding: 0 0 0 14px; }
+  .pass::before, .pass::after { content: ""; position: absolute; right: 88px; width: 12px; height: 12px; border-radius: 50%; background: var(--a-bg); }
+  .pass::before { top: -6px; } .pass::after { bottom: -6px; }
+  .pass .ic svg { width: 20px; height: 20px; fill: none; stroke: var(--a-text-2); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .pass .route { font: 600 17px/1 var(--a-num); letter-spacing: .2px; display: flex; align-items: center; gap: 7px; }
+  .pass .route i { font-style: normal; color: var(--a-text-3); font-weight: 500; }
+  .pass .sub { font: 500 11.5px/1 var(--a-ui); color: var(--a-text-3); margin-top: 6px; }
+  .pass .perf { height: 30px; border-left: 1.5px dashed rgba(255,255,255,.12); }
+  .pass .when { text-align: center; }
+  .pass .when b { display: block; font: 600 14px/1 var(--a-num); }
+  .pass .when span { font: 500 10.5px/1 var(--a-ui); color: var(--a-text-3); letter-spacing: .3px; }
+
+  .game { display: flex; align-items: center; gap: 12px; padding: 6px 14px 6px 22px; }
+  .game .d { width: 9px; height: 9px; border-radius: 50%; background: var(--a-accent); box-shadow: 0 0 0 4px rgba(255,181,71,.16); flex: none; }
+  .game .t { flex: 1; font: 500 13px/1.25 var(--a-ui); color: var(--a-text-2); }
+  .game .t b { color: var(--a-text); font-weight: 600; }
+  .game .s { font: 600 14px/1 var(--a-num); font-variant-numeric: tabular-nums; }
+  .quote { font: 500 19px/1 var(--f-hand); color: #f3dcb6; margin: -2px 0 0 43px; transform: rotate(-1.2deg); transform-origin: left; }
+</style></head>
+<body class="phone a">
+  <div class="map"><svg id="map" viewBox="0 0 393 360"></svg></div>
+  <div class="grain"></div>
+
+  <div class="a-nav">
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+  <div class="title">Trip</div>
+
+  <div class="head">
+    <div class="top">
+      <div class="a-eyebrow">Feb 20 – Mar 2, 2020 · 11 days</div>
+      <div class="avs">
+        <div class="a-avatar" style="background:#b79cff">D</div>
+        <div class="a-avatar" style="background:#ff7a8a">M</div>
+        <div class="a-avatar" style="background:#6fd3ff">L</div>
+      </div>
+    </div>
+    <div class="a-h1">Spain, <em>before the quiet</em></div>
+  </div>
+
+  <div class="legs">
+    <div class="pass">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M10.5 13.5L4 11l1.5-1.5 7 1L17 6a2 2 0 0 1 3 3l-4.5 4.5 1 7L15 22l-2.5-6.5L9 19v2.5L7.5 23 6 18l-5-1.5L2.5 15H5z" transform="scale(.92) translate(1 0)"/></svg></div>
+      <div><div class="route">ORD <i>→</i> BCN</div><div class="sub">Chicago to Barcelona · overnight</div></div>
+      <div class="perf"></div>
+      <div class="when"><b>Feb 20</b><span>FLIGHT</span></div>
+    </div>
+    <div class="game"><span class="d"></span><span class="t"><b>Camp Nou</b> · Barcelona v Eibar</span><span class="s">5–0</span></div>
+    <div class="pass">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/><circle cx="9" cy="14" r=".5"/><circle cx="15" cy="14" r=".5"/></svg></div>
+      <div><div class="route">BCN <i>→</i> VLC</div><div class="sub">Along the coast · 3 h</div></div>
+      <div class="perf"></div>
+      <div class="when"><b>Feb 25</b><span>TRAIN</span></div>
+    </div>
+    <div class="pass">
+      <div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/><circle cx="9" cy="14" r=".5"/><circle cx="15" cy="14" r=".5"/></svg></div>
+      <div><div class="route">VLC <i>→</i> MAD</div><div class="sub">Inland, through La Mancha · 2 h</div></div>
+      <div class="perf"></div>
+      <div class="when"><b>Feb 28</b><span>TRAIN</span></div>
+    </div>
+    <div class="game"><span class="d"></span><span class="t"><b>Bernabéu</b> · Real Madrid v Barcelona</span><span class="s">2–0</span></div>
+    <div class="quote">“the last game before the world went quiet.”</div>
+    <div class="pass" style="margin-top:6px">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M10.5 13.5L4 11l1.5-1.5 7 1L17 6a2 2 0 0 1 3 3l-4.5 4.5 1 7L15 22l-2.5-6.5L9 19v2.5L7.5 23 6 18l-5-1.5L2.5 15H5z" transform="scale(.92) translate(1 0)"/></svg></div>
+      <div><div class="route">MAD <i>→</i> ORD</div><div class="sub">Madrid to Chicago · home</div></div>
+      <div class="perf"></div>
+      <div class="when"><b>Mar 2</b><span>FLIGHT</span></div>
+    </div>
+  </div>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script src="../../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../../kit/vendor/land-50m.js"></script>
+<script>
+  (function () {
+    const topo = window.__atlas['land-50m'];
+    const land = topojson.feature(topo, topo.objects.land);
+    const C = { bcn: [2.17, 41.39], vlc: [-0.38, 39.47], mad: [-3.70, 40.42] };
+    const proj = d3.geoMercator().fitExtent([[20, 118], [373, 340]], { type: 'MultiPoint', coordinates: [[-9.3, 36.2], [3.3, 43.6]] });
+    const path = d3.geoPath(proj);
+    const svg = d3.select('#map');
+    const defs = svg.append('defs');
+    defs.html(`<radialGradient id="sea" cx=".55" cy=".55" r=".7"><stop offset="0" stop-color="#14141a"/><stop offset="1" stop-color="#050506"/></radialGradient>
+      <filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>`);
+    svg.append('rect').attr('width', 393).attr('height', 360).attr('fill', 'url(#sea)');
+    // graticule, very quiet
+    svg.append('path').datum(d3.geoGraticule().step([2, 2])()).attr('d', path).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.035)');
+    svg.append('path').datum(land).attr('d', path).attr('fill', '#1b1b20').attr('stroke', 'rgba(245,241,234,.22)').attr('stroke-width', .7);
+
+    const seg = (a, b, bend) => { // a gentle curve between two projected points
+      const [x1, y1] = proj(a), [x2, y2] = proj(b), mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+      const dx = x2 - x1, dy = y2 - y1, k = bend;
+      return `M${x1} ${y1} Q${mx - dy * k} ${my + dx * k} ${x2} ${y2}`;
+    };
+    // flight in from Chicago (off-map, top-left) and home from Madrid
+    const off = [ -14, 45.2 ];
+    const [ox, oy] = proj(off);
+    const r = (d, dash, op) => svg.append('path').attr('d', d).attr('fill', 'none').attr('stroke', '#f5f1ea').attr('stroke-width', 1.4).attr('stroke-linecap', 'round').attr('stroke-dasharray', dash).attr('opacity', op);
+    r(seg(off, C.bcn, -.16), '2 4', .5);
+    r(seg(C.mad, off, -.14), '2 4', .3);
+    // the rail legs, solid
+    r(seg(C.bcn, C.vlc, -.12), null, .95);
+    r(seg(C.vlc, C.mad, -.1), null, .95);
+
+    const dot = (p, rad, fill, stroke) => { const [x, y] = proj(p); svg.append('circle').attr('cx', x).attr('cy', y).attr('r', rad).attr('fill', fill).attr('stroke', stroke || 'none').attr('stroke-width', 2); };
+    // game stops in amber
+    [C.bcn, C.mad].forEach(p => { const [x, y] = proj(p); svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 12).attr('fill', '#ffb547').attr('opacity', .45).attr('filter', 'url(#gl)'); });
+    dot(C.bcn, 5.5, '#ffb547', '#050506'); dot(C.mad, 5.5, '#ffb547', '#050506'); dot(C.vlc, 4, '#f5f1ea', '#050506');
+
+    const label = (p, dx, dy, anchor, t1, t2) => {
+      const [x, y] = proj(p);
+      const t = svg.append('text').attr('x', x + dx).attr('y', y + dy).attr('text-anchor', anchor).attr('font-family', 'Inter');
+      t.append('tspan').attr('font-weight', 600).attr('font-size', 13).attr('fill', '#f5f1ea').text(t1);
+      if (t2) t.append('tspan').attr('x', x + dx).attr('dy', 15).attr('font-weight', 500).attr('font-size', 11).attr('fill', 'rgba(245,241,234,.55)').text(t2);
+    };
+    label(C.bcn, -2, -26, 'middle', 'Barcelona', null);
+    label(C.mad, -4, -16, 'middle', 'Madrid', null);
+    label(C.vlc, 12, 5, 'start', 'Valencia', null);
+    svg.append('text').attr('x', 22).attr('y', 124).attr('font-family', 'Inter').attr('font-weight', 600).attr('font-size', 9.5).attr('letter-spacing', 1.5).attr('fill', 'rgba(245,241,234,.45)').text('FROM CHICAGO · 4,413 MI');
+  })();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

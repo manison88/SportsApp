@@ -1,0 +1,71 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+  .hero { position: absolute; left: 0; right: 0; top: 0; height: 470px; overflow: hidden; }
+  .hero img { position: absolute; inset: 0; }
+  .hero .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,8,10,.6) 0%, rgba(7,8,10,0) 22%, rgba(7,8,10,0) 45%, rgba(7,8,10,.85) 82%, var(--b-bg) 100%); }
+  .head { top: 278px; }
+  .head .b-label { color: rgba(255,255,255,.8); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .head .b-display { font-size: 64px; }
+
+  .ls { top: 486px; padding: 6px 0; }
+  .ls .r { display: grid; grid-template-columns: 6px 1fr repeat(4, 30px) 64px; align-items: center; column-gap: 0; height: 52px; padding-right: 14px; }
+  .ls .r.hd { height: 26px; }
+  .ls .r + .r:not(.hd) { box-shadow: inset 0 1px 0 var(--b-line); }
+  .ls .bar { height: 30px; width: 4px; border-radius: 2px; background: var(--c); margin-left: 12px; }
+  .ls .tm { padding-left: 20px; font: 800 22px/1 var(--b-cond); letter-spacing: .4px; text-transform: uppercase; }
+  .ls .q { text-align: center; font: 600 17px/1 var(--b-cond); color: var(--b-text-2); font-variant-numeric: tabular-nums; }
+  .ls .hd .q, .ls .hd .t { font: 700 11px/1 var(--b-cond); letter-spacing: 2px; color: var(--b-text-3); }
+  .ls .t { text-align: right; font: 800 40px/1 var(--b-cond); font-variant-numeric: tabular-nums; }
+  .ls .lose .t, .ls .lose .tm { color: var(--b-text-2); }
+  .ls .q.hot { color: #fff; }
+
+  .with { top: 652px; display: flex; align-items: center; gap: 12px; }
+  .av { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font: 800 16px/1 var(--b-cond); color: #000; }
+  .avs { display: flex; gap: 4px; }
+  .with .t b { display: block; font: 700 17px/1 var(--b-cond); letter-spacing: .4px; text-transform: uppercase; }
+  .with .t span { display: block; margin-top: 4px; }
+  .note { top: 702px; font: 400 15px/1.45 var(--b-ui); color: var(--b-text-2); }
+  .acts { bottom: 40px; display: flex; gap: 8px; }
+  .acts .b-btn { flex: 1; }
+  .acts svg { width: 16px; height: 16px; fill: currentColor; }
+</style></head>
+<body class="phone b">
+
+<div class="hero">
+  <img class="ph" src="../../../photos/lambeau-concourse.jpg" style="object-position:40% 50%">
+  <div class="scrim"></div>
+</div>
+
+<div class="b-nav">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+
+<div class="g head">
+  <div class="b-label"><span class="b-pill" style="background:#fff;color:#000;height:22px">Final</span>Week 18 · Lambeau Field · Jan 5, 2025</div>
+  <div class="b-display">51 yards.<br>No time left.</div>
+</div>
+
+<div class="g ls b-panel">
+  <div class="r hd"><span></span><span></span><span class="q">1</span><span class="q">2</span><span class="q">3</span><span class="q">4</span><span class="t">T</span></div>
+  <div class="r"><span class="bar" style="--c:var(--chi-bears)"></span><span class="tm">Chicago</span><span class="q">7</span><span class="q">7</span><span class="q">7</span><span class="q hot">3</span><span class="t">24</span></div>
+  <div class="r lose"><span class="bar" style="--c:var(--gb)"></span><span class="tm">Green Bay</span><span class="q">0</span><span class="q">7</span><span class="q">0</span><span class="q">15</span><span class="t">22</span></div>
+</div>
+
+<div class="g with">
+  <div class="avs"><span class="av" style="background:#ff7a8a">M</span><span class="av" style="background:#6fd3ff">L</span></div>
+  <div class="t"><b>With Maya &amp; Leo</b><span class="b-small">Section 112 · Row 41 · 19°F, light snow</span></div>
+</div>
+
+<div class="g note">“Maya counted down the last eight seconds out loud. Leo couldn’t look.”</div>
+
+<div class="g acts">
+  <div class="b-btn"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></svg>Play recap</div>
+</div>
+
+<script src="../../../kit/kit.js"></script>
+</body></html>

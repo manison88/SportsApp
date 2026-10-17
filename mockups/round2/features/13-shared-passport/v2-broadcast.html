@@ -1,0 +1,102 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+  .b-nav .who { display: flex; align-items: center; gap: 8px; }
+  .av { width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center; font: 800 14px/1 var(--b-cond); color: #10131a; }
+
+  .venn { top: 108px; height: 300px; }
+  .venn .sam { position: absolute; left: 50%; top: 0; width: 300px; height: 300px; margin-left: -150px; border-radius: 50%; box-shadow: inset 0 0 0 2px rgba(255,255,255,.22); background: rgba(255,255,255,.03); }
+  .venn .maya { position: absolute; left: 50%; top: 62px; width: 216px; height: 216px; margin-left: -108px; border-radius: 50%; background: #ff7a8a; color: #1a0a0d; display: grid; place-items: center; text-align: center; }
+  .venn .maya .b-mega { font-size: 150px; letter-spacing: -4px; line-height: .78; }
+  .venn .maya .b-label { color: #1a0a0d; opacity: .8; margin-top: 8px; font-size: 12px; }
+  .venn .lab { position: absolute; }
+  .venn .lab .b-num { font-size: 30px; }
+  .venn .lab .b-label { margin-top: 3px; }
+  .venn .l1 { left: 0; right: 0; top: 18px; text-align: center; display: flex; justify-content: center; align-items: baseline; gap: 6px; }
+  .venn .l1 .b-num { font-size: 22px; }
+  .venn .l2 { right: 4px; top: 6px; text-align: right; }
+
+  .h2h { top: 428px; }
+  .h2h .hd { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 30px; }
+  .h2h .hd .b-label:last-child { text-align: right; }
+  .row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 46px; border-top: 1px solid var(--b-line); }
+  .row .b-num { font-size: 26px; }
+  .row .m { color: #ff7a8a; }
+  .row .s { text-align: right; color: var(--b-text-2); }
+  .row .b-label { text-align: center; }
+  .row .win { position: relative; }
+  .crown { display: inline-block; margin-left: 6px; vertical-align: 4px; }
+
+  .trips-h { top: 612px; display: flex; justify-content: space-between; }
+  .trips { top: 632px; height: 118px; overflow: hidden; }
+  .trips svg { position: absolute; inset: 0; }
+  .trips .tag { position: absolute; display: flex; align-items: center; gap: 6px; }
+  .trips .tag .b-pill { background: rgba(7,8,10,.85); color: #fff; height: 24px; }
+  .trips .tag .b-pill b { color: #ff7a8a; font-weight: 800; }
+
+  .cta { top: 764px; display: flex; gap: 10px; }
+  .cta .b-btn { flex: 1; height: 46px; }
+</style></head>
+<body class="phone b">
+
+  <div class="b-nav">
+    <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div class="who"><div class="av" style="background:#ffb547">S</div><span class="b-label" style="color:#fff">+</span><div class="av" style="background:#ff7a8a">M</div></div>
+    <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+
+  <div class="g venn">
+    <div class="sam"></div>
+    <div class="maya">
+      <div>
+        <div class="b-mega">17</div>
+        <div class="b-label">Games together</div>
+      </div>
+    </div>
+    <div class="lab l1"><span class="b-num">60</span><span class="b-label">Sam's games</span></div>
+  </div>
+
+  <div class="g h2h">
+    <div class="hd"><span class="b-label" style="color:#ff7a8a">Maya</span><span class="b-label">Head to head</span><span class="b-label">Sam</span></div>
+    <div class="row"><span class="b-num m">65%</span><span class="b-label">Win rate</span><span class="b-num s">61%</span></div>
+    <div class="row"><span class="b-num m">8</span><span class="b-label">Venues</span><span class="b-num s">21</span></div>
+    <div class="row"><span class="b-num m">2</span><span class="b-label">Countries</span><span class="b-num s">3</span></div>
+  </div>
+
+  <div class="g trips-h"><span class="b-label">Roads we shared</span><span class="b-label" style="color:var(--b-text-2)">2 trips</span></div>
+  <div class="g trips b-panel" id="trips">
+    <svg id="map" viewBox="0 0 357 118"></svg>
+    <div class="tag" style="left:12px;bottom:12px"><span class="b-pill"><b>●</b> Lambeau · 19°F</span></div>
+    <div class="tag" style="right:12px;bottom:12px"><span class="b-pill"><b>●</b> Spain · 2 games</span></div>
+  </div>
+
+  <div class="g cta">
+    <div class="b-btn ghost">See all 17</div>
+    <div class="b-btn">Invite Leo</div>
+  </div>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script src="../../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../../kit/vendor/countries-110m.js"></script>
+<script>
+  (function () {
+    const topo = window.__atlas['countries-110m'];
+    const land = topojson.feature(topo, topo.objects.countries);
+    const W = 357, H = 118;
+    const chi = [-87.65, 41.88], gb = [-88.06, 44.50], bcn = [2.12, 41.38], vlc = [-0.38, 39.47], mad = [-3.69, 40.45];
+    const proj = d3.geoNaturalEarth1().rotate([45, 0]).fitExtent([[36, 30], [W - 30, 70]], { type: 'MultiPoint', coordinates: [[-88, 46], [1, 46], [-88, 39], [1, 39]] });
+    const path = d3.geoPath(proj);
+    const svg = d3.select('#map');
+    svg.append('g').selectAll('path').data(land.features).join('path').attr('d', path).attr('fill', '#1d2029').attr('stroke', '#07080a').attr('stroke-width', .6);
+    const line = (a, b) => svg.append('path').attr('d', path({ type: 'LineString', coordinates: [a, b] })).attr('fill', 'none').attr('stroke', '#ff7a8a').attr('stroke-width', 2.2).attr('stroke-linecap', 'round');
+    line(chi, gb); line(chi, bcn); line(bcn, vlc); line(vlc, mad); line(mad, chi);
+    [chi, gb, bcn, mad].forEach((c, i) => { const [x, y] = proj(c); svg.append('circle').attr('cx', x).attr('cy', y).attr('r', i ? 3.5 : 5).attr('fill', i ? '#ff7a8a' : '#fff'); });
+    const [cx, cy] = proj(chi);
+    svg.append('text').attr('x', cx - 9).attr('y', cy + 4).attr('text-anchor', 'end').attr('fill', 'rgba(255,255,255,.7)').attr('font-family', 'Barlow Condensed').attr('font-weight', 700).attr('font-size', 10).attr('letter-spacing', 1.6).text('CHI');
+  })();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

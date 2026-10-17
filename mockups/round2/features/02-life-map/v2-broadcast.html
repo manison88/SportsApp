@@ -1,0 +1,117 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+  .b-nav .b-h1 { font-size: 30px; }
+  #map { position: absolute; left: 0; top: 100px; width: 393px; height: 470px; }
+  .hometag { position: absolute; display: flex; align-items: stretch; border-radius: 6px; overflow: hidden; font: 800 13px/1 var(--b-cond); letter-spacing: 1.2px; text-transform: uppercase; box-shadow: 0 6px 18px rgba(0,0,0,.5); }
+  .hometag .k { background: var(--b-accent); color: #000; padding: 6px 7px; }
+  .hometag .v { background: #fff; color: #000; padding: 6px 7px; }
+  .stats { top: 572px; }
+  .big { display: flex; align-items: flex-end; gap: 12px; }
+  .big .b-mega { font-size: 104px; letter-spacing: -2px; margin-left: -3px; }
+  .big .b-h2 { padding-bottom: 6px; color: var(--b-text-2); }
+  .row { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .row .b-panel { padding: 12px 12px 11px; }
+  .row .b-num { font-size: 30px; }
+  .row .b-label { margin-top: 6px; }
+  .tabs-ic { display: none; }
+</style></head>
+<body class="phone b">
+
+<div class="b-nav">
+  <div class="b-h1">Map</div>
+  <div style="display:flex;gap:8px">
+    <div class="b-pill" style="color:#fff">All sports</div>
+  </div>
+</div>
+
+<svg id="map"></svg>
+<div style="position:absolute;left:0;right:0;top:470px;height:100px;background:linear-gradient(rgba(7,8,10,0),var(--b-bg))"></div>
+
+<div class="g stats">
+  <div class="big"><div class="b-mega">42,900</div><div class="b-h2">Miles<br>logged</div></div>
+  <div class="row">
+    <div class="b-panel"><div class="b-num">21</div><div class="b-label">Venues</div></div>
+    <div class="b-panel"><div class="b-num">3</div><div class="b-label">Countries</div></div>
+    <div class="b-panel"><div class="b-num">60</div><div class="b-label">Games</div></div>
+  </div>
+</div>
+
+<nav class="b-tabs">
+  <span><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="9" rx="2"/><path d="M4 17h16M4 21h10"/></svg>Timeline</span>
+  <span class="on"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.4 3.2 14.6 0 18M12 3c-3.2 3.4-3.2 14.6 0 18"/></svg>Map</span>
+  <span><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="11" r="3.5"/><path d="M9 17.5h6"/></svg>Passport</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>You</span>
+</nav>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script src="../../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../../kit/vendor/countries-110m.js"></script>
+<script>
+(function () {
+  const W = 393, H = 470;
+  const svg = d3.select('#map').attr('viewBox', `0 0 ${W} ${H}`);
+  const world = window.__atlas['countries-110m'];
+  const land = topojson.feature(world, world.objects.countries);
+  const home = [-87.65, 41.9];
+  // [lon, lat, games]
+  const V = [
+    [-71.097, 42.346, 1], [-88.062, 44.501, 1], [-90.193, 38.623, 1], [-87.971, 43.028, 1],
+    [-93.278, 44.982, 1], [-83.049, 42.339, 1], [-81.685, 41.496, 1], [-80.006, 40.447, 1],
+    [-84.507, 39.097, 1], [-73.926, 40.829, 1], [-118.24, 34.074, 1], [-122.389, 37.778, 1],
+    [-94.48, 39.051, 1], [-97.641, 30.133, 1], [2.123, 41.381, 1], [-3.688, 40.453, 1], [7.452, 51.493, 1]
+  ];
+  const proj = d3.geoOrthographic().rotate([46, -40]).clipAngle(90);
+  proj.fitExtent([[26, 70], [W - 40, H - 120]], { type: 'MultiPoint', coordinates: [[-122.4, 37.8], [7.45, 51.5], [-97.6, 30.1], [-3.7, 40.4], [-80, 52]] });
+  const path = d3.geoPath(proj);
+
+  const defs = svg.append('defs');
+  const rg = defs.append('radialGradient').attr('id', 'heat');
+  rg.append('stop').attr('offset', '0').attr('stop-color', '#ffb547').attr('stop-opacity', .95);
+  rg.append('stop').attr('offset', '.3').attr('stop-color', '#ff7a2a').attr('stop-opacity', .45);
+  rg.append('stop').attr('offset', '1').attr('stop-color', '#ff5a1a').attr('stop-opacity', 0);
+
+  svg.append('path').datum({ type: 'Sphere' }).attr('d', path).attr('fill', '#0d0f13').attr('stroke', 'rgba(255,255,255,.08)');
+  svg.append('path').datum(d3.geoGraticule10()).attr('d', path).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.035)');
+  svg.append('path').datum(land).attr('d', path).attr('fill', '#171a21').attr('stroke', '#07080a').attr('stroke-width', .6);
+  // US states hint not needed; keep it calm
+
+  const arcs = svg.append('g').attr('fill', 'none').attr('stroke-linecap', 'round');
+  V.forEach(([lon, lat]) => {
+    arcs.append('path').datum({ type: 'LineString', coordinates: [home, [lon, lat]] })
+      .attr('d', path).attr('stroke', '#fff').attr('stroke-opacity', .55).attr('stroke-width', 1.2);
+  });
+  V.forEach(([lon, lat]) => {
+    const [x, y] = proj([lon, lat]);
+    svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 3.2).attr('fill', '#fff');
+  });
+
+  const [hx, hy] = proj(home);
+  svg.append('circle').attr('cx', hx).attr('cy', hy).attr('r', 46).attr('fill', 'url(#heat)');
+  svg.append('circle').attr('cx', hx).attr('cy', hy).attr('r', 6).attr('fill', '#fff');
+
+  // labels for the far ends
+  const lab = (lon, lat, t, dx, dy, anchor) => {
+    const [x, y] = proj([lon, lat]);
+    svg.append('text').attr('x', x + dx).attr('y', y + dy).attr('text-anchor', anchor || 'start')
+      .attr('fill', 'rgba(255,255,255,.62)').attr('font-family', 'Barlow Condensed').attr('font-weight', 700)
+      .attr('font-size', 11).attr('letter-spacing', 1.6).text(t);
+  };
+  lab(-122.389, 37.778, 'SAN FRANCISCO', -2, -10, 'start');
+  lab(-3.688, 40.453, 'MADRID', 0, 18, 'end');
+  lab(7.452, 51.493, 'DORTMUND', 0, -10, 'end');
+
+  const tag = document.createElement('div');
+  tag.className = 'hometag';
+  tag.innerHTML = '<span class="k">Chicago</span><span class="v">43 games</span>';
+  tag.style.left = (hx - 24) + 'px';
+  tag.style.top = (100 + hy + 46) + 'px';
+  svg.append('line').attr('x1', hx).attr('y1', hy + 8).attr('x2', hx).attr('y2', hy + 48).attr('stroke', '#ffb547').attr('stroke-width', 1.5);
+  document.body.appendChild(tag);
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

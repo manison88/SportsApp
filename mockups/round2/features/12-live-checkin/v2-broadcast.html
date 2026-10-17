@@ -1,0 +1,94 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  body.b { background: radial-gradient(120% 60% at 30% 22%, rgba(47,107,255,.34), rgba(47,107,255,0) 70%), var(--b-bg); }
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+
+  .sc { top: 112px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tm { height: 236px; border-radius: 14px; position: relative; overflow: hidden; }
+  .tm .code { position: absolute; left: 16px; top: 16px; font: 800 26px/1 var(--b-cond); letter-spacing: 1.5px; }
+  .tm .city { position: absolute; left: 16px; top: 46px; font: 700 11px/1 var(--b-cond); letter-spacing: 2.2px; text-transform: uppercase; opacity: .72; }
+  .tm .n { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; font: 800 190px/.8 var(--b-cond); letter-spacing: -4px; }
+  .chc { background: #2f6bff; box-shadow: 0 20px 60px rgba(47,107,255,.35); }
+  .mil { background: var(--b-panel); box-shadow: inset 0 0 0 1px var(--b-line); color: var(--b-text-2); }
+  .mil .code { color: #ffc52f; }
+  .bat { position: absolute; right: 14px; top: 16px; }
+
+  .st { top: 360px; height: 64px; display: flex; align-items: center; padding: 0 16px; gap: 0; }
+  .st > div { flex: 1; display: flex; align-items: center; gap: 10px; }
+  .st > div + div { border-left: 1px solid var(--b-line); padding-left: 16px; }
+  .st .b-num { font-size: 26px; }
+  .st .b-label { color: var(--b-text-2); white-space: nowrap; }
+  .outs { display: flex; gap: 5px; } .outs i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.18); } .outs i.on { background: #fff; }
+  .bases { width: 46px; height: 32px; position: relative; }
+  .bases i { position: absolute; width: 12px; height: 12px; transform: rotate(45deg); border: 2px solid rgba(255,255,255,.35); border-radius: 2px; }
+  .bases i.on { background: #ffb547; border-color: #ffb547; }
+
+  .you { top: 440px; display: flex; align-items: center; gap: 12px; }
+  .av { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; font: 800 16px/1 var(--b-cond); color: #10131a; }
+  .avs { display: flex; } .avs .av + .av { margin-left: -8px; box-shadow: 0 0 0 2px var(--b-bg); }
+  .you .t { font: 600 15px/1.25 var(--b-ui); }
+  .you .t span { display: block; font: 500 12.5px/1.3 var(--b-ui); color: var(--b-text-2); margin-top: 2px; }
+
+  .la-label { top: 502px; display: flex; justify-content: space-between; align-items: center; }
+  .la { top: 524px; height: 96px; border-radius: 22px; background: rgba(28,30,36,.92); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); padding: 14px 16px; display: flex; align-items: center; gap: 14px; }
+  .la .left { flex: 1; }
+  .la .row { display: flex; align-items: center; gap: 8px; }
+  .la .meta { margin-top: 8px; font: 500 12px/1.2 var(--b-ui); color: var(--b-text-2); }
+  .la .rec { width: 52px; height: 52px; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+  .la .rec i { width: 18px; height: 18px; border-radius: 50%; background: var(--b-live); }
+  .la .b-bug { height: 30px; font-size: 16px; }
+
+  .save { top: 652px; height: 92px; border-radius: 16px; background: #fff; color: #000; display: flex; align-items: center; justify-content: center; gap: 14px; font: 800 26px/1 var(--b-cond); letter-spacing: 1.6px; text-transform: uppercase; box-shadow: 0 16px 50px rgba(47,107,255,.35); }
+  .save .ring { width: 30px; height: 30px; border-radius: 50%; border: 3px solid #000; display: grid; place-items: center; }
+  .save .ring i { width: 14px; height: 14px; border-radius: 50%; background: var(--b-live); }
+  .hint { top: 758px; text-align: center; }
+</style></head>
+<body class="phone b">
+
+  <div class="b-nav">
+    <span class="b-pill live"><span class="b-dot" style="background:#fff;box-shadow:none"></span>Live · Wrigley Field</span>
+    <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></div>
+  </div>
+
+  <div class="g sc">
+    <div class="tm chc">
+      <div class="code">CHC</div><div class="city">Chicago</div>
+      <span class="b-pill bat" style="background:rgba(0,0,0,.22);color:#fff">At bat</span>
+      <div class="n">4</div>
+    </div>
+    <div class="tm mil">
+      <div class="code">MIL</div><div class="city">Milwaukee</div>
+      <div class="n">3</div>
+    </div>
+  </div>
+
+  <div class="g st b-panel">
+    <div><svg width="12" height="10" viewBox="0 0 12 10"><path d="M6 10 0 0h12z" fill="#fff"/></svg><span class="b-num">BOT 7</span></div>
+    <div><div class="outs"><i class="on"></i><i></i><i></i></div><span class="b-label">1 Out</span></div>
+    <div><div class="bases"><i style="left:16px;top:2px" class="on"></i><i style="left:29px;top:15px"></i><i style="left:3px;top:15px"></i></div><span class="b-label">On 2nd</span></div>
+  </div>
+
+  <div class="g you">
+    <div class="avs"><div class="av" style="background:#ffb547">S</div><div class="av" style="background:#ff7a8a">M</div></div>
+    <div class="t">Section 209 with Maya<span>17th game together · 17th Wrigley visit</span></div>
+  </div>
+
+  <div class="g la-label"><span class="b-label">On your Lock Screen</span><span class="b-label" style="color:var(--b-text-2)">Live Activity</span></div>
+  <div class="g la">
+    <div class="left">
+      <div class="row">
+        <div class="b-bug"><span class="team" style="--c:#2f6bff">CHC</span><span class="score">4</span><span class="team" style="--c:#12284b">MIL</span><span class="score">3</span><span class="state">BOT 7</span></div>
+      </div>
+      <div class="meta">Witness · Sec 209 · 6 moments saved</div>
+    </div>
+    <div class="rec"><i></i></div>
+  </div>
+
+  <div class="g save"><span class="ring"><i></i></span>Save this moment</div>
+  <div class="g hint b-small">Keeps the last 30 seconds: score, sound and your photos</div>
+
+<script src="../../../kit/kit.js"></script>
+</body></html>

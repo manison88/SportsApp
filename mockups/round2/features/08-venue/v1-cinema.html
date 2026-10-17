@@ -1,0 +1,121 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cinema</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/cinema.css">
+<style>
+  .a-hero { height: 372px; }
+  .a-hero img { object-position: 60% 50%; }
+  .nav-r { display: flex; gap: 10px; }
+  .title { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 262px; z-index: 5; }
+  .title .a-display { margin-top: 10px; }
+
+  .rec { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 388px; display: flex; align-items: flex-end; justify-content: space-between; }
+  .rec .a-num-xl { font-size: 60px; }
+  .rec .a-num-xl em { font-style: normal; color: var(--a-text-3); }
+  .rec .a-small { margin-top: 10px; }
+  .rec .r { text-align: right; padding-bottom: 2px; }
+  .rec .r .v { font: 400 30px/1 var(--a-serif); color: var(--a-text); }
+  .rec .r .a-small { margin-top: 6px; }
+
+  .map { position: absolute; left: 0; right: 0; top: 488px; height: 250px; }
+  .map svg { position: absolute; left: 0; top: 0; }
+  .tag { position: absolute; z-index: 3; }
+  .tag .a-eyebrow { color: var(--a-accent); }
+  .tag b { display: block; margin-top: 5px; font: 400 21px/1 var(--a-serif); font-weight: 400; }
+  .tag span { display: block; margin-top: 4px; font: 500 12px/1.3 var(--a-ui); color: var(--a-text-3); }
+
+  .fl { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 744px; display: flex; border-top: 1px solid var(--a-line); padding-top: 14px; }
+  .fl > div { flex: 1; }
+  .fl > div + div { padding-left: 18px; border-left: 1px solid var(--a-line); }
+  .fl .v { margin-top: 7px; font: 600 15px/1 var(--a-num); color: var(--a-text); }
+  .fl .v small { font: 500 12.5px/1 var(--a-ui); color: var(--a-text-3); margin-left: 4px; }
+</style></head>
+<body class="phone a">
+  <div class="a-hero"><img class="ph graded" src="../../../photos/wrigley-bleachers.jpg"></div>
+
+  <div class="a-nav">
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="nav-r">
+      <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7.5 7.5 12 3l4.5 4.5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></div>
+    </div>
+  </div>
+
+  <div class="title">
+    <div class="a-eyebrow" style="color:var(--a-text-2)">Chicago · Opened 1914 · Your home park</div>
+    <div class="a-display">Wrigley Field</div>
+  </div>
+
+  <div class="rec">
+    <div>
+      <div class="a-num-xl">11<em>–</em>6</div>
+      <div class="a-small">Your record here · 17 visits</div>
+    </div>
+    <div class="r">
+      <div class="v">65%</div>
+      <div class="a-small">wins with you</div>
+    </div>
+  </div>
+
+  <div class="map">
+    <svg id="park" width="393" height="250" viewBox="0 0 393 250" style="overflow:visible"></svg>
+    <div class="tag" id="t314"><div class="a-eyebrow">Your seat</div><b>Bleachers 314</b><span>12 of 17 visits</span></div>
+  </div>
+
+  <div class="fl">
+    <div><div class="a-eyebrow">First visit</div><div class="v">Jun 14, 2014<small>Sat</small></div></div>
+    <div><div class="a-eyebrow">Last visit</div><div class="v">Jul 4, 2026<small>Tonight</small></div></div>
+  </div>
+
+<script>
+(function(){
+  const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('park');
+  const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
+  const H = [138, 196], rad = d => d * Math.PI / 180, r2 = Math.SQRT1_2;
+  const pt = (c, r, a) => [c[0] + r * Math.cos(rad(a)), c[1] + r * Math.sin(rad(a))];
+  const wedge = (c, r0, r1, a0, a1) => { const p = [pt(c, r1, a0), pt(c, r1, a1), pt(c, r0, a1), pt(c, r0, a0)];
+    return `M${p[0]} A${r1} ${r1} 0 0 1 ${p[1]} L${p[2]} A${r0} ${r0} 0 0 0 ${p[3]} Z`; };
+  // straight band along a foul line: side -1 = 3rd-base line, +1 = 1st-base line
+  const band = (side, s0, s1, d0, d1) => { const u = [side * r2, -r2], n = [side * r2, r2];
+    const q = (s, d) => [H[0] + s * u[0] + d * n[0], H[1] + s * u[1] + d * n[1]];
+    return `M${q(s0, d0)} L${q(s1, d0)} L${q(s1, d1)} L${q(s0, d1)} Z`; };
+  const defs = el('defs', {});
+  defs.innerHTML = '<filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="6"/></filter>' +
+    '<radialGradient id="grass" cx="50%" cy="100%" r="100%"><stop offset="0" stop-color="rgba(150,200,150,.12)"/><stop offset="1" stop-color="rgba(150,200,150,.04)"/></radialGradient>';
+
+  el('path', { d: `M${H} L${pt(H, 126, -135)} A126 126 0 0 1 ${pt(H, 126, -45)} Z`, fill: 'url(#grass)', stroke: 'rgba(255,255,255,.2)', 'stroke-width': .8 });
+  const b1 = pt(H, 38, -45), b2 = pt(H, 53.7, -90), b3 = pt(H, 38, -135);
+  el('path', { d: `M${H} L${b1} L${b2} L${b3} Z`, fill: 'rgba(255,255,255,.035)', stroke: 'rgba(255,255,255,.26)', 'stroke-width': .8 });
+  [b1, b2, b3].forEach(p => el('rect', { x: p[0] - 1.5, y: p[1] - 1.5, width: 3, height: 3, fill: 'rgba(255,255,255,.5)', transform: `rotate(45 ${p[0]} ${p[1]})` }));
+  el('path', { d: `M${H[0]-3} ${H[1]-3} h6 v3 l-3 3 l-3 -3 Z`, fill: 'rgba(255,255,255,.6)' });
+
+  const sec = (d, v, amber) => {
+    const col = amber ? '255,181,71' : '245,241,234';
+    if (amber) el('path', { d, fill: 'rgba(255,181,71,.85)', filter: 'url(#glow)' });
+    else if (v) el('path', { d, fill: `rgba(${col},.35)`, filter: 'url(#glow)' });
+    el('path', { d, fill: v ? `rgba(${col},${amber ? .95 : .22 + v * .14})` : 'rgba(255,255,255,.045)', stroke: v ? `rgba(${col},.9)` : 'rgba(255,255,255,.13)', 'stroke-width': v ? .9 : .6 });
+  };
+  const lit = { 'L1-2': 2, 'U0-1': 1, 'R1-3': 1, 'UR-2': 1 };
+  // lower (100) and upper (200) levels: arc behind home + bands along each line
+  [['L', 12, 28], ['U', 32, 46]].forEach(([lv, d0, d1]) => {
+    [[45, 75], [77, 103], [105, 135]].forEach(([a0, a1], i) => sec(wedge(H, d0, d1, a0, a1), lv === 'U' && i === 1 ? 1 : 0));
+    for (let i = 0; i < 5; i++) {
+      const s0 = 2 + i * 22.5, s1 = s0 + 20.5;
+      sec(band(-1, s0, s1, d0, d1), (lv === 'L' && i === 1) ? 2 : 0);
+      sec(band(1, s0, s1, d0, d1), (lv === 'L' && i === 3) || (lv === 'U' && i === 2) ? 1 : 0);
+    }
+  });
+  // bleachers
+  let n = 309, at = 0;
+  for (let a = -131; a < -49; a += 9.2) { const num = n++; sec(wedge(H, 134, 156, a, a + 8.2), num === 314 ? 12 : 0, num === 314); if (num === 314) at = a + 4.1; }
+
+  const p = pt(H, 156, at);
+  el('path', { d: `M${p[0]} ${p[1] - 1} L${p[0]} 22 L${p[0] + 104} 22`, fill: 'none', stroke: 'rgba(255,181,71,.55)', 'stroke-width': .8 });
+  const t = document.getElementById('t314'); t.style.left = (p[0] + 112) + 'px'; t.style.top = '8px';
+  const q = pt(H, 39, 90);
+  const tl = el('text', { x: q[0] + 34, y: q[1] + 4, fill: 'rgba(245,241,234,.55)', 'font-family': 'Inter', 'font-size': 10.5, 'font-weight': 500 });
+  tl.textContent = '209 · tonight';
+  el('path', { d: `M${q[0] + 9} ${q[1]} L${q[0] + 30} ${q[1]}`, stroke: 'rgba(245,241,234,.35)', 'stroke-width': .8 });
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

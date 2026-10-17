@@ -1,0 +1,125 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Clean</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/clean.css">
+<style>
+  .head { position: absolute; top: 100px; z-index: 2; left: var(--c-gutter); right: var(--c-gutter); display: flex; justify-content: space-between; align-items: flex-end; }
+  .head .c-h1 { margin-top: 8px; }
+  .globe { position: absolute; top: 76px; left: 0; width: 393px; height: 540px; -webkit-mask-image: linear-gradient(#000 80%, transparent 100%); }
+  .globe svg { display: block; overflow: visible; }
+  .stats { position: absolute; top: 640px; left: var(--c-gutter); right: var(--c-gutter); display: grid; grid-template-columns: 1.3fr 1fr 1fr; }
+  .stats > div + div { padding-left: 18px; box-shadow: inset 1px 0 0 var(--c-line); }
+  .stats .v { font: 700 30px/1 var(--c-display); letter-spacing: -1.2px; font-variant-numeric: tabular-nums; }
+  .stats .k { margin-top: 6px; }
+</style></head>
+<body class="phone c" data-chrome="dark">
+  <div class="head">
+    <div>
+      <div class="c-eyebrow">60 games · 2014–2026</div>
+      <div class="c-h1">Life map</div>
+    </div>
+    <div class="c-segment" style="width:132px"><span class="on">Globe</span><span>Flat</span></div>
+  </div>
+
+  <div class="globe"><svg id="g" width="393" height="540"></svg></div>
+
+  <div class="stats">
+    <div><div class="v">42,900</div><div class="c-small k">miles traveled</div></div>
+    <div><div class="v">21</div><div class="c-small k">venues</div></div>
+    <div><div class="v">3</div><div class="c-small k">countries</div></div>
+  </div>
+
+  <nav class="c-tabs">
+    <span><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Timeline</span>
+    <span class="on"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Map</span>
+    <span><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><circle cx="12" cy="10.5" r="3"/><path d="M9 16.5h6"/></svg>Passport</span>
+    <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.4-3.6 4.2-5.5 7.5-5.5s6.1 1.9 7.5 5.5"/></svg>You</span>
+  </nav>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script src="../../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../../kit/vendor/land-50m.js"></script>
+<script>
+(function () {
+  const W = 393, H = 540;
+  const CHI = [-87.66, 41.90];
+  // [name, lon, lat, games, label?, dx, dy, anchor]
+  const V = [
+    ['Green Bay', -88.06, 44.50, 1], ['Milwaukee', -87.97, 43.03, 1], ['Minneapolis', -93.28, 44.98, 1],
+    ['Kansas City', -94.48, 39.05, 1], ['St. Louis', -90.19, 38.62, 1], ['Cincinnati', -84.51, 39.10, 1],
+    ['Detroit', -83.05, 42.34, 1], ['Cleveland', -81.69, 41.50, 1], ['Pittsburgh', -80.01, 40.45, 1],
+    ['New York', -73.93, 40.83, 1], ['Boston', -71.10, 42.35, 1, 'Boston', 6, -6, 'start'],
+    ['Austin', -97.64, 30.13, 1, 'Austin', -7, 12, 'end'],
+    ['Los Angeles', -118.24, 34.07, 1, 'Los Angeles', 4, 15, 'middle'],
+    ['San Francisco', -122.39, 37.78, 1],
+    ['Barcelona', 2.12, 41.38, 1, 'Barcelona', 7, 4, 'start'], ['Madrid', -3.69, 40.45, 1, 'Madrid', -2, 15, 'end'],
+    ['Dortmund', 7.45, 51.49, 1, 'Dortmund', 7, -4, 'start']
+  ];
+  const proj = d3.geoOrthographic().rotate([52, -30, 0]).clipAngle(90);
+  proj.fitExtent([[52, 196], [318, 300]], { type: 'MultiPoint', coordinates: V.map(v => [v[1], v[2]]) });
+  const R = proj.scale(), CX = proj.translate()[0], CY = proj.translate()[1];
+  const path = d3.geoPath(proj);
+  const svg = d3.select('#g');
+  const defs = svg.append('defs');
+
+  const sea = defs.append('radialGradient').attr('id', 'sea').attr('cx', '38%').attr('cy', '30%').attr('r', '80%');
+  sea.append('stop').attr('offset', '0').attr('stop-color', '#ffffff');
+  sea.append('stop').attr('offset', '1').attr('stop-color', '#eaeae5');
+  const heat = defs.append('radialGradient').attr('id', 'heat');
+  heat.append('stop').attr('offset', '0').attr('stop-color', '#e8343f').attr('stop-opacity', .55);
+  heat.append('stop').attr('offset', '.35').attr('stop-color', '#ff6a3d').attr('stop-opacity', .22);
+  heat.append('stop').attr('offset', '1').attr('stop-color', '#ff8a3d').attr('stop-opacity', 0);
+  const sh = defs.append('filter').attr('id', 'sh').attr('x', '-20%').attr('y', '-20%').attr('width', '140%').attr('height', '150%');
+  sh.append('feDropShadow').attr('dx', 0).attr('dy', 18).attr('stdDeviation', 22).attr('flood-color', '#000').attr('flood-opacity', .10);
+
+  svg.append('circle').attr('cx', CX).attr('cy', CY).attr('r', R).attr('fill', 'url(#sea)').attr('filter', 'url(#sh)');
+  svg.append('path').attr('d', path(d3.geoGraticule().step([20, 20])())).attr('fill', 'none').attr('stroke', 'rgba(0,0,0,.05)').attr('stroke-width', .6);
+  const land = topojson.feature(__atlas['land-50m'], __atlas['land-50m'].objects.land);
+  svg.append('path').attr('d', path(land)).attr('fill', '#dcdcd5').attr('stroke', '#d0d0c8').attr('stroke-width', .4);
+  svg.append('circle').attr('cx', CX).attr('cy', CY).attr('r', R).attr('fill', 'none').attr('stroke', 'rgba(0,0,0,.06)');
+
+  // heat glow at home
+  const c = proj(CHI);
+  svg.append('circle').attr('cx', c[0]).attr('cy', c[1]).attr('r', 70).attr('fill', 'url(#heat)');
+
+  // arcs: great circles lifted off the surface
+  const lift = (a, b, h) => {
+    const interp = d3.geoInterpolate(a, b), dist = d3.geoDistance(a, b), pts = [];
+    for (let i = 0; i <= 48; i++) {
+      const t = i / 48, ll = interp(t), p = proj(ll);
+      const k = 1 + h * Math.sin(Math.PI * t) * Math.min(1, dist * 1.4);
+      pts.push([CX + (p[0] - CX) * k, CY + (p[1] - CY) * k]);
+    }
+    return 'M' + pts.map(p => p.map(n => n.toFixed(1)).join(',')).join('L');
+  };
+  const g = svg.append('g').attr('fill', 'none').attr('stroke-linecap', 'round');
+  V.forEach(v => {
+    const far = d3.geoDistance(CHI, [v[1], v[2]]);
+    g.append('path').attr('d', lift(CHI, [v[1], v[2]], far > .5 ? .1 : .035))
+      .attr('stroke', '#0c0c0e').attr('stroke-opacity', far > .5 ? .72 : .45).attr('stroke-width', far > .5 ? 1.7 : 1.3);
+  });
+  // Spain rail legs
+  const BCN = [2.12, 41.38], VLC = [-0.38, 39.47], MAD = [-3.69, 40.45];
+  [[BCN, VLC], [VLC, MAD]].forEach(([a, b]) => g.append('path').attr('d', path({ type: 'LineString', coordinates: [a, b] })).attr('stroke', '#0c0c0e').attr('stroke-opacity', .5).attr('stroke-width', 1.2).attr('stroke-dasharray', '1.5 3'));
+
+  // venue dots
+  V.forEach(v => {
+    const p = proj([v[1], v[2]]);
+    svg.append('circle').attr('cx', p[0]).attr('cy', p[1]).attr('r', 3.2).attr('fill', '#fff').attr('stroke', '#0c0c0e').attr('stroke-width', 1.5);
+    if (v[4]) {
+      const t = svg.append('text').attr('x', p[0] + v[5]).attr('y', p[1] + v[6]).attr('text-anchor', v[7])
+        .attr('font-family', 'Inter').attr('font-weight', 600).attr('font-size', 10.5).attr('fill', '#5e5e64').text(v[4]);
+      t.clone(true).lower().attr('stroke', '#f6f6f2').attr('stroke-width', 3).attr('stroke-linejoin', 'round').attr('fill', 'none');
+    }
+  });
+  // home
+  svg.append('circle').attr('cx', c[0]).attr('cy', c[1]).attr('r', 7).attr('fill', '#0c0c0e').attr('stroke', '#fff').attr('stroke-width', 2.5);
+  const lab = svg.append('g').attr('transform', `translate(${c[0] + 10},${c[1] - 62})`);
+  lab.append('rect').attr('x', -62).attr('y', 0).attr('width', 104).attr('height', 34).attr('rx', 17).attr('fill', '#0c0c0e');
+  lab.append('text').attr('x', -10).attr('y', 15).attr('text-anchor', 'middle').attr('font-family', 'Inter').attr('font-weight', 700).attr('font-size', 12).attr('fill', '#fff').text('Chicago');
+  lab.append('text').attr('x', -10).attr('y', 27).attr('text-anchor', 'middle').attr('font-family', 'Inter').attr('font-weight', 500).attr('font-size', 9.5).attr('fill', 'rgba(255,255,255,.65)').text('43 of 60 games');
+  lab.append('path').attr('d', 'M-10 34 L-10 52').attr('stroke', '#0c0c0e').attr('stroke-width', 1.5);
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

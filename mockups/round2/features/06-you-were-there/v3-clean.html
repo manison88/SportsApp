@@ -1,0 +1,132 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Clean</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/clean.css">
+<style>
+  .nav-chip { height: 34px; padding: 0 14px 0 6px; border-radius: 17px; display: inline-flex; align-items: center; gap: 8px; background: var(--c-text); color: #fff; font: 600 13px/1 var(--c-ui); }
+  .nav-chip .th { display: flex; }
+  .nav-chip .th i { width: 22px; height: 22px; border-radius: 11px; overflow: hidden; box-shadow: 0 0 0 1.5px var(--c-text); }
+  .nav-chip .th i + i { margin-left: -7px; }
+
+  .head { position: absolute; top: 108px; left: var(--c-gutter); right: var(--c-gutter); }
+  .score { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+  .score .c-mono { width: 34px; height: 34px; border-radius: 10px; font-size: 14px; }
+  .score .n { font: 700 40px/1 var(--c-display); letter-spacing: -1.6px; font-variant-numeric: tabular-nums; }
+  .score .n.lo { color: var(--c-text-3); }
+  .score .d { font: 500 26px/1 var(--c-display); color: var(--c-text-3); }
+  .score .fin { margin-left: auto; text-align: right; }
+  .score .fin b { display: block; font: 700 11px/1 var(--c-ui); letter-spacing: 1.2px; }
+  .score .fin span { display: block; margin-top: 4px; }
+
+  .curve { position: absolute; top: 200px; left: 12px; right: 12px; height: 252px; overflow: hidden; }
+  .curve .lab { position: absolute; top: 16px; left: 18px; right: 18px; display: flex; justify-content: space-between; align-items: center; }
+  .curve svg { position: absolute; left: 0; top: 0; }
+
+  .moment { position: absolute; top: 468px; left: 12px; right: 12px; height: 132px; padding: 8px; display: flex; gap: 14px; align-items: stretch; }
+  .moment .pic { width: 116px; flex: none; border-radius: 16px; overflow: hidden; position: relative; }
+  .moment .txt { flex: 1; padding: 10px 8px 8px 0; display: flex; flex-direction: column; }
+  .moment .c-h3 { margin-top: 7px; font-size: 17px; line-height: 1.22; font-family: var(--c-display); font-weight: 700; letter-spacing: -.4px; }
+  .moment .c-small { margin-top: auto; }
+
+  .pbp { position: absolute; top: 620px; left: var(--c-gutter); right: var(--c-gutter); }
+  .pl { display: flex; align-items: flex-start; gap: 14px; padding: 13px 0; }
+  .pl + .pl { box-shadow: inset 0 1px 0 var(--c-line); }
+  .pl .tm { width: 62px; white-space: nowrap; flex: none; font: 500 12.5px/1.35 var(--c-ui); color: var(--c-text-3); font-variant-numeric: tabular-nums; padding-top: 1px; }
+  .pl .tx { flex: 1; font: 400 14.5px/1.38 var(--c-ui); color: var(--c-text-2); }
+  .pl .tx b { color: var(--c-text); font-weight: 600; }
+  .pl .bd { flex: none; height: 22px; padding: 0 8px; border-radius: 7px; background: #0e3386; color: #fff; display: inline-flex; align-items: center; font: 700 12px/1 var(--c-display); font-variant-numeric: tabular-nums; }
+  .pl.on .tm { color: var(--c-text); font-weight: 600; }
+</style></head>
+<body class="phone c" data-chrome="dark">
+  <div class="c-nav">
+    <span class="c-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span>
+    <span class="nav-chip"><span class="th"><i><img class="ph" src="../../../photos/wrigley-night.jpg"></i><i><img class="ph" src="../../../photos/wrigley-night-2.jpg"></i><i><img class="ph" src="../../../photos/wrigley-scoreboard.jpg"></i></span>Your 6 photos</span>
+  </div>
+
+  <div class="head">
+    <div class="c-eyebrow">World Series · Game 5 · Oct 30, 2016</div>
+    <div class="score">
+      <span class="c-mono" style="--c:#0e3386">CHC</span><span class="n">3</span>
+      <span class="d">–</span>
+      <span class="n lo">2</span><span class="c-mono" style="--c:#0c2340">CLE</span>
+      <span class="fin"><b>FINAL</b><span class="c-small">Wrigley Field</span></span>
+    </div>
+  </div>
+
+  <div class="c-card curve">
+    <div class="lab"><span class="c-eyebrow">Chicago win probability</span><span class="c-small">Drag to scrub</span></div>
+    <svg id="wp" width="369" height="252"></svg>
+  </div>
+
+  <div class="c-card moment">
+    <div class="pic"><img class="ph" src="../../../photos/wrigley-night.jpg" style="object-position:55% 55%"></div>
+    <div class="txt">
+      <span class="c-eyebrow">10:43 PM · Bleachers 314</span>
+      <span class="c-h3">Taken 40 seconds after the final out.</span>
+      <span class="c-small">With Dad · 63°F, clear</span>
+    </div>
+  </div>
+
+  <div class="pbp">
+    <div class="pl"><span class="tm">9:41 PM</span><span class="tx"><b>Chapman</b> in with one out in the 7th. Eight outs to get.</span></div>
+    <div class="pl"><span class="tm">10:24 PM</span><span class="tx"><b>Chapman</b> back out for a third inning.</span></div>
+    <div class="pl on"><span class="tm">10:42 PM</span><span class="tx"><b>Final out.</b> On to Game 6.</span><span class="bd">3–2</span></div>
+  </div>
+
+<script>
+(function () {
+  const W = 369, H = 252, L = 22, R = 332, T = 76, B = 212;
+  const tm = s => { const [h, m] = s.split(':').map(Number); return (h + 12) * 60 + m; };
+  const t0 = tm('7:15'), t1 = tm('10:47');
+  const x = s => L + (tm(s) - t0) / (t1 - t0) * (R - L);
+  const y = p => B - (p - 30) / 70 * (B - T);
+  const P = [['7:15', 54], ['7:28', 56], ['7:40', 50], ['7:46', 39], ['8:05', 42], ['8:22', 44], ['8:34', 60], ['8:40', 66], ['8:47', 77], ['9:05', 75], ['9:18', 70], ['9:24', 61],
+    ['9:36', 63], ['9:41', 68], ['9:55', 72], ['10:08', 78], ['10:20', 84], ['10:30', 89], ['10:38', 94], ['10:42', 100]];
+  const svg = document.getElementById('wp');
+  const pts = P.map(([t, p]) => [x(t), y(p)]);
+  // smooth path (monotone-ish cubic)
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 1; i < pts.length; i++) {
+    const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], mx = (x0 + x1) / 2;
+    d += ` C${mx},${y0} ${mx},${y1} ${x1},${y1}`;
+  }
+  const last = pts[pts.length - 1];
+  let h = `<defs><linearGradient id="fa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6bff" stop-opacity=".22"/><stop offset="1" stop-color="#2f6bff" stop-opacity="0"/></linearGradient>
+    <clipPath id="cp"><circle r="15"/></clipPath><clipPath id="cpb"><circle r="21"/></clipPath></defs>`;
+  // innings grid
+  const inn = ['7:15', '7:36', '7:55', '8:18', '8:55', '9:12', '9:38', '10:02', '10:22'];
+  inn.forEach((t, i) => {
+    const xx = x(t);
+    h += `<line x1="${xx}" x2="${xx}" y1="${T - 8}" y2="${B}" stroke="rgba(0,0,0,.05)"/>`;
+    h += `<text x="${xx + 2}" y="${B + 20}" font-family="Inter" font-weight="600" font-size="10" fill="#9a9aa0">${i + 1}</text>`;
+  });
+  h += `<line x1="${L}" x2="${R}" y1="${y(50)}" y2="${y(50)}" stroke="rgba(0,0,0,.14)" stroke-dasharray="2 3"/>`;
+   h += `<text x="${L}" y="${y(50) - 5}" text-anchor="start" font-family="Inter" font-weight="600" font-size="9.5" fill="#9a9aa0">50%</text>`;
+  h += `<path d="${d} L${last[0]},${B} L${L},${B} Z" fill="url(#fa)"/>`;
+  h += `<path d="${d}" fill="none" stroke="#1f4fd1" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`;
+  // played-through region highlight: scrubber
+  const sx = x('10:43');
+  h += `<line x1="${sx}" x2="${sx}" y1="${T - 26}" y2="${B}" stroke="#0c0c0e" stroke-width="1.5"/>`;
+  // key labels
+  const tag = (t, p, txt, dy, anchor) => { const xx = x(t), yy = y(p) + dy; h += `<text x="${xx}" y="${yy}" text-anchor="${anchor || 'middle'}" font-family="Inter" font-weight="600" font-size="10" fill="#5e5e64">${txt}</text>`; };
+  tag('7:46', 39, 'Ramírez HR', 18);
+  tag('9:24', 61, 'Lindor RBI', 18);
+  // photo pins
+  const pin = (t, p, src, big) => {
+    const xx = x(t), yy = y(p), r = big ? 21 : 15, py = yy - (big ? 0 : 26);
+    if (!big) h += `<line x1="${xx}" x2="${xx}" y1="${yy}" y2="${py + r}" stroke="#0c0c0e" stroke-width="1.2"/><circle cx="${xx}" cy="${yy}" r="3" fill="#0c0c0e"/>`;
+    h += `<circle cx="${xx}" cy="${py}" r="${r + 2.5}" fill="#fff" stroke="${big ? '#0c0c0e' : 'rgba(0,0,0,.08)'}" stroke-width="${big ? 2 : 1}"/>`;
+    h += `<g transform="translate(${xx},${py})"><image href="${src}" x="${-r * 1.6}" y="${-r}" width="${r * 3.2}" height="${r * 2}" preserveAspectRatio="xMidYMid slice" clip-path="url(#${big ? 'cpb' : 'cp'})"/></g>`;
+  };
+  pin('7:22', 55, '../../../photos/wrigley-bleachers.jpg');
+  pin('8:34', 60, '../../../photos/wrigley-night-2.jpg');
+  pin('9:41', 68, '../../../photos/wrigley-scoreboard.jpg');
+  pin('10:43', 100, '../../../photos/wrigley-night.jpg', true);
+  // Bryant label
+  h += `<text x="${x('8:34') - 22}" y="${y(60) - 30}" text-anchor="end" font-family="Inter" font-weight="700" font-size="10.5" fill="#0c0c0e">Bryant HR</text>`;
+  h += `<text x="${x('8:34') - 22}" y="${y(60) - 18}" text-anchor="end" font-family="Inter" font-weight="500" font-size="9.5" fill="#9a9aa0">8:34 PM</text>`;
+  svg.innerHTML = h;
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

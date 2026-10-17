@@ -1,0 +1,85 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+  .b-nav .b-h1 { font-size: 30px; }
+  .seg { top: 108px; display: flex; gap: 6px; }
+  .seg .b-pill.on { background: #fff; color: #000; }
+  .hero { top: 150px; display: flex; align-items: flex-end; gap: 12px; }
+  .hero .b-mega { margin-left: -4px; }
+  .hero .side { padding-bottom: 6px; }
+  .hero .side .b-small { margin-top: 8px; color: var(--b-text-2); }
+  .ticks { top: 272px; display: grid; grid-template-columns: repeat(30, 1fr); gap: 3px; height: 8px; }
+  .ticks i { border-radius: 1.5px; background: rgba(255,255,255,.1); }
+  .ticks i.on { background: #fff; }
+
+  .grid { top: 302px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 7px; }
+  .st { aspect-ratio: 1; border-radius: 10px; position: relative; overflow: hidden; background: var(--c); color: #fff;
+        display: flex; flex-direction: column; justify-content: space-between; padding: 7px 7px 6px; }
+  .st::before { /* subtle foil sheen */
+    content: ""; position: absolute; inset: 0; background: linear-gradient(125deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.22) 48%, rgba(255,255,255,0) 62%); }
+  .st::after { /* inked frame */
+    content: ""; position: absolute; inset: 3px; border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.35); }
+  .st b { font: 800 23px/.9 var(--b-cond); letter-spacing: -.2px; position: relative; }
+  .st span { font: 600 8.5px/1 var(--b-mono); letter-spacing: .2px; opacity: .9; position: relative; }
+  .st.dk { color: #000; }
+  .st.dk::after { box-shadow: inset 0 0 0 1px rgba(0,0,0,.3); }
+  .st.ghost { background: transparent; box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+  .st.ghost::before, .st.ghost::after { display: none; }
+  .st.ghost b { color: rgba(255,255,255,.2); }
+  .st.ghost span { color: rgba(255,255,255,.2); }
+  .st.new { box-shadow: 0 0 0 2px var(--b-bg), 0 0 0 3.5px #fff; overflow: visible; }
+</style></head>
+<body class="phone b">
+
+<div class="b-nav">
+  <div class="b-h1">Passport</div>
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+
+<div class="g seg">
+  <span class="b-pill on">MLB</span><span class="b-pill">NFL</span><span class="b-pill">NBA · NHL</span><span class="b-pill">Soccer</span><span class="b-pill">F1</span>
+</div>
+
+<div class="g hero">
+  <div class="b-mega">14</div>
+  <div class="side">
+    <div class="b-h1">of 30<br>MLB parks</div>
+    <div class="b-small">Newest: Target Field, Aug 9, 2025</div>
+  </div>
+</div>
+
+<div class="g ticks" id="ticks"></div>
+<div class="g grid" id="grid"></div>
+
+<nav class="b-tabs">
+  <span><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="9" rx="2"/><path d="M4 17h16M4 21h10"/></svg>Timeline</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.4 3.2 14.6 0 18M12 3c-3.2 3.4-3.2 14.6 0 18"/></svg>Map</span>
+  <span class="on"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="11" r="3.5"/><path d="M9 17.5h6"/></svg>Passport</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>You</span>
+</nav>
+
+<script>
+(function () {
+  // [code, color, date, darkText, isNew]
+  const got = [
+    ['CHC', '#2f6bff', '06·14·14'], ['CWS', '#2b2d33', '08·22·15'], ['STL', '#c8102e', '04·18·16'],
+    ['DET', '#0c2c56', '07·09·16'], ['CLE', '#e8344a', '05·27·17'], ['BOS', '#bd3039', '06·03·17'],
+    ['PIT', '#fdb827', '08·12·18', 1], ['CIN', '#c6011f', '09·01·18'], ['NYY', '#132448', '07·20·19'],
+    ['KC', '#004687', '06·11·21'], ['LAD', '#005a9c', '08·27·22'], ['SF', '#fd5a1e', '08·29·22'],
+    ['MIL', '#12284b', '05·17·25'], ['MIN', '#d31145', '08·09·25', 0, 1]
+  ];
+  const miss = ['ATL', 'AZ', 'BAL', 'COL', 'HOU', 'LAA', 'MIA', 'NYM', 'ATH', 'PHI', 'SD', 'SEA', 'TB', 'TEX', 'TOR', 'WSH'];
+  const grid = document.getElementById('grid');
+  got.forEach(([c, col, d, dk, nw]) => {
+    grid.insertAdjacentHTML('beforeend', `<div class="st${dk ? ' dk' : ''}${nw ? ' new' : ''}" style="--c:${col}"><b>${c}</b><span>${d}</span></div>`);
+  });
+  miss.forEach(c => grid.insertAdjacentHTML('beforeend', `<div class="st ghost"><b>${c}</b><span>— · — · —</span></div>`));
+  const t = document.getElementById('ticks');
+  for (let i = 0; i < 30; i++) t.insertAdjacentHTML('beforeend', `<i class="${i < 14 ? 'on' : ''}"></i>`);
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

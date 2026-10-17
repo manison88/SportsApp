@@ -1,0 +1,109 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cinema</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/cinema.css">
+<style>
+  :root { --maya: #ff7a8a; }
+  .a-hero { height: 430px; }
+  .a-hero img { object-position: 30% 50%; filter: saturate(.7) brightness(.42); }
+  .title { position: absolute; left: 0; right: 0; top: 66px; text-align: center; font: 600 15px/1.2 var(--a-ui); z-index: 21; }
+
+  .rings { position: absolute; left: 0; top: 108px; width: 393px; height: 270px; z-index: 4; }
+  .head { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 392px; text-align: center; z-index: 5; }
+  .head .a-h1 em { color: var(--maya); }
+  .head .a-body { margin-top: 8px; font-size: 14px; }
+
+  .h2h { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 500px; }
+  .h2h .who { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .h2h .who div { display: flex; align-items: center; gap: 8px; font: 600 13px/1 var(--a-ui); }
+  .h2h .a-avatar { width: 24px; height: 24px; font-size: 13px; box-shadow: none; }
+  .row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; height: 40px; border-top: 1px solid var(--a-line); }
+  .row .l { font: 600 20px/1 var(--a-num); letter-spacing: -.4px; font-variant-numeric: tabular-nums; }
+  .row .r { font: 600 20px/1 var(--a-num); letter-spacing: -.4px; text-align: right; font-variant-numeric: tabular-nums; color: var(--a-text-2); }
+  .row .l.win { color: var(--maya); }
+  .row .k { text-align: center; }
+  .row .k b { display: inline-block; margin-left: 6px; font: 600 9px/1 var(--a-ui); letter-spacing: 1px; color: var(--maya); text-transform: uppercase; }
+
+  .trips { position: absolute; left: 16px; right: 16px; top: 668px; height: 132px; border-radius: 22px; overflow: hidden; background: var(--a-surface); box-shadow: inset 0 0 0 .5px var(--a-line); }
+  .trips svg { position: absolute; inset: 0; }
+  .trips .lab { position: absolute; left: 16px; top: 14px; }
+</style></head>
+<body class="phone a">
+  <div class="a-hero"><img class="ph" src="../../../photos/wrigley-bleachers.jpg"></div>
+  <div class="grain"></div>
+
+  <div class="a-nav">
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+  <div class="title">Shared passport</div>
+
+  <svg class="rings" viewBox="0 0 393 270">
+    <defs>
+      <radialGradient id="mg" cx=".5" cy=".45" r=".6"><stop offset="0" stop-color="#ff7a8a" stop-opacity=".42"/><stop offset="1" stop-color="#ff7a8a" stop-opacity=".12"/></radialGradient>
+      <filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+    </defs>
+    <!-- Sam: 60 games -->
+    <circle cx="196.5" cy="138" r="122" fill="rgba(255,181,71,.05)" stroke="#ffb547" stroke-width="1.5"/>
+    <!-- Maya: 17 games, every one inside Sam's -->
+    <circle cx="232" cy="180" r="64" fill="#ff7a8a" opacity=".35" filter="url(#gl)"/>
+    <circle cx="232" cy="180" r="64" fill="url(#mg)" stroke="#ff7a8a" stroke-width="1.5"/>
+    <text x="232" y="193" text-anchor="middle" font-family="Inter Tight" font-weight="600" font-size="46" letter-spacing="-2" fill="#fff">17</text>
+    <text x="232" y="216" text-anchor="middle" font-family="Inter" font-weight="600" font-size="9" letter-spacing="1.6" fill="rgba(255,255,255,.75)">TOGETHER</text>
+    <text x="150" y="96" text-anchor="middle" font-family="Inter Tight" font-weight="600" font-size="30" letter-spacing="-1" fill="#f5f1ea">43</text>
+    <text x="150" y="114" text-anchor="middle" font-family="Inter" font-weight="600" font-size="9" letter-spacing="1.6" fill="rgba(245,241,234,.55)">SAM ONLY</text>
+    <text x="196.5" y="31" text-anchor="middle" font-family="Inter" font-weight="600" font-size="9" letter-spacing="1.6" fill="#ffb547">SAM · 60</text>
+  </svg>
+
+  <div class="head">
+    <div class="a-h1"><em>Every</em> game Maya’s seen.</div>
+    <div class="a-body">17 nights, and you were there for every one.</div>
+  </div>
+
+  <div class="h2h">
+    <div class="who">
+      <div><span class="a-avatar" style="background:var(--maya)">M</span>Maya</div>
+      <div>Sam<span class="a-avatar" style="background:#3a3a42">S</span></div>
+    </div>
+    <div class="row"><span class="l win">65%</span><span class="k a-small">Win rate</span><span class="r">61%</span></div>
+    <div class="row"><span class="l">8</span><span class="k a-small">Venues</span><span class="r">21</span></div>
+    <div class="row"><span class="l">2</span><span class="k a-small">Countries</span><span class="r">3</span></div>
+  </div>
+
+  <div class="trips">
+    <svg id="map" viewBox="0 0 361 132"></svg>
+    <div class="lab a-eyebrow">Roads you shared</div>
+  </div>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script src="../../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../../kit/vendor/land-50m.js"></script>
+<script>
+  (function () {
+    const topo = window.__atlas['land-50m'];
+    const land = topojson.feature(topo, topo.objects.land);
+    const P = { chi: [-87.63, 41.88], gb: [-88.06, 44.50], bcn: [2.17, 41.39], vlc: [-0.38, 39.47], mad: [-3.70, 40.42] };
+    const proj = d3.geoNaturalEarth1().rotate([42, 0]).fitExtent([[118, 50], [318, 104]], { type: 'MultiPoint', coordinates: [[-90, 47], [-90, 36], [4, 36], [4, 46]] });
+    const path = d3.geoPath(proj);
+    const svg = d3.select('#map');
+    svg.append('path').datum(land).attr('d', path).attr('fill', 'rgba(245,241,234,.08)').attr('stroke', 'rgba(245,241,234,.12)').attr('stroke-width', .5);
+    const line = (a, b) => ({ type: 'LineString', coordinates: d3.range(0, 1.0001, .02).map(d3.geoInterpolate(a, b)) });
+    [[P.chi, P.gb], [P.chi, P.bcn], [P.bcn, P.vlc], [P.vlc, P.mad], [P.mad, P.chi]].forEach(([a, b], i) => {
+      svg.append('path').datum(line(a, b)).attr('d', path).attr('fill', 'none').attr('stroke', '#ff7a8a').attr('stroke-width', 1.5).attr('stroke-linecap', 'round')
+        .attr('stroke-opacity', i === 4 ? .35 : .9).attr('stroke-dasharray', i === 4 ? '2 3' : null);
+    });
+    const dot = (p, r, fill) => { const [x, y] = proj(p); svg.append('circle').attr('cx', x).attr('cy', y).attr('r', r).attr('fill', fill).attr('stroke', '#111114').attr('stroke-width', 1.5); };
+    dot(P.chi, 4, '#f5f1ea'); dot(P.gb, 3.5, '#ff7a8a'); dot(P.bcn, 3.5, '#ff7a8a'); dot(P.mad, 3.5, '#ff7a8a'); dot(P.vlc, 2.5, 'rgba(255,122,138,.6)');
+    const label = (p, dx, dy, a, t1, t2, anchor) => {
+      const [x, y] = proj(p);
+      const g = svg.append('text').attr('x', x + dx).attr('y', y + dy).attr('text-anchor', anchor || 'start').attr('font-family', 'Inter');
+      g.append('tspan').attr('font-weight', 600).attr('font-size', 11).attr('fill', '#f5f1ea').text(t1);
+      g.append('tspan').attr('x', x + dx).attr('dy', 13).attr('font-weight', 500).attr('font-size', 10).attr('fill', 'rgba(245,241,234,.5)').text(t2);
+    };
+    label(P.gb, -10, -14, 0, 'Lambeau', 'Jan 2025', 'end');
+    label(P.chi, -10, 22, 0, 'Chicago', 'home', 'end');
+    label(P.mad, 0, 18, 0, 'Spain', 'Feb 2020', 'middle');
+  })();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cinema</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/cinema.css">
+<style>
+  .film { position: absolute; inset: 0; overflow: hidden; }
+  .film img { transform: scale(1.36); transform-origin: 62% 74%; filter: sepia(.32) saturate(.95) contrast(1.08) brightness(.82); }
+  .warm { position: absolute; inset: 0; background: radial-gradient(70% 45% at 92% 18%, rgba(255,140,60,.28), transparent 70%), linear-gradient(180deg, rgba(40,22,8,.15), rgba(40,22,8,.15)); mix-blend-mode: screen; }
+  .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,5,6,.92) 0%, rgba(5,5,6,.55) 9%, rgba(5,5,6,.1) 24%, rgba(5,5,6,.35) 40%, rgba(5,5,6,.45) 58%, rgba(5,5,6,.92) 80%, #050506 100%); }
+  .vig { position: absolute; inset: 0; box-shadow: inset 0 0 120px 30px rgba(0,0,0,.65); background: radial-gradient(70% 26% at 50% 46%, rgba(5,5,6,.5), transparent 75%); }
+
+  .nav-c { text-align: center; }
+  .nav-c .a-h3 { font-size: 15px; }
+  .nav-c .a-small { margin-top: 2px; color: var(--a-text-2); }
+  .seg { display: flex; padding: 3px; border-radius: 15px; background: rgba(28,28,32,.55); backdrop-filter: blur(20px); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.16); }
+  .seg span { height: 34px; padding: 0 9px; display: grid; place-items: center; border-radius: 12px; font: 600 11.5px/1 var(--a-num); color: var(--a-text-2); }
+  .seg span.on { background: rgba(255,255,255,.9); color: #0a0a0b; }
+
+  .card { position: absolute; left: 24px; right: 24px; top: 262px; text-align: center; }
+  .card .a-eyebrow { letter-spacing: 5px; color: rgba(245,241,234,.86); text-shadow: 0 1px 10px rgba(0,0,0,.9), 0 0 2px rgba(0,0,0,.6); }
+  .card .big { margin-top: 18px; font: 400 76px/.9 var(--a-serif); letter-spacing: -1.6px; text-shadow: 0 4px 40px rgba(0,0,0,.5); }
+  .card .big i { color: #f3dcc0; }
+  .card .rule { width: 40px; height: 1px; margin: 24px auto 0; background: rgba(243,220,192,.7); }
+  .card .q { margin-top: 18px; font: 400 20px/1.3 var(--a-serif); font-style: italic; color: rgba(245,241,234,.82); }
+
+  .chap { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 636px; display: flex; gap: 6px; }
+  .chap > div { flex: 1; }
+  .chap .ln { height: 3px; border-radius: 2px; background: rgba(255,255,255,.18); overflow: hidden; }
+  .chap .ln i { display: block; height: 100%; background: var(--a-text); }
+  .chap .lb { margin-top: 10px; font: 400 15px/1 var(--a-serif); color: var(--a-text-3); white-space: nowrap; }
+  .chap .lb small { display: block; font: 600 9.5px/1 var(--a-ui); letter-spacing: 1.5px; margin-bottom: 5px; text-transform: uppercase; }
+  .chap .now .lb { color: var(--a-text); }
+  .chap .now .lb small { color: var(--a-accent); }
+  .chap .done .lb { color: var(--a-text-2); }
+
+  .ctl { position: absolute; left: 16px; right: 16px; top: 728px; display: flex; gap: 10px; align-items: center; }
+  .ctl .play { width: 52px; height: 52px; border-radius: 26px; flex: none; display: grid; place-items: center; background: rgba(255,255,255,.1); backdrop-filter: blur(20px); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18); }
+  .ctl .play svg { width: 18px; height: 18px; fill: #fff; }
+  .ctl .a-btn { flex: 1; }
+  .ctl .a-btn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .time { position: absolute; right: var(--a-gutter); top: 610px; font: 500 12px/1 var(--a-num); color: var(--a-text-3); font-variant-numeric: tabular-nums; }
+  .time b { color: var(--a-text-2); font-weight: 500; }
+</style></head>
+<body class="phone a">
+  <div class="film"><img class="ph" src="../../../photos/wrigley-night.jpg"></div>
+  <div class="warm"></div>
+  <div class="scrim"></div>
+  <div class="vig"></div>
+  <div class="grain" style="opacity:.5"></div>
+
+  <div class="a-nav">
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+    <div class="nav-c"><div class="a-h3">One More Night</div><div class="a-small">World Series · Game 5</div></div>
+    <div class="seg"><span>16:9</span><span class="on">9:16</span></div>
+  </div>
+
+  <div class="card">
+    <div class="a-eyebrow">Top 7th · 10:15 PM</div>
+    <div class="big">Eight outs<br><i>to go.</i></div>
+    <div class="rule"></div>
+    <div class="q">“Dad stopped talking.<br>He just held my arm.”</div>
+  </div>
+
+  <div class="time"><b>1:04</b> / 1:52</div>
+  <div class="chap">
+    <div class="done"><div class="ln"><i style="width:100%"></i></div><div class="lb"><small>I</small>The hole</div></div>
+    <div class="done"><div class="ln"><i style="width:100%"></i></div><div class="lb"><small>II</small>The swing</div></div>
+    <div class="now"><div class="ln"><i style="width:38%"></i></div><div class="lb"><small>III · Now</small>Eight outs</div></div>
+    <div><div class="ln"></div><div class="lb"><small>IV</small>After</div></div>
+  </div>
+
+  <div class="ctl">
+    <div class="play"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1.2"/><rect x="14" y="5" width="4" height="14" rx="1.2"/></svg></div>
+    <div class="a-btn"><svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="3"/><path d="M12 8v6M9.5 10.5 12 8l2.5 2.5"/></svg>Share as story</div>
+  </div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

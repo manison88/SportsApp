@@ -1,0 +1,76 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  body.b { background: #f05a1a; }
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+
+  .prog { top: 56px; display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; }
+  .prog i { height: 3px; border-radius: 2px; background: rgba(255,255,255,.32); overflow: hidden; }
+  .prog i.done { background: #fff; }
+  .prog i.now::after { content: ""; display: block; width: 45%; height: 100%; background: #fff; }
+
+  .top { top: 72px; height: 40px; display: flex; align-items: center; justify-content: space-between; }
+  .top .who { display: flex; align-items: center; gap: 10px; }
+  .w { width: 28px; height: 28px; border-radius: 7px; background: #fff; color: #f05a1a; display: grid; place-items: center; font: 800 17px/1 var(--b-cond); }
+  .top .b-label { color: #fff; font-size: 12px; }
+  .top .b-label span { color: rgba(255,255,255,.62); margin-left: 6px; }
+  .top svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2.4; stroke-linecap: round; }
+
+  .eyebrow { top: 132px; font: 800 22px/1 var(--b-cond); letter-spacing: 2.4px; text-transform: uppercase; color: #0b162a; }
+  .claim { top: 150px; left: 8px; font: 800 272px/.84 var(--b-cond); letter-spacing: -8px; color: #fff; white-space: nowrap; }
+  .claim span { color: #0b162a; }
+  .tag { top: 396px; font: 800 26px/1.02 var(--b-cond); text-transform: uppercase; color: #0b162a; letter-spacing: .2px; }
+
+  .board { top: 474px; height: 176px; background: #0b162a; }
+  .board img { transform: scale(1.32); transform-origin: 100% 8%; filter: saturate(.9) contrast(1.05); }
+  .board .b-lower .tag2 { background: #0b162a; color: #fff; padding: 0 12px; display: grid; place-items: center; font: 800 22px/1 var(--b-cond); letter-spacing: .5px; }
+  .board .b-lower .txt { background: rgba(7,8,10,.86); }
+  .board .b-lower .txt b { display: block; font: 800 16px/1 var(--b-cond); letter-spacing: 1px; text-transform: uppercase; color: #fff; }
+  .board .b-lower .txt span { display: block; margin-top: 4px; font: 500 11.5px/1.2 var(--b-ui); color: rgba(255,255,255,.7); }
+  .board .corner { position: absolute; top: 10px; left: 10px; }
+
+  .credits { top: 670px; text-align: center; color: #0b162a; }
+  .credits .line1 { font: 700 13px/1 var(--b-cond); letter-spacing: 3px; text-transform: uppercase; opacity: .78; }
+  .credits .line2 { margin-top: 6px; font: 800 24px/1 var(--b-cond); letter-spacing: 1.5px; text-transform: uppercase; }
+  .credits .line2 em { font-style: normal; font-weight: 700; font-size: 15px; letter-spacing: 2.4px; opacity: .78; margin: 0 4px; vertical-align: 3px; }
+
+  .cta { top: 736px; display: flex; gap: 10px; }
+  .cta .b-btn { flex: 1; }
+  .cta .sq { width: 50px; height: 50px; border-radius: 12px; background: #0b162a; display: grid; place-items: center; }
+  .cta .sq svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+</style></head>
+<body class="phone b">
+
+  <div class="g prog"><i class="done"></i><i class="done"></i><i class="now"></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="g top">
+    <div class="who"><div class="w">W</div><div class="b-label">Wrapped 2025<span>3 of 8</span></div></div>
+    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </div>
+
+  <div class="g eyebrow">Your 2025 season</div>
+  <div class="g claim">6<span>–</span>3</div>
+  <div class="g tag">9 games. 6 wins.<br>One walk-off in the snow.</div>
+
+  <div class="g board b-frame">
+    <img class="ph" src="../../../photos/lambeau-concourse.jpg">
+    <span class="b-pill corner" style="background:#0b162a;color:#fff">Most photographed</span>
+    <div class="b-lower">
+      <div class="tag2">19°F</div>
+      <div class="txt"><b>The Lambeau walk-off</b><span>Jan 5 · Chicago 24, Green Bay 22 · 51-yard FG</span></div>
+    </div>
+  </div>
+
+  <div class="g credits">
+    <div class="line1">Starring</div>
+    <div class="line2">Sam Okafor <em>with</em> Maya</div>
+  </div>
+
+  <div class="g cta">
+    <div class="b-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share to story</div>
+    <div class="sq"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div>
+  </div>
+
+<script src="../../../kit/kit.js"></script>
+</body></html>

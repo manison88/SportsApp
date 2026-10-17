@@ -1,0 +1,132 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Clean</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/clean.css">
+<style>
+  .head { position: absolute; top: 100px; left: var(--c-gutter); right: var(--c-gutter); display: flex; justify-content: space-between; align-items: flex-end; }
+  .head .c-h1 { margin-top: 8px; }
+
+  .hero { position: absolute; top: 160px; left: 12px; right: 12px; height: 132px; padding: 20px 22px; display: flex; align-items: center; gap: 22px; overflow: hidden; }
+  .hero .foil { position: absolute; inset: 0; opacity: .5; pointer-events: none;
+    background: linear-gradient(115deg, rgba(255,255,255,0) 30%, rgba(190,220,255,.35) 45%, rgba(255,214,240,.35) 55%, rgba(255,240,200,.3) 64%, rgba(255,255,255,0) 78%); }
+  .ring { position: relative; width: 96px; height: 96px; flex: none; }
+  .ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+  .ring .in { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+  .ring .n { font: 700 40px/1 var(--c-display); letter-spacing: -1.8px; font-variant-numeric: tabular-nums; }
+  .ring .d { font: 600 12px/1 var(--c-ui); color: var(--c-text-3); margin-top: 2px; }
+  .hero .txt { position: relative; flex: 1; }
+  .hero .c-h2 { margin-top: 6px; }
+  .hero .c-small { margin-top: 8px; display: block; }
+
+  .chips { position: absolute; top: 330px; left: var(--c-gutter); right: 0; display: flex; gap: 8px; }
+
+  .grid { position: absolute; top: 316px; left: var(--c-gutter); right: var(--c-gutter); display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 12px; row-gap: 12px; }
+  .st { display: grid; justify-items: center; gap: 7px; }
+  .st .disc { width: 79px; height: 79px; border-radius: 20px; background: var(--c-surface); display: grid; place-items: center; position: relative; overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 6px 16px rgba(0,0,0,.05); }
+  .st .disc::after { content: ""; position: absolute; inset: 0; background: linear-gradient(125deg, rgba(255,255,255,0) 35%, rgba(200,225,255,.28) 48%, rgba(255,220,245,.28) 56%, rgba(255,255,255,0) 70%); }
+  .st .nm { font: 600 11px/1.1 var(--c-ui); color: var(--c-text); letter-spacing: -.1px; white-space: nowrap; }
+  .st.ghost .disc { background: transparent; box-shadow: inset 0 0 0 1.5px rgba(0,0,0,.12); }
+  .st.ghost .disc::after { display: none; }
+  .st.ghost .nm { color: var(--c-text-3); }
+</style></head>
+<body class="phone c" data-chrome="dark">
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="ink" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.1 1.5" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in"/>
+    </filter>
+  </svg>
+
+  <div class="head">
+    <div>
+      <div class="c-eyebrow">21 venues · 3 countries</div>
+      <div class="c-h1">Passport</div>
+    </div>
+    <span class="c-icon-btn"><svg viewBox="0 0 24 24"><path d="M4 7h16M7 12h10M10 17h4"/></svg></span>
+  </div>
+
+  <div class="c-card hero">
+    <div class="foil"></div>
+    <div class="ring">
+      <svg width="96" height="96" viewBox="0 0 108 108">
+        <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0c0c0e"/><stop offset="1" stop-color="#3a3a40"/></linearGradient></defs>
+        <circle cx="54" cy="54" r="48" fill="none" stroke="#ececE8" stroke-width="9"/>
+        <circle cx="54" cy="54" r="48" fill="none" stroke="url(#rg)" stroke-width="9" stroke-linecap="round" stroke-dasharray="140.7 301.6"/>
+      </svg>
+      <div class="in"><div><div class="n">14</div><div class="d">of 30</div></div></div>
+    </div>
+    <div class="txt">
+      <div class="c-eyebrow">MLB ballparks</div>
+      <div class="c-h2">16 parks to go</div>
+      <span class="c-small">Newest stamp: Target Field, 2025</span>
+    </div>
+  </div>
+
+
+  <div class="grid" id="grid"></div>
+
+  <nav class="c-tabs">
+    <span><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Timeline</span>
+    <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>Map</span>
+    <span class="on"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><circle cx="12" cy="10.5" r="3"/><path d="M9 16.5h6"/></svg>Passport</span>
+    <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.4-3.6 4.2-5.5 7.5-5.5s6.1 1.9 7.5 5.5"/></svg>You</span>
+  </nav>
+
+<script>
+(function () {
+  // [short name, ring text, code, date, color, shape, rotation]
+  const S = [
+    ['Wrigley', 'WRIGLEY FIELD · CHICAGO', 'CHC', 'JUN 14 2014', '#1f4fd1', 'c', -6],
+    ['Rate Field', 'RATE FIELD · CHICAGO', 'CWS', 'AUG 02 2014', '#26262b', 'r', 4],
+    ['Busch', 'BUSCH STADIUM · ST. LOUIS', 'STL', 'JUL 18 2015', '#c8202f', 'c', 7],
+    ['Comerica', 'COMERICA PARK · DETROIT', 'DET', 'MAY 21 2016', '#0c2c56', 'o', -4],
+    ['Fenway', 'FENWAY PARK · BOSTON', 'BOS', 'SEP 09 2017', '#bd3039', 'c', -8],
+    ['Progressive', 'PROGRESSIVE FIELD · CLEVELAND', 'CLE', 'JUN 30 2018', '#0c2340', 'r', 5],
+    ['Kauffman', 'KAUFFMAN STADIUM · KANSAS CITY', 'KC', 'AUG 11 2018', '#1a5cb0', 'c', 3],
+    ['PNC Park', 'PNC PARK · PITTSBURGH', 'PIT', 'JUL 06 2019', '#c99700', 'o', -6],
+    ['Great American', 'GREAT AMERICAN · CINCINNATI', 'CIN', 'JUN 25 2021', '#c6011f', 'c', 6],
+    ['Yankee', 'YANKEE STADIUM · NEW YORK', 'NYY', 'AUG 20 2022', '#132448', 'r', -3],
+    ['Dodger', 'DODGER STADIUM · LOS ANGELES', 'LAD', 'APR 14 2023', '#005a9c', 'c', 5],
+    ['Oracle', 'ORACLE PARK · SAN FRANCISCO', 'SF', 'APR 16 2023', '#e8601c', 'o', -7],
+    ['Am. Family', 'AMERICAN FAMILY FIELD · MILWAUKEE', 'MIL', 'MAY 10 2025', '#12284b', 'c', 4],
+    ['Target Field', 'TARGET FIELD · MINNEAPOLIS', 'MIN', 'AUG 23 2025', '#002b5c', 'r', -5],
+    ['Citi Field', '', '', '', '', 'g'],
+    ['Camden Yards', '', '', '', '', 'g']
+  ];
+  const grid = document.getElementById('grid');
+  S.forEach(([nm, ring, code, date, col, shape, rot], i) => {
+    const el = document.createElement('div');
+    el.className = 'st' + (shape === 'g' ? ' ghost' : '');
+    let svg;
+    if (shape === 'g') {
+      svg = `<svg width="62" height="62" viewBox="0 0 62 62"><circle cx="31" cy="31" r="27" fill="none" stroke="rgba(0,0,0,.16)" stroke-width="1.4" stroke-dasharray="3 3.5"/>
+        <path d="M31 24v14M24 31h14" stroke="rgba(0,0,0,.22)" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+    } else if (shape === 'r') {
+      svg = `<svg width="66" height="56" viewBox="0 0 66 56" style="transform:rotate(${rot}deg)"><g filter="url(#ink)" fill="none" stroke="${col}">
+        <rect x="2" y="2" width="62" height="52" rx="7" stroke-width="2.2"/><rect x="6" y="6" width="54" height="44" rx="4" stroke-width="1"/>
+        <text x="33" y="29" text-anchor="middle" fill="${col}" stroke="none" font-family="Inter Tight" font-weight="800" font-size="17" letter-spacing="-.4">${code}</text>
+        <text x="33" y="42" text-anchor="middle" fill="${col}" stroke="none" font-family="Inter" font-weight="700" font-size="6.4" letter-spacing=".6">${date}</text>
+        <path d="M14 15h38" stroke-width="1"/></g></svg>`;
+    } else if (shape === 'o') {
+      svg = `<svg width="72" height="56" viewBox="0 0 72 56" style="transform:rotate(${rot}deg)"><g filter="url(#ink)" fill="none" stroke="${col}">
+        <ellipse cx="36" cy="28" rx="33" ry="25" stroke-width="2.2"/><ellipse cx="36" cy="28" rx="28" ry="20.5" stroke-width="1" stroke-dasharray="1.5 2"/>
+        <text x="36" y="30" text-anchor="middle" fill="${col}" stroke="none" font-family="Inter Tight" font-weight="800" font-size="16" letter-spacing="-.4">${code}</text>
+        <text x="36" y="41" text-anchor="middle" fill="${col}" stroke="none" font-family="Inter" font-weight="700" font-size="6" letter-spacing=".5">${date}</text></g></svg>`;
+    } else {
+      const id = 'p' + i;
+      svg = `<svg width="66" height="66" viewBox="0 0 66 66" style="transform:rotate(${rot}deg)"><defs><path id="${id}" d="M33 33 m-24.5 0 a24.5 24.5 0 1 1 49 0 a24.5 24.5 0 1 1 -49 0"/></defs>
+        <g filter="url(#ink)" fill="none" stroke="${col}">
+        <circle cx="33" cy="33" r="31" stroke-width="2.2"/><circle cx="33" cy="33" r="20" stroke-width="1"/>
+        <text fill="${col}" stroke="none" font-family="Inter" font-weight="700" font-size="5.4" letter-spacing=".9"><textPath href="#${id}" startOffset="50%" text-anchor="middle">${ring}</textPath></text>
+        <text x="33" y="35" text-anchor="middle" fill="${col}" stroke="none" font-family="Inter Tight" font-weight="800" font-size="13" letter-spacing="-.3">${code}</text>
+        <text x="33" y="43" text-anchor="middle" fill="${col}" stroke="none" font-family="Inter" font-weight="700" font-size="4.6" letter-spacing=".4">${date}</text></g></svg>`;
+    }
+    el.innerHTML = `<div class="disc">${svg}</div><div class="nm">${nm}</div>`;
+    grid.appendChild(el);
+  });
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

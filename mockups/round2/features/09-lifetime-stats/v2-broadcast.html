@@ -1,0 +1,130 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+  .head { top: 62px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .head .b-h1 { font-size: 34px; }
+
+  .hero { top: 124px; height: 226px; padding: 18px 20px 18px; --c: #2f6bff; overflow: hidden; }
+  .hero .b-label { color: rgba(255,255,255,.78); }
+  .hero .b-mega { position: absolute; left: 16px; top: 36px; font-size: 150px; font-variant-numeric: normal; letter-spacing: -4px; }
+  .hero .b-mega sup { font-size: 70px; vertical-align: top; position: relative; top: 14px; margin-left: 2px; letter-spacing: 0; }
+  .hero .story { position: absolute; left: 20px; right: 20px; bottom: 18px; font: 500 14.5px/1.35 var(--b-ui); color: #fff; }
+  .hero .story b { font-weight: 700; }
+  .hero .vs { position: absolute; right: 20px; top: 66px; text-align: right; }
+  .hero .vs .b-num { font-size: 44px; color: rgba(255,255,255,.55); }
+  .hero .vs .b-label { margin-top: 4px; color: rgba(255,255,255,.6); }
+
+  .grid { top: 362px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { height: 122px; padding: 14px 14px 0; position: relative; }
+  .tile .b-num { font-size: 38px; letter-spacing: -.5px; }
+  .tile .b-num small { font-size: 20px; color: var(--b-text-2); margin-left: 2px; letter-spacing: 0; }
+  .tile .b-label { margin-top: 6px; color: var(--b-text-2); }
+  .tile .viz { position: absolute; left: 14px; right: 14px; bottom: 15px; }
+
+  /* dot row: 60 games */
+  .dots { display: grid; grid-template-columns: repeat(20, 1fr); gap: 3px; }
+  .dots i { aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.18); }
+  .dots i.w { background: #fff; }
+  /* split bar */
+  .split { display: flex; height: 8px; border-radius: 2px; overflow: hidden; gap: 2px; }
+  .split i { display: block; height: 100%; }
+  .keys { display: flex; justify-content: space-between; margin-top: 7px; font: 700 10px/1 var(--b-cond); letter-spacing: 1px; color: var(--b-text-3); }
+  /* thermometer tick */
+  .thermo { position: relative; height: 8px; border-radius: 4px; background: linear-gradient(90deg, #6fd3ff, #2f6bff 40%, #f05a1a); opacity: .95; }
+  .thermo b { position: absolute; left: 6%; top: -5px; width: 3px; height: 18px; background: #fff; border-radius: 1px; box-shadow: 0 0 0 2px var(--b-panel); }
+  /* parks bar */
+  .ticks { display: grid; grid-template-columns: repeat(30, 1fr); gap: 2px; height: 14px; }
+  .ticks i { background: rgba(255,255,255,.16); border-radius: 1px; }
+  .ticks i.on { background: #fff; }
+  /* miles track */
+  .track { position: relative; height: 14px; }
+  .track::before { content: ""; position: absolute; left: 0; right: 0; top: 6px; border-top: 2px dashed rgba(255,255,255,.22); }
+  .track b { position: absolute; top: 2px; width: 10px; height: 10px; border-radius: 50%; background: #fff; }
+  .track .end { left: 0; } .track .far { right: 0; background: #ffb547; }
+
+  .b-tabs span:not(.on) { }
+</style></head>
+<body class="phone b">
+
+  <div class="g head">
+    <div>
+      <div class="b-label">Sam Okafor · Since 2014</div>
+      <div class="b-h1" style="margin-top:6px">Your numbers</div>
+    </div>
+    <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+
+  <div class="g hero b-field">
+    <div class="b-label">Chicago wins with you there</div>
+    <div class="b-mega">61<sup>%</sup></div>
+    <div class="vs">
+      <div class="b-num">48%</div>
+      <div class="b-label">Without you</div>
+    </div>
+    <div class="story">Your teams are <b>35–22–2</b> with you in the seats. Keep buying tickets.</div>
+  </div>
+
+  <div class="g grid">
+    <div class="tile b-panel">
+      <div class="b-num">60</div>
+      <div class="b-label">Games · 2014–2026</div>
+      <div class="viz dots" id="dots"></div>
+    </div>
+    <div class="tile b-panel">
+      <div class="b-num">42,900</div>
+      <div class="b-label">Miles · 3 countries</div>
+      <div class="viz">
+        <div class="track"><b class="end"></b><b class="far"></b></div>
+        <div class="keys"><span>CHICAGO</span><span>SPAIN 4,413 MI</span></div>
+      </div>
+    </div>
+    <div class="tile b-panel">
+      <div class="b-num">1,853</div>
+      <div class="b-label">Witnessed</div>
+      <div class="viz">
+        <div class="split"><i style="flex:487;background:#2f6bff"></i><i style="flex:1204;background:#e8213f"></i><i style="flex:162;background:#fff"></i></div>
+        <div class="keys"><span>RUNS 487</span><span>PTS 1,204</span><span>GOALS 162</span></div>
+      </div>
+    </div>
+    <div class="tile b-panel">
+      <div class="b-num">19°<small>F</small></div>
+      <div class="b-label">Coldest · Lambeau</div>
+      <div class="viz">
+        <div class="thermo"><b></b></div>
+        <div class="keys"><span>19°</span><span>WARMEST 94°</span></div>
+      </div>
+    </div>
+    <div class="tile b-panel">
+      <div class="b-num">14<small>/30</small></div>
+      <div class="b-label">MLB ballparks</div>
+      <div class="viz ticks" id="ticks"></div>
+    </div>
+    <div class="tile b-panel">
+      <div class="b-num">21</div>
+      <div class="b-label">Venues</div>
+      <div class="viz">
+        <div class="split"><i style="flex:43;background:#fff"></i><i style="flex:17;background:rgba(255,255,255,.28)"></i></div>
+        <div class="keys"><span>CHICAGO 43</span><span>AWAY 17</span></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="b-tabs">
+    <span><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="7" rx="1.5"/><rect x="4" y="14" width="16" height="6" rx="1.5"/></svg>Timeline</span>
+    <span><svg viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>Map</span>
+    <span><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="11" r="3.2"/><path d="M9 17h6"/></svg>Passport</span>
+    <span class="on"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>You</span>
+  </nav>
+
+<script>
+  // 60 games: 35 wins lit, in rough chronological scatter
+  const d = document.getElementById('dots'); let s = 7;
+  const r = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  let w = 35; for (let i = 0; i < 60; i++) { const left = 60 - i; const on = w > 0 && r() < w / left; if (on) w--; d.insertAdjacentHTML('beforeend', `<i class="${on ? 'w' : ''}"></i>`); }
+  const t = document.getElementById('ticks'); for (let i = 0; i < 30; i++) t.insertAdjacentHTML('beforeend', `<i class="${i < 14 ? 'on' : ''}"></i>`);
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Clean</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/clean.css">
+<style>
+  .hero { position: absolute; top: 56px; left: 12px; right: 12px; height: 396px; }
+  .hero img { transform: scale(1.04); }
+  .hero .shade { position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,.25), rgba(0,0,0,0) 28%, rgba(0,0,0,0) 62%, rgba(0,0,0,.5)); }
+  .hero .nav { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; justify-content: space-between; }
+  .hero .nav .r { display: flex; gap: 8px; }
+  .hero .pills { position: absolute; left: 14px; bottom: 14px; right: 14px; display: flex; gap: 6px; }
+  .pill { height: 28px; padding: 0 11px; border-radius: 14px; display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.88); backdrop-filter: blur(10px); font: 600 12px/1 var(--c-ui); color: var(--c-text); }
+  .pill svg { width: 13px; height: 13px; stroke: var(--c-text); fill: none; stroke-width: 2; stroke-linecap: round; }
+  .hero .cnt { margin-left: auto; background: rgba(0,0,0,.4); color: #fff; }
+
+  .title { position: absolute; top: 476px; left: var(--c-gutter); right: var(--c-gutter); }
+  .title .c-h1 { margin-top: 8px; }
+
+  .line { position: absolute; top: 590px; left: 12px; right: 12px; padding: 14px 18px 12px; }
+  .line table { width: 100%; border-collapse: collapse; }
+  .line th { font: 600 10px/1 var(--c-ui); letter-spacing: 1px; color: var(--c-text-3); text-align: center; padding-bottom: 10px; width: 34px; }
+  .line th:first-child { text-align: left; width: auto; }
+  .line td { text-align: center; font: 500 15px/1 var(--c-display); font-variant-numeric: tabular-nums; color: var(--c-text-2); height: 36px; }
+  .line tr + tr td { box-shadow: inset 0 1px 0 var(--c-line); }
+  .line td.t { font: 700 22px/1 var(--c-display); letter-spacing: -.5px; color: var(--c-text); width: 48px; text-align: right; }
+  .line tr.lo td.t { color: var(--c-text-3); }
+  .line td.hi { color: var(--c-text); font-weight: 700; }
+  .line .team { display: flex; align-items: center; gap: 10px; text-align: left; font: 600 15px/1 var(--c-ui); color: var(--c-text); }
+  .line .team .c-mono { width: 26px; height: 26px; border-radius: 8px; font-size: 11.5px; }
+  .line .fin { font: 700 10px/1 var(--c-ui); letter-spacing: 1px; color: var(--c-text); }
+
+  .with { position: absolute; top: 722px; left: var(--c-gutter); right: var(--c-gutter); display: flex; align-items: center; gap: 12px; }
+  .with .av { display: flex; flex: none; }
+  .with .c-avatar { width: 38px; height: 38px; font-size: 15px; }
+  .with .c-avatar + .c-avatar { margin-left: -9px; }
+  .with b { display: block; font: 600 15px/1.2 var(--c-ui); letter-spacing: -.2px; }
+  .with .c-small { display: block; margin-top: 3px; color: var(--c-text-2); }
+  .note { position: absolute; top: 782px; left: var(--c-gutter); right: var(--c-gutter); display: flex; align-items: center; gap: 8px; font: 500 14px/1.35 var(--c-ui); color: var(--c-text-2); }
+  .note svg { width: 15px; height: 15px; flex: none; stroke: var(--c-text-3); fill: none; stroke-width: 2; stroke-linejoin: round; }
+</style></head>
+<body class="phone c" data-chrome="dark">
+  <div class="c-photo hero">
+    <img class="ph" src="../../../photos/lambeau-concourse.jpg" style="object-position:38% 50%">
+    <div class="shade"></div>
+    <div class="nav">
+      <span class="c-icon-btn glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span>
+      <span class="r">
+        <span class="c-icon-btn glass"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>
+        <span class="c-icon-btn glass"><svg viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg></span>
+      </span>
+    </div>
+    <div class="pills">
+      <span class="pill"><svg viewBox="0 0 24 24"><path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9"/></svg>19°F · Light snow</span>
+      <span class="pill cnt"><svg viewBox="0 0 24 24" style="stroke:#fff"><rect x="3.5" y="6" width="17" height="13" rx="3"/><circle cx="12" cy="12.5" r="3.2"/></svg>23 photos</span>
+    </div>
+  </div>
+
+  <div class="title">
+    <div class="c-eyebrow">Week 18 · Lambeau Field · Sun, Jan 5, 2025</div>
+    <div class="c-h1">The kick that went through the snow.</div>
+  </div>
+
+  <div class="c-card line">
+    <table>
+      <tr><th><span class="fin">FINAL</span></th><th>1</th><th>2</th><th>3</th><th>4</th><th style="text-align:right">T</th></tr>
+      <tr><td><span class="team"><span class="c-mono" style="--c:#0b162a">CHI</span>Chicago</span></td><td>7</td><td>7</td><td>7</td><td class="hi">3</td><td class="t">24</td></tr>
+      <tr class="lo"><td><span class="team"><span class="c-mono" style="--c:#203731">GB</span>Green Bay</span></td><td>0</td><td>7</td><td>0</td><td>15</td><td class="t">22</td></tr>
+    </table>
+  </div>
+
+  <div class="with">
+    <span class="av"><span class="c-avatar" style="background:#ff7a8a">M</span><span class="c-avatar" style="background:#6fd3ff">L</span></span>
+    <div><b>With Maya &amp; Leo</b><span class="c-small">Section 112 · Row 41 · 77,412 there</span></div>
+  </div>
+  <div class="note"><svg viewBox='0 0 24 24'><path d='M4 20h4L19 9l-4-4L4 16v4z'/></svg>Maya called the 51-yarder before the snap.</div>
+
+<script src="../../../kit/kit.js"></script>
+</body></html>

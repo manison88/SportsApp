@@ -1,0 +1,101 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Clean</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/clean.css">
+<style>
+  .nav-txt { font: 500 16px/1 var(--c-ui); color: var(--c-text-2); }
+  .nav-count { font: 600 14px/1 var(--c-ui); color: var(--c-text-3); font-variant-numeric: tabular-nums; }
+  .nav-count b { color: var(--c-text); font-weight: 600; }
+
+  .head { position: absolute; top: 104px; left: var(--c-gutter); right: var(--c-gutter); }
+  .head .c-display { margin-top: 10px; }
+  .head .c-body { margin-top: 10px; font-size: 14px; white-space: nowrap; }
+  .prog { margin-top: 18px; height: 4px; border-radius: 2px; background: var(--c-sunk); overflow: hidden; }
+  .prog i { display: block; width: 25.5%; height: 100%; background: var(--c-text); border-radius: 2px; }
+
+  .card { position: absolute; top: 262px; left: 12px; right: 12px; padding: 10px 10px 16px; }
+  .mosaic { display: grid; grid-template-columns: 1.55fr 1fr; grid-template-rows: 118px 118px; gap: 4px; height: 240px; border-radius: 18px; overflow: hidden; }
+  .mosaic .big { grid-row: 1 / 3; position: relative; }
+  .mosaic div { position: relative; overflow: hidden; background: #ddd; }
+  .mosaic .more::after { content: "+8"; position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.42); color: #fff; font: 700 20px/1 var(--c-display); letter-spacing: -.4px; }
+  .stamp { position: absolute; left: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px 0 8px; border-radius: 13px;
+    background: rgba(255,255,255,.88); backdrop-filter: blur(10px); font: 600 11.5px/1 var(--c-ui); color: var(--c-text); }
+  .stamp svg { width: 13px; height: 13px; stroke: var(--c-text); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .meta { padding: 16px 8px 0; }
+  .meta .top { display: flex; justify-content: space-between; align-items: baseline; }
+  .meta .c-h2 { margin-top: 6px; }
+  .score { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+  .score .c-mono { width: 28px; height: 28px; border-radius: 9px; font-size: 12px; }
+  .score .n { font: 700 22px/1 var(--c-display); letter-spacing: -.5px; font-variant-numeric: tabular-nums; }
+  .score .n.lo { color: var(--c-text-3); }
+  .score .dash { color: var(--c-text-3); font: 500 18px/1 var(--c-display); }
+  .score .ev { margin-left: auto; }
+  .btns { display: flex; gap: 10px; margin-top: 18px; padding: 0 0; }
+  .btns .c-btn { flex: 1; padding: 0; }
+  .btns .c-btn.ghost { flex: 0 0 112px; }
+
+  .next { position: absolute; top: 718px; left: var(--c-gutter); right: var(--c-gutter); }
+  .next .c-eyebrow { margin-bottom: 4px; }
+  .row { display: flex; align-items: center; gap: 12px; height: 54px; box-shadow: inset 0 -1px 0 var(--c-line); }
+  .row .th { width: 38px; height: 38px; border-radius: 10px; overflow: hidden; flex: none; position: relative; }
+  .row .t { flex: 1; min-width: 0; }
+  .row .t b { display: block; font: 600 14.5px/1.2 var(--c-ui); letter-spacing: -.2px; }
+  .row .t span { display: block; margin-top: 3px; }
+  .row .s { font: 600 14px/1 var(--c-display); font-variant-numeric: tabular-nums; color: var(--c-text-2); }
+  .row.f2 { opacity: .45; }
+  .fade { position: absolute; left: 0; right: 0; bottom: -10px; height: 70px; background: linear-gradient(rgba(245,245,242,0), var(--c-bg) 70%); }
+</style></head>
+<body class="phone c" data-chrome="dark">
+  <div class="c-nav">
+    <span class="nav-txt">Later</span>
+    <span class="nav-count"><b>12</b> of 47</span>
+  </div>
+
+  <div class="head">
+    <div class="c-eyebrow">2,814 photos scanned</div>
+    <div class="c-display">47 games found</div>
+    <div class="c-body">Matched on this iPhone from photo dates and places.</div>
+    <div class="prog"><i></i></div>
+  </div>
+
+  <div class="c-card card">
+    <div class="mosaic">
+      <div class="big"><img class="ph" src="../../../photos/wrigley-night.jpg" style="object-position:50% 60%">
+        <span class="stamp"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Inside Wrigley · 8:12 PM</span></div>
+      <div><img class="ph" src="../../../photos/wrigley-scoreboard.jpg" style="object-position:30% 50%"></div>
+      <div class="more"><img class="ph" src="../../../photos/wrigley-bleachers.jpg"></div>
+    </div>
+    <div class="meta">
+      <div class="top"><span class="c-small">Sat, Oct 22, 2016 · Wrigley Field</span><span class="c-small">11 photos</span></div>
+      <div class="c-h2">Chicago wins the pennant</div>
+      <div class="score">
+        <span class="c-mono" style="--c:#0e3386">CHC</span><span class="n">5</span>
+        <span class="dash">–</span>
+        <span class="n lo">0</span><span class="c-mono" style="--c:#7aa7d9">LA</span>
+        <span class="c-small ev">NLCS · Game 6</span>
+      </div>
+    </div>
+    <div class="btns">
+      <span class="c-btn ghost">Skip</span>
+      <span class="c-btn">Confirm game</span>
+    </div>
+  </div>
+
+  <div class="next">
+    <div class="c-eyebrow">Up next</div>
+    <div class="row">
+      <div class="th"><img class="ph" src="../../../photos/wrigley-night-2.jpg"></div>
+      <div class="t"><b>World Series · Game 5</b><span class="c-small">Oct 30, 2016 · Wrigley Field · 9 photos</span></div>
+      <span class="s">3–2</span>
+    </div>
+    <div class="row f2">
+      <div class="th"><img class="ph" src="../../../photos/united-center-court.jpg"></div>
+      <div class="t"><b>Stanley Cup Final · Game 6</b><span class="c-small">Jun 15, 2015 · United Center · 6 photos</span></div>
+      <span class="s">2–0</span>
+    </div>
+    <div class="fade"></div>
+  </div>
+
+<script src="../../../kit/kit.js"></script>
+</body></html>

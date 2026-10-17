@@ -1,0 +1,103 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+  .b-nav .mid { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .shot { top: 110px; height: 300px; }
+  .shot img { position: absolute; inset: 0; }
+  .shot .tl { position: absolute; left: 12px; top: 12px; }
+  .shot .b-lower .tag { font-size: 18px; padding: 0 10px; }
+  .shot .b-lower .txt b { display: block; font: 800 18px/1 var(--b-cond); letter-spacing: .2px; white-space: nowrap; text-transform: uppercase; }
+  .shot .b-lower .txt span { display: block; margin-top: 4px; font: 500 12.5px/1.2 var(--b-ui); color: var(--b-text-2); }
+
+  .wp { top: 428px; height: 178px; }
+  .wp .hdr { display: flex; justify-content: space-between; align-items: baseline; }
+  .wp .hdr .b-num { font-size: 26px; }
+  #curve { position: absolute; left: 0; top: 26px; width: 357px; height: 152px; overflow: visible; }
+
+  .pbp { top: 626px; }
+  .pbp .row { display: grid; grid-template-columns: 50px 1fr auto; align-items: center; gap: 10px; height: 50px; box-shadow: inset 0 -1px 0 var(--b-line); }
+  .pbp .row:last-child { box-shadow: none; }
+  .pbp .inn { font: 800 15px/1 var(--b-cond); letter-spacing: 1px; color: var(--b-text-3); }
+  .pbp .txt { white-space: nowrap; font: 500 14px/1.3 var(--b-ui); color: var(--b-text-2); }
+  .pbp .sc { white-space: nowrap; font: 800 17px/1 var(--b-cond); font-variant-numeric: tabular-nums; color: var(--b-text-2); }
+  .pbp .row.on { background: #fff; color: #000; border-radius: 10px; box-shadow: none; padding: 0 12px 0 0; }
+  .pbp .row.on .inn { color: #000; padding-left: 12px; }
+  .pbp .row.on .txt { color: #000; font-weight: 600; }
+  .pbp .row.on .sc { color: #000; }
+</style></head>
+<body class="phone b">
+
+<div class="b-nav">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="b-bug"><span class="team" style="--c:var(--cle)">CLE</span><span class="score">2</span><span class="team" style="--c:var(--chc)">CHC</span><span class="score">3</span><span class="state">FINAL</span></div>
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+
+<div class="g shot b-frame">
+  <img class="ph" src="../../../photos/wrigley-night.jpg" style="object-position:50% 56%">
+  <div class="tl"><span class="b-pill" style="background:#fff;color:#000">Your photo · 4 of 4</span></div>
+  <div class="b-lower">
+    <div class="tag" style="--c:var(--chc)">10:43</div>
+    <div class="txt"><b>Taken 40 seconds after the final out</b><span>Bleachers, Sec 314 · with Dad</span></div>
+  </div>
+</div>
+
+<div class="g wp">
+  <div class="hdr"><span class="b-label">Chicago win probability</span></div>
+  <svg id="curve"></svg>
+</div>
+
+<div class="g pbp">
+  <div class="row"><span class="inn">B4</span><span class="txt">Bryant homers to left. Two more score.</span><span class="sc">3–1</span></div>
+  <div class="row"><span class="inn">T7</span><span class="txt">Chapman in with one out. Eight to go.</span><span class="sc">3–2</span></div>
+  <div class="row on"><span class="inn">T9</span><span class="txt">Final out. Chicago forces Game 6.</span><span class="sc">3–2</span></div>
+</div>
+
+<script>
+(function () {
+  const W = 357, H = 152, top = 18, bot = 126;
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('curve');
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  // minutes from 7:08 PM to 10:42 PM (214 min) -> x
+  const T = m => 4 + (m / 214) * (W - 26);
+  const Y = p => bot - (p / 100) * (bot - top);
+  const pts = [[0,46],[14,47],[28,44],[40,36],[52,35],[64,38],[78,44],[86,71],[92,76],[104,79],[116,77],[132,74],[140,64],[148,66],[160,71],[170,78],[180,82],[192,88],[200,92],[208,96],[214,100]];
+  const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
+  // 50% line + inning ticks
+  el('line', { x1: 0, x2: W, y1: Y(50), y2: Y(50), stroke: 'rgba(255,255,255,.14)', 'stroke-dasharray': '2 4' });
+  for (let i = 1; i <= 9; i++) {
+    const x = 4 + (i - .5) / 9 * (W - 26);
+    const t = el('text', { x, y: H - 2, 'text-anchor': 'middle', fill: 'rgba(255,255,255,.42)', 'font-family': 'Barlow Condensed', 'font-weight': 700, 'font-size': 12 });
+    t.textContent = i;
+  }
+  const d = pts.map((p, i) => (i ? 'L' : 'M') + T(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1)).join(' ');
+  // fill under curve in Chicago blue
+  const defs = el('defs', {});
+  defs.innerHTML = '<linearGradient id="f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6bff" stop-opacity=".55"/><stop offset="1" stop-color="#2f6bff" stop-opacity="0"/></linearGradient>';
+  el('path', { d: d + ` L ${T(214)} ${bot} L ${T(0)} ${bot} Z`, fill: 'url(#f)' });
+  // played track (all) + scrub head at the end
+  el('path', { d, fill: 'none', stroke: '#fff', 'stroke-width': 2.5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' });
+  // photo pins
+  const pins = [[-6, 'wrigley-night-2.jpg', '30% 50%'], [86, 'wrigley-night-2.jpg', '50% 80%'], [150, 'wrigley-bleachers.jpg', '50% 50%']];
+  const at = m => { let a = pts[0], b = pts[pts.length - 1]; for (let i = 1; i < pts.length; i++) if (pts[i][0] >= m) { a = pts[i - 1]; b = pts[i]; break; } const k = (m - a[0]) / ((b[0] - a[0]) || 1); return a[1] + (b[1] - a[1]) * k; };
+  const host = svg.parentNode;
+  function pin(m, src, pos, big) {
+    const x = T(Math.max(0, Math.min(214, m))), y = Y(at(Math.max(0, Math.min(214, m))));
+    const s = big ? 34 : 24;
+    el('line', { x1: x, x2: x, y1: y, y2: y - (big ? 10 : 8), stroke: big ? '#fff' : 'rgba(255,255,255,.6)', 'stroke-width': 1.5 });
+    el('circle', { cx: x, cy: y, r: big ? 5 : 3.5, fill: big ? '#fff' : '#07080a', stroke: '#fff', 'stroke-width': 2 });
+    const d = document.createElement('div');
+    d.style.cssText = `position:absolute;left:${x - s / 2}px;top:${26 + y - (big ? 10 : 8) - s}px;width:${s}px;height:${s}px;border-radius:${big ? 8 : 6}px;overflow:hidden;box-shadow:0 0 0 ${big ? 2 : 1.5}px ${big ? '#fff' : 'rgba(255,255,255,.7)'},0 4px 12px rgba(0,0,0,.5)`;
+    d.innerHTML = `<img class="ph" src="../../../photos/${src}" style="object-position:${pos}">`;
+    host.appendChild(d);
+  }
+  pins.forEach(p => pin(p[0], p[1], p[2]));
+  pin(214, 'wrigley-night.jpg', '50% 74%', true);
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cinema</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/cinema.css">
+<style>
+  .nav-c { text-align: center; }
+  .nav-c .a-h3 { font-size: 15px; }
+  .nav-c .a-small { margin-top: 2px; }
+
+  .shot { position: absolute; left: 16px; right: 16px; top: 112px; height: 300px; }
+  .shot img { transform: scale(1.14); transform-origin: 50% 78%; }
+  .shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,5,6,0) 45%, rgba(5,5,6,.85) 100%); }
+  .shot .ts { position: absolute; top: 14px; left: 14px; z-index: 2; }
+  .shot .cap { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 2; }
+  .shot .cap .a-h2 { font-size: 27px; }
+  .shot .cap .a-small { margin-top: 8px; color: var(--a-text-2); }
+
+  .wp { position: absolute; left: 0; right: 0; top: 428px; height: 196px; }
+  .wp .lbl { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 0; display: flex; justify-content: space-between; align-items: baseline; }
+  .wp .lbl .v { font: 500 12px/1 var(--a-ui); color: var(--a-text-3); }
+  .wp svg { position: absolute; left: 0; top: 22px; overflow: visible; }
+  .pin { position: absolute; width: 30px; height: 30px; border-radius: 9px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.7), 0 6px 16px rgba(0,0,0,.6); transform: translate(-50%, -100%); }
+  .pin.sel { width: 40px; height: 40px; border-radius: 11px; box-shadow: 0 0 0 2px var(--a-accent), 0 0 22px rgba(255,181,71,.55); }
+
+  .pbp { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 610px; }
+  .row { display: flex; gap: 14px; padding: 12px 0; border-top: 1px solid var(--a-line); }
+  .row .t { width: 58px; flex: none; font: 600 12px/1.35 var(--a-num); color: var(--a-text-3); font-variant-numeric: tabular-nums; }
+  .row .t small { display: block; font: 600 9.5px/1.2 var(--a-ui); letter-spacing: 1.2px; text-transform: uppercase; margin-top: 2px; }
+  .row .d { font: 400 14px/1.4 var(--a-ui); color: var(--a-text-2); }
+  .row .d b { color: var(--a-text); font-weight: 600; }
+  .row.on .t { color: var(--a-text); }
+</style></head>
+<body class="phone a">
+  <div class="a-nav">
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="nav-c"><div class="a-h3">World Series · Game 5</div><div class="a-small">Oct 30, 2016 · Wrigley Field</div></div>
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7.5 7.5 12 3l4.5 4.5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></div>
+  </div>
+
+  <div class="shot a-photo-card">
+    <img class="ph graded" src="../../../photos/wrigley-night.jpg">
+    <span class="a-chip ts">10:42:40 PM · Bleachers 314</span>
+    <div class="cap">
+      <div class="a-h2">Taken 40 seconds after the final out.</div>
+      <div class="a-small">Chicago 3, Cleveland 2 · still alive, 3–2 in the series</div>
+    </div>
+  </div>
+
+  <div class="wp">
+    <div class="lbl"><span class="a-eyebrow">Chicago win probability</span><span class="v">Drag to scrub</span></div>
+    <svg id="wp" width="393" height="150"></svg>
+    <div id="pins"></div>
+  </div>
+
+  <div class="pbp">
+    <div class="row"><div class="t">10:21<small>Top 9</small></div><div class="d">Chapman back out for the ninth. <b>Three outs to go.</b></div></div>
+    <div class="row on"><div class="t">10:42<small>Top 9</small></div><div class="d"><b>Final out.</b> Chapman’s 8-out save sends it back to Cleveland.</div></div>
+    <div class="row"><div class="t">10:44<small>After</small></div><div class="d">Nobody leaves. The whole park stays.</div></div>
+  </div>
+
+<script>
+(function(){
+  const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('wp');
+  const el = (n, a, p = svg) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  const X0 = 22, X1 = 350, Y0 = 44, Y1 = 132; // plot box
+  // win prob by half-inning end (18 points + start), CHI perspective
+  const wp = [.50,.49,.47,.38,.40,.39,.40,.38,.74,.76,.77,.62,.63,.74,.75,.86,.88,1.0];
+  const x = i => X0 + (X1 - X0) * i / (wp.length - 1), y = v => Y1 - (Y1 - Y0) * v;
+  const defs = el('defs', {});
+  defs.innerHTML = '<linearGradient id="fillg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(245,241,234,.16)"/><stop offset="1" stop-color="rgba(245,241,234,0)"/></linearGradient>';
+  // 50% line and inning ticks
+  el('line', { x1: X0, x2: X1, y1: y(.5), y2: y(.5), stroke: 'rgba(255,255,255,.14)', 'stroke-dasharray': '2 4' });
+  for (let i = 1; i <= 9; i++) {
+    const t = el('text', { x: x(Math.min(i * 2 - 1, 16.5)), y: Y1 + 18, 'text-anchor': 'middle', fill: 'rgba(245,241,234,.38)', 'font-family': 'Inter Tight', 'font-size': 10.5, 'font-weight': 600 });
+    t.textContent = i;
+  }
+  const pts = wp.map((v, i) => [x(i), y(v)]);
+  const line = d => { let s = `M${d[0]}`; for (let i = 1; i < d.length; i++) { const p0 = d[i - 1], p1 = d[i], mx = (p0[0] + p1[0]) / 2; s += ` C${mx} ${p0[1]} ${mx} ${p1[1]} ${p1[0]} ${p1[1]}`; } return s; };
+  const d = line(pts);
+  el('path', { d: d + ` L${X1} ${Y1} L${X0} ${Y1} Z`, fill: 'url(#fillg)' });
+  el('path', { d, fill: 'none', stroke: 'rgba(245,241,234,.9)', 'stroke-width': 2, 'stroke-linecap': 'round' });
+  // scrubber playhead at final out
+  const px = x(17);
+  el('line', { x1: px, x2: px, y1: Y0 - 4, y2: Y1 + 4, stroke: '#ffb547', 'stroke-width': 1.5 });
+  el('circle', { cx: px, cy: y(1), r: 5, fill: '#ffb547' });
+  el('circle', { cx: px, cy: y(1), r: 11, fill: 'rgba(255,181,71,.2)' });
+  // pins: photos at timestamps
+  const P = [
+    [3.4, '../../../photos/wrigley-night-2.jpg', '30% 40%', 2.4],
+    [7.6, '../../../photos/wrigley-night.jpg', '76% 37%', 2.6],
+    [13, '../../../photos/wrigley-night-2.jpg', '50% 70%', 1.6],
+  ];
+  const host = document.getElementById('pins');
+  P.forEach(([i, src, o, s]) => {
+    const v = wp[Math.floor(i)] + (wp[Math.ceil(i)] - wp[Math.floor(i)]) * (i % 1);
+    el('circle', { cx: x(i), cy: y(v), r: 3, fill: '#fff' });
+    const div = document.createElement('div'); div.className = 'pin';
+    div.style.left = x(i) + 'px'; div.style.top = (22 + y(v) - 8) + 'px';
+    div.innerHTML = `<img class="ph" src="${src}" style="transform:scale(${s});transform-origin:${o}">`;
+    host.appendChild(div);
+  });
+  const sel = document.createElement('div'); sel.className = 'pin sel';
+  sel.style.left = px + 'px'; sel.style.top = (22 + y(1) - 10) + 'px';
+  sel.innerHTML = '<img class="ph" src="../../../photos/wrigley-night.jpg" style="object-position:50% 42%">';
+  host.appendChild(sel);
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

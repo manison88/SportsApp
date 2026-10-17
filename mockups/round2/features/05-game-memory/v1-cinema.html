@@ -1,0 +1,77 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cinema</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/cinema.css">
+<style>
+  .a-hero { height: 520px; }
+  .a-hero img { transform: scale(1.12); transform-origin: 50% 30%; }
+  .a-hero::after { background: linear-gradient(180deg, rgba(5,5,6,.6) 0%, rgba(5,5,6,0) 18%, rgba(5,5,6,0) 40%, rgba(5,5,6,.78) 74%, #050506 100%); }
+  .nav-r { display: flex; gap: 10px; }
+
+  .title { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 336px; z-index: 5; }
+  .title .a-display { margin-top: 12px; }
+  .title .a-display i { font-style: italic; color: #f3dcc0; }
+
+  .score { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 512px; }
+  .ls { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .ls th { font: 600 10.5px/1 var(--a-ui); letter-spacing: 1.6px; text-transform: uppercase; color: var(--a-text-3); text-align: center; padding: 0 0 12px; width: 34px; }
+  .ls th:first-child { text-align: left; width: auto; }
+  .ls th.t { width: 56px; text-align: right; }
+  .ls td { font: 500 15px/1 var(--a-num); color: var(--a-text-2); text-align: center; height: 40px; border-top: 1px solid var(--a-line); }
+  .ls td.tm { text-align: left; }
+  .ls td.tot { text-align: right; font: 600 30px/1 var(--a-num); letter-spacing: -1px; color: var(--a-text); }
+  .ls tr.lose td.tot { color: var(--a-text-3); }
+  .ls tr.lose td.q4 { color: var(--a-text); }
+  .tmw { display: flex; align-items: center; gap: 10px; font: 600 15px/1 var(--a-ui); color: var(--a-text); }
+  .tr.lose .tmw { color: var(--a-text-2); }
+  .mono { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; font: 800 11px/1 var(--a-num); color: #fff; letter-spacing: -.2px; }
+  .ls tr.lose .tmw { color: var(--a-text-2); }
+
+  .with { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 652px; display: flex; align-items: center; gap: 14px; }
+  .avs { display: flex; }
+  .avs .a-avatar { width: 36px; height: 36px; font-size: 18px; }
+  .avs .a-avatar + .a-avatar { margin-left: -9px; }
+  .with .a-h3 { font-size: 15px; }
+  .with .a-small { margin-top: 3px; }
+
+  .note { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 716px; padding-top: 18px; border-top: 1px solid var(--a-line); }
+  .note p { font: 400 21px/1.25 var(--a-serif); font-style: italic; color: var(--a-text-2); letter-spacing: -.1px; }
+</style></head>
+<body class="phone a">
+  <div class="a-hero"><img class="ph graded" src="../../../photos/lambeau-concourse.jpg"></div>
+  <div class="grain" style="opacity:.18"></div>
+
+  <div class="a-nav">
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="nav-r">
+      <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.6 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10Z"/></svg></div>
+      <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7.5 7.5 12 3l4.5 4.5M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg></div>
+    </div>
+  </div>
+
+  <div class="title">
+    <div class="a-eyebrow accent">Week 18 · 51-yard walk-off</div>
+    <div class="a-display">The kick that went<br>through <i>the snow.</i></div>
+  </div>
+
+  <div class="score">
+    <table class="ls">
+      <tr><th>Final · Jan 5, 2025</th><th>1</th><th>2</th><th>3</th><th>4</th><th class="t">T</th></tr>
+      <tr class="win"><td class="tm"><div class="tmw"><span class="mono" style="background:#0b162a;box-shadow:inset 0 0 0 1.5px #f05a1a">CHI</span>Chicago</div></td><td>7</td><td>7</td><td>7</td><td>3</td><td class="tot">24</td></tr>
+      <tr class="lose"><td class="tm"><div class="tmw"><span class="mono" style="background:#203731;box-shadow:inset 0 0 0 1.5px #ffb612">GB</span>Green Bay</div></td><td>0</td><td>7</td><td>0</td><td class="q4">15</td><td class="tot">22</td></tr>
+    </table>
+  </div>
+
+  <div class="with">
+    <div class="avs"><span class="a-avatar" style="background:#ff7a8a">M</span><span class="a-avatar" style="background:#6fd3ff">L</span></div>
+    <div>
+      <div class="a-h3">With Maya &amp; Leo</div>
+      <div class="a-small">Lambeau Field · Sec 112, Row 41 · 19°F</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <p>“Leo couldn’t feel his toes. He still wouldn’t leave until the kicker did.”</p>
+  </div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

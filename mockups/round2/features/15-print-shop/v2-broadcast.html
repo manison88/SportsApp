@@ -1,0 +1,105 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+  .b-nav .b-label { color: var(--b-text-2); }
+  .bag { position: relative; }
+  .bag .n { position: absolute; top: -5px; right: -5px; width: 18px; height: 18px; border-radius: 6px; background: #fff; color: #000; font: 800 11px/18px var(--b-cond); text-align: center; }
+
+  .seg { top: 108px; height: 40px; padding: 4px; display: grid; grid-template-columns: 1fr 1fr; border-radius: 12px; }
+  .seg span { display: grid; place-items: center; border-radius: 9px; font: 800 14px/1 var(--b-cond); letter-spacing: 1.6px; text-transform: uppercase; color: var(--b-text-3); }
+  .seg span.on { background: #fff; color: #000; }
+
+  .stage { top: 160px; height: 318px; border-radius: 14px; overflow: hidden;
+    background: radial-gradient(75% 70% at 45% 40%, #3a3f4c, #1a1d24 60%, #0e1015); box-shadow: inset 0 0 0 1px var(--b-line); }
+  .floor { position: absolute; left: 0; right: 0; bottom: 0; height: 74px; background: linear-gradient(#0b0d11, #08090c); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+  .shadow { position: absolute; left: 70px; bottom: 30px; width: 244px; height: 26px; border-radius: 50%; background: rgba(0,0,0,.85); filter: blur(14px); }
+
+  .book { position: absolute; left: 80px; top: 30px; width: 196px; height: 252px; transform: rotate(-5deg); filter: drop-shadow(18px 26px 22px rgba(0,0,0,.75)) drop-shadow(4px 6px 4px rgba(0,0,0,.5)); }
+  .back { position: absolute; left: 10px; top: 8px; width: 196px; height: 252px; border-radius: 3px 7px 7px 3px; background: #1a45b8; }
+  .pages { position: absolute; left: 6px; top: 4px; width: 196px; height: 250px; border-radius: 2px 5px 5px 2px;
+    background: repeating-linear-gradient(135deg, #f3eee4 0 1.2px, #d8d0c1 1.2px 2.2px); }
+  .cover { position: absolute; inset: 0; border-radius: 3px 6px 6px 3px; background: #2f6bff; overflow: hidden; padding: 18px 16px 14px 24px; color: #fff;
+    box-shadow: 0 1px 0 rgba(255,255,255,.25) inset; }
+  .cover::before { content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: linear-gradient(90deg, rgba(0,0,0,.22), rgba(255,255,255,.18)); }
+  .cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(118deg, rgba(255,255,255,.2), rgba(255,255,255,0) 34%, rgba(0,0,0,0) 62%, rgba(0,0,0,.2)); }
+  .cover .k { font: 700 9px/1 var(--b-cond); letter-spacing: 2.2px; text-transform: uppercase; opacity: .85; }
+  .cover .y { margin-top: 16px; font: 800 106px/.8 var(--b-cond); letter-spacing: -3px; }
+  .cover .t { margin-top: 12px; font: 800 22px/.92 var(--b-cond); text-transform: uppercase; letter-spacing: .3px; }
+  .cover .bot { position: absolute; left: 24px; right: 16px; bottom: 15px; display: flex; justify-content: space-between; }
+  .cover .bot span { font: 700 8.5px/1 var(--b-cond); letter-spacing: 1.8px; text-transform: uppercase; opacity: .8; }
+  .cover .bar { position: absolute; left: 24px; right: 16px; bottom: 34px; height: 4px; background: #fff; }
+
+  .info { top: 494px; display: flex; justify-content: space-between; align-items: flex-start; }
+  .info .b-h1 { font-size: 32px; }
+  .info .b-small { margin-top: 8px; color: var(--b-text-2); }
+  .info .price { font: 800 44px/.85 var(--b-cond); }
+
+  .opt { top: 584px; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; }
+  .sw { display: flex; gap: 10px; }
+  .sw i { width: 30px; height: 30px; border-radius: 8px; display: block; box-shadow: inset 0 0 0 1px rgba(255,255,255,.14); }
+  .sw i.on { box-shadow: 0 0 0 2px var(--b-panel), 0 0 0 4px #fff; }
+  .opt .lbl .b-label { color: var(--b-text-3); }
+  .opt .lbl div:last-child { margin-top: 5px; font: 600 14px/1 var(--b-ui); }
+
+  .alt { top: 658px; height: 64px; display: flex; align-items: center; gap: 12px; padding: 0 14px 0 10px; }
+  .thumb { width: 34px; height: 46px; border-radius: 3px; background: #0b162a; position: relative; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.12); }
+  .thumb b { position: absolute; left: 4px; top: 5px; font: 800 13px/.8 var(--b-cond); color: #fff; }
+  .thumb i { position: absolute; left: 4px; right: 4px; height: 2px; background: rgba(255,255,255,.4); }
+  .alt .t { flex: 1; font: 600 14px/1.25 var(--b-ui); }
+  .alt .t span { display: block; font: 500 12px/1.3 var(--b-ui); color: var(--b-text-2); margin-top: 2px; }
+  .alt svg { width: 16px; height: 16px; stroke: var(--b-text-3); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .cta { top: 744px; display: flex; }
+  .cta .b-btn { flex: 1; height: 54px; font-size: 18px; }
+  .cta .b-btn span { opacity: .45; margin: 0 2px; }
+</style></head>
+<body class="phone b">
+
+  <div class="b-nav">
+    <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></div>
+    <div class="b-label">Print shop · 2016</div>
+    <div class="b-icon-btn bag"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></div>
+  </div>
+
+  <div class="g seg b-panel"><span class="on">Book</span><span>Poster</span></div>
+
+  <div class="g stage">
+        <div class="book">
+      <div class="back"></div>
+      <div class="pages"></div>
+      <div class="cover">
+        <div class="k">Witness · Sam Okafor</div>
+        <div class="y">2016</div>
+        <div class="t">The year<br>it happened</div>
+        <div class="bar"></div>
+        <div class="bot"><span>Chicago</span><span>Wrigley · Sec 314</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="g info">
+    <div>
+      <div class="b-h1">The Year It Happened</div>
+      <div class="b-small">Hardcover · 12 × 12 in · 96 pages · your photos</div>
+    </div>
+    <div class="price">$89</div>
+  </div>
+
+  <div class="g opt b-panel">
+    <div class="lbl"><div class="b-label">Cover</div><div>Chicago blue</div></div>
+    <div class="sw"><i class="on" style="background:#2f6bff"></i><i style="background:#0f1115"></i><i style="background:#f1ece2"></i><i style="background:#cc3433"></i></div>
+  </div>
+
+  <div class="g alt b-panel">
+    <div class="thumb"><b>2016</b><i style="top:22px"></i><i style="top:27px"></i><i style="top:32px"></i><i style="top:37px"></i></div>
+    <div class="t">Or the tour poster<span>Every 2016 game, listed like a tour · from $39</span></div>
+    <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+  </div>
+
+  <div class="g cta"><div class="b-btn">Add to bag <span>·</span> $89</div></div>
+
+<script src="../../../kit/kit.js"></script>
+</body></html>

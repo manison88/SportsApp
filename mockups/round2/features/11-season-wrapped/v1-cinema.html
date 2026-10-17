@@ -1,0 +1,78 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cinema</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/cinema.css">
+<style>
+  .bg { position: absolute; inset: 0; overflow: hidden; }
+  .bg img { object-position: 46% 50%; filter: contrast(1.08) saturate(.78) brightness(.82); }
+  .bg::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(5,5,6,.78) 0%, rgba(5,5,6,.2) 18%, rgba(5,5,6,0) 34%, rgba(5,5,6,.55) 52%, rgba(5,5,6,.93) 70%, #050506 100%); }
+  .snow { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+  .snow i { position: absolute; border-radius: 50%; background: #fff; }
+
+  .prog { position: absolute; top: 52px; left: 12px; right: 12px; display: flex; gap: 4px; z-index: 10; }
+  .prog i { flex: 1; height: 2.5px; border-radius: 2px; background: rgba(255,255,255,.28); overflow: hidden; }
+  .prog i.done { background: rgba(255,255,255,.95); }
+  .prog i.now { background: linear-gradient(90deg, rgba(255,255,255,.95) 55%, rgba(255,255,255,.28) 55%); }
+  .bar { position: absolute; top: 68px; left: 16px; right: 12px; display: flex; align-items: center; gap: 10px; z-index: 10; }
+  .logo { width: 30px; height: 30px; border-radius: 50%; background: var(--a-text); color: #0a0a0b; display: grid; place-items: center; font: 400 18px/1 var(--a-serif); }
+  .bar b { font: 600 14px/1 var(--a-ui); }
+  .bar span { font: 500 13px/1 var(--a-ui); color: var(--a-text-2); flex: 1; }
+  .bar svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; margin-left: 14px; }
+
+  .poster { position: absolute; left: 0; right: 0; top: 404px; text-align: center; z-index: 5; }
+  .poster .a-eyebrow { color: var(--a-text-2); letter-spacing: 4px; }
+  .claim { font: 600 168px/.8 var(--a-num); letter-spacing: -9px; font-variant-numeric: tabular-nums; margin: 14px 0 0 -6px;
+    background: linear-gradient(180deg, #fff 30%, #e9dcc6); -webkit-background-clip: text; color: transparent; text-shadow: none; }
+  .claim .dash { letter-spacing: -2px; margin: 0 4px; font-weight: 500; }
+  .tag { font: 400 26px/1.15 var(--a-serif); letter-spacing: -.3px; margin: 22px 20px 0; }
+  .tag em { color: var(--a-accent); }
+  .credits { margin: 18px 16px 0; font: 600 9.5px/1.75 var(--a-ui); letter-spacing: 1.4px; text-transform: uppercase; color: var(--a-text-3); }
+  .credits b { color: var(--a-text-2); font-weight: 700; }
+
+  .cta { position: absolute; left: 16px; right: 16px; bottom: 44px; display: flex; gap: 10px; z-index: 10; }
+  .cta .a-btn { flex: 1; }
+  .cta svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .cta .a-btn.ghost { flex: 0 0 52px; padding: 0; }
+</style></head>
+<body class="phone a">
+  <div class="bg"><img class="ph" src="../../../photos/lambeau-concourse.jpg"></div>
+  <div class="snow" id="snow"></div>
+  <div class="grain"></div>
+
+  <div class="prog"><i class="done"></i><i class="done"></i><i class="done"></i><i class="now"></i><i></i><i></i><i></i><i></i></div>
+  <div class="bar">
+    <div class="logo">W</div>
+    <b>Wrapped 2025</b><span>4 of 8</span>
+    <svg viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </div>
+
+  <div class="poster">
+    <div class="a-eyebrow">Sam Okafor in</div>
+    <div class="claim">6<span class="dash">–</span>3</div>
+    <div class="tag">Six wins. Three losses.<br><em>One kick through the snow.</em></div>
+    <div class="credits">
+      Starring <b>Sam Okafor</b> · with <b>Maya</b> in 5 games<br>
+      9 nights · 3 new venues · 19°F at its coldest<br>
+      On location at Lambeau · Milwaukee · Minneapolis
+    </div>
+  </div>
+
+  <div class="cta">
+    <div class="a-btn"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share the poster</div>
+    <div class="a-btn ghost"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div>
+  </div>
+
+<script>
+  // deterministic snowfall, heavier and softer near the top of the frame
+  let s = 11; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  let h = '';
+  for (let i = 0; i < 70; i++) {
+    const x = r() * 393, y = 90 + Math.pow(r(), 1.4) * 520, d = 1 + r() * 2.6, o = .25 + r() * .55, b = d > 2.6 ? 1.2 : 0;
+    h += `<i style="left:${x}px;top:${y}px;width:${d}px;height:${d}px;opacity:${o};filter:blur(${b}px)"></i>`;
+  }
+  document.getElementById('snow').innerHTML = h;
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>
