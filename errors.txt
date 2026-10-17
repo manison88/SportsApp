@@ -1,1 +1,4 @@
-/Users/runner/work/SportsApp/SportsApp/Witness/Features/Venue/VenueView.swift:228:55: error: ambiguous use of 'cos'
+/Users/runner/work/SportsApp/SportsApp/WitnessUITests/WitnessUITests.swift:155: error: -[WitnessUITests.WitnessUITests testAddGameManually] : XCTAssertFalse failed - Save must wait for a venue
+/Users/runner/work/SportsApp/SportsApp/WitnessUITests/WitnessUITests.swift:192: error: -[WitnessUITests.WitnessUITests testAddCustomVenue] : XCTAssertTrue failed
+/Users/runner/work/SportsApp/SportsApp/WitnessUITests/WitnessUITests.swift:255: error: -[WitnessUITests.WitnessUITests testDiscoveryFromPhotos] : XCTAssertTrue failed - Expected the seeded stadium photos to be discovered
+/Users/runner/work/SportsApp/SportsApp/WitnessUITests/WitnessUITests.swift:56: error: -[WitnessUITests.WitnessUITests testGameMemoryRecapAndYouWereThere] : Failed to synthesize event: Neither element nor any descendant has keyboard focus. Event dispatch snapshot: SearchField, {{16.0, 153.3}, {370.0, 36.0}}, label: 'Teams, places, years', placeholderValue: 'Teams, places, years', value: Teams, places, years
