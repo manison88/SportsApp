@@ -280,4 +280,31 @@ final class WitnessUITests: XCTestCase {
         tap("discovery-close")
         XCTAssertTrue(app.tabBars.buttons["Timeline"].waitForExistence(timeout: 8))
     }
+
+    /// Album import: CI seeds stadium photos with GPS, a scoreboard photo with only a date, and a downtown photo.
+    /// The album must yield the GPS games, find the Stanley Cup Final from the scoreboard alone, and ask about the rest.
+    func testImportAlbumWithScoreboardReading() {
+        launch(["-empty", "-seedAlbum"])
+        tap("add-menu")
+        app.buttons["Import an album"].tap()
+        let album = el("album-Chicago weekend")
+        let deadline = Date().addingTimeInterval(30)
+        while Date() < deadline && !album.exists {
+            allowPhotoAccessIfAsked()
+            sleep(1)
+        }
+        XCTAssertTrue(album.exists, "The seeded album should be listed")
+        snap("album-list")
+        album.tap()
+        XCTAssertTrue(el("album-found").waitForExistence(timeout: 120), "Scanning the album should finish")
+        XCTAssertTrue(el("album-scoreboard").waitForExistence(timeout: 5), "A game should be confirmed from a scoreboard photo")
+        XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'album-ask-'")).firstMatch.exists,
+                      "The downtown photo should prompt for a stadium")
+        snap("album-review")
+        tap("album-add")
+        let card = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'game-card-'")).firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 10))
+        snap("album-timeline")
+    }
 }
+

@@ -13,7 +13,10 @@ final class Library {
     private(set) var allTeams: [Team] = []
     private(set) var catalogVenues: [Venue] = []
     private(set) var ballparks: [Ballpark] = []
-    private(set) var trips: [Trip] = []
+    private var sampleTrips: [Trip] = []
+    /// Trips the fan made, e.g. from an imported album.
+    private(set) var customTrips: [Trip] = []
+    var trips: [Trip] { sampleTrips + customTrips }
     private var samplePeople: [Person] = []
     private var sampleProfile: Profile?
 
@@ -33,6 +36,7 @@ final class Library {
         var customVenues: [Venue]
         var customPeople: [Person]
         var customTeams: [Team]? = nil
+        var customTrips: [Trip]? = nil
     }
 
     nonisolated static var defaultStoreURL: URL {
@@ -140,6 +144,12 @@ final class Library {
         return v
     }
 
+    func addTrip(_ trip: Trip) {
+        customTrips.removeAll { $0.id == trip.id }
+        customTrips.append(trip)
+        save()
+    }
+
     /// Returns the catalog team that matches, or remembers a new one.
     @discardableResult
     func addTeam(_ team: Team) -> Team {
@@ -187,7 +197,7 @@ final class Library {
     }
 
     func reset() {
-        games = []; customVenues = []; customPeople = []; customTeams = []; hasLibrary = false
+        games = []; customVenues = []; customPeople = []; customTeams = []; customTrips = []; hasLibrary = false
         try? FileManager.default.removeItem(at: storeURL)
     }
 
@@ -200,7 +210,7 @@ final class Library {
 
     private func save() {
         hasLibrary = true
-        let stored = Stored(games: games, customVenues: customVenues, customPeople: customPeople, customTeams: customTeams)
+        let stored = Stored(games: games, customVenues: customVenues, customPeople: customPeople, customTeams: customTeams, customTrips: customTrips)
         do {
             let data = try Self.encoder.encode(stored)
             try FileManager.default.createDirectory(at: storeURL.deletingLastPathComponent(), withIntermediateDirectories: true)
@@ -217,6 +227,7 @@ final class Library {
         customVenues = stored.customVenues
         customPeople = stored.customPeople
         customTeams = stored.customTeams ?? []
+        customTrips = stored.customTrips ?? []
         hasLibrary = true
     }
 
@@ -226,7 +237,7 @@ final class Library {
         teams = Dictionary(teamList.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
         catalogVenues = decode("venues", subdirectory: "Catalog") ?? []
         ballparks = decode("ballparks", subdirectory: "Catalog") ?? []
-        trips = decode("trips", subdirectory: "Sample") ?? []
+        sampleTrips = decode("trips", subdirectory: "Sample") ?? []
         samplePeople = decode("people", subdirectory: "Sample") ?? []
         sampleProfile = decode("profile", subdirectory: "Sample")
     }

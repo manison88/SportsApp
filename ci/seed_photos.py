@@ -33,6 +33,23 @@ def dms(value):
     d = int(value); m = int((value - d) * 60); s = round(((value - d) * 60 - m) * 60 * 100)
     return ((d, 1), (m, 1), (s, 100))
 
+# A scoreboard photo with a date but no GPS: Stanley Cup Final Game 6, United Center, June 15 2015.
+# Album import has to find the game from the board itself.
+from PIL import ImageDraw, ImageFont
+board = Image.new("RGB", (1600, 1000), (12, 12, 16))
+d = ImageDraw.Draw(board)
+try:
+    big, small = ImageFont.load_default(size=200), ImageFont.load_default(size=90)
+except TypeError:
+    big = small = ImageFont.load_default()
+d.text((120, 120), "TB    0", font=big, fill=(255, 214, 80))
+d.text((120, 420), "CHI   2", font=big, fill=(255, 214, 80))
+d.text((1000, 780), "FINAL", font=small, fill=(255, 255, 255))
+stamp = b"2015:06:15 21:40:00"
+board_exif = {"0th": {piexif.ImageIFD.DateTime: stamp},
+              "Exif": {piexif.ExifIFD.DateTimeOriginal: stamp, piexif.ExifIFD.OffsetTimeOriginal: b"-05:00"}}
+board.save(os.path.join(OUT, "seed-90-scoreboard-nogps.jpg"), "JPEG", quality=90, exif=piexif.dump(board_exif))
+
 for i, (name, local, offset, lat, lon) in enumerate(SHOTS):
     img = Image.open(asset(name)).convert("RGB")
     img.thumbnail((1600, 1600))

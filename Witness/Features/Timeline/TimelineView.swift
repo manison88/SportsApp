@@ -57,6 +57,7 @@ struct AddMenu: View {
             Button("Add game", systemImage: "plus") { presenter.modal = .addGame }
             Button("Import ticket", systemImage: "ticket") { presenter.modal = .importTicket }
             Button("Find in photos", systemImage: "photo.on.rectangle.angled") { presenter.modal = .discovery }
+            Button("Import an album", systemImage: "rectangle.stack.badge.plus") { presenter.modal = .importAlbum }
             Button("Check in live", systemImage: "dot.radiowaves.left.and.right") { presenter.modal = .live }
         } label: {
             Image(systemName: "plus")

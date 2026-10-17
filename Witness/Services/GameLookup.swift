@@ -80,6 +80,22 @@ enum GameLookup {
             .sorted { abs($0.start.timeIntervalSince(from)) < abs($1.start.timeIntervalSince(from)) }
     }
 
+    /// Every game on one league's schedule that started in the window, at any venue.
+    static func schedule(league: String, from: Date, to: Date, tz: TimeZone = .current) async -> [FoundGame] {
+        var out: [FoundGame] = []
+        for day in dayStrings(from: from, to: to, tz: tz) {
+            if let data = await fetch(scoreboardURL(league: league, day: day)) {
+                out += parseScoreboard(data, league: league)
+            }
+        }
+        return out.filter { $0.start >= from.addingTimeInterval(-6 * 3600) && $0.start <= to }
+    }
+
+    /// The catalog venue a schedule's game was played at, by name, alias, or city plus home team.
+    static func venue(of game: FoundGame, in venues: [Venue]) -> Venue? {
+        venues.first { venueMatches(game, venue: $0) }
+    }
+
     /// Plays, win probability and attendance for a found game.
     static func detail(_ game: FoundGame) async -> FoundDetail? {
         guard let url = URL(string: "\(base)\(game.league)/summary?event=\(game.eventId)"),

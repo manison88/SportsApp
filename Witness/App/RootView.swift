@@ -18,6 +18,7 @@ struct RootView: View {
             switch modal {
             case .addGame: AddGameView()
             case .importTicket: TicketImportView()
+            case .importAlbum: AlbumImportView()
             default: EmptyView()
             }
         }
@@ -52,7 +53,7 @@ struct RootView: View {
 
     private static func isCover(_ m: Modal) -> Bool {
         switch m {
-        case .addGame, .importTicket: false
+        case .addGame, .importTicket, .importAlbum: false
         default: true
         }
     }

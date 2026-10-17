@@ -59,6 +59,7 @@ enum Route: Hashable {
 enum Modal: Identifiable, Hashable {
     case addGame
     case importTicket
+    case importAlbum
     case discovery
     case live
     case recap(String)
@@ -68,6 +69,7 @@ enum Modal: Identifiable, Hashable {
         switch self {
         case .addGame: "add"
         case .importTicket: "import"
+        case .importAlbum: "album"
         case .discovery: "discovery"
         case .live: "live"
         case .recap(let id): "recap-\(id)"

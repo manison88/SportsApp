@@ -18,6 +18,7 @@ struct DiscoveryView: View {
     @State private var lookupFor: String?
     @State private var checkedFor: String?
     @State private var lookupVenue: Venue?
+    @State private var onScoreboard = false
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -131,6 +132,11 @@ struct DiscoveryView: View {
                     .accessibilityElement(children: .combine)
                     .accessibilityLabel("\(lookup.away.location) \(lookup.away.score ?? 0), \(lookup.home.location) \(lookup.home.score ?? 0), on the schedule")
                     .accessibilityIdentifier("discovery-verified")
+                    if onScoreboard {
+                        Image(systemName: "checkmark.seal.fill")
+                            .foregroundStyle(Color.trophy)
+                            .accessibilityLabel("Seen on the scoreboard in your photos")
+                    }
                 } else {
                     Text(Fmt.day(cluster.start, in: cluster.venue.tz)).unitLabel()
                 }
@@ -248,6 +254,12 @@ struct DiscoveryView: View {
             }
         }
         checkedFor = cluster.id
+        onScoreboard = false
+        if let game = lookup, lookupFor == cluster.id {
+            // A scoreboard in the photos that shows these teams confirms it.
+            let readings = await ScoreboardReader.read(cluster.assetIds.map { PhotoRef.library($0) })
+            onScoreboard = readings.contains { ScoreboardReader.support($0, for: game) > 0 }
+        }
     }
 
     private func confirm(_ cluster: PhotoCluster) {
