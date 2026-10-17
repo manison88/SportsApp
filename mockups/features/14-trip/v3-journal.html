@@ -81,7 +81,7 @@
       <text x="52" y="62" text-anchor="middle" font-family="Barlow Condensed" font-weight="700" font-size="11" fill="#b42a3c" stroke="none">2020</text>
     </g></svg>
   <!-- rectangular entry stamp -->
-  <svg class="stamp" style="left:30px;top:340px;transform:rotate(4deg)" width="150" height="58" viewBox="0 0 150 58">
+  <svg class="stamp" style="left:30px;top:348px;transform:rotate(3deg)" width="150" height="58" viewBox="0 0 150 58">
     <defs><filter id="ink2"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="8"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.45"/><feComposite in="SourceGraphic" operator="in"/></filter></defs>
     <g filter="url(#ink2)">
       <rect x="2" y="2" width="146" height="54" rx="7" fill="none" stroke="#4b3a8c" stroke-width="2.4"/>
@@ -92,7 +92,7 @@
 
   <div class="lines">
     <div class="ln"><span class="d">THU 20</span><span class="x">ORD → BCN. Leo slept all 8 hrs.</span></div>
-    <div class="ln"><span class="d">SAT 22</span><span class="x">Camp Nou. <u>5–0.</u> One man scored four!</span></div>
+    <div class="ln"><span class="d">SAT 22</span><span class="x">Camp Nou. <u>5–0.</u> He scored four!</span></div>
     <div class="ln"><span class="d">TUE 25</span><span class="x">Train down the coast. Paella ×2.</span></div>
     <div class="ln"><span class="d">FRI 28</span><span class="x">AVE to Madrid. 300 km/h!!</span></div>
     <div class="ln"><span class="d">SUN 1</span><span class="x">El Clásico. <u>2–0 Madrid.</u> Dana sang.</span></div>
@@ -117,9 +117,9 @@
   const svg = d3.select('#sketch');
   const L = __atlas['land-50m'];
   const land = topojson.feature(L, L.objects.land);
-  const proj = d3.geoMercator().fitExtent([[26, 24], [222, 196]], {type: 'MultiPoint', coordinates: [[-9.3, 36.0], [3.3, 43.8]]});
+  const proj = d3.geoMercator().fitExtent([[26, 18], [214, 172]], {type: 'MultiPoint', coordinates: [[-9.3, 36.0], [3.3, 43.8]]});
   const path = d3.geoPath(proj);
-  svg.append('defs').html(`<clipPath id="c"><rect x="14" y="16" width="226" height="204"/></clipPath>
+  svg.append('defs').html(`<clipPath id="c"><rect x="14" y="16" width="226" height="172"/></clipPath>
     <filter id="wob"><feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.6"/></filter>
     <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="5" stroke="rgba(31,44,92,.22)" stroke-width="1"/></pattern>`);
   const g = svg.append('g').attr('clip-path', 'url(#c)').attr('filter', 'url(#wob)');
@@ -137,7 +137,7 @@
   });
   const t = (x, y, s, size = 18, c = '#1f2c5c', rot = 0) => svg.append('text').attr('x', x).attr('y', y).text(s).attr('font-family', 'Caveat').attr('font-weight', 700).attr('font-size', size).attr('fill', c).attr('transform', `rotate(${rot} ${x} ${y})`);
   t(BCN[0] - 62, BCN[1] - 12, 'Barça!', 19, '#1f2c5c', -6);
-  t(VLC[0] + 14, VLC[1] + 16, 'Valencia', 16);
+  t(VLC[0] - 44, VLC[1] + 30, 'Valencia', 16);
   t(MAD[0] - 28, MAD[1] - 18, 'Madrid', 18);
 })();
 </script>

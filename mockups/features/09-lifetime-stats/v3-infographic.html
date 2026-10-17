@@ -1,0 +1,154 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Infographic</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #fbf0d9; color: #1c2a4f; }
+  .top { position: absolute; top: 56px; left: 14px; right: 14px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+  .ico { width: 38px; height: 38px; border-radius: 19px; display: grid; place-items: center; background: #1c2a4f; }
+  .ico svg { width: 18px; height: 18px; stroke: #fbf0d9; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .top .ttl { font: 700 12px/1 var(--f-grot); letter-spacing: 1.5px; text-transform: uppercase; }
+  svg#poster { position: absolute; left: 0; top: 0; width: 393px; height: 852px; }
+  text { font-family: "Archivo Black", sans-serif; }
+  .ui { font-family: "Inter", sans-serif; }
+  .grot { font-family: "Space Grotesk", sans-serif; }
+  .hand { font-family: "Caveat", cursive; }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <svg id="poster" viewBox="0 0 393 852">
+    <defs>
+      <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#1c2a4f" opacity=".09"/></pattern>
+      <clipPath id="ball"><circle cx="130" cy="296" r="92"/></clipPath>
+    </defs>
+    <rect width="393" height="852" fill="url(#dots)"/>
+
+    <!-- title -->
+    <text x="22" y="134" font-size="13" fill="#ee5435" class="grot" font-weight="700" letter-spacing="2">SAM OKAFOR · SINCE JUN 14, 2014</text>
+    <text x="20" y="172" font-size="35" fill="#1c2a4f" letter-spacing="-1">60 games, drawn.</text>
+
+    <g transform="translate(0 16)">
+    <!-- hero: the baseball with a 61% ring -->
+    <circle cx="130" cy="296" r="112" fill="none" stroke="#1c2a4f" stroke-opacity=".12" stroke-width="12"/>
+    <circle cx="130" cy="296" r="112" fill="none" stroke="#ee5435" stroke-width="12" stroke-linecap="round"
+      stroke-dasharray="429.3 703.7" transform="rotate(-90 130 296)"/>
+    <circle cx="136" cy="302" r="92" fill="#1c2a4f" opacity=".18"/>
+    <circle cx="130" cy="296" r="92" fill="#fffaf0" stroke="#1c2a4f" stroke-width="3"/>
+    <g id="stitch" clip-path="url(#ball)"></g>
+    <text x="130" y="306" text-anchor="middle" font-size="46" fill="#1c2a4f" letter-spacing="-2">61%</text>
+    <text x="130" y="330" text-anchor="middle" font-size="10.5" fill="#1c2a4f" class="ui" font-weight="700" letter-spacing="1.4">WIN RATE</text>
+    <text x="130" y="344" text-anchor="middle" font-size="10.5" fill="#1c2a4f" class="ui" font-weight="500" opacity=".7">when Sam shows up</text>
+    <!-- ring callout -->
+    <path d="M214 214 q 14 -16 30 -18" fill="none" stroke="#1c2a4f" stroke-width="1.6" stroke-linecap="round"/>
+    <text x="236" y="190" class="hand" font-size="19" fill="#1c2a4f" font-weight="700">35 W · 22 L · 2 D</text>
+
+    <!-- three sports, witnessed -->
+    <g transform="translate(262 236)">
+      <circle cx="18" cy="18" r="16" fill="#fffaf0" stroke="#1c2a4f" stroke-width="2.4"/>
+      <path d="M8 6 C 14 13, 14 23, 8 30 M28 6 C 22 13, 22 23, 28 30" fill="none" stroke="#ee5435" stroke-width="1.8"/>
+      <text x="44" y="18" font-size="22" fill="#1c2a4f" letter-spacing="-.5">487</text>
+      <text x="44" y="32" class="ui" font-size="10.5" font-weight="600" fill="#1c2a4f" opacity=".7">runs witnessed</text>
+    </g>
+    <g transform="translate(262 296)">
+      <ellipse cx="18" cy="18" rx="18" ry="11" transform="rotate(-30 18 18)" fill="#9a4a24" stroke="#1c2a4f" stroke-width="2.4"/>
+      <path d="M11 22 L25 14 M14 21 l-1.5 -2.6 M18 19 l-1.5 -2.6 M22 17 l-1.5 -2.6" stroke="#fffaf0" stroke-width="1.6" stroke-linecap="round"/>
+      <text x="44" y="18" font-size="22" fill="#1c2a4f" letter-spacing="-.5">1,204</text>
+      <text x="44" y="32" class="ui" font-size="10.5" font-weight="600" fill="#1c2a4f" opacity=".7">points</text>
+    </g>
+    <g transform="translate(262 356)">
+      <ellipse cx="18" cy="24" rx="17" ry="7" fill="#1c2a4f"/>
+      <rect x="1" y="14" width="34" height="10" fill="#1c2a4f"/>
+      <ellipse cx="18" cy="14" rx="17" ry="7" fill="#33467a"/>
+      <text x="44" y="18" font-size="22" fill="#1c2a4f" letter-spacing="-.5">162</text>
+      <text x="44" y="32" class="ui" font-size="10.5" font-weight="600" fill="#1c2a4f" opacity=".7">goals</text>
+    </g>
+
+    </g>
+    <!-- travel panel -->
+    <rect x="16" y="446" width="361" height="160" rx="24" fill="#17907f"/>
+    <g fill="#5fbfa9">
+      <path d="M16 540 q 40 -34 110 -24 q 50 6 64 22 q -20 16 -70 16 q -60 2 -104 -14z"/>
+      <path d="M280 496 q 24 -10 48 -2 q 30 10 30 30 q -8 18 -36 16 q -30 -2 -40 -20z"/>
+    </g>
+    <path d="M150 532 Q 236 430 318 516" fill="none" stroke="#fbf0d9" stroke-width="2.4" stroke-dasharray="1 7" stroke-linecap="round"/>
+    <g transform="translate(236 474) rotate(8)">
+      <path d="M-14 0 L14 0 M0 0 L-6 -12 M0 0 L-6 12 M-12 0 l-4 -5 M-12 0 l-4 5" stroke="#fbf0d9" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <circle cx="150" cy="532" r="7" fill="#f5b82e" stroke="#1c2a4f" stroke-width="2"/>
+    <circle cx="318" cy="516" r="7" fill="#ee5435" stroke="#1c2a4f" stroke-width="2"/>
+    <text x="136" y="536" text-anchor="end" class="grot" font-weight="700" font-size="11" fill="#fbf0d9" letter-spacing="1.5">CHICAGO</text>
+    <text x="318" y="541" text-anchor="middle" class="grot" font-weight="700" font-size="11" fill="#fbf0d9" letter-spacing="1.5">SPAIN</text>
+    <text x="36" y="478" class="grot" font-weight="700" font-size="10.5" fill="#fbf0d9" letter-spacing="1.6" opacity=".85">LONGEST TRIP</text>
+    <text x="36" y="504" font-size="24" fill="#fff" letter-spacing="-.5">4,600 mi</text>
+    <!-- odometer -->
+    <text x="36" y="588" class="grot" font-weight="700" font-size="10.5" fill="#fbf0d9" letter-spacing="1.6" opacity=".85">ALL MILES</text>
+    <g transform="translate(118 566)" font-size="20">
+      <rect x="0" y="0" width="134" height="32" rx="7" fill="#1c2a4f"/>
+      <g fill="#fbf0d9">
+        <rect x="5" y="4" width="20" height="24" rx="3" fill="#2a3c6b"/><text x="15" y="24" text-anchor="middle">4</text>
+        <rect x="31" y="4" width="20" height="24" rx="3" fill="#2a3c6b"/><text x="41" y="24" text-anchor="middle">2</text>
+        <rect x="57" y="4" width="20" height="24" rx="3" fill="#2a3c6b"/><text x="67" y="24" text-anchor="middle">9</text>
+        <rect x="83" y="4" width="20" height="24" rx="3" fill="#2a3c6b"/><text x="93" y="24" text-anchor="middle">0</text>
+        <rect x="109" y="4" width="20" height="24" rx="3" fill="#f5b82e"/><text x="119" y="24" text-anchor="middle" fill="#1c2a4f">0</text>
+      </g>
+    </g>
+    <text x="262" y="589" class="hand" font-size="18" fill="#fff" font-weight="700">≈ 1.7 × Earth</text>
+
+    <!-- bottom: thermometer, venues, Maya -->
+    <!-- thermometer -->
+    <g transform="translate(26 628)">
+      <rect x="10" y="0" width="22" height="118" rx="11" fill="#fffaf0" stroke="#1c2a4f" stroke-width="2.6"/>
+      <circle cx="21" cy="134" r="19" fill="#6fc8ef" stroke="#1c2a4f" stroke-width="2.6"/>
+      <rect x="16" y="78" width="10" height="44" fill="#6fc8ef"/>
+      <path d="M32 20 h7 M32 40 h7 M32 60 h7 M32 80 h7 M32 100 h7" stroke="#1c2a4f" stroke-width="2" stroke-linecap="round"/>
+      <g fill="#6fc8ef"><path d="M-2 30 l3 3 l3 -3 l-3 -3z"/><path d="M2 60 l2.4 2.4 l2.4 -2.4 l-2.4 -2.4z"/></g>
+    </g>
+    <text x="78" y="680" font-size="34" fill="#1c2a4f" letter-spacing="-1">19°F</text>
+    <text x="78" y="700" class="ui" font-size="11" font-weight="700" fill="#1c2a4f" letter-spacing="1.2">COLDEST GAME</text>
+    <text x="78" y="716" class="ui" font-size="11" font-weight="500" fill="#1c2a4f" opacity=".7">Lambeau, Jan 5, 2025</text>
+
+    <!-- venues + countries -->
+    <g transform="translate(196 636)">
+      <path d="M14 0 a14 14 0 0 1 14 14 c0 10 -14 24 -14 24 s-14 -14 -14 -24 a14 14 0 0 1 14 -14z" fill="#ee5435" stroke="#1c2a4f" stroke-width="2.2"/>
+      <circle cx="14" cy="14" r="5" fill="#fffaf0"/>
+      <text x="38" y="27" font-size="30" fill="#1c2a4f" letter-spacing="-1">21</text>
+      <text x="0" y="60" class="ui" font-size="11" font-weight="700" fill="#1c2a4f" letter-spacing="1.2">VENUES</text>
+    </g>
+    <g transform="translate(298 636)">
+      <path d="M2 0 v42" stroke="#1c2a4f" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M3 2 l26 7 l-26 7z" fill="#f5b82e" stroke="#1c2a4f" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M3 18 l22 6 l-22 6z" fill="#ee5435" stroke="#1c2a4f" stroke-width="1.8" stroke-linejoin="round"/>
+      <path d="M3 32 l18 5 l-18 5z" fill="#6fc8ef" stroke="#1c2a4f" stroke-width="1.8" stroke-linejoin="round"/>
+      <text x="36" y="27" font-size="30" fill="#1c2a4f" letter-spacing="-1">3</text>
+      <text x="0" y="60" class="ui" font-size="11" font-weight="700" fill="#1c2a4f" letter-spacing="1.2">COUNTRIES</text>
+    </g>
+
+    <!-- Maya -->
+    <g transform="translate(196 718)">
+      <rect x="0" y="0" width="181" height="64" rx="32" fill="#ff7a8a"/>
+      <path d="M32 46 C 12 34, 10 18, 22 14 C 28 12, 31 16, 32 19 C 33 16, 36 12, 42 14 C 54 18, 52 34, 32 46z" fill="#fffaf0"/>
+      <text x="32" y="34" text-anchor="middle" font-size="13" fill="#ff7a8a">M</text>
+      <text x="60" y="34" font-size="26" fill="#1c2a4f" letter-spacing="-1">17</text>
+      <text x="60" y="50" class="ui" font-size="10.5" font-weight="700" fill="#1c2a4f">with Maya</text>
+    </g>
+  </svg>
+
+  <div class="top">
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="ttl">Lifetime</div>
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+<script>
+(function(){
+  const NS='http://www.w3.org/2000/svg', g=document.getElementById('stitch');
+  const cx=130, cy=296;
+  [[-1],[1]].forEach(([sd])=>{
+    const P=[[cx+sd*-78,cy-70],[cx+sd*-54,cy-34],[cx+sd*-54,cy+34],[cx+sd*-78,cy+70]];
+    const p=document.createElementNS(NS,'path');
+    p.setAttribute('d',`M${P[0]} C ${P[1]} ${P[2]} ${P[3]}`); p.setAttribute('fill','none'); p.setAttribute('stroke','#ee5435'); p.setAttribute('stroke-width','2.4'); g.appendChild(p);
+    const B=t=>[0,1].map(k=>(1-t)**3*P[0][k]+3*(1-t)**2*t*P[1][k]+3*(1-t)*t*t*P[2][k]+t**3*P[3][k]);
+    for(let i=1;i<12;i++){const t=i/12,[x,y]=B(t),[x2,y2]=B(t+.01);const dx=x2-x,dy=y2-y,l=Math.hypot(dx,dy),nx=-dy/l,ny=dx/l;
+      [-1,1].forEach(s2=>{const q=document.createElementNS(NS,'path');const ax=x+nx*5*s2,ay=y+ny*5*s2;q.setAttribute('d',`M${x} ${y} L${ax+dx/l*(-2.5)} ${ay+dy/l*(-2.5)}`);q.setAttribute('stroke','#ee5435');q.setAttribute('stroke-width','1.8');q.setAttribute('stroke-linecap','round');g.appendChild(q);});}
+  });
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

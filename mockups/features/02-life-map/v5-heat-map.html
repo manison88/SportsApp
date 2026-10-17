@@ -1,0 +1,137 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Heat map</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #07070a; }
+  .head { position: absolute; top: 62px; left: 22px; right: 22px; }
+  .head .eyebrow { color: #fb8761; }
+  .head h1 { margin-top: 10px; font: 700 27px/1.08 var(--f-tight); letter-spacing: -.9px; }
+  .head h1 b { background: linear-gradient(90deg, #fcfdbf, #fb8761 60%, #e0457b); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 900; }
+  .head h1 span { color: var(--text-3); }
+  .map { position: absolute; left: 0; top: 168px; width: 393px; height: 250px; }
+  .map svg, .map canvas { position: absolute; left: 0; top: 0; }
+  .lbl { position: absolute; font: 600 9.5px/1.2 var(--f-ui); letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-2); white-space: nowrap; }
+  .lbl b { color: var(--text); }
+  .eu { position: absolute; right: 14px; top: 340px; width: 112px; height: 84px; border-radius: 14px; overflow: hidden; background: #0d0d12; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.14); }
+  .eu svg, .eu canvas { position: absolute; left: 0; top: 0; }
+  .eu .t { position: absolute; left: 8px; top: 7px; font: 600 8.5px/1 var(--f-ui); letter-spacing: 1.2px; color: var(--text-2); }
+
+  .zoom { position: absolute; left: 14px; right: 14px; top: 440px; height: 220px; border-radius: 24px; overflow: hidden; background: #0b0c10; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); }
+  .zoom svg, .zoom canvas { position: absolute; left: 0; top: 0; }
+  .zoom .t { position: absolute; left: 16px; top: 14px; }
+  .zoom .t .eyebrow { color: var(--text-3); font-size: 10px; }
+  .zoom .t b { display: block; margin-top: 5px; font: 600 16px/1 var(--f-ui); }
+  .tag { position: absolute; display: flex; align-items: baseline; gap: 5px; font: 600 11px/1 var(--f-ui); white-space: nowrap; text-shadow: 0 1px 6px rgba(0,0,0,.9); }
+  .tag b { font: 800 17px/1 var(--f-tight); letter-spacing: -.4px; color: #fff; }
+  .tag span { color: var(--text-2); }
+
+  .legend { position: absolute; left: 22px; right: 22px; top: 684px; }
+  .ramp { height: 8px; border-radius: 4px; background: linear-gradient(90deg, #1b0c41, #4a0c6b, #a52c60, #ed6925, #fbb61a, #fcffa4); box-shadow: 0 0 18px rgba(237,105,37,.3); }
+  .ticks { margin-top: 8px; display: flex; justify-content: space-between; font: 500 11px/1 var(--f-ui); color: var(--text-3); }
+  .row { position: absolute; left: 22px; right: 22px; top: 726px; display: flex; justify-content: space-between; padding-top: 14px; border-top: .5px solid rgba(255,255,255,.1); }
+  .row .n { font: 700 22px/1 var(--f-tight); letter-spacing: -.6px; font-variant-numeric: tabular-nums; }
+  .row .l { margin-top: 5px; font: 500 11px/1.25 var(--f-ui); color: var(--text-3); }
+</style></head>
+<body class="phone">
+  <div class="head">
+    <div class="eyebrow">Heat map · every game night since 2014</div>
+    <h1><b>46 of 60</b> game nights<br>were within 6 miles <span>of home.</span></h1>
+  </div>
+
+  <div class="map" id="map"><svg id="us" width="393" height="250"></svg><canvas id="heat" width="1179" height="750" style="width:393px;height:250px"></canvas></div>
+  <div class="eu"><svg id="eus" width="112" height="84"></svg><canvas id="euh" width="336" height="252" style="width:112px;height:84px"></canvas><div class="t">EUROPE · 3</div></div>
+
+  <div class="zoom"><svg id="chi" width="365" height="220"></svg><canvas id="chih" width="1095" height="660" style="width:365px;height:220px"></canvas>
+    <div class="t"><div class="eyebrow">Chicago, up close</div><b>Four buildings, 46 nights</b></div>
+  </div>
+
+  <div class="legend"><div class="ramp"></div><div class="ticks"><span>1 night</span><span>5</span><span>10</span><span>17 nights</span></div></div>
+  <div class="row">
+    <div><div class="n">Wrigley</div><div class="l">Hottest spot · 17</div></div>
+    <div><div class="n">19°F</div><div class="l">Coldest · Lambeau</div></div>
+    <div><div class="n">4,413 mi</div><div class="l">Farthest · Camp Nou</div></div>
+  </div>
+
+<script src="../../kit/vendor/d3.min.js"></script>
+<script src="../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../kit/vendor/states-10m.js"></script>
+<script src="../../kit/vendor/countries-110m.js"></script>
+<script>
+(function(){
+  // thermal palette LUT (inferno-like)
+  const stops = [[0, [0, 0, 0, 0]], [.08, [27, 12, 65, 90]], [.25, [74, 12, 107, 190]], [.45, [165, 44, 96, 235]], [.65, [237, 105, 37, 255]], [.82, [251, 182, 26, 255]], [1, [252, 255, 164, 255]]];
+  const LUT = new Uint8ClampedArray(256 * 4);
+  for (let i = 0; i < 256; i++) { const t = i / 255; let k = 0; while (k < stops.length - 2 && t > stops[k + 1][0]) k++;
+    const [t0, c0] = stops[k], [t1, c1] = stops[k + 1], u = (t - t0) / (t1 - t0);
+    for (let j = 0; j < 4; j++) LUT[i * 4 + j] = c0[j] + (c1[j] - c0[j]) * u; }
+  function heat(canvas, pts, radius, gain) {
+    const c = canvas.getContext('2d'), W = canvas.width, H = canvas.height, s = W / parseFloat(canvas.style.width);
+    let seed = 3; const r = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    pts.forEach(([x, y, n, rad]) => {
+      const R = (rad || radius) * s * (0.8 + Math.sqrt(n) * .22);
+      for (let k = 0; k < n; k++) {
+        const jx = (r() - .5) * R * .5, jy = (r() - .5) * R * .5;
+        const g = c.createRadialGradient(x * s + jx, y * s + jy, 0, x * s + jx, y * s + jy, R);
+        g.addColorStop(0, `rgba(0,0,0,${gain})`); g.addColorStop(1, 'rgba(0,0,0,0)');
+        c.fillStyle = g; c.fillRect(x * s + jx - R, y * s + jy - R, R * 2, R * 2);
+      }
+    });
+    const img = c.getImageData(0, 0, W, H), d = img.data;
+    for (let i = 0; i < d.length; i += 4) { const a = d[i + 3]; const o = a * 4; d[i] = LUT[o]; d[i + 1] = LUT[o + 1]; d[i + 2] = LUT[o + 2]; d[i + 3] = LUT[o + 3]; }
+    c.putImageData(img, 0, 0);
+    canvas.style.mixBlendMode = 'screen';
+  }
+
+  // ---------- US ----------
+  const st = __atlas['states-10m'];
+  const states = topojson.feature(st, st.objects.states).features.filter(f => !['02', '15', '72', '60', '66', '69', '78'].includes(f.id));
+  const pu = d3.geoAlbersUsa().fitExtent([[10, 6], [383, 244]], { type: 'FeatureCollection', features: states });
+  const pathU = d3.geoPath(pu);
+  const us = d3.select('#us');
+  us.append('path').attr('d', pathU({ type: 'FeatureCollection', features: states })).attr('fill', '#12131a').attr('stroke', 'rgba(255,255,255,.09)').attr('stroke-width', .5);
+  const V = [[-87.70, 41.90, 46], [-88.062, 44.501, 1], [-71.097, 42.346, 2], [-87.971, 43.028, 2], [-93.278, 44.982, 1], [-94.480, 39.051, 1], [-90.193, 38.623, 2],
+    [-84.507, 39.097, 1], [-83.049, 42.339, 1], [-80.006, 40.447, 1], [-73.926, 40.829, 1], [-104.994, 39.756, 1], [-122.389, 37.778, 1], [-118.240, 34.074, 1], [-97.641, 30.133, 1]];
+  heat(document.getElementById('heat'), V.map(([lo, la, n]) => { const p = pu([lo, la]); return [p[0], p[1], n]; }), 13, .55);
+  const lab = (html, x, y, parent = 'map') => { const d = document.createElement('div'); d.className = 'lbl'; d.innerHTML = html; d.style.left = x + 'px'; d.style.top = y + 'px'; document.getElementById(parent).appendChild(d); };
+  let p = pu([-87.7, 41.9]); lab('<b>Chicago</b> · 46', p[0] + 22, p[1] - 30);
+  p = pu([-71.097, 42.346]); lab('Boston', p[0] - 28, p[1] - 22);
+  p = pu([-97.641, 30.133]); lab('Austin', p[0] - 16, p[1] + 14);
+  p = pu([-88.062, 44.501]); lab('Green Bay', p[0] - 70, p[1] - 14);
+
+  // ---------- Europe inset ----------
+  const world = __atlas['countries-110m'];
+  const pe = d3.geoMercator().fitExtent([[4, 18], [108, 82]], { type: 'MultiPoint', coordinates: [[-9, 37], [13, 54]] });
+  d3.select('#eus').append('path').attr('d', d3.geoPath(pe)(topojson.feature(world, world.objects.countries))).attr('fill', '#15161d').attr('stroke', 'rgba(255,255,255,.09)').attr('stroke-width', .5);
+  heat(document.getElementById('euh'), [[2.123, 41.381], [-3.688, 40.453], [7.452, 51.493]].map(c => { const q = pe(c); return [q[0], q[1], 1]; }), 9, .55);
+
+  // ---------- Chicago zoom ----------
+  const W = 365, H = 220;
+  const pc = d3.geoMercator().fitExtent([[40, 40], [W - 70, H - 14]], { type: 'MultiPoint', coordinates: [[-87.80, 41.80], [-87.58, 41.97]] });
+  const sc = d3.select('#chi');
+  // lake
+  sc.append('rect').attr('width', W).attr('height', H).attr('fill', '#0a1220');
+  const il = states.find(f => f.id === '17');
+  sc.append('path').attr('d', d3.geoPath(pc)(il)).attr('fill', '#111216').attr('stroke', 'rgba(140,170,255,.25)').attr('stroke-width', .8);
+  // street grid (Chicago is on a N–S grid; every mile)
+  const g = sc.append('g').attr('clip-path', 'url(#cl)');
+  sc.append('clipPath').attr('id', 'cl').append('path').attr('d', d3.geoPath(pc)(il));
+  for (let lon = -87.95; lon <= -87.5; lon += 0.0125) { const a = pc([lon, 41.6]), b = pc([lon, 42.1]); g.append('line').attr('x1', a[0]).attr('y1', a[1]).attr('x2', b[0]).attr('y2', b[1]).attr('stroke', 'rgba(255,255,255,' + (Math.round((lon + 88) / .0125) % 4 === 0 ? .08 : .035) + ')').attr('stroke-width', .6); }
+  for (let lat = 41.6; lat <= 42.1; lat += 0.0145) { const a = pc([-88, lat]), b = pc([-87.5, lat]); g.append('line').attr('x1', a[0]).attr('y1', a[1]).attr('x2', b[0]).attr('y2', b[1]).attr('stroke', 'rgba(255,255,255,' + (Math.round((lat - 41.6) / .0145) % 4 === 0 ? .08 : .035) + ')').attr('stroke-width', .6); }
+  sc.append('text').attr('x', W - 60).attr('y', 100).attr('fill', 'rgba(140,170,255,.4)').attr('font-family', 'Inter').attr('font-size', 9).attr('font-weight', 600).attr('letter-spacing', 1.6).attr('font-style', 'italic').text('LAKE');
+  sc.append('text').attr('x', W - 60).attr('y', 112).attr('fill', 'rgba(140,170,255,.4)').attr('font-family', 'Inter').attr('font-size', 9).attr('font-weight', 600).attr('letter-spacing', 1.6).attr('font-style', 'italic').text('MICHIGAN');
+  const C = [['Wrigley Field', -87.655, 41.948, 17], ['Soldier Field', -87.617, 41.862, 15], ['United Center', -87.674, 41.881, 11], ['Rate Field', -87.634, 41.830, 3]];
+  heat(document.getElementById('chih'), C.map(([n, lo, la, k]) => { const q = pc([lo, la]); return [q[0], q[1], k]; }), 15, .3);
+  // home
+  const h = pc([-87.705, 41.923]);
+  sc.append('circle').attr('cx', h[0]).attr('cy', h[1]).attr('r', 4).attr('fill', '#fff').attr('stroke', '#07070a').attr('stroke-width', 1.5);
+  const z = document.querySelector('.zoom');
+  const tag = (html, x, y) => { const d = document.createElement('div'); d.className = 'tag'; d.innerHTML = html; d.style.left = x + 'px'; d.style.top = y + 'px'; z.appendChild(d); };
+  let q = pc([-87.655, 41.948]); tag('<b>17</b><span>Wrigley</span>', q[0] + 20, q[1] - 10);
+  q = pc([-87.617, 41.862]); tag('<b>15</b><span>Soldier</span>', q[0] + 20, q[1] - 6);
+  q = pc([-87.674, 41.881]); tag('<b>11</b><span>United Ctr</span>', q[0] - 104, q[1] - 6);
+  q = pc([-87.634, 41.830]); tag('<b>3</b><span>Rate Field</span>', q[0] - 92, q[1] + 2);
+  tag('<span style="color:#fff">Home</span>', h[0] - 44, h[1] - 6);
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

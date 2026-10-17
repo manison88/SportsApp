@@ -1,0 +1,122 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Calendar wall</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #07080b; }
+  .bg { position: absolute; inset: 0; background: radial-gradient(70% 40% at 50% 40%, rgba(60,80,140,.16), rgba(0,0,0,0) 70%), #07080b; }
+  .top { position: absolute; top: 58px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: flex-start; }
+  .top .e { font: 600 10.5px/1 var(--f-ui); letter-spacing: 2px; text-transform: uppercase; color: var(--text-3); }
+  .top h1 { font: 700 30px/1.02 var(--f-grot); letter-spacing: -1px; margin-top: 8px; }
+  .top h1 span { color: var(--signal); text-shadow: 0 0 18px rgba(255,181,71,.55); }
+  .top .btn-circle { background: rgba(255,255,255,.07); border: .5px solid rgba(255,255,255,.12); }
+  .legend { position: absolute; top: 150px; left: 20px; right: 20px; display: flex; flex-wrap: nowrap; gap: 12px; }
+  .legend span { display: flex; align-items: center; gap: 5px; font: 500 11px/1 var(--f-ui); color: var(--text-2); white-space: nowrap; }
+  .legend i { width: 7px; height: 7px; border-radius: 4px; box-shadow: 0 0 6px currentColor; }
+  svg#wall { position: absolute; left: 0; top: 180px; }
+  .card { position: absolute; left: 16px; right: 16px; top: 654px; height: 120px; border-radius: 22px; overflow: hidden; display: flex;
+    background: #121318; border: .5px solid rgba(255,255,255,.1); box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+  .card .ph-wrap { width: 112px; position: relative; flex: none; }
+  .card .ph-wrap::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(18,19,24,0) 60%, #121318); }
+  .card .body { padding: 14px 16px 0 6px; flex: 1; }
+  .card .e { font: 700 10px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: var(--signal); display: flex; align-items: center; gap: 6px; }
+  .card .e i { width: 6px; height: 6px; border-radius: 3px; background: var(--signal); box-shadow: 0 0 8px var(--signal); }
+  .card h3 { font: 700 19px/1.1 var(--f-grot); letter-spacing: -.4px; margin-top: 8px; }
+  .card .sc { display: flex; align-items: center; gap: 8px; margin-top: 10px; font: 700 14px/1 var(--f-tight); font-variant-numeric: tabular-nums; }
+  .card .sc .mono-badge { width: 22px; height: 22px; font-size: 10px; }
+  .card .sc .d { color: var(--text-3); }
+  .card .who { display: flex; align-items: center; gap: 6px; margin-top: 10px; font: 500 12px/1 var(--f-ui); color: var(--text-2); }
+  .card .who b { width: 18px; height: 18px; border-radius: 9px; background: #8fe3a0; color: #0d1a10; font: 800 8px/18px var(--f-ui); text-align: center; }
+  .nav { position: absolute; left: 0; right: 0; top: 788px; display: flex; justify-content: center; gap: 8px; }
+  .nav span { height: 32px; padding: 0 14px; border-radius: 16px; font: 600 13px/32px var(--f-ui); color: var(--text-3); background: rgba(255,255,255,.05); }
+  .nav span.on { color: #0b0b0e; background: var(--text); }
+</style></head>
+<body class="phone">
+<div class="bg"></div>
+<div class="top">
+  <div><div class="e">2014 – 2026 · 4,748 days</div><h1>Sixty of them,<br><span>lit up.</span></h1></div>
+  <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+<div class="legend">
+  <span style="color:#4d8bff"><i style="background:#4d8bff"></i>Wrigley</span>
+  <span style="color:#ff7a2e"><i style="background:#ff7a2e"></i>Soldier</span>
+  <span style="color:#ff3b55"><i style="background:#ff3b55"></i>United Ctr</span>
+  <span style="color:#ffd36e"><i style="background:#ffd36e"></i>Road</span>
+  <span style="color:#b79cff"><i style="background:#b79cff"></i>Abroad</span>
+</div>
+<svg id="wall" width="393" height="460" viewBox="0 0 393 460">
+  <defs><filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="2.2"/></filter></defs>
+</svg>
+
+<div class="card">
+  <div class="ph-wrap"><img class="ph graded" src="../../photos/wrigley-night.jpg" style="object-position:40% 50%"></div>
+  <div class="body">
+    <div class="e"><i></i>Sun · Oct 30 · 2016</div>
+    <h3>World Series, Game 5</h3>
+    <div class="sc"><span class="mono-badge" style="background:#0e3386">CHI</span>3<span class="d">–</span><span class="d">2</span><span class="mono-badge" style="background:#0c2340;color:#e8344a">CLE</span><span class="d" style="font-weight:500;font-size:12px;margin-left:4px">Wrigley</span></div>
+    <div class="who"><b>R</b>with Dad · Bleachers 314</div>
+  </div>
+</div>
+<div class="nav"><span>Year</span><span class="on">Wall</span><span>Seasons</span></div>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg', W = document.getElementById('wall');
+const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); (p || W).appendChild(e); return e; };
+const C = { wr: '#4d8bff', so: '#ff7a2e', uc: '#ff3b55', rd: '#ffd36e', ab: '#b79cff' };
+// curated real dates
+const games = {
+  '2014-06-14': 'wr', '2015-04-05': 'wr', '2015-06-15': 'uc', '2016-10-22': 'wr', '2016-10-30': 'sel', '2017-11-25': 'ab',
+  '2019-01-06': 'so', '2020-02-22': 'ab', '2020-03-01': 'ab', '2021-10-24': 'rd', '2023-10-04': 'so', '2025-01-05': 'rd', '2026-07-04': 'wr',
+  '2019-07-19': 'rd', '2022-08-12': 'rd', '2024-08-17': 'rd',
+  '2025-04-04': 'wr', '2025-05-17': 'wr', '2025-06-21': 'wr', '2025-07-12': 'rd', '2025-08-09': 'wr', '2025-09-14': 'so', '2025-10-26': 'so', '2025-12-06': 'uc',
+};
+// seeded filler to 60
+let s = 7; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+const fill = [['wr', [4, 9], 12], ['so', [9, 12], 8], ['so', [5, 8], 4], ['uc', [1, 4], 4], ['uc', [11, 12], 5], ['rd', [5, 9], 7], ['wr', [5, 8], 4]];
+let count = Object.keys(games).length;
+fill.forEach(([k, [m0, m1], n]) => {
+  for (let i = 0; i < n && count < 60; i++) {
+    const y = 2014 + Math.floor(r() * 13), m = m0 + Math.floor(r() * (m1 - m0 + 1)), d = 1 + Math.floor(r() * 28);
+    if ((y === 2026 && m > 9) || y === 2025) { i--; continue; }
+    const key = `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+    if (!games[key]) { games[key] = k; count++; }
+  }
+});
+const perYear = {};
+Object.keys(games).forEach(k => { const y = k.slice(0, 4); perYear[y] = (perYear[y] || 0) + 1; });
+
+const X0 = 44, MW = 25.4, DX = 3.35, Y0 = 18, YH = 33.5;
+'JFMAMJJASOND'.split('').forEach((c, i) => el('text', { x: X0 + i * MW + 10, y: 8, 'text-anchor': 'middle', 'font-family': 'Inter', 'font-weight': 600, 'font-size': 8.5, fill: 'rgba(245,241,234,.38)' }).textContent = c);
+const glowL = el('g', { filter: 'url(#glow)' }), dotL = el('g', {});
+for (let yi = 0; yi < 13; yi++) {
+  const y = 2014 + yi, top = Y0 + yi * YH;
+  if (y === 2016) el('rect', { x: 10, y: top - 6, width: 373, height: 31, rx: 8, fill: 'rgba(255,181,71,.07)', stroke: 'rgba(255,181,71,.22)', 'stroke-width': .6 }, W.insertBefore(document.createElementNS(NS, 'g'), glowL));
+  el('text', { x: 16, y: top + 11, 'font-family': 'Space Grotesk', 'font-weight': 700, 'font-size': 11, fill: y === 2016 ? '#ffb547' : 'rgba(245,241,234,.62)' }).textContent = '’' + String(y).slice(2);
+  el('text', { x: 380, y: top + 11, 'text-anchor': 'end', 'font-family': 'Inter', 'font-weight': 600, 'font-size': 9, fill: 'rgba(245,241,234,.4)' }).textContent = perYear[y] || 0;
+  for (let m = 0; m < 12; m++) {
+    const first = new Date(y, m, 1).getDay(), days = new Date(y, m + 1, 0).getDate();
+    for (let d = 1; d <= days; d++) {
+      const idx = first + d - 1, cx = X0 + m * MW + (idx % 7) * DX + 1.2, cy = top + Math.floor(idx / 7) * DX + 1;
+      const key = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+      const g = games[key];
+      const future = y === 2026 && (m > 9 || (m === 9 && d > 17));
+      if (g === 'sel') {
+        el('circle', { cx, cy, r: 4, fill: '#ffb547', opacity: .9 }, glowL);
+        el('circle', { cx, cy, r: 1.9, fill: '#fff' }, dotL);
+        el('circle', { cx, cy, r: 5.2, fill: 'none', stroke: '#ffb547', 'stroke-width': 1 }, dotL);
+      } else if (g) {
+        el('circle', { cx, cy, r: 4.2, fill: C[g], opacity: .95 }, glowL);
+        el('circle', { cx, cy, r: 1.9, fill: C[g] }, dotL);
+        el('circle', { cx: cx - .4, cy: cy - .4, r: .55, fill: '#fff', opacity: .8 }, dotL);
+      } else if (y === 2026 && m === 9 && d === 17) {
+        el('circle', { cx, cy, r: 2.6, fill: 'none', stroke: '#fff', 'stroke-width': .8 }, dotL);
+      } else {
+        el('circle', { cx, cy, r: .85, fill: future ? 'rgba(255,255,255,.05)' : 'rgba(255,255,255,.16)' }, dotL);
+      }
+    }
+  }
+}
+// leader from selected day to card
+el('path', { d: 'M286 87 C 300 120, 360 200, 362 300 L 362 470', stroke: 'rgba(255,181,71,0)', fill: 'none' });
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>
