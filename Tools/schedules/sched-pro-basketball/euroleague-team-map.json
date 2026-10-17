@@ -1,0 +1,443 @@
+{
+ "note": "Source team id in basketball-euroleague season files = official EuroLeague club code (ESPN has no EuroLeague schedule data). espnId/catalogTeamId link to Tools/teams/other-sports-teams.json.",
+ "teams": {
+  "ASV": {
+   "name": "LDLC ASVEL Villeurbanne",
+   "seasons": [
+    2019,
+    2026
+   ],
+   "espnId": "125706",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-asv"
+  },
+  "BAM": {
+   "name": "Brose Bamberg",
+   "seasons": [
+    2011,
+    2017
+   ]
+  },
+  "BAR": {
+   "name": "FC Barcelona",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "125618",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-bar"
+  },
+  "BAS": {
+   "name": "Kosner Baskonia Vitoria-Gasteiz",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "125621",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-bkn"
+  },
+  "BER": {
+   "name": "ALBA Berlin",
+   "seasons": [
+    2012,
+    2024
+   ]
+  },
+  "BES": {
+   "name": "Besiktas Istanbul",
+   "seasons": [
+    2012,
+    2026
+   ],
+   "espnId": "133462",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-bjk"
+  },
+  "BIL": {
+   "name": "Gescrap Bilbao Basket",
+   "seasons": [
+    2011,
+    2011
+   ]
+  },
+  "BUD": {
+   "name": "Buducnost VOLI Pogdorica",
+   "seasons": [
+    2018,
+    2018
+   ]
+  },
+  "CAN": {
+   "name": "Herbalife Gran Canaria",
+   "seasons": [
+    2018,
+    2018
+   ]
+  },
+  "CED": {
+   "name": "Cedevita Zagreb",
+   "seasons": [
+    2012,
+    2015
+   ]
+  },
+  "CHA": {
+   "name": "Belgacom Spirou Charleroi",
+   "seasons": [
+    2011,
+    2011
+   ]
+  },
+  "CHL": {
+   "name": "Elan Chalon-Sur-Saone",
+   "seasons": [
+    2012,
+    2012
+   ]
+  },
+  "CSK": {
+   "name": "CSKA Moscow",
+   "seasons": [
+    2011,
+    2021
+   ]
+  },
+  "CTU": {
+   "name": "Mapooro Cantu",
+   "seasons": [
+    2011,
+    2012
+   ]
+  },
+  "DAR": {
+   "name": "Darussafaka Tekfen Istanbul",
+   "seasons": [
+    2015,
+    2018
+   ]
+  },
+  "DUB": {
+   "name": "Dubai Basketball",
+   "seasons": [
+    2025,
+    2026
+   ],
+   "espnId": "133463",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-dub"
+  },
+  "DYR": {
+   "name": "Zenit St Petersburg",
+   "seasons": [
+    2019,
+    2021
+   ]
+  },
+  "GAL": {
+   "name": "Galatasaray Odeabank Istanbul",
+   "seasons": [
+    2011,
+    2016
+   ]
+  },
+  "GSS": {
+   "name": "Stelmet Zielona Gora",
+   "seasons": [
+    2013,
+    2015
+   ]
+  },
+  "HTA": {
+   "name": "Hapoel IBI Tel Aviv",
+   "seasons": [
+    2025,
+    2026
+   ],
+   "espnId": "132589",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-hta"
+  },
+  "IST": {
+   "name": "Anadolu Efes Istanbul",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "125612",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-efs"
+  },
+  "KHI": {
+   "name": "Khimki Moscow Region",
+   "seasons": [
+    2012,
+    2020
+   ]
+  },
+  "KLA": {
+   "name": "Neptunas Klaipeda",
+   "seasons": [
+    2014,
+    2014
+   ]
+  },
+  "KSK": {
+   "name": "Pinar Karsiyaka",
+   "seasons": [
+    2015,
+    2015
+   ]
+  },
+  "LIE": {
+   "name": "Lietuvos Rytas Vilnius",
+   "seasons": [
+    2012,
+    2013
+   ]
+  },
+  "LJU": {
+   "name": "Union Olimpija Ljubljana",
+   "seasons": [
+    2011,
+    2012
+   ]
+  },
+  "LMG": {
+   "name": "Limoges CSP",
+   "seasons": [
+    2014,
+    2015
+   ]
+  },
+  "MAD": {
+   "name": "Real Madrid",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "125611",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-rmb"
+  },
+  "MAL": {
+   "name": "Unicaja Malaga",
+   "seasons": [
+    2011,
+    2017
+   ]
+  },
+  "MCO": {
+   "name": "AS Monaco",
+   "seasons": [
+    2021,
+    2025
+   ]
+  },
+  "MIL": {
+   "name": "Armani Olimpia Milan",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "125615",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-mil"
+  },
+  "MUN": {
+   "name": "FC Bayern Munich",
+   "seasons": [
+    2013,
+    2026
+   ],
+   "espnId": "125617",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-bay"
+  },
+  "NAN": {
+   "name": "SLUC Nancy",
+   "seasons": [
+    2011,
+    2011
+   ]
+  },
+  "NIK": {
+   "name": "Budivelnik Kiev",
+   "seasons": [
+    2013,
+    2013
+   ]
+  },
+  "NOV": {
+   "name": "Nizhny Novgorod",
+   "seasons": [
+    2014,
+    2014
+   ]
+  },
+  "NTR": {
+   "name": "JSF Nanterre",
+   "seasons": [
+    2013,
+    2013
+   ]
+  },
+  "OLY": {
+   "name": "Olympiacos Piraeus",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "125614",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-oly"
+  },
+  "PAM": {
+   "name": "Valencia Basket",
+   "seasons": [
+    2014,
+    2026
+   ],
+   "espnId": "126418",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-val"
+  },
+  "PAN": {
+   "name": "Panathinaikos AKTOR Athens",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "125632",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-pao"
+  },
+  "PAR": {
+   "name": "Partizan Mozzart Bet Belgrade",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "126416",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-par"
+  },
+  "PRS": {
+   "name": "Paris Basketball",
+   "seasons": [
+    2024,
+    2026
+   ],
+   "espnId": "130149",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-pba"
+  },
+  "RED": {
+   "name": "Crvena Zvezda Meridianbet Belgrade",
+   "seasons": [
+    2013,
+    2026
+   ],
+   "espnId": "125633",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-czv"
+  },
+  "SAS": {
+   "name": "Dinamo Banco di Sardegna Sassari",
+   "seasons": [
+    2014,
+    2015
+   ]
+  },
+  "SIE": {
+   "name": "Montepaschi Siena",
+   "seasons": [
+    2011,
+    2013
+   ]
+  },
+  "SOP": {
+   "name": "Asseco Prokom Gdynia",
+   "seasons": [
+    2011,
+    2012
+   ]
+  },
+  "STR": {
+   "name": "Strasbourg",
+   "seasons": [
+    2013,
+    2015
+   ]
+  },
+  "TEL": {
+   "name": "Maccabi Rapyd Tel Aviv",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "125613",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-mta"
+  },
+  "TIV": {
+   "name": "Lokomotiv Kuban Krasnodar",
+   "seasons": [
+    2013,
+    2015
+   ]
+  },
+  "ULK": {
+   "name": "Fenerbahce Tarfin Istanbul",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "125631",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-fen"
+  },
+  "UNK": {
+   "name": "UNICS Kazan",
+   "seasons": [
+    2011,
+    2021
+   ]
+  },
+  "VIR": {
+   "name": "Virtus Bologna",
+   "seasons": [
+    2022,
+    2026
+   ],
+   "espnId": "126417",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-vir"
+  },
+  "ZAG": {
+   "name": "Zagreb",
+   "seasons": [
+    2011,
+    2011
+   ]
+  },
+  "ZAL": {
+   "name": "Zalgiris Kaunas",
+   "seasons": [
+    2011,
+    2026
+   ],
+   "espnId": "125610",
+   "espnLeague": "basketball/euroleague",
+   "catalogTeamId": "eurol-zal"
+  },
+  "ZGO": {
+   "name": "PGE Turow Zgorzelec",
+   "seasons": [
+    2014,
+    2014
+   ]
+  }
+ }
+}

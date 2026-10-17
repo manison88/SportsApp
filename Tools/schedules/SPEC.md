@@ -44,7 +44,7 @@ record with the names that appeared; list renamed names in `aliases`. Demolished
 
 ## Sources, in order of preference
 ESPN's public site API: `https://site.api.espn.com/apis/site/v2/sports/<path>/scoreboard?dates=YYYYMMDD-YYYYMMDD&limit=1000`
-(date ranges work on most leagues; test the widest range that returns everything, usually a week or a month; college leagues may need
+(ESPN now rejects date ranges with HTTP 400: query ONE day, `dates=YYYYMMDD`; college leagues may need
 `&groups=<id>` such as 80 for FBS, 50 for D1 basketball; check the response's event count). Event fields: `id`, `date`, `status.type.state`
 ("pre"/"in"/"post") and `completed`, `competitions[0].competitors[]` (`homeAway`, `team.id`, `team.abbreviation`, `score`),
 `competitions[0].venue` (`id`, `fullName`, `address.city/state/country`), `competitions[0].neutralSite`, `season.slug`/`notes`.

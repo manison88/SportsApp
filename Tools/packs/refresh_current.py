@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Re-fetches the CURRENT season of every ESPN league that has schedule files, so published packs stay up to date
-(scores of games just played, newly scheduled games, postponements).
+(scores of games just played, newly scheduled games, postponements). Reads a rolling window around today, one request per day.
 
   python3 Tools/packs/refresh_current.py [--season 2026] [--league baseball/mlb ...]
 
@@ -8,6 +8,7 @@ Writes Tools/schedules/<scope>/<leagueSlug>/<season>.json in place for leagues w
 Leagues with split files (<season>-<tag>.json) and non-ESPN sources are left to their own scripts.
 """
 import argparse, glob, json, os, sys, time, urllib.request
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -47,19 +48,21 @@ def row(e):
             {str(home["team"]["id"]): home["team"].get("abbreviation", ""), str(away["team"]["id"]): away["team"].get("abbreviation", "")},
             {str(v["id"]): [v.get("fullName", ""), addr.get("city", ""), addr.get("state", ""), addr.get("country", "")]} if v.get("id") else {})
 
-def refresh(path, league, season, today):
+def refresh(path, league, season, today, back=10, ahead=21):
+    """Re-reads one day at a time (ESPN rejects date ranges now): `back` days before today, so results settle, to `ahead` days after."""
     data = json.load(open(path))
     games = {g[0]: g for g in data["games"]}
     teams, venues = dict(data["teams"]), dict(data["venues"])
-    # Re-read from a month before today (results settle) to the end of the season already on file.
-    last = max(g[1][:10] for g in data["games"]) if data["games"] else today.isoformat()
-    day = today - timedelta(days=31)
-    end = datetime.strptime(last, "%Y-%m-%d").date() + timedelta(days=45)
+    days = [today + timedelta(days=d) for d in range(-back, ahead + 1)]
+
+    def fetch(day):
+        return get(f"{BASE}{league}/scoreboard?dates={day:%Y%m%d}&limit=1000")
+
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        responses = list(pool.map(fetch, days))
+    answered = sum(1 for r in responses if r is not None)
     changed = 0
-    while day <= end:
-        stop = min(day + timedelta(days=30), end)
-        url = f"{BASE}{league}/scoreboard?dates={day:%Y%m%d}-{stop:%Y%m%d}&limit=1000"
-        j = get(url)
+    for j in responses:
         for e in (j or {}).get("events", []):
             r = row(e)
             if not r:
@@ -70,13 +73,15 @@ def refresh(path, league, season, today):
                 changed += 1
             teams.update({k: x for k, x in t.items() if x})
             venues.update(v)
-        day = stop + timedelta(days=1)
+    if answered == 0:
+        print(f"  {league}: no day answered; file left as it was", file=sys.stderr)
+        return 0, 0
     data["games"] = sorted(games.values(), key=lambda g: g[1])
     data["teams"], data["venues"] = teams, venues
     data["fetched"] = date.today().isoformat()
     with open(path, "w") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
-    return changed
+    return changed, answered
 
 def main():
     ap = argparse.ArgumentParser()
@@ -92,7 +97,8 @@ def main():
             continue
         if json.load(open(path)).get("source", "espn") != "espn":
             continue
-        print(f"{league} {os.path.basename(path)}: {refresh(path, league, int(os.path.basename(path)[:4]), today)} changed")
+        changed, answered = refresh(path, league, int(os.path.basename(path)[:4]), today)
+        print(f"{league} {os.path.basename(path)}: {changed} changed ({answered} days answered)")
 
 if __name__ == "__main__":
     main()
