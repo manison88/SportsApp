@@ -1,0 +1,906 @@
+[
+  {
+    "id": "mlb-chc",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "CHC",
+    "locationName": "Chicago",
+    "teamName": "Cubs",
+    "monogram": "C",
+    "colors": {
+      "primary": "0E3386",
+      "secondary": "CC3433",
+      "accent": "2F6BFF"
+    },
+    "externalIds": {
+      "mlbStatsApi": 112,
+      "theSportsDb": "135269"
+    }
+  },
+  {
+    "id": "mlb-stl",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "STL",
+    "locationName": "St. Louis",
+    "teamName": "Cardinals",
+    "monogram": "STL",
+    "colors": {
+      "primary": "C41E3A",
+      "secondary": "0C2340",
+      "accent": "E8384F"
+    },
+    "externalIds": {
+      "mlbStatsApi": 138
+    }
+  },
+  {
+    "id": "mlb-lad",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "LAD",
+    "locationName": "Los Angeles",
+    "teamName": "Dodgers",
+    "monogram": "LA",
+    "colors": {
+      "primary": "005A9C",
+      "secondary": "EF3E42",
+      "accent": "3D8BFF"
+    },
+    "externalIds": {
+      "mlbStatsApi": 119
+    }
+  },
+  {
+    "id": "mlb-cle",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "CLE",
+    "locationName": "Cleveland",
+    "teamName": "Indians",
+    "monogram": "CLE",
+    "colors": {
+      "primary": "0C2340",
+      "secondary": "E31937",
+      "accent": "E8344A"
+    },
+    "externalIds": {
+      "mlbStatsApi": 114
+    }
+  },
+  {
+    "id": "mlb-bos",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "BOS",
+    "locationName": "Boston",
+    "teamName": "Red Sox",
+    "monogram": "B",
+    "colors": {
+      "primary": "BD3039",
+      "secondary": "0C2340",
+      "accent": "E0443F"
+    },
+    "externalIds": {
+      "mlbStatsApi": 111
+    }
+  },
+  {
+    "id": "mlb-nyy",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "NYY",
+    "locationName": "New York",
+    "teamName": "Yankees",
+    "monogram": "NY",
+    "colors": {
+      "primary": "0C2340",
+      "secondary": "C4CED3",
+      "accent": "8FA3C7"
+    },
+    "externalIds": {
+      "mlbStatsApi": 147
+    }
+  },
+  {
+    "id": "mlb-mil",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "MIL",
+    "locationName": "Milwaukee",
+    "teamName": "Brewers",
+    "monogram": "M",
+    "colors": {
+      "primary": "12284B",
+      "secondary": "FFC52F",
+      "accent": "FFC52F"
+    },
+    "externalIds": {
+      "mlbStatsApi": 158
+    }
+  },
+  {
+    "id": "mlb-min",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "MIN",
+    "locationName": "Minnesota",
+    "teamName": "Twins",
+    "monogram": "TC",
+    "colors": {
+      "primary": "002B5C",
+      "secondary": "D31145",
+      "accent": "E2245A"
+    },
+    "externalIds": {
+      "mlbStatsApi": 142
+    }
+  },
+  {
+    "id": "mlb-det",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "DET",
+    "locationName": "Detroit",
+    "teamName": "Tigers",
+    "monogram": "D",
+    "colors": {
+      "primary": "0C2340",
+      "secondary": "FA4616",
+      "accent": "FA6A2E"
+    },
+    "externalIds": {
+      "mlbStatsApi": 116
+    }
+  },
+  {
+    "id": "mlb-pit",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "PIT",
+    "locationName": "Pittsburgh",
+    "teamName": "Pirates",
+    "monogram": "P",
+    "colors": {
+      "primary": "27251F",
+      "secondary": "FDB827",
+      "accent": "FDB827"
+    },
+    "externalIds": {
+      "mlbStatsApi": 134
+    }
+  },
+  {
+    "id": "mlb-kc",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "KC",
+    "locationName": "Kansas City",
+    "teamName": "Royals",
+    "monogram": "KC",
+    "colors": {
+      "primary": "004687",
+      "secondary": "BD9B60",
+      "accent": "3E8EDE"
+    },
+    "externalIds": {
+      "mlbStatsApi": 118
+    }
+  },
+  {
+    "id": "mlb-cin",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "CIN",
+    "locationName": "Cincinnati",
+    "teamName": "Reds",
+    "monogram": "C",
+    "colors": {
+      "primary": "C6011F",
+      "secondary": "000000",
+      "accent": "E8203A"
+    },
+    "externalIds": {
+      "mlbStatsApi": 113
+    }
+  },
+  {
+    "id": "mlb-sf",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "SF",
+    "locationName": "San Francisco",
+    "teamName": "Giants",
+    "monogram": "SF",
+    "colors": {
+      "primary": "FD5A1E",
+      "secondary": "27251F",
+      "accent": "FD5A1E"
+    },
+    "externalIds": {
+      "mlbStatsApi": 137
+    }
+  },
+  {
+    "id": "mlb-cws",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "CWS",
+    "locationName": "Chicago",
+    "teamName": "White Sox",
+    "monogram": "SOX",
+    "colors": {
+      "primary": "27251F",
+      "secondary": "C4CED4",
+      "accent": "C4CED4"
+    },
+    "externalIds": {
+      "mlbStatsApi": 145
+    }
+  },
+  {
+    "id": "mlb-nym",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "NYM",
+    "locationName": "New York",
+    "teamName": "Mets",
+    "monogram": "NY",
+    "colors": {
+      "primary": "002D72",
+      "secondary": "FF5910",
+      "accent": "FF6A26"
+    },
+    "externalIds": {
+      "mlbStatsApi": 121
+    }
+  },
+  {
+    "id": "mlb-sd",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "SD",
+    "locationName": "San Diego",
+    "teamName": "Padres",
+    "monogram": "SD",
+    "colors": {
+      "primary": "2F241D",
+      "secondary": "FFC425",
+      "accent": "FFC425"
+    },
+    "externalIds": {
+      "mlbStatsApi": 135
+    }
+  },
+  {
+    "id": "mlb-atl",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "ATL",
+    "locationName": "Atlanta",
+    "teamName": "Braves",
+    "monogram": "A",
+    "colors": {
+      "primary": "13274F",
+      "secondary": "CE1141",
+      "accent": "E0284F"
+    },
+    "externalIds": {
+      "mlbStatsApi": 144
+    }
+  },
+  {
+    "id": "mlb-phi",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "PHI",
+    "locationName": "Philadelphia",
+    "teamName": "Phillies",
+    "monogram": "P",
+    "colors": {
+      "primary": "E81828",
+      "secondary": "002D72",
+      "accent": "F0303A"
+    },
+    "externalIds": {
+      "mlbStatsApi": 143
+    }
+  },
+  {
+    "id": "mlb-wsh",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "WSH",
+    "locationName": "Washington",
+    "teamName": "Nationals",
+    "monogram": "W",
+    "colors": {
+      "primary": "AB0003",
+      "secondary": "14225A",
+      "accent": "E3242B"
+    },
+    "externalIds": {
+      "mlbStatsApi": 120
+    }
+  },
+  {
+    "id": "mlb-ari",
+    "sport": "baseball",
+    "league": "MLB",
+    "abbreviation": "ARI",
+    "locationName": "Arizona",
+    "teamName": "Diamondbacks",
+    "monogram": "A",
+    "colors": {
+      "primary": "A71930",
+      "secondary": "E3D4AD",
+      "accent": "D8304A"
+    },
+    "externalIds": {
+      "mlbStatsApi": 109
+    }
+  },
+  {
+    "id": "nfl-chi",
+    "sport": "football",
+    "league": "NFL",
+    "abbreviation": "CHI",
+    "locationName": "Chicago",
+    "teamName": "Bears",
+    "monogram": "C",
+    "colors": {
+      "primary": "0B162A",
+      "secondary": "C83803",
+      "accent": "F05A1A"
+    },
+    "externalIds": {
+      "theSportsDb": "134938"
+    }
+  },
+  {
+    "id": "nfl-gb",
+    "sport": "football",
+    "league": "NFL",
+    "abbreviation": "GB",
+    "locationName": "Green Bay",
+    "teamName": "Packers",
+    "monogram": "G",
+    "colors": {
+      "primary": "203731",
+      "secondary": "FFB612",
+      "accent": "FFB612"
+    },
+    "externalIds": {
+      "theSportsDb": "134940"
+    }
+  },
+  {
+    "id": "nfl-lar",
+    "sport": "football",
+    "league": "NFL",
+    "abbreviation": "LAR",
+    "locationName": "Los Angeles",
+    "teamName": "Rams",
+    "monogram": "LA",
+    "colors": {
+      "primary": "003594",
+      "secondary": "FFA300",
+      "accent": "FFA300"
+    },
+    "externalIds": {
+      "theSportsDb": "135907"
+    }
+  },
+  {
+    "id": "nfl-phi",
+    "sport": "football",
+    "league": "NFL",
+    "abbreviation": "PHI",
+    "locationName": "Philadelphia",
+    "teamName": "Eagles",
+    "monogram": "P",
+    "colors": {
+      "primary": "004C54",
+      "secondary": "A5ACAF",
+      "accent": "1E9AA4"
+    },
+    "externalIds": {
+      "theSportsDb": "134936"
+    }
+  },
+  {
+    "id": "nfl-det",
+    "sport": "football",
+    "league": "NFL",
+    "abbreviation": "DET",
+    "locationName": "Detroit",
+    "teamName": "Lions",
+    "monogram": "D",
+    "colors": {
+      "primary": "0076B6",
+      "secondary": "B0B7BC",
+      "accent": "2F9BE0"
+    },
+    "externalIds": {
+      "theSportsDb": "134939"
+    }
+  },
+  {
+    "id": "nfl-min",
+    "sport": "football",
+    "league": "NFL",
+    "abbreviation": "MIN",
+    "locationName": "Minnesota",
+    "teamName": "Vikings",
+    "monogram": "M",
+    "colors": {
+      "primary": "4F2683",
+      "secondary": "FFC62F",
+      "accent": "8E5AE0"
+    },
+    "externalIds": {
+      "theSportsDb": "134941"
+    }
+  },
+  {
+    "id": "nfl-dal",
+    "sport": "football",
+    "league": "NFL",
+    "abbreviation": "DAL",
+    "locationName": "Dallas",
+    "teamName": "Cowboys",
+    "monogram": "D",
+    "colors": {
+      "primary": "041E42",
+      "secondary": "869397",
+      "accent": "4E7ACF"
+    },
+    "externalIds": {
+      "theSportsDb": "134934"
+    }
+  },
+  {
+    "id": "nba-chi",
+    "sport": "basketball",
+    "league": "NBA",
+    "abbreviation": "CHI",
+    "locationName": "Chicago",
+    "teamName": "Bulls",
+    "monogram": "CHI",
+    "colors": {
+      "primary": "CE1141",
+      "secondary": "000000",
+      "accent": "E8213F"
+    },
+    "externalIds": {
+      "theSportsDb": "134870"
+    }
+  },
+  {
+    "id": "nba-bos",
+    "sport": "basketball",
+    "league": "NBA",
+    "abbreviation": "BOS",
+    "locationName": "Boston",
+    "teamName": "Celtics",
+    "monogram": "B",
+    "colors": {
+      "primary": "007A33",
+      "secondary": "BA9653",
+      "accent": "17A34A"
+    },
+    "externalIds": {
+      "theSportsDb": "134860"
+    }
+  },
+  {
+    "id": "nba-gsw",
+    "sport": "basketball",
+    "league": "NBA",
+    "abbreviation": "GSW",
+    "locationName": "Golden State",
+    "teamName": "Warriors",
+    "monogram": "GS",
+    "colors": {
+      "primary": "1D428A",
+      "secondary": "FFC72C",
+      "accent": "FFC72C"
+    },
+    "externalIds": {
+      "theSportsDb": "134865"
+    }
+  },
+  {
+    "id": "nba-mia",
+    "sport": "basketball",
+    "league": "NBA",
+    "abbreviation": "MIA",
+    "locationName": "Miami",
+    "teamName": "Heat",
+    "monogram": "M",
+    "colors": {
+      "primary": "98002E",
+      "secondary": "F9A01B",
+      "accent": "F9A01B"
+    },
+    "externalIds": {
+      "theSportsDb": "134882"
+    }
+  },
+  {
+    "id": "nba-lal",
+    "sport": "basketball",
+    "league": "NBA",
+    "abbreviation": "LAL",
+    "locationName": "Los Angeles",
+    "teamName": "Lakers",
+    "monogram": "LA",
+    "colors": {
+      "primary": "552583",
+      "secondary": "FDB927",
+      "accent": "FDB927"
+    },
+    "externalIds": {
+      "theSportsDb": "134867"
+    }
+  },
+  {
+    "id": "nba-nyk",
+    "sport": "basketball",
+    "league": "NBA",
+    "abbreviation": "NYK",
+    "locationName": "New York",
+    "teamName": "Knicks",
+    "monogram": "NY",
+    "colors": {
+      "primary": "006BB6",
+      "secondary": "F58426",
+      "accent": "F58426"
+    },
+    "externalIds": {
+      "theSportsDb": "134862"
+    }
+  },
+  {
+    "id": "nba-mil",
+    "sport": "basketball",
+    "league": "NBA",
+    "abbreviation": "MIL",
+    "locationName": "Milwaukee",
+    "teamName": "Bucks",
+    "monogram": "M",
+    "colors": {
+      "primary": "00471B",
+      "secondary": "EEE1C6",
+      "accent": "2FA35A"
+    },
+    "externalIds": {
+      "theSportsDb": "134874"
+    }
+  },
+  {
+    "id": "nhl-chi",
+    "sport": "hockey",
+    "league": "NHL",
+    "abbreviation": "CHI",
+    "locationName": "Chicago",
+    "teamName": "Blackhawks",
+    "monogram": "C",
+    "colors": {
+      "primary": "CF0A2C",
+      "secondary": "000000",
+      "accent": "E8243C"
+    },
+    "externalIds": {
+      "nhlTriCode": "CHI"
+    }
+  },
+  {
+    "id": "nhl-tbl",
+    "sport": "hockey",
+    "league": "NHL",
+    "abbreviation": "TBL",
+    "locationName": "Tampa Bay",
+    "teamName": "Lightning",
+    "monogram": "TB",
+    "colors": {
+      "primary": "002868",
+      "secondary": "FFFFFF",
+      "accent": "3D74E0"
+    },
+    "externalIds": {
+      "nhlTriCode": "TBL"
+    }
+  },
+  {
+    "id": "nhl-stl",
+    "sport": "hockey",
+    "league": "NHL",
+    "abbreviation": "STL",
+    "locationName": "St. Louis",
+    "teamName": "Blues",
+    "monogram": "STL",
+    "colors": {
+      "primary": "002F87",
+      "secondary": "FCB514",
+      "accent": "FCB514"
+    },
+    "externalIds": {
+      "nhlTriCode": "STL"
+    }
+  },
+  {
+    "id": "nhl-det",
+    "sport": "hockey",
+    "league": "NHL",
+    "abbreviation": "DET",
+    "locationName": "Detroit",
+    "teamName": "Red Wings",
+    "monogram": "D",
+    "colors": {
+      "primary": "CE1126",
+      "secondary": "FFFFFF",
+      "accent": "E8243C"
+    },
+    "externalIds": {
+      "nhlTriCode": "DET"
+    }
+  },
+  {
+    "id": "nhl-nsh",
+    "sport": "hockey",
+    "league": "NHL",
+    "abbreviation": "NSH",
+    "locationName": "Nashville",
+    "teamName": "Predators",
+    "monogram": "N",
+    "colors": {
+      "primary": "FFB81C",
+      "secondary": "041E42",
+      "accent": "FFB81C"
+    },
+    "externalIds": {
+      "nhlTriCode": "NSH"
+    }
+  },
+  {
+    "id": "nhl-min",
+    "sport": "hockey",
+    "league": "NHL",
+    "abbreviation": "MIN",
+    "locationName": "Minnesota",
+    "teamName": "Wild",
+    "monogram": "MN",
+    "colors": {
+      "primary": "154734",
+      "secondary": "A6192E",
+      "accent": "2E8B57"
+    },
+    "externalIds": {
+      "nhlTriCode": "MIN"
+    }
+  },
+  {
+    "id": "mls-chi",
+    "sport": "soccer",
+    "league": "MLS",
+    "abbreviation": "CHI",
+    "locationName": "Chicago",
+    "teamName": "Fire",
+    "monogram": "CF",
+    "colors": {
+      "primary": "AF2626",
+      "secondary": "0A174A",
+      "accent": "E0362E"
+    },
+    "externalIds": {
+      "theSportsDb": "135651"
+    }
+  },
+  {
+    "id": "mls-mia",
+    "sport": "soccer",
+    "league": "MLS",
+    "abbreviation": "MIA",
+    "locationName": "Miami",
+    "teamName": "Inter Miami",
+    "monogram": "M",
+    "colors": {
+      "primary": "F7B5CD",
+      "secondary": "231F20",
+      "accent": "F7B5CD"
+    },
+    "externalIds": {
+      "theSportsDb": "140079"
+    }
+  },
+  {
+    "id": "mls-clb",
+    "sport": "soccer",
+    "league": "MLS",
+    "abbreviation": "CLB",
+    "locationName": "Columbus",
+    "teamName": "Crew",
+    "monogram": "C",
+    "colors": {
+      "primary": "FEDD00",
+      "secondary": "000000",
+      "accent": "FEDD00"
+    },
+    "externalIds": {
+      "theSportsDb": "135647"
+    }
+  },
+  {
+    "id": "mls-ne",
+    "sport": "soccer",
+    "league": "MLS",
+    "abbreviation": "NE",
+    "locationName": "New England",
+    "teamName": "Revolution",
+    "monogram": "NE",
+    "colors": {
+      "primary": "0A2240",
+      "secondary": "CE0E2D",
+      "accent": "E02A42"
+    },
+    "externalIds": {
+      "theSportsDb": "135653"
+    }
+  },
+  {
+    "id": "mls-stl",
+    "sport": "soccer",
+    "league": "MLS",
+    "abbreviation": "STL",
+    "locationName": "St. Louis",
+    "teamName": "City SC",
+    "monogram": "STL",
+    "colors": {
+      "primary": "EC1458",
+      "secondary": "001544",
+      "accent": "EC1458"
+    },
+    "externalIds": {
+      "theSportsDb": "140303"
+    }
+  },
+  {
+    "id": "lal-bar",
+    "sport": "soccer",
+    "league": "LaLiga",
+    "abbreviation": "BAR",
+    "locationName": "Barcelona",
+    "teamName": "Barcelona",
+    "monogram": "FCB",
+    "colors": {
+      "primary": "A50044",
+      "secondary": "004D98",
+      "accent": "D3125E"
+    },
+    "externalIds": {
+      "theSportsDb": "133739",
+      "statsBombTeamId": 217
+    }
+  },
+  {
+    "id": "lal-rma",
+    "sport": "soccer",
+    "league": "LaLiga",
+    "abbreviation": "RMA",
+    "locationName": "Madrid",
+    "teamName": "Real Madrid",
+    "monogram": "RM",
+    "colors": {
+      "primary": "FFFFFF",
+      "secondary": "FEBE10",
+      "accent": "FEBE10"
+    },
+    "externalIds": {
+      "theSportsDb": "133738",
+      "statsBombTeamId": 220
+    }
+  },
+  {
+    "id": "lal-eib",
+    "sport": "soccer",
+    "league": "LaLiga",
+    "abbreviation": "EIB",
+    "locationName": "Eibar",
+    "teamName": "Eibar",
+    "monogram": "E",
+    "colors": {
+      "primary": "A6192E",
+      "secondary": "0047AB",
+      "accent": "2E6BD8"
+    },
+    "externalIds": {
+      "theSportsDb": "133740"
+    }
+  },
+  {
+    "id": "bun-bvb",
+    "sport": "soccer",
+    "league": "Bundesliga",
+    "abbreviation": "BVB",
+    "locationName": "Dortmund",
+    "teamName": "Dortmund",
+    "monogram": "09",
+    "colors": {
+      "primary": "FDE100",
+      "secondary": "000000",
+      "accent": "FDE100"
+    },
+    "externalIds": {
+      "theSportsDb": "133650"
+    }
+  },
+  {
+    "id": "bun-s04",
+    "sport": "soccer",
+    "league": "Bundesliga",
+    "abbreviation": "S04",
+    "locationName": "Gelsenkirchen",
+    "teamName": "Schalke",
+    "monogram": "S04",
+    "colors": {
+      "primary": "004D9D",
+      "secondary": "FFFFFF",
+      "accent": "2F7FE0"
+    },
+    "externalIds": {
+      "theSportsDb": "133602"
+    }
+  },
+  {
+    "id": "f1-rbr",
+    "sport": "motorsport",
+    "league": "F1",
+    "abbreviation": "RBR",
+    "locationName": "Milton Keynes",
+    "teamName": "Red Bull",
+    "monogram": "RB",
+    "colors": {
+      "primary": "1B2A4E",
+      "secondary": "E30118",
+      "accent": "3B5BDB"
+    },
+    "externalIds": {
+      "jolpicaConstructorId": "red_bull"
+    }
+  },
+  {
+    "id": "f1-mer",
+    "sport": "motorsport",
+    "league": "F1",
+    "abbreviation": "MER",
+    "locationName": "Brackley",
+    "teamName": "Mercedes",
+    "monogram": "M",
+    "colors": {
+      "primary": "00A19C",
+      "secondary": "C0C0C0",
+      "accent": "00C2B8"
+    },
+    "externalIds": {
+      "jolpicaConstructorId": "mercedes"
+    }
+  },
+  {
+    "id": "f1-mcl",
+    "sport": "motorsport",
+    "league": "F1",
+    "abbreviation": "MCL",
+    "locationName": "Woking",
+    "teamName": "McLaren",
+    "monogram": "M",
+    "colors": {
+      "primary": "FF8000",
+      "secondary": "47C7FC",
+      "accent": "FF8000"
+    },
+    "externalIds": {
+      "jolpicaConstructorId": "mclaren"
+    }
+  }
+]

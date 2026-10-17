@@ -1,0 +1,30 @@
+# Fallback for regenerating Witness.xcodeproj with XcodeGen:  brew install xcodegen && xcodegen
+name: Witness
+options:
+  bundleIdPrefix: app.witness
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+targets:
+  Witness:
+    type: application
+    platform: iOS
+    sources:
+      - path: Witness
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: app.witness.mockups
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: YES
+        MARKETING_VERSION: "0.1"
+        CURRENT_PROJECT_VERSION: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_CFBundleDisplayName: Witness
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIUserInterfaceStyle: Dark
+        INFOPLIST_KEY_UIStatusBarStyle: UIStatusBarStyleLightContent
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Witness finds the games you've been to from your photos' dates and locations, entirely on this iPhone."
+        INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "Witness checks you in when you arrive at a stadium."
