@@ -1,0 +1,60 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Passport · big games</title>
+<link rel="stylesheet" href="../../../../../kit/kit.css">
+<link rel="stylesheet" href="../../../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../../../final/system/final.css">
+<link rel="stylesheet" href="../../system/lockup.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.62); }
+  .crop { position: absolute; inset: 0; overflow: hidden; }
+
+  .main { top: 112px; gap: 26px; }
+  .pills { display: flex; gap: 8px; }
+  .pills .b-pill { white-space: nowrap; height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; color: rgba(255,255,255,.72); }
+  .pills .b-pill.on { background: #fff; color: #000; }
+  .count { display: flex; align-items: flex-end; gap: 14px; }
+  .count .b-mega { font-size: 120px; letter-spacing: -3px; margin-left: -4px; }
+  .count .b-h1 { font-size: 34px; padding-bottom: 4px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 10px; }
+  .grid .d { margin-top: 8px; font: 700 13px/1 var(--b-cond); letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,.66); font-variant-numeric: tabular-nums; }
+  .ghost { height: 72px; border-radius: 10px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.16); display: flex; align-items: flex-end; padding: 0 9px 10px; position: relative; overflow: hidden; }
+  .ghost i { position: absolute; top: -12px; bottom: 26px; left: 80px; width: 7px; transform: skewX(-14deg); background: rgba(255,255,255,.12); }
+  .ghost b { font: 800 12.5px/1 var(--b-cond); letter-spacing: .9px; text-transform: uppercase; color: rgba(255,255,255,.6); white-space: nowrap; }
+
+</style></head>
+<body class="phone b">
+<div class="b-nav"><div class="f-title">Passport</div><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div></div>
+<div class="f-col main"><div class="pills"><span class="b-pill">MLB</span><span class="b-pill">NFL</span><span class="b-pill">Soccer</span><span class="b-pill on">Big games</span></div><div class="count"><div class="b-mega">6</div><div class="b-h1">big<br>games</div></div><div class="grid"><div><div class="lk stamp" style="--field:#002868;--ink:#FFFFFF;--num:#FFFFFF;--metal:linear-gradient(90deg,#9c7412 0%,#ffe9a6 42%,#c0951f 58%,#f4d47c 100%);"><i class="bar" style="left:80px;width:7px;background:#C8102E"></i><i class="bar" style="left:89px;width:2px;background:#FFFFFF"></i><div class="num" data-fit="24">’94</div><div class="rule"></div><div class="name" data-fit="12">World Cup</div></div><div class="d">Jun 17, 1994</div></div><div><div class="lk stamp" style="--field:#081548;--ink:#FFFFFF;--num:#FFFFFF;--metal:linear-gradient(90deg,#7f8990 0%,#f1f4f6 42%,#a3acb2 58%,#e3e7ea 100%);"><i class="bar" style="left:80px;width:7px;background:linear-gradient(90deg,#7f8990 0%,#f1f4f6 42%,#a3acb2 58%,#e3e7ea 100%)"></i><i class="bar" style="left:89px;width:2px;background:#5E6FA8"></i><div class="num" data-fit="24">’99</div><div class="rule"></div><div class="name" data-fit="12">UCL Final</div></div><div class="d">May 26, 1999</div></div><div><div class="lk stamp" style="--field:#004D98;--ink:#FFFFFF;--num:#FFFFFF;--metal:linear-gradient(90deg,#7f8990 0%,#f1f4f6 42%,#a3acb2 58%,#e3e7ea 100%);"><i class="bar" style="left:80px;width:5px;background:#A50044"></i><i class="bar" style="left:87px;width:3px;background:#FFFFFF"></i><i class="bar" style="left:92px;width:5px;background:#FEBE10"></i><div class="num" data-fit="24">’10</div><div class="rule"></div><div class="name" data-fit="12">El Clásico</div></div><div class="d">Nov 29, 2010</div></div><div><div class="lk stamp" style="--field:#0B0D10;--ink:#FFFFFF;--num:#FFFFFF;--metal:linear-gradient(90deg,#7f8990 0%,#f1f4f6 42%,#a3acb2 58%,#e3e7ea 100%);"><i class="bar" style="left:80px;width:7px;background:linear-gradient(90deg,#7f8990 0%,#f1f4f6 42%,#a3acb2 58%,#e3e7ea 100%)"></i><i class="bar" style="left:89px;width:2px;background:#FFFFFF"></i><div class="num" data-metal data-fit="24">’15</div><div class="rule"></div><div class="name" data-fit="12">Cup Final</div></div><div class="d">Jun 15, 2015</div></div><div><div class="lk stamp" style="--field:#0C2340;--ink:#F4EFE3;--num:#F4EFE3;--metal:linear-gradient(90deg,#9c7412 0%,#ffe9a6 42%,#c0951f 58%,#f4d47c 100%);"><i class="bar" style="left:80px;width:7px;background:#C8102E"></i><i class="bar" style="left:89px;width:2px;background:#F4EFE3"></i><div class="num" data-fit="24">’16</div><div class="rule"></div><div class="name" data-fit="12">World Series</div></div><div class="d">Oct 30, 2016</div></div><div><div class="lk stamp" style="--field:#4B2A7B;--ink:#FFFFFF;--num:#F2B705;--metal:linear-gradient(90deg,#9c7412 0%,#ffe9a6 42%,#c0951f 58%,#f4d47c 100%);"><i class="bar" style="left:80px;width:7px;background:#F2B705"></i><i class="bar" style="left:89px;width:3px;background:#0B7A3E"></i><div class="num" data-fit="24">LIX</div><div class="rule"></div><div class="name" data-fit="12">Super Bowl</div></div><div class="d">Feb 9, 2025</div></div><div><div class="ghost"><i></i><b>NBA Finals</b></div></div><div><div class="ghost"><i></i><b>All-Star</b></div></div><div><div class="ghost"><i></i><b>Final Four</b></div></div></div></div>
+<nav class="b-tabs">
+  <span><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="9" rx="2"/><path d="M4 17h16M4 21h10"/></svg>Timeline</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.4 3.2 14.6 0 18M12 3c-3.2 3.4-3.2 14.6 0 18"/></svg>Map</span>
+  <span class="on"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="11" r="3.5"/><path d="M9 17.5h6"/></svg>Passport</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>You</span>
+</nav>
+<script>
+(function () {
+  const N = { 'wrigley-night.jpg': [1920, 2560], 'united-center-court.jpg': [1280, 853], 'camp-nou-aerial.jpg': [1280, 960],
+              'soldier-soccer.jpg': [1280, 1707], 'lambeau-concourse.jpg': [1920, 1288] };
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script>
+(function () {
+  function fit() {
+    document.querySelectorAll('[data-fit]').forEach(el => {
+      const min = +el.dataset.fit; let s = parseFloat(getComputedStyle(el).fontSize);
+      while (el.scrollWidth > el.clientWidth + 0.5 && s > min) { s -= 0.5; el.style.fontSize = s + 'px'; }
+    });
+  }
+  document.fonts.ready.then(fit);
+})();
+</script>
+<script src="../../../../../kit/kit.js"></script>
+</body></html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>World Cup 1994</title>
+<link rel="stylesheet" href="../../../../../kit/kit.css">
+<link rel="stylesheet" href="../../../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../../../final/system/final.css">
+<link rel="stylesheet" href="../../system/lockup.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.62); }
+  .crop { position: absolute; inset: 0; overflow: hidden; }
+
+  .f-hero { height: 520px; }
+  .f-hero .crop img { filter: var(--grade, contrast(1.05) saturate(.9) brightness(.88)); }
+  .f-hero::after { background: linear-gradient(180deg, rgba(7,8,10,.55) 0%, rgba(7,8,10,0) 20%, rgba(7,8,10,0) 40%, rgba(7,8,10,.72) 72%, #07080a 100%); z-index: 2; }
+  .card { position: absolute; left: 20px; right: 20px; top: 300px; z-index: 6; box-shadow: 0 18px 40px rgba(0,0,0,.45); border-radius: 8px; }
+  .head { top: 492px; gap: 8px !important; z-index: 6; }
+  .head .b-h1 { font-size: 34px; white-space: nowrap; }
+  .head .where { font: 500 15px/1.3 var(--b-ui); color: rgba(255,255,255,.72); }
+  .ls { position: absolute; left: 20px; right: 20px; top: 584px; width: 353px; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .ls th { font: 700 12px/1 var(--b-cond); letter-spacing: 2px; color: rgba(255,255,255,.62); text-align: center; padding-bottom: 8px; }
+  .ls td { height: 50px; box-shadow: inset 0 1px 0 var(--b-line); text-align: center; font: 600 19px/1 var(--b-cond); color: rgba(255,255,255,.68); width: 24px; }
+  .ls td.tm { text-align: left; width: auto; }
+  .ls td.tm div { display: flex; align-items: center; gap: 12px; font: 700 19px/1 var(--b-cond); letter-spacing: .4px; text-transform: uppercase; color: #fff; }
+  .ls td.t { width: 52px; text-align: right; font: 800 34px/1 var(--b-cond); color: #fff; }
+  .ls tr.lose td.tm div, .ls tr.lose td.t { color: rgba(255,255,255,.6); }
+  .ls .f-mono { box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); }
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 40px; }
+  .cta .b-btn { width: 100%; height: 54px; font-size: 17px; }
+  .cta svg { width: 16px; height: 16px; }
+  .nophoto { position: absolute; inset: 0; background: var(--field); overflow: hidden; }
+  .nophoto i { position: absolute; top: -40px; bottom: -40px; transform: skewX(-14deg); }
+  .addph { position: absolute; left: 20px; top: 116px; z-index: 6; height: 36px; padding: 0 14px 0 12px; border-radius: 10px; display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(7,8,10,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.22); font: 700 15px/1 var(--b-cond); letter-spacing: 1.2px; text-transform: uppercase; }
+  .addph svg { width: 17px; height: 17px; stroke: #fff; fill: none; stroke-width: 2; stroke-linejoin: round; }
+
+</style></head>
+<body class="phone b">
+<div class="f-hero"><div class="crop" data-crop="soldier-soccer.jpg 0 500 1280 1100"></div></div>
+<div class="b-nav" style="z-index:7"><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div></div>
+<div class="card"><div class="lk hero" style="--field:#002868;--ink:#FFFFFF;--num:#FFFFFF;--metal:linear-gradient(90deg,#9c7412 0%,#ffe9a6 42%,#c0951f 58%,#f4d47c 100%);--h:160px;"><i class="bar" style="left:168px;width:13px;background:#C8102E"></i><i class="bar" style="left:186px;width:4px;background:#FFFFFF"></i><div class="num" data-fit="60">’94</div><div class="side" style="left:218px"><div><div class="name" data-fit="20">World</div><div class="name" data-fit="20">Cup</div></div><div><div class="rule"></div><div class="detail" data-fit="12">Opener · Chicago</div></div></div></div></div>
+<div class="f-col head"><div class="b-h1" data-fit="26">The world came to Chicago.</div><div class="where">Soldier Field, Jun 17, 1994</div></div>
+<table class="ls"><tr><th></th><th>1H</th><th>2H</th><th style="text-align:right">T</th></tr><tr class="lose"><td class="tm"><div><span class="f-mono" style="--c:#00843d;color:#fff">BOL</span>Bolivia</div></td><td>0</td><td>0</td><td class="t">0</td></tr><tr class=""><td class="tm"><div><span class="f-mono" style="--c:#2a2a2a;color:#fff">GER</span>Germany</div></td><td>0</td><td>1</td><td class="t">1</td></tr></table><div class="cta"><div class="b-btn"><svg viewBox="0 0 24 24" style="fill:currentColor;stroke:none"><path d="M7 4.5v15l12.5-7.5z"/></svg>Play recap</div></div>
+<script>
+(function () {
+  const N = { 'wrigley-night.jpg': [1920, 2560], 'united-center-court.jpg': [1280, 853], 'camp-nou-aerial.jpg': [1280, 960],
+              'soldier-soccer.jpg': [1280, 1707], 'lambeau-concourse.jpg': [1920, 1288] };
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script>
+(function () {
+  function fit() {
+    document.querySelectorAll('[data-fit]').forEach(el => {
+      const min = +el.dataset.fit; let s = parseFloat(getComputedStyle(el).fontSize);
+      while (el.scrollWidth > el.clientWidth + 0.5 && s > min) { s -= 0.5; el.style.fontSize = s + 'px'; }
+    });
+  }
+  document.fonts.ready.then(fit);
+})();
+</script>
+<script src="../../../../../kit/kit.js"></script>
+</body></html>
