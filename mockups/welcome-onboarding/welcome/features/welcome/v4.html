@@ -1,0 +1,19 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>4 Photo mosaic</title>
+<link rel="stylesheet" href="../../../../kit/kit.css">
+<link rel="stylesheet" href="../../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../../final/system/final.css">
+<link rel="stylesheet" href="welcome.css">
+<style>
+.grid{position:absolute;left:0;right:0;top:0;height:600px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:3px}
+.c{position:relative;overflow:hidden}.c img{width:100%;height:100%;object-fit:cover;filter:brightness(.62) saturate(.8)}
+.scrim{position:absolute;left:0;right:0;top:0;height:640px;background:linear-gradient(180deg,rgba(7,8,10,.5) 0%,rgba(7,8,10,0) 18%,rgba(7,8,10,0) 40%,rgba(7,8,10,.85) 78%,#07080a 100%)}
+.copy{position:absolute;left:20px;right:20px;top:470px}
+.h{font-size:60px}.sub{margin-top:12px;font-size:16px}
+</style></head>
+<body class="phone b">
+<div class="grid"><div class="c"><img src="../../../../photos/wrigley-night-2.jpg"></div><div class="c"><img src="../../../../photos/lambeau-concourse.jpg"></div><div class="c"><img src="../../../../photos/soldier-soccer.jpg"></div><div class="c"><img src="../../../../photos/united-center-court.jpg"></div><div class="c"><img src="../../../../photos/fenway-night.jpg"></div><div class="c"><img src="../../../../photos/camp-nou-aerial.jpg"></div><div class="c"><img src="../../../../photos/wrigley-bleachers.jpg"></div><div class="c"><img src="../../../../photos/soldier-skyline.jpg"></div><div class="c"><img src="../../../../photos/lambeau-exterior.jpg"></div></div><div class="scrim"></div>
+<div class="copy"><div class="h">Every game<br><span class="amber">you</span> were at.</div><div class="sub">Found in the photos you already have.</div></div>
+<div class="cta"><div class="b-btn">Get started</div><div class="exit">Explore sample games</div></div>
+<script src="../../../../kit/kit.js"></script>
+</body></html>

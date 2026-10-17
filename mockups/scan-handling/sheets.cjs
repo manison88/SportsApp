@@ -24,6 +24,6 @@ function fig(f, s, i, w) { const h = Math.round(w * 852 / 393); return `<figure>
   // overview
   const rows = A.map(f => { const m = meta(f), s = shots(f); return `<div style="display:flex;gap:18px;align-items:flex-start;margin-bottom:34px"><div style="width:230px;flex:none"><h1 style="font-size:36px">${m.title.replace(/^\d · /,m.title[0]+'<br>')}</h1><p style="font-size:15px">${m.summary}</p></div>${s.map((x,i)=>fig(f,x,i,150).replace(/<figcaption>.*<\/figcaption>/,'')).join('<span style="width:0"></span>')}</div>`; }).join('');
   const st = `<div style="display:flex;gap:18px;align-items:flex-start"><div style="width:230px;flex:none"><h1 style="font-size:36px">Shared<br>Scan settings</h1><p style="font-size:15px">${meta('settings-sheet').summary}</p></div>${fig('settings-sheet','v1-settings.png',0,150).replace(/<figcaption>.*<\/figcaption>/,'')}</div>`;
-  await shot(`<h1 style="font-size:60px;margin-bottom:28px">Scan handling: five approaches</h1>${rows}${st}`, path.join(PNG, 'overview.png'), 48*2 + 230 + 6*150 + 6*18, 2.2);
+  await shot(`<h1 style="font-size:60px;margin-bottom:28px">Scan handling: five approaches</h1>${rows}${st}`, path.join(PNG, 'overview.png'), 48*2 + 230 + 6*150 + 6*18, 2.05);
   await b.close(); fs.unlinkSync(path.join(PNG, '_t.html'));
 })();

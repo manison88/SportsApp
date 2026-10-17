@@ -111,6 +111,12 @@ def bug(a, sa, b, sb, cls=''):
     return ('<span class="b-bug %s"><span class="team" style="--c:%s;color:%s">%s</span><span class="score">%s</span>'
             '<span class="team" style="--c:%s;color:%s">%s</span><span class="score">%s</span></span>') % (cls, COL[a], txt(a), a, sa, COL[b], txt(b), b, sb)
 def im(f, pos='50% 50%', extra=''):
+    t = pos.split()
+    z = None
+    if len(t) == 3: z = float(t[2]); pos = ' '.join(t[:2])
+    elif f.startswith('wrigley-night') : z = 1.9; pos = '60% 92%'
+    elif f == 'lambeau-concourse.jpg': z = 1.6; pos = '50% 96%'
+    if z: extra += 'transform:scale(%s);transform-origin:%s;' % (z, pos)
     return '<img class="im" src="%s%s" style="object-position:%s;%s">' % (P, f, pos, extra)
 def ph(f, pos='50% 50%', cls='', style=''):
     return '<div class="ph %s" style="%s">%s</div>' % (cls, style, im(f, pos))

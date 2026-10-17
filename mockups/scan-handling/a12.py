@@ -22,7 +22,7 @@ LIVE = '''
   <div class="hl" style="font-size:24px;margin-top:10px;color:rgba(255,255,255,.7)">of 52,310 photos checked</div>
   <div class="bar" style="margin-top:16px"><i style="width:60%%"></i></div>
   <div class="sub" style="margin-top:10px">About 3 minutes left</div></div>
-  <div class="f-stats"><div><b>1,284</b><span>Near a stadium</span></div><div><b>14</b><span>Venues</span></div><div><b>47</b><span>Games</span></div></div>
+  <div class="f-stats"><div><b>1,284</b><span>Near a stadium</span></div><div><b>14</b><span>Venues</span></div><div><b>28</b><span>Games</span></div></div>
   <div class="f-list">
     <div class="gr" style="min-height:62px">%(m1)s<div class="mid"><div class="t">%(b1)s</div><div class="s">Wrigley Field, Jul 4 2026</div></div><div class="end tag amb">New</div></div>
     <div class="gr" style="min-height:62px">%(m2)s<div class="mid"><div class="t">%(b2)s</div><div class="s">Lambeau Field, Dec 14 2025</div></div></div>
@@ -44,7 +44,7 @@ page(F, 'v3-results', 'Results', nav(icb('x'), '<div class="txtbtn">Deselect all
 <div class="f-col" style="top:108px;gap:6px;bottom:150px;overflow:hidden">
   <div class="hl" style="font-size:44px">47 games found</div>
   <div class="f-list" style="margin-top:10px">
-  ''' + grow('wrigley-night.jpg', '50% 38%', 'CLE', 2, 'CHC', 3, 'World Series, Game 5 · Oct 30 2016') +
+  ''' + grow('wrigley-night.jpg', '50% 38%', 'CLE', 2, 'CHC', 3, 'World Series · Oct 30 2016') +
   grow('wrigley-bleachers.jpg', '50% 50%', 'MIL', 3, 'CHC', 4, 'Wrigley Field · Jul 4 2026') +
   grow('lambeau-concourse.jpg', '50% 80%', 'CHI', 20, 'GB', 17, 'Lambeau Field · Dec 14 2025') +
   grow('fenway-night.jpg', '50% 40%', 'CHC', 3, 'BOS', 6, 'Fenway Park · Jun 12 2024') +
@@ -70,13 +70,13 @@ page(F, 'v5-paused-edge', 'Scan paused', nav(icb('x')) + '''
 <div class="f-col col">
   <div><div class="hl" style="font-size:44px">Scan paused</div><div class="sub" style="margin-top:12px;font-size:16px">You left Witness. iOS stops a foreground scan after a few seconds, so it stopped at 60%.</div></div>
   <div><div class="bar"><i style="width:60%"></i></div>
-  <div class="f-between" style="margin-top:12px"><span class="sub">31,204 of 52,310 photos</span><span class="sub" style="color:#fff;font-weight:700">47 games saved</span></div></div>
+  <div class="f-between" style="margin-top:12px"><span class="sub">31,204 of 52,310 photos</span><span class="sub" style="color:#fff;font-weight:700">28 games saved</span></div></div>
   <div class="f-list">
     <div class="gr" style="min-height:60px"><div class="mid"><div class="t">Nothing is lost</div><div class="s">Games found so far wait for you</div></div></div>
     <div class="gr" style="min-height:60px"><div class="mid"><div class="t">Resume picks up at photo 31,205</div><div class="s">Already checked photos are skipped</div></div></div>
   </div>
 </div>
-<div class="cta"><div class="b-btn">Resume scan</div><div class="link">Review 47 games now</div></div>''')
+<div class="cta"><div class="b-btn">Resume scan</div><div class="link">Review 28 games now</div></div>''')
 
 SHEET1 = '''
 <div class="scrimall"></div>
@@ -91,7 +91,7 @@ SHEET1 = '''
 </div>'''
 page(F, 'v6-fix-row', 'Fix a row', '''<div style="position:absolute;inset:0">''' + nav(icb('x'), '<div class="txtbtn">Deselect all</div>') + '''
 <div class="f-col" style="top:108px;gap:6px"><div class="hl" style="font-size:44px">47 games found</div><div class="f-list" style="margin-top:10px">''' +
-  grow('wrigley-night.jpg', '50% 38%', 'CLE', 2, 'CHC', 3, 'World Series, Game 5 · Oct 30 2016') +
+  grow('wrigley-night.jpg', '50% 38%', 'CLE', 2, 'CHC', 3, 'World Series · Oct 30 2016') +
   grow('wrigley-bleachers.jpg', '50% 50%', 'MIL', 3, 'CHC', 4, 'Wrigley Field · Jul 4 2026', True, '<div class="end tag amb">Tapped</div>') +
   grow('lambeau-concourse.jpg', '50% 80%', 'CHI', 20, 'GB', 17, 'Lambeau Field · Dec 14 2025') +
   grow('fenway-night.jpg', '50% 40%', 'CHC', 3, 'BOS', 6, 'Fenway Park · Jun 12 2024') + '</div></div></div>' + SHEET1)
@@ -103,7 +103,7 @@ feature(F, '2 · Background scan + inbox', 'Scan runs in the background with a L
 def timeline_bg():
     return '''<div class="f-title" style="position:absolute;left:20px;top:60px">Timeline</div>
 <div style="position:absolute;left:20px;right:20px;top:112px;height:300px;border-radius:16px;overflow:hidden" class="ph">%s</div>
-<div style="position:absolute;left:20px;right:20px;top:428px;height:130px;border-radius:16px;overflow:hidden" class="ph">%s</div>''' % (im('lambeau-concourse.jpg', '50% 80%'), im('wrigley-bleachers.jpg'))
+<div style="position:absolute;left:20px;right:20px;top:428px;height:130px;border-radius:16px;overflow:hidden" class="ph">%s</div>''' % (im('wrigley-night.jpg'), im('wrigley-bleachers.jpg'))
 
 page(F, 'v1-start', 'Background scan', timeline_bg() + tabs(0) + '''
 <div class="scrimall"></div>
@@ -172,18 +172,17 @@ def inbox_row(img, pos, a, sa, b, sb, sub, right=ADD):
     return ('<div class="gr" style="min-height:72px"><div class="th ph" style="width:56px;height:56px">%s</div>'
             '<div class="mid"><div class="t">%s %s <em>%s %s</em></div><div class="s">%s</div></div>%s</div>') % (im(img, pos), a, sa, b, sb, sub, right)
 
-swiped = ('<div style="position:relative;overflow:hidden;box-shadow:inset 0 -1px 0 var(--b-line)">'
-  '<div style="position:absolute;right:0;top:0;bottom:0;width:168px;display:flex"><div style="flex:1;background:var(--amber);color:#000;display:grid;place-items:center;font:800 14px/1.1 var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;text-align:center">Wrong<br>game</div>'
-  '<div style="flex:1;background:#3a3d45;display:grid;place-items:center;font:800 14px/1.1 var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;text-align:center">Not a<br>game</div></div>'
-  '<div class="gr" style="min-height:72px;background:#07080a;position:relative;transform:translateX(-168px);box-shadow:none"><div class="th ph" style="width:56px;height:56px">%s</div>'
-  '<div class="mid"><div class="t">GB 17 <em>CHI 20</em></div><div class="s">Lambeau Field · Dec 14 2025</div></div>%s</div></div>') % (im('lambeau-concourse.jpg', '50% 80%'), ADD)
+swiped = ('<div style="box-shadow:inset 0 -1px 0 var(--b-line);padding-bottom:12px">'
+  '<div class="gr" style="min-height:72px;box-shadow:none"><div class="th ph" style="width:56px;height:56px">%s</div>'
+  '<div class="mid"><div class="t">CHI 20 <em>GB 17</em></div><div class="s">Lambeau Field · Dec 14 2025</div></div>%s</div>'
+  '<div style="display:flex;gap:10px"><div class="b-btn" style="flex:1;height:44px;font-size:14px;background:var(--amber)">Wrong game</div><div class="b-btn ghost" style="flex:1;height:44px;font-size:14px">Not a game</div></div></div>') % (im('lambeau-concourse.jpg'), '<div class="end tag amb">Fixing</div>')
 
 page(F, 'v5-inbox', 'Games found', nav('<div class="f-title">Games found</div>', icb('more')) + '''
 <div class="f-col" style="top:116px;gap:14px;bottom:100px;overflow:hidden">
   <div class="f-between" style="gap:16px"><div><div class="hl" style="font-size:44px;line-height:.9">47</div><div class="sub">38 look certain</div></div><div class="b-btn" style="height:48px;padding:0 20px;flex:none">Add 38</div></div>
   <div class="f-list">''' +
   inbox_row('wrigley-bleachers.jpg', '50% 50%', 'MIL', 3, 'CHC', 4, 'Wrigley Field · Jul 4 2026', '<div class="end tag amb">New</div>') +
-  inbox_row('wrigley-night.jpg', '50% 38%', 'CLE', 2, 'CHC', 3, 'World Series, Game 5 · Oct 30 2016', ADD) +
+  inbox_row('wrigley-night.jpg', '50% 38%', 'CLE', 2, 'CHC', 3, 'World Series · Oct 30 2016', ADD) +
   swiped +
   inbox_row('fenway-night.jpg', '50% 40%', 'CHC', 3, 'BOS', 6, 'Fenway Park · Jun 12 2024') +
   inbox_row('united-center-court.jpg', '50% 50%', 'BCS', 101, 'BUL', 108, 'United Center · Jan 19 2025', '<div class="end tag amb">Check</div>') +

@@ -5,12 +5,12 @@ F = 'approach-3'
 feature(F, '3 · Swipe to confirm', 'One game per card. Right adds, left is not a game, up asks later. Undo everywhere.')
 
 CARDCSS = '''
-.stack{position:absolute;left:20px;right:20px;top:108px;height:560px}
+.stack{position:absolute;left:20px;right:20px;top:108px;height:548px}
 .card{position:absolute;inset:0;border-radius:22px;background:#13151a;box-shadow:inset 0 0 0 1px var(--b-line),0 20px 40px rgba(0,0,0,.5);overflow:hidden}
 .card.b1{transform:translateY(14px) scale(.95);opacity:.8}.card.b2{transform:translateY(26px) scale(.90);opacity:.5}
-.coll{position:absolute;left:0;right:0;top:0;height:290px;display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:1fr 1fr;gap:3px}
+.coll{position:absolute;left:0;right:0;top:0;height:330px;display:grid;grid-template-columns:1.5fr 1fr;grid-template-rows:1fr 1fr;gap:3px}
 .coll .ph:first-child{grid-row:span 2}
-.cbody{position:absolute;left:18px;right:18px;top:306px}
+.cbody{position:absolute;left:18px;right:18px;top:350px}
 .acts{position:absolute;left:0;right:0;bottom:44px;display:flex;justify-content:center;gap:26px;align-items:flex-start}
 .act{display:grid;justify-items:center;gap:8px;font:700 12px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.75)}
 .act i{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:var(--b-panel-2);box-shadow:inset 0 0 0 1px var(--b-line)}
@@ -66,12 +66,11 @@ page(F, 'v3-swiping', 'Swiping', topnav(13) +
     collage('wrigley-night.jpg', 'wrigley-night-2.jpg', 'wrigley-scoreboard.jpg', '50% 38%', '50% 40%', '50% 50%'), WS, STAMP) +
   '''<div class="acts"><div class="act"><i>%s</i>Not a game</div><div class="act"><i>%s</i>Ask later</div><div class="act go"><i style="transform:scale(1.12)">%s</i>Add</div></div>''' % (I['x'], I['clock'], I['check']), CARDCSS)
 
-TOAST = '''<div style="position:absolute;left:20px;right:20px;bottom:126px;height:56px;border-radius:16px;background:#fff;color:#000;display:flex;align-items:center;gap:12px;padding:0 8px 0 18px;z-index:30">
-  <div style="flex:1;font:800 16px/1.1 var(--b-cond);letter-spacing:.8px;text-transform:uppercase">Moved to Not a game</div>
+TOAST = '''<div style="position:absolute;left:20px;right:20px;bottom:156px;height:56px;border-radius:16px;background:#fff;color:#000;display:flex;align-items:center;gap:12px;padding:0 8px 0 18px;z-index:30">
+  <div style="flex:1;font:800 16px/1.1 var(--b-cond);letter-spacing:.8px;text-transform:uppercase">Lambeau moved to Not a game</div>
   <div style="height:40px;padding:0 16px;border-radius:10px;background:#000;color:#fff;display:flex;align-items:center;gap:8px;font:800 14px/1 var(--b-cond);letter-spacing:1.4px;text-transform:uppercase">%s Undo</div></div>''' % I['undo'].replace('<svg', '<svg style="width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round"')
 FL = collage('lambeau-concourse.jpg', 'lambeau-exterior.jpg', 'lambeau-concourse.jpg', '50% 80%', '50% 50%', '30% 60%') + cardbody('CHI', 20, 'GB', 17, 'Lambeau Field', 'Dec 14 2025')
-page(F, 'v4-undo-edge', 'Undo', topnav(14) + stack(FL, 'transform:translateY(0)', '', True) + TOAST + acts().replace('class="acts"', 'class="acts" style="bottom:44px;opacity:.0"') +
-  '<div style="position:absolute;left:20px;right:20px;bottom:44px" class="f-between"><div class="sub" style="font-size:14px">Kept in Not a game: 5. Nothing is deleted.</div></div>', CARDCSS)
+page(F, 'v4-undo-edge', 'Undo', topnav(14) + stack(collage('fenway-night.jpg', 'fenway-night.jpg', 'fenway-night.jpg', '50% 40%', '30% 60%', '70% 70%') + cardbody('CHC', 3, 'BOS', 6, 'Fenway Park', 'Jun 12 2024')) + TOAST + acts(), CARDCSS)
 
 page(F, 'v5-wrong-game', 'Wrong game', topnav(14) + stack(FL, '', '', True) + '''
 <div class="scrimall"></div>
@@ -141,20 +140,20 @@ page(F, 'v3-scanning', 'Scanning Chicago', nav('<div class="b-label" style="colo
 </div>
 <div class="cta">''' + lockline('The other 48,100 photos were not opened.') + '</div>')
 
-page(F, 'v4-trip-review', 'Trip review', nav(icb('back'), '<div class="tag">Trip 2 of 3</div>') + '''
-<div class="ph" style="position:absolute;left:0;right:0;top:0;height:290px">''' + im('camp-nou-aerial.jpg', '50% 50%') + '''<div class="abs" style="background:linear-gradient(180deg,rgba(7,8,10,.55),rgba(7,8,10,0) 30%,rgba(7,8,10,.95) 100%)"></div></div>
+page(F, 'v4-trip-review', 'Trip review', nav(icb('back'), '<div class="b-pill" style="background:rgba(7,8,10,.75)">Trip 2 of 3</div>') + '''
+<div class="ph" style="position:absolute;left:0;right:0;top:0;height:290px">''' + im('camp-nou-aerial.jpg', '50% 50%') + '''<div class="abs" style="background:linear-gradient(180deg,rgba(7,8,10,.78),rgba(7,8,10,0) 34%,rgba(7,8,10,.95) 100%)"></div></div>
 <div class="f-col" style="top:196px;gap:14px;bottom:130px">
   <div><div class="hl" style="font-size:54px">Spain</div><div class="sub" style="margin-top:6px">Mar 6 to 12, 2020 · album Spain 2020</div></div>
   <div class="f-list" style="margin-top:8px">
   ''' + '<div class="gr" style="min-height:76px">%s<div class="th ph">%s</div><div class="mid"><div class="t">FCB 1 <em>RSO 0</em></div><div class="s">Camp Nou · Mar 8 2020</div></div></div>' % (cb(True), im('camp-nou-aerial.jpg', '50% 60%')) +
-  '<div class="gr" style="min-height:76px">%s<div class="th ph">%s</div><div class="mid"><div class="t">Stadium visit</div><div class="s">Bernabeu · Mar 10 · no game on the schedule</div></div></div>' % (cb(True), im('soldier-aerial.jpg', '50% 50%')) +
+  '<div class="gr" style="min-height:76px">%s<div class="th ph">%s</div><div class="mid"><div class="t">Stadium visit</div><div class="s">Camp Nou · Mar 7 · no game that day</div></div></div>' % (cb(True), im('camp-nou-aerial.jpg', '20% 30% 2.2')) +
   '</div></div><div class="cta">' + '<div class="b-btn">Add 1 game, 1 visit</div>' + lockline('Matched on this iPhone') + '</div>')
 
 def photo_sq(f, pos): return '<div class="ph" style="width:100%%;aspect-ratio:1;border-radius:10px">%s</div>' % im(f, pos)
 page(F, 'v5-missing-place', 'Where was this', nav(icb('x'), '<div class="tag">14 photos</div>') + '''
 <div class="f-col col" style="top:112px;gap:22px">
   <div class="hl" style="font-size:44px">Where were these taken?</div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">''' + photo_sq('camp-nou-aerial.jpg', '30% 50%') + photo_sq('wrigley-bleachers.jpg', '70% 50%') + photo_sq('fenway-day.jpg', '20% 50%') + photo_sq('wrigley-scoreboard-wide.jpg', '50% 50%') + '''</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">''' + photo_sq('camp-nou-aerial.jpg', '50% 50% 1.2') + photo_sq('camp-nou-aerial.jpg', '15% 70% 2') + photo_sq('camp-nou-aerial.jpg', '85% 60% 2') + photo_sq('camp-nou-aerial.jpg', '50% 20% 2.4') + '''</div>
   <div class="sub">Spain 2020, Mar 8, 6:41 to 9:12 PM. No location saved. Other photos that evening were at Camp Nou.</div>
   <div class="f-list">
     <div class="opt" style="min-height:70px"><div class="mid"><div class="t">Camp Nou, Barcelona</div><div class="s">Best guess</div></div><div class="rad on"></div></div>
@@ -168,7 +167,7 @@ def covrow(t, s, end):
 SC = '<div class="b-btn ghost" style="height:38px;padding:0 16px;font-size:14px;border-radius:10px">Scan</div>'
 page(F, 'v6-done', 'Done', nav(icb('x'), '') + '''
 <div class="f-col col" style="top:112px">
-  <div><div class="mega" style="font-size:150px">21</div><div class="hl" style="font-size:34px;margin-top:8px">games added</div></div>
+  <div><div class="mega" style="font-size:150px">20</div><div class="hl" style="font-size:34px;margin-top:8px">games added</div></div>
   <div class="f-list">''' + covrow('Chicago, all dates', '19 games · scanned today', '<span class="tag">Done</span>') + covrow('Spain, Mar 2020', '1 game, 1 visit · scanned today', '<span class="tag">Done</span>') + covrow('Boston', 'Not scanned. Photos were not opened.', SC) + covrow('Missing a game?', 'Scan a date or add it by hand', I['chev'].replace('<svg', '<svg class="ico24"')) + '''</div>
 </div>
 <div class="cta"><div class="b-btn">See timeline</div>''' + lockline('Only Chicago and Spain photos were read.') + '</div>')
@@ -192,18 +191,18 @@ SUGCSS = '''
 def three(): return '<div class="three"><div class="b-btn">Yes</div><div class="b-btn ghost">Not a game</div><div class="b-btn ghost">Wrong game</div></div>'
 def sug(top, img, pos, a, sa, b, sb, venue, conf, extra='', hero=210):
     return ('<div class="sug" style="top:%spx"><div class="hero" style="height:%spx">%s<div class="q">Did you go to this?</div>'
-            '<div style="position:absolute;left:16px;right:16px;bottom:14px;z-index:3" class="f-between"><div class="hl" style="font-size:30px">%s</div>%s</div></div>'
-            '<div class="bd"><div class="conf">%s%s</div>%s</div></div>') % (top, hero, im(img, pos), venue, bug(a, sa, b, sb), I['seal'], conf, extra)
+            '<div style="position:absolute;left:16px;right:16px;bottom:14px;z-index:3" class="f-between"><div class="hl" style="font-size:28px;white-space:nowrap">%s</div>%s</div></div>'
+            '<div class="bd"><div class="conf">%s%s</div>%s</div></div>') % (top, hero, im(img, pos), venue, bug(a, sa, b, sb, 'sm'), I['seal'], conf, extra)
 
 page(F, 'v1-feed', 'Suggestion feed', '<div class="f-title" style="position:absolute;left:20px;top:60px">Timeline</div><div class="b-icon-btn" style="position:absolute;right:20px;top:56px">%s</div>' % I['search'] +
   sug(112, 'wrigley-bleachers.jpg', '50% 50%', 'MIL', 3, 'CHC', 4, 'Wrigley Field', 'Matched by place, time and scoreboard', three() + '<div style="margin-top:12px;font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.62)">Jul 4 2026 · 7:05 PM · 4 photos</div>') +
-  '<div class="ph" style="position:absolute;left:20px;right:20px;top:538px;height:130px;border-radius:20px">%s<div class="abs" style="background:linear-gradient(0deg,rgba(7,8,10,.85),rgba(7,8,10,.1))"></div><div style="position:absolute;left:16px;bottom:14px"><div class="hl" style="font-size:26px">Lambeau Field</div><div class="sub" style="font-size:13px">Dec 14 2025</div></div></div>' % im('lambeau-concourse.jpg', '50% 80%') + tabs(0), SUGCSS)
+  '<div class="ph" style="position:absolute;left:20px;right:20px;top:520px;height:160px;border-radius:20px">%s<div class="abs" style="background:linear-gradient(0deg,rgba(7,8,10,.85),rgba(7,8,10,.1))"></div><div style="position:absolute;left:16px;bottom:14px"><div class="hl" style="font-size:26px">Lambeau Field</div><div class="sub" style="font-size:13px">Dec 14 2025</div></div></div>' % im('lambeau-concourse.jpg', '50% 80%') + tabs(0), SUGCSS)
 
 def ev(icon, t, s):
     return '<div class="gr" style="min-height:64px;align-items:flex-start;padding:12px 0"><div class="ibox" style="width:38px;height:38px;border-radius:10px">%s</div><div class="mid"><div class="t" style="font-size:17px">%s</div><div class="s">%s</div></div></div>' % (I[icon].replace('<svg', '<svg style="width:20px;height:20px"'), t, s)
 page(F, 'v2-evidence', 'Evidence', nav(icb('back'), icb('more')) + '''
 <div class="f-col" style="top:108px;gap:18px;bottom:120px;overflow:hidden">
-  <div class="f-between"><div class="hl" style="font-size:40px">Wrigley Field</div>''' + bug('MIL', 3, 'CHC', 4) + '''</div>
+  <div><div class="hl" style="font-size:44px">Wrigley Field</div><div style="margin-top:10px">''' + bug('MIL', 3, 'CHC', 4) + '''</div></div>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">''' +
   ''.join('<div><div class="ph" style="aspect-ratio:3/4;border-radius:10px">%s</div><div class="tag" style="margin-top:6px;text-align:center;font-size:12px">%s</div></div>' % (im(f, p), t) for f, p, t in
     [('wrigley-night.jpg', '50% 38%', '6:12 PM'), ('wrigley-night-2.jpg', '50% 40%', '7:08 PM'), ('wrigley-scoreboard.jpg', '50% 50%', '8:31 PM'), ('wrigley-bleachers.jpg', '60% 50%', '9:24 PM')]) + '''</div>
@@ -232,7 +231,7 @@ page(F, 'v4-confirmed-backlog', 'Confirmed', '<div class="f-title" style="positi
   '''<div style="position:absolute;left:20px;right:20px;top:610px" class="gr"><div class="mid"><div class="t" style="font-size:18px">44 more suggestions</div><div class="s">Witness shows 3 at a time, newest first</div></div><div class="end"><div class="txtbtn" style="font-size:14px">Show all</div></div></div>''' + tabs(0), SUGCSS)
 
 page(F, 'v5-missed-game', 'Missed game', nav(icb('back'), icb('more')) + '''
-<div class="ph" style="position:absolute;left:0;right:0;top:0;height:300px">''' + im('fenway-day.jpg', '50% 50%') + '''<div class="abs" style="background:linear-gradient(180deg,rgba(7,8,10,.55),rgba(7,8,10,0) 30%,rgba(7,8,10,.95) 100%)"></div></div>
+<div class="ph" style="position:absolute;left:0;right:0;top:0;height:300px">''' + im('fenway-night.jpg', '50% 100% 1.5') + '''<div class="abs" style="background:linear-gradient(180deg,rgba(7,8,10,.55),rgba(7,8,10,0) 30%,rgba(7,8,10,.95) 100%)"></div></div>
 <div class="f-col" style="top:206px;gap:18px">
   <div><div class="hl" style="font-size:44px">Stadium visit</div><div class="sub" style="margin-top:6px">Fenway Park · Jun 12 2024 · 38 photos</div></div>
   <div class="b-panel" style="padding:16px"><div class="conf" style="align-items:flex-start">''' + I['flag'].replace('<svg', '<svg style="margin-top:1px"') + '''<div>No game matched. Your photos start at 9:50 PM, after the game on the schedule ended.</div></div></div>
@@ -246,7 +245,7 @@ page(F, 'v5-missed-game', 'Missed game', nav(icb('back'), icb('more')) + '''
 # ---------------------------------------------------------------- SETTINGS SHEET
 F = 'settings-sheet'
 feature(F, 'Scan settings (shared)', 'One sheet for every approach: scope, albums, videos later, rescan, clear suggestions.')
-def sopt(t, s, right): return '<div class="opt" style="min-height:56px"><div class="mid"><div class="t" style="font-size:18px">%s</div>%s</div>%s</div>' % (t, ('<div class="s">%s</div>' % s) if s else '', right)
+def sopt(t, s, right): return '<div class="opt" style="min-height:60px"><div class="mid"><div class="t" style="font-size:18px">%s</div>%s</div>%s</div>' % (t, ('<div class="s">%s</div>' % s) if s else '', right)
 def seg(items, on):
     return '<div style="display:flex;background:var(--b-panel-2);border-radius:10px;padding:3px;box-shadow:inset 0 0 0 1px var(--b-line);margin:6px 0 4px">' + ''.join(
       '<div style="flex:1;text-align:center;height:38px;line-height:38px;border-radius:8px;font:800 13px/38px var(--b-cond);letter-spacing:1.2px;text-transform:uppercase;%s">%s</div>' % ('background:#fff;color:#000' if i == on else 'color:rgba(255,255,255,.7)', t) for i, t in enumerate(items)) + '</div>'
@@ -257,7 +256,7 @@ page(F, 'v1-settings', 'Scan settings', '''<div class="f-title" style="position:
   <div class="f-between" style="margin-bottom:6px"><div class="hl" style="font-size:34px">Scan settings</div><div class="txtbtn">Done</div></div>
   ''' + seg(['Everything', 'Albums', 'Dates', 'Places'], 1) + '''
   ''' + sopt('Camera Roll', '52,310 photos', '<div class="tg on"></div>') + sopt('Spain 2020', '214 photos · ticket screenshots help', '<div class="tg on"></div>') + sopt('Chicago summer', '1,880 photos', '<div class="tg"></div>') + sopt('Videos', 'Coming later', '<div class="tg" style="opacity:.35"></div>') + '''
-  <div class="opt" style="min-height:56px;margin-top:6px"><div class="ibox" style="width:36px;height:36px">''' + I['refresh'] + '''</div><div class="mid"><div class="t" style="font-size:18px">Rescan</div><div class="s">Last 30 days or everything. Your confirmed games stay.</div></div><div class="dim">''' + I['chev'].replace('<svg', '<svg class="ico24"') + '''</div></div>
-  <div class="opt" style="min-height:56px"><div class="ibox" style="width:36px;height:36px">''' + I['trash'] + '''</div><div class="mid"><div class="t" style="font-size:18px;color:#ff7a6e">Clear suggestions</div><div class="s">Removes 47 unconfirmed games. Confirmed games stay.</div></div></div>
+  <div class="opt" style="min-height:72px;margin-top:6px"><div class="ibox" style="width:36px;height:36px">''' + I['refresh'] + '''</div><div class="mid"><div class="t" style="font-size:18px">Rescan</div><div class="s">Last 30 days or everything. Your confirmed games stay.</div></div><div class="dim">''' + I['chev'].replace('<svg', '<svg class="ico24"') + '''</div></div>
+  <div class="opt" style="min-height:72px"><div class="ibox" style="width:36px;height:36px">''' + I['trash'] + '''</div><div class="mid"><div class="t" style="font-size:18px;color:#ff7a6e">Clear suggestions</div><div class="s">Removes 47 unconfirmed games. Confirmed games stay.</div></div></div>
   <div style="margin-top:12px">''' + lockline('Everything here runs on this iPhone. Nothing is uploaded.') + '''</div>
 </div>''', '')

@@ -104,7 +104,7 @@ def crop(photo, tw, th, k=0):
 def hsh(s): return int(hashlib.md5(s.encode()).hexdigest()[:6], 16)
 def ph_style(g, tw, th):
     if not g['photo']: return None
-    return crop(g['photo'], tw, th, hsh(g['id']))
+    return crop(g['photo'], tw, th, g.get('ck', hsh(g['id'])))
 def cover_bg(g, tw, th):
     s = ph_style(g, tw, th)
     if s: return s, ''
@@ -120,6 +120,7 @@ def ribbon(pal, w=30):
 def evname(g):
     return (g['comp'] or '').replace('Game ', 'G').replace(' · ', ' · ').upper()
 def evmark(g):
+    if not g['tier']: return ''
     return f'<div class="ev">{pin(g["pal"],12)}<span>{evname(g)}</span></div>'
 def bug(g, cls=''):
     if g['ms'] is None:
@@ -173,15 +174,15 @@ body.b{--b-text-3:rgba(255,255,255,.62)}
 .tile .tpin{position:absolute;top:8px;left:8px;filter:drop-shadow(0 1px 3px rgba(0,0,0,.7))}
 .tile.bm .ttl{font-size:21px;line-height:.95;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;margin:6px 0 0}.tile.bm .f-between .dt{display:none}.tile.bm .f-between{justify-content:flex-start;margin-top:8px}.tile .ttl{font:800 26px/.92 var(--b-cond);text-transform:uppercase;margin:8px 0 9px}
 .lbl{font:700 12px/1 var(--b-cond);letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.62)}
-.abs{position:absolute}
+.abs{position:absolute}.scr{position:absolute;inset:0}
 .fade-b{position:absolute;left:0;right:0;bottom:84px;height:60px;background:linear-gradient(180deg,rgba(7,8,10,0),#07080a);z-index:6;pointer-events:none}
 """
 
-def chips(active=('all',), counts=None):
+def chips(active=('all',), counts=None, only=None):
     cnt = {'all': 60, 'baseball': 31, 'football': 10, 'soccer': 7, 'hockey': 6, 'basketball': 5, 'motorsport': 1}
     if counts: cnt.update(counts)
     out = f'<span class="chip {"on" if "all" in active else ""}">All <em>{cnt["all"]}</em></span>'
-    for s in ['baseball', 'football', 'soccer', 'hockey', 'basketball', 'motorsport']:
+    for s in (only or ['baseball', 'football', 'soccer', 'hockey', 'basketball', 'motorsport']):
         out += f'<span class="chip {"on" if s in active else ""}" style="--c:{SPORT[s]}"><i></i>{SNAME[s]} <em>{cnt[s]}</em></span>'
     return f'<div class="chips">{out}</div>'
 
@@ -208,7 +209,7 @@ def tile_html(g, tw, th, style_extra='', mode='small', show_pin=True):
     pn = f'<span class="tpin">{pin(g["pal"], 12 if mode != "big" else 16)}</span>' if (g['tier'] and show_pin) else ''
     if mode == 'big':
         cls += ' bm' if tw < 260 else ''
-        tx = (f'<div class="scr"></div><div class="tx">{evmark(g)}<div style="margin-top:7px">{ribbon(g["pal"], 34)}</div>'
+        tx = (f'<div class="scr"></div><div class="tx">{evmark(g)}<div style="margin-top:7px">{ribbon(g["pal"], 34) if g["tier"] else ""}</div>'
               f'<div class="ttl">{g["head"].rstrip(".")}.</div><div class="f-between"><span class="dt" style="margin:0">{MON[g["m"]-1]} {g["day"]}, {g["y"]}</span>{bug(g)}</div></div>')
         pn = ''
     elif mode == 'small':
@@ -218,11 +219,12 @@ def tile_html(g, tw, th, style_extra='', mode='small', show_pin=True):
     return f'<div class="tile {cls}" style="--c:{g["color"]};{bg};{style_extra}">{inner}{tx}{pn}<i class="sp"></i></div>'
 
 # ------------------------------------------------------------------ year rail
-def year_rail(sel, top):
-    years = sorted(set(g['y'] for g in G))
-    cnt = {y: [g for g in G if g['y'] == y] for y in years}
+def year_rail(sel, top, only=None):
+    src = only if only is not None else G
+    years = sorted(set(g['y'] for g in src))
+    cnt = {y: [g for g in src if g['y'] == y] for y in years}
     mx = max(len(v) for v in cnt.values())
-    out = f'<div class="abs" style="left:20px;right:20px;top:{top}px"><div class="lbl" style="margin-bottom:10px">Seasons · {len(G)} games</div><div style="display:flex;gap:7px;height:76px;align-items:flex-end">'
+    out = f'<div class="abs" style="left:20px;right:20px;top:{top}px"><div class="lbl" style="margin-bottom:10px">Seasons · {len(src)} {'game' if len(src)==1 else 'games'}</div><div style="display:flex;gap:7px;height:76px;align-items:flex-end">'
     for y in years:
         gs = cnt[y]; on = y == sel
         bars = ''.join(f'<i style="display:block;height:{ (56/mx) - 2:.1f}px;margin-top:2px;border-radius:2px;background:{g["color"]};opacity:{1 if on else .5}"></i>' for g in sorted(gs, key=lambda x: x['sport']))
@@ -235,7 +237,7 @@ def year_rail(sel, top):
 def season_page(year, one_game=False):
     gs = [g for g in G if g['y'] == year]
     if one_game:
-        gs = [BYID['mlb-2026-0704']]
+        gs = [dict(BYID['mlb-2026-0704'], ck=0)]
     big = sorted([g for g in gs if g['tier'] == 2], key=lambda x: x['dt'], reverse=True)[:1] or sorted(gs, key=lambda x: (-x['tier'], -x['n']))[:1]
     rest = sorted([g for g in gs if g not in big], key=lambda x: x['dt'], reverse=True)
     wins = sum(1 for g in gs if g['res'] == 'W'); loss = sum(1 for g in gs if g['res'] == 'L')
@@ -246,8 +248,8 @@ def season_page(year, one_game=False):
     grid = '<div class="abs" style="left:20px;top:258px;width:353px;height:%dpx">' % (3 * u + 16)
     b = big[0]
     if one_game:
-        bw, bh = 353, 353
-        grid = f'<div class="abs" style="left:20px;top:258px;width:353px">{tile_html(b, bw, bh, "width:353px;height:353px;border-radius:14px", "big")}'
+        bw, bh = 353, 290
+        grid = f'<div class="abs" style="left:20px;top:258px;width:353px">{tile_html(b, bw, bh, "width:353px;height:290px;border-radius:14px", "big")}'
         grid += (f'<div style="margin-top:12px;height:64px;border-radius:12px;border:1.5px dashed rgba(255,255,255,.22);display:flex;align-items:center;gap:12px;padding:0 16px;color:rgba(255,255,255,.72)">'
                  f'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>'
                  f'<span class="b-h2" style="font-size:19px">Next game goes here</span></div></div>')
@@ -264,7 +266,7 @@ def season_page(year, one_game=False):
         for i, g in enumerate(nxt):
             peek += f'<div class="abs" style="left:381px;top:{258+i*(u+8):.1f}px;width:{u:.1f}px;height:{u:.1f}px;opacity:.55">{tile_html(g, u, u, "width:100%;height:100%", "none")}</div>'
         peek += f'<div class="abs" style="left:381px;top:258px;width:12px;height:{3*u+16:.1f}px;background:linear-gradient(90deg,transparent,rgba(7,8,10,.55))"></div>'
-    body = nav('seasons') + chips() + hero + grid + peek + year_rail(year, 652 if not one_game else 652) + TABS
+    body = nav('seasons') + (chips(counts={'all': 1, 'baseball': 1}, only=['baseball']) if one_game else chips()) + hero + grid + peek + year_rail(year, 652, gs if one_game else None) + TABS
     return body
 
 # ------------------------------------------------------------------ 02 calendar
@@ -336,17 +338,18 @@ def mosaic_page(level, games=None, active=('all',), counts=None, filter_note=Non
             area += '</div></div>'
         area += '</div>'
     elif level == 'All':
-        cols, gap = 5, 3
-        t = (353 - gap * 4) / 5
-        area += '<div style="display:grid;grid-template-columns:repeat(5,%.2fpx);gap:%dpx;grid-auto-flow:dense;grid-auto-rows:%.2fpx">' % (t, gap, t)
-        ly = None
-        for g in games[:60]:
-            if g['y'] != ly:
-                area += f'<div style="grid-column:1/-1;align-self:end;height:34px;margin-bottom:-{t-34:.2f}px;font:800 24px/1 var(--b-cond);padding:8px 0 4px">{g["y"]}</div>'; ly = g['y']
-            if g['tier'] == 2:
-                area += f'<div style="grid-column:span 2;grid-row:span 2">{tile_html(g, 2*t+gap, 2*t+gap, "width:100%;height:100%;border-radius:7px", "tiny")}</div>'
-            else:
-                area += f'<div>{tile_html(g, t, t, "width:100%;height:100%;border-radius:6px", "tiny")}</div>'
+        gap = 3; t = (353 - gap * 4) / 5
+        area += '<div style="display:flex;flex-direction:column;gap:12px">'
+        for y in sorted(set(g['y'] for g in games), reverse=True):
+            gl = [g for g in games if g['y'] == y]
+            area += f'<div><div style="display:flex;align-items:baseline;gap:10px;margin-bottom:6px"><span style="font:800 24px/1 var(--b-cond)">{y}</span><span class="lbl">{len(gl)} games</span></div>'
+            area += '<div style="display:grid;grid-template-columns:repeat(5,%.2fpx);gap:%dpx;grid-auto-flow:dense;grid-auto-rows:%.2fpx">' % (t, gap, t)
+            for g in gl:
+                if g['tier'] == 2:
+                    area += f'<div style="grid-column:span 2;grid-row:span 2">{tile_html(g, 2*t+gap, 2*t+gap, "width:100%;height:100%;border-radius:7px", "tiny")}</div>'
+                else:
+                    area += f'<div>{tile_html(g, t, t, "width:100%;height:100%;border-radius:6px", "tiny")}</div>'
+            area += '</div></div>'
         area += '</div>'
     else:  # Years
         t = (353 - 16) / 3
@@ -376,14 +379,14 @@ def barcode(seed):
 def wallet_page():
     front = NEW[0]
     fc = front['color']
-    ph = crop(front['photo'], 353, 132, 0)
+    ph = crop(front['photo'], 353, 132, 2)
     f = (f'<div class="abs" style="left:20px;top:152px;width:353px;height:290px;--c:{fc};filter:drop-shadow(0 18px 24px rgba(0,0,0,.55));z-index:10">'
          f'<div style="position:absolute;inset:0;border-radius:20px;overflow:hidden;background:#12151b;'
          f'-webkit-mask:radial-gradient(circle 10px at 0 206px,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 10px at 100% 206px,#0000 98%,#000) right/51% 100% no-repeat;'
          f'mask:radial-gradient(circle 10px at 0 206px,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 10px at 100% 206px,#0000 98%,#000) right/51% 100% no-repeat">'
          f'<div style="position:absolute;left:0;top:0;bottom:0;width:6px;background:{fc};z-index:3"></div>'
          f'<div style="height:132px;position:relative;{ph}"><div class="scr" style="background:linear-gradient(180deg,rgba(7,8,10,.15),rgba(18,21,27,.96))"></div>'
-         f'<div class="abs" style="left:0;right:0;top:0;height:46px;background:linear-gradient(180deg,rgba(7,8,10,.75),transparent)"></div><div class="abs" style="left:22px;top:14px"><span class="lbl" style="color:#fff">№ {front["n"]:03d} · Baseball</span></div></div>'
+         f'<div class="abs" style="left:0;right:0;top:0;height:46px;background:linear-gradient(180deg,rgba(7,8,10,.92),transparent)"></div><div class="abs" style="left:22px;top:14px"><span class="lbl" style="color:#fff">№ {front["n"]:03d} · Baseball</span></div></div>'
          f'<div style="padding:4px 20px 0 22px;height:74px"><div class="lbl" style="font-size:12px">{DOW[front["dt"].weekday()]} · {dstr(front)} · {front["venue"]}</div>'
          f'<div class="b-h1" style="margin-top:9px;font-size:32px">{front["head"]}</div></div>'
          f'<div style="position:absolute;left:22px;right:22px;top:206px;border-top:2px dashed rgba(255,255,255,.2)"></div>'
@@ -424,9 +427,9 @@ def map_page(sel_id):
              f'<div class="abs" style="left:20px;width:353px;top:12px;height:24px">{ticks}</div>{yrs}'
              f'<div class="abs" style="left:{xs-1.5:.1f}px;top:4px;width:3px;height:36px;border-radius:2px;background:#fff;box-shadow:0 0 12px rgba(255,255,255,.6)"></div>'
              f'<div class="abs" style="left:{xs-52:.1f}px;top:-26px;width:104px;height:26px;border-radius:13px;background:#fff;color:#000;display:grid;place-items:center;font:800 13px/1 var(--b-cond);letter-spacing:1.2px">{MON[sel["m"]-1]} {sel["day"]} · {sel["y"]}</div></div>')
-    ph = crop(sel['photo'], 353, 220, 0)
+    ph = crop(sel['photo'], 353, 220, 1)
     card = (f'<div class="abs" style="left:20px;top:530px;width:353px;height:224px;border-radius:16px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--b-line);{ph}">'
-            f'<div class="scr" style="background:linear-gradient(180deg,rgba(7,8,10,.15) 20%,rgba(7,8,10,.96) 82%)"></div>'
+            f'<div class="scr" style="background:linear-gradient(180deg,rgba(7,8,10,.3) 8%,rgba(7,8,10,.97) 72%)"></div>'
             f'<div class="abs" style="left:16px;right:16px;bottom:14px">{evmark(sel)}<div style="margin-top:7px">{ribbon(sel["pal"],34)}</div>'
             f'<div class="b-h1" style="font-size:30px;margin:9px 0 10px">{sel["head"].rstrip(".")}.</div>'
             f'<div class="f-between"><span style="font:600 14px/1 var(--b-ui);color:rgba(255,255,255,.85)">{sel["venue"]} · {dstr(sel)}</span>{bug(sel)}</div></div></div>')
@@ -453,7 +456,7 @@ if(sp){const p=sp[0]; s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="20" fill="none"
 s+='</svg>';
 const el=document.getElementById('globe'); el.innerHTML=s;
 })();</script>""" % (json.dumps(vdata), json.dumps(dict(vid=sel['vid'], name=VENUES[sel['vid']][0], color=sel['color'])))
-    globe = ('<div id="globe" class="abs" style="left:0;top:146px;width:393px;height:282px;overflow:hidden;-webkit-mask:linear-gradient(180deg,#000 80%,transparent);mask:linear-gradient(180deg,#000 80%,transparent)"></div>'
+    globe = ('<div id="globe" class="abs" style="left:0;top:146px;width:393px;height:282px;overflow:hidden;-webkit-mask:linear-gradient(180deg,transparent,#000 12%,#000 80%,transparent);mask:linear-gradient(180deg,transparent,#000 12%,#000 80%,transparent)"></div>'
              f'<div class="abs" style="left:20px;top:152px;z-index:3"><span class="lbl">{len(visits)} venues · 3 countries</span></div>')
     return nav('map') + chips() + globe + scrub + card + TABS, js
 
@@ -510,28 +513,28 @@ def menu_page():
     return body
 
 def options_page():
-    def frame(label, verdict, inner, h=150):
-        return (f'<div style="margin-bottom:18px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px"><span class="b-h2" style="font-size:20px">{label}</span></div>'
+    def frame(label, verdict, inner, h=122):
+        return (f'<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px"><span class="b-h2" style="font-size:20px">{label}</span></div>'
                 f'<div style="height:{h}px;border-radius:14px;background:#0b0d11;box-shadow:inset 0 0 0 1px var(--b-line);position:relative;overflow:hidden">{inner}</div>'
                 f'<div style="font:500 13px/1.35 var(--b-ui);color:rgba(255,255,255,.7);margin-top:8px">{verdict}</div></div>')
     # A: segmented icons
     seg = ''.join(f'<span style="width:32px;height:32px;border-radius:9px;display:grid;place-items:center;{"background:#fff" if k=="seasons" else ""}"><svg viewBox="0 0 24 24" width="17" height="17" style="stroke:{"#000" if k=="seasons" else "#fff"};fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">{ICON[k]}</svg></span>' for k, _, _ in VIEWS)
     A = (f'<div class="abs" style="left:14px;right:14px;top:14px;display:flex;justify-content:space-between;align-items:center"><span class="f-title" style="font-size:26px">Timeline</span>'
          f'<div style="display:flex;padding:3px;border-radius:12px;background:var(--b-panel-2);box-shadow:inset 0 0 0 1px var(--b-line)">{seg}</div></div>'
-         f'<div class="abs" style="left:14px;top:76px">{chips_inline()}</div>')
+         f'<div class="abs" style="left:14px;top:66px">{chips_inline()}</div>')
     # B: pull-down (chosen)
     B = (f'<div class="abs" style="left:14px;right:14px;top:14px;display:flex;justify-content:space-between;align-items:center"><span class="f-title" style="font-size:26px">Timeline</span>{vpill("seasons")}</div>'
-         f'<div class="abs" style="left:14px;top:76px">{chips_inline()}</div>')
+         f'<div class="abs" style="left:14px;top:66px">{chips_inline()}</div>')
     # C: floating pill
     cl = ''.join(f'<span style="width:38px;height:36px;border-radius:18px;display:grid;place-items:center;{"background:#fff" if k=="seasons" else ""}"><svg viewBox="0 0 24 24" width="18" height="18" style="stroke:{"#000" if k=="seasons" else "#fff"};fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round">{ICON[k]}</svg></span>' for k, _, _ in VIEWS)
     C = (f'<div class="abs" style="left:14px;right:14px;top:14px;display:flex;justify-content:space-between;align-items:center"><span class="f-title" style="font-size:26px">Timeline</span><span class="b-icon-btn" style="width:34px;height:34px"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></div>'
-         f'<div class="abs" style="left:14px;top:62px">{chips_inline()}</div>'
-         f'<div class="abs" style="left:50%;transform:translateX(-50%);bottom:10px;padding:3px;border-radius:22px;display:flex;background:rgba(36,38,46,.95);box-shadow:inset 0 0 0 1px var(--b-line)">{cl}</div>')
+         f'<div class="abs" style="left:14px;top:58px">{chips_inline()}</div>'
+         f'<div class="abs" style="left:50%;transform:translateX(-50%);bottom:8px;padding:3px;border-radius:22px;display:flex;background:rgba(36,38,46,.95);box-shadow:inset 0 0 0 1px var(--b-line)">{cl}</div>')
     return (nav('seasons', pill=False).replace('<div class="f-title">Timeline</div>', '<div class="f-title">View switcher</div>') +
             '<div class="abs" style="left:20px;right:20px;top:112px">'
-            + frame('A · Segmented icons in the nav bar', 'Always visible, but six unlabeled icons take 204pt, crowd the title, and cap us at six views.', A)
-            + frame('B · Pull-down menu (recommended)', 'One 40pt button shows the current view by name. Opens a labeled list with room for hints and for a seventh view. Native Menu in SwiftUI.', B)
-            + frame('C · Bottom floating pill', 'Thumb-reachable, but it sits on the tab bar, collides with the Mosaic zoom control and the wallet stack.', C, 156)
+            + frame('A · Segmented icons in the nav bar', 'Always visible, but six unlabeled icons take 204pt, crowd the title and cap us at six views.', A)
+            + frame('B · Pull-down menu (recommended)', 'One 40pt button names the current view. Opens a labeled list (see previous screen). Native SwiftUI Menu.', B)
+            + frame('C · Bottom floating pill', 'Thumb-reachable, but it stacks on the tab bar and collides with the Mosaic zoom pill.', C, 140)
             + '</div>' + TABS)
 def chips_inline():
     return ('<div style="display:flex;gap:8px;white-space:nowrap">' + ''.join(
@@ -541,15 +544,15 @@ def chips_inline():
 def empty_page():
     ghosts = ''
     u = (353 - 16) / 3
-    pos = [(0, 0, 2 * u + 8, 2 * u + 8), (2 * u + 16, 0, u, u), (2 * u + 16, u + 8, u, u)]
+    pos = [(0, 0, 2 * u + 8, 160), (2 * u + 16, 0, u, 76), (2 * u + 16, 84, u, 76)]
     for x, y, w, h in pos:
         ghosts += f'<div class="abs" style="left:{x:.1f}px;top:{y:.1f}px;width:{w:.1f}px;height:{h:.1f}px;border-radius:14px;border:1.5px dashed rgba(255,255,255,.14);background:rgba(255,255,255,.025)"></div>'
     body = (f'<div class="b-nav"><div class="f-title">Timeline</div></div>'
             f'<div class="abs" style="left:20px;top:152px;font:800 92px/.78 var(--b-cond);letter-spacing:-2px;color:rgba(255,255,255,.16)">2026</div>'
-            f'<div class="abs" style="left:20px;top:258px;width:353px;height:{2*u+8:.0f}px">{ghosts}</div>'
-            f'<div class="abs" style="left:20px;right:20px;top:{258+2*u+8+32:.0f}px"><div class="b-display" style="font-size:44px">Your seasons start here.</div>'
-            f'<div class="b-body" style="margin-top:12px;font-size:16px">Add a game, or let Witness find the ones already in your photos. Views like Calendar and Map unlock after your second game.</div>'
-            f'<div style="display:flex;flex-direction:column;gap:10px;margin-top:24px"><div class="b-btn">Find games in my photos</div><div class="b-btn ghost">Add a game by hand</div></div></div>' + TABS)
+            f'<div class="abs" style="left:20px;top:258px;width:353px;height:160px">{ghosts}</div>'
+            f'<div class="abs" style="left:20px;right:20px;top:446px"><div class="b-display" style="font-size:40px">Your seasons start here.</div>'
+            f'<div class="b-body" style="margin-top:10px;font-size:15px">Add a game, or let Witness find the ones already in your photos. Calendar and Map views unlock with your second game.</div>'
+            f'<div style="display:flex;flex-direction:column;gap:10px;margin-top:18px"><div class="b-btn">Find games in my photos</div><div class="b-btn ghost">Add a game by hand</div></div></div>' + TABS)
     return body
 
 # ------------------------------------------------------------------ write
