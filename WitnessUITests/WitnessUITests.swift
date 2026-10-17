@@ -164,6 +164,7 @@ final class WitnessUITests: XCTestCase {
 
         tap("open-you-were-there")
         XCTAssertTrue(el("ywt-plays").waitForExistence(timeout: 5))
+        XCTAssertTrue(el("ywt-photo").exists, "The game's photo sits above the chart and follows it")
         snap("06-you-were-there")
         back()
 

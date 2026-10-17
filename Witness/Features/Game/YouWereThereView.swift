@@ -1,5 +1,6 @@
 import SwiftUI
 import Charts
+import Photos
 
 /// 06 · You were there. A photo with a broadcast lower third, the win
 /// probability curve as a scrubber, and the three plays that mattered.
@@ -8,6 +9,9 @@ struct YouWereThereView: View {
 
     @Environment(Library.self) private var library
     @State private var selection: Date?
+    /// When each of the fan's photos was taken, read from Photos; the photo on show.
+    @State private var photoTimes: [PhotoRef: Date] = [:]
+    @State private var current: PhotoRef?
 
     var body: some View {
         if let game = library.game(gameId) {
@@ -19,16 +23,26 @@ struct YouWereThereView: View {
     }
 
     private func content(_ game: GameEntry) -> some View {
-        ScrollView {
+        let moments = photoMoments(game)
+        return ScrollView {
             VStack(alignment: .leading, spacing: Spacing.block) {
-                photo(game)
+                photo(game, moments: moments)
                 if game.winProbability.count > 1 {
-                    ProbabilityCurve(game: game,
-                                     rootingIsHome: library.rootingTeam(game) == game.homeTeamId || game.awayTeamId == nil,
-                                     accent: library.team(library.rootingTeam(game))?.accent ?? Color.signal,
-                                     selection: $selection)
-                        .frame(height: 210)
-                        .accessibilityIdentifier("ywt-chart")
+                    VStack(alignment: .leading, spacing: 8) {
+                        ProbabilityCurve(game: game,
+                                         rootingIsHome: library.rootingTeam(game) == game.homeTeamId || game.awayTeamId == nil,
+                                         accent: library.team(library.rootingTeam(game))?.accent ?? Color.signal,
+                                         pins: pins(moments),
+                                         shown: shown(moments)?.ref,
+                                         selection: $selection)
+                            .frame(height: 210)
+                            .accessibilityIdentifier("ywt-chart")
+                        Text(moments.contains { $0.time != nil }
+                             ? "Round photos are when you took pictures. Small dots are key plays. Drag along the chart, or swipe the photo."
+                             : "Small dots are key plays. Drag along the chart to move through the game.")
+                            .font(.footnote)
+                            .foregroundStyle(Color.textTertiary)
+                    }
                 }
                 plays(game)
             }
@@ -50,20 +64,81 @@ struct YouWereThereView: View {
                 .accessibilityLabel("Share")
             }
         }
+        .task(id: game.photos) { photoTimes = await PhotoTimes.load(game.photos) }
+        .onChange(of: selection) { _, new in
+            // Dragging along the chart brings up the photo taken nearest that moment.
+            guard let new, let nearest = moments.filter({ $0.time != nil })
+                .min(by: { abs($0.time!.timeIntervalSince(new)) < abs($1.time!.timeIntervalSince(new)) }) else { return }
+            if current != nearest.ref { current = nearest.ref }
+        }
+    }
+
+    // MARK: Photos along the game
+
+    struct PhotoMoment: Identifiable {
+        let index: Int
+        let ref: PhotoRef
+        let time: Date?
+        var id: Int { index }
+    }
+
+    /// The fan's photos in the order they were taken. Library photos use their real capture time; the bundled sample
+    /// photos (which carry none) are spread across the game so the sample shows how this works.
+    private func photoMoments(_ game: GameEntry) -> [PhotoMoment] {
+        let start = game.plays.first?.time ?? game.winProbability.first?.time
+        let end = game.plays.last?.time ?? game.winProbability.last?.time
+        let raw: [PhotoMoment] = game.photos.enumerated().map { i, ref in
+            var time = photoTimes[ref]
+            if time == nil, case .bundled = ref, let start, let end, end > start {
+                time = start.addingTimeInterval(end.timeIntervalSince(start) * (Double(i) + 1) / Double(game.photos.count + 1))
+            }
+            return PhotoMoment(index: i, ref: ref, time: time)
+        }
+        return raw.sorted { a, b in
+            switch (a.time, b.time) {
+            case let (x?, y?): return x < y
+            case (_?, nil): return true
+            case (nil, _?): return false
+            default: return a.index < b.index
+            }
+        }
+    }
+
+    private func pins(_ moments: [PhotoMoment]) -> [PhotoPin] {
+        moments.compactMap { m in m.time.map { PhotoPin(id: m.index, ref: m.ref, time: $0) } }
+    }
+
+    /// The photo on show: the one chosen by scrubbing or swiping, else the last one.
+    private func shown(_ moments: [PhotoMoment]) -> PhotoMoment? {
+        if let current, let m = moments.first(where: { $0.ref == current }) { return m }
+        return moments.last
     }
 
     // MARK: Photo with lower third
 
-    private func photo(_ game: GameEntry) -> some View {
+    private func photo(_ game: GameEntry, moments: [PhotoMoment]) -> some View {
         let tz = library.venue(game.venueId)?.tz ?? .current
+        let on = shown(moments)
         let finalTime = game.plays.last?.time
-        let moment = game.savedMoments.last ?? finalTime
+        let moment = on?.time ?? game.savedMoments.last ?? finalTime
+        let swipe = Binding<Int>(
+            get: { moments.firstIndex { $0.ref == on?.ref } ?? max(moments.count - 1, 0) },
+            set: { i in
+                guard moments.indices.contains(i) else { return }
+                current = moments[i].ref
+                if let t = moments[i].time { selection = t }
+            })
         return ZStack(alignment: .bottomLeading) {
             Group {
-                if let last = game.photos.last {
-                    PhotoView(ref: last)
-                } else {
+                if moments.isEmpty {
                     GameBackdrop(game: game)
+                } else {
+                    TabView(selection: swipe) {
+                        ForEach(Array(moments.enumerated()), id: \.offset) { i, m in
+                            PhotoView(ref: m.ref).tag(i)
+                        }
+                    }
+                    .tabViewStyle(.page(indexDisplayMode: .never))
                 }
             }
             .frame(maxWidth: .infinity)
@@ -78,7 +153,7 @@ struct YouWereThereView: View {
                         .padding(.horizontal, 10)
                         .frame(minHeight: 34)
                         .background(Color(hex: "2F6BFF"))
-                    Text(Self.caption(moment: moment, final: finalTime, hasSaved: !game.savedMoments.isEmpty))
+                    Text(on?.time != nil ? situation(at: moment, game) : Self.caption(moment: moment, final: finalTime, hasSaved: !game.savedMoments.isEmpty))
                         .font(.condensed(.subheadline, weight: .heavy))
                         .textCase(.uppercase)
                         .lineLimit(1)
@@ -88,9 +163,32 @@ struct YouWereThereView: View {
                         .background(Color.ink.opacity(0.88))
                 }
                 .accessibilityElement(children: .combine)
+                .allowsHitTesting(false)
+            }
+        }
+        .overlay(alignment: .topTrailing) {
+            if moments.count > 1, let on, let i = moments.firstIndex(where: { $0.ref == on.ref }) {
+                Text("\(i + 1) / \(moments.count)")
+                    .font(.condensed(.caption, weight: .heavy))
+                    .padding(.horizontal, 8).frame(minHeight: 24)
+                    .background(.black.opacity(0.55), in: .capsule)
+                    .padding(10)
+                    .allowsHitTesting(false)
             }
         }
         .clipShape(.rect(cornerRadius: 14))
+        .accessibilityIdentifier("ywt-photo")
+    }
+
+    /// Where the game stood when a photo was taken: the period and score at the nearest play.
+    private func situation(at time: Date, _ game: GameEntry) -> String {
+        guard let first = game.plays.first?.time, let last = game.plays.last?.time else { return "During the game" }
+        if time < first.addingTimeInterval(-300) { return "Before the game" }
+        if time > last.addingTimeInterval(300) { return "After the game" }
+        guard let play = game.plays.min(by: { abs($0.time.timeIntervalSince(time)) < abs($1.time.timeIntervalSince(time)) }) else {
+            return "During the game"
+        }
+        return "\(play.period) \u{00B7} \(score(play, game))"
     }
 
     private static func clock(_ date: Date, _ tz: TimeZone) -> String {
@@ -194,6 +292,8 @@ private struct ProbabilityCurve: View {
     let game: GameEntry
     let rootingIsHome: Bool
     let accent: Color
+    let pins: [PhotoPin]
+    let shown: PhotoRef?
     @Binding var selection: Date?
 
     private struct Point: Identifiable {
@@ -211,6 +311,9 @@ private struct ProbabilityCurve: View {
         let last = max(points.last?.time ?? first, game.plays.last?.time ?? first)
         return first...max(last, first.addingTimeInterval(60))
     }
+
+    /// Photos from before the first play or after the last sit at the ends of the chart.
+    private func clamped(_ time: Date) -> Date { min(max(time, domain.lowerBound), domain.upperBound) }
 
     private func value(at time: Date) -> Double {
         points.min { abs($0.time.timeIntervalSince(time)) < abs($1.time.timeIntervalSince(time)) }?.value ?? 0.5
@@ -256,16 +359,21 @@ private struct ProbabilityCurve: View {
                 PointMark(x: .value("Time", play.time), y: .value("Win probability", value(at: play.time)))
                     .symbol {
                         Circle()
-                            .fill(Color.white)
-                            .frame(width: 10, height: 10)
-                            .overlay(Circle().stroke(Color.ink, lineWidth: 2))
+                            .fill(Color.white.opacity(0.85))
+                            .frame(width: 7, height: 7)
+                            .overlay(Circle().stroke(Color.ink, lineWidth: 1.5))
                     }
             }
-            if let finalPlay = game.plays.last, domain.contains(finalPlay.time) {
+            if pins.isEmpty, let finalPlay = game.plays.last, domain.contains(finalPlay.time) {
                 PointMark(x: .value("Time", finalPlay.time), y: .value("Win probability", value(at: finalPlay.time)))
                     .symbol {
                         FinalPin(photo: game.photos.last)
                     }
+            }
+            ForEach(pins) { pin in
+                let t = clamped(pin.time)
+                PointMark(x: .value("Time", t), y: .value("Win probability", value(at: t)))
+                    .symbol { PhotoPinView(ref: pin.ref, selected: pin.ref == shown) }
             }
             if let selection {
                 RuleMark(x: .value("Selected", selection))
@@ -325,5 +433,42 @@ private struct FinalPin: View {
         .frame(width: 30, height: 30)
         .clipShape(Circle())
         .overlay(Circle().stroke(Color.white, lineWidth: 2))
+    }
+}
+
+
+struct PhotoPin: Identifiable {
+    let id: Int
+    let ref: PhotoRef
+    let time: Date
+}
+
+/// A photo on the chart: a small round thumbnail, larger and ringed in amber when it is the one on show.
+private struct PhotoPinView: View {
+    let ref: PhotoRef
+    let selected: Bool
+
+    var body: some View {
+        PhotoView(ref: ref)
+            .frame(width: selected ? 34 : 22, height: selected ? 34 : 22)
+            .clipShape(Circle())
+            .overlay(Circle().stroke(selected ? Color.signal : Color.white, lineWidth: selected ? 3 : 1.5))
+            .shadow(color: .black.opacity(0.5), radius: selected ? 6 : 2)
+            .animation(.smooth(duration: 0.2), value: selected)
+    }
+}
+
+/// When the fan's library photos were taken.
+enum PhotoTimes {
+    static func load(_ refs: [PhotoRef]) async -> [PhotoRef: Date] {
+        let ids: [String] = refs.compactMap { if case .library(let id) = $0 { id } else { nil } }
+        guard !ids.isEmpty else { return [:] }
+        return await Task.detached { () -> [PhotoRef: Date] in
+            var out: [PhotoRef: Date] = [:]
+            PHAsset.fetchAssets(withLocalIdentifiers: ids, options: nil).enumerateObjects { asset, _, _ in
+                if let date = asset.creationDate { out[.library(asset.localIdentifier)] = date }
+            }
+            return out
+        }.value
     }
 }
