@@ -31,6 +31,7 @@
 		5ECA51942472297977790DB9 /* LifeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF8E52CBD3AA88A2CCFCB6E /* LifeMapView.swift */; };
 		6122F26E5A1E6D6723B52578 /* RecapFilmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAD768395210D8C4AC6920 /* RecapFilmView.swift */; };
 		685AAF44BE4BFFBD61949D73 /* WrappedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A98C3EEF90E39F6F90FB5F1 /* WrappedView.swift */; };
+		6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1EBE038CBF9E1D49805847 /* GamePhotosView.swift */; };
 		6B98A0B4A7CAA2D8F2034974 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4551DB23A001CFF2C2646420 /* Models.swift */; };
 		73C196CCFCF30A1C99B80D91 /* SceneCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47731D7AFF619393565B668F /* SceneCheck.swift */; };
 		7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */; };
@@ -44,6 +45,7 @@
 		9B4532F2E8F9A71114DAE408 /* YouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D759FA400F64646D4F0E01 /* YouView.swift */; };
 		A40E4A393EC511572F23D872 /* nfl-scoreboard-20250105.json in Resources */ = {isa = PBXBuildFile; fileRef = 08C11AF682C23D055AB16995 /* nfl-scoreboard-20250105.json */; };
 		A4991501BDDEFF74F3C2711D /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080F09ACBEB9945779CC3D9E /* AddGameView.swift */; };
+		B36A1EF368677A89AD58E91D /* CoverPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0A2D620B0AF02229035D47 /* CoverPicker.swift */; };
 		B5ADCC2536397DCDB31BF5F2 /* nfl-summary-401671844.json in Resources */ = {isa = PBXBuildFile; fileRef = 0F19D32DC278C4AA996AD53E /* nfl-summary-401671844.json */; };
 		B77AD38956434C4AE7F0517B /* GameMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDE9AC79A998536F4025B92 /* GameMemoryView.swift */; };
 		BB3F51B6F1750A2ECB5E0479 /* BigGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48F99FC296122C6C846961 /* BigGameTests.swift */; };
@@ -87,6 +89,7 @@
 		08AAD768395210D8C4AC6920 /* RecapFilmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapFilmView.swift; sourceTree = "<group>"; };
 		08C11AF682C23D055AB16995 /* nfl-scoreboard-20250105.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "nfl-scoreboard-20250105.json"; sourceTree = "<group>"; };
 		0BF19D597AB4306240030ECA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		0D1EBE038CBF9E1D49805847 /* GamePhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePhotosView.swift; sourceTree = "<group>"; };
 		0E7F44B24D67E6093141226E /* WitnessTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WitnessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EBB3E2CA6352B5C2EB2E15D /* DetectionTuningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionTuningTests.swift; sourceTree = "<group>"; };
 		0F19D32DC278C4AA996AD53E /* nfl-summary-401671844.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "nfl-summary-401671844.json"; sourceTree = "<group>"; };
@@ -131,6 +134,7 @@
 		C2CF0E40DE18A5B2FEAC521A /* TicketAnchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketAnchors.swift; sourceTree = "<group>"; };
 		D71EE3584F0C03FAE39B2955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8B224F7426AC04A827ABB7E /* AddVenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVenueView.swift; sourceTree = "<group>"; };
+		DA0A2D620B0AF02229035D47 /* CoverPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPicker.swift; sourceTree = "<group>"; };
 		DEDE9AC79A998536F4025B92 /* GameMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMemoryView.swift; sourceTree = "<group>"; };
 		E1D759FA400F64646D4F0E01 /* YouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView.swift; sourceTree = "<group>"; };
 		EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuckyCharmView.swift; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 			children = (
 				7F836BE70D81FF166D6EFD6A /* AlbumImporter.swift */,
 				6573A4420FA4FE35D7CC37B3 /* BigGame.swift */,
+				DA0A2D620B0AF02229035D47 /* CoverPicker.swift */,
 				81F8BFCA25D2EAB73580B35B /* GameLookup.swift */,
 				94EF1E486EA6D3C38019482C /* LocationService.swift */,
 				6B31653ED86394E9918FE2C1 /* PhotoMatcher.swift */,
@@ -261,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				DEDE9AC79A998536F4025B92 /* GameMemoryView.swift */,
+				0D1EBE038CBF9E1D49805847 /* GamePhotosView.swift */,
 				08AAD768395210D8C4AC6920 /* RecapFilmView.swift */,
 				A704303482A7331087EFF150 /* YouWereThereView.swift */,
 			);
@@ -557,10 +563,12 @@
 				2255C527B132D1FCBC15EAAD /* BigGame.swift in Sources */,
 				9863B0DFED2996CA94B9B1B2 /* BigGamesView.swift in Sources */,
 				00FA15CED64001295EE46A94 /* Components.swift in Sources */,
+				B36A1EF368677A89AD58E91D /* CoverPicker.swift in Sources */,
 				1063DE931F2D0F81A6578E96 /* DiscoveryView.swift in Sources */,
 				2A1B4249B8E285AC96DDCC6C /* EventTheme.swift in Sources */,
 				2FB08C6E1D9C2F5F821BFEA3 /* GameLookup.swift in Sources */,
 				B77AD38956434C4AE7F0517B /* GameMemoryView.swift in Sources */,
+				6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */,
 				E14EE3095355CC6B33297843 /* Library.swift in Sources */,
 				5ECA51942472297977790DB9 /* LifeMapView.swift in Sources */,
 				7C481B3216C5EA8C05CD1E47 /* LiveCheckInView.swift in Sources */,
