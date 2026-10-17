@@ -84,6 +84,8 @@ final class ScanPacing {
     }
 
     private func advance(_ next: Step) {
+        // The headline count carries over from matching, so it settles on the final number instead of restarting.
+        if next == .building { found = matched }
         step = next
         stageStart = .now
     }
@@ -131,14 +133,14 @@ struct ScanProgressView: View {
                     Text(finished ? "Scan finished" : "Scanning on this iPhone").unitLabel().foregroundStyle(Color.textSecondary)
                 }
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(bigNumber.formatted())
+                    Text(headlineCount.formatted())
                         .displayFont(80)
                         .contentTransition(.numericText())
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
                         .foregroundStyle(.white)
                         .accessibilityIdentifier("onboarding-scanning")
-                    Text(caption).unitLabel().foregroundStyle(Color.textSecondary)
+                    Text(headlineCount == 1 ? "game found" : "games found").unitLabel().foregroundStyle(Color.textSecondary)
                 }
                 ThumbStrip(ids: p.recentIds)
                 ProgressView(value: finished ? 1 : pace.fraction(scan)).tint(Color.signal)
@@ -184,24 +186,29 @@ struct ScanProgressView: View {
         }
     }
 
-    private var bigNumber: Int {
+    /// One number for the whole scan: games found so far. It only climbs (and settles on the final count), so it
+    /// means the same thing on every step. What each step is doing is spelled out on its own row.
+    private var headlineCount: Int {
         switch pace.step {
-        case .reading: pace.photos
-        case .stadiums: pace.near
-        case .matching: pace.matched
-        case .verifying: pace.verified
+        case .reading, .stadiums: 0
+        case .matching, .verifying: pace.matched
         case .building: pace.found
         }
     }
 
-    private var caption: String {
+    /// A plain line under a step: live progress while it runs, a short result once it is done.
+    private func detail(_ step: ScanPacing.Step, state: StepState) -> String? {
         let p = scan.progress
-        switch pace.step {
-        case .reading: return "of \(p.total.formatted()) photos read"
-        case .stadiums: return "photos taken at a stadium \u{00B7} \(pace.venues) venues"
-        case .matching: return "games matched \u{00B7} \(pace.checked) of \(scan.totalVisits) visits checked"
-        case .verifying: return "of \(scan.verifyTotal) visits looked at"
-        case .building: return "games found"
+        switch (step, state) {
+        case (_, .pending): return nil
+        case (.reading, .active): return "\(pace.photos.formatted()) of \(p.total.formatted()) photos"
+        case (.reading, .done): return "\(p.total.formatted()) photos"
+        case (.stadiums, _):
+            return "\(pace.near.formatted()) \(pace.near == 1 ? "photo" : "photos") at \(pace.venues) \(pace.venues == 1 ? "stadium" : "stadiums")"
+        case (.matching, .active): return "\(pace.checked) of \(scan.totalVisits) visits"
+        case (.matching, .done): return "\(pace.matched) on the schedule"
+        case (.verifying, .active): return "\(pace.verified) of \(scan.verifyTotal) visits"
+        default: return nil
         }
     }
 
@@ -216,15 +223,21 @@ struct ScanProgressView: View {
                 }
             }
             .frame(width: 22, height: 22)
-            Text(step.title)
-                .font(.condensed(.headline, weight: .heavy))
-                .textCase(.uppercase)
-                .foregroundStyle(state == .pending ? Color.textTertiary : .white)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(step.title)
+                    .font(.condensed(.headline, weight: .heavy))
+                    .textCase(.uppercase)
+                    .foregroundStyle(state == .pending ? Color.textTertiary : .white)
+                if let line = detail(step, state: state) {
+                    Text(line).font(.footnote).monospacedDigit().foregroundStyle(Color.textSecondary)
+                }
+            }
             Spacer()
         }
-        .frame(minHeight: 40)
+        .frame(minHeight: 44)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(step.title), \(state == .done ? "done" : state == .active ? "in progress" : "waiting")")
+        .accessibilityLabel("\(step.title), \(state == .done ? "done" : state == .active ? "in progress" : "waiting")"
+                            + (detail(step, state: state).map { ", \($0)" } ?? ""))
     }
 
     private enum StepState { case pending, active, done }
