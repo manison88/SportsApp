@@ -207,7 +207,8 @@ struct AlbumImportView: View {
                     }
                     .foregroundStyle(.white)
                 } else {
-                    Text("No game on the schedule").font(.footnote).foregroundStyle(Color.textTertiary)
+                    Text(i.ticket == nil ? "No game on the schedule · saved as a stadium visit" : "No game on the schedule")
+                        .font(.footnote).foregroundStyle(Color.textTertiary)
                 }
                 if i.ticket != nil {
                     Label("From your ticket", systemImage: "ticket.fill").font(.footnote).foregroundStyle(Color.textSecondary)
@@ -327,7 +328,7 @@ struct AlbumImportView: View {
             items[index].game = await bestGame(for: c)
             if let game = items[index].game {
                 let readings = await ScoreboardReader.read(c.assetIds.map { PhotoRef.library($0) })
-                items[index].onScoreboard = readings.contains { ScoreboardReader.support($0, for: game) > 0 }
+                items[index].onScoreboard = readings.contains { ScoreboardReader.confirms($0, game) }
             }
             // Party near a downtown stadium? Look at the photos before pre-selecting.
             if items[index].ticket == nil && !items[index].onScoreboard,
@@ -400,6 +401,10 @@ struct AlbumImportView: View {
                                   venueId: c.venue.id, photos: c.assetIds.suffix(24).map { PhotoRef.library($0) },
                                   origin: item.ticket == nil ? .photos : .ticket)
             entry.seat = item.ticket?.seatLine
+            if item.game == nil && item.ticket == nil && !GameLookup.leagues(for: c.venue).isEmpty {
+                entry.kind = .visit
+                entry.competition = "Stadium visit"
+            }
             if let game = item.game {
                 GameLookup.apply(game, detail: nil, to: &entry, library: library)
                 let id = entry.id

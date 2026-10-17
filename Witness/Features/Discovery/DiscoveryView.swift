@@ -97,7 +97,7 @@ struct DiscoveryView: View {
                     Button {
                         confirm(cluster)
                     } label: {
-                        Label("Confirm", systemImage: "checkmark")
+                        Label(noGame(cluster) ? "Save visit" : "Confirm", systemImage: "checkmark")
                     }
                     .buttonStyle(.primary)
                     .accessibilityIdentifier("discovery-confirm")
@@ -177,8 +177,8 @@ struct DiscoveryView: View {
                     .foregroundStyle(Color.textSecondary)
                     .accessibilityIdentifier("discovery-doubtful")
             }
-            if checkedFor == cluster.id && lookupFor != cluster.id && !GameLookup.leagues(for: cluster.venue).isEmpty {
-                Label("No game on the schedule that day", systemImage: "calendar.badge.exclamationmark")
+            if noGame(cluster) {
+                Label("No game on the schedule that day. Save it as a stadium visit?", systemImage: "calendar.badge.exclamationmark")
                     .font(.footnote)
                     .foregroundStyle(Color.textSecondary)
                     .accessibilityIdentifier("discovery-unverified")
@@ -286,12 +286,18 @@ struct DiscoveryView: View {
         if let game = lookup, lookupFor == cluster.id {
             // A scoreboard in the photos that shows these teams confirms it.
             let readings = await ScoreboardReader.read(cluster.assetIds.map { PhotoRef.library($0) })
-            onScoreboard = readings.contains { ScoreboardReader.support($0, for: game) > 0 }
+            onScoreboard = readings.contains { ScoreboardReader.confirms($0, game) }
         }
         // A downtown stadium on game night can still be a party across the street: look at the photos.
         if tickets[cluster.id] == nil && !onScoreboard {
             scene = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) })
         }
+    }
+
+    /// The schedule was checked and had nothing: a tour, or a walk past the ground.
+    private func noGame(_ cluster: PhotoCluster) -> Bool {
+        checkedFor == cluster.id && lookupFor != cluster.id && tickets[cluster.id] == nil
+            && !GameLookup.leagues(for: cluster.venue).isEmpty
     }
 
     private func confirm(_ cluster: PhotoCluster) {
@@ -304,6 +310,10 @@ struct DiscoveryView: View {
         if let draft = tickets[cluster.id] {
             entry.seat = draft.seatLine
             entry.origin = .ticket
+        }
+        if noGame(cluster) {
+            entry.kind = .visit
+            entry.competition = "Stadium visit"
         }
         if let lookup, lookupFor == cluster.id {
             entry.date = lookup.start

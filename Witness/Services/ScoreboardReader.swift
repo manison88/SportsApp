@@ -49,17 +49,33 @@ enum ScoreboardReader {
         return s.home == nil && s.away == nil ? 1 : 0
     }
 
+    /// A board with crests instead of names (Cardiff's "1 – 1"): the final score as a pair, on a board with few
+    /// other numbers. Weaker than `support`, so only used when the venue and time already point at this game.
+    static func scoreOnly(_ reading: ScoreboardReading, for game: FoundGame) -> Bool {
+        guard game.completed, let h = game.home.score, let a = game.away.score else { return false }
+        let n = reading.numbers
+        guard n.count <= 6 else { return false }
+        return zip(n, n.dropFirst()).contains { ($0 == h && $1 == a) || ($0 == a && $1 == h) }
+    }
+
+    /// Whether a reading backs a game found from the venue and time.
+    static func confirms(_ reading: ScoreboardReading, _ game: FoundGame) -> Bool {
+        support(reading, for: game) > 0 || scoreOnly(reading, for: game)
+    }
+
     // MARK: Reading photos
 
     /// Text-recognizes up to `limit` photos, newest first, keeping only readings that look like a board
-    /// (at least one short word and one number).
+    /// (a number, plus a short word or so few numbers it could be a crest board's score).
     static func read(_ refs: [PhotoRef], limit: Int = 8) async -> [ScoreboardReading] {
         var out: [ScoreboardReading] = []
         for ref in refs.suffix(limit).reversed() {
             guard let image = await PhotoLoader.load(ref, size: CGSize(width: 1600, height: 1600)),
                   let text = try? await TextRecognizer.text(in: image) else { continue }
             let r = reading(from: text)
-            if !r.numbers.isEmpty, r.tokens.contains(where: { $0.count <= 4 && Int($0) == nil }) { out.append(r) }
+            if !r.numbers.isEmpty, r.numbers.count <= 4 || r.tokens.contains(where: { $0.count <= 4 && Int($0) == nil }) {
+                out.append(r)
+            }
         }
         return out
     }
@@ -90,6 +106,7 @@ enum ScoreboardReader {
         "baseball/mlb", "football/nfl", "basketball/nba", "hockey/nhl", "soccer/usa.1", "basketball/wnba",
         "football/college-football", "basketball/mens-college-basketball", "football/cfl", "soccer/eng.1",
         "soccer/esp.1", "soccer/ger.1", "soccer/ita.1", "soccer/fra.1", "soccer/uefa.champions", "soccer/mex.1",
+        "soccer/fifa.world", "soccer/fifa.worldq.uefa", "soccer/fifa.friendly",
     ]
 
     // MARK: Helpers

@@ -352,6 +352,7 @@ extension Outcome {
 @MainActor
 func matchupText(_ game: GameEntry, _ library: Library) -> String {
     if game.sport == .motorsport { return game.competition ?? "Race" }
+    if game.isVisit { return library.venue(game.venueId)?.name ?? "Stadium visit" }
     let home = library.team(game.homeTeamId)?.locationName
     let away = library.team(game.awayTeamId)?.locationName
     switch (away, home) {

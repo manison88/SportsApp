@@ -109,11 +109,26 @@ enum GameLookup {
         // Any soccer ground can host a World Cup, Euro, Copa América or continental final.
         if venue.sports.contains(.soccer) {
             for l in ["soccer/fifa.world", "soccer/uefa.euro", "soccer/conmebol.america", "soccer/concacaf.gold",
-                      "soccer/fifa.cwc", "soccer/uefa.champions", "soccer/uefa.europa", "soccer/conmebol.libertadores"]
+                      "soccer/fifa.cwc", "soccer/uefa.champions", "soccer/uefa.europa", "soccer/conmebol.libertadores",
+                      "soccer/fifa.friendly"] + nationalLeagues(for: venue)
             where !base.contains(l) { base.append(l) }
         }
         return base
     }
+
+    /// Qualifiers and the Nations League, by the venue's confederation.
+    private static func nationalLeagues(for venue: Venue) -> [String] {
+        let c = venue.countryCode
+        if ["AR", "BO", "BR", "CL", "CO", "EC", "PE", "PY", "UY", "VE"].contains(c) { return ["soccer/fifa.worldq.conmebol"] }
+        if ["US", "CA", "MX", "BS", "CR", "JM", "PA", "HN"].contains(c) { return ["soccer/fifa.worldq.concacaf"] }
+        if soccerLeague[c] != nil || europe.contains(c) { return ["soccer/fifa.worldq.uefa", "soccer/uefa.euroq", "soccer/uefa.nations"] }
+        return []
+    }
+
+    private static let europe: Set<String> = [
+        "AL", "AM", "AZ", "BA", "BG", "CY", "CZ", "EE", "FI", "GE", "HR", "HU", "IE", "IL", "IS", "KZ", "LT", "LU",
+        "LV", "MC", "ME", "MK", "MT", "PL", "RO", "RS", "RU", "SI", "SK", "UA", "XK",
+    ]
 
     private static func clubLeagues(for venue: Venue) -> [String] {
         if let l = venue.leagues, !l.isEmpty { return l }

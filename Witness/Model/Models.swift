@@ -236,6 +236,11 @@ struct GameEntry: Codable, Hashable, Identifiable {
     var source: Source?
     /// Set for big games: finals, playoffs, tournaments, rivalries.
     var stage: Stage?
+    /// `.visit` for a stadium tour or a walk past the ground: photos at the venue, no game that day.
+    var kind: Kind?
+
+    enum Kind: String, Codable { case visit }
+    var isVisit: Bool { kind == .visit }
 
     struct Stage: Codable, Hashable {
         enum Kind: String, Codable, Comparable {

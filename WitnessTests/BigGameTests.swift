@@ -26,6 +26,15 @@ final class BigGameTests: XCTestCase {
         XCTAssertEqual(stage("basketball/mens-college-basketball", "post-season", 3, ["Men's Basketball Championship - Final Four"])?.kind, .playoff)
     }
 
+    func testQualifyingPlayoffs() {
+        // Wales v Bosnia and Herzegovina, Cardiff, 26 March 2026: as ESPN lists it.
+        XCTAssertEqual(stage("soccer/fifa.worldq.uefa", "playoff-semifinals", 1, ["Bosnia-Herzegovina advance 4-2 on penalties"]),
+                       .init(kind: .playoff, label: "World Cup qualifying · Playoff semifinal"))
+        XCTAssertEqual(stage("soccer/fifa.worldq.uefa", "playoff-final", 1, []),
+                       .init(kind: .playoff, label: "World Cup qualifying · Playoff final"))
+        XCTAssertNil(stage("soccer/fifa.friendly", nil, 1, []))
+    }
+
     func testTournamentsAllStarsAndOrdinaryGames() {
         XCTAssertEqual(stage("soccer/fifa.world", "group-stage", 10953, []), .init(kind: .tournament, label: "World Cup · Group stage"))
         XCTAssertEqual(stage("baseball/mlb", "regular-season", 2, ["MLB All-Star Game"])?.kind, .allStar)

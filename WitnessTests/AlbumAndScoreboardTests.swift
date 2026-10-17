@@ -41,7 +41,41 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(VisitGrouping.group(one, venues: library.venues).visits.count, 1, "An album the fan chose is trusted")
     }
 
+    /// A fan's matchday in Cardiff: the pub before (1.8 km away), the ground, a stadium tour in London another day.
+    func testMatchdayPubJoinsTheGameAndTourStandsAlone() {
+        let cardiff = library.venue("cardiff-city-stadium")!
+        let bridge = library.venue("stamford-bridge")!
+        let points = [
+            PhotoPoint(id: "pub", date: date("2026-03-26T17:30:00Z"), latitude: 51.4810, longitude: -3.1790),
+            PhotoPoint(id: "ground", date: date("2026-03-26T19:20:00Z"), latitude: cardiff.latitude + 0.0008, longitude: cardiff.longitude),
+            PhotoPoint(id: "board", date: date("2026-03-26T21:40:00Z"), latitude: cardiff.latitude, longitude: cardiff.longitude + 0.001),
+            PhotoPoint(id: "tour", date: date("2026-03-28T11:00:00Z"), latitude: bridge.latitude, longitude: bridge.longitude),
+        ]
+        let scan = VisitGrouping.group(points, venues: library.venues)
+        XCTAssertEqual(scan.visits.map(\.venue.id), ["cardiff-city-stadium", "stamford-bridge"])
+        XCTAssertEqual(Set(scan.visits[0].assetIds), ["pub", "ground", "board"], "The pub is outside the 200 m fence but on the day")
+        XCTAssertTrue(scan.unplacedDays.isEmpty)
+        XCTAssertTrue(GameLookup.leagues(for: cardiff).contains("soccer/fifa.worldq.uefa"))
+        XCTAssertTrue(GameLookup.leagues(for: library.venue("lumen-field")!).contains("soccer/fifa.world"))
+    }
+
     // MARK: Scoreboards
+
+    func testCrestBoardConfirmsByScoreAlone() {
+        func side(_ code: String, _ name: String, _ score: Int) -> FoundGame.Side {
+            .init(espnId: code, abbreviation: code, location: name, name: name, color: nil, altColor: nil, score: score, line: [])
+        }
+        let wal = FoundGame(league: "soccer/fifa.worldq.uefa", leagueName: "FIFA World Cup Qualifying - UEFA", eventId: "1",
+                            sport: .soccer, start: .now, venueName: "Cardiff City Stadium", venueCity: "Cardiff",
+                            home: side("WAL", "Wales", 1), away: side("BIH", "Bosnia-Herzegovina", 1),
+                            completed: true, note: nil)
+        let crests = ScoreboardReader.reading(from: "1 - 1\nCROESO")
+        XCTAssertEqual(ScoreboardReader.support(crests, for: wal), 0, "No team names on a crest board")
+        XCTAssertTrue(ScoreboardReader.confirms(crests, wal))
+        XCTAssertFalse(ScoreboardReader.confirms(ScoreboardReader.reading(from: "2 - 0"), wal))
+        XCTAssertFalse(ScoreboardReader.confirms(ScoreboardReader.reading(from: "GATE 1 1 ROW 12 SEAT 4 5 6 7"), wal),
+                       "Too many numbers to trust a bare pair")
+    }
 
     private func game(home: (String, String, Int), away: (String, String, Int)) -> FoundGame {
         func side(_ t: (String, String, Int)) -> FoundGame.Side {

@@ -9,6 +9,13 @@ enum BigGame {
         "soccer/conmebol.america": "Copa América", "soccer/concacaf.gold": "Gold Cup", "soccer/fifa.cwc": "Club World Cup",
     ]
 
+    /// National-team qualifying: every match counts, the playoff rounds most of all.
+    static let qualifierLeagues: [String: String] = [
+        "soccer/fifa.worldq.uefa": "World Cup qualifying", "soccer/fifa.worldq.conmebol": "World Cup qualifying",
+        "soccer/fifa.worldq.concacaf": "World Cup qualifying", "soccer/uefa.euroq": "Euro qualifying",
+        "soccer/uefa.nations": "Nations League",
+    ]
+
     /// Cup competitions: their final is a title game, their knockout rounds are playoffs.
     static let cupLeagues: [String: String] = [
         "soccer/uefa.champions": "Champions League", "soccer/uefa.europa": "Europa League",
@@ -37,7 +44,13 @@ enum BigGame {
         if titlePhrases.contains(where: { lower.contains($0) }) && !lower.contains("semifinal") && !lower.contains("quarterfinal") {
             return .init(kind: .championship, label: tidy(note ?? text))
         }
-        let cupName = cupLeagues[league] ?? tournamentLeagues[league]
+        let cupName = cupLeagues[league] ?? tournamentLeagues[league] ?? qualifierLeagues[league]
+        // Qualifying playoffs come as "playoff-semifinals", "playoff-final".
+        if slug.hasPrefix("playoff-") {
+            let round = String(slug.dropFirst("playoff-".count))
+            let name = round == "final" ? "Playoff final" : "Playoff " + roundName(round).lowercased()
+            return .init(kind: .playoff, label: [cupName, name].compactMap { $0 }.joined(separator: " · "))
+        }
         if slug == "final" || slug == "mls-cup" {
             return .init(kind: .championship, label: slug == "mls-cup" ? "MLS Cup" : "\(cupName ?? "Cup") Final")
         }
