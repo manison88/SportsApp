@@ -22,16 +22,16 @@
   .st .nm { margin-top: 8px; font: 500 12.5px/1.2 var(--a-ui); color: var(--a-text); text-align: center; white-space: nowrap; }
   .st .dt { margin-top: 3px; font: 500 11px/1 var(--a-num); color: var(--a-text-3); font-variant-numeric: tabular-nums; }
   .st.ghost .nm { color: var(--a-text-3); }
-  .fadeout { position: absolute; left: 0; right: 0; bottom: 0; height: 190px; background: linear-gradient(180deg, rgba(5,5,6,0), #050506 70%); z-index: 10; pointer-events: none; }
+  .fadeout { position: absolute; left: 0; right: 0; bottom: 0; height: 150px; background: linear-gradient(180deg, rgba(5,5,6,0), #050506 78%); z-index: 10; pointer-events: none; }
 </style></head>
 <body class="phone a">
   <div class="hdr">
     <div class="a-eyebrow">Stadium passport</div>
     <div class="a-h1">14 of 30<br><i>ballparks.</i></div>
-    <div class="a-small">Next closest: Chase Field · 1,440 mi</div>
+    <div class="a-small">Next closest: Rogers Centre · 435 mi</div>
   </div>
   <div class="ring">
-    <svg width="92" height="92" viewBox="0 0 92 92">
+    <svg width="92" height="92" viewBox="0 0 92 92" style="overflow:visible">
       <circle cx="46" cy="46" r="40" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="5"/>
       <circle cx="46" cy="46" r="40" fill="none" stroke="#ffb547" stroke-width="5" stroke-linecap="round" stroke-dasharray="117.3 251.3" transform="rotate(-90 46 46)" style="filter:drop-shadow(0 0 6px rgba(255,181,71,.55))"/>
     </svg>
@@ -69,7 +69,9 @@
     ['COMERICA PARK · DETROIT', 'C', 'Comerica Park', 'Jul 9, 2022', 1, 6],
     ['YANKEE STADIUM · NEW YORK', 'Y', 'Yankee Stadium', 'Sep 10, 2022', 1, -5],
   ];
-  const G = ['Chase Field', 'Coors Field', 'Petco Park'];
+  const G = ['Rogers Centre', 'Nationals Park', 'Citi Field'];
+  // foil tints: warm gold, pearl, rose, sea-glass
+  const F = [['#f3d9a8','#c9a96a','#e8c995'],['#eef0f2','#b9c0c8','#dfe4ea'],['#f4d6d0','#c99f9a','#ebc6c0'],['#d8efe6','#9fc2b6','#c8e3da'],['#efe6d6','#c8b9a0','#e2d5bf']];
   const grid = document.getElementById('grid');
   S.forEach(([ring, mono, name, date, n, tilt], i) => {
     const id = 'p' + i;
@@ -78,7 +80,7 @@
     d.innerHTML = `<svg viewBox="0 0 96 96">
       <defs>
         <linearGradient id="f${i}" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#f6efe4"/><stop offset=".35" stop-color="#d9cfc0"/><stop offset=".55" stop-color="#fff8ec"/><stop offset=".75" stop-color="#cdbfa9"/><stop offset="1" stop-color="#efe5d6"/>
+          <stop offset="0" stop-color="${F[i%F.length][0]}"/><stop offset=".38" stop-color="${F[i%F.length][1]}"/><stop offset=".56" stop-color="#fffaf0"/><stop offset=".78" stop-color="${F[i%F.length][2]}"/><stop offset="1" stop-color="${F[i%F.length][0]}"/>
         </linearGradient>
         <path id="${id}" d="M48 48 m-33 0 a33 33 0 1 1 66 0 a33 33 0 1 1 -66 0"/>
       </defs>
@@ -89,7 +91,7 @@
         <text font-family="Inter" font-size="6.6" font-weight="600" letter-spacing="1.25" fill="url(#f${i})"><textPath href="#${id}" startOffset="${i % 2 ? 2 : 4}%">${ring} · ${yr} ·</textPath></text>
         <text x="48" y="${mono.length > 2 ? 52.5 : 55}" text-anchor="middle" font-family="Instrument Serif" font-size="${mono.length > 2 ? 15 : mono.length > 1 ? 20 : 25}" fill="url(#f${i})">${mono}</text>
       </g>
-      ${n > 1 ? `<g><circle cx="82" cy="16" r="11" fill="#f5f1ea"/><text x="82" y="19.6" text-anchor="middle" font-family="Inter Tight" font-weight="700" font-size="10" fill="#0a0a0b">×${n}</text></g>` : ''}
+      ${n > 1 ? `<g><circle cx="88" cy="10" r="11" fill="#f5f1ea" stroke="#050506" stroke-width="2"/><text x="88" y="13.6" text-anchor="middle" font-family="Inter Tight" font-weight="700" font-size="10" fill="#0a0a0b">×${n}</text></g>` : ''}
     </svg><div class="nm">${name}</div><div class="dt">${date}</div>`;
     grid.appendChild(d);
   });
