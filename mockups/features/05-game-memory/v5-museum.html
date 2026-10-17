@@ -1,0 +1,73 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Museum card</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #e9e6e0; color: #1b1a18; }
+  .wall { position: absolute; inset: 0; background:
+      radial-gradient(70% 38% at 50% 26%, #f7f5f1 0%, #ebe8e2 60%, #dedad3 100%); }
+  .spot { position: absolute; left: 50%; top: 40px; width: 420px; height: 420px; transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgba(255,250,240,.9), rgba(255,250,240,0)); }
+  .top { position: absolute; top: 56px; left: 18px; right: 18px; display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+  .top .ico { width: 36px; height: 36px; display: grid; place-items: center; }
+  .top svg { width: 20px; height: 20px; stroke: #1b1a18; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .room { font: 500 11px/1 var(--f-ui); letter-spacing: 2.4px; text-transform: uppercase; color: #6b675f; }
+
+  .frame { position: absolute; left: 50%; top: 116px; transform: translateX(-50%); width: 300px; height: 372px;
+    background: #141312; padding: 12px; box-shadow: 0 2px 3px rgba(0,0,0,.25), 0 28px 50px rgba(30,25,15,.35), 0 60px 90px rgba(30,25,15,.18); }
+  .mat { width: 100%; height: 100%; background: #f6f3ec; padding: 26px 24px 34px; box-shadow: inset 0 1px 4px rgba(0,0,0,.25); }
+  .mat .img { width: 100%; height: 100%; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(0,0,0,.2); }
+  .mat .img img { filter: contrast(1.04) saturate(.82); }
+  .shadow { position: absolute; left: 50%; top: 492px; width: 270px; height: 18px; transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgba(40,30,20,.18), transparent); }
+
+  .placard { position: absolute; left: 40px; right: 40px; top: 530px; background: #fbfaf7; padding: 18px 18px 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 8px 20px rgba(40,30,20,.08); }
+  .placard .acc { display: flex; justify-content: space-between; font: 500 9.5px/1 var(--f-ui); letter-spacing: 1.6px; color: #8b867c; text-transform: uppercase; }
+  .placard h2 { font: 400 25px/1.05 var(--f-fraunces); letter-spacing: -.4px; margin: 10px 0 2px; font-variation-settings: "opsz" 72; }
+  .placard .sub { font: italic 400 14px/1.3 var(--f-fraunces); color: #4b4740; }
+  .placard p { font: 400 12px/1.5 var(--f-ui); color: #4b4740; margin-top: 10px; }
+  .placard .line { height: 1px; background: #e2ddd3; margin: 12px 0 10px; }
+  .placard .coll { font: 500 10.5px/1.4 var(--f-ui); color: #6b675f; }
+
+  .audio { position: absolute; left: 40px; right: 40px; top: 760px; height: 44px; border-radius: 22px; background: #1b1a18; color: #f6f3ec;
+    display: flex; align-items: center; gap: 12px; padding: 0 6px 0 6px; }
+  .audio .play { width: 32px; height: 32px; border-radius: 16px; background: #f6f3ec; display: grid; place-items: center; }
+  .audio .play i { width: 0; height: 0; border-left: 9px solid #1b1a18; border-top: 6px solid transparent; border-bottom: 6px solid transparent; margin-left: 3px; }
+  .audio .t { font: 500 12px/1.2 var(--f-ui); flex: 1; }
+  .audio .t span { color: rgba(246,243,236,.55); }
+  .audio .wave { display: flex; gap: 2px; align-items: center; margin-right: 10px; }
+  .audio .wave b { width: 2px; border-radius: 1px; background: rgba(246,243,236,.7); }
+  .pager { position: absolute; left: 0; right: 0; top: 818px; display: flex; justify-content: center; gap: 6px; }
+  .pager i { width: 5px; height: 5px; border-radius: 3px; background: #c7c2b8; }
+  .pager i.on { width: 18px; background: #1b1a18; }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="wall"></div><div class="spot"></div>
+  <div class="top">
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="room">Room 2025 · 1 of 9</div>
+    <div class="ico"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/></svg></div>
+  </div>
+
+  <div class="frame"><div class="mat"><div class="img"><img class="ph" src="../../photos/lambeau-snow.jpg"></div></div></div>
+  <div class="shadow"></div>
+
+  <div class="placard">
+    <div class="acc"><span>W.2025.001</span><span>Week 18</span></div>
+    <h2>Chicago 24, Green Bay 22</h2>
+    <div class="sub">Lambeau Field, January 5, 2025</div>
+    <p>Light snow, 19°F. A 51-yard field goal as time expired, witnessed from Section 112, Row 41 by a crowd of 77,412.</p>
+    <div class="line"></div>
+    <div class="coll">Collection of Sam Okafor. Attended with Maya and Leo.</div>
+  </div>
+
+  <div class="audio">
+    <div class="play"><i></i></div>
+    <div class="t">Sam’s note <span>· 0:48</span></div>
+    <div class="wave">
+      <b style="height:8px"></b><b style="height:14px"></b><b style="height:20px"></b><b style="height:11px"></b><b style="height:17px"></b><b style="height:24px"></b><b style="height:13px"></b><b style="height:8px"></b><b style="height:16px"></b><b style="height:21px"></b><b style="height:10px"></b><b style="height:6px"></b>
+    </div>
+  </div>
+  <div class="pager"><i class="on"></i><i></i><i></i><i></i></div>
+<script src="../../kit/kit.js"></script>
+</body></html>

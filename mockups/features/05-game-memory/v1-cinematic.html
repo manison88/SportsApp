@@ -1,0 +1,102 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cinematic</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  .hero { position: absolute; left: 0; top: 0; width: 393px; height: 468px; }
+  .hero::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(5,5,6,.55) 0%, rgba(5,5,6,0) 22%, rgba(5,5,6,0) 45%, rgba(5,5,6,.75) 78%, #050506 100%); }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 5; }
+  .topbar .right { display: flex; gap: 10px; }
+  .caption { position: absolute; left: 22px; right: 22px; top: 272px; z-index: 4; }
+  .pills { display: flex; gap: 6px; margin-bottom: 14px; }
+  .pill { height: 24px; padding: 0 10px; border-radius: 12px; display: inline-flex; align-items: center; gap: 5px;
+    font: 700 9.5px/1 var(--f-ui); letter-spacing: 1.3px; text-transform: uppercase; }
+  .pill.signal { color: var(--signal); background: rgba(255,181,71,.14); box-shadow: inset 0 0 0 .5px rgba(255,181,71,.4); }
+  .pill.plain { color: var(--text); background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.25); }
+  h1 { font: 400 40px/1.0 var(--f-serif); letter-spacing: -.6px; color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,.45); }
+  h1 em { font-style: italic; color: #ffd9b8; }
+
+  .card { position: absolute; left: 14px; right: 14px; top: 440px; z-index: 6; padding: 20px 20px 18px;
+    background: #121215; border-radius: 28px; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.09), 0 30px 60px rgba(0,0,0,.6); }
+  .card::before { content: ""; position: absolute; left: 36px; right: 36px; top: -1px; height: 1.5px;
+    background: linear-gradient(90deg, var(--chi-bears), var(--gb)); box-shadow: 0 0 18px rgba(240,90,26,.9); border-radius: 2px; }
+  .meta { display: flex; justify-content: space-between; margin-bottom: 12px; }
+  .meta .final { color: var(--text-2); }
+  .row { display: flex; align-items: center; height: 62px; }
+  .row .mono-badge { width: 46px; height: 46px; font-size: 26px; margin-right: 14px; }
+  .row .name { flex: 1; }
+  .row .city { font: 600 22px/1.1 var(--f-ui); letter-spacing: -.3px; }
+  .row .abbr { font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.6px; color: var(--text-3); margin-top: 5px; }
+  .row .score { font: 800 68px/1 var(--f-cond); letter-spacing: -2px; width: 82px; text-align: right; }
+  .row .won { width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 7px solid var(--chi-bears); margin-right: 6px; }
+  .row.lose .city, .row.lose .score { color: var(--text-4); }
+  .row.lose .mono-badge { filter: saturate(.35); opacity: .6; }
+  .rule { height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--chi-bears), var(--gb)); opacity: .8; margin: 14px 0 14px; }
+  .venue { display: flex; align-items: center; justify-content: space-between; }
+  .venue b { display: block; font: 600 17px/1.2 var(--f-ui); }
+  .venue span { font: 400 13px/1.3 var(--f-ui); color: var(--text-3); }
+  .chip { height: 30px; padding: 0 12px; border-radius: 15px; display: inline-flex; align-items: center; gap: 6px; font: 500 12px/1 var(--f-ui); }
+  .chip i { font-style: normal; color: var(--text-2); }
+
+  .with { position: absolute; left: 22px; right: 22px; top: 700px; display: flex; align-items: center; gap: 14px; }
+  .avs { display: flex; }
+  .av { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font: 400 21px/1 var(--f-serif); color: #fff; box-shadow: 0 0 0 2.5px var(--ink); }
+  .av + .av { margin-left: -13px; }
+  .with .t1 { font: 400 23px/1.1 var(--f-serif); }
+  .with .t2 { font: 400 13px/1.3 var(--f-ui); color: var(--text-3); margin-top: 3px; }
+  .strip { position: absolute; left: 22px; top: 776px; display: flex; gap: 10px; }
+  .strip .ph { width: 120px; height: 160px; border-radius: 16px; overflow: hidden; }
+  .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 70px; background: linear-gradient(transparent, var(--ink)); z-index: 8; }
+</style></head>
+<body class="phone">
+  <div class="hero"><img class="ph graded" src="../../photos/lambeau-snow.jpg"></div>
+  <div class="grain"></div>
+
+  <div class="topbar">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="right">
+      <div class="btn-circle glass"><svg viewBox="0 0 24 24" style="fill:#fff;stroke:none"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 7 4.5c2 0 3.5 1.1 5 3 1.5-1.9 3-3 5-3 3.6 0 5.6 3.5 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg></div>
+      <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+    </div>
+  </div>
+
+  <div class="caption">
+    <div class="pills"><span class="pill signal">◆ Road trip</span><span class="pill plain">Week 18</span><span class="pill plain">★ All-timer</span></div>
+    <h1>The kick that went<br>through <em>the snow.</em></h1>
+  </div>
+
+  <div class="card">
+    <div class="meta"><span class="eyebrow final">Final</span><span class="eyebrow">Sun · Jan 5 · 2025</span></div>
+    <div class="row">
+      <span class="mono-badge" style="background:linear-gradient(135deg,#0b162a,#2a1e1c);box-shadow:inset 0 0 0 2px #c83803">C</span>
+      <div class="name"><div class="city">Chicago</div><div class="abbr">CHI · AWAY</div></div>
+      <span class="won"></span><span class="score tnum">24</span>
+    </div>
+    <div class="row lose">
+      <span class="mono-badge" style="background:linear-gradient(135deg,#203731,#3d4a2b);box-shadow:inset 0 0 0 2px #ffb612">G</span>
+      <div class="name"><div class="city">Green Bay</div><div class="abbr">GB · HOME</div></div>
+      <span class="score tnum">22</span>
+    </div>
+    <div class="rule"></div>
+    <div class="venue">
+      <div><b>Lambeau Field</b><span>Green Bay, Wisconsin</span></div>
+      <span class="chip glass nowrap">❄︎ 19° <i>Snow</i></span>
+    </div>
+  </div>
+
+  <div class="with">
+    <div class="avs">
+      <div class="av" style="background:linear-gradient(135deg,#ff7a8a,#8c3a44)">M</div>
+      <div class="av" style="background:linear-gradient(135deg,#6fd3ff,#2c5d75)">L</div>
+    </div>
+    <div><div class="t1">With Maya & Leo</div><div class="t2">Maya’s 13th game with you · Leo’s 12th</div></div>
+  </div>
+
+  <div class="strip">
+    <div class="ph"><canvas class="photo" data-style="crowd" data-seed="12" data-accent="#f05a1a" data-secondary="#ffb612"></canvas></div>
+    <div class="ph"><canvas class="photo" data-style="scoreboard" data-seed="5" data-accent="#f05a1a" data-secondary="#ffb612" data-board="CHI 21|GB  22"></canvas></div>
+    <div class="ph"><canvas class="photo" data-style="celebration" data-seed="9" data-accent="#f05a1a" data-secondary="#ffb612"></canvas></div>
+  </div>
+  <div class="fade"></div>
+<script src="../../kit/kit.js"></script>
+</body></html>
