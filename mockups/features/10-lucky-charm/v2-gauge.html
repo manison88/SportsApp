@@ -1,0 +1,123 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Luck Gauge</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #e9e5dc; color: #17150f; }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; }
+  .btn-circle.d { background: rgba(0,0,0,.06); }
+  .btn-circle.d svg { stroke: #17150f; }
+  .topbar .t { font: 600 15px/1 var(--f-ui); letter-spacing: -.2px; }
+  .head { position: absolute; top: 110px; left: 24px; right: 24px; }
+  .head .ey { font: 600 11px/1 var(--f-ui); letter-spacing: 1.8px; text-transform: uppercase; color: rgba(23,21,15,.5); }
+  .head h1 { margin-top: 8px; font: 800 32px/1.02 var(--f-tight); letter-spacing: -1px; }
+  .head h1 span { color: #e8541c; }
+
+  .housing { position: absolute; top: 196px; left: 16px; right: 16px; height: 296px; border-radius: 30px;
+    background: linear-gradient(180deg, #23211d, #121110); box-shadow: 0 24px 40px -18px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.12); }
+  .screws i { position: absolute; width: 9px; height: 9px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #77736b, #2c2a26); }
+  .screws i::after { content: ""; position: absolute; left: 1.5px; right: 1.5px; top: 4px; height: 1px; background: #1a1916; transform: rotate(35deg); }
+  .face { position: absolute; top: 14px; left: 14px; right: 14px; height: 222px; border-radius: 18px; overflow: hidden;
+    background: radial-gradient(120% 100% at 50% 100%, #fbf4e3 0%, #f1e6cc 70%, #e4d5b2 100%);
+    box-shadow: inset 0 2px 8px rgba(0,0,0,.35), inset 0 0 0 1px rgba(0,0,0,.3); }
+  .face svg { position: absolute; inset: 0; }
+  .face .glass { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 38%); border: 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .readout { position: absolute; left: 14px; right: 14px; bottom: 14px; height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; }
+  .readout .lbl { font: 600 10px/1 var(--f-mono); letter-spacing: 1.4px; color: rgba(255,255,255,.45); text-transform: uppercase; }
+  .readout .lcd { font: 800 22px/1 var(--f-mono); color: #ff7b3d; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255,110,40,.6); }
+  .readout .led { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #ff6a2a; box-shadow: 0 0 8px #ff6a2a; margin-right: 8px; }
+
+  .pair { position: absolute; top: 512px; left: 16px; right: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pair div { background: #f6f3ec; border-radius: 18px; padding: 14px 16px; box-shadow: 0 1px 0 rgba(0,0,0,.05); }
+  .pair b { display: block; font: 800 30px/1 var(--f-tight); letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+  .pair .you b { color: #e8541c; }
+  .pair span { display: block; margin-top: 6px; font: 500 12.5px/1.2 var(--f-ui); color: rgba(23,21,15,.6); }
+
+  .list { position: absolute; top: 604px; left: 16px; right: 16px; background: #f6f3ec; border-radius: 20px; padding: 6px 16px; }
+  .row { display: flex; align-items: center; height: 39px; }
+  .row + .row { border-top: 1px solid rgba(23,21,15,.07); }
+  .row .mono-badge { width: 26px; height: 26px; font-size: 13px; margin-right: 10px; border-radius: 8px; box-shadow: none; }
+  .row .n { width: 76px; font: 600 14px/1 var(--f-ui); }
+  .row .scale { flex: 1; height: 16px; position: relative; margin-right: 12px; }
+  .row .scale::before { content: ""; position: absolute; left: 0; right: 0; top: 7.5px; height: 1px; background: rgba(23,21,15,.18); }
+  .row .scale i { position: absolute; top: 3px; width: 1px; height: 10px; background: rgba(23,21,15,.25); }
+  .row .scale .fill { position: absolute; top: 6px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, rgba(232,84,28,.25), #e8541c); left: 50%; }
+  .row .scale .needle { position: absolute; top: 0; width: 3px; height: 16px; border-radius: 2px; background: #17150f; margin-left: -1.5px; }
+  .row .v { width: 40px; text-align: right; font: 700 14px/1 var(--f-mono); color: #e8541c; }
+  .row .v.flat { color: rgba(23,21,15,.45); }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="topbar">
+    <div class="btn-circle d"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <span class="t">Lucky Charm</span>
+    <div class="btn-circle d"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+
+  <div class="head">
+    <div class="ey">Luck meter · 49 Chicago games</div>
+    <h1>The needle says<br><span>lucky charm.</span></h1>
+  </div>
+
+  <div class="housing">
+    <div class="screws"><i style="left:8px;top:8px"></i><i style="right:8px;top:8px"></i><i style="left:8px;bottom:8px"></i><i style="right:8px;bottom:8px"></i></div>
+    <div class="face"><svg id="dial" viewBox="0 0 333 222" width="333" height="222"></svg><div class="glass"></div></div>
+    <div class="readout"><span class="lbl"><span class="led"></span>Your pull</span><span class="lcd">+13 PTS</span><span class="lbl">61 vs 48</span></div>
+  </div>
+
+  <div class="pair">
+    <div class="you"><b>61%</b><span>Win rate with you<br>30–19 in the stands</span></div>
+    <div><b>48%</b><span>Win rate without you<br>1,412–1,530 since 2014</span></div>
+  </div>
+
+  <div class="list" id="list"></div>
+
+<script>
+(function(){
+  const svg = document.getElementById('dial');
+  const cx = 166.5, cy = 200, R = 150, span = 62; // degrees either side of vertical
+  const ang = v => (v / 20) * span;            // -20..+20 pts
+  const pt = (deg, r) => { const a = (deg - 90) * Math.PI / 180; return [cx + Math.cos(a) * r, cy + Math.sin(a) * r]; };
+  const arc = (d0, d1, r) => { const [x0,y0] = pt(d0,r), [x1,y1] = pt(d1,r); return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`; };
+  let h = '';
+  h += `<path d="${arc(ang(-20), ang(-6), R - 6)}" stroke="#c7342a" stroke-width="8" fill="none" opacity=".85"/>`;
+  h += `<path d="${arc(ang(6), ang(20), R - 6)}" stroke="#e8541c" stroke-width="8" fill="none"/>`;
+  h += `<path d="${arc(ang(-20), ang(20), R - 11)}" stroke="#17150f" stroke-width="1" fill="none"/>`;
+  for (let v = -20; v <= 20; v++) {
+    const major = v % 10 === 0, mid = v % 5 === 0;
+    const [x0,y0] = pt(ang(v), R - 12), [x1,y1] = pt(ang(v), R - (major ? 30 : mid ? 24 : 19));
+    h += `<line x1="${x0.toFixed(1)}" y1="${y0.toFixed(1)}" x2="${x1.toFixed(1)}" y2="${y1.toFixed(1)}" stroke="#17150f" stroke-width="${major ? 2 : 1}"/>`;
+    if (mid) { const [tx,ty] = pt(ang(v), R - 42); h += `<text x="${tx.toFixed(1)}" y="${(ty+4).toFixed(1)}" text-anchor="middle" font-family="JetBrains Mono" font-weight="600" font-size="10" fill="#17150f">${v > 0 ? '+' + v : v}</text>`; }
+  }
+  const [jx,jy] = pt(ang(-15), R + 2), [lx,ly] = pt(ang(15), R + 2);
+  h += `<text x="40" y="34" font-family="Inter Tight" font-weight="800" font-size="13" letter-spacing="1.6" fill="#c7342a">JINX</text>`;
+  h += `<text x="293" y="34" text-anchor="end" font-family="Inter Tight" font-weight="800" font-size="13" letter-spacing="1.6" fill="#e8541c">LUCKY CHARM</text>`;
+  h += `<text x="${cx}" y="112" text-anchor="middle" font-family="Inter" font-weight="600" font-size="8.5" letter-spacing="2" fill="rgba(23,21,15,.45)">NEUTRAL</text>`;
+  h += `<text x="${cx}" y="150" text-anchor="middle" font-family="Instrument Serif" font-style="italic" font-size="17" fill="#17150f">Witness</text>`;
+  h += `<text x="${cx}" y="164" text-anchor="middle" font-family="JetBrains Mono" font-size="7.5" letter-spacing="1.5" fill="rgba(23,21,15,.5)">PTS · HOME WIN %</text>`;
+  // needle at +13 with shadow
+  const a = ang(13);
+  const [nx,ny] = pt(a, R - 8), [bx,by] = pt(a + 180, 22);
+  h += `<line x1="${bx+3}" y1="${by+4}" x2="${nx+3}" y2="${ny+4}" stroke="rgba(0,0,0,.18)" stroke-width="3.5" stroke-linecap="round"/>`;
+  h += `<line x1="${bx}" y1="${by}" x2="${nx}" y2="${ny}" stroke="#d1381c" stroke-width="2.6" stroke-linecap="round"/>`;
+  h += `<circle cx="${cx}" cy="${cy}" r="13" fill="#17150f"/><circle cx="${cx}" cy="${cy}" r="5" fill="#d1381c"/>`;
+  svg.innerHTML = h;
+
+  const teams = [
+    ['C','Cubs','#0e3386','#cc3433',14,8,52],
+    ['B','Bears','#0b162a','#f05a1a',7,4,44],
+    ['H','Hawks','#1a1a1a','#e8243c',4,2,55],
+    ['B','Bulls','#e8213f','#1a1a1a',3,2,45],
+    ['F','Fire','#7fb3e6','#e0362e',2,3,38],
+  ];
+  const L = document.getElementById('list'); let rows = '';
+  for (const [m,n,c1,c2,w,l,base] of teams) {
+    const pct = Math.round(w / (w + l) * 100), d = pct - base, pos = 50 + d / 20 * 50;
+    let ticks = ''; for (let i = 0; i <= 4; i++) ticks += `<i style="left:${i*25}%"></i>`;
+    rows += `<div class="row"><span class="mono-badge" style="background:${c1};box-shadow:inset 0 0 0 1.5px ${c2}">${m}</span><span class="n">${n}</span>
+      <span class="scale">${ticks}<span class="fill" style="width:${pos-50}%"></span><span class="needle" style="left:${pos}%"></span></span>
+      <span class="v ${d < 4 ? 'flat' : ''}">+${d}</span></div>`;
+  }
+  L.innerHTML = rows;
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Flyover</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #06070a; }
+  .sky { position: absolute; inset: 0 0 auto 0; height: 520px;
+    background: radial-gradient(120% 70% at 50% 62%, #1a2236 0%, #0b0e16 45%, #06070a 80%); }
+  .stage { position: absolute; left: -160px; top: 20px; width: 713px; height: 560px; perspective: 760px; perspective-origin: 50% 0%; overflow: hidden; }
+  .plane { position: absolute; left: 36px; top: -70px; width: 640px; height: 640px; transform-origin: 50% 60%;
+    transform: rotateX(54deg) rotateZ(0deg) scale(1.02); }
+  .plane svg { width: 640px; height: 640px; display: block; }
+  .haze { position: absolute; left: 0; right: 0; top: 0; height: 250px;
+    background: linear-gradient(180deg, #06070a 0%, rgba(6,7,10,.85) 30%, rgba(6,7,10,0) 100%); }
+  .floor { position: absolute; left: 0; right: 0; top: 330px; height: 250px;
+    background: linear-gradient(180deg, rgba(6,7,10,0) 0%, rgba(6,7,10,.7) 45%, #06070a 85%); }
+
+  .top { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+  .top .ttl { font: 600 11px/1 var(--f-ui); letter-spacing: 2px; text-transform: uppercase; color: var(--text-2); }
+  .top .right { display: flex; gap: 10px; }
+
+  .pin { position: absolute; left: 196px; top: 246px; transform: translateX(-50%); z-index: 6; display: flex; flex-direction: column; align-items: center; }
+  .pin .tag { display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 5px; border-radius: 15px;
+    font: 600 12px/1 var(--f-ui); color: #fff; white-space: nowrap; }
+  .pin .tag i { width: 22px; height: 22px; border-radius: 11px; background: var(--signal); color: #1a1205; display: grid; place-items: center;
+    font: 800 11px/1 var(--f-tight); font-style: normal; }
+  .pin .stem { width: 1px; height: 46px; background: linear-gradient(var(--signal), rgba(255,181,71,0)); }
+  .pin .dot { width: 9px; height: 9px; border-radius: 5px; background: var(--signal); box-shadow: 0 0 0 4px rgba(255,181,71,.25), 0 0 18px 4px rgba(255,181,71,.7); margin-top: -2px; }
+
+  .head { position: absolute; left: 24px; right: 24px; top: 436px; z-index: 6; }
+  .head .eyebrow { color: var(--text-2); }
+  .head h1 { font: 400 52px/0.95 var(--f-serif); letter-spacing: -1px; margin-top: 10px; }
+  .head h1 em { color: var(--signal-soft); }
+
+  .rec { position: absolute; left: 24px; right: 24px; top: 528px; z-index: 6; display: flex; align-items: flex-end; justify-content: space-between; }
+  .rec .big { font: 700 104px/0.8 var(--f-cond); letter-spacing: -3px; color: #fff; font-variant-numeric: tabular-nums; }
+  .rec .big b { color: var(--signal); font-weight: 700; }
+  .rec .big span { color: rgba(245,241,234,.32); font-weight: 500; margin: 0 2px; }
+  .rec .side { text-align: right; padding-bottom: 4px; }
+  .rec .side .k { font: 600 10px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: var(--text-3); }
+  .rec .side .v { font: 600 22px/1 var(--f-tight); margin-top: 6px; letter-spacing: -.3px; }
+  .rec .side .v + .k { margin-top: 14px; }
+
+  .runs { position: absolute; left: 24px; right: 24px; top: 640px; z-index: 6; }
+  .runs .lbl { display: flex; justify-content: space-between; font: 500 11px/1 var(--f-ui); color: var(--text-3); }
+  .runs .lbl b { color: var(--text-2); font-weight: 600; }
+  .bars { display: flex; align-items: flex-end; gap: 5px; height: 40px; margin: 10px 0 8px; }
+  .bars i { flex: 1; border-radius: 3px; position: relative; }
+  .bars i.w { height: 40px; background: linear-gradient(180deg, #ffcf7a, #ff9a2f); box-shadow: 0 0 12px rgba(255,170,60,.35); }
+  .bars i.l { height: 14px; background: rgba(245,241,234,.18); }
+  .bars i.star::after { content: ""; position: absolute; left: 50%; top: -9px; width: 4px; height: 4px; margin-left: -2px; border-radius: 2px; background: #fff; box-shadow: 0 0 8px #fff; }
+  .years { display: flex; justify-content: space-between; font: 500 10px/1 var(--f-mono); color: var(--text-3); letter-spacing: .5px; }
+
+  .best { position: absolute; left: 16px; right: 16px; top: 728px; height: 74px; border-radius: 20px; z-index: 6; display: flex; align-items: center; gap: 12px; padding: 0 14px 0 8px;
+    background: #121318; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.1); }
+  .best .th { width: 58px; height: 58px; border-radius: 14px; overflow: hidden; flex: none; }
+  .best .tx { flex: 1; min-width: 0; }
+  .best .tx .k { font: 600 10px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: var(--signal); }
+  .best .tx .t { font: 600 16px/1.2 var(--f-ui); margin-top: 6px; letter-spacing: -.2px; }
+  .best .tx .s { font: 400 12.5px/1.2 var(--f-ui); color: var(--text-3); margin-top: 3px; }
+  .best .sc { font: 700 26px/1 var(--f-cond); letter-spacing: -.5px; color: #fff; }
+  .best .sc small { display: block; font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.4px; color: var(--text-3); text-align: right; margin-top: 4px; }
+</style></head>
+<body class="phone">
+  <div class="sky"></div>
+  <div class="stage"><div class="plane"><svg id="aerial" viewBox="0 0 640 640"></svg></div></div>
+  <div class="haze"></div>
+  <div class="floor"></div>
+
+  <div class="top">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="ttl">Venue</div>
+    <div class="right">
+      <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+    </div>
+  </div>
+
+  <div class="pin"><div class="tag glass"><i>17</i>Your 17 nights here</div><div class="stem"></div><div class="dot"></div></div>
+
+  <div class="head">
+    <div class="eyebrow">1060 W Addison St · Chicago · Est. 1914</div>
+    <h1>Wrigley <em>Field</em></h1>
+  </div>
+
+  <div class="rec">
+    <div class="big"><b>11</b><span>–</span>6</div>
+    <div class="side">
+      <div class="k">Your record</div><div class="v tnum">.647</div>
+      <div class="k">Visits</div><div class="v tnum">17</div>
+    </div>
+  </div>
+
+  <div class="runs">
+    <div class="lbl"><span>First <b>Jun 14, 2014</b></span><span>Last <b>Jul 4, 2026</b></span></div>
+    <div class="bars">
+      <i class="w"></i><i class="l"></i><i class="l"></i><i class="w"></i><i class="w"></i><i class="w"></i><i class="w star"></i><i class="w star"></i><i class="l"></i><i class="w"></i><i class="l"></i><i class="w"></i><i class="w"></i><i class="l"></i><i class="w"></i><i class="l"></i><i class="w"></i>
+    </div>
+    <div class="years"><span>’14</span><span>’16</span><span>’18</span><span>’20</span><span>’22</span><span>’24</span><span>’26</span></div>
+  </div>
+
+  <div class="best">
+    <div class="th"><img class="ph graded" src="../../photos/wrigley-night.jpg" style="object-position:50% 45%"></div>
+    <div class="tx"><div class="k">Best night here</div><div class="t">World Series · Game 5</div><div class="s">Oct 30, 2016 · Bleachers 314 · with Dad</div></div>
+    <div class="sc tnum">3–2<small>FINAL</small></div>
+  </div>
+  <div class="grain" style="opacity:.18"></div>
+
+<script>
+(function(){
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('aerial');
+  let s = 11; const R = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  const el = (t, a, p = svg) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  const defs = el('defs', {});
+  defs.innerHTML = `
+    <pattern id="mow" width="18" height="18" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="18" height="18" fill="#2f7a3a"/><rect width="9" height="18" fill="#3a8a44"/></pattern>
+    <pattern id="seats" width="3" height="3" patternUnits="userSpaceOnUse">
+      <rect width="3" height="3" fill="#2a2230"/><circle cx="1.5" cy="1.5" r=".9" fill="#3b4f9c"/></pattern>
+    <radialGradient id="lamp"><stop offset="0" stop-color="#fff6dc" stop-opacity="1"/><stop offset=".25" stop-color="#ffd58a" stop-opacity=".55"/><stop offset="1" stop-color="#ffb547" stop-opacity="0"/></radialGradient>
+    <radialGradient id="pool"><stop offset="0" stop-color="#e9ffd8" stop-opacity=".35"/><stop offset="1" stop-color="#e9ffd8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="cityglow"><stop offset="0" stop-color="#ffb070" stop-opacity=".16"/><stop offset="1" stop-color="#ffb070" stop-opacity="0"/></radialGradient>`;
+  el('rect', { width: 640, height: 640, fill: '#0a0c12' });
+  el('circle', { cx: 320, cy: 330, r: 330, fill: 'url(#cityglow)' });
+  // city grid, rotated 45° so streets run parallel to the foul lines
+  const city = el('g', { transform: 'rotate(45 320 330)' });
+  const B = 62, ST = 10; // block, street
+  for (let gx = -6; gx < 16; gx++) for (let gy = -6; gy < 16; gy++) {
+    const x = gx * (B + ST) - 140, y = gy * (B + ST) - 130;
+    // skip the ballpark block
+    const cx = x + B / 2, cy = y + B / 2;
+    const rx = (cx - 320), ry = (cy - 330);
+    if (Math.abs(rx) < 150 && Math.abs(ry) < 150) continue;
+    el('rect', { x, y, width: B, height: B, fill: '#10131b' }, city);
+    // buildings: rows of narrow lots
+    for (let i = 0; i < 8; i++) {
+      const bw = B / 8 - 1.2, bh = 16 + R() * 10;
+      const top = el('rect', { x: x + 1 + i * (B / 8), y: y + 1, width: bw, height: bh, fill: R() > .5 ? '#191c26' : '#151821' }, city);
+      el('rect', { x: x + 1 + i * (B / 8), y: y + B - 1 - bh, width: bw, height: bh, fill: R() > .5 ? '#181b25' : '#141720' }, city);
+      if (R() > .72) el('rect', { x: x + 2 + i * (B / 8), y: y + 4 + R() * 8, width: 1.6, height: 1.6, fill: '#ffcf8a', opacity: .9 }, city);
+      if (R() > .78) el('rect', { x: x + 2 + i * (B / 8), y: y + B - 10 - R() * 8, width: 1.6, height: 1.6, fill: '#ffcf8a', opacity: .8 }, city);
+    }
+  }
+  // street lights along avenues
+  for (let k = -6; k < 16; k++) for (let j = -6; j < 16; j++) {
+    if (R() > .5) continue;
+    el('circle', { cx: k * (B + ST) - 140 - ST / 2, cy: j * (B + ST) - 130 + R() * B, r: .9, fill: '#ffd79a', opacity: .55 }, city);
+  }
+  // ballpark footprint: square rotated 45°, home plate at the bottom vertex
+  const P = { b: [320, 548], l: [108, 336], t: [320, 124], r: [532, 336] };
+  el('polygon', { points: `${P.l} ${P.t} ${P.r} 334,534 306,534`, fill: '#1c1a20' });
+  el('polygon', { points: `${P.l} ${P.t} ${P.r} 334,534 306,534`, fill: 'url(#seats)', opacity: .9 });
+  // roof ring of the grandstand
+  el('polyline', { points: `150,334 306,520 334,520 490,334`, fill: 'none', stroke: '#35303a', 'stroke-width': 10, 'stroke-linejoin': 'round' });
+  // rooftop bleachers across Waveland and Sheffield (Wrigleyville rooftops)
+  const roofs = el('g', {});
+  for (let i = 0; i < 9; i++) {
+    const t = .12 + i * .085;
+    const lx = P.l[0] + (P.t[0] - P.l[0]) * t, ly = P.l[1] + (P.t[1] - P.l[1]) * t;
+    el('rect', { x: lx - 30, y: ly - 30, width: 16, height: 9, fill: '#2a2026', transform: `rotate(-45 ${lx - 22} ${ly - 26})`, stroke: '#ffb547', 'stroke-opacity': .35, 'stroke-width': .6 }, roofs);
+    const rx = P.r[0] - (P.r[0] - P.t[0]) * t, ry = P.r[1] - (P.r[1] - P.t[1]) * t;
+    el('rect', { x: rx + 14, y: ry - 30, width: 16, height: 9, fill: '#2a2026', transform: `rotate(45 ${rx + 22} ${ry - 26})`, stroke: '#ffb547', 'stroke-opacity': .35, 'stroke-width': .6 }, roofs);
+  }
+  // field: home at (320, 500); foul lines at ±45°; CF ~ (320, 190)
+  const H = [320, 500];
+  const field = `M ${H[0]} ${H[1] + 12} L 140 330 C 168 268, 220 216, 320 190 C 420 216, 472 268, 500 330 Z`;
+  el('path', { d: field, fill: 'url(#mow)' });
+  el('path', { d: field, fill: 'none', stroke: '#1f5a2a', 'stroke-width': 5 }); // ivy wall
+  el('path', { d: `M 146 326 C 172 266, 222 212, 320 186 C 418 212, 468 266, 494 326`, fill: 'none', stroke: '#21662e', 'stroke-width': 4, 'stroke-dasharray': '2 1.5' });
+  // infield
+  const d = 58;
+  el('path', { d: `M ${H[0]} ${H[1] + 6} L ${H[0] - d - 14} ${H[1] - d - 6} Q ${H[0]} ${H[1] - 2.1 * d - 28}, ${H[0] + d + 14} ${H[1] - d - 6} Z`, fill: '#a8643e' });
+  el('polygon', { points: `${H[0]},${H[1] - 6} ${H[0] - d + 12},${H[1] - d} ${H[0]},${H[1] - 2 * d + 6} ${H[0] + d - 12},${H[1] - d}`, fill: '#3a8a44' });
+  el('circle', { cx: H[0], cy: H[1] - d, r: 6, fill: '#a8643e' });
+  el('circle', { cx: H[0], cy: H[1] - 2, r: 12, fill: '#a8643e' });
+  [[H[0], H[1] - 2], [H[0] + d, H[1] - d], [H[0], H[1] - 2 * d], [H[0] - d, H[1] - d]].forEach(([x, y]) => el('rect', { x: x - 2.2, y: y - 2.2, width: 4.4, height: 4.4, fill: '#fff', transform: `rotate(45 ${x} ${y})` }));
+  el('line', { x1: H[0], y1: H[1], x2: 146, y2: 326, stroke: '#fff', 'stroke-width': 1.2, opacity: .85 });
+  el('line', { x1: H[0], y1: H[1], x2: 494, y2: 326, stroke: '#fff', 'stroke-width': 1.2, opacity: .85 });
+  // center field scoreboard
+  el('rect', { x: 296, y: 140, width: 48, height: 12, fill: '#1f4d33', stroke: '#e9f5ea', 'stroke-width': .6 });
+  el('rect', { x: 305, y: 146, width: 30, height: 2, fill: '#ffd36e', opacity: .8 });
+  // marquee at the corner of Clark and Addison
+  el('rect', { x: 312, y: 534, width: 16, height: 6, fill: '#c3283b' });
+  // light pools on the field, light towers on the roof
+  el('ellipse', { cx: 320, cy: 360, rx: 210, ry: 170, fill: 'url(#pool)' });
+  [[170, 330], [212, 382], [262, 448], [378, 448], [428, 382], [470, 330]].forEach(([x, y]) => {
+    el('circle', { cx: x, cy: y, r: 38, fill: 'url(#lamp)' });
+    el('rect', { x: x - 5, y: y - 1.5, width: 10, height: 3, fill: '#fffbe9' });
+  });
+  // street labels
+  const lab = (x, y, rot, t) => { const g = el('text', { x, y, transform: `rotate(${rot} ${x} ${y})`, fill: 'rgba(245,241,234,.42)', 'font-family': 'Inter', 'font-weight': 700, 'font-size': 9, 'letter-spacing': 3, 'text-anchor': 'middle' }); g.textContent = t; };
+  lab(200, 222, -45, 'WAVELAND AVE');
+  lab(440, 222, 45, 'SHEFFIELD AVE');
+  lab(445, 455, -45, 'ADDISON ST');
+  lab(190, 456, 45, 'CLARK ST');
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

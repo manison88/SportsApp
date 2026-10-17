@@ -1,0 +1,134 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Fortune Teller</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  :root { --gold: #e3c27a; --gold-2: #b8914a; --gold-soft: rgba(227,194,122,.6); }
+  body.phone { background: radial-gradient(120% 70% at 50% 42%, #2a1746 0%, #150b26 45%, #07050d 100%); }
+  .stars { position: absolute; inset: 0; }
+  .stars i { position: absolute; border-radius: 50%; background: #fff3d6; }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+  .topbar .t { font: 600 11px/1 var(--f-ui); letter-spacing: 2.4px; text-transform: uppercase; color: var(--gold); }
+  .btn-circle.g { background: rgba(255,255,255,.07); box-shadow: inset 0 0 0 .5px rgba(227,194,122,.35); }
+  .btn-circle.g svg { stroke: var(--gold); }
+  .head { position: absolute; top: 112px; left: 24px; right: 24px; text-align: center; }
+  .head .ey { font: 500 11px/1 var(--f-ui); letter-spacing: 2.6px; text-transform: uppercase; color: rgba(227,194,122,.75); }
+  .head h1 { margin-top: 10px; font: 400 34px/1 var(--f-serif); color: #f6ecd8; letter-spacing: -.3px; }
+  .head h1 em { color: var(--gold); }
+
+  .halo { position: absolute; left: 50%; top: 392px; width: 520px; height: 520px; transform: translate(-50%,-50%);
+    background: radial-gradient(circle, rgba(255,205,120,.34) 0%, rgba(255,170,80,.12) 30%, rgba(120,60,200,0) 62%); }
+  .back { position: absolute; top: 214px; left: 50%; width: 214px; height: 350px; margin-left: -107px; border-radius: 16px;
+    background: #1b1030; box-shadow: inset 0 0 0 1px rgba(227,194,122,.45), 0 20px 40px rgba(0,0,0,.6); overflow: hidden; }
+  .back::before { content: ""; position: absolute; inset: 9px; border-radius: 10px; box-shadow: inset 0 0 0 .75px rgba(227,194,122,.4);
+    background: repeating-linear-gradient(45deg, rgba(227,194,122,.09) 0 1px, transparent 1px 9px), repeating-linear-gradient(-45deg, rgba(227,194,122,.09) 0 1px, transparent 1px 9px); }
+  .back.l { transform: translateX(-74px) rotate(-12deg); }
+  .back.r { transform: translateX(74px) rotate(12deg); }
+  .back svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); }
+
+  .card { position: absolute; top: 198px; left: 50%; width: 236px; height: 388px; margin-left: -118px; border-radius: 18px;
+    background: linear-gradient(170deg, #f6ecd6 0%, #eadbbb 100%);
+    box-shadow: 0 0 0 1px #d6b876, 0 30px 70px rgba(0,0,0,.7), 0 0 60px rgba(255,200,110,.25); overflow: hidden; }
+  .card .frame { position: absolute; inset: 10px; border-radius: 10px; box-shadow: inset 0 0 0 1.5px #1e1530, inset 0 0 0 4px #eadbbb, inset 0 0 0 5px #b8914a; }
+  .card .num { position: absolute; top: 24px; left: 0; right: 0; text-align: center; font: 500 15px/1 var(--f-fraunces); letter-spacing: 4px; color: #1e1530; }
+  .card .art { position: absolute; top: 48px; left: 22px; width: 192px; height: 252px; border-radius: 6px; overflow: hidden;
+    background: radial-gradient(circle at 50% 46%, #3a2363 0%, #1e1235 60%, #120a22 100%); box-shadow: inset 0 0 0 1px #b8914a; }
+  .card .art svg { position: absolute; inset: 0; }
+  .card .pct { position: absolute; top: 108px; left: 0; right: 0; text-align: center; font: 500 50px/1 var(--f-fraunces); letter-spacing: -1.5px; color: #1e1235; }
+  .card .pct sup { font-size: 22px; vertical-align: 21px; margin-left: 1px; }
+  .card .name { position: absolute; bottom: 30px; left: 22px; right: 22px; height: 44px; display: grid; place-items: center;
+    border-top: 1px solid #b8914a; }
+  .card .name b { font: 600 15px/1 var(--f-fraunces); letter-spacing: 3.2px; color: #1e1530; text-transform: uppercase; }
+  .card .name span { display: block; text-align: center; font: italic 400 12px/1 var(--f-serif); color: #6c5a3a; margin-top: 5px; letter-spacing: .3px; }
+  .card .sheen { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.55) 42%, transparent 52%); mix-blend-mode: soft-light; }
+
+  .reading { position: absolute; top: 614px; left: 30px; right: 30px; text-align: center;
+    font: 400 21px/1.22 var(--f-serif); color: #efe4cf; }
+  .reading em { color: var(--gold); }
+  .stats { position: absolute; top: 690px; left: 24px; right: 24px; display: flex; justify-content: center; align-items: center; }
+  .stats div { text-align: center; width: 104px; }
+  .stats b { display: block; font: 500 22px/1 var(--f-fraunces); color: #f6ecd8; font-variant-numeric: tabular-nums; }
+  .stats span { display: block; margin-top: 6px; font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: rgba(227,194,122,.72); }
+  .stats .sep { width: 4px; height: 4px; transform: rotate(45deg); background: var(--gold-2); }
+  .cta { position: absolute; left: 24px; right: 24px; top: 760px; height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; gap: 9px;
+    background: linear-gradient(180deg, #f1d58f, #c99c4f); color: #1a1029; font: 700 16px/1 var(--f-ui); letter-spacing: -.1px;
+    box-shadow: 0 10px 30px rgba(227,170,80,.35), inset 0 1px 0 rgba(255,255,255,.6); }
+  .cta svg { width: 18px; height: 18px; stroke: #1a1029; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+</style></head>
+<body class="phone">
+  <div class="stars" id="stars"></div>
+  <div class="halo"></div>
+
+  <div class="topbar">
+    <div class="btn-circle g"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <span class="t">Lucky Charm</span>
+    <div class="btn-circle g"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4"/></svg></div>
+  </div>
+
+  <div class="head">
+    <div class="ey">Your reading · 2014 – 2026</div>
+    <h1>The cards <em>have spoken.</em></h1>
+  </div>
+
+  <div class="back l"><svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="#e3c27a" stroke-width="1"><circle cx="30" cy="30" r="20"/><path d="M30 4v52M4 30h52M12 12l36 36M48 12L12 48" opacity=".5"/><circle cx="30" cy="30" r="7" fill="#e3c27a" fill-opacity=".25"/></svg></div>
+  <div class="back r"><svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="#e3c27a" stroke-width="1"><circle cx="30" cy="30" r="20"/><path d="M30 4v52M4 30h52M12 12l36 36M48 12L12 48" opacity=".5"/><circle cx="30" cy="30" r="7" fill="#e3c27a" fill-opacity=".25"/></svg></div>
+
+  <div class="card">
+    <div class="frame"></div>
+    <div class="num">XXI</div>
+    <div class="art">
+      <svg viewBox="0 0 192 252" width="192" height="252">
+        <defs>
+          <radialGradient id="sun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffe7a8"/><stop offset=".7" stop-color="#f0c66e"/><stop offset="1" stop-color="#c8963f"/></radialGradient>
+        </defs>
+        <g id="rays" transform="translate(96 130)" stroke="#e3c27a" stroke-linecap="round"></g>
+        <circle cx="96" cy="130" r="52" fill="url(#sun)"/>
+        <circle cx="96" cy="130" r="58" fill="none" stroke="#e3c27a" stroke-width=".8"/>
+        <circle cx="96" cy="130" r="47" fill="none" stroke="#1e1235" stroke-width=".6" opacity=".4"/>
+        <!-- crescent moon -->
+        <path d="M34 34a16 16 0 1 0 16 22 13 13 0 1 1-16-22z" fill="#e3c27a"/>
+        <!-- stars -->
+        <g fill="#f6e1ad">
+          <path d="M158 30l2.4 6.6 6.6 2.4-6.6 2.4-2.4 6.6-2.4-6.6-6.6-2.4 6.6-2.4z"/>
+          <path d="M140 60l1.4 3.6 3.6 1.4-3.6 1.4-1.4 3.6-1.4-3.6-3.6-1.4 3.6-1.4z"/>
+          <path d="M28 206l1.6 4 4 1.6-4 1.6-1.6 4-1.6-4-4-1.6 4-1.6z"/>
+          <path d="M166 204l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/>
+          <circle cx="62" cy="40" r="1.2"/><circle cx="120" cy="24" r="1"/><circle cx="20" cy="110" r="1"/><circle cx="176" cy="120" r="1.2"/><circle cx="150" cy="230" r="1"/><circle cx="44" cy="236" r="1.2"/>
+        </g>
+        <!-- diamond (home plate field) under the sun -->
+        <path d="M96 196l40 30-40 30-40-30z" fill="none" stroke="#e3c27a" stroke-width="1" opacity=".75"/>
+        <path d="M96 210l21 16-21 16-21-16z" fill="none" stroke="#e3c27a" stroke-width=".7" opacity=".5"/>
+        <!-- hand-drawn horizon -->
+        <path d="M0 214 C40 206 70 212 96 210 S150 204 192 212" stroke="#e3c27a" stroke-width=".6" fill="none" opacity=".35"/>
+      </svg>
+      <div class="pct tnum">61<sup>%</sup></div>
+    </div>
+    <div class="name"><div><b>The Lucky Charm</b><span>upright · Chicago wins when you come</span></div></div>
+    <div class="sheen"></div>
+  </div>
+
+  <div class="reading">Chicago wins <em>61%</em> of the games you<br>attend, and <em>48%</em> of the ones you miss.</div>
+
+  <div class="stats">
+    <div><b>30–19</b><span>With you</span></div>
+    <i class="sep"></i>
+    <div><b>+13 pts</b><span>Your pull</span></div>
+    <i class="sep"></i>
+    <div><b>1 in 23</b><span>Odds it’s chance</span></div>
+  </div>
+
+  <div class="cta"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share your reading</div>
+
+<script>
+  (function(){
+    const s = document.getElementById('stars'); let x = 9;
+    const r = () => (x = (x * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < 90; i++) { const d = document.createElement('i'); const z = r() < .12 ? 2 : r() < .5 ? 1.2 : .8;
+      d.style.cssText = `left:${r()*393}px;top:${r()*852}px;width:${z}px;height:${z}px;opacity:${.25 + r()*.6}`; s.appendChild(d); }
+    const g = document.getElementById('rays'); let html = '';
+    for (let i = 0; i < 36; i++) { const a = i * Math.PI / 18, long = i % 2 === 0; const r1 = 64, r2 = long ? 92 : 78;
+      html += `<line x1="${(Math.cos(a)*r1).toFixed(1)}" y1="${(Math.sin(a)*r1).toFixed(1)}" x2="${(Math.cos(a)*r2).toFixed(1)}" y2="${(Math.sin(a)*r2).toFixed(1)}" stroke-width="${long ? 1.4 : .7}" opacity="${long ? .9 : .55}"/>`; }
+    g.innerHTML = html;
+  })();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

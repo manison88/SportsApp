@@ -1,0 +1,155 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Live Activity</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  .wall { position: absolute; inset: 0; }
+  .wall img { object-position: 50% 50%; filter: contrast(1.05) saturate(.95) brightness(.92); }
+  .wall::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(4,6,14,.35) 0%, rgba(4,6,14,0) 30%, rgba(4,6,14,0) 46%, rgba(4,6,14,.35) 62%, rgba(4,6,14,.72) 100%); }
+
+  /* lock-screen status bar (own, so we can omit the time like iOS does) */
+  .sb { position: absolute; top: 0; left: 0; right: 0; height: 54px; z-index: 10; display: flex; align-items: center; justify-content: flex-end;
+    padding: 18px 32px 0 48px; color: #fff; }
+  .sb .icons { display: flex; gap: 7px; align-items: center; }
+  .sb svg { display: block; fill: currentColor; }
+  .sb .carrier { position: absolute; left: 44px; top: 21px; font: 600 15px/1 var(--f-ui); letter-spacing: -.1px; }
+  .island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 126px; height: 37px; border-radius: 19px; background: #000; z-index: 11; }
+
+  .lock { position: absolute; top: 62px; left: 50%; transform: translateX(-50%); width: 14px; height: 18px; z-index: 5; }
+  .date { position: absolute; top: 88px; left: 0; right: 0; text-align: center; z-index: 5;
+    font: 600 21px/1 var(--f-ui); letter-spacing: -.2px; color: rgba(255,255,255,.88); }
+  .clock { position: absolute; top: 104px; left: 0; right: 0; text-align: center; z-index: 5;
+    font: 700 112px/1 var(--f-tight); letter-spacing: -4px; color: rgba(236,241,255,.93);
+    text-shadow: 0 2px 30px rgba(20,40,120,.35); font-variant-numeric: tabular-nums; }
+
+  .widgets { position: absolute; top: 236px; left: 50%; transform: translateX(-50%); display: flex; gap: 14px; z-index: 5; }
+  .wd { width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,.14); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    display: grid; place-items: center; text-align: center; color: #fff; position: relative; }
+  .wd b { display: block; font: 700 19px/1 var(--f-tight); letter-spacing: -.4px; }
+  .wd small { display: block; font: 600 9px/1 var(--f-ui); letter-spacing: .4px; opacity: .78; margin-top: 3px; }
+  .wd svg.ring { position: absolute; inset: 0; }
+  .wd.wide { width: 134px; border-radius: 30px; display: flex; align-items: center; gap: 10px; padding: 0 14px 0 12px; text-align: left; }
+  .wd.wide .t1 { font: 700 15px/1.05 var(--f-tight); }
+  .wd.wide .t2 { font: 600 10.5px/1.25 var(--f-ui); opacity: .78; margin-top: 2px; }
+
+  /* Live Activity */
+  .la { position: absolute; left: 14px; right: 14px; top: 448px; height: 200px; border-radius: 24px; z-index: 6; overflow: hidden;
+    background: rgba(14,16,24,.62); backdrop-filter: blur(30px) saturate(1.6); -webkit-backdrop-filter: blur(30px) saturate(1.6);
+    box-shadow: inset 0 0 0 .5px rgba(255,255,255,.14); padding: 14px 16px 16px; }
+  .la::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 90px;
+    background: radial-gradient(120% 100% at 0% 0%, rgba(47,107,255,.32), transparent 60%), radial-gradient(90% 100% at 100% 0%, rgba(255,197,47,.12), transparent 60%); pointer-events: none; }
+  .la-head { position: relative; display: flex; align-items: center; gap: 7px; height: 18px; }
+  .appic { width: 18px; height: 18px; border-radius: 5px; background: linear-gradient(145deg,#ffcb73,#e38d1b); display: grid; place-items: center;
+    font: 400 14px/1 var(--f-serif); color: #1a1006; }
+  .la-head .src { font: 600 12.5px/1 var(--f-ui); color: rgba(255,255,255,.72); letter-spacing: -.05px; }
+  .la-head .live { margin-left: auto; display: flex; align-items: center; gap: 6px; font: 700 12px/1 var(--f-ui); color: #fff; }
+  .la-head .live i { width: 7px; height: 7px; border-radius: 50%; background: var(--live); box-shadow: 0 0 8px var(--live); }
+  .la-head .live span { color: rgba(255,255,255,.6); font-weight: 600; }
+
+  .board { position: relative; display: flex; align-items: center; margin-top: 12px; height: 62px; }
+  .team { display: flex; align-items: center; gap: 10px; }
+  .team .mono-badge { width: 38px; height: 38px; font-size: 17px; }
+  .team .nm { font: 600 11px/1 var(--f-ui); letter-spacing: 1.2px; color: rgba(255,255,255,.62); margin-top: 4px; }
+  .team .sc { font: 700 46px/.9 var(--f-tight); letter-spacing: -1.6px; font-variant-numeric: tabular-nums; }
+  .team.away .sc { color: rgba(255,255,255,.62); }
+  .mid { flex: 1; display: grid; place-items: center; }
+  .diamond { position: relative; width: 44px; height: 32px; }
+  .base { position: absolute; width: 12px; height: 12px; transform: rotate(45deg); border-radius: 2px; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.55); }
+  .base.on { background: var(--signal); box-shadow: 0 0 10px rgba(255,181,71,.7); }
+  .outs { display: flex; gap: 4px; justify-content: center; margin-top: 6px; }
+  .outs i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); }
+  .outs i.on { background: #fff; }
+
+  .la-foot { position: relative; display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+  .la-foot .play { flex: 1; min-width: 0; }
+  .la-foot .play b { display: block; font: 600 14px/1.2 var(--f-ui); color: #fff; letter-spacing: -.15px; }
+  .la-foot .play span { display: block; font: 500 12px/1.3 var(--f-ui); color: rgba(255,255,255,.58); margin-top: 3px; }
+  .save { height: 44px; padding: 0 16px 0 12px; border-radius: 22px; display: flex; align-items: center; gap: 8px; flex: none;
+    background: var(--signal); color: #1b1206; font: 700 14px/1 var(--f-ui); letter-spacing: -.1px;
+    box-shadow: 0 0 0 4px rgba(255,181,71,.18), 0 6px 22px rgba(255,181,71,.35); }
+  .save .dot { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #1b1206; display: grid; place-items: center; }
+  .save .dot::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #1b1206; }
+
+  /* notification */
+  .nt { position: absolute; left: 14px; right: 14px; top: 658px; height: 72px; border-radius: 22px; z-index: 6; display: flex; align-items: center; gap: 11px;
+    padding: 0 14px 0 12px; background: rgba(36,38,48,.5); backdrop-filter: blur(30px) saturate(1.5); -webkit-backdrop-filter: blur(30px) saturate(1.5);
+    box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); }
+  .nt .ic { width: 38px; height: 38px; border-radius: 9px; background: linear-gradient(145deg,#ffcb73,#e38d1b); display: grid; place-items: center;
+    font: 400 28px/1 var(--f-serif); color: #1a1006; flex: none; }
+  .nt .tx { flex: 1; min-width: 0; }
+  .nt .r1 { display: flex; justify-content: space-between; font: 600 14px/1.2 var(--f-ui); color: #fff; }
+  .nt .r1 span { font-weight: 500; color: rgba(255,255,255,.55); font-size: 13px; }
+  .nt .r2 { font: 400 13.5px/1.3 var(--f-ui); color: rgba(255,255,255,.86); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .qa { position: absolute; bottom: 46px; width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; z-index: 6;
+    background: rgba(30,30,36,.42); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .qa svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .hb { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 139px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.92); z-index: 10; }
+</style></head>
+<body class="phone" data-chrome="none">
+  <div class="wall"><img class="ph" src="../../photos/wrigley-night.jpg"></div>
+
+  <div class="island"></div>
+  <div class="sb"><span class="icons">
+    <svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="8" width="3.2" height="4" rx="1"/><rect x="5" y="5.5" width="3.2" height="6.5" rx="1"/><rect x="10" y="3" width="3.2" height="9" rx="1"/><rect x="15" y="0" width="3.2" height="12" rx="1"/></svg>
+    <svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 2.2c2.4 0 4.6.9 6.3 2.5l1.2-1.2A10.6 10.6 0 0 0 8.5.5 10.6 10.6 0 0 0 1 3.5l1.2 1.2a8.9 8.9 0 0 1 6.3-2.5Zm0 3.4c1.5 0 2.9.6 3.9 1.5l1.2-1.2a7.3 7.3 0 0 0-10.2 0l1.2 1.2a5.6 5.6 0 0 1 3.9-1.5Zm0 3.4c.6 0 1.2.2 1.6.6L8.5 11.3 6.9 9.6c.4-.4 1-.6 1.6-.6Z"/></svg>
+    <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.6" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="14" height="9" rx="2.3"/><path d="M25 4.5v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2Z" opacity=".45"/></svg>
+  </span></div>
+
+  <svg class="lock" viewBox="0 0 14 18"><rect x="1" y="7.5" width="12" height="10" rx="2.4" fill="#fff"/><path d="M3.8 8V5.2a3.2 3.2 0 0 1 6.4 0V8" fill="none" stroke="#fff" stroke-width="1.8"/></svg>
+  <div class="date">Saturday, July 4</div>
+  <div class="clock">9:41</div>
+
+  <div class="widgets">
+    <div class="wd"><div><b>81°</b><small>CLEAR</small></div></div>
+    <div class="wd wide">
+      <svg width="30" height="30" viewBox="0 0 30 30" style="flex:none"><circle cx="15" cy="15" r="12.5" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="3"/><circle cx="15" cy="15" r="12.5" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="78.5" stroke-dashoffset="34" stroke-linecap="round" transform="rotate(-90 15 15)"/></svg>
+      <div><div class="t1">14 of 30</div><div class="t2">MLB parks</div></div>
+    </div>
+    <div class="wd"><div><b>#17</b><small>WRIGLEY</small></div></div>
+  </div>
+
+  <div class="la">
+    <div class="la-head">
+      <span class="appic">W</span><span class="src">Witness · Wrigley Field</span>
+      <span class="live"><i></i>Bot 7th <span>· 1 out</span></span>
+    </div>
+    <div class="board">
+      <div class="team">
+        <span class="mono-badge" style="background:linear-gradient(140deg,#0e3386,#1d4fd8);box-shadow:inset 0 0 0 2px #cc3433">C</span>
+        <div><div class="sc">4</div><div class="nm">CHC</div></div>
+      </div>
+      <div class="mid">
+        <div>
+          <div class="diamond">
+            <i class="base on" style="left:16px;top:0"></i>
+            <i class="base" style="left:2px;top:13px"></i>
+            <i class="base" style="left:30px;top:13px"></i>
+          </div>
+          <div class="outs"><i class="on"></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="team away" style="flex-direction:row-reverse;text-align:right">
+        <span class="mono-badge" style="background:linear-gradient(140deg,#12284b,#22406e);box-shadow:inset 0 0 0 2px #ffc52f;color:#ffd35a">M</span>
+        <div><div class="sc">3</div><div class="nm">MIL</div></div>
+      </div>
+    </div>
+    <div class="la-foot">
+      <div class="play"><b>Go-ahead double off the ivy</b><span>6 moments saved tonight</span></div>
+      <div class="save"><span class="dot"></span>Save moment</div>
+    </div>
+  </div>
+
+  <div class="nt">
+    <div class="ic">W</div>
+    <div class="tx">
+      <div class="r1">Checked in at Wrigley<span>2h ago</span></div>
+      <div class="r2">Visit #17 · Sec 209 · your 17th game with Maya</div>
+    </div>
+  </div>
+
+  <div class="qa" style="left:46px"><svg viewBox="0 0 24 24"><path d="M8 2.5h8v3.2l-2 3V21a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V8.7l-2-3z"/><path d="M12 12.5v2.5"/></svg></div>
+  <div class="qa" style="right:46px"><svg viewBox="0 0 24 24"><path d="M3 8.5a2 2 0 0 1 2-2h2.2l1.6-2.2h6.4l1.6 2.2H19a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg></div>
+  <div class="hb"></div>
+<script src="../../kit/kit.js"></script>
+</body></html>

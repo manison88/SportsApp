@@ -1,0 +1,172 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Route map</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #06080c; }
+  #map { position: absolute; left: 0; top: 0; width: 393px; height: 600px; }
+  .mapfade { position: absolute; left: 0; right: 0; top: 0; height: 600px; pointer-events: none;
+    background: linear-gradient(180deg, rgba(6,8,12,.92) 0%, rgba(6,8,12,0) 22%, rgba(6,8,12,0) 70%, #06080c 92%); }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 5; }
+  .topbar .right { display: flex; gap: 10px; }
+  .head { position: absolute; left: 24px; top: 108px; z-index: 4; }
+  .head .eyebrow { color: var(--signal); }
+  .head h1 { font: 400 46px/0.95 var(--f-serif); letter-spacing: -.8px; margin-top: 8px; }
+  .head h1 em { color: #ffd9b8; }
+  .head .sub { font: 500 13px/1.3 var(--f-ui); color: var(--text-2); margin-top: 8px; }
+
+  .pin { position: absolute; z-index: 6; background: #f4efe6; padding: 5px 5px 0; border-radius: 3px;
+    box-shadow: 0 14px 30px rgba(0,0,0,.6), 0 2px 4px rgba(0,0,0,.4); }
+  .pin .ph { width: 100%; overflow: hidden; border-radius: 1px; }
+  .pin .cap { font: 600 15px/1 var(--f-hand); color: #2a2520; text-align: center; height: 22px; display: grid; place-items: center; }
+  .label { position: absolute; z-index: 6; font: 600 10px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: var(--text); white-space: nowrap; }
+  .label small { display: block; font: 500 10px/1 var(--f-ui); letter-spacing: .4px; text-transform: none; color: var(--text-3); margin-top: 4px; }
+  .flylabel { position: absolute; z-index: 6; height: 24px; padding: 0 10px; border-radius: 12px; display: inline-flex; align-items: center; gap: 6px;
+    font: 600 10.5px/1 var(--f-ui); color: var(--text-2); white-space: nowrap; }
+  .flylabel b { color: var(--text); font-weight: 700; }
+
+  .sheet { position: absolute; left: 0; right: 0; top: 556px; bottom: 0; z-index: 8; padding: 0 20px; }
+  .stats { display: flex; justify-content: space-between; padding: 0 4px 14px; border-bottom: .5px solid var(--line-2); }
+  .stat b { display: block; font: 700 22px/1 var(--f-tight); letter-spacing: -.4px; font-variant-numeric: tabular-nums; }
+  .stat span { display: block; font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.4px; text-transform: uppercase; color: var(--text-3); margin-top: 6px; }
+  .stops { margin-top: 6px; position: relative; }
+  .stops::before { content: ""; position: absolute; left: 13px; top: 26px; bottom: 26px; width: 1.5px; background: linear-gradient(var(--signal), rgba(255,181,71,.25)); }
+  .stop { display: flex; align-items: center; height: 70px; gap: 14px; }
+  .dot { width: 28px; height: 28px; border-radius: 50%; flex: none; display: grid; place-items: center; font: 700 12px/1 var(--f-ui); color: #1a1206; background: var(--signal); box-shadow: 0 0 0 4px #06080c, 0 0 16px rgba(255,181,71,.6); position: relative; z-index: 1; }
+  .dot.quiet { background: #1c1f26; color: var(--text-2); box-shadow: 0 0 0 4px #06080c, inset 0 0 0 1px rgba(255,181,71,.5); }
+  .stop .body { flex: 1; min-width: 0; }
+  .stop .city { font: 600 17px/1.15 var(--f-ui); letter-spacing: -.2px; }
+  .stop .note { font: 400 12.5px/1.3 var(--f-ui); color: var(--text-3); margin-top: 3px; white-space: nowrap; }
+  .score { display: flex; align-items: center; gap: 6px; padding: 7px 10px; border-radius: 14px; background: #12151b; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.1); }
+  .score .mono-badge { width: 24px; height: 24px; font-size: 11px; border-radius: 7px; }
+  .score b { font: 800 20px/1 var(--f-cond); font-variant-numeric: tabular-nums; min-width: 12px; text-align: center; }
+  .score b.l { color: var(--text-3); }
+  .score i { width: 1px; height: 14px; background: var(--line-2); }
+</style></head>
+<body class="phone">
+  <svg id="map" viewBox="0 0 393 600"></svg>
+  <div class="mapfade"></div>
+
+  <div class="topbar">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="right">
+      <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+      <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+    </div>
+  </div>
+
+  <div class="head">
+    <div class="eyebrow">Trip · Feb 20 – Mar 3, 2020</div>
+    <h1>Spain, <em>2020</em></h1>
+    <div class="sub">With Dana, Maya &amp; Leo</div>
+  </div>
+
+  <div id="overlay"></div>
+
+  <div class="sheet">
+    <div class="stats">
+      <div class="stat"><b>12</b><span>Days</span></div>
+      <div class="stat"><b>2</b><span>Games</span></div>
+      <div class="stat"><b>3</b><span>Cities</span></div>
+      <div class="stat"><b>9,150</b><span>Miles</span></div>
+      <div class="stat"><b>214</b><span>Photos</span></div>
+    </div>
+    <div class="stops">
+      <div class="stop">
+        <div class="dot">1</div>
+        <div class="body"><div class="city">Barcelona</div><div class="note">Camp Nou · Sat, Feb 22</div></div>
+        <div class="score">
+          <span class="mono-badge" style="background:linear-gradient(135deg,#004d98 50%,#a50044 50%)">B</span><b>5</b><i></i><b class="l">0</b>
+          <span class="mono-badge" style="background:linear-gradient(135deg,#0a3a7a,#b0132e);opacity:.55">E</span>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="dot quiet">2</div>
+        <div class="body"><div class="city">Valencia</div><div class="note">Mestalla tour · paella at Malvarrosa</div></div>
+      </div>
+      <div class="stop">
+        <div class="dot">3</div>
+        <div class="body"><div class="city">Madrid</div><div class="note">Bernabéu · Sun, Mar 1</div></div>
+        <div class="score">
+          <span class="mono-badge" style="background:linear-gradient(135deg,#fbfbf7,#d9d4c4);color:#14213d;box-shadow:inset 0 0 0 1.5px #febe10">R</span><b>2</b><i></i><b class="l">0</b>
+          <span class="mono-badge" style="background:linear-gradient(135deg,#004d98 50%,#a50044 50%);opacity:.55">B</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../../kit/vendor/d3.min.js"></script>
+<script src="../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../kit/vendor/land-50m.js"></script>
+<script src="../../kit/vendor/countries-110m.js"></script>
+<script>
+(function(){
+  const svg = d3.select('#map');
+  const L = __atlas['land-50m'], C = __atlas['countries-110m'];
+  const land = topojson.feature(L, L.objects.land);
+  const borders = topojson.mesh(C, C.objects.countries, (a, b) => a !== b);
+  const proj = d3.geoMercator().fitExtent([[34, 236], [366, 500]], {type: 'MultiPoint', coordinates: [[-9.4, 36.0], [3.3, 43.8]]});
+  const path = d3.geoPath(proj);
+  const defs = svg.append('defs');
+  defs.html(`
+    <radialGradient id="sea" cx="62%" cy="55%" r="70%"><stop offset="0" stop-color="#0e1420"/><stop offset="1" stop-color="#06080c"/></radialGradient>
+    <linearGradient id="landg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#262a35"/><stop offset="1" stop-color="#1a1d25"/></linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="9"/></filter>
+    <pattern id="dots" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r=".7" fill="rgba(255,255,255,.07)"/></pattern>
+    <linearGradient id="fmaskg" x1="0" y1="0" x2="0" y2="1"><stop offset=".36" stop-color="#000"/><stop offset=".5" stop-color="#fff"/></linearGradient>
+    <mask id="fmask" maskUnits="userSpaceOnUse" x="0" y="0" width="393" height="600"><rect width="393" height="600" fill="url(#fmaskg)"/></mask>
+    <linearGradient id="route" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffb547"/><stop offset="1" stop-color="#ffd9a0"/></linearGradient>`);
+  svg.append('rect').attr('width', 393).attr('height', 600).attr('fill', 'url(#sea)');
+  svg.append('path').datum(d3.geoGraticule().step([2, 2])()).attr('d', path).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.035)').attr('stroke-width', .5);
+  svg.append('path').datum(land).attr('d', path).attr('fill', 'rgba(0,0,0,.5)').attr('transform', 'translate(0,3)').attr('filter', 'url(#soft)');
+  svg.append('path').datum(land).attr('d', path).attr('fill', 'url(#landg)').attr('stroke', 'rgba(255,225,190,.32)').attr('stroke-width', .7);
+  svg.append('path').datum(land).attr('d', path).attr('fill', 'url(#dots)');
+  svg.append('path').datum(borders).attr('d', path).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.16)').attr('stroke-width', .7).attr('stroke-dasharray', '2 2.5');
+
+  // context cities
+  const ctx = [['Bilbao', -2.93, 43.26], ['Zaragoza', -0.88, 41.65], ['Granada', -3.6, 37.18], ['Palma', 2.65, 39.57]];
+  ctx.forEach(([n, lo, la]) => { const [x, y] = proj([lo, la]);
+    svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 1.6).attr('fill', 'rgba(255,255,255,.3)');
+    svg.append('text').attr('x', x + 5).attr('y', y + 3).text(n).attr('fill', 'rgba(255,255,255,.3)').attr('font-family', 'Inter').attr('font-size', 8.5).attr('font-weight', 500); });
+
+  const ORD = [-87.9, 41.98], BCN = [2.17, 41.39], VLC = [-0.376, 39.47], MAD = [-3.70, 40.42];
+  // Great-circle flights from Chicago enter from the Atlantic
+  const gc = (a, b, n = 120) => { const i = d3.geoInterpolate(a, b); return {type: 'LineString', coordinates: d3.range(n + 1).map(k => i(k / n))}; };
+  const outbound = gc(ORD, BCN), home = gc(MAD, ORD);
+  const fl = svg.append('g').attr('mask', 'url(#fmask)');
+  fl.append('path').datum(outbound).attr('d', path).attr('fill', 'none').attr('stroke', 'rgba(255,217,160,.75)').attr('stroke-width', 1.4).attr('stroke-dasharray', '1 5').attr('stroke-linecap', 'round');
+  fl.append('path').datum(home).attr('d', path).attr('fill', 'none').attr('stroke', 'rgba(255,217,160,.45)').attr('stroke-width', 1.4).attr('stroke-dasharray', '1 5').attr('stroke-linecap', 'round');
+
+  // rail legs: drawn curves, glowing
+  const [bx, by] = proj(BCN), [vx, vy] = proj(VLC), [mx, my] = proj(MAD);
+  const curve = (a, b, bend) => { const mxp = (a[0] + b[0]) / 2, myp = (a[1] + b[1]) / 2; const dx = b[0] - a[0], dy = b[1] - a[1];
+    return `M${a[0]},${a[1]} Q${mxp - dy * bend},${myp + dx * bend} ${b[0]},${b[1]}`; };
+  const rail = curve([bx, by], [vx, vy], -0.18) + curve([vx, vy], [mx, my], -0.12).replace(/^M[^Q]+/, ' ');
+  svg.append('path').attr('d', rail).attr('fill', 'none').attr('stroke', '#ffb547').attr('stroke-width', 7).attr('opacity', .25).attr('filter', 'url(#soft)');
+  svg.append('path').attr('d', rail).attr('fill', 'none').attr('stroke', 'url(#route)').attr('stroke-width', 2.6).attr('stroke-linecap', 'round').attr('filter', 'url(#glow)');
+
+  // stops
+  [[bx, by, 1, true], [vx, vy, 2, false], [mx, my, 3, true]].forEach(([x, y, n, game]) => {
+    if (game) svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 16).attr('fill', 'rgba(255,181,71,.16)');
+    svg.append('circle').attr('cx', x).attr('cy', y).attr('r', game ? 9 : 7).attr('fill', game ? '#ffb547' : '#1c1f26').attr('stroke', game ? '#06080c' : '#ffb547').attr('stroke-width', game ? 2 : 1.5);
+    svg.append('text').attr('x', x).attr('y', y + 3.6).attr('text-anchor', 'middle').text(n).attr('fill', game ? '#1a1206' : '#ffd9a0').attr('font-family', 'Inter').attr('font-weight', 800).attr('font-size', game ? 10 : 8.5);
+  });
+
+  // overlay HTML: photo pins + labels
+  const o = document.getElementById('overlay');
+  o.innerHTML = `
+    <svg style="position:absolute;left:0;top:0;z-index:5" width="393" height="600"><g stroke="rgba(244,239,230,.55)" stroke-width="1" fill="none">
+      <path d="M${bx},${by - 10} L${bx - 22},${by - 46}"/>
+      <path d="M${mx - 10},${my + 4} L${mx - 48},${my + 40}"/></g></svg>
+    <div class="pin" style="left:${bx - 104}px;top:${by - 150}px;width:96px;transform:rotate(-5deg)">
+      <div class="ph" style="height:80px"><img class="ph graded" src="../../photos/camp-nou-aerial.jpg"></div><div class="cap">Feb 22 · 5–0</div></div>
+    <div class="pin" style="left:${mx - 132}px;top:${my + 30}px;width:96px;transform:rotate(4deg)">
+      <div class="ph" style="height:80px"><canvas class="photo" data-style="scoreboard" data-seed="4" data-accent="#febe10" data-secondary="#a50044" data-board="RMA 2|BAR 0"></canvas></div><div class="cap">Mar 1 · last one</div></div>
+    <div class="label" style="left:${bx - 16}px;top:${by + 2}px;transform:translateX(-100%);text-align:right">Barcelona<small>Feb 21 – 25</small></div>
+    <div class="label" style="left:${vx + 16}px;top:${vy - 5}px">Valencia<small>Feb 25 – 28</small></div>
+    <div class="label" style="left:${mx + 14}px;top:${my - 22}px">Madrid<small>Feb 28 – Mar 3</small></div>
+    <div class="flylabel glass" style="left:24px;top:206px"><svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd9a0"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><b>ORD</b> 4,580 mi · 8h 35m</div>`;
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>
