@@ -17,6 +17,7 @@ struct DiscoveryView: View {
     @State private var lookup: FoundGame?
     @State private var lookupFor: String?
     @State private var checkedFor: String?
+    @State private var lookupVenue: Venue?
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -114,7 +115,7 @@ struct DiscoveryView: View {
     private func card(_ cluster: PhotoCluster) -> some View {
         VStack(alignment: .leading, spacing: Spacing.inner) {
             HStack(spacing: 10) {
-                Text(cluster.venue.name)
+                Text((lookupFor == cluster.id ? lookupVenue?.name : nil) ?? cluster.venue.name)
                     .font(.condensed(.title3, weight: .heavy))
                     .textCase(.uppercase)
                     .lineLimit(1)
@@ -233,14 +234,18 @@ struct DiscoveryView: View {
         phase = .results
     }
 
-    /// Checks the photos' venue and time against real league schedules.
+    /// Checks the photos' venue and time against real league schedules,
+    /// then the venues next door (a stadium and its arena share a parking lot).
     private func lookUp(_ cluster: PhotoCluster) async {
         lookup = nil
         lookupFor = nil
-        let found = await GameLookup.games(at: cluster.venue, from: cluster.start, to: cluster.end)
-        if let game = found.first {
-            lookup = game
-            lookupFor = cluster.id
+        for venue in [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: library.venues) {
+            if let game = await GameLookup.games(at: venue, from: cluster.start, to: cluster.end).first {
+                lookup = game
+                lookupFor = cluster.id
+                lookupVenue = venue
+                break
+            }
         }
         checkedFor = cluster.id
     }
@@ -254,6 +259,7 @@ struct DiscoveryView: View {
                               origin: .photos)
         if let lookup, lookupFor == cluster.id {
             entry.date = lookup.start
+            if let lookupVenue { entry.venueId = lookupVenue.id }
             GameLookup.apply(lookup, detail: nil, to: &entry, library: library)
             // Plays and the win-probability curve arrive after; the card moves on now.
             let id = entry.id

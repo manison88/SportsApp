@@ -35,8 +35,12 @@ So a direct "connect your Ticketmaster account" button isn't possible for free, 
    - Nothing leaves the phone.
 3. **Manual add.** A form covers sport, teams, venue, date, score, seat, who you were with, a note and photos.
    - The venue comes from the built-in stadium catalog, from Apple Maps search (`MKLocalSearch`, free), or is created by hand with a map pin.
-4. **Score lookup.** The **MLB Stats API** is free and needs no key. When an MLB game's teams and date are known, the final score fills in automatically.
-   - Same pattern later: NHL `api-web.nhle.com`, Jolpica-F1 and TheSportsDB, all free.
+4. **Schedule check and real stats.** Every game from photos, and any game added by hand with **Find this game**, is checked against the real schedule for that venue's leagues.
+   - **Source:** ESPN's public site API. It's free and needs no key. It covers MLB, NFL, NBA, NHL, MLS, WNBA, NWSL, CFL, college football and basketball, EuroLeague, and the top soccer leagues of Europe, Mexico and South America, including historical seasons.
+   - **What a match gives you:** real teams (new teams are learned with their colors), the final score, the line score, scoring plays, the win-probability curve and attendance.
+   - **Matching:** the venue's name or aliases (or its city plus home team), and a start time between 5 hours before the first photo and 1 hour after the last.
+   - **Caveat:** the API is unofficial and undocumented, so every call fails soft and the app works without it. If it goes away, the official free sources take over: the MLB Stats API and NHL `api-web.nhle.com`.
+   - **Not covered:** handball and most smaller European leagues. Those venues still match photos, but their games aren't checked against a schedule.
 5. **Live check-in.** CoreLocation detects that you're inside a stadium. "Save this moment" stamps the time, and those moments become the game's photos and timeline.
 
 ## Phase 2 (free, but not in tonight's build)

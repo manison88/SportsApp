@@ -138,7 +138,7 @@ venues = []
 for v in load("venues.json") + load("extra-venues.json", os.path.join(ROOT, "Catalog")):
     if any(x["id"] == v["id"] for x in venues): continue
     venues.append({k: v.get(k) for k in FIELDS})
-research = sorted(glob.glob(os.path.join(os.path.dirname(__file__), "venues", "*.json")))
+research = sorted(p for p in glob.glob(os.path.join(os.path.dirname(__file__), "venues", "*.json")) if not p.endswith("patches.json"))
 merged_dupes = 0
 for path in research:
     for v in json.load(open(path)):
@@ -149,6 +149,15 @@ for path in research:
             merged_dupes += 1
         else:
             venues.append(v)
+# Cross-region facts no single research file owns (college teams in pro buildings, bowl sites).
+patches_path = os.path.join(os.path.dirname(__file__), "venues", "patches.json")
+for patch in (json.load(open(patches_path)) if os.path.exists(patches_path) else []):
+    target = next((x for x in venues if x["id"] == patch["id"]), None)
+    if target is None:
+        print("patch target missing:", patch["id"]); continue
+    target["leagues"] = union(target.get("leagues"), patch.get("addLeagues"))
+    target["homeTeams"] = union(target.get("homeTeams"), patch.get("addHomeTeams"))
+    target["sports"] = union(target.get("sports"), patch.get("addSports"))
 for v in venues:
     for k in ("aliases", "leagues", "homeTeams"):
         v[k] = v.get(k) or []
