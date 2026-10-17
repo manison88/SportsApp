@@ -1,0 +1,187 @@
+Application, 0x1055bbf70, pid: 67959, label: 'Witness' <App element pid: 67959>
+  Window (Main), 0x1055789a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4456986080.4>
+    Other, 0x105565380, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4376977056.5>
+      Other, 0x105570250, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4376981600.6>
+        Other, 0x105570100, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4456464960.7>
+          Other, 0x105565230, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4457196192.8>
+            Other, 0x105570370, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4457036384.9>
+              Other, 0x105570bc0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4376981088.10>
+                Other, 0x105570ce0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4374075312.75>
+                  Other, 0x105570e00, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4376993040.76>
+                    Other, 0x1055bc2b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4373795120.78>
+                      Other, 0x1055bc3d0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4374157424.79>
+                        Other, 0x1055bc4f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4377545680.80>
+                          NavigationBar, 0x1055bc610, {{0.0, 56.3}, {402.0, 44.0}}, identifier: 'Map' <AX element pid: 67959, elementOrHash.elementID: 4374149152.81>
+                            Other, 0x1055bc730, {{16.0, 60.3}, {47.7, 36.0}}, label: 'MAP' <AX element pid: 67959, elementOrHash.elementID: 4400713728.83>
+                              Other, 0x1055bc850, {{16.0, 60.3}, {47.7, 36.0}} <AX element pid: 67959, elementOrHash.elementID: 4376401552.87>
+                                StaticText, 0x1055bc970, {{16.0, 60.3}, {47.7, 36.0}}, label: 'MAP' <AX element pid: 67959, elementOrHash.elementID: 4376400320.91>
+                            StaticText, 0x1055bca90, {{200.7, 78.0}, {1.0, 1.0}}, label: 'Map' <AX element pid: 67959, elementOrHash.elementID: 4413598208.84>
+                              Other, 0x1055bcbb0, {{200.7, 78.0}, {1.0, 1.0}} <AX element pid: 67959, elementOrHash.elementID: 4373629712.88>
+                                Other, 0x1055bccd0, {{200.7, 78.0}, {1.0, 1.0}} <AX element pid: 67959, elementOrHash.elementID: 4373782560.92>
+                            Other, 0x1055bcdf0, {{350.0, 65.7}, {36.0, 25.7}}, label: 'Filter by sport' <AX element pid: 67959, elementOrHash.elementID: 4413022208.85>
+                              Other, 0x1055bcf10, {{350.0, 65.7}, {36.0, 25.7}} <AX element pid: 67959, elementOrHash.elementID: 4375774944.89>
+                                Button, 0x1055b9a30, {{350.0, 65.7}, {36.0, 25.7}}, label: 'Filter by sport' <AX element pid: 67959, elementOrHash.elementID: 4376372416.93>
+                                  Button, 0x1055b9b50, {{350.0, 65.7}, {36.0, 25.7}} <AX element pid: 67959, elementOrHash.elementID: 4457331872.95>
+                                    Other, 0x1055b9c70, {{350.0, 65.7}, {36.0, 25.7}} <AX element pid: 67959, elementOrHash.elementID: 4376371984.97>
+                                      Image, 0x1055b9d90, {{350.0, 65.7}, {36.0, 25.7}}, identifier: 'line.3.horizontal.decrease', label: 'Filter' <AX element pid: 67959, elementOrHash.elementID: 4375771264.100>
+                          Other, 0x1055b9eb0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4377546432.82>
+                            Other, 0x1055b9fd0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4457189376.86>
+                              Other, 0x1055ba0f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4374145216.90>
+                                Other, 0x1055ba210, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4376068304.94>
+                                  ScrollView, 0x1055ba330, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 67959, elementOrHash.elementID: 4405710336.96>
+                                    Other, 0x1055ba450, {{0.0, 100.3}, {402.0, 723.7}} <AX element pid: 67959, elementOrHash.elementID: 4377534176.98>
+                                      Button, 0x1055ba570, {{332.0, 110.3}, {40.0, 40.0}}, identifier: 'life-map', label: 'Expand map' <AX element pid: 67959, elementOrHash.elementID: 4376676848.101>
+                                      Button, 0x1055ba690, {{332.0, 158.3}, {40.0, 40.0}}, identifier: 'life-map', label: 'Zoom in' <AX element pid: 67959, elementOrHash.elementID: 4376575040.102>
+                                      Button, 0x1055ba7b0, {{332.0, 206.3}, {40.0, 40.0}}, identifier: 'life-map', label: 'Zoom out' <AX element pid: 67959, elementOrHash.elementID: 4376516272.103>
+                                      Other, 0x1055ba8d0, {{20.0, 100.3}, {362.0, 400.0}}, identifier: 'life-map' <AX element pid: 67959, elementOrHash.elementID: 4398908416.104>
+                                        Other, 0x1055ba9f0, {{20.0, 100.3}, {362.0, 400.0}} <AX element pid: 67959, elementOrHash.elementID: 4374412096.111>
+                                          Map, 0x1055bab10, {{20.0, 100.3}, {362.0, 400.0}} <AX element pid: 67959, elementOrHash.elementID: 4375791232.122>
+                                            Other, 0x1055bac30, {{352.0, 277.2}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'DORTMUND, DORTMUND' <AX element pid: 67959, elementOrHash.elementID: 105553169847296.130>
+                                            Other, 0x1055bad50, {{143.1, 297.5}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169848256.131>
+                                            Other, 0x1055bae70, {{153.9, 298.9}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169847136.132>
+                                            Other, 0x1055baf90, {{154.1, 303.1}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169854656.133>
+                                            Other, 0x1055bb0b0, {{189.1, 305.0}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169846176.134>
+                                            Other, 0x1055bb1d0, {{164.3, 305.1}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169851776.135>
+                                            Other, 0x1055bb2f0, {{154.8, 306.2}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169852256.136>
+                                            Other, 0x1055bb410, {{154.7, 306.2}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'CHICAGO, CHICAGO' <AX element pid: 67959, elementOrHash.elementID: 105553169844736.137>
+                                            Other, 0x1055bb530, {{154.7, 306.3}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169853216.138>
+                                            Other, 0x1055bb650, {{154.8, 306.4}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169846816.139>
+                                            Other, 0x1055bb770, {{154.8, 306.5}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169852096.140>
+                                            Other, 0x1055bb890, {{167.1, 307.4}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169854176.141>
+                                            Other, 0x1055bb9b0, {{340.9, 307.7}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'BARCELONA, BARCELONA' <AX element pid: 67959, elementOrHash.elementID: 105553169848896.142>
+                                            Other, 0x1055bbad0, {{183.2, 309.2}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169853056.143>
+                                            Other, 0x1055bbbf0, {{328.9, 310.3}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169849056.144>
+                                            Other, 0x1055bbd10, {{170.6, 310.3}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169853376.145>
+                                            Other, 0x1055759c0, {{161.3, 313.9}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169853536.146>
+                                            Other, 0x105575ae0, {{140.6, 314.1}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169848416.147>
+                                            Other, 0x105575c00, {{149.5, 315.2}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169851936.148>
+                                            Other, 0x105575d20, {{82.7, 317.4}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169852576.149>
+                                            Other, 0x105575e40, {{91.3, 326.9}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169852896.150>
+                                            Other, 0x1055bd250, {{134.1, 336.6}, {30.0, 30.0}}, identifier: 'VKPointFeature', label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 105553169855456.151>
+                                          Other, 0x1055bd370, {{20.0, 100.3}, {362.0, 400.0}}, identifier: 'AnnotationContainer' <AX element pid: 67959, elementOrHash.elementID: 4376143888.123>
+                                            Other, 0x1055bd490, {{75.7, 310.3}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4406540288.152>
+                                              Other, 0x1055bd5b0, {{75.7, 310.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4735418432.185>
+                                                Other, 0x1055bd930, {{75.7, 310.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376094128.206>
+                                                  Button, 0x1055bda50, {{75.7, 310.3}, {44.0, 44.0}}, label: 'Oracle Park' <AX element pid: 67959, elementOrHash.elementID: 4376092032.227>
+                                            Other, 0x1055bdb70, {{182.0, 298.0}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400772608.153>
+                                              Other, 0x1055bdc90, {{182.0, 298.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376451216.186>
+                                                Other, 0x1055bddb0, {{182.0, 298.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376096560.207>
+                                                  Button, 0x1055bded0, {{182.0, 298.0}, {44.0, 44.0}}, label: 'Fenway Park' <AX element pid: 67959, elementOrHash.elementID: 4376094560.228>
+                                            Other, 0x1055bdff0, {{123.3, 275.0}, {92.0, 92.0}}, label: 'CHICAGO' <AX element pid: 67959, elementOrHash.elementID: 4400782336.154>
+                                              Other, 0x1055be110, {{123.3, 275.0}, {92.0, 92.0}} <AX element pid: 67959, elementOrHash.elementID: 4376461504.187>
+                                                Other, 0x1055be230, {{123.3, 275.0}, {92.0, 92.0}} <AX element pid: 67959, elementOrHash.elementID: 4376096992.208>
+                                            Other, 0x1055be350, {{146.7, 291.7}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400800256.155>
+                                              Other, 0x1055be470, {{146.7, 291.7}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376468720.188>
+                                                Other, 0x1055be590, {{146.7, 291.7}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376100208.209>
+                                                  Button, 0x1055be6b0, {{146.7, 291.7}, {44.0, 44.0}}, label: 'Lambeau Field' <AX element pid: 67959, elementOrHash.elementID: 4376098288.229>
+                                            Other, 0x1055be7d0, {{147.7, 299.3}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400801792.156>
+                                              Other, 0x1055be8f0, {{147.7, 299.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376478576.189>
+                                                Other, 0x1055bea10, {{147.7, 299.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376104160.210>
+                                                  Button, 0x1055beb30, {{147.7, 299.3}, {44.0, 44.0}}, label: 'United Center' <AX element pid: 67959, elementOrHash.elementID: 4376100640.230>
+                                            Other, 0x10547c6b0, {{147.7, 299.0}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400803328.157>
+                                              Other, 0x10547b4e0, {{147.7, 299.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376488384.190>
+                                                Other, 0x10547b860, {{147.7, 299.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4834325808.211>
+                                                  Button, 0x10547bfa0, {{147.7, 299.0}, {44.0, 44.0}}, label: 'Wrigley Field' <AX element pid: 67959, elementOrHash.elementID: 4834205344.231>
+                                            Other, 0x105479f70, {{176.0, 302.0}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400804864.158>
+                                              Other, 0x10547bc00, {{176.0, 302.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376498192.191>
+                                                Other, 0x10547b170, {{176.0, 302.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4834328240.212>
+                                                  Button, 0x105473f00, {{176.0, 302.0}, {44.0, 44.0}}, label: 'Yankee Stadium' <AX element pid: 67959, elementOrHash.elementID: 4834326240.232>
+                                            Other, 0x105475750, {{157.0, 298.0}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400806400.159>
+                                              Other, 0x105475400, {{157.0, 298.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376508112.192>
+                                                Other, 0x10547cd60, {{157.0, 298.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376092928.213>
+                                                  Button, 0x105469f70, {{157.0, 298.0}, {44.0, 44.0}}, label: 'Comerica Park' <AX element pid: 67959, elementOrHash.elementID: 4376105104.233>
+                                            Other, 0x1054761a0, {{136.0, 290.3}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400809472.160>
+                                              Other, 0x105476f30, {{136.0, 290.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376517584.193>
+                                                Other, 0x105473b80, {{136.0, 290.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376109248.214>
+                                                  Button, 0x1054745f0, {{136.0, 290.3}, {44.0, 44.0}}, label: 'Target Field' <AX element pid: 67959, elementOrHash.elementID: 4376107328.234>
+                                            Other, 0x10547aa80, {{147.7, 299.3}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400811008.161>
+                                              Other, 0x10547ae00, {{147.7, 299.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376527360.194>
+                                                Other, 0x105477290, {{147.7, 299.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4945102064.215>
+                                                  Button, 0x1054700a0, {{147.7, 299.3}, {44.0, 44.0}}, label: 'Soldier Field' <AX element pid: 67959, elementOrHash.elementID: 4376109680.235>
+                                            Other, 0x10547c320, {{163.3, 303.0}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400812544.162>
+                                              Other, 0x10547c9e0, {{163.3, 303.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376537216.195>
+                                                Other, 0x105478b20, {{163.3, 303.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376103024.216>
+                                                  Button, 0x105477950, {{163.3, 303.0}, {44.0, 44.0}}, label: 'PNC Park' <AX element pid: 67959, elementOrHash.elementID: 4945103008.236>
+                                            Other, 0x105478e70, {{84.3, 319.7}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400823808.163>
+                                              Other, 0x105479540, {{84.3, 319.7}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376547264.196>
+                                                Other, 0x1054798b0, {{84.3, 319.7}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4945117456.217>
+                                                  Button, 0x105479c10, {{84.3, 319.7}, {44.0, 44.0}}, label: 'Dodger Stadium' <AX element pid: 67959, elementOrHash.elementID: 4945116560.237>
+                                            Other, 0x1054791d0, {{147.7, 299.3}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400825344.164>
+                                              Other, 0x105470e20, {{147.7, 299.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376557072.197>
+                                                Other, 0x105471180, {{147.7, 299.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4834330896.218>
+                                                  Button, 0x105477ca0, {{147.7, 299.3}, {44.0, 44.0}}, label: 'Guaranteed Rate Field' <AX element pid: 67959, elementOrHash.elementID: 4834328976.238>
+                                            Other, 0x10546fd50, {{142.3, 308.0}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400826880.165>
+                                              Other, 0x105470ac0, {{142.3, 308.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376566880.198>
+                                                Other, 0x10546f9e0, {{142.3, 308.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4735969856.219>
+                                                  Button, 0x105472330, {{142.3, 308.0}, {44.0, 44.0}}, label: 'Busch Stadium' <AX element pid: 67959, elementOrHash.elementID: 4735967088.239>
+                                            Other, 0x105471520, {{160.0, 300.3}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400828416.166>
+                                              Other, 0x105475e30, {{160.0, 300.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376576688.199>
+                                                Other, 0x105475060, {{160.0, 300.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4945120576.220>
+                                                  Button, 0x105473100, {{160.0, 300.3}, {44.0, 44.0}}, label: 'Progressive Field' <AX element pid: 67959, elementOrHash.elementID: 4945119680.240>
+                                            Other, 0x105476500, {{147.0, 296.0}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400829952.167>
+                                              Other, 0x1054726d0, {{147.0, 296.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376586496.200>
+                                                Other, 0x105474270, {{147.0, 296.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4945124176.221>
+                                                  Button, 0x105476bb0, {{147.0, 296.0}, {44.0, 44.0}}, label: 'American Family Field' <AX element pid: 67959, elementOrHash.elementID: 4945122256.241>
+                                            Other, 0x105476860, {{154.0, 306.7}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400831488.168>
+                                              Other, 0x105470760, {{154.0, 306.7}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376596304.201>
+                                                Other, 0x105473470, {{154.0, 306.7}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4834333328.222>
+                                                  Button, 0x105471fc0, {{154.0, 306.7}, {44.0, 44.0}}, label: 'Great American Ball Park' <AX element pid: 67959, elementOrHash.elementID: 4834331408.242>
+                                            Other, 0x10546e920, {{127.0, 329.3}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400833024.169>
+                                              Other, 0x105474970, {{127.0, 329.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376607232.202>
+                                                Other, 0x10546f670, {{127.0, 329.3}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4736045344.223>
+                                                  Button, 0x105466f70, {{127.0, 329.3}, {44.0, 44.0}}, label: 'Circuit of the Americas' <AX element pid: 67959, elementOrHash.elementID: 4735971392.243>
+                                            Other, 0x1055bec50, {{133.3, 307.0}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400834560.170>
+                                              Other, 0x1055bedf0, {{133.3, 307.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376617008.203>
+                                                Other, 0x1055bef10, {{133.3, 307.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4736047696.224>
+                                                  Button, 0x1055bf030, {{133.3, 307.0}, {44.0, 44.0}}, label: 'Kauffman Stadium' <AX element pid: 67959, elementOrHash.elementID: 4736045776.244>
+                                            Other, 0x1055bf150, {{321.7, 303.0}, {44.0, 44.0}}, label: 'Map pin' <AX element pid: 67959, elementOrHash.elementID: 4400836096.171>
+                                              Other, 0x1055bf270, {{321.7, 303.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376627344.204>
+                                                Other, 0x1055bf390, {{321.7, 303.0}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4834336064.225>
+                                                  Button, 0x1055bf4b0, {{321.7, 303.0}, {44.0, 44.0}}, label: 'Santiago Bernabéu' <AX element pid: 67959, elementOrHash.elementID: 4834334144.245>
+                                            Other, 0x1055bf750, {{333.7, 300.7}, {44.0, 44.0}}, label: 'BARCELONA' <AX element pid: 67959, elementOrHash.elementID: 4400839168.172>
+                                              Other, 0x1055bf870, {{333.7, 300.7}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4376647680.205>
+                                                Other, 0x1055bf990, {{333.7, 300.7}, {44.0, 44.0}} <AX element pid: 67959, elementOrHash.elementID: 4945125504.226>
+                                                  Button, 0x1055bfab0, {{333.7, 300.7}, {44.0, 44.0}}, label: 'Camp Nou' <AX element pid: 67959, elementOrHash.elementID: 4945124608.246>
+                                        Link, 0x1055bfbd0, {{90.2, 479.6}, {28.6, 10.7}}, label: 'Legal' <AX element pid: 67959, elementOrHash.elementID: 4376156848.112>
+                                      ScrollView, 0x1055bfcf0, {{0.0, 528.3}, {402.0, 36.0}}, identifier: 'map-legend' <AX element pid: 67959, elementOrHash.elementID: 4405482496.105>
+                                        Other, 0x1055bfe10, {{0.0, 528.3}, {834.0, 36.0}} <AX element pid: 67959, elementOrHash.elementID: 4377132816.113>
+                                          Button, 0x1055bff30, {{20.0, 528.3}, {128.0, 36.0}}, identifier: 'map-legend-baseball', label: 'Baseball, 31 games' <AX element pid: 67959, elementOrHash.elementID: 4376036656.124>
+                                            StaticText, 0x1055c0050, {{56.0, 537.3}, {60.3, 18.0}}, label: 'Baseball' <AX element pid: 67959, elementOrHash.elementID: 4376034448.173>
+                                            StaticText, 0x1055c0170, {{122.3, 537.3}, {13.7, 18.0}}, label: '31' <AX element pid: 67959, elementOrHash.elementID: 4376034880.174>
+                                          Button, 0x1055c0290, {{156.0, 528.3}, {128.0, 36.0}}, identifier: 'map-legend-football', label: 'Football, 10 games' <AX element pid: 67959, elementOrHash.elementID: 4376040432.125>
+                                            StaticText, 0x1055c03b0, {{192.0, 537.3}, {60.0, 18.0}}, label: 'Football' <AX element pid: 67959, elementOrHash.elementID: 4376038224.175>
+                                            StaticText, 0x1055c04d0, {{258.0, 537.3}, {14.0, 18.0}}, label: '10' <AX element pid: 67959, elementOrHash.elementID: 4376038656.176>
+                                          Button, 0x1055c05f0, {{292.0, 528.3}, {137.3, 36.0}}, identifier: 'map-legend-basketball', label: 'Basketball, 5 games' <AX element pid: 67959, elementOrHash.elementID: 4376044208.126>
+                                            StaticText, 0x1055c0710, {{328.0, 537.3}, {75.7, 18.0}}, label: 'Basketball' <AX element pid: 67959, elementOrHash.elementID: 4376042000.177>
+                                            StaticText, 0x1055c0830, {{409.7, 537.3}, {7.7, 18.0}}, label: '5' <AX element pid: 67959, elementOrHash.elementID: 4376042432.178>
+                                          Button, 0x1055c0950, {{437.3, 528.3}, {110.7, 36.0}}, identifier: 'map-legend-hockey', label: 'Hockey, 6 games' <AX element pid: 67959, elementOrHash.elementID: 4376047984.127>
+                                            StaticText, 0x1055c0a70, {{473.3, 537.3}, {48.7, 18.0}}, label: 'Hockey' <AX element pid: 67959, elementOrHash.elementID: 4376045776.179>
+                                            StaticText, 0x1055c0b90, {{528.0, 537.3}, {8.0, 18.0}}, label: '6' <AX element pid: 67959, elementOrHash.elementID: 4376046208.180>
+                                          Button, 0x1055c0cb0, {{556.0, 528.3}, {108.7, 36.0}}, identifier: 'map-legend-soccer', label: 'Soccer, 7 games' <AX element pid: 67959, elementOrHash.elementID: 4376051760.128>
+                                            StaticText, 0x1055c0dd0, {{592.0, 537.3}, {47.7, 18.0}}, label: 'Soccer' <AX element pid: 67959, elementOrHash.elementID: 4376049552.181>
+                                            StaticText, 0x1055c0ef0, {{645.7, 537.3}, {7.0, 18.0}}, label: '7' <AX element pid: 67959, elementOrHash.elementID: 4376049984.182>
+                                          Button, 0x1055c1010, {{672.7, 528.3}, {141.3, 36.0}}, identifier: 'map-legend-motorsport', label: 'Motorsport, 1 games' <AX element pid: 67959, elementOrHash.elementID: 4376055536.129>
+                                            StaticText, 0x1055c1130, {{708.7, 537.3}, {81.3, 18.0}}, label: 'Motorsport' <AX element pid: 67959, elementOrHash.elementID: 4376053328.183>
+                                            StaticText, 0x1055c1250, {{796.0, 537.3}, {6.0, 18.0}}, label: '1' <AX element pid: 67959, elementOrHash.elementID: 4376053760.184>
+                                      StaticText, 0x1055c1370, {{20.0, 592.3}, {290.7, 114.7}}, identifier: 'map-miles', label: '25,700, Miles' <AX element pid: 67959, elementOrHash.elementID: 4376059072.106>
+                                        StaticText, 0x1055c1490, {{20.0, 592.3}, {229.0, 114.7}}, label: '25,700' <AX element pid: 67959, elementOrHash.elementID: 4376058208.114>
+                                        StaticText, 0x1055c15b0, {{259.0, 662.7}, {51.7, 26.3}}, label: 'MILES' <AX element pid: 67959, elementOrHash.elementID: 4376058640.115>
+                                      StaticText, 0x1055c16d0, {{20.0, 735.0}, {48.3, 61.0}}, label: '21, Venues' <AX element pid: 67959, elementOrHash.elementID: 4376061040.107>
+                                        StaticText, 0x1055c17f0, {{20.0, 735.0}, {32.0, 40.7}}, label: '21' <AX element pid: 67959, elementOrHash.elementID: 4376060176.116>
+                                        StaticText, 0x1055c1910, {{20.0, 781.7}, {48.3, 14.3}}, label: 'Venues' <AX element pid: 67959, elementOrHash.elementID: 4376060608.117>
+                                      StaticText, 0x1055c1a30, {{140.7, 735.0}, {86.0, 61.0}}, label: '3, Countries' <AX element pid: 67959, elementOrHash.elementID: 4376063392.108>
+                                        StaticText, 0x1055c1b50, {{156.7, 735.0}, {16.0, 40.7}}, label: '3' <AX element pid: 67959, elementOrHash.elementID: 4376061824.118>
+                                        StaticText, 0x1055c1c70, {{156.7, 781.7}, {70.0, 14.3}}, label: 'Countries' <AX element pid: 67959, elementOrHash.elementID: 4376062608.119>
+                                      StaticText, 0x1055c1d90, {{261.3, 735.0}, {58.7, 61.0}}, label: '60, Games' <AX element pid: 67959, elementOrHash.elementID: 4376065744.109>
+                                        StaticText, 0x1055c1eb0, {{277.3, 735.0}, {32.0, 40.7}}, label: '60' <AX element pid: 67959, elementOrHash.elementID: 4376064176.120>
+                                        StaticText, 0x1055c1fd0, {{277.3, 781.7}, {42.7, 14.3}}, label: 'Games' <AX element pid: 67959, elementOrHash.elementID: 4376064960.121>
+                                    Other, 0x1055c20f0, {{369.0, 100.3}, {30.0, 690.7}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 67959, elementOrHash.elementID: 4376411568.99>
+                                      Other, 0x1055c2210, {{396.0, 103.3}, {3.0, 659.7}} <AX element pid: 67959, elementOrHash.elementID: 4376412032.110>
+                                    Other, 0x1055c2330, {{369.0, 100.3}, {30.0, 690.7}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 67959, elementOrHash.elementID: 4376411568.99>
+                                      Other, 0x1055c2450, {{396.0, 103.3}, {3.0, 659.7}} <AX element pid: 67959, elementOrHash.elementID: 4376412032.110>
+              TabBar, 0x1055c2570, {{0.0, 791.0}, {402.0, 83.0}}, label: 'Tab Bar' <AX element pid: 67959, elementOrHash.elementID: 4457038752.11>
+                Button, 0x1055c2690, {{2.0, 792.0}, {97.0, 48.0}}, identifier: 'rectangle.stack.fill', label: 'Timeline' <AX element pid: 67959, elementOrHash.elementID: 4377021696.13>
+                Button, 0x1055c27b0, {{103.0, 792.0}, {96.0, 48.0}}, identifier: 'globe.americas.fill', label: 'Map', Selected <AX element pid: 67959, elementOrHash.elementID: 4457060512.14>
+                  Image, 0x1055c28d0, {{137.3, 796.0}, {27.3, 27.3}}, identifier: 'globe.americas.fill', label: 'globe.americas.fill' <AX element pid: 67959, elementOrHash.elementID: 4457062816.77>
+                Button, 0x1055c29f0, {{203.0, 792.0}, {97.0, 48.0}}, identifier: 'person.text.rectangle.fill', label: 'Passport' <AX element pid: 67959, elementOrHash.elementID: 4457069232.15>
+                Button, 0x1055c2b10, {{304.0, 792.0}, {96.0, 48.0}}, identifier: 'person.crop.circle.fill', label: 'You' <AX element pid: 67959, elementOrHash.elementID: 4457075440.16>

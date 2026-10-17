@@ -1,0 +1,123 @@
+Application, 0x1056526e0, pid: 60487, label: 'Witness' <App element pid: 60487>
+  Window (Main), 0x1056554d0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4301461280.4>
+    Other, 0x1056550b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4301486416.5>
+      Other, 0x10566e1f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4301419984.6>
+        Other, 0x1056497b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4301416608.7>
+          Other, 0x105612fd0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4325827184.8>
+            Other, 0x1056627a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4324465424.9>
+              Other, 0x10566e610, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4324944688.10>
+                Other, 0x105649570, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4325589920.12>
+                  Other, 0x105649690, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4324940928.17>
+                    Other, 0x10566bf80, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4301633856.19>
+                      Other, 0x10566c0a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4301633424.20>
+                        Other, 0x10566c1c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4325007824.21>
+                          NavigationBar, 0x10564a1b0, {{0.0, 56.3}, {402.0, 44.0}}, identifier: '_TtGC7SwiftUI29PresentationHosting' <AX element pid: 60487, elementOrHash.elementID: 4324959376.22>
+                            Button, 0x10564a2d0, {{0.0, 56.3}, {94.3, 44.0}}, identifier: 'BackButton', label: 'Timeline' <AX element pid: 60487, elementOrHash.elementID: 105553141756864.175>
+                            Other, 0x10564a3f0, {{334.0, 56.3}, {52.0, 44.0}}, identifier: 'game-menu', label: 'More' <AX element pid: 60487, elementOrHash.elementID: 4306476544.176>
+                              Other, 0x10564a510, {{334.0, 56.3}, {52.0, 44.0}} <AX element pid: 60487, elementOrHash.elementID: 4383773040.178>
+                                Button, 0x10564a630, {{334.0, 52.3}, {52.0, 52.0}}, identifier: 'game-menu', label: 'More' <AX element pid: 60487, elementOrHash.elementID: 4383771552.180>
+                                  Button, 0x10564a750, {{334.0, 52.3}, {52.0, 52.0}} <AX element pid: 60487, elementOrHash.elementID: 4302188880.182>
+                                    Other, 0x10564a870, {{334.0, 52.3}, {52.0, 52.0}} <AX element pid: 60487, elementOrHash.elementID: 4383771120.184>
+                                      Image, 0x10566f1a0, {{334.0, 52.3}, {52.0, 52.0}}, identifier: 'ellipsis', label: 'More' <AX element pid: 60487, elementOrHash.elementID: 4383769536.186>
+                          Other, 0x10566f2c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4324903312.23>
+                            Other, 0x10566f3e0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4679859632.177>
+                              Other, 0x10566f500, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4325015392.179>
+                                Other, 0x10566f620, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4678068720.181>
+                                  ScrollView, 0x10566f740, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4306400256.183>
+                                    Other, 0x10566f860, {{0.0, 0.0}, {402.0, 1119.3}} <AX element pid: 60487, elementOrHash.elementID: 4383615904.185>
+                                      Button, 0x10566f980, {{0.0, 0.0}, {402.0, 470.0}}, identifier: 'hero-you-were-there', label: 'Title game: World Series · Game 5, DOWN 3–1.
+STILL ALIVE., Wrigley Field, Oct 30, 2016' <AX element pid: 60487, elementOrHash.elementID: 4302121696.187>
+                                        Image, 0x10566faa0, {{0.0, -33.0}, {402.0, 536.0}}, label: 'wrigley-night' <AX element pid: 60487, elementOrHash.elementID: 4302112000.198>
+                                        StaticText, 0x10566d990, {{20.0, 255.7}, {197.3, 44.0}}, identifier: 'big-game-badge', label: 'Title game: World Series · Game 5' <AX element pid: 60487, elementOrHash.elementID: 4302136592.199>
+                                          Image, 0x10566dab0, {{33.3, 268.3}, {17.3, 19.0}}, identifier: 'trophy.fill', label: 'trophy.fill' <AX element pid: 60487, elementOrHash.elementID: 4301999504.245>
+                                          StaticText, 0x10566dbd0, {{74.0, 266.5}, {143.3, 14.3}}, label: 'World Series · Game 5' <AX element pid: 60487, elementOrHash.elementID: 4302144816.246>
+                                        StaticText, 0x10566dcf0, {{20.0, 309.7}, {212.7, 124.3}}, identifier: 'game-title', label: 'DOWN 3–1.
+STILL ALIVE.' <AX element pid: 60487, elementOrHash.elementID: 4302032336.200>
+                                        StaticText, 0x10566de10, {{20.0, 444.0}, {185.3, 18.0}}, label: 'Wrigley Field, Oct 30, 2016' <AX element pid: 60487, elementOrHash.elementID: 4302033440.201>
+                                      Other, 0x10566c890, {{20.0, 498.0}, {362.0, 105.0}}, label: 'Final: Cleveland 2, Chicago 3' <AX element pid: 60487, elementOrHash.elementID: 4677911872.188>
+                                        StaticText, 0x10566c9b0, {{159.3, 498.0}, {6.7, 14.3}}, label: '1' <AX element pid: 60487, elementOrHash.elementID: 4302074976.202>
+                                        StaticText, 0x10566cad0, {{180.3, 498.0}, {7.7, 14.3}}, label: '2' <AX element pid: 60487, elementOrHash.elementID: 4302075408.203>
+                                        StaticText, 0x10566cbf0, {{202.0, 498.0}, {8.0, 14.3}}, label: '3' <AX element pid: 60487, elementOrHash.elementID: 4302075840.204>
+                                        StaticText, 0x10566cd10, {{223.7, 498.0}, {8.3, 14.3}}, label: '4' <AX element pid: 60487, elementOrHash.elementID: 4302076272.205>
+                                        StaticText, 0x10566ce30, {{246.0, 498.0}, {8.0, 14.3}}, label: '5' <AX element pid: 60487, elementOrHash.elementID: 4302045120.206>
+                                        StaticText, 0x10566cf50, {{267.7, 498.0}, {8.3, 14.3}}, label: '6' <AX element pid: 60487, elementOrHash.elementID: 4302045904.207>
+                                        StaticText, 0x10566d070, {{290.7, 498.0}, {7.3, 14.3}}, label: '7' <AX element pid: 60487, elementOrHash.elementID: 4302046688.208>
+                                        StaticText, 0x10566d190, {{311.7, 498.0}, {8.3, 14.3}}, label: '8' <AX element pid: 60487, elementOrHash.elementID: 4302047472.209>
+                                        StaticText, 0x10566d2b0, {{333.7, 498.0}, {8.3, 14.3}}, label: '9' <AX element pid: 60487, elementOrHash.elementID: 4302048256.210>
+                                        StaticText, 0x10566d3d0, {{374.3, 498.0}, {7.7, 14.3}}, label: 'T' <AX element pid: 60487, elementOrHash.elementID: 4302049040.211>
+                                        StaticText, 0x10566d4f0, {{20.0, 531.0}, {32.3, 22.0}}, label: 'Cleveland' <AX element pid: 60487, elementOrHash.elementID: 4302049824.212>
+                                        StaticText, 0x10566d610, {{158.3, 533.0}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4302051280.213>
+                                        StaticText, 0x10566e960, {{180.3, 533.0}, {7.7, 18.0}}, label: '1' <AX element pid: 60487, elementOrHash.elementID: 4302051712.214>
+                                        StaticText, 0x10566ea80, {{202.3, 533.0}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4302052496.215>
+                                        StaticText, 0x10566eba0, {{224.3, 533.0}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677839920.216>
+                                        StaticText, 0x10566ecc0, {{246.3, 533.0}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677840704.217>
+                                        StaticText, 0x10566ede0, {{268.3, 533.0}, {7.7, 18.0}}, label: '1' <AX element pid: 60487, elementOrHash.elementID: 4677841488.218>
+                                        StaticText, 0x10566fe60, {{290.3, 533.0}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677842272.219>
+                                        StaticText, 0x10566ff80, {{312.3, 533.0}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677843056.220>
+                                        StaticText, 0x1056700a0, {{334.3, 533.0}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677860848.221>
+                                        StaticText, 0x1056701c0, {{369.7, 526.3}, {12.3, 31.3}}, label: '2' <AX element pid: 60487, elementOrHash.elementID: 4677862272.222>
+                                        StaticText, 0x1056702e0, {{20.0, 576.3}, {35.0, 22.0}}, label: 'Chicago' <AX element pid: 60487, elementOrHash.elementID: 4677863872.223>
+                                        StaticText, 0x105670400, {{158.3, 578.3}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677882544.224>
+                                        StaticText, 0x105670520, {{180.3, 578.3}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677882976.225>
+                                        StaticText, 0x105670640, {{202.3, 578.3}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677884496.226>
+                                        StaticText, 0x105670760, {{224.3, 578.3}, {7.7, 18.0}}, label: '3' <AX element pid: 60487, elementOrHash.elementID: 4677903600.227>
+                                        StaticText, 0x105670880, {{246.3, 578.3}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677904384.228>
+                                        StaticText, 0x105670af0, {{268.3, 578.3}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677905168.229>
+                                        StaticText, 0x105670c10, {{290.3, 578.3}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677908736.230>
+                                        StaticText, 0x105670d30, {{312.3, 578.3}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677909520.231>
+                                        StaticText, 0x105670e50, {{334.3, 578.3}, {7.7, 18.0}}, label: '0' <AX element pid: 60487, elementOrHash.elementID: 4677910304.232>
+                                        StaticText, 0x105670f70, {{369.7, 571.7}, {12.3, 31.3}}, label: '3' <AX element pid: 60487, elementOrHash.elementID: 4677911088.233>
+                                      StaticText, 0x105671290, {{20.0, 631.0}, {54.3, 20.3}}, identifier: 'game-photos', label: 'PHOTOS' <AX element pid: 60487, elementOrHash.elementID: 4678037920.189>
+                                      StaticText, 0x1056713b0, {{82.3, 634.0}, {8.3, 14.3}}, identifier: 'game-photos', label: '4' <AX element pid: 60487, elementOrHash.elementID: 4678039232.190>
+                                      Button, 0x1056714d0, {{342.0, 632.0}, {40.0, 18.0}}, identifier: 'game-photos', label: 'See all' <AX element pid: 60487, elementOrHash.elementID: 4678040016.191>
+                                      ScrollView, 0x1056715f0, {{0.0, 663.3}, {402.0, 96.0}}, identifier: 'game-photos' <AX element pid: 60487, elementOrHash.elementID: 4306387456.192>
+                                        Other, 0x105671710, {{0.0, 663.3}, {576.0, 96.0}} <AX element pid: 60487, elementOrHash.elementID: 4383609072.234>
+                                          Other, 0x105671830, {{20.0, 626.0}, {544.0, 170.7}} <AX element pid: 60487, elementOrHash.elementID: 4678051728.247>
+                                            Button, 0x105671950, {{20.0, 626.0}, {128.0, 170.7}}, identifier: 'game-photo-0', label: 'Photo 1 of 4' <AX element pid: 60487, elementOrHash.elementID: 4678041344.248>
+                                              Image, 0x105671a70, {{20.0, 626.0}, {128.0, 170.7}}, label: 'wrigley-night' <AX element pid: 60487, elementOrHash.elementID: 4678040912.254>
+                                            Button, 0x105671b90, {{134.7, 663.3}, {170.7, 96.0}}, identifier: 'game-photo-1', label: 'Photo 2 of 4' <AX element pid: 60487, elementOrHash.elementID: 4678045168.249>
+                                              Image, 0x105671cb0, {{134.7, 663.3}, {170.7, 96.0}}, label: 'wrigley-scoreboard' <AX element pid: 60487, elementOrHash.elementID: 4678042960.255>
+                                            Button, 0x105671dd0, {{292.0, 626.0}, {128.0, 170.7}}, identifier: 'game-photo-2', label: 'Photo 3 of 4' <AX element pid: 60487, elementOrHash.elementID: 4678048000.250>
+                                              Image, 0x105671ef0, {{292.0, 626.0}, {128.0, 170.7}}, label: 'wrigley-night-2' <AX element pid: 60487, elementOrHash.elementID: 4678046896.256>
+                                            Button, 0x105672010, {{420.0, 663.3}, {144.0, 96.0}}, identifier: 'game-photo-3', label: 'Photo 4 of 4' <AX element pid: 60487, elementOrHash.elementID: 4678050832.251>
+                                              Image, 0x105672130, {{420.0, 663.3}, {144.0, 96.0}}, label: 'wrigley-bleachers' <AX element pid: 60487, elementOrHash.elementID: 4678049728.257>
+                                      StaticText, 0x105672250, {{20.0, 787.3}, {105.3, 28.0}}, label: 'Dad, With Dad' <AX element pid: 60487, elementOrHash.elementID: 4678054336.193>
+                                        StaticText, 0x105672370, {{20.0, 787.3}, {28.0, 28.0}}, label: 'Dad' <AX element pid: 60487, elementOrHash.elementID: 4678044064.235>
+                                        StaticText, 0x105672490, {{58.0, 791.2}, {67.3, 20.3}}, label: 'WITH DAD' <AX element pid: 60487, elementOrHash.elementID: 4678053904.236>
+                                      StaticText, 0x1056725b0, {{20.0, 827.3}, {356.0, 38.0}}, label: '“Dad waited 71 years for this and I waited 35. When the last out landed in Rizzo's glove he grabbed my arm so hard it bruised. Nobody left. Nobody wanted to.”' <AX element pid: 60487, elementOrHash.elementID: 4678054768.194>
+                                      Button, 0x105672830, {{20.0, 893.3}, {362.0, 52.0}}, identifier: 'open-you-were-there', label: 'You were there' <AX element pid: 60487, elementOrHash.elementID: 4678058736.195>
+                                        Image, 0x105672950, {{22.7, 910.7}, {16.7, 17.7}}, identifier: 'waveform.path.ecg', label: 'waveform.path.ecg' <AX element pid: 60487, elementOrHash.elementID: 4678055392.237>
+                                        StaticText, 0x105672a70, {{20.0, 893.3}, {362.0, 52.0}}, label: 'You were there' <AX element pid: 60487, elementOrHash.elementID: 4678056848.238>
+                                        Image, 0x105672b90, {{374.3, 913.7}, {7.0, 11.7}}, identifier: 'chevron.right', label: 'Forward' <AX element pid: 60487, elementOrHash.elementID: 4678057280.239>
+                                      Button, 0x105672cb0, {{20.0, 945.3}, {362.0, 52.0}}, identifier: 'open-venue', label: 'Wrigley Field' <AX element pid: 60487, elementOrHash.elementID: 4678063168.196>
+                                        Image, 0x105672dd0, {{21.7, 962.3}, {18.7, 18.0}}, identifier: 'building.columns', label: 'building.columns' <AX element pid: 60487, elementOrHash.elementID: 4678060304.240>
+                                        StaticText, 0x105672ef0, {{20.0, 945.3}, {362.0, 52.0}}, label: 'Wrigley Field' <AX element pid: 60487, elementOrHash.elementID: 4678061632.241>
+                                        Image, 0x105673010, {{374.3, 965.7}, {7.0, 11.7}}, identifier: 'chevron.right', label: 'Forward' <AX element pid: 60487, elementOrHash.elementID: 4678062064.242>
+                                      Button, 0x105673130, {{20.0, 1025.3}, {362.0, 54.0}}, identifier: 'play-recap', label: 'Play recap' <AX element pid: 60487, elementOrHash.elementID: 4678066496.197>
+                                        Image, 0x105673250, {{144.0, 1044.7}, {14.3, 16.0}}, identifier: 'play.fill', label: 'PLAY' <AX element pid: 60487, elementOrHash.elementID: 4678064736.243>
+                                        StaticText, 0x105673370, {{144.0, 1042.2}, {115.8, 20.3}}, label: 'PLAY RECAP' <AX element pid: 60487, elementOrHash.elementID: 4678066064.244>
+              TabBar, 0x105673490, {{0.0, 791.0}, {402.0, 83.0}}, label: 'Tab Bar' <AX element pid: 60487, elementOrHash.elementID: 4324943008.11>
+                Button, 0x1056735b0, {{2.0, 792.0}, {97.0, 48.0}}, identifier: 'rectangle.stack.fill', label: 'Timeline', Selected <AX element pid: 60487, elementOrHash.elementID: 4324962176.13>
+                  Image, 0x1056736d0, {{35.0, 794.7}, {30.0, 31.3}}, identifier: 'rectangle.stack.fill', label: 'Album' <AX element pid: 60487, elementOrHash.elementID: 4324981376.18>
+                Button, 0x1056737f0, {{103.0, 792.0}, {96.0, 48.0}}, identifier: 'globe.americas.fill', label: 'Map' <AX element pid: 60487, elementOrHash.elementID: 4325524080.14>
+                Button, 0x105673910, {{203.0, 792.0}, {97.0, 48.0}}, identifier: 'person.text.rectangle.fill', label: 'Passport' <AX element pid: 60487, elementOrHash.elementID: 4325540096.15>
+                Button, 0x105673a30, {{304.0, 792.0}, {96.0, 48.0}}, identifier: 'person.crop.circle.fill', label: 'You' <AX element pid: 60487, elementOrHash.elementID: 4325560624.16>
+    Other, 0x105673b50, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4383820032.258>
+      Other, 0x105673c70, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4383706688.259>
+        Other, 0x105673d90, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4383402720.260>
+          CollectionView, 0x105673eb0, {{0.0, 0.0}, {402.0, 874.0}}, identifier: 'photo-viewer' <AX element pid: 60487, elementOrHash.elementID: 4340158976.261>
+            Cell, 0x105673fd0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4680039472.264>
+              Other, 0x1056740f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4680016960.266>
+                Other, 0x105674210, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4680041600.268>
+                  Other, 0x105674330, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4680052544.269>
+                    Other, 0x105674450, {{0.0, 62.0}, {402.0, 778.0}} <AX element pid: 60487, elementOrHash.elementID: 4325447472.270>
+                      Image, 0x105674570, {{0.0, 62.0}, {402.0, 778.0}}, label: 'wrigley-night' <AX element pid: 60487, elementOrHash.elementID: 4326162176.271>
+            Other, 0x105674690, {{369.0, 55.7}, {30.0, 762.3}}, label: 'Vertical scroll bar, 4 pages', value: 0% <AX element pid: 60487, elementOrHash.elementID: 4383823136.265>
+              Other, 0x1056747b0, {{396.0, 808.0}, {3.0, 7.0}} <AX element pid: 60487, elementOrHash.elementID: 4383414112.267>
+            Other, 0x1056748d0, {{369.0, 55.7}, {30.0, 762.3}}, label: 'Vertical scroll bar, 4 pages', value: 0% <AX element pid: 60487, elementOrHash.elementID: 4383823136.265>
+              Other, 0x1056749f0, {{396.0, 808.0}, {3.0, 7.0}} <AX element pid: 60487, elementOrHash.elementID: 4383414112.267>
+          Button, 0x105674b10, {{16.0, 70.0}, {44.0, 44.0}}, identifier: 'photo-viewer', label: 'Close' <AX element pid: 60487, elementOrHash.elementID: 4383406352.262>
+          StaticText, 0x105674c30, {{351.3, 83.0}, {22.7, 18.0}}, identifier: 'photo-viewer', label: '1 / 4' <AX element pid: 60487, elementOrHash.elementID: 4383824192.263>
+  Window, 0x105674d50, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4330887680.75>
+    Other, 0x105674e70, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4326092592.77>
+      Other, 0x105674f90, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 60487, elementOrHash.elementID: 4326097792.79>
