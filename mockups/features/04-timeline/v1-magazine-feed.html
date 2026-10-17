@@ -1,0 +1,106 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Magazine feed</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #0b0a09; }
+  .top { position: absolute; top: 58px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .top .e { font: 600 10.5px/1 var(--f-ui); letter-spacing: 2.2px; text-transform: uppercase; color: var(--signal); }
+  .top h1 { font: 400 40px/.95 var(--f-serif); letter-spacing: -.6px; margin-top: 6px; }
+  .top h1 i { color: var(--text-2); }
+  .top .btn-circle { background: rgba(255,255,255,.08); border: .5px solid rgba(255,255,255,.12); margin-bottom: 2px; }
+
+  .years { position: absolute; top: 128px; left: 20px; right: 0; display: flex; gap: 18px; white-space: nowrap; overflow: hidden; align-items: baseline;
+    border-bottom: .5px solid rgba(255,255,255,.12); padding-bottom: 10px; }
+  .years span { font: 600 14px/1 var(--f-ui); color: var(--text-3); font-variant-numeric: tabular-nums; }
+  .years span.on { color: var(--text); position: relative; }
+  .years span.on::after { content: ""; position: absolute; left: 0; right: 0; bottom: -11px; height: 2px; background: var(--signal); }
+  .years span em { font-style: normal; font-size: 10px; color: var(--text-4); margin-left: 3px; font-weight: 600; }
+  .years span.on em { color: var(--signal); }
+
+  .card { position: absolute; left: 16px; right: 16px; border-radius: 22px; overflow: hidden; background: #111; box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+  .card .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 26%, rgba(0,0,0,.08) 44%, rgba(8,6,4,.9) 82%, rgba(8,6,4,.96) 100%); }
+  .chip { position: absolute; top: 14px; left: 14px; height: 28px; padding: 0 11px; border-radius: 14px; display: flex; align-items: center; gap: 6px;
+    font: 700 10.5px/1 var(--f-ui); letter-spacing: 1.4px; text-transform: uppercase; color: #fff; }
+  .chip i { width: 6px; height: 6px; border-radius: 3px; background: var(--signal); }
+  .issue { position: absolute; top: 14px; right: 14px; font: italic 400 15px/28px var(--f-serif); color: rgba(255,255,255,.8); }
+
+  .c1 { top: 164px; height: 404px; }
+  .c1 img { position: absolute; inset: 0; }
+  .c1 .body { position: absolute; left: 20px; right: 20px; bottom: 18px; }
+  .kick { font: 700 10px/1 var(--f-ui); letter-spacing: 2px; text-transform: uppercase; color: var(--signal); }
+  .c1 h2 { font: 400 35px/1 var(--f-serif); letter-spacing: -.5px; margin: 10px 0 14px; text-wrap: balance; }
+  .c1 h2 i { color: #ffd9a0; }
+  .meta { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: .5px solid rgba(255,255,255,.18); }
+  .score { display: flex; align-items: center; gap: 8px; font: 700 15px/1 var(--f-tight); font-variant-numeric: tabular-nums; }
+  .score .mono-badge { width: 24px; height: 24px; font-size: 11px; }
+  .score .dim { color: var(--text-3); }
+  .score .sep { width: 1px; height: 14px; background: rgba(255,255,255,.2); margin: 0 2px; }
+  .ppl { display: flex; align-items: center; }
+  .ppl b { width: 24px; height: 24px; border-radius: 12px; display: grid; place-items: center; font: 700 10px/1 var(--f-ui); color: #1a1010; margin-left: -6px; box-shadow: 0 0 0 2px #0b0806; }
+  .ppl span { font: 500 12px/1 var(--f-ui); color: var(--text-2); margin-left: 8px; }
+
+  .yr { position: absolute; left: 20px; right: 20px; top: 590px; display: flex; align-items: center; gap: 12px; }
+  .yr b { font: 400 30px/1 var(--f-serif); font-variant-numeric: tabular-nums; }
+  .yr i { flex: 1; height: .5px; background: rgba(255,255,255,.18); }
+  .yr span { font: 500 12px/1 var(--f-ui); color: var(--text-3); }
+
+  .c2 { top: 636px; height: 250px; }
+  .c2 img { position: absolute; inset: 0; }
+  .c2 .shade { background: linear-gradient(90deg, rgba(8,6,4,.95) 0%, rgba(8,6,4,.75) 52%, rgba(8,6,4,0) 100%); }
+  .c2 .body { position: absolute; left: 18px; top: 18px; width: 210px; }
+  .c2 h2 { font: 400 25px/1.02 var(--f-serif); letter-spacing: -.3px; margin: 9px 0 0; }
+  .c2 h2 i { color: var(--text-2); }
+
+  .tabbar { position: absolute; left: 20px; right: 20px; bottom: 28px; height: 60px; border-radius: 30px; display: flex; justify-content: space-around; align-items: center; z-index: 10;
+    background: rgba(24,22,20,.72); }
+  .tabbar span { display: grid; justify-items: center; gap: 4px; font: 600 10px/1 var(--f-ui); color: var(--text-3); }
+  .tabbar span.on { color: var(--text); }
+  .tabbar svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+</style></head>
+<body class="phone">
+<div class="top">
+  <div><div class="e">60 games · 2014–2026</div><h1>The Archive <i>Vol. XIII</i></h1></div>
+  <div class="btn-circle"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></div>
+</div>
+<div class="years">
+  <span>2026<em>6</em></span><span class="on">2025<em>9</em></span><span>2024<em>5</em></span><span>2023<em>4</em></span><span>2022<em>3</em></span><span>2021<em>4</em></span><span>2020<em>3</em></span>
+</div>
+
+<div class="card c1">
+  <img class="ph graded" src="../../photos/lambeau-concourse.jpg">
+  <div class="shade"></div>
+  <div class="chip glass"><i></i>Jan 5 · 2025</div>
+  <div class="issue">No. 54</div>
+  <div class="body">
+    <div class="kick">Week 18 · Lambeau Field · 19°F</div>
+    <h2>Nobody breathed until the kick went up. <i>Then it was good.</i></h2>
+    <div class="meta">
+      <div class="score">
+        <span class="mono-badge" style="background:#0b162a;color:#f05a1a">CHI</span>24
+        <span class="sep"></span>
+        <span class="dim">22</span><span class="mono-badge" style="background:#203731;color:#ffb612;opacity:.85">GB</span>
+      </div>
+      <div class="ppl"><b style="background:#ff7a8a;margin-left:0">M</b><b style="background:#6fd3ff">L</b><span>with Maya &amp; Leo</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="yr"><b>2023</b><i></i><span>4 games · 2 wins</span></div>
+
+<div class="card c2">
+  <img class="ph graded" src="../../photos/soldier-soccer.jpg" style="object-position: 70% 50%">
+  <div class="shade"></div>
+  <div class="body">
+    <div class="kick">Oct 4 · Soldier Field</div>
+    <h2>62,000 came for one man. <i>He didn’t play.</i></h2>
+  </div>
+</div>
+
+<div class="tabbar glass">
+  <span class="on"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Timeline</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>Map</span>
+  <span><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 16h6"/></svg>Passport</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>You</span>
+</div>
+<script src="../../kit/kit.js"></script>
+</body></html>

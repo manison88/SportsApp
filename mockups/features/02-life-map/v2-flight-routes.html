@@ -1,0 +1,140 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Flight routes</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  :root { --navy: #14254a; --red: #d8402b; --land: #e6dcc8; --sea: #f6f1e6; }
+  body.phone { background: var(--sea); color: var(--navy); }
+  .mast { position: absolute; top: 58px; left: 20px; right: 20px; }
+  .mast .row { display: flex; justify-content: space-between; align-items: center; font: 700 10px/1 var(--f-grot); letter-spacing: 2px; text-transform: uppercase; color: rgba(20,37,74,.6); }
+  .mast h1 { margin-top: 8px; font: 400 40px/.95 var(--f-black); letter-spacing: -1.4px; text-transform: uppercase; }
+  .mast h1 span { color: var(--red); }
+  .rule { margin-top: 10px; height: 5px; border-top: 2px solid var(--navy); border-bottom: .75px solid var(--navy); }
+
+  .panel { position: absolute; left: 12px; right: 12px; border-radius: 4px; overflow: hidden; background: #f2ecdf; box-shadow: inset 0 0 0 1px rgba(20,37,74,.18); }
+  .panel svg { display: block; }
+  .ptag { position: absolute; left: 10px; top: 10px; font: 700 9px/1 var(--f-grot); letter-spacing: 2px; color: var(--navy); background: var(--sea); padding: 5px 7px; box-shadow: inset 0 0 0 1px rgba(20,37,74,.25); }
+  .na { top: 160px; height: 300px; }
+  .eu { top: 470px; height: 168px; }
+
+  .legend { position: absolute; left: 20px; right: 20px; top: 654px; display: flex; gap: 16px; font: 600 10.5px/1 var(--f-ui); color: rgba(20,37,74,.75); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .stats { position: absolute; left: 20px; right: 20px; top: 684px; display: grid; grid-template-columns: 1.25fr 1fr 1fr; border-top: 2px solid var(--navy); border-bottom: .75px solid var(--navy); }
+  .st { padding: 12px 0 12px; }
+  .st + .st { padding-left: 14px; border-left: .75px solid rgba(20,37,74,.3); }
+  .st .k { font: 700 9px/1 var(--f-grot); letter-spacing: 1.6px; text-transform: uppercase; color: rgba(20,37,74,.55); }
+  .st .v { margin-top: 6px; font: 400 26px/1 var(--f-black); letter-spacing: -.8px; }
+  .st .s { margin-top: 5px; font: 500 11px/1.2 var(--f-ui); color: rgba(20,37,74,.65); }
+  .foot { position: absolute; left: 20px; right: 20px; top: 790px; display: flex; justify-content: space-between; font: 600 10px/1 var(--f-grot); letter-spacing: 1.5px; text-transform: uppercase; color: rgba(20,37,74,.5); }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="paper-tex" style="opacity:.35"></div>
+  <div class="mast">
+    <div class="row"><span>Witness · In-flight</span><span>Vol. 60 · 2014–2026</span></div>
+    <h1>Route map<span>.</span></h1>
+    <div class="rule"></div>
+  </div>
+
+  <div class="panel na"><svg id="na" width="369" height="300"></svg><div class="ptag">NORTH AMERICA</div></div>
+  <div class="panel eu"><svg id="eu" width="369" height="168"></svg><div class="ptag">EUROPE</div></div>
+
+  <div class="legend">
+    <span><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#14254a"/><circle cx="8" cy="8" r="2.5" fill="#f6f1e6"/></svg>Hub</span>
+    <span><svg width="22" height="6"><path d="M1 3H21" stroke="#d8402b" stroke-width="2" stroke-dasharray="4 3"/></svg>Route flown</span>
+    <span><svg width="22" height="6"><path d="M1 3H21" stroke="#14254a" stroke-width="1.5" stroke-dasharray="1 2.5" stroke-linecap="round"/></svg>By rail</span>
+    <span><svg width="12" height="12"><circle cx="6" cy="6" r="4" fill="#fff" stroke="#14254a" stroke-width="1.6"/></svg>Venue</span>
+  </div>
+  <div class="stats">
+    <div class="st"><div class="k">Miles flown</div><div class="v">42,900</div><div class="s">1.7× around Earth</div></div>
+    <div class="st"><div class="k">Longest</div><div class="v">ORD–BCN</div><div class="s">4,413 mi · 2020</div></div>
+    <div class="st"><div class="k">Venues</div><div class="v">21</div><div class="s">3 countries</div></div>
+  </div>
+  <div class="foot"><span>Sam Okafor · Frequent fan</span><span>60 games</span></div>
+
+<script src="../../kit/vendor/d3.min.js"></script>
+<script src="../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../kit/vendor/countries-110m.js"></script>
+<script src="../../kit/vendor/land-50m.js"></script>
+<script src="../../kit/vendor/states-10m.js"></script>
+<script>
+(function(){
+  const NAVY = '#14254a', RED = '#d8402b';
+  const land = topojson.feature(__atlas['land-50m'], __atlas['land-50m'].objects.land);
+  const world = __atlas['countries-110m'];
+  const borders = topojson.mesh(world, world.objects.countries, (a, b) => a !== b);
+  const st = __atlas['states-10m'];
+  const stMesh = topojson.mesh(st, st.objects.states, (a, b) => a !== b);
+
+  function base(svg, proj, W, H, stateLines) {
+    const path = d3.geoPath(proj);
+    const s = d3.select(svg);
+    // sea hatching
+    const defs = s.append('defs');
+    const pat = defs.append('pattern').attr('id', svg.id + 'h').attr('width', 5).attr('height', 5).attr('patternUnits', 'userSpaceOnUse').attr('patternTransform', 'rotate(35)');
+    pat.append('line').attr('x1', 0).attr('y1', 0).attr('x2', 0).attr('y2', 5).attr('stroke', 'rgba(20,37,74,.06)').attr('stroke-width', 1);
+    s.append('rect').attr('width', W).attr('height', H).attr('fill', `url(#${svg.id}h)`);
+    s.append('path').attr('d', path(d3.geoGraticule().step([10, 10])())).attr('fill', 'none').attr('stroke', 'rgba(20,37,74,.08)').attr('stroke-width', .6);
+    s.append('path').attr('d', path(land)).attr('fill', '#e3d7bf').attr('stroke', 'rgba(20,37,74,.45)').attr('stroke-width', .6);
+    s.append('path').attr('d', path(borders)).attr('fill', 'none').attr('stroke', 'rgba(20,37,74,.3)').attr('stroke-width', .6);
+    if (stateLines) s.append('path').attr('d', path(stMesh)).attr('fill', 'none').attr('stroke', 'rgba(20,37,74,.13)').attr('stroke-width', .5);
+    return s;
+  }
+  function curve(s, a, b, bend, opts = {}) {
+    const mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, dx = b[0] - a[0], dy = b[1] - a[1];
+    const cx = mx - dy * bend, cy = my + dx * bend;
+    s.append('path').attr('d', `M${a[0]},${a[1]} Q${cx},${cy} ${b[0]},${b[1]}`).attr('fill', 'none')
+      .attr('stroke', opts.color || RED).attr('stroke-width', opts.w || 1.6).attr('stroke-dasharray', opts.dash || '4 3').attr('stroke-linecap', 'round').attr('opacity', opts.op || 1);
+  }
+  function venue(s, p, code, dx = 6, dy = -6, anchor = 'start', big) {
+    s.append('circle').attr('cx', p[0]).attr('cy', p[1]).attr('r', big ? 4.6 : 3.4).attr('fill', '#fff').attr('stroke', NAVY).attr('stroke-width', 1.6);
+    const t = s.append('text').attr('x', p[0] + dx).attr('y', p[1] + dy).attr('text-anchor', anchor).attr('font-family', 'Space Grotesk').attr('font-weight', 700).attr('font-size', big ? 11 : 9.5).attr('letter-spacing', .8).attr('fill', NAVY).text(code);
+    t.clone(true).lower().attr('stroke', '#f2ecdf').attr('stroke-width', 3).attr('stroke-linejoin', 'round');
+  }
+
+  // ---------- North America ----------
+  const W = 369, H = 300;
+  const NA = [
+    ['GRB', -88.062, 44.501, 6, -6], ['MKE', -87.971, 43.028, 7, 3], ['MSP', -93.278, 44.982, -6, -6, 'end'], ['MCI', -94.480, 39.051, -6, 3, 'end'],
+    ['STL', -90.193, 38.623, -5, 13, 'end'], ['CVG', -84.507, 39.097, 2, 15], ['DTW', -83.049, 42.339, 6, -5], ['PIT', -80.006, 40.447, 6, 12],
+    ['NYC', -73.926, 40.829, 6, 12], ['BOS', -71.097, 42.346, 6, -5], ['DEN', -104.994, 39.756, 0, -9, 'middle'], ['SFO', -122.389, 37.778, 6, -6],
+    ['LAX', -118.240, 34.074, 6, 10], ['AUS', -97.641, 30.133, 6, 10]
+  ];
+  const pna = d3.geoConicConformal().parallels([33, 45]).rotate([96, 0]);
+  pna.fitExtent([[22, 34], [W - 20, H - 18]], { type: 'MultiPoint', coordinates: NA.map(v => [v[1], v[2]]).concat([[-87.7, 41.9]]) });
+  const sn = base(document.getElementById('na'), pna, W, H, true);
+  const ORD = pna([-87.70, 41.92]);
+  NA.forEach(([c, lon, lat]) => { const p = pna([lon, lat]); const far = Math.hypot(p[0] - ORD[0], p[1] - ORD[1]); curve(sn, ORD, p, far > 60 ? .22 : .3); });
+  // atlantic exit
+  const exit = [W + 6, 70];
+  curve(sn, ORD, exit, -.12, { w: 2 });
+  sn.append('text').attr('x', W - 10).attr('y', 58).attr('text-anchor', 'end').attr('font-family', 'Space Grotesk').attr('font-weight', 700).attr('font-size', 9).attr('letter-spacing', 1.2).attr('fill', RED).text('TO BCN · DTM →');
+  NA.forEach(([c, lon, lat, dx, dy, an]) => venue(sn, pna([lon, lat]), c, dx, dy, an || 'start'));
+  // hub
+  sn.append('circle').attr('cx', ORD[0]).attr('cy', ORD[1]).attr('r', 9).attr('fill', NAVY);
+  sn.append('circle').attr('cx', ORD[0]).attr('cy', ORD[1]).attr('r', 3.5).attr('fill', '#f6f1e6');
+  const hl = sn.append('g').attr('transform', `translate(${ORD[0] - 8},${ORD[1] + 16})`);
+  hl.append('rect').attr('x', -50).attr('y', 0).attr('width', 64).attr('height', 30).attr('rx', 2).attr('fill', NAVY);
+  hl.append('text').attr('x', -18).attr('y', 13).attr('text-anchor', 'middle').attr('font-family', 'Archivo Black').attr('font-size', 11).attr('fill', '#fff').attr('letter-spacing', .5).text('CHICAGO');
+  hl.append('text').attr('x', -18).attr('y', 24).attr('text-anchor', 'middle').attr('font-family', 'Space Grotesk').attr('font-weight', 700).attr('font-size', 7.5).attr('fill', 'rgba(255,255,255,.7)').attr('letter-spacing', .8).text('HUB · 46 GAMES');
+
+  // ---------- Europe ----------
+  const EW = 369, EH = 168;
+  const EU = [['BCN', 2.123, 41.381], ['VLC', -0.376, 39.470], ['MAD', -3.688, 40.453], ['DTM', 7.452, 51.493]];
+  const peu = d3.geoConicConformal().parallels([38, 50]).rotate([-2, 0]);
+  peu.fitExtent([[120, 22], [EW - 60, EH - 18]], { type: 'MultiPoint', coordinates: EU.map(v => [v[1], v[2]]) });
+  const se = base(document.getElementById('eu'), peu, EW, EH, false);
+  const P = c => peu(EU.find(v => v[0] === c).slice(1));
+  const entry = [-6, 48], entry2 = [-6, 120];
+  curve(se, entry, P('DTM'), -.08, { w: 2 });
+  curve(se, entry2, P('BCN'), -.1, { w: 2 });
+  curve(se, P('BCN'), P('VLC'), .25, { color: NAVY, dash: '1 3', w: 1.6 });
+  curve(se, P('VLC'), P('MAD'), .25, { color: NAVY, dash: '1 3', w: 1.6 });
+  curve(se, P('MAD'), [-6, 150], .12, { w: 2 });
+  se.append('text').attr('x', 10).attr('y', 160).attr('font-family', 'Space Grotesk').attr('font-weight', 700).attr('font-size', 9).attr('letter-spacing', 1.2).attr('fill', RED).text('← HOME TO ORD');
+  venue(se, P('DTM'), 'DORTMUND', 7, 4, 'start', true);
+  venue(se, P('BCN'), 'BARCELONA', 7, 4, 'start', true);
+  venue(se, P('VLC'), 'VALENCIA', 7, 10, 'start');
+  venue(se, P('MAD'), 'MADRID', -8, 14, 'end', true);
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>
