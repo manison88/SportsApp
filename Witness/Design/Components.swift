@@ -690,3 +690,81 @@ private struct ZoomablePhoto: View {
         scale = 1; base = 1; offset = .zero; dragStart = .zero
     }
 }
+
+// MARK: - Share cards
+
+/// Where a card will be posted. `story` fills a phone (Instagram/TikTok stories); `feed` is the 4:5 post.
+enum ShareCardFormat {
+    case story, feed
+
+    var size: CGSize {
+        switch self {
+        case .story: CGSize(width: 1080, height: 1920)
+        case .feed: CGSize(width: 1080, height: 1350)
+        }
+    }
+}
+
+/// The frame every share card sits in: ink background, a wash of the accent color at the top, margins that
+/// keep content clear of story chrome, and the Witness mark at the bottom. Cards are drawn at full pixel size
+/// (1080 wide), so type is big: hero 300-420pt `.display`, labels 36-44pt condensed with tracking, one idea per card.
+/// Cards take plain values and `UIImage`s, never `@Environment`, so they render the same anywhere.
+struct ShareCardFrame<Content: View>: View {
+    let format: ShareCardFormat
+    var accent: Color = .signal
+    @ViewBuilder var content: Content
+
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            Color.ink
+            LinearGradient(colors: [accent.opacity(0.4), .clear], startPoint: .top, endPoint: .center)
+            VStack(alignment: .leading, spacing: 0) {
+                content
+                Spacer(minLength: 40)
+                Text("WITNESS")
+                    .font(.system(size: 40, weight: .heavy).width(.compressed))
+                    .tracking(10)
+                    .foregroundStyle(.white.opacity(0.9))
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, format == .story ? 230 : 96)
+            .padding(.bottom, format == .story ? 250 : 96)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .frame(width: format.size.width, height: format.size.height)
+        .environment(\.colorScheme, .dark)
+    }
+}
+
+/// Draws a card to an image at its format's pixel size.
+@MainActor
+func renderShareImage<V: View>(_ card: V, format: ShareCardFormat) -> Image? {
+    let renderer = ImageRenderer(content: card)
+    renderer.scale = 1
+    renderer.proposedSize = ProposedViewSize(format.size)
+    guard let ui = renderer.uiImage else { return nil }
+    return Image(uiImage: ui)
+}
+
+/// A share button that shares the card as an image. The card is built (load photos here) and drawn when the
+/// button appears, and again when `key` changes; until it is ready the label shows dimmed and does nothing.
+struct ShareCardLink<Card: View, Label: View>: View {
+    let title: String
+    let format: ShareCardFormat
+    var key: String = ""
+    let card: () async -> Card
+    @ViewBuilder var label: Label
+
+    @State private var image: Image?
+
+    var body: some View {
+        Group {
+            if let image {
+                ShareLink(item: image, preview: SharePreview(title, image: image)) { label }
+            } else {
+                label.opacity(0.4)
+            }
+        }
+        .task(id: key) { image = renderShareImage(await card(), format: format) }
+    }
+}
