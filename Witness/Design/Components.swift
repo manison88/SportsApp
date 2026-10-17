@@ -84,6 +84,8 @@ enum Modal: Identifiable, Hashable {
 final class Presenter {
     var modal: Modal?
     var tab: AppTab = .timeline
+    /// The photo scan that onboarding starts. It outlives the screen, so it can keep running in the background.
+    var scan = ScanModel()
 }
 
 enum AppTab: Hashable { case timeline, map, passport, you }

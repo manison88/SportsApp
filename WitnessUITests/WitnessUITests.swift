@@ -287,7 +287,28 @@ final class WitnessUITests: XCTestCase {
     /// Discovery runs against photos CI seeds into the simulator with GPS + dates at real stadiums.
     func testDiscoveryFromPhotos() {
         launch([])
-        tap("welcome-photos")
+        // Welcome, then the problem, the fix, and photo access; allowing it runs the scan and shows the first result.
+        XCTAssertTrue(el("welcome-title").waitForExistence(timeout: 8))
+        snap("ob-0-welcome")
+        tap("welcome-start")
+        XCTAssertTrue(el("onboarding-problem").waitForExistence(timeout: 5))
+        snap("ob-1-problem")
+        tap("onboarding-next")
+        XCTAssertTrue(el("onboarding-solution").waitForExistence(timeout: 5))
+        snap("ob-2-solution")
+        tap("onboarding-next")
+        XCTAssertTrue(el("onboarding-access").waitForExistence(timeout: 5))
+        snap("ob-3-access")
+        tap("onboarding-allow")
+        let result = el("onboarding-result")
+        let scanDeadline = Date().addingTimeInterval(90)
+        while Date() < scanDeadline && !result.exists && !el("onboarding-empty").exists && !el("onboarding-denied").exists {
+            allowPhotoAccessIfAsked()
+            sleep(1)
+        }
+        XCTAssertTrue(result.exists, "Expected the scan to find the seeded stadium photos")
+        snap("ob-4-result")
+        tap("onboarding-review")
         let found = el("discovery-count")
         let empty = el("discovery-empty")
         let denied = el("discovery-denied")

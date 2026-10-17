@@ -1,9 +1,9 @@
 import SwiftUI
 
-/// First launch. One photo, one line, one way in.
+/// The first screen. One photo, one line, one way in.
 struct WelcomeView: View {
     @Environment(Library.self) private var library
-    @Environment(Presenter.self) private var presenter
+    let onStart: () -> Void
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
@@ -12,43 +12,26 @@ struct WelcomeView: View {
             Scrim().ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: Spacing.block) {
-                Text("Every game\nyou were at.")
-                    .displayFont(72)
+                (Text("Every game\n") + Text("you").foregroundStyle(Color.signal) + Text(" were at."))
+                    .displayFont(68)
                     .textCase(.uppercase)
+                    .lineLimit(3)
                     .minimumScaleFactor(0.6)
+                    .foregroundStyle(.white)
                     .accessibilityAddTraits(.isHeader)
+                    .accessibilityIdentifier("welcome-title")
 
                 VStack(spacing: Spacing.inner) {
-                    Button {
-                        presenter.modal = .discovery
-                    } label: {
-                        Label("Find games in my photos", systemImage: "photo.on.rectangle.angled")
-                    }
-                    .buttonStyle(.primary)
-                    .accessibilityIdentifier("welcome-photos")
+                    Button("Get started", action: onStart)
+                        .buttonStyle(.primary)
+                        .accessibilityIdentifier("welcome-start")
 
-                    HStack(spacing: 0) {
-                        Button("Add a game") {
-                            library.startEmpty()
-                            presenter.modal = .addGame
-                        }
-                        .frame(maxWidth: .infinity, minHeight: 44)
-                        .accessibilityIdentifier("welcome-add")
-
-                        Button("Explore sample games") {
-                            library.loadSample()
-                        }
+                    Button("Explore sample games") { library.loadSample() }
+                        .font(.subheadline)
+                        .underline()
+                        .foregroundStyle(Color.textSecondary)
                         .frame(maxWidth: .infinity, minHeight: 44)
                         .accessibilityIdentifier("welcome-sample")
-                    }
-                    .font(.condensed(.headline, weight: .bold))
-                    .foregroundStyle(.white)
-
-                    Label("Everything stays on this iPhone.", systemImage: "lock.fill")
-                        .font(.footnote)
-                        .foregroundStyle(Color.textSecondary)
-                        .frame(maxWidth: .infinity)
-                        .padding(.top, 4)
                 }
             }
             .gutter()

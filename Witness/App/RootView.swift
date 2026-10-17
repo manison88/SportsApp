@@ -10,7 +10,7 @@ struct RootView: View {
             if library.hasLibrary {
                 tabs
             } else {
-                WelcomeView()
+                OnboardingView()
             }
         }
         .background(Color.ink.ignoresSafeArea())

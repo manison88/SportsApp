@@ -14,6 +14,12 @@ struct PhotoCluster: Identifiable, Hashable {
 
 /// Finds games in the photo library from each photo's time and place. On-device only.
 enum PhotoMatcher {
+    /// Whether photo access is already granted (full or limited), without asking.
+    static var hasAccess: Bool {
+        let s = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+        return s == .authorized || s == .limited
+    }
+
     static func requestAccess() async -> Bool {
         let current = PHPhotoLibrary.authorizationStatus(for: .readWrite)
         switch current {
@@ -72,6 +78,19 @@ enum PhotoMatcher {
         var latestVenue: String?
         /// The date of the photo being read (the scan runs newest to oldest).
         var date: Date?
+        /// Stadiums found so far, in the order they turned up, with how many photos each holds.
+        var venues: [VenueTally] = []
+        /// Distinct stadium visits (a stadium on a day) seen so far.
+        var visits = 0
+        /// The last few photos taken inside a stadium's fence, newest first.
+        var recentIds: [String] = []
+    }
+
+    struct VenueTally: Sendable, Equatable, Identifiable {
+        let id: String
+        let name: String
+        let sport: Sport?
+        var count: Int
     }
 
     /// Finds visits in the whole library, newest first. Photos near a stadium on a visit's day count toward it
@@ -89,6 +108,9 @@ enum PhotoMatcher {
             let result = PHAsset.fetchAssets(with: .image, options: options)
             let index = VenueIndex(venues)
             var state = ScanProgress(total: result.count)
+            var tallyAt: [String: Int] = [:]
+            var visitKeys = Set<String>()
+            var days = DayKeyer()
             var points: [PhotoPoint] = []
             points.reserveCapacity(result.count)
             result.enumerateObjects { asset, i, _ in
@@ -100,6 +122,17 @@ enum PhotoMatcher {
                     if let v = index.nearest(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude, radius: radius) {
                         state.atStadiums += 1
                         state.latestVenue = v.name
+                        if let at = tallyAt[v.id] {
+                            state.venues[at].count += 1
+                        } else {
+                            tallyAt[v.id] = state.venues.count
+                            state.venues.append(VenueTally(id: v.id, name: v.name, sport: v.sports.first, count: 1))
+                        }
+                        if let when = asset.creationDate, visitKeys.insert("\(v.id)|\(days.day(when, tz: v.tz))").inserted {
+                            state.visits += 1
+                        }
+                        state.recentIds.insert(asset.localIdentifier, at: 0)
+                        if state.recentIds.count > 5 { state.recentIds.removeLast() }
                     }
                 }
                 if i % 1000 == 999 {

@@ -39,6 +39,7 @@ struct TimelineView: View {
                 ContentUnavailableView.search(text: query)
             }
         }
+        .safeAreaInset(edge: .top, spacing: 0) { ScanBanner() }
         .inkBackground()
         .tabTitle("Timeline")
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Teams, places, years")

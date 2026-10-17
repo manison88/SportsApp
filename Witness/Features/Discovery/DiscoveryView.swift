@@ -280,8 +280,15 @@ struct DiscoveryView: View {
         let granted = await PhotoMatcher.requestAccess()
         guard granted else { phase = .denied; return }
         phase = .scanning
-        var found = await PhotoMatcher.discover(venues: library.venues, existing: library.games) { p in
-            Task { @MainActor in scanProgress = p }
+        // Onboarding already scanned the library: review those results instead of scanning twice.
+        var found: [PhotoCluster]
+        if presenter.scan.state == .done, !presenter.scan.clusters.isEmpty {
+            found = presenter.scan.clusters
+            presenter.scan.markReviewed()
+        } else {
+            found = await PhotoMatcher.discover(venues: library.venues, existing: library.games) { p in
+                Task { @MainActor in scanProgress = p }
+            }
         }
         // Ticket screenshots pin games on their own, even when none of the night's photos have GPS.
         let have = Set(library.games.compactMap { g in library.venue(g.venueId).map { VisitGrouping.key(venueId: $0.id, date: g.date, tz: $0.tz) } })
