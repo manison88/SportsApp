@@ -400,5 +400,1431 @@
     "princess-auto-stadium"
    ]
   }
+ },
+ {
+  "key": "basketball/euroleague",
+  "name": "EuroLeague",
+  "sport": "basketball",
+  "country": "Europe",
+  "countryCode": "EU",
+  "tier": 1,
+  "teamCount": 20,
+  "season": "Oct-May",
+  "espnPath": "basketball/euroleague",
+  "teamIds": [
+   "eurol-mil",
+   "eurol-efs",
+   "eurol-bkn",
+   "eurol-bjk",
+   "eurol-czv",
+   "eurol-dub",
+   "eurol-bar",
+   "eurol-bay",
+   "eurol-fen",
+   "eurol-hta",
+   "eurol-asv",
+   "eurol-mta",
+   "eurol-oly",
+   "eurol-pao",
+   "eurol-pba",
+   "eurol-par",
+   "eurol-rmb",
+   "eurol-vir",
+   "eurol-val",
+   "eurol-zal"
+  ],
+  "passport": {
+   "label": "EuroLeague arenas",
+   "venueIds": [
+    "unipol-forum",
+    "basketball-development-center",
+    "buesa-arena",
+    "akatlar-arena",
+    "belgrade-arena",
+    "coca-cola-arena-dubai",
+    "palau-blaugrana",
+    "sap-garden",
+    "ulker-arena",
+    "drive-in-arena",
+    "ldlc-arena",
+    "menora-mivtachim-arena",
+    "peace-and-friendship-stadium",
+    "oaka-indoor-hall",
+    "adidas-arena",
+    "movistar-arena-madrid",
+    "unipol-arena",
+    "roig-arena",
+    "zalgiris-arena"
+   ]
+  }
+ },
+ {
+  "key": "basketball/esp.acb",
+  "name": "Liga ACB",
+  "sport": "basketball",
+  "country": "Spain",
+  "countryCode": "ES",
+  "tier": 1,
+  "teamCount": 11,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "acb-uni",
+   "acb-cbg",
+   "acb-jov",
+   "acb-ten",
+   "acb-bil",
+   "acb-man",
+   "acb-gir",
+   "eurol-rmb",
+   "eurol-bar",
+   "eurol-bkn",
+   "eurol-val"
+  ],
+  "passport": {
+   "label": "Liga ACB arenas",
+   "venueIds": [
+    "martin-carpena",
+    "gran-canaria-arena",
+    "olimpic-badalona",
+    "santiago-martin-arena",
+    "bilbao-arena",
+    "nou-congost-manresa",
+    "pavello-fontajau",
+    "movistar-arena-madrid",
+    "palau-blaugrana",
+    "buesa-arena",
+    "roig-arena"
+   ]
+  }
+ },
+ {
+  "key": "basketball/tur.bsl",
+  "name": "Basketbol Süper Ligi",
+  "sport": "basketball",
+  "country": "Turkey",
+  "countryCode": "TR",
+  "tier": 1,
+  "teamCount": 7,
+  "season": "Oct-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "bsl-gal",
+   "bsl-ttk",
+   "bsl-ksk",
+   "bsl-tof",
+   "eurol-efs",
+   "eurol-fen",
+   "eurol-bjk"
+  ],
+  "passport": {
+   "label": "BSL arenas",
+   "venueIds": [
+    "sinan-erdem-dome",
+    "ankara-arena",
+    "karsiyaka-arena",
+    "tofas-spor-salonu",
+    "basketball-development-center",
+    "ulker-arena",
+    "akatlar-arena"
+   ]
+  }
+ },
+ {
+  "key": "basketball/ita.lba",
+  "name": "Lega Basket Serie A",
+  "sport": "basketball",
+  "country": "Italy",
+  "countryCode": "IT",
+  "tier": 1,
+  "teamCount": 8,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "lba-bre",
+   "lba-reg",
+   "lba-sas",
+   "lba-tre",
+   "lba-tri",
+   "lba-ven",
+   "eurol-mil",
+   "eurol-vir"
+  ],
+  "passport": {
+   "label": "LBA arenas",
+   "venueIds": [
+    "palaleonessa",
+    "palabigi",
+    "palaserradimigni",
+    "blm-group-arena",
+    "allianz-dome-trieste",
+    "taliercio",
+    "unipol-forum",
+    "unipol-arena"
+   ]
+  }
+ },
+ {
+  "key": "basketball/ger.bbl",
+  "name": "Basketball Bundesliga",
+  "sport": "basketball",
+  "country": "Germany",
+  "countryCode": "DE",
+  "tier": 1,
+  "teamCount": 8,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "bbl-alb",
+   "bbl-bon",
+   "bbl-lud",
+   "bbl-ulm",
+   "bbl-old",
+   "bbl-wur",
+   "bbl-bam",
+   "eurol-bay"
+  ],
+  "passport": {
+   "label": "BBL arenas",
+   "venueIds": [
+    "uber-arena",
+    "telekom-dome",
+    "mhparena-ludwigsburg",
+    "ratiopharm-arena",
+    "ewe-arena",
+    "tectake-arena",
+    "brose-arena",
+    "sap-garden"
+   ]
+  }
+ },
+ {
+  "key": "basketball/fra.lnb",
+  "name": "LNB Betclic Élite",
+  "sport": "basketball",
+  "country": "France",
+  "countryCode": "FR",
+  "tier": 1,
+  "teamCount": 8,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "lnb-mon",
+   "lnb-lim",
+   "lnb-sig",
+   "lnb-bou",
+   "lnb-msb",
+   "lnb-cho",
+   "eurol-asv",
+   "eurol-pba"
+  ],
+  "passport": {
+   "label": "LNB arenas",
+   "venueIds": [
+    "stade-louis-ii",
+    "beaublanc",
+    "rhenus-sport",
+    "ekinox",
+    "antares",
+    "la-meilleraie",
+    "ldlc-arena",
+    "adidas-arena"
+   ]
+  }
+ },
+ {
+  "key": "basketball/gre.gbl",
+  "name": "Greek Basketball League",
+  "sport": "basketball",
+  "country": "Greece",
+  "countryCode": "GR",
+  "tier": 1,
+  "teamCount": 5,
+  "season": "Oct-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "gbl-aek",
+   "gbl-paok",
+   "gbl-aris",
+   "eurol-oly",
+   "eurol-pao"
+  ],
+  "passport": {
+   "label": "Greek League arenas",
+   "venueIds": [
+    "sunel-arena",
+    "paok-sports-arena",
+    "alexandreio-melathron",
+    "peace-and-friendship-stadium",
+    "oaka-indoor-hall"
+   ]
+  }
+ },
+ {
+  "key": "basketball/aba",
+  "name": "ABA League",
+  "sport": "basketball",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "tier": 1,
+  "teamCount": 7,
+  "season": "Oct-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "aba-bud",
+   "aba-ced",
+   "aba-cib",
+   "aba-spl",
+   "eurol-czv",
+   "eurol-par",
+   "eurol-dub"
+  ],
+  "passport": {
+   "label": "ABA League arenas",
+   "venueIds": [
+    "moraca-sports-center",
+    "stozice-stadium",
+    "drazen-petrovic-hall",
+    "spaladium-arena",
+    "belgrade-arena",
+    "coca-cola-arena-dubai"
+   ]
+  }
+ },
+ {
+  "key": "basketball/ltu.lkl",
+  "name": "Lietuvos krepšinio lyga",
+  "sport": "basketball",
+  "country": "Lithuania",
+  "countryCode": "LT",
+  "tier": 1,
+  "teamCount": 4,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "lkl-ryt",
+   "lkl-lie",
+   "lkl-nep",
+   "eurol-zal"
+  ],
+  "passport": {
+   "label": "LKL arenas",
+   "venueIds": [
+    "avia-solutions-arena",
+    "cido-arena",
+    "svyturys-arena",
+    "zalgiris-arena"
+   ]
+  }
+ },
+ {
+  "key": "basketball/srb.kls",
+  "name": "Košarkaška liga Srbije",
+  "sport": "basketball",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Oct-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "eurol-czv",
+   "eurol-par"
+  ],
+  "passport": {
+   "label": "KLS arenas",
+   "venueIds": [
+    "belgrade-arena"
+   ]
+  }
+ },
+ {
+  "key": "basketball/isr.bsl",
+  "name": "Israeli Basketball Premier League",
+  "sport": "basketball",
+  "country": "Israel",
+  "countryCode": "IL",
+  "tier": 1,
+  "teamCount": 4,
+  "season": "Oct-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "bsl-il-hjm",
+   "bsl-il-hho",
+   "eurol-mta",
+   "eurol-hta"
+  ],
+  "passport": {
+   "label": "Israeli league arenas",
+   "venueIds": [
+    "pais-arena",
+    "holon-toto-hall",
+    "menora-mivtachim-arena",
+    "drive-in-arena"
+   ]
+  }
+ },
+ {
+  "key": "basketball/aus.nbl",
+  "name": "NBL (Australia)",
+  "sport": "basketball",
+  "country": "Australia",
+  "countryCode": "AU",
+  "tier": 1,
+  "teamCount": 10,
+  "season": "Sep-Mar",
+  "espnPath": null,
+  "teamIds": [
+   "nbl-mel",
+   "nbl-per",
+   "nbl-syd",
+   "nbl-adl",
+   "nbl-bne",
+   "nbl-ill",
+   "nbl-nzb",
+   "nbl-cns",
+   "nbl-sem",
+   "nbl-tas"
+  ],
+  "passport": {
+   "label": "NBL arenas",
+   "venueIds": [
+    "john-cain-arena",
+    "rac-arena",
+    "qudos-bank-arena",
+    "adelaide-entertainment-centre",
+    "nissan-arena-brisbane",
+    "win-entertainment-centre",
+    "spark-arena",
+    "cairns-convention-centre",
+    "melbourne-sports-centre-sandown",
+    "mystate-bank-arena"
+   ]
+  }
+ },
+ {
+  "key": "hockey/khl",
+  "name": "KHL",
+  "sport": "hockey",
+  "country": "Russia",
+  "countryCode": "RU",
+  "tier": 1,
+  "teamCount": 22,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "khl-akb",
+   "khl-avg",
+   "khl-avt",
+   "khl-bar",
+   "khl-dmo",
+   "khl-min",
+   "khl-adm",
+   "khl-amr",
+   "khl-csk",
+   "khl-lok",
+   "khl-mmg",
+   "khl-nkh",
+   "khl-sal",
+   "khl-sev",
+   "khl-sib",
+   "khl-ska",
+   "khl-spa",
+   "khl-tor",
+   "khl-trk",
+   "khl-vit",
+   "khl-soc",
+   "khl-lad"
+  ],
+  "passport": {
+   "label": "KHL arenas",
+   "venueIds": [
+    "tatneft-arena",
+    "omsk-arena",
+    "uralets-arena",
+    "barys-arena",
+    "vtb-arena",
+    "minsk-arena",
+    "fetisov-arena",
+    "platinum-arena",
+    "cska-arena",
+    "arena-2000",
+    "arena-metallurg",
+    "ice-palace-nizhnekamsk",
+    "ufa-arena",
+    "ice-palace-cherepovets",
+    "sibir-arena",
+    "sibur-arena",
+    "megasport-arena",
+    "trade-union-sport-palace",
+    "traktor-ice-arena",
+    "vityaz-ice-palace",
+    "shayba-arena",
+    "lada-arena"
+   ]
+  }
+ },
+ {
+  "key": "hockey/swe.shl",
+  "name": "SHL",
+  "sport": "hockey",
+  "country": "Sweden",
+  "countryCode": "SE",
+  "tier": 1,
+  "teamCount": 13,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "shl-fhc",
+   "shl-fbk",
+   "shl-lhf",
+   "shl-ske",
+   "shl-lhc",
+   "shl-rbk",
+   "shl-bif",
+   "shl-dif",
+   "shl-mif",
+   "shl-ore",
+   "shl-lif",
+   "shl-hv",
+   "shl-vik"
+  ],
+  "passport": {
+   "label": "SHL arenas",
+   "venueIds": [
+    "scandinavium",
+    "lofbergs-arena",
+    "coop-norrbotten-arena",
+    "skelleftea-kraft-arena",
+    "saab-arena",
+    "catena-arena",
+    "monitor-erp-arena",
+    "avicii-arena",
+    "malmo-arena",
+    "behrn-arena",
+    "tegera-arena",
+    "husqvarna-garden",
+    "vida-arena"
+   ]
+  }
+ },
+ {
+  "key": "hockey/fin.liiga",
+  "name": "Liiga",
+  "sport": "hockey",
+  "country": "Finland",
+  "countryCode": "FI",
+  "tier": 1,
+  "teamCount": 15,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "liiga-hifk",
+   "liiga-tap",
+   "liiga-ilv",
+   "liiga-kar",
+   "liiga-luk",
+   "liiga-kal",
+   "liiga-jyp",
+   "liiga-tps",
+   "liiga-pel",
+   "liiga-sai",
+   "liiga-spo",
+   "liiga-juk",
+   "liiga-hpk",
+   "liiga-ass",
+   "liiga-kes"
+  ],
+  "passport": {
+   "label": "Liiga arenas",
+   "venueIds": [
+    "helsinki-ice-hall",
+    "nokia-arena",
+    "oulun-energia-areena",
+    "kivikylan-areena",
+    "olvi-areena",
+    "lahitapiola-areena",
+    "gatorade-center",
+    "isku-areena",
+    "kisapuisto-areena",
+    "vaasa-arena",
+    "kalevankangas-mikkeli",
+    "hameenlinna-ice-hall",
+    "isomaki-ice-hall",
+    "metro-areena"
+   ]
+  }
+ },
+ {
+  "key": "hockey/ger.del",
+  "name": "Deutsche Eishockey Liga",
+  "sport": "hockey",
+  "country": "Germany",
+  "countryCode": "DE",
+  "tier": 1,
+  "teamCount": 14,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "hdel-man",
+   "hdel-kec",
+   "hdel-ebb",
+   "hdel-rbm",
+   "hdel-erc",
+   "hdel-str",
+   "hdel-bre",
+   "hdel-wob",
+   "hdel-nit",
+   "hdel-aev",
+   "hdel-lff",
+   "hdel-deg",
+   "hdel-sww",
+   "hdel-iec"
+  ],
+  "passport": {
+   "label": "DEL arenas",
+   "venueIds": [
+    "sap-arena",
+    "lanxess-arena",
+    "uber-arena",
+    "sap-garden",
+    "saturn-arena",
+    "eisstadion-am-pulverturm",
+    "eisarena-bremerhaven",
+    "eisarena-wolfsburg",
+    "arena-nuernberger-versicherung",
+    "curt-frenzel-stadion",
+    "eissporthalle-frankfurt",
+    "psd-bank-dome",
+    "helios-arena",
+    "eissporthalle-iserlohn"
+   ]
+  }
+ },
+ {
+  "key": "hockey/sui.nl",
+  "name": "National League",
+  "sport": "hockey",
+  "country": "Switzerland",
+  "countryCode": "CH",
+  "tier": 1,
+  "teamCount": 14,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "hnl-scb",
+   "hnl-zsc",
+   "hnl-hcl",
+   "hnl-evz",
+   "hnl-fri",
+   "hnl-gss",
+   "hnl-lhc",
+   "hnl-bie",
+   "hnl-dav",
+   "hnl-amb",
+   "hnl-klo",
+   "hnl-scl",
+   "hnl-rjl",
+   "hnl-ajo"
+  ],
+  "passport": {
+   "label": "National League arenas",
+   "venueIds": [
+    "postfinance-arena",
+    "swiss-life-arena",
+    "corner-arena",
+    "bossard-arena",
+    "bcf-arena",
+    "patinoire-des-vernets",
+    "vaudoise-arena",
+    "tissot-arena",
+    "vaillant-arena",
+    "valascia",
+    "swiss-arena-kloten",
+    "ilfishalle",
+    "sgkb-arena",
+    "raiffeisen-arena-porrentruy"
+   ]
+  }
+ },
+ {
+  "key": "hockey/cze.extraliga",
+  "name": "Czech Extraliga",
+  "sport": "hockey",
+  "country": "Czechia",
+  "countryCode": "CZ",
+  "tier": 1,
+  "teamCount": 14,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "hcze-spa",
+   "hcze-kom",
+   "hcze-par",
+   "hcze-tri",
+   "hcze-vit",
+   "hcze-plz",
+   "hcze-lib",
+   "hcze-kv",
+   "hcze-mlb",
+   "hcze-bud",
+   "hcze-olo",
+   "hcze-hrk",
+   "hcze-zln",
+   "hcze-lit"
+  ],
+  "passport": {
+   "label": "Extraliga arenas",
+   "venueIds": [
+    "o2-arena-prague",
+    "winning-group-arena",
+    "enteria-arena",
+    "werk-arena",
+    "ostravar-arena",
+    "home-monitoring-arena",
+    "home-credit-arena",
+    "energie-arena-kv",
+    "zimni-stadion-mladaboleslav",
+    "budvar-arena",
+    "zimni-stadion-olomouc",
+    "zimni-stadion-hradec",
+    "zimni-stadion-zlin",
+    "zimni-stadion-litvinov"
+   ]
+  }
+ },
+ {
+  "key": "hockey/national",
+  "name": "IIHF national teams (men)",
+  "sport": "hockey",
+  "country": "International",
+  "countryCode": "XX",
+  "tier": 1,
+  "teamCount": 12,
+  "season": "Year-round",
+  "espnPath": null,
+  "teamIds": [
+   "iihf-can",
+   "iihf-usa",
+   "iihf-swe",
+   "iihf-fin",
+   "iihf-cze",
+   "iihf-sui",
+   "iihf-ger",
+   "iihf-svk",
+   "iihf-lat",
+   "iihf-den",
+   "iihf-nor",
+   "iihf-aut"
+  ],
+  "passport": {
+   "label": "IIHF national teams (men) home arenas",
+   "venueIds": [
+    "scotiabank-arena",
+    "msg",
+    "avicii-arena",
+    "nokia-arena",
+    "o2-arena-prague",
+    "postfinance-arena",
+    "uber-arena",
+    "ondrej-nepela-arena",
+    "arena-riga",
+    "jyske-bank-boxen",
+    "jordal-amfi",
+    "wiener-stadthalle"
+   ]
+  }
+ },
+ {
+  "key": "handball/ger.hbl",
+  "name": "Handball-Bundesliga",
+  "sport": "handball",
+  "country": "Germany",
+  "countryCode": "DE",
+  "tier": 1,
+  "teamCount": 14,
+  "season": "Aug-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbl-kie",
+   "hbl-fle",
+   "hbl-mag",
+   "hbl-fuc",
+   "hbl-rnl",
+   "hbl-mel",
+   "hbl-lem",
+   "hbl-lei",
+   "hbl-han",
+   "hbl-gum",
+   "hbl-wet",
+   "hbl-gop",
+   "hbl-stu",
+   "hbl-erl"
+  ],
+  "passport": {
+   "label": "Bundesliga halls",
+   "venueIds": [
+    "wunderino-arena",
+    "flens-arena",
+    "getec-arena",
+    "max-schmeling-halle",
+    "sap-arena",
+    "rothenbach-halle",
+    "phoenix-contact-arena",
+    "quarterback-immobilien-arena",
+    "swiss-life-hall",
+    "schwalbe-arena",
+    "buderus-arena",
+    "ews-arena",
+    "porsche-arena",
+    "arena-nuernberger-versicherung"
+   ]
+  }
+ },
+ {
+  "key": "handball/fra.lnh",
+  "name": "Liqui Moly StarLigue",
+  "sport": "handball",
+  "country": "France",
+  "countryCode": "FR",
+  "tier": 1,
+  "teamCount": 7,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "lnh-psg",
+   "lnh-mon",
+   "lnh-cha",
+   "lnh-pau",
+   "lnh-tou",
+   "lnh-dun",
+   "lnh-nim"
+  ],
+  "passport": {
+   "label": "LNH halls",
+   "venueIds": [
+    "pierre-de-coubertin",
+    "sud-de-france-arena",
+    "le-phare",
+    "arena-pays-d-aix",
+    "andre-brouat",
+    "stades-de-flandres",
+    "parnasse-nimes"
+   ]
+  }
+ },
+ {
+  "key": "handball/esp.asobal",
+  "name": "Liga ASOBAL",
+  "sport": "handball",
+  "country": "Spain",
+  "countryCode": "ES",
+  "tier": 1,
+  "teamCount": 5,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "asobal-bar",
+   "asobal-gra",
+   "asobal-bid",
+   "asobal-ade",
+   "asobal-log"
+  ],
+  "passport": {
+   "label": "ASOBAL halls",
+   "venueIds": [
+    "palau-blaugrana",
+    "palau-granollers",
+    "artaleku",
+    "palacio-deportes-leon",
+    "palacio-deportes-rioja"
+   ]
+  }
+ },
+ {
+  "key": "handball/den.hld",
+  "name": "Håndboldligaen",
+  "sport": "handball",
+  "country": "Denmark",
+  "countryCode": "DK",
+  "tier": 1,
+  "teamCount": 7,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "hbhld-aal",
+   "hbhld-kif",
+   "hbhld-skj",
+   "hbhld-bsh",
+   "hbhld-fre",
+   "hbhld-rib",
+   "hbhld-her"
+  ],
+  "passport": {
+   "label": "Håndboldligaen halls",
+   "venueIds": [
+    "gigantium",
+    "sydbank-arena",
+    "skjern-bank-arena",
+    "jysk-arena",
+    "monjasa-arena-fredericia",
+    "blue-water-dokken",
+    "jyske-bank-boxen"
+   ]
+  }
+ },
+ {
+  "key": "handball/pol.superliga",
+  "name": "Orlen Superliga",
+  "sport": "handball",
+  "country": "Poland",
+  "countryCode": "PL",
+  "tier": 1,
+  "teamCount": 6,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbpls-kie",
+   "hbpls-plo",
+   "hbpls-gor",
+   "hbpls-zag",
+   "hbpls-wyb",
+   "hbpls-opo"
+  ],
+  "passport": {
+   "label": "Superliga halls",
+   "venueIds": [
+    "hala-legionow",
+    "orlen-arena",
+    "hala-pomorska-zabrze",
+    "hala-widowiskowo-sportowa-lubin",
+    "ergo-arena",
+    "hala-stegu-arena"
+   ]
+  }
+ },
+ {
+  "key": "handball/hun.nb1",
+  "name": "Nemzeti Bajnokság I",
+  "sport": "handball",
+  "country": "Hungary",
+  "countryCode": "HU",
+  "tier": 1,
+  "teamCount": 5,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbnb1-ves",
+   "hbnb1-sze",
+   "hbnb1-tat",
+   "hbnb1-fer",
+   "hbnb1-csu"
+  ],
+  "passport": {
+   "label": "NB I halls",
+   "venueIds": [
+    "veszprem-arena",
+    "pick-arena",
+    "foldi-imre-sportcsarnok",
+    "elek-gyula-arena",
+    "csurgo-sportcsarnok"
+   ]
+  }
+ },
+ {
+  "key": "handball/por.andebol1",
+  "name": "Andebol 1",
+  "sport": "handball",
+  "country": "Portugal",
+  "countryCode": "PT",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbprt-scp",
+   "hbprt-fcp"
+  ],
+  "passport": {
+   "label": "Andebol 1 halls",
+   "venueIds": [
+    "pavilhao-joao-rocha",
+    "dragao-arena"
+   ]
+  }
+ },
+ {
+  "key": "handball/nor.rema",
+  "name": "REMA 1000-ligaen",
+  "sport": "handball",
+  "country": "Norway",
+  "countryCode": "NO",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "hbnor-kol",
+   "hbnor-elv"
+  ],
+  "passport": {
+   "label": "REMA 1000-ligaen halls",
+   "venueIds": [
+    "trondheim-spektrum",
+    "terningen-arena"
+   ]
+  }
+ },
+ {
+  "key": "handball/cro.premijer",
+  "name": "Croatian Premier Handball League",
+  "sport": "handball",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "tier": 1,
+  "teamCount": 1,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbhrv-zag"
+  ],
+  "passport": {
+   "label": "Croatian league halls",
+   "venueIds": [
+    "arena-zagreb"
+   ]
+  }
+ },
+ {
+  "key": "handball/slo.1nlb",
+  "name": "1. NLB Liga",
+  "sport": "handball",
+  "country": "Slovenia",
+  "countryCode": "SI",
+  "tier": 1,
+  "teamCount": 1,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbsvn-cel"
+  ],
+  "passport": {
+   "label": "Slovenian league halls",
+   "venueIds": [
+    "zlatorog-arena"
+   ]
+  }
+ },
+ {
+  "key": "handball/rou.lnm",
+  "name": "Liga Națională",
+  "sport": "handball",
+  "country": "Romania",
+  "countryCode": "RO",
+  "tier": 1,
+  "teamCount": 1,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbrou-din"
+  ],
+  "passport": {
+   "label": "Liga Națională halls",
+   "venueIds": [
+    "polivalenta-bucharest"
+   ]
+  }
+ },
+ {
+  "key": "handball/ehf.cl",
+  "name": "EHF Champions League (men)",
+  "sport": "handball",
+  "country": "Europe",
+  "countryCode": "EU",
+  "tier": 1,
+  "teamCount": 18,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbl-kie",
+   "hbl-fle",
+   "hbl-mag",
+   "hbl-fuc",
+   "asobal-bar",
+   "lnh-psg",
+   "lnh-mon",
+   "hbnb1-ves",
+   "hbnb1-sze",
+   "hbpls-kie",
+   "hbpls-plo",
+   "hbhld-aal",
+   "hbprt-scp",
+   "hbprt-fcp",
+   "hbhrv-zag",
+   "hbsvn-cel",
+   "hbrou-din",
+   "hbnor-kol"
+  ],
+  "passport": {
+   "label": "EHF Champions League halls",
+   "venueIds": [
+    "wunderino-arena",
+    "flens-arena",
+    "getec-arena",
+    "max-schmeling-halle",
+    "palau-blaugrana",
+    "pierre-de-coubertin",
+    "sud-de-france-arena",
+    "veszprem-arena",
+    "pick-arena",
+    "hala-legionow",
+    "orlen-arena",
+    "gigantium",
+    "pavilhao-joao-rocha",
+    "dragao-arena",
+    "arena-zagreb",
+    "zlatorog-arena",
+    "polivalenta-bucharest",
+    "trondheim-spektrum"
+   ]
+  }
+ },
+ {
+  "key": "handball/national",
+  "name": "Handball national teams (men)",
+  "sport": "handball",
+  "country": "International",
+  "countryCode": "XX",
+  "tier": 1,
+  "teamCount": 24,
+  "season": "Year-round",
+  "espnPath": null,
+  "teamIds": [
+   "ehfn-den",
+   "ehfn-fra",
+   "ehfn-ger",
+   "ehfn-swe",
+   "ehfn-esp",
+   "ehfn-nor",
+   "ehfn-cro",
+   "ehfn-hun",
+   "ehfn-por",
+   "ehfn-slo",
+   "ehfn-isl",
+   "ehfn-egy",
+   "ehfn-aut",
+   "ehfn-pol",
+   "ehfn-ned",
+   "ehfn-sui",
+   "ehfn-bra",
+   "ehfn-arg",
+   "ehfn-qat",
+   "ehfn-jpn",
+   "ehfn-tun",
+   "ehfn-srb",
+   "ehfn-mkd",
+   "ehfn-rou"
+  ],
+  "passport": {
+   "label": "Handball national team home halls",
+   "venueIds": [
+    "jyske-bank-boxen",
+    "accor-arena",
+    "lanxess-arena",
+    "avicii-arena",
+    "palau-blaugrana",
+    "unity-arena",
+    "arena-zagreb",
+    "mvm-dome",
+    "pavilhao-joao-rocha",
+    "tivoli-hall",
+    "laugardalsholl",
+    "cairo-stadium-indoor-halls",
+    "wiener-stadthalle",
+    "ergo-arena",
+    "ahoy-rotterdam",
+    "hallenstadion",
+    "maracanazinho",
+    "estadio-obras-sanitarias",
+    "lusail-sports-arena",
+    "yoyogi-national-gymnasium",
+    "salle-omnisports-rades",
+    "belgrade-arena",
+    "jane-sandanski-arena",
+    "polivalenta-bucharest"
+   ]
+  }
+ },
+ {
+  "key": "baseball/jpn.npb",
+  "name": "NPB",
+  "sport": "baseball",
+  "country": "Japan",
+  "countryCode": "JP",
+  "tier": 1,
+  "teamCount": 12,
+  "season": "Mar-Oct",
+  "espnPath": null,
+  "teamIds": [
+   "npb-yog",
+   "npb-han",
+   "npb-den",
+   "npb-hir",
+   "npb-chu",
+   "npb-yak",
+   "npb-sbh",
+   "npb-nhf",
+   "npb-lot",
+   "npb-orx",
+   "npb-sei",
+   "npb-rak"
+  ],
+  "passport": {
+   "label": "NPB ballparks",
+   "venueIds": [
+    "tokyo-dome",
+    "koshien-stadium",
+    "yokohama-stadium",
+    "mazda-stadium-hiroshima",
+    "vantelin-dome-nagoya",
+    "meiji-jingu-stadium",
+    "mizuho-paypay-dome",
+    "es-con-field",
+    "zozo-marine-stadium",
+    "kyocera-dome-osaka",
+    "belluna-dome",
+    "rakuten-seimei-park"
+   ]
+  }
+ },
+ {
+  "key": "baseball/kor.kbo",
+  "name": "KBO League",
+  "sport": "baseball",
+  "country": "South Korea",
+  "countryCode": "KR",
+  "tier": 1,
+  "teamCount": 10,
+  "season": "Mar-Oct",
+  "espnPath": null,
+  "teamIds": [
+   "kbo-doo",
+   "kbo-lg",
+   "kbo-kiw",
+   "kbo-ssg",
+   "kbo-kt",
+   "kbo-han",
+   "kbo-sam",
+   "kbo-lot",
+   "kbo-nc",
+   "kbo-kia"
+  ],
+  "passport": {
+   "label": "KBO ballparks",
+   "venueIds": [
+    "jamsil-baseball-stadium",
+    "gocheok-sky-dome",
+    "incheon-landers-field",
+    "suwon-kt-wiz-park",
+    "hanwha-life-ballpark",
+    "daegu-samsung-lions-park",
+    "sajik-baseball-stadium",
+    "changwon-nc-park",
+    "gwangju-kia-champions-field"
+   ]
+  }
+ },
+ {
+  "key": "baseball/twn.cpbl",
+  "name": "CPBL",
+  "sport": "baseball",
+  "country": "Taiwan",
+  "countryCode": "TW",
+  "tier": 1,
+  "teamCount": 6,
+  "season": "Mar-Oct",
+  "espnPath": null,
+  "teamIds": [
+   "cpbl-bro",
+   "cpbl-lio",
+   "cpbl-mon",
+   "cpbl-gua",
+   "cpbl-dra",
+   "cpbl-haw"
+  ],
+  "passport": {
+   "label": "CPBL ballparks",
+   "venueIds": [
+    "taichung-intercontinental-stadium",
+    "tainan-baseball-stadium",
+    "taoyuan-baseball-stadium",
+    "xinzhuang-baseball-stadium",
+    "tianmu-baseball-stadium"
+   ]
+  }
+ },
+ {
+  "key": "baseball/mex.lmb",
+  "name": "Liga Mexicana de Béisbol",
+  "sport": "baseball",
+  "country": "Mexico",
+  "countryCode": "MX",
+  "tier": 1,
+  "teamCount": 16,
+  "season": "Apr-Aug",
+  "espnPath": null,
+  "teamIds": [
+   "lmb-mex",
+   "lmb-qro",
+   "lmb-mty",
+   "lmb-pue",
+   "lmb-yuc",
+   "lmb-lag",
+   "lmb-mcl",
+   "lmb-tij",
+   "lmb-oax",
+   "lmb-tab",
+   "lmb-ver",
+   "lmb-cam",
+   "lmb-dur",
+   "lmb-chi",
+   "lmb-dlr",
+   "lmb-agu"
+  ],
+  "passport": {
+   "label": "LMB ballparks",
+   "venueIds": [
+    "estadio-alfredo-harp-helu",
+    "estadio-beto-avila-cancun",
+    "estadio-mobil-super",
+    "estadio-hermanos-serdan",
+    "estadio-kukulcan-alamo",
+    "estadio-revolucion-torreon",
+    "estadio-monclova",
+    "estadio-chevron-tijuana",
+    "estadio-eduardo-vasconcelos",
+    "parque-centenario-27-febrero",
+    "estadio-beto-avila-veracruz",
+    "estadio-nelson-barrera",
+    "estadio-francisco-villa",
+    "estadio-chihuahua",
+    "parque-la-junta",
+    "estadio-alberto-romo-chavez"
+   ]
+  }
+ },
+ {
+  "key": "motorsport/f1",
+  "name": "F1",
+  "sport": "motorsport",
+  "country": "International",
+  "countryCode": "XX",
+  "tier": 1,
+  "teamCount": 11,
+  "season": "Mar-Dec",
+  "espnPath": null,
+  "teamIds": [
+   "f1-rbr",
+   "f1-vrb",
+   "f1-mer",
+   "f1-fer",
+   "f1-mcl",
+   "f1-amr",
+   "f1-alp",
+   "f1-wil",
+   "f1-haa",
+   "f1-aud",
+   "f1-cad"
+  ],
+  "passport": {
+   "label": "F1 team bases",
+   "venueIds": [
+    "red-bull-technology-campus",
+    "racing-bulls-faenza",
+    "mercedes-f1-brackley",
+    "ferrari-maranello",
+    "mclaren-technology-centre",
+    "aston-martin-silverstone-campus",
+    "alpine-enstone",
+    "williams-grove",
+    "haas-kannapolis",
+    "audi-f1-hinwil",
+    "cadillac-f1-fishers"
+   ]
+  }
+ },
+ {
+  "key": "basketball/national",
+  "name": "FIBA national teams (men)",
+  "sport": "basketball",
+  "country": "International",
+  "countryCode": "XX",
+  "tier": 1,
+  "teamCount": 28,
+  "season": "Year-round",
+  "espnPath": null,
+  "teamIds": [
+   "fibam-usa",
+   "fibam-esp",
+   "fibam-ger",
+   "fibam-srb",
+   "fibam-fra",
+   "fibam-can",
+   "fibam-aus",
+   "fibam-gre",
+   "fibam-lat",
+   "fibam-ltu",
+   "fibam-slo",
+   "fibam-ita",
+   "fibam-arg",
+   "fibam-bra",
+   "fibam-tur",
+   "fibam-fin",
+   "fibam-jpn",
+   "fibam-mne",
+   "fibam-pur",
+   "fibam-dom",
+   "fibam-geo",
+   "fibam-ngr",
+   "fibam-egy",
+   "fibam-pol",
+   "fibam-cro",
+   "fibam-isr",
+   "fibam-gbr",
+   "fibam-rou"
+  ],
+  "passport": {
+   "label": "Basketball national team home arenas",
+   "venueIds": [
+    "t-mobile-arena",
+    "movistar-arena-madrid",
+    "uber-arena",
+    "belgrade-arena",
+    "adidas-arena",
+    "scotiabank-arena",
+    "john-cain-arena",
+    "oaka-indoor-hall",
+    "arena-riga",
+    "zalgiris-arena",
+    "stozice-stadium",
+    "unipol-forum",
+    "estadio-obras-sanitarias",
+    "ginasio-nilson-nelson",
+    "ankara-arena",
+    "nokia-arena",
+    "okinawa-arena",
+    "moraca-sports-center",
+    "coliseo-de-puerto-rico",
+    "palacio-deportes-virgilio-travieso-soto",
+    "tbilisi-sports-palace",
+    "mobolaji-johnson-arena",
+    "cairo-stadium-indoor-halls",
+    "ergo-arena",
+    "drazen-petrovic-hall",
+    "menora-mivtachim-arena",
+    "copper-box-arena",
+    "polivalenta-bucharest"
+   ]
+  }
  }
 ]
