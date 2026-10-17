@@ -42,7 +42,7 @@ page(F, 'v1-start', 'Swipe intro', nav(icb('x')) + '''
 <div style="position:absolute;left:60px;right:60px;top:372px;height:150px">
   <div class="card b2" style="top:0;transform:rotate(-7deg) translateX(-26px)"><div class="abs">''' + im('fenway-night.jpg', '50% 40%') + '''</div></div>
   <div class="card b2" style="transform:rotate(6deg) translateX(26px)"><div class="abs">''' + im('lambeau-concourse.jpg', '50% 80%') + '''</div></div>
-  <div class="card" style="transform:rotate(-1deg)"><div class="abs">''' + im('wrigley-night.jpg', '50% 38%') + '''</div></div>
+  <div class="card" style="transform:rotate(-1deg)"><div class="abs">''' + im('wrigley-bleachers.jpg', '50% 50%') + '''</div></div>
 </div>
 <div style="position:absolute;left:20px;right:20px;top:566px" class="f-list">
   <div class="gr" style="min-height:48px;gap:14px"><span class="ico24" style="display:grid">''' + I['check'].replace('<svg', '<svg class="ico24"') + '''</span><div class="t" style="font-size:17px">Swipe right to add</div></div>
