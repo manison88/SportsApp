@@ -1,0 +1,102 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cinema</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/cinema.css">
+<style>
+  :root { --cloth: #1b2440; --cloth-hi: #26315a; --foil: #e9cf96; }
+  .stage { position: absolute; left: 0; right: 0; top: 0; height: 520px; overflow: hidden;
+    background: radial-gradient(70% 55% at 50% 30%, #2a2520 0%, #15130f 55%, #050506 100%); }
+  .table { position: absolute; left: -20px; right: -20px; top: 404px; height: 116px;
+    background: linear-gradient(180deg, #1d1915 0%, #0d0c0a 50%, #050506 100%); box-shadow: 0 -1px 0 rgba(255,236,200,.08); }
+  .spot { position: absolute; left: 50%; top: 40px; width: 420px; height: 420px; margin-left: -210px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(255,226,180,.16), rgba(255,226,180,0)); }
+  .shadow { position: absolute; left: 50%; top: 414px; width: 300px; height: 30px; margin-left: -146px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0,0,0,.85), rgba(0,0,0,0)); filter: blur(4px); }
+
+  .book { position: absolute; left: 50%; top: 112px; width: 252px; height: 316px; margin-left: -118px; }
+  .front { position: absolute; left: 24px; top: 0; width: 228px; height: 316px; border-radius: 2px 6px 6px 2px; overflow: hidden;
+    background: linear-gradient(100deg, var(--cloth-hi) 0%, var(--cloth) 28%, #121a30 100%);
+    box-shadow: 0 30px 40px -10px rgba(0,0,0,.7), 0 2px 0 rgba(0,0,0,.4); }
+  .front::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5; mix-blend-mode: overlay;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,.07) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(0,0,0,.08) 0 1px, transparent 1px 3px); }
+  .front::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(90deg, rgba(0,0,0,.5) 0, rgba(255,255,255,.1) 6px, rgba(0,0,0,.15) 10px, rgba(0,0,0,0) 16px), linear-gradient(150deg, rgba(255,240,210,.13), rgba(255,255,255,0) 38%, rgba(0,0,0,.28)); }
+  .spine { position: absolute; left: 0; top: 0; width: 25px; height: 316px; clip-path: polygon(0 10px, 100% 0, 100% 100%, 0 calc(100% - 6px));
+    background: linear-gradient(90deg, #080c18, #141b31 60%, #0b1020); }
+  .spine span { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%) rotate(90deg); white-space: nowrap; font: 400 13px/1 var(--a-serif); letter-spacing: 1px; color: var(--foil); opacity: .85; }
+  .spine span i { font: 600 6px/1 var(--a-ui); letter-spacing: 2px; margin-left: 12px; font-style: normal; opacity: .7; }
+  .plate { position: absolute; left: 28px; right: 26px; top: 30px; height: 144px; box-shadow: 0 0 0 1px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.5); overflow: hidden; }
+  .plate img { filter: contrast(1.08) saturate(.85) brightness(.95); object-position: 50% 62%; transform: scale(1.12); transform-origin: 50% 60%; }
+  .ctitle { position: absolute; left: 4px; right: 0; top: 194px; text-align: center; }
+  .ctitle .yr { font: 400 52px/1 var(--a-serif); letter-spacing: -.5px;
+    background: linear-gradient(180deg, #f6e2b4, #c9a565 60%, #f0d79e); -webkit-background-clip: text; color: transparent; }
+  .ctitle .sub { font: italic 400 17px/1 var(--a-serif); color: var(--foil); opacity: .9; margin-top: 4px; }
+  .ctitle .by { font: 600 7px/1 var(--a-ui); letter-spacing: 2px; color: rgba(233,207,150,.7); margin-top: 16px; }
+
+  .seg { position: absolute; left: 50%; top: 484px; transform: translateX(-50%); display: flex; padding: 3px; border-radius: 17px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); }
+  .seg span { height: 28px; padding: 0 20px; border-radius: 14px; display: grid; place-items: center; font: 600 13px/1 var(--a-ui); color: var(--a-text-2); }
+  .seg span.on { background: var(--a-text); color: #0a0a0b; }
+
+  .info { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 548px; }
+  .info .a-h1 em { color: var(--a-text-2); }
+  .info .a-small { margin-top: 10px; color: var(--a-text-2); }
+
+  .opts { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 660px; display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--a-line); }
+  .opts .lab { font: 500 14px/1.2 var(--a-ui); color: var(--a-text-2); }
+  .opts .lab b { color: var(--a-text); font-weight: 600; }
+  .sw { display: flex; gap: 12px; }
+  .sw i { width: 28px; height: 28px; border-radius: 50%; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.2); }
+  .sw i.on { box-shadow: 0 0 0 2px var(--a-bg), 0 0 0 3.5px var(--a-text); }
+
+  .buy { position: absolute; left: var(--a-gutter); right: 16px; bottom: 44px; display: flex; align-items: center; gap: 16px; }
+  .price .a-num { font-size: 30px; letter-spacing: -1px; }
+  .price .a-small { margin-top: 5px; }
+  .buy .a-btn { flex: 1; }
+  .buy svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+</style></head>
+<body class="phone a">
+  <div class="stage">
+    <div class="spot"></div>
+    <div class="table"></div>
+    <div class="shadow"></div>
+    <div class="book">
+      <div class="spine"><span>2016 <i>WITNESS</i></span></div>
+      <div class="front">
+        <div class="plate"><img class="ph" src="../../../photos/wrigley-night.jpg"></div>
+        <div class="ctitle">
+          <div class="yr">2016</div>
+          <div class="sub">The Year It Happened</div>
+          <div class="by">SAM OKAFOR · WRIGLEY FIELD</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grain"></div>
+
+  <div class="a-nav">
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></div>
+  </div>
+
+  <div class="seg"><span class="on">Book</span><span>Poster</span></div>
+
+  <div class="info">
+    <div class="a-h1">2016: <em>The Year It Happened</em></div>
+    <div class="a-small">Linen hardcover · 120 lay-flat pages<br>Your photos from the pennant and Game 5</div>
+  </div>
+
+  <div class="opts">
+    <div class="lab">Cover <b>Midnight</b></div>
+    <div class="sw">
+      <i class="on" style="background:#1b2440"></i>
+      <i style="background:#7a1f22"></i>
+      <i style="background:#e8e0cf"></i>
+    </div>
+  </div>
+
+  <div class="buy">
+    <div class="price"><div class="a-num">$89</div><div class="a-small">Ships in 5 days</div></div>
+    <div class="a-btn"><svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>Add to bag</div>
+  </div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

@@ -12,7 +12,7 @@
   .map { position: absolute; top: 180px; left: 16px; right: 16px; height: 244px; border-radius: 26px; overflow: hidden; background: #fff; }
   .map svg { display: block; }
   .note { position: absolute; left: 18px; bottom: 14px; font: 600 19px/1.05 var(--f-hand); color: #3b3b40; transform: rotate(-2.5deg); width: 170px; }
-  .stat { position: absolute; left: 14px; top: 14px; display: flex; gap: 6px; }
+  .stat { position: absolute; right: 14px; top: 14px; display: flex; gap: 6px; }
   .stat .c-chip { height: 26px; font-size: 11.5px; padding: 0 10px; }
 
   .legs { position: absolute; top: 440px; left: 16px; right: 16px; }
@@ -46,7 +46,7 @@
 
   <div class="map">
     <svg id="m" width="361" height="244"></svg>
-    <div class="stat"><span class="c-chip">4,413 mi from home</span><span class="c-chip">2 games</span></div>
+    <div class="stat"><span class="c-chip">4,413 mi</span><span class="c-chip">2 games</span></div>
     <div class="note">“the last game before the world went quiet.”</div>
   </div>
 
@@ -95,7 +95,7 @@
   const svg = d3.select('#m');
   svg.append('path').datum(topojson.feature(L, L.objects.land)).attr('d', path).attr('fill', '#efefea');
   const spain = topojson.feature(C, C.objects.countries).features.find(f => f.properties.name === 'Spain');
-  svg.append('path').datum(spain).attr('d', path).attr('fill', '#e4e4de');
+  svg.append('path').datum(spain).attr('d', path).attr('fill', '#dedfd8');
   svg.append('path').datum(topojson.mesh(C, C.objects.countries, (a, b) => a !== b)).attr('d', path).attr('fill', 'none').attr('stroke', '#fff').attr('stroke-width', 1.2);
   const gc = (a, b, n = 200) => { const i = d3.geoInterpolate(a, b); return {type: 'LineString', coordinates: d3.range(n + 1).map(k => i(k / n))}; };
   // flights in and out (great circles from Chicago run off the left edge)
@@ -110,8 +110,8 @@
   const lab = (p, t, s, dx, dy, anchor = 'start') => { const [x, y] = proj(p);
     const g = svg.append('text').attr('x', x + dx).attr('y', y + dy).attr('text-anchor', anchor).attr('font-family', 'Inter Tight').attr('font-weight', 700).attr('font-size', 13).attr('fill', '#0c0c0e').text(t);
     if (s) svg.append('text').attr('x', x + dx).attr('y', y + dy + 13).attr('text-anchor', anchor).attr('font-family', 'Inter').attr('font-weight', 500).attr('font-size', 10.5).attr('fill', '#8a8a90').text(s); };
-  lab(BCN, 'Barcelona', '5–0 · Feb 22', 2, 28, 'middle');
-  lab(VLC, 'Valencia', null, 12, 5);
+  lab(BCN, 'Barcelona', '5–0 · Feb 22', 14, 0);
+  lab(VLC, 'Valencia', null, 12, 18);
   lab(MAD, 'Madrid', '2–0 · Mar 1', 0, 30, 'middle');
   const [ex, ey] = proj(ORD); // off-map anchor note
 </script>

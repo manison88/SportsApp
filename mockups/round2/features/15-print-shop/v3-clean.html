@@ -1,0 +1,131 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Clean</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/clean.css">
+<style>
+  .c-nav .t { font: 600 15px/1 var(--c-ui); letter-spacing: -.2px; }
+  .bag { position: relative; }
+  .bag .n { position: absolute; right: -3px; top: -3px; width: 17px; height: 17px; border-radius: 9px; background: #0c0c0e; color: #fff; font: 700 9.5px/17px var(--c-ui); text-align: center; box-shadow: 0 0 0 2px var(--c-bg); }
+  .seg { position: absolute; top: 108px; left: 50%; transform: translateX(-50%); width: 210px; }
+
+  /* studio */
+  .stage { position: absolute; top: 152px; left: 16px; right: 16px; height: 322px; border-radius: 28px; overflow: hidden;
+    background: radial-gradient(80% 70% at 60% 30%, #ffffff 0%, #f1f1ed 55%, #e4e4df 100%); }
+  .stage .floor { position: absolute; left: 0; right: 0; bottom: 0; height: 92px; background: linear-gradient(180deg, rgba(0,0,0,.035), rgba(0,0,0,0) 40%); }
+  .shadow { position: absolute; left: 92px; top: 262px; width: 200px; height: 30px; border-radius: 50%; background: rgba(20,24,40,.32); filter: blur(14px); transform: rotate(-4deg); }
+  .contact { position: absolute; left: 116px; top: 268px; width: 170px; height: 8px; border-radius: 50%; background: rgba(10,12,20,.55); filter: blur(3.5px); transform: rotate(-5deg); }
+
+  .scene { position: absolute; inset: 0; perspective: 1100px; perspective-origin: 50% 25%; }
+  .book { --W: 176px; --H: 226px; --T: 28px; position: absolute; left: 104px; top: 36px; width: var(--W); height: var(--H);
+    transform-style: preserve-3d; transform: rotateX(-7deg) rotateY(28deg); }
+  .face { position: absolute; backface-visibility: hidden; }
+  .front { width: var(--W); height: var(--H); transform: translateZ(calc(var(--T) / 2)); border-radius: 2px 4px 4px 2px; overflow: hidden; background: #1b2747;
+    box-shadow: inset -1.5px 0 0 rgba(255,255,255,.14), inset 0 1.5px 0 rgba(255,255,255,.16), inset 0 -2px 2px rgba(0,0,0,.35); }
+  .back { width: var(--W); height: var(--H); transform: rotateY(180deg) translateZ(calc(var(--T) / 2)); background: #16213a; }
+  .spine { width: var(--T); height: var(--H); left: calc((var(--W) - var(--T)) / 2); transform: rotateY(-90deg) translateZ(calc(var(--W) / 2)); overflow: hidden;
+    background: linear-gradient(90deg, #111a30 0%, #1d2a49 35%, #243457 60%, #16203a 100%); }
+  .top { width: var(--W); height: var(--T); top: calc((var(--H) - var(--T)) / 2); transform: rotateX(90deg) translateZ(calc(var(--H) / 2)); overflow: hidden; background: #1b2747; }
+  .top .pages { position: absolute; left: 6px; right: 3px; top: 2px; bottom: 2px; background: repeating-linear-gradient(180deg, #f6f3ea 0 .7px, #dcd7ca .7px 1.2px); }
+  .fore { width: var(--T); height: var(--H); left: calc((var(--W) - var(--T)) / 2); transform: rotateY(90deg) translateZ(calc(var(--W) / 2)); background: #1b2747; }
+  .cloth { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; opacity: .85;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='a'><feTurbulence type='fractalNoise' baseFrequency='1.6 .06' numOctaves='2' seed='2'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.4 -.2'/></filter><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='.06 1.6' numOctaves='2' seed='9'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.4 -.2'/></filter><rect width='100%' height='100%' filter='url(%23a)'/><rect width='100%' height='100%' filter='url(%23b)' opacity='.8'/></svg>");
+    background-size: 60px 60px; }
+  .hinge { position: absolute; left: 11px; top: 0; bottom: 0; width: 5px; background: linear-gradient(90deg, rgba(0,0,0,.35), rgba(255,255,255,.08) 50%, rgba(0,0,0,.25)); }
+  .tip { position: absolute; left: 26px; right: 18px; top: 22px; height: 112px; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 2.5px rgba(0,0,0,.28); }
+  .tip img { filter: contrast(1.05) saturate(.85) brightness(.95); }
+  .foil { background: linear-gradient(115deg, #8a8f99 0%, #e9ecf1 30%, #ffffff 42%, #a8aeb8 58%, #eef0f4 74%, #8d939d 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 -0.6px 0 rgba(0,0,0,.5)); }
+  .yr { position: absolute; left: 25px; top: 146px; font: 800 46px/1 var(--c-display); letter-spacing: -2.4px; }
+  .ttl { position: absolute; left: 27px; top: 198px; font: 700 6.6px/1.4 var(--c-ui); letter-spacing: 2px; }
+  .light { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(105deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.14) 60%, rgba(255,255,255,0) 80%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.2)); }
+  .spine .t { position: absolute; left: 50%; top: 52%; transform: translate(-50%, -50%) rotate(90deg); white-space: nowrap; font: 700 6.5px/1 var(--c-ui); letter-spacing: 2.2px; }
+  .spine .y { position: absolute; left: 0; right: 0; top: 13px; text-align: center; font: 800 9px/1 var(--c-display); }
+
+  .dots { position: absolute; top: 450px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+  .dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(0,0,0,.14); }
+  .dots i.on { width: 16px; background: #0c0c0e; }
+
+  .info { position: absolute; top: 494px; left: 20px; right: 20px; }
+  .info .row1 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .info .price { font: 700 22px/1.15 var(--c-display); letter-spacing: -.5px; font-variant-numeric: tabular-nums; }
+  .info .c-small { margin-top: 6px; color: var(--c-text-2); }
+
+  .cover { position: absolute; top: 572px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .sw { display: flex; gap: 12px; }
+  .sw i { width: 30px; height: 30px; border-radius: 50%; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.2); }
+  .sw i.on { box-shadow: 0 0 0 2px var(--c-bg), 0 0 0 3.5px #0c0c0e; }
+  .cover .lbl b { display: block; font: 600 14px/1.3 var(--c-ui); }
+
+  .alt { position: absolute; top: 630px; left: 16px; right: 16px; }
+  .alt .c-row { padding: 12px 14px; }
+  .alt .poster { width: 34px; height: 46px; border-radius: 3px; background: #0c0c0e; padding: 5px 4px; display: grid; align-content: start; gap: 2.5px; box-shadow: 0 2px 6px rgba(0,0,0,.15); flex: none; }
+  .alt .poster b { display: block; font: 800 8px/1 var(--c-display); color: #fff; letter-spacing: -.2px; margin-bottom: 2px; }
+  .alt .poster i { display: block; height: 1.5px; background: rgba(255,255,255,.55); border-radius: 1px; }
+  .alt .tx { flex: 1; }
+  .alt .tx b { display: block; font: 600 14.5px/1.25 var(--c-ui); letter-spacing: -.1px; }
+  .alt .tx span { font: 500 12.5px/1.3 var(--c-ui); color: var(--c-text-3); }
+  .alt svg { width: 16px; height: 16px; stroke: var(--c-text-3); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 40px; }
+  .cta .c-btn { width: 100%; }
+  .cta small { font: 500 14px/1 var(--c-ui); color: rgba(255,255,255,.55); }
+</style></head>
+<body class="phone c" data-chrome="dark">
+
+  <div class="c-nav">
+    <div class="c-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="t">Print shop</div>
+    <div class="c-icon-btn bag"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><span class="n">1</span></div>
+  </div>
+
+  <div class="seg c-segment"><span class="on">Book</span><span>Poster</span></div>
+
+  <div class="stage">
+    <div class="floor"></div>
+    <div class="shadow"></div><div class="contact"></div>
+    <div class="scene">
+      <div class="book">
+        <div class="face back"></div>
+        <div class="face fore"></div>
+        <div class="face top"><div class="pages"></div></div>
+        <div class="face spine"><div class="cloth"></div><div class="y foil">’16</div><div class="t foil">THE YEAR IT HAPPENED · OKAFOR</div></div>
+        <div class="face front">
+          <div class="cloth"></div>
+          <div class="hinge"></div>
+          <div class="tip"><img class="ph" src="../../../photos/wrigley-night.jpg"></div>
+          <div class="yr foil">2016</div>
+          <div class="ttl foil">THE YEAR IT HAPPENED<br>SAM OKAFOR · EIGHT GAMES</div>
+          <div class="light"></div>
+        </div>
+      </div>
+    </div>
+    <div class="dots" style="top:298px"><i class="on"></i><i></i><i></i><i></i></div>
+  </div>
+
+  <div class="info">
+    <div class="row1"><div class="c-h2">2016: The Year It Happened</div><div class="price">$89</div></div>
+    <div class="c-small">Linen hardcover · 96 pages · 8 games · 212 of your photos</div>
+  </div>
+
+  <div class="cover">
+    <div class="lbl"><div class="c-eyebrow">Cover</div><b>Midnight navy</b></div>
+    <div class="sw">
+      <i class="on" style="background:#1b2747"></i>
+      <i style="background:#7a2230"></i>
+      <i style="background:#2c4a3a"></i>
+      <i style="background:#e9e4d8"></i>
+    </div>
+  </div>
+
+  <div class="alt c-group">
+    <div class="c-row">
+      <div class="poster"><b>2016</b><i></i><i style="width:80%"></i><i></i><i style="width:70%"></i><i></i><i style="width:85%"></i></div>
+      <div class="tx"><b>Or as a tour poster</b><span>Every 2016 game · 18 × 24 in · $39</span></div>
+      <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+
+  <div class="cta"><div class="c-btn">Add to bag <small>· $89</small></div></div>
+
+<script src="../../../kit/kit.js"></script>
+</body></html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/broadcast.css">
+<style>
+  .g { position: absolute; left: var(--b-gutter); right: var(--b-gutter); }
+  .hero { position: absolute; left: 0; right: 0; top: 0; height: 318px; overflow: hidden; }
+  .hero img { position: absolute; inset: 0; }
+  .hero .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,8,10,.55) 0%, rgba(7,8,10,0) 28%, rgba(7,8,10,0) 50%, rgba(7,8,10,.9) 88%, var(--b-bg) 100%); }
+  .title { top: 222px; }
+  .title .b-label { color: rgba(255,255,255,.85); margin-bottom: 8px; }
+  .title .b-display { font-size: 54px; }
+
+  .rec { top: 330px; display: flex; align-items: flex-end; gap: 14px; }
+  .rec .b-mega { margin-left: -3px; flex: none; white-space: nowrap; }
+  .rec .side { padding-bottom: 6px; }
+  .rec .side .b-h2 { font-size: 22px; }
+  .rec .side .b-small { margin-top: 6px; color: var(--b-text-2); }
+
+  .seats { top: 460px; height: 260px; overflow: hidden; }
+  .seats .b-label { position: absolute; left: 14px; top: 14px; }
+  .seats .lg { position: absolute; right: 14px; top: 12px; display: flex; gap: 10px; align-items: center; }
+  .seats .lg span { display: inline-flex; align-items: center; gap: 5px; font: 700 10.5px/1 var(--b-cond); letter-spacing: 1.3px; text-transform: uppercase; color: var(--b-text-3); }
+  .seats .lg i { width: 9px; height: 9px; border-radius: 2px; display: inline-block; }
+  #sm { position: absolute; left: 0; top: 0; width: 357px; height: 260px; }
+
+  .visits { top: 736px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .visits .b-panel { padding: 12px 14px; }
+  .visits .b-label { margin-bottom: 7px; }
+  .visits b { display: block; font: 800 22px/1 var(--b-cond); letter-spacing: .2px; text-transform: uppercase; }
+  .visits .b-small { margin-top: 5px; }
+</style></head>
+<body class="phone b">
+
+<div class="hero">
+  <img class="ph" src="../../../photos/wrigley-bleachers.jpg" style="object-position:60% 50%">
+  <div class="scrim"></div>
+</div>
+
+<div class="b-nav">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+
+<div class="g title">
+  <div class="b-label">Chicago · Since 1914 · 17 visits</div>
+  <div class="b-display">Wrigley Field</div>
+</div>
+
+<div class="g rec">
+  <div class="b-mega">11–6</div>
+  <div class="side">
+    <div class="b-h2">Your record</div>
+    <div class="b-small">65% wins with<br>you in the seats</div>
+  </div>
+</div>
+
+<div class="g seats b-panel">
+  <svg id="sm"></svg>
+  <div class="b-label">Where you sat</div>
+</div>
+
+<div class="g visits">
+  <div class="b-panel"><div class="b-label">First visit</div><b>Jun 14, 2014</b><div class="b-small">Bleachers · with Dad</div></div>
+  <div class="b-panel"><div class="b-label">Last visit</div><b>Jul 4, 2026</b><div class="b-small">Sec 209 · with Maya</div></div>
+</div>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script>
+(function () {
+  const W = 357, H = 260;
+  const svg = d3.select('#sm').attr('viewBox', `0 0 ${W} ${H}`);
+  const hx = W / 2, hy = 206;
+  const g = svg.append('g').attr('transform', `translate(${hx},${hy})`);
+  const rad = d => d * Math.PI / 180;
+  const arc = d3.arc();
+  // field: fair territory wedge + infield
+  g.append('path').attr('d', arc({ innerRadius: 0, outerRadius: 124, startAngle: rad(-45), endAngle: rad(45) }))
+    .attr('fill', 'rgba(255,255,255,.04)');
+  const b = 32; // base path
+  g.append('path').attr('d', `M0 0 L${b * Math.SQRT1_2} ${-b * Math.SQRT1_2} L0 ${-b * Math.SQRT2} L${-b * Math.SQRT1_2} ${-b * Math.SQRT1_2} Z`)
+    .attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.22)').attr('stroke-width', 1.2);
+  g.append('path').attr('d', `M0 0 L${124 * Math.SQRT1_2} ${-124 * Math.SQRT1_2} M0 0 L${-124 * Math.SQRT1_2} ${-124 * Math.SQRT1_2}`)
+    .attr('stroke', 'rgba(255,255,255,.22)').attr('stroke-width', 1.2);
+
+  // sections: [startDeg, endDeg, r0, r1, id, heat]
+  const S = [];
+  const ring = (a0, a1, n, r0, r1, ids) => { const step = (a1 - a0) / n; for (let i = 0; i < n; i++) S.push([a0 + i * step, a0 + (i + 1) * step, r0, r1, ids[i]]); };
+  // outfield bleachers
+  ring(-44, 44, 8, 132, 154, ['301', '303', '305', '308', '311', '314', '316', '318']);
+  // lower bowl down the lines + behind home
+  ring(-112, -50, 5, 54, 88, ['138', '136', '133', '130', '127']);
+  ring(50, 112, 5, 54, 88, ['107', '109', '112', '114', '116']);
+  ring(116, 244, 6, 20, 46, ['118', '120', '122', '124', '125', '126']);
+  // 200 level
+  ring(-112, -50, 5, 94, 118, ['238', '236', '233', '230', '227']);
+  ring(50, 112, 5, 94, 118, ['207', '209', '212', '214', '216']);
+  const heat = { '314': 1, '209': .62, '112': .45, '311': .32, '316': .32 };
+  g.selectAll('path.s').data(S).enter().append('path')
+    .attr('d', d => arc.padAngle(rad(1.4))({ innerRadius: d[2], outerRadius: d[3], startAngle: rad(d[0]), endAngle: rad(d[1]) }))
+    .attr('fill', d => heat[d[4]] ? `rgba(255,181,71,${heat[d[4]]})` : 'rgba(255,255,255,.09)')
+    .attr('style', d => d[4] === '314' ? 'filter: drop-shadow(0 0 8px rgba(255,181,71,.9))' : '');
+
+  const label = (id, txt, dr, big) => {
+    const s = S.find(x => x[4] === id); const a = rad((s[0] + s[1]) / 2); const r = (s[2] + s[3]) / 2 + (dr || 0);
+    const x = Math.sin(a) * r, y = -Math.cos(a) * r;
+    g.append('text').attr('x', x).attr('y', y + 4).attr('text-anchor', 'middle').attr('fill', big ? '#000' : '#fff')
+      .attr('font-family', 'Barlow Condensed').attr('font-weight', 800).attr('font-size', big ? 13 : 11).attr('letter-spacing', .5).text(txt);
+  };
+  label('314', '314', 0, true);
+  label('209', '209', 0, true);
+  label('112', '112', 0, false);
+  // callout for 314
+  const s = S.find(x => x[4] === '314'); const a = rad((s[0] + s[1]) / 2);
+  const ox = Math.sin(a) * 154, oy = -Math.cos(a) * 154;
+  g.append('path').attr('d', `M${ox} ${oy} L${ox + 20} ${oy - 16} L${ox + 52} ${oy - 16}`).attr('fill', 'none').attr('stroke', '#ffb547').attr('stroke-width', 1.2);
+  g.append('text').attr('x', ox + 56).attr('y', oy - 11).attr('fill', '#fff').attr('font-family', 'Barlow Condensed').attr('font-weight', 800).attr('font-size', 15).attr('letter-spacing', .6).text('9 NIGHTS');
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

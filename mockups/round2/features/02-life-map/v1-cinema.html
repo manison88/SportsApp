@@ -1,0 +1,140 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Cinema</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../system/cinema.css">
+<style>
+  body.phone.a { background: radial-gradient(90% 40% at 50% 62%, #10141c 0%, #050506 70%); }
+  #globe { position: absolute; left: 0; top: 0; width: 393px; height: 852px; overflow: visible; }
+  .hdr { position: absolute; top: 62px; left: var(--a-gutter); right: var(--a-gutter); z-index: 3; }
+  .hdr .a-h1 { margin-top: 8px; }
+  .hdr .a-h1 i { color: #f3dcc0; }
+  .hdr .a-icon-btn { position: absolute; right: -6px; top: 0; }
+
+  .lab { position: absolute; z-index: 4; }
+  .lab b { display: block; font: 400 22px/1 var(--a-serif); font-weight: 400; color: var(--a-text); text-shadow: 0 2px 12px rgba(0,0,0,.8); }
+  .lab span { display: block; margin-top: 4px; font: 500 11.5px/1.2 var(--a-ui); color: var(--a-text-2); text-shadow: 0 1px 8px rgba(0,0,0,.9); white-space: nowrap; }
+  .lab.home b { font-size: 26px; }
+  .lab.home span { color: var(--a-accent); font-weight: 600; }
+
+  .stats { position: absolute; left: var(--a-gutter); right: var(--a-gutter); top: 674px; display: flex; z-index: 5; }
+  .stats > div { flex: 1; }
+  .stats > div + div { padding-left: 18px; border-left: 1px solid var(--a-line); }
+  .stats .n { font: 600 26px/1 var(--a-num); letter-spacing: -.8px; font-variant-numeric: tabular-nums; }
+  .stats .a-small { margin-top: 6px; }
+</style></head>
+<body class="phone a">
+  <canvas id="stars" width="1179" height="2556" style="position:absolute;inset:0;width:393px;height:852px"></canvas>
+  <svg id="globe"></svg>
+
+  <div class="hdr">
+    <div class="a-eyebrow">Life map · 2014–2026</div>
+    <div class="a-h1">Every road starts<br><i>in Chicago.</i></div>
+    <div class="a-icon-btn"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></div>
+  </div>
+
+  <div class="lab home" id="lh"><b>Chicago</b><span>43 games · 4 venues</span></div>
+  <div class="lab" id="ls"><b>Spain</b><span>2 games · 2020</span></div>
+
+  <div class="stats">
+    <div><div class="n">42,900</div><div class="a-small">miles traveled</div></div>
+    <div><div class="n">21</div><div class="a-small">venues</div></div>
+    <div><div class="n">3</div><div class="a-small">countries</div></div>
+  </div>
+
+  <nav class="a-tabs">
+    <span><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Timeline</span>
+    <span class="on"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9M12 3c-2.5 2.6-3.8 5.6-3.8 9s1.3 6.4 3.8 9"/></svg>Map</span>
+    <span><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2.5"/><circle cx="12" cy="10.5" r="3"/><path d="M9 16.5h6"/></svg>Passport</span>
+    <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.2-3.8 4-5.5 7.5-5.5s6.3 1.7 7.5 5.5"/></svg>You</span>
+  </nav>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script src="../../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../../kit/vendor/countries-110m.js"></script>
+<script>
+(function(){
+  const sc = document.getElementById('stars').getContext('2d'); let s = 11; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 160; i++) { sc.fillStyle = `rgba(255,255,255,${(r() * .35 + .05).toFixed(2)})`; const z = r() < .92 ? 1.3 : 2.4; sc.fillRect(r() * 1179, 520 + r() * 2036, z, z); }
+
+  const cx = 196, cy = 482, R = 262;
+  const proj = d3.geoOrthographic().rotate([45, -30, 0]).scale(R).translate([cx, cy]).clipAngle(90);
+  const path = d3.geoPath(proj);
+  const svg = d3.select('#globe').attr('width', 393).attr('height', 852);
+  const defs = svg.append('defs');
+  const body = defs.append('radialGradient').attr('id', 'body').attr('cx', '40%').attr('cy', '30%');
+  [[0, '#141a26'], [.65, '#0a0d14'], [1, '#050608']].forEach(([o, c]) => body.append('stop').attr('offset', o).attr('stop-color', c));
+  const atm = defs.append('radialGradient').attr('id', 'atm');
+  [[0, 'rgba(255,220,180,0)'], [.88, 'rgba(255,220,180,0)'], [.94, 'rgba(255,225,190,.10)'], [1, 'rgba(255,220,180,0)']].forEach(([o, c]) => atm.append('stop').attr('offset', o).attr('stop-color', c));
+  const f = defs.append('filter').attr('id', 'bloom').attr('x', '-200%').attr('y', '-200%').attr('width', '500%').attr('height', '500%');
+  f.append('feGaussianBlur').attr('stdDeviation', 8);
+  const fs = defs.append('filter').attr('id', 'soft').attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
+  fs.append('feGaussianBlur').attr('stdDeviation', 2.4);
+  const fade = defs.append('linearGradient').attr('id', 'fade').attr('x1', 0).attr('y1', 0).attr('x2', 0).attr('y2', 1);
+  [[0, 'rgba(5,5,6,0)'], [.12, 'rgba(5,5,6,0)'], [.42, 'rgba(5,5,6,.9)'], [.6, '#050506'], [1, '#050506']].forEach(([o, c]) => fade.append('stop').attr('offset', o).attr('stop-color', c));
+
+  svg.append('circle').attr('cx', cx).attr('cy', cy).attr('r', R * 1.08).attr('fill', 'url(#atm)');
+  svg.append('circle').attr('cx', cx).attr('cy', cy).attr('r', R).attr('fill', 'url(#body)');
+  svg.append('path').attr('d', path(d3.geoGraticule10())).attr('fill', 'none').attr('stroke', 'rgba(255,240,220,.045)').attr('stroke-width', .6);
+
+  const world = __atlas['countries-110m'];
+  const feats = topojson.feature(world, world.objects.countries).features.map(f => ({ f, b: d3.geoBounds(f) }));
+  const inLand = p => feats.some(({ f, b }) => (b[0][0] > b[1][0] || (p[0] >= b[0][0] - .5 && p[0] <= b[1][0] + .5)) && p[1] >= b[0][1] - .5 && p[1] <= b[1][1] + .5 && d3.geoContains(f, p));
+  const center = [-45, 30];
+  const g = svg.append('g');
+  g.append('path').attr('d', path(topojson.feature(world, world.objects.countries))).attr('fill', 'rgba(235,225,210,.05)').attr('stroke', 'rgba(235,225,210,.16)').attr('stroke-width', .5);
+  for (let lat = -50; lat <= 80; lat += 1.1) {
+    const step = 1.1 / Math.max(.2, Math.cos(lat * Math.PI / 180));
+    for (let lon = -180; lon < 180; lon += step) {
+      const p = [lon, lat]; const d = d3.geoDistance(p, center); if (d > 1.52) continue;
+      if (!inLand(p)) continue;
+      const [x, y] = proj(p); const k = Math.cos(d);
+      g.append('circle').attr('cx', x.toFixed(1)).attr('cy', y.toFixed(1)).attr('r', (.45 + .45 * k).toFixed(2)).attr('fill', `rgba(235,225,210,${(.14 + .5 * k * k).toFixed(2)})`);
+    }
+  }
+  const limb = defs.append('radialGradient').attr('id', 'limb');
+  [[0, 'rgba(0,0,0,0)'], [.74, 'rgba(0,0,0,0)'], [1, 'rgba(2,2,4,.7)']].forEach(([o, c]) => limb.append('stop').attr('offset', o).attr('stop-color', c));
+  svg.append('circle').attr('cx', cx).attr('cy', cy).attr('r', R).attr('fill', 'url(#limb)');
+  svg.append('circle').attr('cx', cx).attr('cy', cy).attr('r', R).attr('fill', 'none').attr('stroke', 'rgba(255,240,220,.18)').attr('stroke-width', .7);
+
+  const home = [-87.65, 41.88];
+  // [name, lon, lat, games]
+  const V = [
+    ['Fenway', -71.097, 42.346, 1], ['Lambeau', -88.062, 44.501, 1], ['Milwaukee', -87.971, 43.028, 1], ['Minneapolis', -93.278, 44.982, 1],
+    ['Kansas City', -94.480, 39.051, 1], ['St. Louis', -90.193, 38.623, 1], ['Cincinnati', -84.507, 39.097, 1], ['Detroit', -83.049, 42.339, 1],
+    ['Cleveland', -81.685, 41.496, 1], ['Pittsburgh', -80.006, 40.447, 1], ['New York', -73.926, 40.829, 1], ['San Francisco', -122.389, 37.778, 1],
+    ['Los Angeles', -118.240, 34.074, 1], ['Austin', -97.641, 30.133, 1], ['Dortmund', 7.452, 51.493, 1], ['Barcelona', 2.123, 41.381, 1], ['Madrid', -3.688, 40.453, 1]
+  ];
+  const arcsG = svg.append('g');
+  function arc(a, b, lift, w, op) {
+    const ip = d3.geoInterpolate(a, b), dist = d3.geoDistance(a, b); const pts = [];
+    for (let i = 0; i <= 64; i++) { const t = i / 64; const p = proj(ip(t)); if (!p) continue;
+      const h = 1 + lift * dist * Math.sin(Math.PI * t); pts.push([cx + (p[0] - cx) * h, cy + (p[1] - cy) * h]); }
+    const d = d3.line().curve(d3.curveCatmullRom)(pts);
+    arcsG.append('path').attr('d', d).attr('fill', 'none').attr('stroke', '#ffe2bd').attr('stroke-width', w * 3.5).attr('opacity', op * .35).attr('filter', 'url(#soft)');
+    arcsG.append('path').attr('d', d).attr('fill', 'none').attr('stroke', '#fff1dc').attr('stroke-width', w).attr('opacity', op).attr('stroke-linecap', 'round');
+  }
+  V.forEach(([n, lon, lat]) => { const far = Math.abs(lon - home[0]) > 40; arc(home, [lon, lat], far ? .22 : .16, 1.1, far ? .9 : .6); });
+  // Spain trip: brighter, it carried four people and two games
+  arc([2.123, 41.381], [-0.376, 39.47], .3, 1.2, .9);
+  arc([-0.376, 39.47], [-3.688, 40.453], .3, 1.2, .9);
+
+  V.forEach(([n, lon, lat]) => { const [x, y] = proj([lon, lat]);
+    svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 5).attr('fill', '#ffe2bd').attr('opacity', .35).attr('filter', 'url(#soft)');
+    svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 1.9).attr('fill', '#fff6ea'); });
+
+  // heat glow at home: 43 games
+  const [hx, hy] = proj(home);
+  svg.append('circle').attr('cx', hx).attr('cy', hy).attr('r', 44).attr('fill', '#ffb547').attr('opacity', .35).attr('filter', 'url(#bloom)');
+  svg.append('circle').attr('cx', hx).attr('cy', hy).attr('r', 22).attr('fill', '#ffb547').attr('opacity', .7).attr('filter', 'url(#bloom)');
+  svg.append('circle').attr('cx', hx).attr('cy', hy).attr('r', 9).attr('fill', '#ffe7c4').attr('filter', 'url(#soft)');
+  svg.append('circle').attr('cx', hx).attr('cy', hy).attr('r', 3.6).attr('fill', '#fff');
+
+  svg.append('rect').attr('x', 0).attr('y', cy - 10).attr('width', 393).attr('height', R + 20).attr('fill', 'url(#fade)');
+
+  const lh = document.getElementById('lh'); lh.style.left = '22px'; lh.style.top = (hy + 30) + 'px';
+  const [bx, by] = proj([-0.8, 40.6]);
+  const ls = document.getElementById('ls'); ls.style.right = '22px'; ls.style.textAlign = 'right'; ls.style.top = (by + 22) + 'px';
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>
