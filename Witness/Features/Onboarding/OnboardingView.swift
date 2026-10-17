@@ -74,7 +74,6 @@ struct OnboardingView: View {
 
             if denied { DeniedSheet() }
         }
-        .accessibilityIdentifier("onboarding-pages")
     }
 
     @ViewBuilder
