@@ -84,6 +84,7 @@ struct WrappedView: View {
 }
 
 /// The wording behind Wrapped, shared by the screen card and the story image.
+@MainActor
 private enum WrappedCopy {
     static func record(_ stats: Stats, games: Int) -> String {
         stats.record.decided > 0 ? stats.record.text : "\(games)"
