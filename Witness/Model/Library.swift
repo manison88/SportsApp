@@ -21,6 +21,8 @@ final class Library {
     private(set) var games: [GameEntry] = []
     private(set) var customVenues: [Venue] = []
     private(set) var customPeople: [Person] = []
+    /// Teams learned from real schedules (any league, any country).
+    private(set) var customTeams: [Team] = []
     private(set) var hasLibrary = false
 
     let storeURL: URL
@@ -30,6 +32,7 @@ final class Library {
         var games: [GameEntry]
         var customVenues: [Venue]
         var customPeople: [Person]
+        var customTeams: [Team]? = nil
     }
 
     nonisolated static var defaultStoreURL: URL {
@@ -47,7 +50,10 @@ final class Library {
 
     var venues: [Venue] { catalogVenues + customVenues }
     func venue(_ id: String) -> Venue? { venues.first { $0.id == id } }
-    func team(_ id: String?) -> Team? { id.flatMap { teams[$0] } }
+    func team(_ id: String?) -> Team? {
+        guard let id else { return nil }
+        return teams[id] ?? customTeams.first { $0.id == id }
+    }
     func game(_ id: String) -> GameEntry? { games.first { $0.id == id } }
     func trip(_ id: String?) -> Trip? { id.flatMap { tid in trips.first { $0.id == tid } } }
     var isSample: Bool { games.contains { $0.origin == .sample } }
@@ -68,7 +74,7 @@ final class Library {
     func person(_ id: String) -> Person? { people.first { $0.id == id } }
 
     func teams(for sport: Sport) -> [Team] {
-        allTeams.filter { $0.sport == sport }.sorted { $0.locationName < $1.locationName }
+        (allTeams + customTeams).filter { $0.sport == sport }.sorted { $0.locationName < $1.locationName }
     }
 
     func venues(for sport: Sport?) -> [Venue] {
@@ -134,6 +140,19 @@ final class Library {
         return v
     }
 
+    /// Returns the catalog team that matches, or remembers a new one.
+    @discardableResult
+    func addTeam(_ team: Team) -> Team {
+        if let known = allTeams.first(where: { $0.sport == team.sport && $0.abbreviation == team.abbreviation
+            && $0.locationName.caseInsensitiveCompare(team.locationName) == .orderedSame }) {
+            return known
+        }
+        if let known = customTeams.first(where: { $0.id == team.id }) { return known }
+        customTeams.append(team)
+        save()
+        return team
+    }
+
     @discardableResult
     func addPerson(named name: String) -> Person {
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -168,7 +187,7 @@ final class Library {
     }
 
     func reset() {
-        games = []; customVenues = []; customPeople = []; hasLibrary = false
+        games = []; customVenues = []; customPeople = []; customTeams = []; hasLibrary = false
         try? FileManager.default.removeItem(at: storeURL)
     }
 
@@ -181,7 +200,7 @@ final class Library {
 
     private func save() {
         hasLibrary = true
-        let stored = Stored(games: games, customVenues: customVenues, customPeople: customPeople)
+        let stored = Stored(games: games, customVenues: customVenues, customPeople: customPeople, customTeams: customTeams)
         do {
             let data = try Self.encoder.encode(stored)
             try FileManager.default.createDirectory(at: storeURL.deletingLastPathComponent(), withIntermediateDirectories: true)
@@ -197,6 +216,7 @@ final class Library {
         games = stored.games.sorted { $0.date > $1.date }
         customVenues = stored.customVenues
         customPeople = stored.customPeople
+        customTeams = stored.customTeams ?? []
         hasLibrary = true
     }
 

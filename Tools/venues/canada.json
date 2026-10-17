@@ -1,0 +1,617 @@
+[
+  {
+    "id": "bc-place",
+    "name": "BC Place",
+    "aliases": [
+      "BC Place Stadium"
+    ],
+    "city": "Vancouver",
+    "region": "British Columbia",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 49.276667,
+    "longitude": -123.111944,
+    "sports": [
+      "football",
+      "soccer"
+    ],
+    "leagues": [
+      "football/cfl",
+      "soccer/usa.1"
+    ],
+    "homeTeams": [
+      "BC Lions",
+      "Vancouver Whitecaps FC"
+    ],
+    "timeZone": "America/Vancouver",
+    "capacity": 54500,
+    "opened": 1983
+  },
+  {
+    "id": "commonwealth-stadium",
+    "name": "Commonwealth Stadium",
+    "aliases": [
+      "Commonwealth Stadium Edmonton",
+      "The Brick Field at Commonwealth Stadium"
+    ],
+    "city": "Edmonton",
+    "region": "Alberta",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 53.559722,
+    "longitude": -113.476111,
+    "sports": [
+      "football"
+    ],
+    "leagues": [
+      "football/cfl"
+    ],
+    "homeTeams": [
+      "Edmonton Elks"
+    ],
+    "timeZone": "America/Edmonton",
+    "capacity": 56302,
+    "opened": 1978
+  },
+  {
+    "id": "mcmahon-stadium",
+    "name": "McMahon Stadium",
+    "aliases": [
+      "McMahon"
+    ],
+    "city": "Calgary",
+    "region": "Alberta",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 51.070328,
+    "longitude": -114.121389,
+    "sports": [
+      "football"
+    ],
+    "leagues": [
+      "football/cfl"
+    ],
+    "homeTeams": [
+      "Calgary Stampeders",
+      "Calgary Dinos"
+    ],
+    "timeZone": "America/Edmonton",
+    "capacity": 35650,
+    "opened": 1960
+  },
+  {
+    "id": "mosaic-stadium",
+    "name": "Mosaic Stadium",
+    "aliases": [
+      "New Mosaic Stadium",
+      "Mosaic"
+    ],
+    "city": "Regina",
+    "region": "Saskatchewan",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 50.450485,
+    "longitude": -104.633024,
+    "sports": [
+      "football"
+    ],
+    "leagues": [
+      "football/cfl"
+    ],
+    "homeTeams": [
+      "Saskatchewan Roughriders"
+    ],
+    "timeZone": "America/Regina",
+    "capacity": 33350,
+    "opened": 2017
+  },
+  {
+    "id": "princess-auto-stadium",
+    "name": "Princess Auto Stadium",
+    "aliases": [
+      "IG Field",
+      "Investors Group Field",
+      "Winnipeg Stadium"
+    ],
+    "city": "Winnipeg",
+    "region": "Manitoba",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 49.807759,
+    "longitude": -97.142918,
+    "sports": [
+      "football",
+      "soccer"
+    ],
+    "leagues": [
+      "football/cfl"
+    ],
+    "homeTeams": [
+      "Winnipeg Blue Bombers",
+      "Valour FC",
+      "Manitoba Bisons"
+    ],
+    "timeZone": "America/Winnipeg",
+    "capacity": 32343,
+    "opened": 2013
+  },
+  {
+    "id": "hamilton-stadium",
+    "name": "Hamilton Stadium",
+    "aliases": [
+      "Tim Hortons Field",
+      "THF"
+    ],
+    "city": "Hamilton",
+    "region": "Ontario",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 43.252319,
+    "longitude": -79.830098,
+    "sports": [
+      "football",
+      "soccer"
+    ],
+    "leagues": [
+      "football/cfl"
+    ],
+    "homeTeams": [
+      "Hamilton Tiger-Cats",
+      "Forge FC"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 23218,
+    "opened": 2014
+  },
+  {
+    "id": "bmo-field",
+    "name": "BMO Field",
+    "aliases": [
+      "Toronto Stadium",
+      "BMO"
+    ],
+    "city": "Toronto",
+    "region": "Ontario",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 43.632778,
+    "longitude": -79.418611,
+    "sports": [
+      "football",
+      "soccer"
+    ],
+    "leagues": [
+      "football/cfl",
+      "soccer/usa.1"
+    ],
+    "homeTeams": [
+      "Toronto Argonauts",
+      "Toronto FC"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 28180,
+    "opened": 2007
+  },
+  {
+    "id": "td-place-stadium",
+    "name": "TD Place Stadium",
+    "aliases": [
+      "TD Place",
+      "Frank Clair Stadium",
+      "Lansdowne Park",
+      "Lansdowne Stadium"
+    ],
+    "city": "Ottawa",
+    "region": "Ontario",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 45.398178,
+    "longitude": -75.68365,
+    "sports": [
+      "football",
+      "soccer"
+    ],
+    "leagues": [
+      "football/cfl"
+    ],
+    "homeTeams": [
+      "Ottawa Redblacks",
+      "Atlético Ottawa",
+      "Ottawa Rapid FC",
+      "Carleton Ravens"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 24000,
+    "opened": 1908
+  },
+  {
+    "id": "percival-molson-stadium",
+    "name": "Percival Molson Memorial Stadium",
+    "aliases": [
+      "Molson Stadium",
+      "Percival Molson Stadium",
+      "Stade Percival-Molson"
+    ],
+    "city": "Montreal",
+    "region": "Quebec",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 45.510083,
+    "longitude": -73.580667,
+    "sports": [
+      "football"
+    ],
+    "leagues": [
+      "football/cfl"
+    ],
+    "homeTeams": [
+      "Montreal Alouettes",
+      "McGill Redbirds"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 23420,
+    "opened": 1919
+  },
+  {
+    "id": "olympic-stadium-montreal",
+    "name": "Olympic Stadium",
+    "aliases": [
+      "Stade olympique",
+      "Stade olympique de Montréal",
+      "The Big O"
+    ],
+    "city": "Montreal",
+    "region": "Quebec",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 45.55781,
+    "longitude": -73.55164,
+    "sports": [
+      "football",
+      "soccer"
+    ],
+    "leagues": [],
+    "homeTeams": [],
+    "timeZone": "America/Toronto",
+    "capacity": 56040,
+    "opened": 1976
+  },
+  {
+    "id": "atco-field",
+    "name": "ATCO Field",
+    "aliases": [
+      "Spruce Meadows",
+      "ATCO Field at Spruce Meadows"
+    ],
+    "city": "Calgary",
+    "region": "Alberta",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 50.883994,
+    "longitude": -114.098645,
+    "sports": [
+      "soccer"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Cavalry FC"
+    ],
+    "timeZone": "America/Edmonton",
+    "capacity": 6000,
+    "opened": 2019
+  },
+  {
+    "id": "wanderers-grounds",
+    "name": "Wanderers Grounds",
+    "aliases": [
+      "The Grounds"
+    ],
+    "city": "Halifax",
+    "region": "Nova Scotia",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 44.6444,
+    "longitude": -63.5836,
+    "sports": [
+      "soccer"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "HFX Wanderers FC",
+      "Halifax Tides FC"
+    ],
+    "timeZone": "America/Halifax",
+    "capacity": 7244,
+    "opened": 2019
+  },
+  {
+    "id": "starlight-stadium",
+    "name": "Starlight Stadium",
+    "aliases": [
+      "Westhills Stadium"
+    ],
+    "city": "Langford",
+    "region": "British Columbia",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 48.443056,
+    "longitude": -123.523611,
+    "sports": [
+      "soccer"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Pacific FC"
+    ],
+    "timeZone": "America/Vancouver",
+    "capacity": 6000,
+    "opened": 2009
+  },
+  {
+    "id": "york-lions-stadium",
+    "name": "York Lions Stadium",
+    "aliases": [
+      "York Stadium",
+      "Inter Toronto Stadium"
+    ],
+    "city": "Toronto",
+    "region": "Ontario",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 43.7747,
+    "longitude": -79.5068,
+    "sports": [
+      "soccer",
+      "football"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Inter Toronto FC",
+      "York Lions"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 8000,
+    "opened": 2015
+  },
+  {
+    "id": "willoughby-stadium",
+    "name": "Willoughby Stadium at Langley Events Centre",
+    "aliases": [
+      "Willoughby Community Park Stadium",
+      "Langley Events Centre Stadium"
+    ],
+    "city": "Langley",
+    "region": "British Columbia",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 49.143851,
+    "longitude": -122.665664,
+    "sports": [
+      "soccer"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Vancouver FC"
+    ],
+    "timeZone": "America/Vancouver",
+    "capacity": 6560,
+    "opened": 2023
+  },
+  {
+    "id": "stade-boreale",
+    "name": "Stade Boréale",
+    "aliases": [
+      "Centre Sportif Bois-de-Boulogne",
+      "Stade du Centre sportif Bois-de-Boulogne"
+    ],
+    "city": "Laval",
+    "region": "Quebec",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 45.575179,
+    "longitude": -73.703128,
+    "sports": [
+      "soccer"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "FC Supra du Québec",
+      "Montreal Roses FC"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 5581,
+    "opened": null
+  },
+  {
+    "id": "stade-telus-universite-laval",
+    "name": "Stade TELUS-Université Laval",
+    "aliases": [
+      "Telus Stadium",
+      "Stade TELUS",
+      "PEPS Stadium"
+    ],
+    "city": "Quebec City",
+    "region": "Quebec",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 46.783756,
+    "longitude": -71.279646,
+    "sports": [
+      "football",
+      "soccer"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Laval Rouge et Or"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 12750,
+    "opened": null
+  },
+  {
+    "id": "western-alumni-stadium",
+    "name": "Western Alumni Stadium",
+    "aliases": [
+      "TD Stadium",
+      "TD Waterhouse Stadium",
+      "Alumni Stadium"
+    ],
+    "city": "London",
+    "region": "Ontario",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 42.999861,
+    "longitude": -81.273781,
+    "sports": [
+      "football"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Western Mustangs"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 8000,
+    "opened": 2000
+  },
+  {
+    "id": "richardson-stadium",
+    "name": "Richardson Stadium",
+    "aliases": [
+      "Richardson Memorial Stadium"
+    ],
+    "city": "Kingston",
+    "region": "Ontario",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 44.227682,
+    "longitude": -76.516296,
+    "sports": [
+      "football"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Queen's Gaels"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 8500,
+    "opened": 1971
+  },
+  {
+    "id": "griffiths-stadium",
+    "name": "Griffiths Stadium",
+    "aliases": [
+      "Griffiths Stadium at Nutrien Park"
+    ],
+    "city": "Saskatoon",
+    "region": "Saskatchewan",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 52.127062,
+    "longitude": -106.629625,
+    "sports": [
+      "football"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Saskatchewan Huskies"
+    ],
+    "timeZone": "America/Regina",
+    "capacity": 6171,
+    "opened": 1967
+  },
+  {
+    "id": "stade-cepsum",
+    "name": "Stade CEPSUM",
+    "aliases": [
+      "CEPSUM",
+      "Stade du CEPSUM"
+    ],
+    "city": "Montreal",
+    "region": "Quebec",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 45.508889,
+    "longitude": -73.611389,
+    "sports": [
+      "football",
+      "soccer"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Montréal Carabins"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 5100,
+    "opened": null
+  },
+  {
+    "id": "knight-newbrough-field",
+    "name": "Knight-Newbrough Field",
+    "aliases": [
+      "University Stadium",
+      "Knight–Newbrough Field at University Stadium"
+    ],
+    "city": "Waterloo",
+    "region": "Ontario",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 43.470171,
+    "longitude": -80.530069,
+    "sports": [
+      "football"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Wilfrid Laurier Golden Hawks"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 6000,
+    "opened": 1958
+  },
+  {
+    "id": "alumni-stadium-guelph",
+    "name": "Alumni Stadium",
+    "aliases": [
+      "Guelph Alumni Stadium"
+    ],
+    "city": "Guelph",
+    "region": "Ontario",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 43.5351,
+    "longitude": -80.226617,
+    "sports": [
+      "football"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "Guelph Gryphons"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 7600,
+    "opened": 1970
+  },
+  {
+    "id": "ron-joyce-stadium",
+    "name": "Ron Joyce Stadium",
+    "aliases": [
+      "McMaster Stadium"
+    ],
+    "city": "Hamilton",
+    "region": "Ontario",
+    "country": "Canada",
+    "countryCode": "CA",
+    "latitude": 43.266088,
+    "longitude": -79.917015,
+    "sports": [
+      "football"
+    ],
+    "leagues": [],
+    "homeTeams": [
+      "McMaster Marauders"
+    ],
+    "timeZone": "America/Toronto",
+    "capacity": 6000,
+    "opened": 2008
+  }
+]

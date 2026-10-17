@@ -14,8 +14,9 @@ struct DiscoveryView: View {
     @State private var clusters: [PhotoCluster] = []
     @State private var index = 0
     @State private var confirmed = 0
-    @State private var lookup: ScoreResult?
+    @State private var lookup: FoundGame?
     @State private var lookupFor: String?
+    @State private var checkedFor: String?
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -121,12 +122,14 @@ struct DiscoveryView: View {
                 Spacer(minLength: 8)
                 if let lookup, lookupFor == cluster.id {
                     HStack(spacing: 5) {
-                        TeamTile(team: library.team(lookup.awayTeamId), compact: true)
-                        Text("\(lookup.awayScore)").font(.condensed(.subheadline, weight: .heavy)).monospacedDigit()
-                        TeamTile(team: library.team(lookup.homeTeamId), compact: true)
-                        Text("\(lookup.homeScore)").font(.condensed(.subheadline, weight: .heavy)).monospacedDigit()
+                        TeamTile(team: GameLookup.team(from: lookup.away, game: lookup), compact: true)
+                        Text(lookup.away.score.map(String.init) ?? "").font(.condensed(.subheadline, weight: .heavy)).monospacedDigit()
+                        TeamTile(team: GameLookup.team(from: lookup.home, game: lookup), compact: true)
+                        Text(lookup.home.score.map(String.init) ?? "").font(.condensed(.subheadline, weight: .heavy)).monospacedDigit()
                     }
                     .accessibilityElement(children: .combine)
+                    .accessibilityLabel("\(lookup.away.location) \(lookup.away.score ?? 0), \(lookup.home.location) \(lookup.home.score ?? 0), on the schedule")
+                    .accessibilityIdentifier("discovery-verified")
                 } else {
                     Text(Fmt.day(cluster.start, in: cluster.venue.tz)).unitLabel()
                 }
@@ -152,6 +155,13 @@ struct DiscoveryView: View {
             }
             .accessibilityElement()
             .accessibilityLabel("\(cluster.assetIds.count) photos at \(cluster.venue.name)")
+
+            if checkedFor == cluster.id && lookupFor != cluster.id && !GameLookup.leagues(for: cluster.venue).isEmpty {
+                Label("No game on the schedule that day", systemImage: "calendar.badge.exclamationmark")
+                    .font(.footnote)
+                    .foregroundStyle(Color.textSecondary)
+                    .accessibilityIdentifier("discovery-unverified")
+            }
         }
     }
 
@@ -223,15 +233,16 @@ struct DiscoveryView: View {
         phase = .results
     }
 
+    /// Checks the photos' venue and time against real league schedules.
     private func lookUp(_ cluster: PhotoCluster) async {
         lookup = nil
         lookupFor = nil
-        guard let park = library.ballparks.first(where: { $0.venueId == cluster.venue.id }) else { return }
-        let home = library.allTeams.first { $0.sport == .baseball && $0.abbreviation == park.code }
-        if let result = await ScoreLookup.mlb(on: cluster.start, venue: cluster.venue, teams: library.allTeams, homeTeamId: home?.id) {
-            lookup = result
+        let found = await GameLookup.games(at: cluster.venue, from: cluster.start, to: cluster.end)
+        if let game = found.first {
+            lookup = game
             lookupFor = cluster.id
         }
+        checkedFor = cluster.id
     }
 
     private func confirm(_ cluster: PhotoCluster) {
@@ -242,13 +253,15 @@ struct DiscoveryView: View {
                               photos: cluster.assetIds.prefix(12).map { PhotoRef.library($0) },
                               origin: .photos)
         if let lookup, lookupFor == cluster.id {
-            entry.sport = .baseball
-            entry.homeTeamId = lookup.homeTeamId
-            entry.awayTeamId = lookup.awayTeamId
-            entry.homeScore = lookup.homeScore
-            entry.awayScore = lookup.awayScore
-            entry.lineHome = lookup.lineHome
-            entry.lineAway = lookup.lineAway
+            entry.date = lookup.start
+            GameLookup.apply(lookup, detail: nil, to: &entry, library: library)
+            // Plays and the win-probability curve arrive after; the card moves on now.
+            let id = entry.id
+            Task {
+                guard let detail = await GameLookup.detail(lookup), var saved = library.game(id) else { return }
+                GameLookup.apply(lookup, detail: detail, to: &saved, library: library)
+                library.update(saved)
+            }
         }
         library.add(entry)
         confirmed += 1

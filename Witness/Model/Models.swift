@@ -5,7 +5,7 @@ import SwiftUI
 // MARK: - Sport
 
 enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
-    case baseball, football, basketball, hockey, soccer, motorsport
+    case baseball, football, basketball, hockey, soccer, motorsport, handball
 
     var id: String { rawValue }
 
@@ -17,6 +17,7 @@ enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
         case .hockey: "Hockey"
         case .soccer: "Soccer"
         case .motorsport: "Motorsport"
+        case .handball: "Handball"
         }
     }
 
@@ -28,6 +29,7 @@ enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
         case .hockey: "hockey.puck.fill"
         case .soccer: "soccerball"
         case .motorsport: "flag.checkered"
+        case .handball: "figure.handball"
         }
     }
 
@@ -36,7 +38,7 @@ enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
         switch self {
         case .baseball: "runs"
         case .football, .basketball: "points"
-        case .hockey, .soccer: "goals"
+        case .hockey, .soccer, .handball: "goals"
         case .motorsport: "laps"
         }
     }
@@ -47,7 +49,7 @@ enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
         case .baseball: (1...9).map(String.init)
         case .football, .basketball: ["1", "2", "3", "4"]
         case .hockey: ["1", "2", "3"]
-        case .soccer: ["1H", "2H"]
+        case .soccer, .handball: ["1H", "2H"]
         case .motorsport: []
         }
     }
@@ -57,7 +59,7 @@ enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
 
 struct Team: Codable, Hashable, Identifiable {
     struct Colors: Codable, Hashable { var primary: String; var secondary: String; var accent: String }
-    struct ExternalIds: Codable, Hashable { var mlbStatsApi: Int?; var theSportsDb: String? }
+    struct ExternalIds: Codable, Hashable { var mlbStatsApi: Int?; var theSportsDb: String?; var espn: String? }
 
     let id: String
     let sport: Sport
@@ -92,6 +94,12 @@ struct Venue: Codable, Hashable, Identifiable {
     var opened: Int?
     /// Set for venues the user created or found through Apple Maps.
     var isCustom: Bool?
+    /// Other names the venue goes by (former sponsors, local language), for matching schedules and tickets.
+    var aliases: [String]?
+    /// ESPN league paths with home games here, e.g. "football/nfl", "soccer/esp.1".
+    var leagues: [String]?
+    /// Current primary tenants, full names.
+    var homeTeams: [String]?
 
     var coordinate: CLLocationCoordinate2D { .init(latitude: latitude, longitude: longitude) }
     var location: CLLocation { CLLocation(latitude: latitude, longitude: longitude) }
@@ -213,6 +221,14 @@ struct GameEntry: Codable, Hashable, Identifiable {
     var savedMoments: [Date] = []
     /// Motorsport podium, e.g. ["P1 VER", "P2 HAM"].
     var podium: [String] = []
+    /// The real event this game was matched to, when it was verified against a schedule.
+    var source: Source?
+
+    struct Source: Codable, Hashable {
+        var provider: String      // "espn"
+        var league: String        // "football/nfl"
+        var eventId: String
+    }
 
     var hasScore: Bool { homeScore != nil && awayScore != nil }
     var isDraw: Bool { hasScore && homeScore == awayScore }

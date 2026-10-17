@@ -1,569 +1,515 @@
 [
  {
-  "id": "wrigley",
-  "name": "Wrigley Field",
-  "city": "Chicago",
-  "region": "Illinois",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 41.9484,
-  "longitude": -87.6553,
-  "sports": [
-   "baseball"
+  "id": "atco-field",
+  "name": "ATCO Field",
+  "aliases": [
+   "Spruce Meadows",
+   "ATCO Field at Spruce Meadows"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": 41649,
-  "opened": 1914
+  "city": "Calgary",
+  "region": "Alberta",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 50.883994,
+  "longitude": -114.098645,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Cavalry FC"
+  ],
+  "timeZone": "America/Edmonton",
+  "capacity": 6000,
+  "opened": 2019
  },
  {
-  "id": "soldier",
-  "name": "Soldier Field",
-  "city": "Chicago",
-  "region": "Illinois",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 41.8623,
-  "longitude": -87.6167,
+  "id": "mcmahon-stadium",
+  "name": "McMahon Stadium",
+  "aliases": [
+   "McMahon"
+  ],
+  "city": "Calgary",
+  "region": "Alberta",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 51.070328,
+  "longitude": -114.121389,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/cfl"
+  ],
+  "homeTeams": [
+   "Calgary Stampeders",
+   "Calgary Dinos"
+  ],
+  "timeZone": "America/Edmonton",
+  "capacity": 35650,
+  "opened": 1960
+ },
+ {
+  "id": "commonwealth-stadium",
+  "name": "Commonwealth Stadium",
+  "aliases": [
+   "Commonwealth Stadium Edmonton",
+   "The Brick Field at Commonwealth Stadium"
+  ],
+  "city": "Edmonton",
+  "region": "Alberta",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 53.559722,
+  "longitude": -113.476111,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/cfl"
+  ],
+  "homeTeams": [
+   "Edmonton Elks"
+  ],
+  "timeZone": "America/Edmonton",
+  "capacity": 56302,
+  "opened": 1978
+ },
+ {
+  "id": "alumni-stadium-guelph",
+  "name": "Alumni Stadium",
+  "aliases": [
+   "Guelph Alumni Stadium"
+  ],
+  "city": "Guelph",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 43.5351,
+  "longitude": -80.226617,
+  "sports": [
+   "football"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Guelph Gryphons"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 7600,
+  "opened": 1970
+ },
+ {
+  "id": "wanderers-grounds",
+  "name": "Wanderers Grounds",
+  "aliases": [
+   "The Grounds"
+  ],
+  "city": "Halifax",
+  "region": "Nova Scotia",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 44.6444,
+  "longitude": -63.5836,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "HFX Wanderers FC",
+   "Halifax Tides FC"
+  ],
+  "timeZone": "America/Halifax",
+  "capacity": 7244,
+  "opened": 2019
+ },
+ {
+  "id": "hamilton-stadium",
+  "name": "Hamilton Stadium",
+  "aliases": [
+   "Tim Hortons Field",
+   "THF"
+  ],
+  "city": "Hamilton",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 43.252319,
+  "longitude": -79.830098,
   "sports": [
    "football",
    "soccer"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": 61500,
-  "opened": 1924
- },
- {
-  "id": "united-center",
-  "name": "United Center",
-  "city": "Chicago",
-  "region": "Illinois",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 41.8807,
-  "longitude": -87.6742,
-  "sports": [
-   "basketball",
-   "hockey"
+  "leagues": [
+   "football/cfl"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": 20917,
-  "opened": 1994
- },
- {
-  "id": "rate-field",
-  "name": "Guaranteed Rate Field",
-  "city": "Chicago",
-  "region": "Illinois",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 41.8299,
-  "longitude": -87.6338,
-  "sports": [
-   "baseball"
+  "homeTeams": [
+   "Hamilton Tiger-Cats",
+   "Forge FC"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": 40615,
-  "opened": 1991
+  "timeZone": "America/Toronto",
+  "capacity": 23218,
+  "opened": 2014
  },
  {
-  "id": "fenway",
-  "name": "Fenway Park",
-  "city": "Boston",
-  "region": "Massachusetts",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 42.3467,
-  "longitude": -71.0972,
-  "sports": [
-   "baseball"
+  "id": "ron-joyce-stadium",
+  "name": "Ron Joyce Stadium",
+  "aliases": [
+   "McMaster Stadium"
   ],
-  "timeZone": "America/New_York",
-  "capacity": 37755,
-  "opened": 1912
- },
- {
-  "id": "lambeau",
-  "name": "Lambeau Field",
-  "city": "Green Bay",
-  "region": "Wisconsin",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 44.5013,
-  "longitude": -88.0622,
+  "city": "Hamilton",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 43.266088,
+  "longitude": -79.917015,
   "sports": [
    "football"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": 81441,
-  "opened": 1957
+  "leagues": [],
+  "homeTeams": [
+   "McMaster Marauders"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 6000,
+  "opened": 2008
  },
  {
-  "id": "amfam",
-  "name": "American Family Field",
-  "city": "Milwaukee",
-  "region": "Wisconsin",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 43.028,
-  "longitude": -87.9712,
-  "sports": [
-   "baseball"
+  "id": "richardson-stadium",
+  "name": "Richardson Stadium",
+  "aliases": [
+   "Richardson Memorial Stadium"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": 41900,
-  "opened": 2001
+  "city": "Kingston",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 44.227682,
+  "longitude": -76.516296,
+  "sports": [
+   "football"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Queen's Gaels"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 8500,
+  "opened": 1971
  },
  {
-  "id": "busch",
-  "name": "Busch Stadium",
-  "city": "St. Louis",
-  "region": "Missouri",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 38.6226,
-  "longitude": -90.1928,
-  "sports": [
-   "baseball"
+  "id": "starlight-stadium",
+  "name": "Starlight Stadium",
+  "aliases": [
+   "Westhills Stadium"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": 44383,
-  "opened": 2006
- },
- {
-  "id": "target-field",
-  "name": "Target Field",
-  "city": "Minneapolis",
-  "region": "Minnesota",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 44.9817,
-  "longitude": -93.2776,
+  "city": "Langford",
+  "region": "British Columbia",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 48.443056,
+  "longitude": -123.523611,
   "sports": [
-   "baseball"
+   "soccer"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": 38544,
-  "opened": 2010
- },
- {
-  "id": "comerica",
-  "name": "Comerica Park",
-  "city": "Detroit",
-  "region": "Michigan",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 42.339,
-  "longitude": -83.0485,
-  "sports": [
-   "baseball"
+  "leagues": [],
+  "homeTeams": [
+   "Pacific FC"
   ],
-  "timeZone": "America/Detroit",
-  "capacity": 41083,
-  "opened": 2000
- },
- {
-  "id": "progressive",
-  "name": "Progressive Field",
-  "city": "Cleveland",
-  "region": "Ohio",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 41.4962,
-  "longitude": -81.6852,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/New_York",
-  "capacity": 34830,
-  "opened": 1994
- },
- {
-  "id": "pnc",
-  "name": "PNC Park",
-  "city": "Pittsburgh",
-  "region": "Pennsylvania",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 40.4469,
-  "longitude": -80.0057,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/New_York",
-  "capacity": 38747,
-  "opened": 2001
- },
- {
-  "id": "kauffman",
-  "name": "Kauffman Stadium",
-  "city": "Kansas City",
-  "region": "Missouri",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 39.0517,
-  "longitude": -94.4803,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/Chicago",
-  "capacity": 37903,
-  "opened": 1973
- },
- {
-  "id": "gabp",
-  "name": "Great American Ball Park",
-  "city": "Cincinnati",
-  "region": "Ohio",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 39.0979,
-  "longitude": -84.5082,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/New_York",
-  "capacity": 42319,
-  "opened": 2003
- },
- {
-  "id": "yankee",
-  "name": "Yankee Stadium",
-  "city": "New York",
-  "region": "New York",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 40.8296,
-  "longitude": -73.9262,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/New_York",
-  "capacity": 46537,
+  "timeZone": "America/Vancouver",
+  "capacity": 6000,
   "opened": 2009
  },
  {
-  "id": "dodger",
-  "name": "Dodger Stadium",
-  "city": "Los Angeles",
-  "region": "California",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 34.0739,
-  "longitude": -118.24,
-  "sports": [
-   "baseball"
+  "id": "willoughby-stadium",
+  "name": "Willoughby Stadium at Langley Events Centre",
+  "aliases": [
+   "Willoughby Community Park Stadium",
+   "Langley Events Centre Stadium"
   ],
-  "timeZone": "America/Los_Angeles",
-  "capacity": 56000,
-  "opened": 1962
+  "city": "Langley",
+  "region": "British Columbia",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 49.143851,
+  "longitude": -122.665664,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Vancouver FC"
+  ],
+  "timeZone": "America/Vancouver",
+  "capacity": 6560,
+  "opened": 2023
  },
  {
-  "id": "oracle",
-  "name": "Oracle Park",
-  "city": "San Francisco",
-  "region": "California",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 37.7786,
-  "longitude": -122.3893,
-  "sports": [
-   "baseball"
+  "id": "stade-boreale",
+  "name": "Stade Boréale",
+  "aliases": [
+   "Centre Sportif Bois-de-Boulogne",
+   "Stade du Centre sportif Bois-de-Boulogne"
   ],
-  "timeZone": "America/Los_Angeles",
-  "capacity": 41915,
+  "city": "Laval",
+  "region": "Quebec",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 45.575179,
+  "longitude": -73.703128,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "FC Supra du Québec",
+   "Montreal Roses FC"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 5581,
+  "opened": null
+ },
+ {
+  "id": "western-alumni-stadium",
+  "name": "Western Alumni Stadium",
+  "aliases": [
+   "TD Stadium",
+   "TD Waterhouse Stadium",
+   "Alumni Stadium"
+  ],
+  "city": "London",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 42.999861,
+  "longitude": -81.273781,
+  "sports": [
+   "football"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Western Mustangs"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 8000,
   "opened": 2000
  },
  {
-  "id": "cota",
-  "name": "Circuit of the Americas",
-  "city": "Austin",
-  "region": "Texas",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 30.1328,
-  "longitude": -97.6411,
-  "sports": [
-   "motorsport"
+  "id": "olympic-stadium-montreal",
+  "name": "Olympic Stadium",
+  "aliases": [
+   "Stade olympique",
+   "Stade olympique de Montréal",
+   "The Big O"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": 120000,
-  "opened": 2012
- },
- {
-  "id": "camp-nou",
-  "name": "Camp Nou",
-  "city": "Barcelona",
-  "region": "Catalonia",
-  "country": "Spain",
-  "countryCode": "ES",
-  "latitude": 41.3809,
-  "longitude": 2.1228,
+  "city": "Montreal",
+  "region": "Quebec",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 45.55781,
+  "longitude": -73.55164,
   "sports": [
+   "football",
    "soccer"
   ],
-  "timeZone": "Europe/Madrid",
-  "capacity": 99354,
-  "opened": 1957
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Toronto",
+  "capacity": 56040,
+  "opened": 1976
  },
  {
-  "id": "bernabeu",
-  "name": "Santiago Bernabéu",
-  "city": "Madrid",
-  "region": "Community of Madrid",
-  "country": "Spain",
-  "countryCode": "ES",
-  "latitude": 40.4531,
-  "longitude": -3.6883,
+  "id": "percival-molson-stadium",
+  "name": "Percival Molson Memorial Stadium",
+  "aliases": [
+   "Molson Stadium",
+   "Percival Molson Stadium",
+   "Stade Percival-Molson"
+  ],
+  "city": "Montreal",
+  "region": "Quebec",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 45.510083,
+  "longitude": -73.580667,
   "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/cfl"
+  ],
+  "homeTeams": [
+   "Montreal Alouettes",
+   "McGill Redbirds"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 23420,
+  "opened": 1919
+ },
+ {
+  "id": "stade-cepsum",
+  "name": "Stade CEPSUM",
+  "aliases": [
+   "CEPSUM",
+   "Stade du CEPSUM"
+  ],
+  "city": "Montreal",
+  "region": "Quebec",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 45.508889,
+  "longitude": -73.611389,
+  "sports": [
+   "football",
    "soccer"
   ],
-  "timeZone": "Europe/Madrid",
-  "capacity": 81044,
-  "opened": 1947
+  "leagues": [],
+  "homeTeams": [
+   "Montréal Carabins"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 5100,
+  "opened": null
  },
  {
-  "id": "signal-iduna",
-  "name": "Signal Iduna Park",
-  "city": "Dortmund",
-  "region": "North Rhine-Westphalia",
-  "country": "Germany",
-  "countryCode": "DE",
-  "latitude": 51.4926,
-  "longitude": 7.4519,
+  "id": "td-place-stadium",
+  "name": "TD Place Stadium",
+  "aliases": [
+   "TD Place",
+   "Frank Clair Stadium",
+   "Lansdowne Park",
+   "Lansdowne Stadium"
+  ],
+  "city": "Ottawa",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 45.398178,
+  "longitude": -75.68365,
   "sports": [
+   "football",
    "soccer"
   ],
-  "timeZone": "Europe/Berlin",
-  "capacity": 81365,
-  "opened": 1974
+  "leagues": [
+   "football/cfl"
+  ],
+  "homeTeams": [
+   "Ottawa Redblacks",
+   "Atlético Ottawa",
+   "Ottawa Rapid FC",
+   "Carleton Ravens"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 24000,
+  "opened": 1908
  },
  {
-  "id": "mlb-ari",
-  "name": "Chase Field",
-  "city": "Phoenix",
-  "region": "Arizona",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 33.4455,
-  "longitude": -112.0667,
-  "sports": [
-   "baseball"
+  "id": "stade-telus-universite-laval",
+  "name": "Stade TELUS-Université Laval",
+  "aliases": [
+   "Telus Stadium",
+   "Stade TELUS",
+   "PEPS Stadium"
   ],
-  "timeZone": "America/Phoenix",
-  "capacity": null,
+  "city": "Quebec City",
+  "region": "Quebec",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 46.783756,
+  "longitude": -71.279646,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Laval Rouge et Or"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 12750,
   "opened": null
  },
  {
-  "id": "mlb-atl",
-  "name": "Truist Park",
-  "city": "Atlanta",
-  "region": "Georgia",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 33.8908,
-  "longitude": -84.4678,
-  "sports": [
-   "baseball"
+  "id": "mosaic-stadium",
+  "name": "Mosaic Stadium",
+  "aliases": [
+   "New Mosaic Stadium",
+   "Mosaic"
   ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "city": "Regina",
+  "region": "Saskatchewan",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 50.450485,
+  "longitude": -104.633024,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/cfl"
+  ],
+  "homeTeams": [
+   "Saskatchewan Roughriders"
+  ],
+  "timeZone": "America/Regina",
+  "capacity": 33350,
+  "opened": 2017
  },
  {
-  "id": "mlb-bal",
-  "name": "Camden Yards",
-  "city": "Baltimore",
-  "region": "Maryland",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 39.284,
-  "longitude": -76.6217,
-  "sports": [
-   "baseball"
+  "id": "griffiths-stadium",
+  "name": "Griffiths Stadium",
+  "aliases": [
+   "Griffiths Stadium at Nutrien Park"
   ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "city": "Saskatoon",
+  "region": "Saskatchewan",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 52.127062,
+  "longitude": -106.629625,
+  "sports": [
+   "football"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Saskatchewan Huskies"
+  ],
+  "timeZone": "America/Regina",
+  "capacity": 6171,
+  "opened": 1967
  },
  {
-  "id": "mlb-col",
-  "name": "Coors Field",
-  "city": "Denver",
-  "region": "Colorado",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 39.7559,
-  "longitude": -104.9942,
-  "sports": [
-   "baseball"
+  "id": "bmo-field",
+  "name": "BMO Field",
+  "aliases": [
+   "Toronto Stadium",
+   "BMO"
   ],
-  "timeZone": "America/Denver",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "mlb-hou",
-  "name": "Daikin Park",
-  "city": "Houston",
-  "region": "Texas",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 29.7573,
-  "longitude": -95.3555,
+  "city": "Toronto",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 43.632778,
+  "longitude": -79.418611,
   "sports": [
-   "baseball"
+   "football",
+   "soccer"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "mlb-laa",
-  "name": "Angel Stadium",
-  "city": "Anaheim",
-  "region": "California",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 33.8003,
-  "longitude": -117.8827,
-  "sports": [
-   "baseball"
+  "leagues": [
+   "football/cfl",
+   "soccer/usa.1"
   ],
-  "timeZone": "America/Los_Angeles",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "mlb-mia",
-  "name": "loanDepot park",
-  "city": "Miami",
-  "region": "Florida",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 25.7781,
-  "longitude": -80.2197,
-  "sports": [
-   "baseball"
+  "homeTeams": [
+   "Toronto Argonauts",
+   "Toronto FC"
   ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "mlb-nym",
-  "name": "Citi Field",
-  "city": "New York",
-  "region": "New York",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 40.7571,
-  "longitude": -73.8458,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "mlb-ath",
-  "name": "Sutter Health Park",
-  "city": "Sacramento",
-  "region": "California",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 38.5804,
-  "longitude": -121.5133,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/Los_Angeles",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "mlb-phi",
-  "name": "Citizens Bank Park",
-  "city": "Philadelphia",
-  "region": "Pennsylvania",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 39.9061,
-  "longitude": -75.1665,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "mlb-sd",
-  "name": "Petco Park",
-  "city": "San Diego",
-  "region": "California",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 32.7073,
-  "longitude": -117.1566,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/Los_Angeles",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "mlb-sea",
-  "name": "T-Mobile Park",
-  "city": "Seattle",
-  "region": "Washington",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 47.5914,
-  "longitude": -122.3325,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/Los_Angeles",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "mlb-tb",
-  "name": "Tropicana Field",
-  "city": "St. Petersburg",
-  "region": "Florida",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 27.7682,
-  "longitude": -82.6534,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "mlb-tex",
-  "name": "Globe Life Field",
-  "city": "Arlington",
-  "region": "Texas",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 32.7473,
-  "longitude": -97.0847,
-  "sports": [
-   "baseball"
-  ],
-  "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "timeZone": "America/Toronto",
+  "capacity": 28180,
+  "opened": 2007
  },
  {
   "id": "mlb-tor",
   "name": "Rogers Centre",
+  "aliases": [],
   "city": "Toronto",
   "region": "Ontario",
   "country": "Canada",
@@ -573,162 +519,200 @@
   "sports": [
    "baseball"
   ],
+  "leagues": [],
+  "homeTeams": [],
   "timeZone": "America/Toronto",
   "capacity": null,
   "opened": null
  },
  {
-  "id": "mlb-wsh",
-  "name": "Nationals Park",
-  "city": "Washington",
-  "region": "District of Columbia",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 38.873,
-  "longitude": -77.0074,
-  "sports": [
-   "baseball"
+  "id": "york-lions-stadium",
+  "name": "York Lions Stadium",
+  "aliases": [
+   "York Stadium",
+   "Inter Toronto Stadium"
   ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "arrowhead",
-  "name": "GEHA Field at Arrowhead",
-  "city": "Kansas City",
-  "region": "Missouri",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 39.0489,
-  "longitude": -94.4839,
+  "city": "Toronto",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 43.7747,
+  "longitude": -79.5068,
   "sports": [
+   "soccer",
    "football"
   ],
-  "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "msg",
-  "name": "Madison Square Garden",
-  "city": "New York",
-  "region": "New York",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 40.7505,
-  "longitude": -73.9934,
-  "sports": [
-   "basketball",
-   "hockey"
+  "leagues": [],
+  "homeTeams": [
+   "Inter Toronto FC",
+   "York Lions"
   ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "timeZone": "America/Toronto",
+  "capacity": 8000,
+  "opened": 2015
  },
  {
-  "id": "td-garden",
-  "name": "TD Garden",
-  "city": "Boston",
-  "region": "Massachusetts",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 42.3662,
-  "longitude": -71.0621,
-  "sports": [
-   "basketball",
-   "hockey"
+  "id": "bc-place",
+  "name": "BC Place",
+  "aliases": [
+   "BC Place Stadium"
   ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "crypto-arena",
-  "name": "Crypto.com Arena",
-  "city": "Los Angeles",
-  "region": "California",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 34.043,
-  "longitude": -118.2673,
-  "sports": [
-   "basketball",
-   "hockey"
-  ],
-  "timeZone": "America/Los_Angeles",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "ford-field",
-  "name": "Ford Field",
-  "city": "Detroit",
-  "region": "Michigan",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 42.34,
-  "longitude": -83.0456,
-  "sports": [
-   "football"
-  ],
-  "timeZone": "America/Detroit",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "us-bank",
-  "name": "U.S. Bank Stadium",
-  "city": "Minneapolis",
-  "region": "Minnesota",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 44.9737,
-  "longitude": -93.2581,
-  "sports": [
-   "football"
-  ],
-  "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "metlife",
-  "name": "MetLife Stadium",
-  "city": "East Rutherford",
-  "region": "New Jersey",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 40.8135,
-  "longitude": -74.0745,
+  "city": "Vancouver",
+  "region": "British Columbia",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 49.276667,
+  "longitude": -123.111944,
   "sports": [
    "football",
    "soccer"
   ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "leagues": [
+   "football/cfl",
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "BC Lions",
+   "Vancouver Whitecaps FC"
+  ],
+  "timeZone": "America/Vancouver",
+  "capacity": 54500,
+  "opened": 1983
  },
  {
-  "id": "sofi",
-  "name": "SoFi Stadium",
-  "city": "Inglewood",
-  "region": "California",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 33.9535,
-  "longitude": -118.3392,
+  "id": "knight-newbrough-field",
+  "name": "Knight-Newbrough Field",
+  "aliases": [
+   "University Stadium",
+   "Knight–Newbrough Field at University Stadium"
+  ],
+  "city": "Waterloo",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 43.470171,
+  "longitude": -80.530069,
+  "sports": [
+   "football"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Wilfrid Laurier Golden Hawks"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 6000,
+  "opened": 1958
+ },
+ {
+  "id": "princess-auto-stadium",
+  "name": "Princess Auto Stadium",
+  "aliases": [
+   "IG Field",
+   "Investors Group Field",
+   "Winnipeg Stadium"
+  ],
+  "city": "Winnipeg",
+  "region": "Manitoba",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 49.807759,
+  "longitude": -97.142918,
   "sports": [
    "football",
    "soccer"
   ],
-  "timeZone": "America/Los_Angeles",
+  "leagues": [
+   "football/cfl"
+  ],
+  "homeTeams": [
+   "Winnipeg Blue Bombers",
+   "Valour FC",
+   "Manitoba Bisons"
+  ],
+  "timeZone": "America/Winnipeg",
+  "capacity": 32343,
+  "opened": 2013
+ },
+ {
+  "id": "signal-iduna",
+  "name": "Signal Iduna Park",
+  "aliases": [],
+  "city": "Dortmund",
+  "region": "North Rhine-Westphalia",
+  "country": "Germany",
+  "countryCode": "DE",
+  "latitude": 51.4926,
+  "longitude": 7.4519,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Berlin",
+  "capacity": 81365,
+  "opened": 1974
+ },
+ {
+  "id": "camp-nou",
+  "name": "Camp Nou",
+  "aliases": [],
+  "city": "Barcelona",
+  "region": "Catalonia",
+  "country": "Spain",
+  "countryCode": "ES",
+  "latitude": 41.3809,
+  "longitude": 2.1228,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Madrid",
+  "capacity": 99354,
+  "opened": 1957
+ },
+ {
+  "id": "bernabeu",
+  "name": "Santiago Bernabéu",
+  "aliases": [],
+  "city": "Madrid",
+  "region": "Community of Madrid",
+  "country": "Spain",
+  "countryCode": "ES",
+  "latitude": 40.4531,
+  "longitude": -3.6883,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Madrid",
+  "capacity": 81044,
+  "opened": 1947
+ },
+ {
+  "id": "anfield",
+  "name": "Anfield",
+  "aliases": [],
+  "city": "Liverpool",
+  "region": "England",
+  "country": "United Kingdom",
+  "countryCode": "GB",
+  "latitude": 53.4308,
+  "longitude": -2.9608,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/London",
   "capacity": null,
   "opened": null
  },
  {
   "id": "wembley",
   "name": "Wembley Stadium",
+  "aliases": [],
   "city": "London",
   "region": "England",
   "country": "United Kingdom",
@@ -739,22 +723,8 @@
    "soccer",
    "football"
   ],
-  "timeZone": "Europe/London",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "anfield",
-  "name": "Anfield",
-  "city": "Liverpool",
-  "region": "England",
-  "country": "United Kingdom",
-  "countryCode": "GB",
-  "latitude": 53.4308,
-  "longitude": -2.9608,
-  "sports": [
-   "soccer"
-  ],
+  "leagues": [],
+  "homeTeams": [],
   "timeZone": "Europe/London",
   "capacity": null,
   "opened": null
@@ -762,6 +732,7 @@
  {
   "id": "old-trafford",
   "name": "Old Trafford",
+  "aliases": [],
   "city": "Manchester",
   "region": "England",
   "country": "United Kingdom",
@@ -771,7 +742,795 @@
   "sports": [
    "soccer"
   ],
+  "leagues": [],
+  "homeTeams": [],
   "timeZone": "Europe/London",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "mlb-laa",
+  "name": "Angel Stadium",
+  "aliases": [],
+  "city": "Anaheim",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.8003,
+  "longitude": -117.8827,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "mlb-tex",
+  "name": "Globe Life Field",
+  "aliases": [],
+  "city": "Arlington",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.7473,
+  "longitude": -97.0847,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "mlb-atl",
+  "name": "Truist Park",
+  "aliases": [],
+  "city": "Atlanta",
+  "region": "Georgia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.8908,
+  "longitude": -84.4678,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "cota",
+  "name": "Circuit of the Americas",
+  "aliases": [],
+  "city": "Austin",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 30.1328,
+  "longitude": -97.6411,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 120000,
+  "opened": 2012
+ },
+ {
+  "id": "mlb-bal",
+  "name": "Camden Yards",
+  "aliases": [],
+  "city": "Baltimore",
+  "region": "Maryland",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.284,
+  "longitude": -76.6217,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "fenway",
+  "name": "Fenway Park",
+  "aliases": [],
+  "city": "Boston",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.3467,
+  "longitude": -71.0972,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": 37755,
+  "opened": 1912
+ },
+ {
+  "id": "td-garden",
+  "name": "TD Garden",
+  "aliases": [],
+  "city": "Boston",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.3662,
+  "longitude": -71.0621,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "rate-field",
+  "name": "Guaranteed Rate Field",
+  "aliases": [],
+  "city": "Chicago",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.8299,
+  "longitude": -87.6338,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 40615,
+  "opened": 1991
+ },
+ {
+  "id": "soldier",
+  "name": "Soldier Field",
+  "aliases": [],
+  "city": "Chicago",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.8623,
+  "longitude": -87.6167,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 61500,
+  "opened": 1924
+ },
+ {
+  "id": "united-center",
+  "name": "United Center",
+  "aliases": [],
+  "city": "Chicago",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.8807,
+  "longitude": -87.6742,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 20917,
+  "opened": 1994
+ },
+ {
+  "id": "wrigley",
+  "name": "Wrigley Field",
+  "aliases": [],
+  "city": "Chicago",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.9484,
+  "longitude": -87.6553,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 41649,
+  "opened": 1914
+ },
+ {
+  "id": "gabp",
+  "name": "Great American Ball Park",
+  "aliases": [],
+  "city": "Cincinnati",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.0979,
+  "longitude": -84.5082,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": 42319,
+  "opened": 2003
+ },
+ {
+  "id": "progressive",
+  "name": "Progressive Field",
+  "aliases": [],
+  "city": "Cleveland",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.4962,
+  "longitude": -81.6852,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": 34830,
+  "opened": 1994
+ },
+ {
+  "id": "mlb-col",
+  "name": "Coors Field",
+  "aliases": [],
+  "city": "Denver",
+  "region": "Colorado",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.7559,
+  "longitude": -104.9942,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Denver",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "comerica",
+  "name": "Comerica Park",
+  "aliases": [],
+  "city": "Detroit",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.339,
+  "longitude": -83.0485,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Detroit",
+  "capacity": 41083,
+  "opened": 2000
+ },
+ {
+  "id": "ford-field",
+  "name": "Ford Field",
+  "aliases": [],
+  "city": "Detroit",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.34,
+  "longitude": -83.0456,
+  "sports": [
+   "football"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Detroit",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "metlife",
+  "name": "MetLife Stadium",
+  "aliases": [],
+  "city": "East Rutherford",
+  "region": "New Jersey",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.8135,
+  "longitude": -74.0745,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "lambeau",
+  "name": "Lambeau Field",
+  "aliases": [],
+  "city": "Green Bay",
+  "region": "Wisconsin",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.5013,
+  "longitude": -88.0622,
+  "sports": [
+   "football"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 81441,
+  "opened": 1957
+ },
+ {
+  "id": "mlb-hou",
+  "name": "Daikin Park",
+  "aliases": [],
+  "city": "Houston",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.7573,
+  "longitude": -95.3555,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "sofi",
+  "name": "SoFi Stadium",
+  "aliases": [],
+  "city": "Inglewood",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.9535,
+  "longitude": -118.3392,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "arrowhead",
+  "name": "GEHA Field at Arrowhead",
+  "aliases": [],
+  "city": "Kansas City",
+  "region": "Missouri",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.0489,
+  "longitude": -94.4839,
+  "sports": [
+   "football"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "kauffman",
+  "name": "Kauffman Stadium",
+  "aliases": [],
+  "city": "Kansas City",
+  "region": "Missouri",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.0517,
+  "longitude": -94.4803,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 37903,
+  "opened": 1973
+ },
+ {
+  "id": "crypto-arena",
+  "name": "Crypto.com Arena",
+  "aliases": [],
+  "city": "Los Angeles",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.043,
+  "longitude": -118.2673,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "dodger",
+  "name": "Dodger Stadium",
+  "aliases": [],
+  "city": "Los Angeles",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.0739,
+  "longitude": -118.24,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 56000,
+  "opened": 1962
+ },
+ {
+  "id": "mlb-mia",
+  "name": "loanDepot park",
+  "aliases": [],
+  "city": "Miami",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 25.7781,
+  "longitude": -80.2197,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "amfam",
+  "name": "American Family Field",
+  "aliases": [],
+  "city": "Milwaukee",
+  "region": "Wisconsin",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.028,
+  "longitude": -87.9712,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 41900,
+  "opened": 2001
+ },
+ {
+  "id": "target-field",
+  "name": "Target Field",
+  "aliases": [],
+  "city": "Minneapolis",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.9817,
+  "longitude": -93.2776,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 38544,
+  "opened": 2010
+ },
+ {
+  "id": "us-bank",
+  "name": "U.S. Bank Stadium",
+  "aliases": [],
+  "city": "Minneapolis",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.9737,
+  "longitude": -93.2581,
+  "sports": [
+   "football"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "mlb-nym",
+  "name": "Citi Field",
+  "aliases": [],
+  "city": "New York",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.7571,
+  "longitude": -73.8458,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "msg",
+  "name": "Madison Square Garden",
+  "aliases": [],
+  "city": "New York",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.7505,
+  "longitude": -73.9934,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "yankee",
+  "name": "Yankee Stadium",
+  "aliases": [],
+  "city": "New York",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.8296,
+  "longitude": -73.9262,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": 46537,
+  "opened": 2009
+ },
+ {
+  "id": "mlb-phi",
+  "name": "Citizens Bank Park",
+  "aliases": [],
+  "city": "Philadelphia",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.9061,
+  "longitude": -75.1665,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "mlb-ari",
+  "name": "Chase Field",
+  "aliases": [],
+  "city": "Phoenix",
+  "region": "Arizona",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.4455,
+  "longitude": -112.0667,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Phoenix",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "pnc",
+  "name": "PNC Park",
+  "aliases": [],
+  "city": "Pittsburgh",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.4469,
+  "longitude": -80.0057,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": 38747,
+  "opened": 2001
+ },
+ {
+  "id": "mlb-ath",
+  "name": "Sutter Health Park",
+  "aliases": [],
+  "city": "Sacramento",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.5804,
+  "longitude": -121.5133,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "mlb-sd",
+  "name": "Petco Park",
+  "aliases": [],
+  "city": "San Diego",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.7073,
+  "longitude": -117.1566,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "oracle",
+  "name": "Oracle Park",
+  "aliases": [],
+  "city": "San Francisco",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.7786,
+  "longitude": -122.3893,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 41915,
+  "opened": 2000
+ },
+ {
+  "id": "mlb-sea",
+  "name": "T-Mobile Park",
+  "aliases": [],
+  "city": "Seattle",
+  "region": "Washington",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 47.5914,
+  "longitude": -122.3325,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "busch",
+  "name": "Busch Stadium",
+  "aliases": [],
+  "city": "St. Louis",
+  "region": "Missouri",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.6226,
+  "longitude": -90.1928,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 44383,
+  "opened": 2006
+ },
+ {
+  "id": "mlb-tb",
+  "name": "Tropicana Field",
+  "aliases": [],
+  "city": "St. Petersburg",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 27.7682,
+  "longitude": -82.6534,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "mlb-wsh",
+  "name": "Nationals Park",
+  "aliases": [],
+  "city": "Washington",
+  "region": "District of Columbia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.873,
+  "longitude": -77.0074,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  }

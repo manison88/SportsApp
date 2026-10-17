@@ -106,6 +106,7 @@ struct PassportView: View {
         case .hockey: "NHL"
         case .soccer: "SOCCER"
         case .motorsport: "F1"
+        case .handball: "HANDBALL"
         }
     }
 
@@ -114,6 +115,7 @@ struct PassportView: View {
         case .baseball: "of \(library.ballparks.count)\nMLB parks"
         case .soccer: earned == 1 ? "football\nground" : "football\ngrounds"
         case .motorsport: earned == 1 ? "circuit" : "circuits"
+        case .handball: earned == 1 ? "handball\narena" : "handball\narenas"
         case .basketball, .hockey: earned == 1 ? "\(Self.league(sport))\narena" : "\(Self.league(sport))\narenas"
         case .football: earned == 1 ? "NFL\nstadium" : "NFL\nstadiums"
         }

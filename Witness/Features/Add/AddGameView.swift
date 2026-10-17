@@ -32,6 +32,9 @@ struct AddGameView: View {
     @State private var lineAway: [Int] = []
     @State private var lookingUp = false
     @State private var lookupFailed = false
+    @State private var found: FoundGame?
+    @State private var foundDetail: FoundDetail?
+    @State private var foundTeams: [String?] = []
     @State private var findingPhotos = false
     @State private var didPrefill = false
 
@@ -99,12 +102,13 @@ struct AddGameView: View {
                         }
                         .accessibilityIdentifier("add-rooting")
                     }
-                    if sport == .baseball, venueId != nil {
+                    if let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty {
                         Button {
                             Task { await lookup() }
                         } label: {
                             HStack {
-                                Label("Look up final score", systemImage: "sparkle.magnifyingglass")
+                                Label(found == nil ? "Find this game" : "Found on the schedule",
+                                      systemImage: found == nil ? "sparkle.magnifyingglass" : "checkmark.seal.fill")
                                 Spacer()
                                 if lookingUp { ProgressView() }
                             }
@@ -112,7 +116,7 @@ struct AddGameView: View {
                         .disabled(lookingUp)
                         .accessibilityIdentifier("add-lookup")
                         if lookupFailed {
-                            Text("No final score found for that day.")
+                            Text("No game on the schedule at this venue that day.")
                                 .font(.footnote)
                                 .foregroundStyle(Color.textSecondary)
                         }
@@ -325,21 +329,33 @@ struct AddGameView: View {
         newPerson = ""
     }
 
+    /// Finds the real game at this venue on this day and fills the form from it.
     private func lookup() async {
+        guard let venue = venueId.flatMap({ library.venue($0) }) else { return }
         lookingUp = true
         lookupFailed = false
         defer { lookingUp = false }
-        let venue = venueId.flatMap { library.venue($0) }
-        guard let r = await ScoreLookup.mlb(on: date, venue: venue, teams: library.allTeams, homeTeamId: homeTeamId) else {
+        let dayStart = Calendar.current.startOfDay(for: date)
+        let games = await GameLookup.games(at: venue, from: dayStart.addingTimeInterval(5 * 3600),
+                                           to: dayStart.addingTimeInterval(24 * 3600))
+        // Closest start to the time on the form wins (doubleheaders).
+        guard let game = games.min(by: { abs($0.start.timeIntervalSince(date)) < abs($1.start.timeIntervalSince(date)) }) else {
             lookupFailed = true
             return
         }
-        if homeTeamId == nil { homeTeamId = r.homeTeamId }
-        if awayTeamId == nil { awayTeamId = r.awayTeamId }
-        homeScore = String(r.homeScore)
-        awayScore = String(r.awayScore)
-        lineHome = r.lineHome
-        lineAway = r.lineAway
+        found = game
+        sport = game.sport
+        date = game.start
+        homeTeamId = library.addTeam(GameLookup.team(from: game.home, game: game)).id
+        awayTeamId = library.addTeam(GameLookup.team(from: game.away, game: game)).id
+        foundTeams = [homeTeamId, awayTeamId]
+        if game.completed {
+            homeScore = game.home.score.map(String.init) ?? ""
+            awayScore = game.away.score.map(String.init) ?? ""
+        }
+        lineHome = game.home.line
+        lineAway = game.away.line
+        foundDetail = await GameLookup.detail(game)
     }
 
     private func findPhotos() async {
@@ -379,6 +395,15 @@ struct AddGameView: View {
                 g.lineHome = []
                 g.lineAway = []
             }
+        }
+        // Only keep the schedule's stats if the fan didn't change the teams afterwards.
+        if let found, foundTeams == [homeTeamId, awayTeamId] {
+            let keepScores = (g.homeScore, g.awayScore)
+            GameLookup.apply(found, detail: foundDetail, to: &g, library: library)
+            // What the fan typed wins over the schedule.
+            if keepScores.0 != nil { g.homeScore = keepScores.0 }
+            if keepScores.1 != nil { g.awayScore = keepScores.1 }
+            g.rootingForTeamId = rootingForTeamId
         }
         let seatText = seat.trimmingCharacters(in: .whitespacesAndNewlines)
         g.seat = seatText.isEmpty ? nil : seatText

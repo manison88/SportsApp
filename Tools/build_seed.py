@@ -98,14 +98,64 @@ for g in games:
 with open(os.path.join(OUT, "library.json"), "w") as f:
     json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
 
-venues = load("venues.json") + load("extra-venues.json", os.path.join(ROOT, "Catalog"))
-seen = set(); vs = []
+import glob, math, re, unicodedata
+
+FIELDS = ("id", "name", "aliases", "city", "region", "country", "countryCode", "latitude", "longitude",
+          "sports", "leagues", "homeTeams", "timeZone", "capacity", "opened")
+STOP = {"the", "stadium", "estadio", "stade", "stadio", "stadion", "field", "arena", "park", "center", "centre",
+        "de", "del", "la", "el", "at", "do", "da", "di", "of", "and", "y", "e", "municipal"}
+
+def tokens(s):
+    s = unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode().lower()
+    return {w for w in re.split(r"[^a-z0-9]+", s) if w and w not in STOP}
+
+def meters(a, b):
+    la1, lo1, la2, lo2 = map(math.radians, (a["latitude"], a["longitude"], b["latitude"], b["longitude"]))
+    h = math.sin((la2 - la1) / 2) ** 2 + math.cos(la1) * math.cos(la2) * math.sin((lo2 - lo1) / 2) ** 2
+    return 6371000 * 2 * math.asin(math.sqrt(h))
+
+def same_place(a, b):
+    if meters(a, b) > 300: return False
+    na = tokens(a["name"]).union(*[tokens(x) for x in a.get("aliases") or []])
+    nb = tokens(b["name"]).union(*[tokens(x) for x in b.get("aliases") or []])
+    return bool(na & nb) or meters(a, b) < 120
+
+def union(a, b):
+    return list(dict.fromkeys((a or []) + (b or [])))
+
+def merge_into(base, extra, prefer_coords):
+    for k in ("sports", "leagues", "homeTeams", "aliases"):
+        base[k] = union(base.get(k), extra.get(k))
+    if extra["name"] != base["name"]:
+        base["aliases"] = union(base["aliases"], [extra["name"]])
+    if prefer_coords:
+        base["latitude"], base["longitude"] = extra["latitude"], extra["longitude"]
+    for k in ("region", "capacity", "opened"):
+        if base.get(k) is None and extra.get(k) is not None: base[k] = extra[k]
+
+# Sample and existing catalog venues keep their ids; research files add to them.
+venues = []
+for v in load("venues.json") + load("extra-venues.json", os.path.join(ROOT, "Catalog")):
+    if any(x["id"] == v["id"] for x in venues): continue
+    venues.append({k: v.get(k) for k in FIELDS})
+research = sorted(glob.glob(os.path.join(os.path.dirname(__file__), "venues", "*.json")))
+merged_dupes = 0
+for path in research:
+    for v in json.load(open(path)):
+        v = {k: v.get(k) for k in FIELDS}
+        match = next((x for x in venues if x["id"] == v["id"]), None) or next((x for x in venues if same_place(x, v)), None)
+        if match:
+            merge_into(match, v, prefer_coords=match["id"] == v["id"])
+            merged_dupes += 1
+        else:
+            venues.append(v)
 for v in venues:
-    if v["id"] in seen: continue
-    seen.add(v["id"])
-    vs.append({k: v.get(k) for k in ("id", "name", "city", "region", "country", "countryCode", "latitude", "longitude", "sports", "timeZone", "capacity", "opened")})
+    for k in ("aliases", "leagues", "homeTeams"):
+        v[k] = v.get(k) or []
+vs = sorted(venues, key=lambda v: (v["countryCode"], v["city"], v["name"]))
 with open(os.path.join(ROOT, "Catalog", "venues.json"), "w") as f:
     json.dump(vs, f, ensure_ascii=False, indent=1)
+print(f"{len(research)} research files, {merged_dupes} merged into existing venues")
 print(len(out), "games;", len(vs), "venues")
 
 import shutil
