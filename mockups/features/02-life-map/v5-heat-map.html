@@ -35,7 +35,7 @@
 <body class="phone">
   <div class="head">
     <div class="eyebrow">Heat map · every game night since 2014</div>
-    <h1><b>46 of 60</b> game nights<br>were within 6 miles <span>of home.</span></h1>
+    <h1><b>46 of 60</b> game nights<br>were within 10 miles <span>of home.</span></h1>
   </div>
 
   <div class="map" id="map"><svg id="us" width="393" height="250"></svg><canvas id="heat" width="1179" height="750" style="width:393px;height:250px"></canvas></div>
@@ -67,13 +67,16 @@
   function heat(canvas, pts, radius, gain) {
     const c = canvas.getContext('2d'), W = canvas.width, H = canvas.height, s = W / parseFloat(canvas.style.width);
     let seed = 3; const r = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-    pts.forEach(([x, y, n, rad]) => {
-      const R = (rad || radius) * s * (0.8 + Math.sqrt(n) * .22);
-      for (let k = 0; k < n; k++) {
-        const jx = (r() - .5) * R * .5, jy = (r() - .5) * R * .5;
-        const g = c.createRadialGradient(x * s + jx, y * s + jy, 0, x * s + jx, y * s + jy, R);
-        g.addColorStop(0, `rgba(0,0,0,${gain})`); g.addColorStop(1, 'rgba(0,0,0,0)');
-        c.fillStyle = g; c.fillRect(x * s + jx - R, y * s + jy - R, R * 2, R * 2);
+    const maxN = Math.max(...pts.map(p => p[2]));
+    pts.forEach(([x, y, n]) => {
+      const w = .35 + .65 * Math.log(1 + n) / Math.log(1 + maxN);
+      const R = radius * s * (0.75 + w * 1.1);
+      for (let k = 0; k < 5; k++) {
+        const jx = (r() - .5) * R * .35, jy = (r() - .5) * R * .35, RR = R * (0.7 + r() * .5);
+        const g = c.createRadialGradient(x * s + jx, y * s + jy, 0, x * s + jx, y * s + jy, RR);
+        const a = gain * w / 2.6;
+        g.addColorStop(0, `rgba(0,0,0,${a})`); g.addColorStop(.4, `rgba(0,0,0,${a * .55})`); g.addColorStop(1, 'rgba(0,0,0,0)');
+        c.fillStyle = g; c.fillRect(x * s + jx - RR, y * s + jy - RR, RR * 2, RR * 2);
       }
     });
     const img = c.getImageData(0, 0, W, H), d = img.data;
@@ -91,7 +94,7 @@
   us.append('path').attr('d', pathU({ type: 'FeatureCollection', features: states })).attr('fill', '#12131a').attr('stroke', 'rgba(255,255,255,.09)').attr('stroke-width', .5);
   const V = [[-87.70, 41.90, 46], [-88.062, 44.501, 1], [-71.097, 42.346, 2], [-87.971, 43.028, 2], [-93.278, 44.982, 1], [-94.480, 39.051, 1], [-90.193, 38.623, 2],
     [-84.507, 39.097, 1], [-83.049, 42.339, 1], [-80.006, 40.447, 1], [-73.926, 40.829, 1], [-104.994, 39.756, 1], [-122.389, 37.778, 1], [-118.240, 34.074, 1], [-97.641, 30.133, 1]];
-  heat(document.getElementById('heat'), V.map(([lo, la, n]) => { const p = pu([lo, la]); return [p[0], p[1], n]; }), 13, .55);
+  heat(document.getElementById('heat'), V.map(([lo, la, n]) => { const p = pu([lo, la]); return [p[0], p[1], n]; }), 15, .95);
   const lab = (html, x, y, parent = 'map') => { const d = document.createElement('div'); d.className = 'lbl'; d.innerHTML = html; d.style.left = x + 'px'; d.style.top = y + 'px'; document.getElementById(parent).appendChild(d); };
   let p = pu([-87.7, 41.9]); lab('<b>Chicago</b> · 46', p[0] + 22, p[1] - 30);
   p = pu([-71.097, 42.346]); lab('Boston', p[0] - 28, p[1] - 22);
@@ -102,11 +105,11 @@
   const world = __atlas['countries-110m'];
   const pe = d3.geoMercator().fitExtent([[4, 18], [108, 82]], { type: 'MultiPoint', coordinates: [[-9, 37], [13, 54]] });
   d3.select('#eus').append('path').attr('d', d3.geoPath(pe)(topojson.feature(world, world.objects.countries))).attr('fill', '#15161d').attr('stroke', 'rgba(255,255,255,.09)').attr('stroke-width', .5);
-  heat(document.getElementById('euh'), [[2.123, 41.381], [-3.688, 40.453], [7.452, 51.493]].map(c => { const q = pe(c); return [q[0], q[1], 1]; }), 9, .55);
+  heat(document.getElementById('euh'), [[2.123, 41.381], [-3.688, 40.453], [7.452, 51.493]].map(c => { const q = pe(c); return [q[0], q[1], 1]; }), 10, .6);
 
   // ---------- Chicago zoom ----------
   const W = 365, H = 220;
-  const pc = d3.geoMercator().fitExtent([[40, 40], [W - 70, H - 14]], { type: 'MultiPoint', coordinates: [[-87.80, 41.80], [-87.58, 41.97]] });
+  const pc = d3.geoMercator().fitExtent([[50, 72], [W - 90, H - 16]], { type: 'MultiPoint', coordinates: [[-87.80, 41.80], [-87.58, 41.97]] });
   const sc = d3.select('#chi');
   // lake
   sc.append('rect').attr('width', W).attr('height', H).attr('fill', '#0a1220');
@@ -120,7 +123,7 @@
   sc.append('text').attr('x', W - 60).attr('y', 100).attr('fill', 'rgba(140,170,255,.4)').attr('font-family', 'Inter').attr('font-size', 9).attr('font-weight', 600).attr('letter-spacing', 1.6).attr('font-style', 'italic').text('LAKE');
   sc.append('text').attr('x', W - 60).attr('y', 112).attr('fill', 'rgba(140,170,255,.4)').attr('font-family', 'Inter').attr('font-size', 9).attr('font-weight', 600).attr('letter-spacing', 1.6).attr('font-style', 'italic').text('MICHIGAN');
   const C = [['Wrigley Field', -87.655, 41.948, 17], ['Soldier Field', -87.617, 41.862, 15], ['United Center', -87.674, 41.881, 11], ['Rate Field', -87.634, 41.830, 3]];
-  heat(document.getElementById('chih'), C.map(([n, lo, la, k]) => { const q = pc([lo, la]); return [q[0], q[1], k]; }), 15, .3);
+  heat(document.getElementById('chih'), C.map(([n, lo, la, k]) => { const q = pc([lo, la]); return [q[0], q[1], k]; }), 15, .95);
   // home
   const h = pc([-87.705, 41.923]);
   sc.append('circle').attr('cx', h[0]).attr('cy', h[1]).attr('r', 4).attr('fill', '#fff').attr('stroke', '#07070a').attr('stroke-width', 1.5);

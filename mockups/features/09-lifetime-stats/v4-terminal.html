@@ -1,0 +1,91 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Terminal</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #030604; }
+  .crt { position: absolute; inset: 0; background: radial-gradient(110% 80% at 50% 45%, #0b1a10 0%, #050a06 65%, #020302 100%); }
+  .scan { position: absolute; inset: 0; z-index: 20; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,0,0,.28) 0 1px, transparent 1px 3px); }
+  .vig { position: absolute; inset: 0; z-index: 21; pointer-events: none; box-shadow: inset 0 0 90px rgba(0,0,0,.85); }
+  .bar { position: absolute; top: 54px; left: 16px; right: 16px; height: 40px; display: flex; align-items: center; justify-content: space-between; z-index: 10;
+    font: 500 11px/1 var(--f-mono); color: rgba(132,255,160,.55); }
+  .bar .lights { display: flex; gap: 7px; }
+  .bar .lights i { width: 11px; height: 11px; border-radius: 6px; background: #1d3a24; box-shadow: inset 0 0 0 1px rgba(132,255,160,.35); }
+  .bar .lights i:first-child { background: #7dff9b; box-shadow: 0 0 8px #7dff9b; }
+  .scr { position: absolute; left: 16px; right: 12px; top: 102px; z-index: 5; font: 500 11.3px/17px var(--f-mono); color: #7dff9b; white-space: pre;
+    text-shadow: 0 0 6px rgba(125,255,155,.55), 0 0 1px rgba(200,255,210,.8); letter-spacing: -.1px; }
+  .dim { color: rgba(125,255,155,.45); text-shadow: none; }
+  .amb { color: #ffc35a; text-shadow: 0 0 7px rgba(255,180,70,.6); }
+  .wht { color: #e9ffe9; }
+  .big { display: block; margin: 8px 0 4px; line-height: 0; }
+  .big .px { display: inline-block; width: 11px; height: 11px; margin: 0 1px 1px 0; }
+  .big .px.on { background: #ffc35a; box-shadow: 0 0 6px rgba(255,180,70,.75); }
+  .big .row { display: block; height: 12px; }
+  .sp { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; width: 103px; vertical-align: -1px; }
+  .sp i { width: 6px; background: #ffc35a; box-shadow: 0 0 5px rgba(255,180,70,.6); }
+  .sp i.z { height: 1px !important; background: rgba(125,255,155,.3); box-shadow: none; }
+  .hist { display: flex; align-items: flex-end; gap: 6px; height: 74px; padding: 6px 2px 0 16px; line-height: 1; }
+  .hist b { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; font: 500 9.5px/1 var(--f-mono); color: rgba(125,255,155,.5); text-shadow: none; }
+  .hist b i { width: 100%; background: repeating-linear-gradient(0deg, #7dff9b 0 3px, transparent 3px 5px); box-shadow: 0 0 8px rgba(125,255,155,.35); margin-bottom: 5px; }
+  .hist b.hi i { background: repeating-linear-gradient(0deg, #ffc35a 0 3px, transparent 3px 5px); }
+  .hist b.hi { color: #ffc35a; }
+  .cur { display: inline-block; width: 8px; height: 14px; background: #7dff9b; vertical-align: -3px; box-shadow: 0 0 8px #7dff9b; }
+  .keys { position: absolute; left: 12px; right: 12px; top: 762px; z-index: 6; display: flex; gap: 6px; }
+  .keys span { flex: 1; height: 38px; border-radius: 8px; background: #0e1a11; box-shadow: inset 0 0 0 1px rgba(125,255,155,.25); display: grid; place-items: center;
+    font: 600 11px/1 var(--f-mono); color: #7dff9b; }
+  .keys span.go { background: #7dff9b; color: #031006; box-shadow: 0 0 14px rgba(125,255,155,.45); }
+</style></head>
+<body class="phone">
+  <div class="crt"></div>
+  <div class="bar"><div class="lights"><i></i><i></i><i></i></div><span>witness — tty1 — 52×40</span><span>⌘</span></div>
+<div class="scr" id="scr"><span class="dim">sam@witness</span> <span class="wht">~ %</span> witness stats --lifetime
+<span class="dim">› indexing 60 games · 2014-06-14 → 2026-07-04 … ok</span>
+
+<span class="dim">WIN RATE WHEN ATTENDING</span>
+<span class="big" id="big"></span>  <span class="wht">35W</span> <span class="dim">·</span> 22L <span class="dim">·</span> 2D <span class="dim">·</span> 1 race   <span class="dim">vs 48% at home</span>
+  <span class="amb">█████████████████████████</span><span class="dim">░░░░░░░░░░░░░░░</span> <span class="wht">.614</span>
+
+<span class="dim">── WITNESSED ─────────────────────────────────</span>
+  runs      <span class="wht"> 487</span>  <span class="sp" data-v="22,51,63,30,24,41,0,38,46,40,33,57,42"></span>  <span class="dim">peak ’16</span>
+  points    <span class="wht">1204</span>  <span class="sp" data-v="45,212,95,48,118,40,226,39,62,44,46,229,0"></span>  <span class="dim">peak ’25</span>
+  goals     <span class="wht"> 162</span>  <span class="sp" data-v="5,16,6,23,9,11,18,4,12,21,13,8,16"></span>  <span class="dim">peak ’17</span>
+
+<span class="dim">── DISTANCE ──────────────────────────────────</span>
+  miles     <span class="wht">42,900</span>   <span class="dim">≈ 1.72 × equator</span>
+  farthest  <span class="wht">4,600 mi</span> <span class="amb">CHI ✈ BCN</span>  <span class="dim">feb 2020</span>
+  venues    <span class="wht">21</span>  <span class="dim">in</span> <span class="wht">3</span> <span class="dim">countries · 14/30 MLB</span>
+
+<span class="dim">── EXTREMES ──────────────────────────────────</span>
+  coldest   <span class="amb">19°F</span>  lambeau   <span class="dim">2025-01-05  W 24–22</span>
+  first     <span class="wht">jun 14 2014</span>  wrigley <span class="dim">game #001</span>
+  w/ maya   <span class="wht">17</span>  <span style="color:#ff8a98;text-shadow:0 0 6px rgba(255,122,138,.6)">♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥♥</span>
+
+<span class="dim">── GAMES / SEASON ────────────────────────────</span>
+<span class="hist" id="hist"></span>
+<span class="dim">sam@witness</span> <span class="wht">~ %</span> <span class="cur"></span></div>
+  <div class="keys"><span>--year</span><span>--sport</span><span>--with</span><span class="go">export ↵</span></div>
+  <div class="scan"></div><div class="vig"></div>
+<script>
+  // 5x7 bitmap digits for "61%" plus a decimal ".4"
+  const F = {
+    '6': ['01110','10000','10000','11110','10001','10001','01110'],
+    '1': ['00100','01100','00100','00100','00100','00100','01110'],
+    '%': ['11001','11010','00010','00100','01000','01011','10011'],
+    '.': ['000','000','000','000','000','011','011'],
+    '4': ['00010','00110','01010','10010','11111','00010','00010'],
+    ' ': ['00','00','00','00','00','00','00'],
+  };
+  const word = ['6', '1', ' ', '%'];
+  let html = '';
+  for (let r = 0; r < 7; r++) {
+    html += '<span class="row">';
+    word.forEach((ch, k) => { F[ch][r].split('').forEach(b => html += `<i class="px${b === '1' ? ' on' : ''}"></i>`); html += '<i class="px"></i><i class="px"></i>'; });
+    html += '</span>';
+  }
+  document.getElementById('big').innerHTML = html;
+  document.querySelectorAll('.sp').forEach(sp => { const v = sp.dataset.v.split(',').map(Number), m = Math.max(...v);
+    sp.innerHTML = v.map(x => x ? `<i style="height:${Math.max(2, Math.round(x / m * 12))}px"></i>` : '<i class="z"></i>').join(''); });
+  const G = [3,6,7,4,3,4,3,4,4,5,4,9,4];
+  document.getElementById('hist').innerHTML = G.map((g, i) => `<b class="${g === 9 ? 'hi' : ''}"><i style="height:${g * 5.4}px"></i>’${String(14 + i)}</b>`).join('');
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

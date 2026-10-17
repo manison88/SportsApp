@@ -33,7 +33,7 @@
     <div class="lg"><i style="background:#1a1a1a"></i><div><b>Hockey</b><span>1 arena</span></div></div>
     <div class="lg"><i style="background:#8a4bd8"></i><div><b>Formula 1</b><span>1 circuit</span></div></div>
   </div>
-  <div class="foot"><span>Line weight = games</span><span>Not to scale</span></div>
+  <div class="foot"><span>○ Interchange = shared venue</span><span>Not to scale</span></div>
 
 <script>
 (function(){
@@ -89,7 +89,7 @@
   count(SX - 18, SY + 18, '15 games', 'end');
   // Lambeau terminus
   tick(SX - 4, SY + 72, 'e', C.nfl); line([[SX - 10, SY + 72], [SX + 2, SY + 72]], C.nfl, 5);
-  text(SX - 4, SY + 92, 'Lambeau Field', { size: 12, anchor: 'middle' }); count(SX - 4, SY + 106, 'Week 18 · ’25', 'middle');
+  text(SX + 10, SY + 76, 'Lambeau', { size: 12 }); count(SX + 10, SY + 90, 'GB · ’25');
   // United Center interchange
   el('rect', { x: UX - 12, y: UY - 2, width: 24, height: 18, rx: 9, fill: '#fff', stroke: '#141414', 'stroke-width': 3 });
   text(UX + 18, UY + 11, 'United Center', { size: 13, weight: 800 });
