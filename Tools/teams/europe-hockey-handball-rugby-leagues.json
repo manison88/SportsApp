@@ -1,0 +1,1325 @@
+[
+ {
+  "key": "hockey/swe.shl",
+  "name": "SHL",
+  "sport": "hockey",
+  "country": "Sweden",
+  "countryCode": "SE",
+  "tier": 1,
+  "teamCount": 14,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "shl-fhc",
+   "shl-fbk",
+   "shl-lhf",
+   "shl-ske",
+   "shl-lhc",
+   "shl-rbk",
+   "shl-bif",
+   "shl-dif",
+   "shl-mif",
+   "shl-ore",
+   "shl-lif",
+   "shl-hv",
+   "shl-vik",
+   "eurih-swe-tim"
+  ],
+  "passport": {
+   "label": "SHL arenas",
+   "venueIds": [
+    "scandinavium",
+    "lofbergs-arena",
+    "coop-norrbotten-arena",
+    "skelleftea-kraft-arena",
+    "saab-arena",
+    "catena-arena",
+    "monitor-erp-arena",
+    "avicii-arena",
+    "malmo-arena",
+    "behrn-arena",
+    "tegera-arena",
+    "husqvarna-garden",
+    "vida-arena",
+    "nolia-timra"
+   ]
+  }
+ },
+ {
+  "key": "hockey/svk.extraliga",
+  "name": "Slovak Extraliga (Tipsport Liga)",
+  "sport": "hockey",
+  "country": "Slovakia",
+  "countryCode": "SK",
+  "tier": 1,
+  "teamCount": 11,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "eurih-svk-slo",
+   "eurih-svk-kos",
+   "eurih-svk-nit",
+   "eurih-svk-bbs",
+   "eurih-svk-tre",
+   "eurih-svk-zvo",
+   "eurih-svk-pop",
+   "eurih-svk-mic",
+   "eurih-svk-lmi",
+   "eurih-svk-zil",
+   "eurih-svk-sns"
+  ],
+  "passport": {
+   "label": "Slovak Extraliga (Tipsport Liga) venues",
+   "venueIds": [
+    "ondrej-nepela-arena",
+    "steel-arena",
+    "zs-nitra",
+    "zs-banska-bystrica",
+    "zs-trencin",
+    "zs-zvolen",
+    "zs-poprad",
+    "zs-michalovce",
+    "zs-liptovsky-mikulas",
+    "zs-zilina",
+    "zs-spisska-nova-ves"
+   ]
+  }
+ },
+ {
+  "key": "hockey/aut.icehl",
+  "name": "ICE Hockey League",
+  "sport": "hockey",
+  "country": "Austria",
+  "countryCode": "AT",
+  "tier": 1,
+  "teamCount": 12,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "eurih-aut-sal",
+   "eurih-aut-kac",
+   "eurih-aut-vsv",
+   "eurih-aut-g99",
+   "eurih-aut-lin",
+   "eurih-aut-vie",
+   "eurih-aut-inn",
+   "eurih-ita-bol",
+   "eurih-ita-pus",
+   "eurih-ita-asi",
+   "eurih-hun-fea",
+   "eurih-svn-oli"
+  ],
+  "passport": {
+   "label": "ICE Hockey League venues",
+   "venueIds": [
+    "eisarena-salzburg",
+    "stadthalle-klagenfurt",
+    "stadthalle-villach",
+    "merkur-eisstadion",
+    "linz-ag-eisarena",
+    "steffl-arena",
+    "olympia-eisstadion-innsbruck",
+    "sparkasse-arena-bolzano",
+    "intercable-arena",
+    "pala-hodegart",
+    "alba-regia-ice",
+    "tivoli-hall"
+   ]
+  }
+ },
+ {
+  "key": "hockey/nor.eliteserien",
+  "name": "Fjordkraft-ligaen",
+  "sport": "hockey",
+  "country": "Norway",
+  "countryCode": "NO",
+  "tier": 1,
+  "teamCount": 10,
+  "season": "Sep-Mar",
+  "espnPath": null,
+  "teamIds": [
+   "eurih-nor-sto",
+   "eurih-nor-vif",
+   "eurih-nor-oil",
+   "eurih-nor-fri",
+   "eurih-nor-spa",
+   "eurih-nor-lil",
+   "eurih-nor-nar",
+   "eurih-nor-stj",
+   "eurih-nor-lor",
+   "eurih-nor-com"
+  ],
+  "passport": {
+   "label": "Fjordkraft-ligaen venues",
+   "venueIds": [
+    "cc-amfi",
+    "jordal-amfi",
+    "dnb-arena-stavanger",
+    "askerhallen-no",
+    "sparta-amfi",
+    "kristins-hall",
+    "narvik-ishall",
+    "stjernehallen",
+    "lorenskog-ishall",
+    "halden-ishall"
+   ]
+  }
+ },
+ {
+  "key": "hockey/den.metal",
+  "name": "Metal Ligaen",
+  "sport": "hockey",
+  "country": "Denmark",
+  "countryCode": "DK",
+  "tier": 1,
+  "teamCount": 9,
+  "season": "Sep-Mar",
+  "espnPath": null,
+  "teamIds": [
+   "eurih-den-aal",
+   "eurih-den-esb",
+   "eurih-den-her",
+   "eurih-den-fre",
+   "eurih-den-ode",
+   "eurih-den-son",
+   "eurih-den-gen",
+   "eurih-den-rod",
+   "eurih-den-hel"
+  ],
+  "passport": {
+   "label": "Metal Ligaen venues",
+   "venueIds": [
+    "gigantium",
+    "granly-hockey-arena",
+    "jyske-bank-boxen",
+    "nord-energi-arena",
+    "odense-isstadion",
+    "frøs-arena",
+    "gentofte-skojtehal",
+    "rodovre-skojtehal",
+    "herlev-skojtehal"
+   ]
+  }
+ },
+ {
+  "key": "hockey/pol.phl",
+  "name": "Polska Hokej Liga",
+  "sport": "hockey",
+  "country": "Poland",
+  "countryCode": "PL",
+  "tier": 1,
+  "teamCount": 9,
+  "season": "Sep-Mar",
+  "espnPath": null,
+  "teamIds": [
+   "eurih-pol-kat",
+   "eurih-pol-tyc",
+   "eurih-pol-jas",
+   "eurih-pol-osw",
+   "eurih-pol-pod",
+   "eurih-pol-san",
+   "eurih-pol-opo",
+   "eurih-pol-sos",
+   "eurih-pol-tor"
+  ],
+  "passport": {
+   "label": "Polska Hokej Liga venues",
+   "venueIds": [
+    "spodek-pl",
+    "stadion-zimowy-tychy",
+    "jastor-jastrzebie",
+    "oswiecim-lodowisko",
+    "gazda-arena",
+    "arena-sanok",
+    "toropol-opole",
+    "stadion-zimowy-sosnowiec",
+    "tor-tor-torun"
+   ]
+  }
+ },
+ {
+  "key": "hockey/lat.ohl",
+  "name": "Optibet Hockey League",
+  "sport": "hockey",
+  "country": "Latvia",
+  "countryCode": "LV",
+  "tier": 1,
+  "teamCount": 4,
+  "season": "Sep-Mar",
+  "espnPath": null,
+  "teamIds": [
+   "eurih-lat-din",
+   "eurih-lat-mog",
+   "eurih-lat-zem",
+   "eurih-lat-lie"
+  ],
+  "passport": {
+   "label": "Optibet Hockey League venues",
+   "venueIds": [
+    "arena-riga",
+    "inbox-ledus-halle",
+    "olympic-sports-center-of-zemgale",
+    "liepaja-ledus-halle"
+   ]
+  }
+ },
+ {
+  "key": "hockey/gbr.eihl",
+  "name": "Elite Ice Hockey League",
+  "sport": "hockey",
+  "country": "United Kingdom",
+  "countryCode": "GB",
+  "tier": 1,
+  "teamCount": 9,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "eurih-gbr-bel",
+   "eurih-gbr-car",
+   "eurih-gbr-gla",
+   "eurih-gbr-gui",
+   "eurih-gbr-fif",
+   "eurih-gbr-dun",
+   "eurih-gbr-not",
+   "eurih-gbr-she",
+   "eurih-gbr-cov"
+  ],
+  "passport": {
+   "label": "Elite Ice Hockey League venues",
+   "venueIds": [
+    "sse-arena-belfast",
+    "vindico-arena",
+    "braehead-arena",
+    "guildford-spectrum",
+    "fife-ice-arena",
+    "dundee-ice-arena",
+    "motorpoint-arena-nottingham",
+    "utilita-arena-sheffield",
+    "skydome-coventry"
+   ]
+  }
+ },
+ {
+  "key": "hockey/fra.magnus",
+  "name": "Ligue Magnus",
+  "sport": "hockey",
+  "country": "France",
+  "countryCode": "FR",
+  "tier": 1,
+  "teamCount": 8,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "eurih-fra-gre",
+   "eurih-fra-ang",
+   "eurih-fra-bor",
+   "eurih-fra-gap",
+   "eurih-fra-bri",
+   "eurih-fra-cha",
+   "eurih-fra-mar",
+   "eurih-fra-anh"
+  ],
+  "passport": {
+   "label": "Ligue Magnus venues",
+   "venueIds": [
+    "pole-sud-grenoble",
+    "patinoire-angers",
+    "patinoire-meriadeck",
+    "alp-arena-gap",
+    "patinoire-rene-froger",
+    "patinoire-richard-bozon",
+    "patinoire-marseille",
+    "patinoire-anglet"
+   ]
+  }
+ },
+ {
+  "key": "hockey/blr.extraliga",
+  "name": "Belarusian Extraleague",
+  "sport": "hockey",
+  "country": "Belarus",
+  "countryCode": "BY",
+  "tier": 1,
+  "teamCount": 4,
+  "season": "Sep-Apr",
+  "espnPath": null,
+  "teamIds": [
+   "eurih-blr-sha",
+   "eurih-blr-met",
+   "eurih-blr-vit",
+   "eurih-blr-bre"
+  ],
+  "passport": {
+   "label": "Belarusian Extraleague venues",
+   "venueIds": [
+    "soligorsk-ice-palace",
+    "zhlobin-ice-palace",
+    "vitebsk-ice-palace",
+    "brest-ice-palace"
+   ]
+  }
+ },
+ {
+  "key": "handball/ger.hbl",
+  "name": "Handball-Bundesliga",
+  "sport": "handball",
+  "country": "Germany",
+  "countryCode": "DE",
+  "tier": 1,
+  "teamCount": 16,
+  "season": "Aug-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbl-kie",
+   "hbl-fle",
+   "hbl-mag",
+   "hbl-fuc",
+   "hbl-rnl",
+   "hbl-mel",
+   "hbl-lem",
+   "hbl-lei",
+   "hbl-han",
+   "hbl-gum",
+   "hbl-wet",
+   "hbl-gop",
+   "hbl-stu",
+   "hbl-erl",
+   "eurhb-ger-ham",
+   "eurhb-ger-eis"
+  ],
+  "passport": {
+   "label": "Bundesliga halls",
+   "venueIds": [
+    "wunderino-arena",
+    "flens-arena",
+    "getec-arena",
+    "max-schmeling-halle",
+    "sap-arena",
+    "rothenbach-halle",
+    "phoenix-contact-arena",
+    "quarterback-immobilien-arena",
+    "swiss-life-hall",
+    "schwalbe-arena",
+    "buderus-arena",
+    "ews-arena",
+    "porsche-arena",
+    "arena-nuernberger-versicherung",
+    "barclays-arena-hamburg",
+    "werner-assmann-halle"
+   ]
+  }
+ },
+ {
+  "key": "handball/fra.lnh",
+  "name": "Liqui Moly StarLigue",
+  "sport": "handball",
+  "country": "France",
+  "countryCode": "FR",
+  "tier": 1,
+  "teamCount": 13,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "lnh-psg",
+   "lnh-mon",
+   "lnh-cha",
+   "lnh-pau",
+   "lnh-tou",
+   "lnh-dun",
+   "lnh-nim",
+   "eurhb-fra-sra",
+   "eurhb-fra-ces",
+   "eurhb-fra-lim",
+   "eurhb-fra-dij",
+   "eurhb-fra-cre",
+   "eurhb-fra-tre"
+  ],
+  "passport": {
+   "label": "LNH halls",
+   "venueIds": [
+    "pierre-de-coubertin",
+    "sud-de-france-arena",
+    "le-phare",
+    "arena-pays-d-aix",
+    "andre-brouat",
+    "stades-de-flandres",
+    "parnasse-nimes",
+    "palais-sports-saint-raphael",
+    "glaz-arena",
+    "beaublanc",
+    "palais-sports-dijon-fr",
+    "palais-sports-creteil",
+    "palais-sports-tremblay"
+   ]
+  }
+ },
+ {
+  "key": "handball/esp.asobal",
+  "name": "Liga ASOBAL",
+  "sport": "handball",
+  "country": "Spain",
+  "countryCode": "ES",
+  "tier": 1,
+  "teamCount": 9,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "asobal-bar",
+   "asobal-gra",
+   "asobal-bid",
+   "asobal-ade",
+   "asobal-log",
+   "eurhb-esp-ben",
+   "eurhb-esp-val",
+   "eurhb-esp-sin",
+   "eurhb-esp-gua"
+  ],
+  "passport": {
+   "label": "ASOBAL halls",
+   "venueIds": [
+    "palau-blaugrana",
+    "palau-granollers",
+    "artaleku",
+    "palacio-deportes-leon",
+    "palacio-deportes-rioja",
+    "palau-esports-benidorm",
+    "huerta-del-rey",
+    "pabellon-sinfin",
+    "multiusos-guadalajara"
+   ]
+  }
+ },
+ {
+  "key": "handball/den.hld",
+  "name": "Håndboldligaen",
+  "sport": "handball",
+  "country": "Denmark",
+  "countryCode": "DK",
+  "tier": 1,
+  "teamCount": 11,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "hbhld-aal",
+   "hbhld-kif",
+   "hbhld-skj",
+   "hbhld-bsh",
+   "hbhld-fre",
+   "hbhld-rib",
+   "hbhld-her",
+   "eurhb-den-gog",
+   "eurhb-den-tth",
+   "eurhb-den-mor",
+   "eurhb-den-lem"
+  ],
+  "passport": {
+   "label": "Håndboldligaen halls",
+   "venueIds": [
+    "gigantium",
+    "sydbank-arena",
+    "skjern-bank-arena",
+    "jysk-arena",
+    "monjasa-arena-fredericia",
+    "blue-water-dokken",
+    "jyske-bank-boxen",
+    "svendborg-hallen",
+    "holstebro-hallen",
+    "thy-hallen",
+    "lemvig-hallen"
+   ]
+  }
+ },
+ {
+  "key": "handball/pol.superliga",
+  "name": "Orlen Superliga",
+  "sport": "handball",
+  "country": "Poland",
+  "countryCode": "PL",
+  "tier": 1,
+  "teamCount": 10,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbpls-kie",
+   "hbpls-plo",
+   "hbpls-gor",
+   "hbpls-zag",
+   "hbpls-wyb",
+   "hbpls-opo",
+   "eurhb-pol-glo",
+   "eurhb-pol-pio",
+   "eurhb-pol-kal",
+   "eurhb-pol-szc"
+  ],
+  "passport": {
+   "label": "Superliga halls",
+   "venueIds": [
+    "hala-legionow",
+    "orlen-arena",
+    "hala-pomorska-zabrze",
+    "hala-widowiskowo-sportowa-lubin",
+    "ergo-arena",
+    "hala-stegu-arena",
+    "hala-glogow",
+    "hala-piotrkow",
+    "kalisz-arena",
+    "azoty-arena"
+   ]
+  }
+ },
+ {
+  "key": "handball/hun.nb1",
+  "name": "Nemzeti Bajnokság I",
+  "sport": "handball",
+  "country": "Hungary",
+  "countryCode": "HU",
+  "tier": 1,
+  "teamCount": 8,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbnb1-ves",
+   "hbnb1-sze",
+   "hbnb1-tat",
+   "hbnb1-fer",
+   "hbnb1-csu",
+   "eurhb-hun-dun",
+   "eurhb-hun-dab",
+   "eurhb-hun-mez"
+  ],
+  "passport": {
+   "label": "NB I halls",
+   "venueIds": [
+    "veszprem-arena",
+    "pick-arena",
+    "foldi-imre-sportcsarnok",
+    "elek-gyula-arena",
+    "csurgo-sportcsarnok",
+    "dunaujvaros-arena",
+    "dabas-sportcsarnok",
+    "mezokovesd-sportcsarnok"
+   ]
+  }
+ },
+ {
+  "key": "handball/por.andebol1",
+  "name": "Andebol 1",
+  "sport": "handball",
+  "country": "Portugal",
+  "countryCode": "PT",
+  "tier": 1,
+  "teamCount": 4,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbprt-scp",
+   "hbprt-fcp",
+   "eurhb-prt-abc",
+   "eurhb-prt-ava"
+  ],
+  "passport": {
+   "label": "Andebol 1 halls",
+   "venueIds": [
+    "pavilhao-joao-rocha",
+    "dragao-arena",
+    "pavilhao-flavio-sa-leite",
+    "pavilhao-avanca"
+   ]
+  }
+ },
+ {
+  "key": "handball/nor.rema",
+  "name": "REMA 1000-ligaen",
+  "sport": "handball",
+  "country": "Norway",
+  "countryCode": "NO",
+  "tier": 1,
+  "teamCount": 4,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "hbnor-kol",
+   "hbnor-elv",
+   "eurhb-nor-dra",
+   "eurhb-nor-run"
+  ],
+  "passport": {
+   "label": "REMA 1000-ligaen halls",
+   "venueIds": [
+    "trondheim-spektrum",
+    "terningen-arena",
+    "drammenshallen",
+    "jotunhallen"
+   ]
+  }
+ },
+ {
+  "key": "handball/cro.premijer",
+  "name": "Croatian Premier Handball League",
+  "sport": "handball",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "tier": 1,
+  "teamCount": 3,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbhrv-zag",
+   "eurhb-hrv-por",
+   "eurhb-hrv-dub"
+  ],
+  "passport": {
+   "label": "Croatian league halls",
+   "venueIds": [
+    "arena-zagreb",
+    "dvorana-zatika",
+    "dvorana-dubrava"
+   ]
+  }
+ },
+ {
+  "key": "handball/svn.1nlb",
+  "name": "1. NLB Leasing liga",
+  "sport": "handball",
+  "country": "Slovenia",
+  "countryCode": "SI",
+  "tier": 1,
+  "teamCount": 5,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-svn-gor",
+   "eurhb-svn-tri",
+   "eurhb-svn-kop",
+   "eurhb-svn-mar",
+   "eurhb-svn-slo"
+  ],
+  "passport": {
+   "label": "1. NLB Leasing liga venues",
+   "venueIds": [
+    "rdeca-dvorana",
+    "dvorana-trebnje",
+    "bonifika",
+    "dvorana-tabor",
+    "dvorana-kodeljevo"
+   ]
+  }
+ },
+ {
+  "key": "handball/rou.lnm",
+  "name": "Liga Națională",
+  "sport": "handball",
+  "country": "Romania",
+  "countryCode": "RO",
+  "tier": 1,
+  "teamCount": 4,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "hbrou-din",
+   "eurhb-rou-min",
+   "eurhb-rou-tim",
+   "eurhb-rou-dob"
+  ],
+  "passport": {
+   "label": "Liga Națională halls",
+   "venueIds": [
+    "polivalenta-bucharest",
+    "sala-baia-mare",
+    "sala-constantin-jude",
+    "sala-sporturilor-constanta"
+   ]
+  }
+ },
+ {
+  "key": "handball/sui.nla",
+  "name": "Quickline Handball League",
+  "sport": "handball",
+  "country": "Switzerland",
+  "countryCode": "CH",
+  "tier": 1,
+  "teamCount": 7,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-sui-kad",
+   "eurhb-sui-bas",
+   "eurhb-sui-thu",
+   "eurhb-sui-ber",
+   "eurhb-sui-kri",
+   "eurhb-sui-che",
+   "eurhb-sui-gcz"
+  ],
+  "passport": {
+   "label": "Quickline Handball League venues",
+   "venueIds": [
+    "bbc-arena",
+    "rankhof-basel",
+    "lachenhalle-thun",
+    "sporthalle-wankdorf",
+    "krienser-eichhof",
+    "salle-sous-moulin",
+    "sporthalle-hardau"
+   ]
+  }
+ },
+ {
+  "key": "handball/aut.hla",
+  "name": "Handball Liga Austria (HLA Meisterliga)",
+  "sport": "handball",
+  "country": "Austria",
+  "countryCode": "AT",
+  "tier": 1,
+  "teamCount": 5,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-aut-fiv",
+   "eurhb-aut-har",
+   "eurhb-aut-kre",
+   "eurhb-aut-wes",
+   "eurhb-aut-bre"
+  ],
+  "passport": {
+   "label": "Handball Liga Austria (HLA Meisterliga) venues",
+   "venueIds": [
+    "sporthalle-margareten",
+    "sporthalle-am-see-hard",
+    "sporthalle-krems",
+    "bsfz-suedstadt",
+    "handballarena-bregenz"
+   ]
+  }
+ },
+ {
+  "key": "handball/cze.extraliga",
+  "name": "Czech Extraliga (Tipsport)",
+  "sport": "handball",
+  "country": "Czechia",
+  "countryCode": "CZ",
+  "tier": 1,
+  "teamCount": 3,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-cze-kar",
+   "eurhb-cze-lov",
+   "eurhb-cze-zub"
+  ],
+  "passport": {
+   "label": "Czech Extraliga (Tipsport) venues",
+   "venueIds": [
+    "hala-karvina",
+    "hala-lovosice",
+    "hala-zubri"
+   ]
+  }
+ },
+ {
+  "key": "handball/bel.league",
+  "name": "BENE-League/Belgian Handball League",
+  "sport": "handball",
+  "country": "Belgium",
+  "countryCode": "BE",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-bel-ach",
+   "eurhb-bel-ini"
+  ],
+  "passport": {
+   "label": "BENE-League/Belgian Handball League venues",
+   "venueIds": [
+    "sporthal-bocholt",
+    "sporthal-alverberg"
+   ]
+  }
+ },
+ {
+  "key": "handball/isl.olis",
+  "name": "Olís deild karla",
+  "sport": "handball",
+  "country": "Iceland",
+  "countryCode": "IS",
+  "tier": 1,
+  "teamCount": 7,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-isl-fh",
+   "eurhb-isl-aft",
+   "eurhb-isl-ibv",
+   "eurhb-isl-hau",
+   "eurhb-isl-ka",
+   "eurhb-isl-gro",
+   "eurhb-isl-hk"
+  ],
+  "passport": {
+   "label": "Olís deild karla venues",
+   "venueIds": [
+    "kaplakriki",
+    "varma-mosfellsbaer",
+    "ibv-hollin",
+    "asvellir",
+    "ka-heimilid",
+    "hertz-hollin",
+    "kornid"
+   ]
+  }
+ },
+ {
+  "key": "handball/srb.superliga",
+  "name": "Serbian Handball Super League",
+  "sport": "handball",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-srb-voj",
+   "eurhb-srb-crz"
+  ],
+  "passport": {
+   "label": "Serbian Handball Super League venues",
+   "venueIds": [
+    "spens",
+    "aleksandar-nikolic-hall"
+   ]
+  }
+ },
+ {
+  "key": "handball/mkd.superliga",
+  "name": "Macedonian Handball Super League",
+  "sport": "handball",
+  "country": "North Macedonia",
+  "countryCode": "MK",
+  "tier": 1,
+  "teamCount": 1,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-mkd-var"
+  ],
+  "passport": {
+   "label": "Macedonian Handball Super League venues",
+   "venueIds": [
+    "jane-sandanski-arena"
+   ]
+  }
+ },
+ {
+  "key": "handball/bih.premier",
+  "name": "Bosnia and Herzegovina Handball Premier League",
+  "sport": "handball",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-bih-izv",
+   "eurhb-bih-bor"
+  ],
+  "passport": {
+   "label": "Bosnia and Herzegovina Handball Premier League venues",
+   "venueIds": [
+    "dvorana-ljubuski",
+    "dvorana-borik"
+   ]
+  }
+ },
+ {
+  "key": "handball/mne.league",
+  "name": "Montenegrin Handball First League",
+  "sport": "handball",
+  "country": "Montenegro",
+  "countryCode": "ME",
+  "tier": 1,
+  "teamCount": 1,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-mne-bud"
+  ],
+  "passport": {
+   "label": "Montenegrin Handball First League venues",
+   "venueIds": [
+    "dvorana-budva"
+   ]
+  }
+ },
+ {
+  "key": "handball/swe.hl",
+  "name": "Handbollsligan",
+  "sport": "handball",
+  "country": "Sweden",
+  "countryCode": "SE",
+  "tier": 1,
+  "teamCount": 8,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurhb-swe-sav",
+   "eurhb-swe-kri",
+   "eurhb-swe-yst",
+   "eurhb-swe-ali",
+   "eurhb-swe-lug",
+   "eurhb-swe-ham",
+   "eurhb-swe-sko",
+   "eurhb-swe-gui"
+  ],
+  "passport": {
+   "label": "Handbollsligan venues",
+   "venueIds": [
+    "partille-arena",
+    "kristianstad-arena",
+    "ystad-arena",
+    "nolhaga-arena",
+    "sparbanken-lund-arena",
+    "eriksdalshallen",
+    "arena-skovde",
+    "eskilstuna-arena"
+   ]
+  }
+ },
+ {
+  "key": "rugby/eng.prem",
+  "name": "Gallagher Premiership",
+  "sport": "rugby",
+  "country": "England",
+  "countryCode": "GB",
+  "tier": 1,
+  "teamCount": 10,
+  "season": "Sep-Jun",
+  "espnPath": "rugby/267979",
+  "teamIds": [
+   "eurru-gbr-bat",
+   "eurru-gbr-bri",
+   "eurru-gbr-exe",
+   "eurru-gbr-glo",
+   "eurru-gbr-har",
+   "eurru-gbr-lei",
+   "eurru-gbr-new",
+   "eurru-gbr-nor",
+   "eurru-gbr-sal",
+   "eurru-gbr-sar"
+  ],
+  "passport": {
+   "label": "Gallagher Premiership venues",
+   "venueIds": [
+    "the-recreation-ground-bath",
+    "ashton-gate-stadium",
+    "sandy-park",
+    "kingsholm",
+    "twickenham-stoop",
+    "welford-road",
+    "kingston-park",
+    "franklins-gardens",
+    "salford-community-stadium",
+    "stonex-stadium"
+   ]
+  }
+ },
+ {
+  "key": "rugby/fra.top14",
+  "name": "Top 14",
+  "sport": "rugby",
+  "country": "France",
+  "countryCode": "FR",
+  "tier": 1,
+  "teamCount": 14,
+  "season": "Aug-Jun",
+  "espnPath": "rugby/270559",
+  "teamIds": [
+   "eurru-fra-bay",
+   "eurru-fra-ube",
+   "eurru-fra-cas",
+   "eurru-fra-cle",
+   "eurru-fra-lar",
+   "eurru-fra-lyo",
+   "eurru-fra-mon",
+   "eurru-fra-oyo",
+   "eurru-fra-pau",
+   "eurru-fra-per",
+   "eurru-fra-rac",
+   "eurru-fra-sfp",
+   "eurru-fra-tou",
+   "eurru-fra-tln"
+  ],
+  "passport": {
+   "label": "Top 14 venues",
+   "venueIds": [
+    "stade-jean-dauger",
+    "stade-chaban-delmas",
+    "stade-pierre-fabre",
+    "stade-marcel-michelin",
+    "stade-marcel-deflandre",
+    "matmut-stadium-gerland",
+    "altrad-stadium",
+    "stade-charles-mathon",
+    "stade-du-hameau",
+    "stade-aime-giral",
+    "paris-la-defense-arena",
+    "stade-jean-bouin",
+    "stade-ernest-wallon",
+    "stade-mayol"
+   ]
+  }
+ },
+ {
+  "key": "rugby/urc",
+  "name": "United Rugby Championship (European clubs)",
+  "sport": "rugby",
+  "country": "International",
+  "countryCode": "XX",
+  "tier": 1,
+  "teamCount": 12,
+  "season": "Sep-Jun",
+  "espnPath": "rugby/270557",
+  "teamIds": [
+   "eurru-irl-lei",
+   "eurru-irl-mun",
+   "eurru-irl-con",
+   "eurru-irl-uls",
+   "eurru-sco-edi",
+   "eurru-sco-gla",
+   "eurru-wal-osp",
+   "eurru-wal-sca",
+   "eurru-wal-car",
+   "eurru-wal-dra",
+   "eurru-ita-ben",
+   "eurru-ita-zeb"
+  ],
+  "passport": {
+   "label": "United Rugby Championship (European clubs) venues",
+   "venueIds": [
+    "rds-arena",
+    "thomond-park",
+    "dexcom-stadium",
+    "affidea-stadium",
+    "dam-health-stadium",
+    "scotstoun-stadium",
+    "swansea-com-stadium",
+    "parc-y-scarlets",
+    "cardiff-arms-park",
+    "rodney-parade",
+    "stadio-monigo",
+    "stadio-lanfranchi"
+   ]
+  }
+ },
+ {
+  "key": "rugby/ita.top10",
+  "name": "Italian Rugby Serie A Elite (Top10)",
+  "sport": "rugby",
+  "country": "Italy",
+  "countryCode": "IT",
+  "tier": 1,
+  "teamCount": 6,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurru-ita-rov",
+   "eurru-ita-val",
+   "eurru-ita-via",
+   "eurru-ita-lyo",
+   "eurru-ita-mog",
+   "eurru-ita-fia"
+  ],
+  "passport": {
+   "label": "Italian Rugby Serie A Elite (Top10) venues",
+   "venueIds": [
+    "stadio-battaglini",
+    "stadio-mirabello",
+    "stadio-zaffanella",
+    "stadio-beltrametti",
+    "stadio-quaggia",
+    "stadio-tre-fontane"
+   ]
+  }
+ },
+ {
+  "key": "rugby/geo.didi",
+  "name": "Georgian Rugby Super League (Didi 10)",
+  "sport": "rugby",
+  "country": "Georgia",
+  "countryCode": "GE",
+  "tier": 1,
+  "teamCount": 5,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurru-geo-lel",
+   "eurru-geo-loc",
+   "eurru-geo-bat",
+   "eurru-geo-aia",
+   "eurru-geo-bla"
+  ],
+  "passport": {
+   "label": "Georgian Rugby Super League (Didi 10) venues",
+   "venueIds": [
+    "avchala-stadium",
+    "mikheil-meskhi-stadium",
+    "adjarabet-arena",
+    "ramaz-shengelia-stadium"
+   ]
+  }
+ },
+ {
+  "key": "rugby/rou.superliga",
+  "name": "SuperLiga CEC Bank (rugby)",
+  "sport": "rugby",
+  "country": "Romania",
+  "countryCode": "RO",
+  "tier": 1,
+  "teamCount": 3,
+  "season": "Sep-Jun",
+  "espnPath": null,
+  "teamIds": [
+   "eurru-rou-ste",
+   "eurru-rou-din",
+   "eurru-rou-far"
+  ],
+  "passport": {
+   "label": "SuperLiga CEC Bank (rugby) venues",
+   "venueIds": [
+    "stadionul-steaua",
+    "stadionul-dinamo",
+    "gheorghe-hagi-academy-central-stadium"
+   ]
+  }
+ },
+ {
+  "key": "rugby/rus.premier",
+  "name": "Rugby Premier League (Russia)",
+  "sport": "rugby",
+  "country": "Russia",
+  "countryCode": "RU",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Apr-Oct",
+  "espnPath": null,
+  "teamIds": [
+   "eurru-rus-yen",
+   "eurru-rus-sla"
+  ],
+  "passport": {
+   "label": "Rugby Premier League (Russia) venues",
+   "venueIds": [
+    "yenisey-stadium",
+    "stadion-slava"
+   ]
+  }
+ },
+ {
+  "key": "rugby/esp.honor",
+  "name": "División de Honor (rugby)",
+  "sport": "rugby",
+  "country": "Spain",
+  "countryCode": "ES",
+  "tier": 1,
+  "teamCount": 1,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurru-esp-ord"
+  ],
+  "passport": {
+   "label": "División de Honor (rugby) venues",
+   "venueIds": [
+    "estadio-altamira"
+   ]
+  }
+ },
+ {
+  "key": "rugby/por.nacional",
+  "name": "Campeonato Nacional de Rugby (Portugal)",
+  "sport": "rugby",
+  "country": "Portugal",
+  "countryCode": "PT",
+  "tier": 1,
+  "teamCount": 1,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurru-por-cdu"
+  ],
+  "passport": {
+   "label": "Campeonato Nacional de Rugby (Portugal) venues",
+   "venueIds": [
+    "estadio-universitario-lisboa"
+   ]
+  }
+ },
+ {
+  "key": "rugby/eng.superleague",
+  "name": "Betfred Super League",
+  "sport": "rugby",
+  "country": "England",
+  "countryCode": "GB",
+  "tier": 1,
+  "teamCount": 12,
+  "season": "Feb-Oct",
+  "espnPath": null,
+  "teamIds": [
+   "eurrl-gbr-wig",
+   "eurrl-gbr-stn",
+   "eurrl-gbr-lei",
+   "eurrl-gbr-war",
+   "eurrl-gbr-hfc",
+   "eurrl-gbr-hkr",
+   "eurrl-gbr-lee",
+   "eurrl-gbr-cas",
+   "eurrl-gbr-hud",
+   "eurrl-fra-cat",
+   "eurrl-gbr-wak",
+   "eurrl-gbr-bra"
+  ],
+  "passport": {
+   "label": "Betfred Super League venues",
+   "venueIds": [
+    "brick-community-stadium",
+    "totally-wicked-stadium",
+    "leigh-sports-village",
+    "halliwell-jones-stadium",
+    "mkm-stadium",
+    "craven-park-hull",
+    "headingley-stadium",
+    "wheldon-road",
+    "john-smiths-stadium",
+    "stade-gilbert-brutus",
+    "belle-vue-wakefield",
+    "odsal-stadium"
+   ]
+  }
+ },
+ {
+  "key": "rugby/fra.elite1",
+  "name": "Elite One Championship",
+  "sport": "rugby",
+  "country": "France",
+  "countryCode": "FR",
+  "tier": 1,
+  "teamCount": 3,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "eurrl-fra-car",
+   "eurrl-fra-ste",
+   "eurrl-fra-alb"
+  ],
+  "passport": {
+   "label": "Elite One Championship venues",
+   "venueIds": [
+    "stade-albert-domec",
+    "stade-municipal-saint-esteve",
+    "stade-municipal-albi"
+   ]
+  }
+ }
+]

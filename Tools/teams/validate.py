@@ -27,7 +27,7 @@ venue_ids = {v["id"] for v in venues} | {v.get("id") for v in missing} | other_v
 existing = json.load(open(os.path.join(ROOT, "Witness/Resources/Catalog/teams.json")))
 existing = existing if isinstance(existing, list) else existing.get("teams", existing)
 existing_ids = {t["id"] for t in existing}
-SPORTS = {"baseball", "football", "basketball", "hockey", "soccer", "motorsport", "handball", "volleyball", "lacrosse"}
+SPORTS = {"baseball", "football", "basketball", "hockey", "soccer", "motorsport", "handball", "volleyball", "lacrosse", "rugby"}
 hexre = re.compile(r"^[0-9A-Fa-f]{6}$")
 def lum(h):
     c = [int(h[i:i+2], 16) / 255 for i in (0, 2, 4)]

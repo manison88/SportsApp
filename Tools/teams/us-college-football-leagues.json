@@ -1,0 +1,980 @@
+[
+ {
+  "key": "football/college-football/american",
+  "name": "American Athletic Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 14,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-army",
+   "cfb-clt",
+   "cfb-ecu",
+   "cfb-fau",
+   "cfb-mem",
+   "cfb-navy",
+   "cfb-unt",
+   "cfb-rice",
+   "cfb-usf",
+   "cfb-tem",
+   "cfb-tuln",
+   "cfb-tlsa",
+   "cfb-uab",
+   "cfb-utsa"
+  ],
+  "passport": {
+   "label": "American stadiums",
+   "venueIds": [
+    "michie-stadium",
+    "jerry-richardson-stadium",
+    "dowdy-ficklen-stadium",
+    "fau-stadium",
+    "liberty-bowl-memorial-stadium",
+    "navy-marine-corps-stadium",
+    "datcu-stadium",
+    "rice-stadium",
+    "raymond-james-stadium",
+    "lincoln-financial-field",
+    "yulman-stadium",
+    "chapman-stadium",
+    "protective-stadium",
+    "alamodome"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/acc",
+  "name": "Atlantic Coast Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 17,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-bc",
+   "cfb-cal",
+   "cfb-clem",
+   "cfb-duke",
+   "cfb-fsu",
+   "cfb-gt",
+   "cfb-lou",
+   "cfb-mia",
+   "cfb-ncsu",
+   "cfb-unc",
+   "cfb-pitt",
+   "cfb-smu",
+   "cfb-stan",
+   "cfb-syr",
+   "cfb-uva",
+   "cfb-vt",
+   "cfb-wake"
+  ],
+  "passport": {
+   "label": "ACC stadiums",
+   "venueIds": [
+    "conte-forum",
+    "california-memorial-stadium",
+    "memorial-stadium-clemson",
+    "wallace-wade-stadium",
+    "doak-campbell-stadium",
+    "bobby-dodd-stadium",
+    "ln-stadium",
+    "hard-rock-stadium",
+    "carter-finley-stadium",
+    "kenan-memorial-stadium",
+    "acrisure-stadium",
+    "gerald-j-ford-stadium",
+    "stanford-stadium",
+    "jma-wireless-dome",
+    "scott-stadium",
+    "lane-stadium",
+    "allegacy-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/big-12",
+  "name": "Big 12 Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 16,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-asu",
+   "cfb-ariz",
+   "cfb-byu",
+   "cfb-bay",
+   "cfb-cin",
+   "cfb-colo",
+   "cfb-hou",
+   "cfb-isu",
+   "cfb-ku",
+   "cfb-ksu",
+   "cfb-okst",
+   "cfb-tcu",
+   "cfb-ttu",
+   "cfb-ucf",
+   "cfb-utah",
+   "cfb-wvu"
+  ],
+  "passport": {
+   "label": "Big 12 stadiums",
+   "venueIds": [
+    "mountain-america-stadium",
+    "arizona-stadium",
+    "lavell-edwards-stadium",
+    "mclane-stadium",
+    "nippert-stadium",
+    "folsom-field",
+    "tdecu-stadium",
+    "jack-trice-stadium",
+    "kansas-memorial-stadium",
+    "bill-snyder-family-stadium",
+    "gallagher-iba-arena",
+    "amon-g-carter-stadium",
+    "jones-att-stadium",
+    "fbc-mortgage-stadium",
+    "rice-eccles-stadium",
+    "milan-puskar-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/big-ten",
+  "name": "Big Ten Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 18,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-ill",
+   "cfb-iu",
+   "cfb-iowa",
+   "cfb-md",
+   "cfb-msu",
+   "cfb-mich",
+   "cfb-minn",
+   "cfb-neb",
+   "cfb-nu",
+   "cfb-osu",
+   "cfb-ore",
+   "cfb-psu",
+   "cfb-pur",
+   "cfb-rutg",
+   "cfb-ucla",
+   "cfb-usc",
+   "cfb-wash",
+   "cfb-wis"
+  ],
+  "passport": {
+   "label": "Big Ten stadiums",
+   "venueIds": [
+    "memorial-stadium-illinois",
+    "memorial-stadium-indiana",
+    "kinnick-stadium",
+    "secu-stadium",
+    "spartan-stadium",
+    "michigan-stadium",
+    "huntington-bank-stadium",
+    "memorial-stadium-nebraska",
+    "ryan-field",
+    "ohio-stadium",
+    "autzen-stadium",
+    "beaver-stadium",
+    "ross-ade-stadium",
+    "shi-stadium",
+    "rose-bowl",
+    "la-coliseum",
+    "hec-edmundson-pavilion",
+    "camp-randall-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/cusa",
+  "name": "Conference USA",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 10,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-del",
+   "cfb-fiu",
+   "cfb-jxst",
+   "cfb-kenn",
+   "cfb-lib",
+   "cfb-mtsu",
+   "cfb-most",
+   "cfb-nmsu",
+   "cfb-shsu",
+   "cfb-wku"
+  ],
+  "passport": {
+   "label": "C-USA stadiums",
+   "venueIds": [
+    "delaware-stadium",
+    "pitbull-stadium",
+    "burgess-snow-field",
+    "fifth-third-stadium-kennesaw",
+    "williams-stadium-liberty",
+    "floyd-stadium",
+    "plaster-stadium",
+    "aggie-memorial-stadium",
+    "bowers-stadium",
+    "lt-smith-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/fbs-independents",
+  "name": "FBS Independents",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-nd",
+   "cfb-conn"
+  ],
+  "passport": {
+   "label": "FBS Independent stadiums",
+   "venueIds": [
+    "notre-dame-stadium",
+    "rentschler-field"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/mac",
+  "name": "Mid-American Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 13,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-akr",
+   "cfb-ball",
+   "cfb-bgsu",
+   "cfb-buff",
+   "cfb-cmu",
+   "cfb-emu",
+   "cfb-kent",
+   "cfb-mass",
+   "cfb-moh",
+   "cfb-ohio",
+   "cfb-sac",
+   "cfb-tol",
+   "cfb-wmu"
+  ],
+  "passport": {
+   "label": "MAC stadiums",
+   "venueIds": [
+    "infocision-stadium",
+    "scheumann-stadium",
+    "doyt-perry-stadium",
+    "ub-stadium",
+    "kelly-shorts-stadium",
+    "rynearson-stadium",
+    "dix-stadium",
+    "mcguirk-stadium",
+    "yager-stadium",
+    "peden-stadium",
+    "hornet-stadium",
+    "glass-bowl",
+    "waldo-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/mountain-west",
+  "name": "Mountain West Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 10,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-afa",
+   "cfb-haw",
+   "cfb-nev",
+   "cfb-unm",
+   "cfb-ndsu",
+   "cfb-niu",
+   "cfb-sjsu",
+   "cfb-unlv",
+   "cfb-utep",
+   "cfb-wyo"
+  ],
+  "passport": {
+   "label": "Mountain West stadiums",
+   "venueIds": [
+    "falcon-stadium",
+    "ching-complex",
+    "mackay-stadium",
+    "university-stadium-unm",
+    "fargodome",
+    "huskie-stadium",
+    "cefcu-stadium",
+    "allegiant-stadium",
+    "sun-bowl-stadium",
+    "war-memorial-stadium-wyoming"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/pac-12",
+  "name": "Pac-12 Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 8,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-bois",
+   "cfb-csu",
+   "cfb-fres",
+   "cfb-orst",
+   "cfb-sdsu",
+   "cfb-txst",
+   "cfb-usu",
+   "cfb-wsu"
+  ],
+  "passport": {
+   "label": "Pac-12 stadiums",
+   "venueIds": [
+    "albertsons-stadium",
+    "canvas-stadium",
+    "valley-childrens-stadium",
+    "reser-stadium",
+    "snapdragon-stadium",
+    "ufcu-stadium",
+    "maverik-stadium",
+    "martin-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/sec",
+  "name": "Southeastern Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 16,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-ala",
+   "cfb-ark",
+   "cfb-aub",
+   "cfb-fla",
+   "cfb-uga",
+   "cfb-uk",
+   "cfb-lsu",
+   "cfb-msst",
+   "cfb-miz",
+   "cfb-ou",
+   "cfb-miss",
+   "cfb-sc",
+   "cfb-tenn",
+   "cfb-tamu",
+   "cfb-tex",
+   "cfb-van"
+  ],
+  "passport": {
+   "label": "SEC stadiums",
+   "venueIds": [
+    "bryant-denny-stadium",
+    "razorback-stadium",
+    "jordan-hare-stadium",
+    "ben-hill-griffin-stadium",
+    "sanford-stadium",
+    "kroger-field",
+    "tiger-stadium-lsu",
+    "davis-wade-stadium",
+    "faurot-field",
+    "oklahoma-memorial-stadium",
+    "vaught-hemingway-stadium",
+    "williams-brice-stadium",
+    "neyland-stadium",
+    "kyle-field",
+    "dkr-texas-memorial-stadium",
+    "memorial-gymnasium-vanderbilt"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/sun-belt",
+  "name": "Sun Belt Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 14,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-app",
+   "cfb-arst",
+   "cfb-ccu",
+   "cfb-gaso",
+   "cfb-gast",
+   "cfb-jmu",
+   "cfb-ul",
+   "cfb-lt",
+   "cfb-mrsh",
+   "cfb-odu",
+   "cfb-usa",
+   "cfb-usm",
+   "cfb-troy",
+   "cfb-ulm"
+  ],
+  "passport": {
+   "label": "Sun Belt stadiums",
+   "venueIds": [
+    "kidd-brewer-stadium",
+    "centennial-bank-stadium",
+    "brooks-stadium",
+    "paulson-stadium",
+    "center-parc-stadium",
+    "bridgeforth-stadium",
+    "cajun-field",
+    "joe-aillet-stadium",
+    "joan-c-edwards-stadium",
+    "sb-ballard-stadium",
+    "hancock-whitney-stadium",
+    "mm-roberts-stadium",
+    "veterans-memorial-stadium-troy",
+    "malone-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/big-sky",
+  "name": "Big Sky Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 13,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-cp",
+   "cfb-ewu",
+   "cfb-idst",
+   "cfb-idho",
+   "cfb-mont",
+   "cfb-mtst",
+   "cfb-nau",
+   "cfb-unco",
+   "cfb-prst",
+   "cfb-suu",
+   "cfb-ucd",
+   "cfb-utu",
+   "cfb-web"
+  ],
+  "passport": {
+   "label": "Big Sky stadiums",
+   "venueIds": [
+    "alex-g-spanos-stadium",
+    "roos-field",
+    "iccu-dome",
+    "kibbie-dome",
+    "washington-grizzly-stadium",
+    "bobcat-stadium-montana-state",
+    "j-lawrence-walkup-skydome",
+    "nottingham-field",
+    "hillsboro-stadium",
+    "eccles-coliseum",
+    "uc-davis-health-stadium",
+    "greater-zion-stadium",
+    "stewart-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/caa",
+  "name": "Coastal Athletic Association",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 13,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-bry",
+   "cfb-cam",
+   "cfb-elon",
+   "cfb-hamp",
+   "cfb-me",
+   "cfb-monm",
+   "cfb-unh",
+   "cfb-ncat",
+   "cfb-uri",
+   "cfb-shu",
+   "cfb-stbk",
+   "cfb-tow",
+   "cfb-alb"
+  ],
+  "passport": {
+   "label": "CAA stadiums",
+   "venueIds": [
+    "beirne-stadium",
+    "barker-lane-stadium",
+    "rhodes-stadium",
+    "armstrong-stadium",
+    "harold-alfond-sports-stadium",
+    "kessler-stadium",
+    "wildcat-stadium-nh",
+    "truist-stadium-ncat",
+    "meade-stadium",
+    "campus-field",
+    "kenneth-p-lavalle-stadium",
+    "johnny-unitas-stadium",
+    "tom-mary-casey-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/fcs-independents",
+  "name": "FCS Independents",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 2,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-chst",
+   "cfb-mrmk"
+  ],
+  "passport": {
+   "label": "FCS Independent stadiums",
+   "venueIds": [
+    "seatgeek-stadium",
+    "duane-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/ivy-league",
+  "name": "Ivy League",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 8,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-brwn",
+   "cfb-colu",
+   "cfb-cor",
+   "cfb-dart",
+   "cfb-harv",
+   "cfb-penn",
+   "cfb-prin",
+   "cfb-yale"
+  ],
+  "passport": {
+   "label": "Ivy League stadiums",
+   "venueIds": [
+    "brown-stadium",
+    "lawrence-a-wien-stadium",
+    "schoellkopf-field",
+    "memorial-field-nh",
+    "harvard-stadium",
+    "franklin-field-philadelphia",
+    "princeton-stadium",
+    "yale-bowl"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/meac",
+  "name": "Mid-Eastern Athletic Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 6,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-dsu",
+   "cfb-how",
+   "cfb-morg",
+   "cfb-norf",
+   "cfb-nccu",
+   "cfb-scst"
+  ],
+  "passport": {
+   "label": "MEAC stadiums",
+   "venueIds": [
+    "alumni-stadium-de",
+    "greene-stadium-dc",
+    "hughes-stadium-md",
+    "william-dick-price-stadium",
+    "o-kelly-riddick-stadium",
+    "oliver-c-dawson-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/mvfc",
+  "name": "Missouri Valley Football Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 9,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-ilst",
+   "cfb-inst",
+   "cfb-mur",
+   "cfb-und",
+   "cfb-uni",
+   "cfb-sdak",
+   "cfb-sdst",
+   "cfb-siu",
+   "cfb-ysu"
+  ],
+  "passport": {
+   "label": "MVFC stadiums",
+   "venueIds": [
+    "hancock-stadium",
+    "assembly-hall-indiana",
+    "roy-stewart-stadium",
+    "alerus-center",
+    "uni-dome",
+    "dakotadome",
+    "dykhouse-stadium",
+    "saluki-stadium",
+    "stambaugh-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/nec",
+  "name": "Northeast Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 8,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-ccsu",
+   "cfb-duq",
+   "cfb-liu",
+   "cfb-merc",
+   "cfb-nh",
+   "cfb-rmu",
+   "cfb-sto",
+   "cfb-wag"
+  ],
+  "passport": {
+   "label": "NEC stadiums",
+   "venueIds": [
+    "arute-field",
+    "arthur-j-rooney-athletic-field",
+    "bethpage-federal-credit-union-stadium",
+    "saxon-stadium",
+    "ralph-f-dellacamera-stadium",
+    "joe-walton-stadium",
+    "w-b-mason-stadium",
+    "wagner-college-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/ovc",
+  "name": "Ohio Valley Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 8,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-chso",
+   "cfb-eiu",
+   "cfb-gweb",
+   "cfb-lin",
+   "cfb-semo",
+   "cfb-tnst",
+   "cfb-utm",
+   "cfb-wiu"
+  ],
+  "passport": {
+   "label": "OVC stadiums",
+   "venueIds": [
+    "buccaneer-field",
+    "o-brien-field",
+    "ernest-w-spangler-stadium",
+    "hunter-stadium",
+    "houck-stadium",
+    "nissan-stadium",
+    "hardy-m-graham-stadium",
+    "hanson-field"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/patriot",
+  "name": "Patriot League",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 10,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-buck",
+   "cfb-colg",
+   "cfb-for",
+   "cfb-gtwn",
+   "cfb-hc",
+   "cfb-laf",
+   "cfb-leh",
+   "cfb-rich",
+   "cfb-vill",
+   "cfb-wm"
+  ],
+  "passport": {
+   "label": "Patriot League stadiums",
+   "venueIds": [
+    "christy-mathewson-memorial-stadium",
+    "andy-kerr-stadium",
+    "jack-coffey-field",
+    "cooper-field",
+    "fitton-field",
+    "fisher-stadium",
+    "goodman-stadium",
+    "robins-stadium",
+    "villanova-stadium",
+    "walter-j-zable-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/pioneer",
+  "name": "Pioneer Football League",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 11,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-btlr",
+   "cfb-dav",
+   "cfb-day",
+   "cfb-drke",
+   "cfb-mrst",
+   "cfb-more",
+   "cfb-pres",
+   "cfb-usd",
+   "cfb-stmn",
+   "cfb-stet",
+   "cfb-val"
+  ],
+  "passport": {
+   "label": "Pioneer League stadiums",
+   "venueIds": [
+    "butler-bowl",
+    "richardson-stadium-davidson",
+    "welcome-stadium",
+    "drake-stadium",
+    "leonidoff-field",
+    "jayne-stadium",
+    "bailey-memorial-stadium",
+    "torero-stadium",
+    "o-shaughnessy-stadium",
+    "spec-martin-stadium",
+    "brown-field"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/socon",
+  "name": "Southern Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 10,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-utc",
+   "cfb-etsu",
+   "cfb-fur",
+   "cfb-mer",
+   "cfb-sam",
+   "cfb-tntc",
+   "cfb-cit",
+   "cfb-vmi",
+   "cfb-wcu",
+   "cfb-wof"
+  ],
+  "passport": {
+   "label": "SoCon stadiums",
+   "venueIds": [
+    "finley-stadium",
+    "william-b-greene-jr-stadium",
+    "paladin-stadium",
+    "five-star-stadium",
+    "seibert-stadium",
+    "tucker-stadium",
+    "johnson-hagood-stadium",
+    "foster-stadium-va",
+    "e-j-whitmire-stadium",
+    "gibbs-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/southland",
+  "name": "Southland Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 9,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-etam",
+   "cfb-uiw",
+   "cfb-lam",
+   "cfb-mcn",
+   "cfb-nich",
+   "cfb-nwst",
+   "cfb-sela",
+   "cfb-sfa",
+   "cfb-rgv"
+  ],
+  "passport": {
+   "label": "Southland stadiums",
+   "venueIds": [
+    "memorial-stadium-tx",
+    "gayle-and-tom-benson-stadium",
+    "provost-umphrey-stadium",
+    "cowboy-stadium",
+    "john-l-guidry-stadium",
+    "turpin-stadium",
+    "strawberry-stadium",
+    "homer-bryce-stadium",
+    "robert-and-janet-vackar-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/swac",
+  "name": "Southwestern Athletic Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 12,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-aamu",
+   "cfb-alst",
+   "cfb-alcn",
+   "cfb-uapb",
+   "cfb-bcu",
+   "cfb-famu",
+   "cfb-gram",
+   "cfb-jkst",
+   "cfb-mvsu",
+   "cfb-pv",
+   "cfb-sou",
+   "cfb-txso"
+  ],
+  "passport": {
+   "label": "SWAC stadiums",
+   "venueIds": [
+    "louis-crews-stadium",
+    "cramton-bowl",
+    "casem-spinks-stadium",
+    "golden-lion-stadium",
+    "daytona-stadium",
+    "bragg-memorial-stadium",
+    "eddie-robinson-stadium",
+    "mississippi-veterans-memorial-stadium",
+    "rice-totten-stadium",
+    "panther-stadium-at-blackshear-field",
+    "mumford-stadium",
+    "shell-energy-stadium"
+   ]
+  }
+ },
+ {
+  "key": "football/college-football/uac",
+  "name": "United Athletic Conference",
+  "sport": "football",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 2,
+  "teamCount": 7,
+  "season": "Aug-Jan",
+  "espnPath": null,
+  "teamIds": [
+   "cfb-acu",
+   "cfb-apsu",
+   "cfb-cark",
+   "cfb-eku",
+   "cfb-una",
+   "cfb-tar",
+   "cfb-wes"
+  ],
+  "passport": {
+   "label": "UAC stadiums",
+   "venueIds": [
+    "wildcat-stadium-tx",
+    "fortera-stadium",
+    "estes-stadium",
+    "roy-kidd-stadium",
+    "braly-stadium",
+    "tarleton-memorial-stadium",
+    "university-stadium-ga"
+   ]
+  }
+ }
+]

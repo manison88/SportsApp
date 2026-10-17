@@ -4,7 +4,7 @@ into the app catalog. Usage: python3 Tools/venues/validate.py [file ...]"""
 import json, sys, glob, os, re
 from zoneinfo import ZoneInfo
 
-SPORTS = {"baseball", "football", "basketball", "hockey", "soccer", "motorsport", "handball", "volleyball"}
+SPORTS = {"baseball", "football", "basketball", "hockey", "soccer", "motorsport", "handball", "volleyball", "rugby", "lacrosse"}
 REQUIRED = ["id", "name", "city", "country", "countryCode", "latitude", "longitude", "sports", "timeZone"]
 
 def check(path):
