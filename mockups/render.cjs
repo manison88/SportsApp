@@ -13,8 +13,9 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = __dirname;
-const FEATURES = path.join(ROOT, 'features');
-const OUT = path.join(ROOT, 'png');
+// FEATURES_DIR / OUT_DIR let other rounds (e.g. round2/) reuse this renderer.
+const FEATURES = process.env.FEATURES_DIR ? path.resolve(process.env.FEATURES_DIR) : path.join(ROOT, 'features');
+const OUT = process.env.OUT_DIR ? path.resolve(process.env.OUT_DIR) : path.join(ROOT, 'png');
 
 (async () => {
   const only = process.argv.slice(2);

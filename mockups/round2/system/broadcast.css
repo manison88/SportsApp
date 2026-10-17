@@ -1,0 +1,73 @@
+/* Direction B · BROADCAST
+   Dark, bold, live. Feels like the best TV sports graphics package, minus the
+   clutter: huge condensed numerals, solid team-color fields, crisp score bugs.
+   Built from: Scoreboard game page, Bold Blocks + Movie Poster Wrapped (loves),
+   Jumbotron, Broadcast replay, Versus poster, Luck gauge.
+   Rules: one giant number or word per screen · team color as solid fields, not
+   gradients-everywhere · hard-ish corners (14px) · photos framed like a video
+   board · no textures, no LED dot overlays except on the single hero number. */
+
+:root {
+  --b-bg: #07080a;
+  --b-panel: #101217;
+  --b-panel-2: #171a21;
+  --b-text: #ffffff;
+  --b-text-2: rgba(255, 255, 255, .68);
+  --b-text-3: rgba(255, 255, 255, .42);
+  --b-line: rgba(255, 255, 255, .1);
+  --b-live: #ff3b30;
+  --b-accent: #ffb547;
+  --b-cond: "Barlow Condensed", "Oswald", sans-serif;
+  --b-ui: "Inter", system-ui, sans-serif;
+  --b-mono: "JetBrains Mono", ui-monospace, monospace;
+  --b-gutter: 18px;
+}
+
+body.b { background: var(--b-bg); color: var(--b-text); font-family: var(--b-ui); }
+
+/* type */
+.b-label { font: 700 11px/1.1 var(--b-cond); letter-spacing: 2.2px; text-transform: uppercase; color: var(--b-text-3); }
+.b-label.live { color: var(--b-live); }
+.b-mega { font: 800 132px/.82 var(--b-cond); letter-spacing: -3px; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.b-display { font: 800 58px/.88 var(--b-cond); letter-spacing: -1px; text-transform: uppercase; }
+.b-h1 { font: 800 36px/.92 var(--b-cond); letter-spacing: -.3px; text-transform: uppercase; }
+.b-h2 { font: 700 22px/1 var(--b-cond); letter-spacing: .2px; text-transform: uppercase; }
+.b-body { font: 400 14.5px/1.45 var(--b-ui); color: var(--b-text-2); }
+.b-small { font: 500 12px/1.3 var(--b-ui); color: var(--b-text-3); }
+.b-num { font: 800 28px/1 var(--b-cond); font-variant-numeric: tabular-nums; }
+
+/* score bug: <div class="b-bug"><span class="team" style="--c:#2f6bff">CHC</span><span class="score">3</span>...</div> */
+.b-bug { display: inline-flex; align-items: stretch; height: 34px; border-radius: 8px; overflow: hidden; background: #0d0f13; box-shadow: inset 0 0 0 1px var(--b-line); font: 800 17px/1 var(--b-cond); }
+.b-bug .team { background: var(--c, #333); color: #fff; padding: 0 10px; display: grid; place-items: center; letter-spacing: .8px; }
+.b-bug .score { padding: 0 11px; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+.b-bug .state { padding: 0 10px; display: grid; place-items: center; color: var(--b-text-2); font-size: 13px; letter-spacing: 1px; background: rgba(255,255,255,.05); }
+
+/* surfaces */
+.b-panel { background: var(--b-panel); border-radius: 14px; box-shadow: inset 0 0 0 1px var(--b-line); }
+.b-field { border-radius: 14px; background: var(--c, #2f6bff); color: #fff; }
+.b-frame { border-radius: 14px; overflow: hidden; position: relative; box-shadow: inset 0 0 0 1px var(--b-line); }
+.b-lower { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: stretch; }
+.b-lower .tag { background: var(--c, var(--b-live)); padding: 0 12px; display: grid; place-items: center; font: 800 20px/1 var(--b-cond); letter-spacing: 1px; }
+.b-lower .txt { flex: 1; background: rgba(7,8,10,.88); padding: 10px 12px; }
+.b-bar { height: 6px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; }
+.b-bar i { display: block; height: 100%; background: var(--c, var(--b-accent)); }
+
+/* controls */
+.b-btn { height: 50px; border-radius: 12px; background: #fff; color: #000; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 800 16px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; padding: 0 22px; }
+.b-btn.ghost { background: var(--b-panel-2); color: #fff; box-shadow: inset 0 0 0 1px var(--b-line); }
+.b-icon-btn { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--b-panel-2); box-shadow: inset 0 0 0 1px var(--b-line); }
+.b-icon-btn svg { width: 17px; height: 17px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.b-pill { height: 26px; padding: 0 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; font: 800 12px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; background: var(--b-panel-2); color: var(--b-text-2); }
+.b-pill.live { background: var(--b-live); color: #fff; }
+.b-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--b-live); box-shadow: 0 0 10px var(--b-live); display: inline-block; }
+
+.b-nav { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 20; }
+
+/* tab bar: full-width docked bar with a top hairline; current tab gets .on (white + 2px top bar) */
+.b-tabs { position: absolute; left: 0; right: 0; bottom: 0; height: 84px; z-index: 30; padding: 10px 14px 0;
+  background: rgba(7,8,10,.94); backdrop-filter: blur(20px); box-shadow: inset 0 1px 0 var(--b-line);
+  display: flex; justify-content: space-around; align-items: flex-start; }
+.b-tabs span { display: grid; justify-items: center; gap: 5px; font: 800 10.5px/1 var(--b-cond); letter-spacing: 1.3px; text-transform: uppercase; color: var(--b-text-3); padding-top: 6px; position: relative; }
+.b-tabs span.on { color: #fff; }
+.b-tabs span.on::before { content: ""; position: absolute; top: -10px; left: 50%; width: 22px; height: 2px; margin-left: -11px; background: #fff; border-radius: 1px; }
+.b-tabs svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }

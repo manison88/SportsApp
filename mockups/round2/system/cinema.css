@@ -1,0 +1,66 @@
+/* Direction A · CINEMA
+   Dark, photo-first, editorial. The photo is the hero; type is a serif headline
+   over it; everything else is quiet. Built from: Cinematic game page (love),
+   Magazine feed (love), Trailer (love), Movie Poster (love).
+   Rules: one photo-led focal point per screen · at most one amber accent ·
+   three type sizes per screen · no textures except subtle grain · no boxes inside boxes. */
+
+:root {
+  --a-bg: #050506;
+  --a-surface: #111114;
+  --a-raised: #19191d;
+  --a-text: #f5f1ea;
+  --a-text-2: rgba(245, 241, 234, .66);
+  --a-text-3: rgba(245, 241, 234, .42);
+  --a-line: rgba(255, 255, 255, .09);
+  --a-accent: #ffb547;
+  --a-serif: "Instrument Serif", Georgia, serif;
+  --a-ui: "Inter", system-ui, sans-serif;
+  --a-num: "Inter Tight", "Inter", sans-serif;
+  --a-gutter: 22px;
+}
+
+body.a { background: var(--a-bg); color: var(--a-text); font-family: var(--a-ui); }
+
+/* type */
+.a-eyebrow { font: 600 10.5px/1.2 var(--a-ui); letter-spacing: 1.9px; text-transform: uppercase; color: var(--a-text-3); }
+.a-eyebrow.accent { color: var(--a-accent); }
+.a-display { font: 400 46px/.98 var(--a-serif); letter-spacing: -.8px; color: var(--a-text); }
+.a-h1 { font: 400 36px/1.02 var(--a-serif); letter-spacing: -.5px; }
+.a-h2 { font: 400 26px/1.08 var(--a-serif); letter-spacing: -.3px; }
+.a-h3 { font: 600 16px/1.3 var(--a-ui); letter-spacing: -.1px; }
+.a-body { font: 400 15px/1.5 var(--a-ui); color: var(--a-text-2); }
+.a-small { font: 500 12.5px/1.35 var(--a-ui); color: var(--a-text-3); }
+.a-italic { font-style: italic; color: var(--a-text-2); }
+.a-num { font: 600 15px/1 var(--a-num); font-variant-numeric: tabular-nums; letter-spacing: -.2px; }
+.a-num-xl { font: 600 64px/.9 var(--a-num); font-variant-numeric: tabular-nums; letter-spacing: -2.5px; }
+
+/* photo hero with scrim: put an <img class="ph graded"> inside */
+.a-hero { position: absolute; left: 0; right: 0; top: 0; overflow: hidden; }
+.a-hero::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(5,5,6,.55) 0%, rgba(5,5,6,0) 20%, rgba(5,5,6,0) 48%, rgba(5,5,6,.82) 82%, #050506 100%); }
+
+/* surfaces */
+.a-card { background: var(--a-surface); border-radius: 24px; box-shadow: inset 0 0 0 .5px var(--a-line); }
+.a-photo-card { border-radius: 22px; overflow: hidden; position: relative; }
+.a-rule { height: 1px; background: var(--a-line); }
+
+/* controls */
+.a-btn { height: 52px; border-radius: 26px; background: var(--a-text); color: #0a0a0b; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: 600 15px/1 var(--a-ui); padding: 0 24px; }
+.a-btn.ghost { background: rgba(255,255,255,.1); color: var(--a-text); backdrop-filter: blur(20px); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.18); }
+.a-icon-btn { width: 40px; height: 40px; border-radius: 20px; display: grid; place-items: center; background: rgba(28,28,32,.55); backdrop-filter: blur(20px); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.16); }
+.a-icon-btn svg { width: 17px; height: 17px; stroke: #fff; fill: none; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+.a-chip { height: 28px; padding: 0 12px; border-radius: 14px; display: inline-flex; align-items: center; gap: 6px; font: 500 12px/1 var(--a-ui); color: var(--a-text); background: rgba(255,255,255,.1); backdrop-filter: blur(16px); }
+.a-chip.accent { color: var(--a-accent); background: rgba(255,181,71,.13); }
+.a-avatar { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 400 15px/1 var(--a-serif); color: #fff; box-shadow: 0 0 0 2px var(--a-bg); }
+
+/* nav bar: top row with back + actions, sits at top:56px */
+.a-nav { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 20; }
+
+/* tab bar: floating glass, 4 tabs; mark the current one with .on */
+.a-tabs { position: absolute; left: 18px; right: 18px; bottom: 30px; height: 62px; border-radius: 31px; z-index: 30;
+  background: rgba(22,22,26,.72); backdrop-filter: blur(24px) saturate(1.4); box-shadow: inset 0 0 0 .5px rgba(255,255,255,.14), 0 18px 40px rgba(0,0,0,.5);
+  display: flex; align-items: center; justify-content: space-around; padding: 0 10px; }
+.a-tabs span { display: grid; justify-items: center; gap: 4px; font: 600 10px/1 var(--a-ui); color: var(--a-text-3); }
+.a-tabs span.on { color: var(--a-text); }
+.a-tabs svg { width: 21px; height: 21px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
