@@ -22,6 +22,8 @@ final class ScanModel {
     private(set) var totalVisits = 0
     /// Set once the review screen has taken the results, so the Timeline banner goes away.
     private(set) var reviewed = false
+    /// Set once the scan screen has walked the person through every step, so the results appear after it, not mid-count.
+    private(set) var shown = false
 
     @ObservationIgnored private var task: Task<Void, Never>?
 
@@ -37,6 +39,7 @@ final class ScanModel {
     }
 
     func markReviewed() { reviewed = true }
+    func markShown() { shown = true }
 
     func reset() {
         task?.cancel()
@@ -48,6 +51,7 @@ final class ScanModel {
         checkedVisits = 0
         totalVisits = 0
         reviewed = false
+        shown = false
     }
 
     private func run(library: Library) async {
@@ -56,6 +60,7 @@ final class ScanModel {
         games = []; others = []; matches = [:]
         checkedVisits = 0; totalVisits = 0
         reviewed = false
+        shown = false
         state = .scanning
         // The scan can take minutes: keep the screen awake so it isn't interrupted.
         UIApplication.shared.isIdleTimerDisabled = true

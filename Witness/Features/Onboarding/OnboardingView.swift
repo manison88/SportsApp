@@ -15,16 +15,19 @@ struct OnboardingView: View {
             if !started {
                 WelcomeView { withAnimation(.smooth) { started = true } }
                     .transition(.opacity)
+            } else if scan.inProgress || (scan.state == .done && !scan.shown) {
+                // One screen from the first photo to the last step; the matches appear only after it.
+                ScanProgressView(scan: scan)
             } else {
                 switch scan.state {
-                case .idle, .denied: pages(denied: scan.state == .denied)
-                case .scanning, .matching: ScanProgressView(scan: scan)
+                case .idle, .denied, .scanning, .matching: pages(denied: scan.state == .denied)
                 case .done: ResultScreen(scan: scan) { presenter.modal = .discovery }
                 case .empty: emptyScreen(scan)
                 }
             }
         }
         .animation(.smooth, value: presenter.scan.state)
+        .animation(.smooth, value: presenter.scan.shown)
         .onChange(of: scenePhase) { _, phase in
             // Back from Settings with access turned on: carry straight on.
             if phase == .active, presenter.scan.state == .denied, PhotoMatcher.hasAccess {
@@ -494,14 +497,18 @@ private struct ResultScreen: View {
     @Environment(Library.self) private var library
     let scan: ScanModel
     let onReview: () -> Void
+    /// The result arrives in beats: the number counts up, then the figures, then the newest game.
+    @State private var beat = 0
+    @State private var counted = 0
 
     var body: some View {
         let p = scan.progress
         VStack(alignment: .leading, spacing: Spacing.block) {
             HStack(alignment: .firstTextBaseline, spacing: 12) {
-                Text("\(scan.games.count)")
+                Text("\(counted)")
                     .displayFont(150)
                     .foregroundStyle(.white)
+                    .contentTransition(.numericText())
                     .minimumScaleFactor(0.5)
                     .accessibilityIdentifier("onboarding-result")
                 Text("Games\nfound").displayFont(44).textCase(.uppercase).foregroundStyle(.white)
@@ -511,12 +518,17 @@ private struct ResultScreen: View {
                 stat(p.venues.count, "Venues")
                 stat(p.atStadiums, "Photos at\nstadiums")
             }
+            .opacity(beat >= 1 ? 1 : 0)
+            .offset(y: beat >= 1 ? 0 : 12)
             newestCard
+                .opacity(beat >= 2 ? 1 : 0)
+                .offset(y: beat >= 2 ? 0 : 18)
             if !scan.others.isEmpty {
                 Label("\(scan.others.count) other \(scan.others.count == 1 ? "visit" : "visits") near a stadium to look at after your games: a concert, a tour, a tailgate.",
                       systemImage: "ticket")
                     .font(.footnote)
                     .foregroundStyle(Color.textSecondary)
+                    .opacity(beat >= 3 ? 1 : 0)
                     .accessibilityIdentifier("onboarding-other-note")
             }
             Spacer(minLength: 0)
@@ -534,6 +546,13 @@ private struct ResultScreen: View {
         .padding(.top, 24)
         .padding(.bottom, 12)
         .frame(maxWidth: .infinity, alignment: .leading)
+        .task {
+            withAnimation(.easeOut(duration: 0.9)) { counted = scan.games.count }
+            for next in 1...3 {
+                try? await Task.sleep(for: .milliseconds(450))
+                withAnimation(.smooth(duration: 0.5)) { beat = next }
+            }
+        }
     }
 
     private func stat(_ value: Int, _ label: String) -> some View {

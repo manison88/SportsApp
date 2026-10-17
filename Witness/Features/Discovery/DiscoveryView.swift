@@ -351,7 +351,7 @@ struct DiscoveryView: View {
             scan.reset()
             scan.start(library: library)
         }
-        while scan.state == .idle || scan.inProgress {
+        while scan.state == .idle || scan.inProgress || (scan.state == .done && !scan.shown) {
             try? await Task.sleep(for: .milliseconds(300))
             if Task.isCancelled { return }
         }
