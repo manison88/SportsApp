@@ -99,6 +99,7 @@ struct TeamTile: View {
             .padding(.horizontal, compact ? 6 : 8)
             .frame(minHeight: compact ? 22 : 28)
             .background(team?.accent ?? .gray, in: .rect(cornerRadius: compact ? 5 : 7))
+            .fixedSize()
             .accessibilityLabel(team?.locationName ?? "Unknown team")
     }
 }
@@ -127,7 +128,9 @@ struct ScoreBug: View {
 
     private func side(_ teamId: String?, _ score: Int?) -> some View {
         HStack(spacing: 5) {
-            TeamTile(team: library.team(teamId), compact: true)
+            if let team = library.team(teamId) {
+                TeamTile(team: team, compact: true)
+            }
             if let score {
                 Text("\(score)").font(.condensed(.subheadline, weight: .heavy)).monospacedDigit()
             }
@@ -356,7 +359,10 @@ func matchupText(_ game: GameEntry, _ library: Library) -> String {
 func headlineText(_ game: GameEntry, _ library: Library) -> String {
     if let h = game.headline, !h.isEmpty { return h }
     guard let hs = game.homeScore, let as_ = game.awayScore else { return matchupText(game, library) }
-    let home = library.team(game.homeTeamId)?.locationName ?? "Home"
-    let away = library.team(game.awayTeamId)?.locationName ?? "Away"
+    guard let home = library.team(game.homeTeamId)?.locationName,
+          let away = library.team(game.awayTeamId)?.locationName else {
+        let venue = library.venue(game.venueId)?.name ?? "the game"
+        return "\(max(hs, as_))–\(min(hs, as_)) at \(venue)."
+    }
     return hs >= as_ ? "\(home) \(hs), \(away) \(as_)." : "\(away) \(as_), \(home) \(hs)."
 }

@@ -58,6 +58,7 @@ struct SharedPassportView: View {
         .scrollIndicators(.hidden)
         .inkBackground()
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 ShareLink(item: "\(together.count) games with \(person.name), \(theirs.record.text). Witness.") {

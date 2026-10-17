@@ -81,6 +81,7 @@ struct LifeMapView: View {
         .scrollBounceBehavior(.basedOnSize)
         .inkBackground()
         .navigationTitle("MAP")
+        .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {

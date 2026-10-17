@@ -61,6 +61,7 @@ struct TripView: View {
         .scrollIndicators(.hidden)
         .inkBackground()
         .navigationBarTitleDisplayMode(.inline)
+        .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 ShareLink(item: "\(trip.title) · \(dates(trip)) · Witness") {
