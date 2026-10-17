@@ -223,6 +223,8 @@ struct AddGameView: View {
             // Any team and any venue can host any sport (a national handball side in a basketball arena), so
             // changing the sport keeps what was picked.
         }
+        .onChange(of: venueId) { _, _ in autoLookup() }
+        .onChange(of: date) { _, _ in autoLookup() }
         .onChange(of: homeTeamId) { _, _ in fixRooting() }
         .onChange(of: awayTeamId) { _, _ in fixRooting() }
         .onChange(of: pickerItems) { _, items in
@@ -342,6 +344,15 @@ struct AddGameView: View {
         let p = library.addPerson(named: name)
         companionIds.insert(p.id)
         newPerson = ""
+    }
+
+    /// Looks the game up as soon as a venue and day are set, but only on a new game with no teams picked yet, so
+    /// nothing the fan typed is overwritten. "Find this game" stays for everything else.
+    private func autoLookup() {
+        guard editing == nil, found == nil, !lookingUp, sport != .motorsport,
+              homeTeamId == nil, awayTeamId == nil,
+              let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty else { return }
+        Task { await lookup() }
     }
 
     /// Finds the real game at this venue on this day and fills the form from it.
