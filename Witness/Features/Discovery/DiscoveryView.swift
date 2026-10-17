@@ -147,6 +147,7 @@ struct DiscoveryView: View {
                 }
             }
             let ids = Array(cluster.assetIds.prefix(4))
+            let hidden = cluster.assetIds.count - ids.count
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 6), GridItem(.flexible(), spacing: 6)], spacing: 6) {
                 ForEach(Array(ids.enumerated()), id: \.element) { i, _ in
                     let id = ids[i]
@@ -163,10 +164,28 @@ struct DiscoveryView: View {
                                 .background(.black.opacity(0.55), in: .rect(cornerRadius: 4))
                                 .padding(6)
                         }
+                        .overlay {
+                            // The last tile carries the rest, so four thumbnails don't read as "four photos".
+                            if i == ids.count - 1, hidden > 0 {
+                                ZStack {
+                                    Color.black.opacity(0.55)
+                                    Text("+\(hidden.formatted())")
+                                        .font(.condensed(.title, weight: .heavy))
+                                        .foregroundStyle(.white)
+                                }
+                                .clipShape(.rect(cornerRadius: 8))
+                            }
+                        }
                 }
             }
             .accessibilityElement()
             .accessibilityLabel("\(cluster.assetIds.count) photos at \(cluster.venue.name)")
+
+            Label("\(cluster.assetIds.count.formatted()) \(cluster.assetIds.count == 1 ? "photo" : "photos") will be added to this game",
+                  systemImage: "photo.on.rectangle")
+                .font(.footnote)
+                .foregroundStyle(Color.textSecondary)
+                .accessibilityIdentifier("discovery-photo-count")
 
             if tickets[cluster.id] != nil {
                 Label("From your ticket", systemImage: "ticket.fill")
