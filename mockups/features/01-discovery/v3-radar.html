@@ -9,23 +9,24 @@
   .head .eyebrow i { width: 6px; height: 6px; border-radius: 50%; background: var(--g); box-shadow: 0 0 8px var(--g); }
   .head .done { font: 600 15px/1 var(--f-ui); color: var(--text-2); }
 
-  .radar { position: absolute; left: 21.5px; top: 104px; width: 350px; height: 350px; }
+  .radar { position: absolute; left: 21.5px; top: 116px; width: 350px; height: 350px; }
   .radar svg { position: absolute; inset: 0; overflow: visible; }
   .sweep { position: absolute; inset: 10px; border-radius: 50%;
-    background: conic-gradient(from 0deg, rgba(87,255,176,0) 0deg, rgba(87,255,176,0) 290deg, rgba(87,255,176,.05) 320deg, rgba(87,255,176,.22) 357deg, rgba(87,255,176,.55) 360deg);
+    background: conic-gradient(from 0deg, rgba(87,255,176,0) 0deg, rgba(87,255,176,0) 290deg, rgba(87,255,176,.05) 320deg, rgba(87,255,176,.3) 357deg, rgba(87,255,176,.6) 360deg);
     transform: rotate(-12deg); mix-blend-mode: screen; }
   .label { position: absolute; font: 600 9.5px/1.25 var(--f-mono); letter-spacing: .6px; color: var(--g); white-space: nowrap; text-shadow: 0 0 8px rgba(0,0,0,.9); }
   .label span { color: var(--g2); font-weight: 400; }
   .label.big { font-size: 10.5px; padding: 6px 8px; border-radius: 8px; background: rgba(3,20,14,.82); box-shadow: inset 0 0 0 .5px rgba(87,255,176,.5), 0 0 24px rgba(87,255,176,.25); }
 
-  .counter { position: absolute; left: 0; right: 0; top: 470px; text-align: center; }
+  .counter { position: absolute; left: 0; right: 0; top: 486px; text-align: center; }
   .counter .n { font: 800 76px/1 var(--f-mono); letter-spacing: -5px; color: #eafff4; text-shadow: 0 0 30px rgba(87,255,176,.45); display: inline-flex; align-items: flex-end; }
   .roll { display: inline-block; height: 76px; overflow: hidden; position: relative; width: 46px; }
   .roll span { position: absolute; left: 0; }
+  .counter .plus { font: 700 13px/1 var(--f-mono); letter-spacing: 0; color: #03251a; background: var(--g); border-radius: 9px; padding: 4px 6px; margin: 0 0 54px 10px; text-shadow: none; }
   .counter .of { margin-top: 6px; font: 500 14px/1 var(--f-ui); color: var(--text-2); }
   .counter .of b { color: var(--g); font-weight: 600; }
 
-  .card { position: absolute; left: 16px; right: 16px; top: 594px; border-radius: 26px; padding: 16px 16px 16px 16px;
+  .card { position: absolute; left: 16px; right: 16px; top: 606px; border-radius: 26px; padding: 16px 16px 16px 16px;
     background: rgba(8,30,22,.72); box-shadow: inset 0 0 0 .5px rgba(87,255,176,.28), 0 20px 50px rgba(0,0,0,.5); }
   .card .eyebrow { color: var(--g2); }
   .row { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
@@ -39,7 +40,7 @@
   .acts div { height: 46px; border-radius: 23px; display: grid; place-items: center; font: 600 15px/1 var(--f-ui); }
   .acts .s { width: 104px; background: rgba(255,255,255,.07); color: var(--text-2); }
   .acts .c { flex: 1; background: var(--g); color: #03251a; }
-  .all { position: absolute; left: 0; right: 0; top: 788px; text-align: center; font: 600 13px/1 var(--f-ui); color: var(--g2); }
+  .all { position: absolute; left: 0; right: 0; top: 794px; text-align: center; font: 600 13px/1 var(--f-ui); color: var(--g2); }
 </style></head>
 <body class="phone">
   <div class="head">
@@ -54,15 +55,15 @@
   </div>
 
   <div class="counter">
-    <div class="n"><span>3</span><span class="roll"><span style="top:-48px;opacity:.25;filter:blur(1px)">1</span><span style="top:6px">2</span></span></div>
+    <div class="n">32<span class="plus">+1</span></div>
     <div class="of">of <b>47 games</b> found in your photos</div>
   </div>
 
   <div class="card">
-    <div class="eyebrow">Just pinged · 1,031 km north</div>
+    <div class="eyebrow">Just pinged · 176 mi north</div>
     <div class="row">
       <div class="thumb"><img class="ph graded" src="../../photos/lambeau-concourse.jpg"></div>
-      <div class="t"><b>Lambeau Field</b><span>Sun, Jan 5, 2025 · 38 photos</span></div>
+      <div class="t"><b>Lambeau Field</b><span>Jan 5, 2025 · 38 photos</span></div>
       <div class="sc tnum">CHI 24<small>GB 22 · FINAL</small></div>
     </div>
     <div class="acts"><div class="s">Skip</div><div class="c">Confirm game</div></div>
@@ -77,7 +78,7 @@
 (function(){
   const S = 350, C = S/2, R = 165;
   const home = [-87.70, 41.92];
-  const proj = d3.geoAzimuthalEquidistant().rotate([-home[0], -home[1]]).clipAngle(27).scale(R / (27 * Math.PI/180)).translate([C, C]);
+  const proj = d3.geoAzimuthalEquidistant().rotate([-home[0], -home[1]]).clipAngle(18.5).scale(R / (18.5 * Math.PI/180)).translate([C, C]);
   const path = d3.geoPath(proj);
   const land = topojson.feature(__atlas['land-50m'], __atlas['land-50m'].objects.land);
   const st = __atlas['states-10m'];
@@ -96,7 +97,7 @@
   for (let i = 1; i <= 4; i++) map.append('circle').attr('cx',C).attr('cy',C).attr('r',R*i/4).attr('fill','none').attr('stroke','rgba(87,255,176,'+(i===4?.55:.16)+')').attr('stroke-width', i===4?1.2:.7).attr('stroke-dasharray', i===4?null:'2 3');
   [0,45,90,135].forEach(a => { const r = a*Math.PI/180; map.append('line').attr('x1',C-Math.cos(r)*R).attr('y1',C-Math.sin(r)*R).attr('x2',C+Math.cos(r)*R).attr('y2',C+Math.sin(r)*R).attr('stroke','rgba(87,255,176,.10)').attr('stroke-width',.7); });
   // ring distance labels
-  [['500 MI',1],['1,000',2],['1,500',3]].forEach(([t,i]) => map.append('text').attr('x',C+4).attr('y',C-R*i/4*0.9 - 0).attr('fill','rgba(87,255,176,.4)').attr('font-family','JetBrains Mono').attr('font-size',7.5).attr('font-weight',600).text(t));
+  [['320 MI',1],['640',2],['960',3]].forEach(([t,i]) => map.append('text').attr('x',C+4).attr('y',C-R*i/4*0.9 - 0).attr('fill','rgba(87,255,176,.4)').attr('font-family','JetBrains Mono').attr('font-size',7.5).attr('font-weight',600).text(t));
 
   // outer progress ring (32/47) + ticks
   const ov = d3.select('#over');
@@ -133,9 +134,8 @@
 
   const lab = (txt, x, y, cls) => { const d = document.createElement('div'); d.className = 'label ' + (cls||''); d.innerHTML = txt; d.style.left = x + 'px'; d.style.top = y + 'px'; document.querySelector('.radar').appendChild(d); return d; };
   const p = n => proj(V.find(v => v[0] === n).slice(1,3));
-  let q = p('Lambeau'); lab('LAMBEAU FIELD <span>· NEW</span><br><span>CHI 24 – GB 22 · ’25</span>', q[0] + 24, q[1] - 34, 'big');
-  lab('CHICAGO <span>· 46</span>', hx + 12, hy + 12);
-  q = p('Fenway'); lab('FENWAY', q[0] - 22, q[1] + 12);
+  let q = p('Lambeau'); lab('LAMBEAU FIELD <span>· NEW</span><br><span>CHI 24 – GB 22 · ’25</span>', q[0] - 76, q[1] - 72, 'big');
+  q = p('Fenway'); lab('FENWAY', q[0] - 4, q[1] - 22);
   q = p('COTA'); lab('COTA', q[0] - 12, q[1] + 11);
   q = p('Denver'); lab('DENVER', q[0] - 18, q[1] + 11);
   q = p('St. Louis'); lab('ST. LOUIS', q[0] - 26, q[1] + 11);
@@ -143,7 +143,7 @@
   const ba = (41 - 90) * Math.PI/180;
   const ex = C + Math.cos(ba) * (R + 2), ey = C + Math.sin(ba) * (R + 2);
   ov.append('path').attr('d', `M${ex-6},${ey+4} L${ex+5},${ey-5} M${ex+5},${ey-5} L${ex-2},${ey-6} M${ex+5},${ey-5} L${ex+4},${ey+2}`).attr('stroke','#ffb547').attr('stroke-width',1.8).attr('fill','none').attr('stroke-linecap','round');
-  const e = lab('+3 BEYOND RANGE<br><span style="color:rgba(255,181,71,.7)">DORTMUND · BCN · MADRID</span>', ex - 100, ey - 54);
+  const e = lab('+3 BEYOND RANGE<br><span style="color:rgba(255,181,71,.7)">DORTMUND · BCN · MADRID</span>', 206, -24);
   e.style.color = '#ffb547'; e.style.textAlign = 'right';
 })();
 </script>

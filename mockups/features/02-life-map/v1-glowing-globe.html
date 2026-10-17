@@ -1,0 +1,150 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Glowing globe</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: radial-gradient(70% 40% at 50% 50%, #0c1220 0%, #05070c 60%, #030305 100%); }
+  .stars { position: absolute; inset: 0; }
+  .head { position: absolute; top: 64px; left: 24px; right: 24px; z-index: 3; }
+  .head .eyebrow { color: var(--signal); opacity: .85; }
+  .head h1 { margin-top: 10px; font: 400 38px/1.0 var(--f-serif); letter-spacing: -.6px; }
+  .head h1 em { font-style: italic; color: var(--signal-soft); }
+  .top { position: absolute; top: 58px; right: 18px; z-index: 4; }
+  #globe { position: absolute; left: 0; top: 0; width: 393px; height: 852px; overflow: visible; }
+
+  .callout { position: absolute; z-index: 5; padding: 10px 12px 10px; border-radius: 16px; min-width: 150px; }
+  .callout .eyebrow { font-size: 9px; letter-spacing: 1.5px; color: var(--signal); }
+  .callout b { display: block; margin-top: 5px; font: 600 14px/1.2 var(--f-ui); }
+  .callout span { display: block; margin-top: 2px; font: 400 12px/1.3 var(--f-ui); color: var(--text-2); }
+  .homeTag { position: absolute; z-index: 5; text-align: right; }
+  .homeTag b { display: block; font: 400 26px/1 var(--f-serif); color: #fff3df; text-shadow: 0 0 18px rgba(255,181,71,.7); }
+  .homeTag span { font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-2); }
+
+  .panel { position: absolute; left: 14px; right: 14px; top: 676px; z-index: 6; border-radius: 26px; padding: 16px 18px 16px; }
+  .stats { display: flex; justify-content: space-between; }
+  .stat .n { font: 600 26px/1 var(--f-tight); letter-spacing: -.8px; font-variant-numeric: tabular-nums; }
+  .stat .l { margin-top: 5px; font: 500 11px/1 var(--f-ui); color: var(--text-3); letter-spacing: .3px; }
+  .div { width: .5px; background: rgba(255,255,255,.14); }
+  .legend { margin-top: 14px; padding-top: 12px; border-top: .5px solid rgba(255,255,255,.1); display: flex; align-items: center; gap: 10px; font: 500 12px/1 var(--f-ui); color: var(--text-2); }
+  .legend .ramp { width: 74px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, rgba(255,181,71,.15), #ffb547, #fff2d6); box-shadow: 0 0 10px rgba(255,181,71,.5); }
+  .legend .r { margin-left: auto; color: var(--text-3); }
+</style></head>
+<body class="phone">
+  <canvas class="stars" id="stars" width="1179" height="2556"></canvas>
+  <svg id="globe"></svg>
+
+  <div class="head">
+    <div class="eyebrow">Life map · 2014 – 2026</div>
+    <h1>42,900 miles,<br><em>all from Chicago.</em></h1>
+  </div>
+  <div class="top"><div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div></div>
+
+  <div class="callout glass" id="co">
+    <div class="eyebrow">Spain · Feb – Mar 2020</div>
+    <b>Camp Nou → Bernabéu</b>
+    <span>2 games · with Dana, Maya & Leo</span>
+  </div>
+  <div class="homeTag" id="ht"><b>Chicago</b><span>46 games · 4 venues</span></div>
+
+  <div class="panel glass">
+    <div class="stats">
+      <div class="stat"><div class="n">60</div><div class="l">Games</div></div><div class="div"></div>
+      <div class="stat"><div class="n">21</div><div class="l">Venues</div></div><div class="div"></div>
+      <div class="stat"><div class="n">3</div><div class="l">Countries</div></div><div class="div"></div>
+      <div class="stat"><div class="n">61%</div><div class="l">Home wins</div></div>
+    </div>
+    <div class="legend"><span>1 visit</span><span class="ramp"></span><span>17</span><span class="r">Drag to spin</span></div>
+  </div>
+
+<script src="../../kit/vendor/d3.min.js"></script>
+<script src="../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../kit/vendor/countries-110m.js"></script>
+<script>
+(function(){
+  // stars
+  const sc = document.getElementById('stars').getContext('2d'); let s = 5; const r = () => (s = (s * 16807) % 2147483647) / 2147483647;
+  for (let i = 0; i < 260; i++) { const a = r() * .5 + .08; sc.fillStyle = `rgba(255,255,255,${a})`; const z = r() < .9 ? 1.4 : 2.8; sc.fillRect(r() * 1179, r() * 2556, z, z); }
+
+  const W = 393, cx = 196, cy = 478, R = 252;
+  const proj = d3.geoOrthographic().rotate([50, -38, 0]).scale(R).translate([cx, cy]).clipAngle(90);
+  const path = d3.geoPath(proj);
+  const svg = d3.select('#globe').attr('width', W).attr('height', 852);
+  const defs = svg.append('defs');
+  const atm = defs.append('radialGradient').attr('id', 'atm');
+  [[0, 'rgba(80,140,255,0)'], [.86, 'rgba(80,140,255,0)'], [.93, 'rgba(110,160,255,.22)'], [1, 'rgba(110,160,255,0)']].forEach(([o, c]) => atm.append('stop').attr('offset', o).attr('stop-color', c));
+  const body = defs.append('radialGradient').attr('id', 'body').attr('cx', '38%').attr('cy', '32%');
+  [[0, '#16233d'], [.6, '#0b1222'], [1, '#05080f']].forEach(([o, c]) => body.append('stop').attr('offset', o).attr('stop-color', c));
+  const f = defs.append('filter').attr('id', 'glow').attr('x', '-50%').attr('y', '-50%').attr('width', '200%').attr('height', '200%');
+  f.append('feGaussianBlur').attr('stdDeviation', 3.2).attr('result', 'b');
+  const m = f.append('feMerge'); m.append('feMergeNode').attr('in', 'b'); m.append('feMergeNode').attr('in', 'SourceGraphic');
+  const f2 = defs.append('filter').attr('id', 'bloom').attr('x', '-200%').attr('y', '-200%').attr('width', '500%').attr('height', '500%');
+  f2.append('feGaussianBlur').attr('stdDeviation', 9);
+
+  svg.append('circle').attr('cx', cx).attr('cy', cy).attr('r', R * 1.09).attr('fill', 'url(#atm)');
+  svg.append('circle').attr('cx', cx).attr('cy', cy).attr('r', R).attr('fill', 'url(#body)');
+  svg.append('path').attr('d', path(d3.geoGraticule10())).attr('fill', 'none').attr('stroke', 'rgba(140,170,255,.07)').attr('stroke-width', .6);
+
+  // dotted land
+  const world = __atlas['countries-110m'];
+  const feats = topojson.feature(world, world.objects.countries).features.map(f => ({ f, b: d3.geoBounds(f) }));
+  const inLand = p => feats.some(({ f, b }) => (b[0][0] > b[1][0] || (p[0] >= b[0][0] - .5 && p[0] <= b[1][0] + .5)) && p[1] >= b[0][1] - .5 && p[1] <= b[1][1] + .5 && d3.geoContains(f, p));
+  const center = [-50, 38];
+  const g = svg.append('g');
+  g.append('path').attr('d', path(topojson.feature(world, world.objects.countries))).attr('fill', 'rgba(110,145,235,.07)').attr('stroke', 'rgba(150,180,255,.22)').attr('stroke-width', .5);
+  for (let lat = -60; lat <= 80; lat += 1.15) {
+    const step = 1.15 / Math.max(.2, Math.cos(lat * Math.PI / 180));
+    for (let lon = -180; lon < 180; lon += step) {
+      const p = [lon, lat]; const d = d3.geoDistance(p, center); if (d > 1.5) continue;
+      if (!inLand(p)) continue;
+      const [x, y] = proj(p); const k = Math.cos(d);
+      g.append('circle').attr('cx', x.toFixed(1)).attr('cy', y.toFixed(1)).attr('r', (.5 + .5 * k).toFixed(2)).attr('fill', `rgba(170,195,255,${(.14 + .5 * k * k).toFixed(2)})`);
+    }
+  }
+  // limb shading
+  const limb = defs.append('radialGradient').attr('id', 'limb');
+  [[0, 'rgba(0,0,0,0)'], [.72, 'rgba(0,0,0,0)'], [1, 'rgba(2,3,8,.75)']].forEach(([o, c]) => limb.append('stop').attr('offset', o).attr('stop-color', c));
+  svg.append('circle').attr('cx', cx).attr('cy', cy).attr('r', R).attr('fill', 'url(#limb)');
+  svg.append('circle').attr('cx', cx).attr('cy', cy).attr('r', R).attr('fill', 'none').attr('stroke', 'rgba(140,175,255,.35)').attr('stroke-width', .8);
+
+  const home = [-87.70, 41.92];
+  const V = [
+    ['Fenway', -71.097, 42.346, 2], ['Lambeau', -88.062, 44.501, 1], ['Milwaukee', -87.971, 43.028, 2], ['Minneapolis', -93.278, 44.982, 1],
+    ['Kansas City', -94.480, 39.051, 1], ['St. Louis', -90.193, 38.623, 2], ['Cincinnati', -84.507, 39.097, 1], ['Detroit', -83.049, 42.339, 1],
+    ['Pittsburgh', -80.006, 40.447, 1], ['New York', -73.926, 40.829, 1], ['Denver', -104.994, 39.756, 1], ['San Francisco', -122.389, 37.778, 1],
+    ['Los Angeles', -118.240, 34.074, 1], ['COTA', -97.641, 30.133, 1], ['Dortmund', 7.452, 51.493, 1], ['Camp Nou', 2.123, 41.381, 1], ['Bernabéu', -3.688, 40.453, 1]
+  ];
+  const arcsG = svg.append('g');
+  function arc(a, b, lift, w, op, col) {
+    const ip = d3.geoInterpolate(a, b), dist = d3.geoDistance(a, b); const pts = [];
+    for (let i = 0; i <= 64; i++) { const t = i / 64; const p = proj(ip(t)); if (!p) continue;
+      const h = 1 + lift * dist * Math.sin(Math.PI * t); pts.push([cx + (p[0] - cx) * h, cy + (p[1] - cy) * h]); }
+    const d = d3.line().curve(d3.curveCatmullRom)(pts);
+    arcsG.append('path').attr('d', d).attr('fill', 'none').attr('stroke', col).attr('stroke-width', w * 4).attr('opacity', op * .55).attr('filter', 'url(#bloom)');
+    arcsG.append('path').attr('d', d).attr('fill', 'none').attr('stroke', col).attr('stroke-width', w).attr('opacity', op).attr('stroke-linecap', 'round');
+  }
+  V.forEach(([n, lon, lat, k]) => {
+    const far = Math.abs(lon - home[0]) > 40;
+    arc(home, [lon, lat], far ? .2 : .14, k > 1 ? 2.4 : 1.3, k > 1 ? 1 : .7, k > 1 ? '#ffe7c2' : '#ffb547');
+  });
+  // Spain trip legs (Barcelona → Valencia → Madrid)
+  arc([2.123, 41.381], [-0.376, 39.47], .25, 1, .7, '#ffd9a0');
+  arc([-0.376, 39.47], [-3.688, 40.453], .25, 1, .7, '#ffd9a0');
+
+  // venue dots
+  V.forEach(([n, lon, lat, k]) => { const [x, y] = proj([lon, lat]);
+    svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 6 + k * 3).attr('fill', '#ffb547').attr('opacity', .45).attr('filter', 'url(#bloom)');
+    svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 1.6 + k * .5).attr('fill', '#fff4e0'); });
+  // home bloom
+  const [hx, hy] = proj(home);
+  svg.append('circle').attr('cx', hx).attr('cy', hy).attr('r', 30).attr('fill', '#ffb547').attr('opacity', .55).attr('filter', 'url(#bloom)');
+  svg.append('circle').attr('cx', hx).attr('cy', hy).attr('r', 12).attr('fill', '#ffe3b0').attr('opacity', .9).attr('filter', 'url(#bloom)');
+  svg.append('circle').attr('cx', hx).attr('cy', hy).attr('r', 4.2).attr('fill', '#fff');
+  svg.append('circle').attr('cx', hx).attr('cy', hy).attr('r', 11).attr('fill', 'none').attr('stroke', 'rgba(255,230,190,.7)').attr('stroke-width', .8);
+
+  const ht = document.getElementById('ht'); ht.style.left = (hx - 30) + 'px'; ht.style.top = (hy + 30) + 'px'; ht.style.textAlign = 'left';
+  const [bx, by] = proj([2.123, 41.381]);
+  const co = document.getElementById('co'); co.style.right = '16px'; co.style.top = (hy + 96) + 'px';
+  svg.append('path').attr('d', `M${bx} ${by + 4} L${bx} ${hy + 96}`).attr('stroke', 'rgba(255,217,160,.6)').attr('stroke-width', 1);
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

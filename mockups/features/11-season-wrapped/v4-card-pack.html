@@ -1,0 +1,104 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Card Pack</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: radial-gradient(80% 50% at 50% 46%, #3b1d6e 0%, #170b30 55%, #07040f 100%); }
+  .rays { position: absolute; left: 50%; top: 400px; width: 900px; height: 900px; margin: -450px 0 0 -450px; opacity: .35;
+    background: repeating-conic-gradient(from 0deg, rgba(255,220,160,.22) 0 4deg, transparent 4deg 14deg);
+    -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 55%); mask-image: radial-gradient(circle, #000 0%, transparent 55%); }
+  .prog { position: absolute; top: 54px; left: 10px; right: 10px; display: flex; gap: 4px; z-index: 20; }
+  .prog i { flex: 1; height: 2.5px; border-radius: 2px; background: rgba(255,255,255,.3); position: relative; overflow: hidden; }
+  .prog i.done { background: #fff; }
+  .prog i.now::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 55%; background: #fff; }
+  .shead { position: absolute; top: 66px; left: 14px; right: 10px; height: 32px; display: flex; align-items: center; z-index: 20; }
+  .shead .av { width: 30px; height: 30px; border-radius: 50%; background: #fff; color: #170b30; display: grid; place-items: center; font: 400 19px/1 var(--f-serif); margin-right: 9px; }
+  .shead b { font: 600 13.5px/1 var(--f-ui); color: #fff; }
+  .shead span { font: 500 13px/1 var(--f-ui); color: rgba(255,255,255,.6); margin-left: 6px; }
+  .shead .sp { flex: 1; }
+  .shead svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; margin-left: 12px; }
+
+  .head { position: absolute; top: 112px; left: 0; right: 0; text-align: center; z-index: 5; }
+  .head .ey { font: 700 11px/1 var(--f-ui); letter-spacing: 3px; color: rgba(255,255,255,.7); text-transform: uppercase; }
+  .head h1 { margin-top: 6px; font: 900 50px/1 var(--f-tight); letter-spacing: -1px; word-spacing: 6px;
+    background: linear-gradient(100deg, #ffe08a 0%, #ff9ad5 30%, #9fd8ff 55%, #b7ffb0 75%, #ffe08a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .card { position: absolute; width: 214px; height: 300px; left: 50%; margin-left: -107px; top: 206px; border-radius: 16px; }
+  .side { background: linear-gradient(160deg, #262036, #120d1e); box-shadow: 0 0 0 1px rgba(255,255,255,.14), 0 20px 40px rgba(0,0,0,.55); overflow: hidden; }
+  .side.l { transform: translate(-88px, 44px) rotate(-13deg) scale(.86); }
+  .side.r { transform: translate(88px, 44px) rotate(13deg) scale(.86); }
+  .side.l .top { justify-items: start; padding-left: 14px; }
+  .side.r .top { justify-items: end; padding-right: 22px; }
+  .side.r .meta { text-align: right; }
+  .side .top { height: 168px; display: grid; place-items: center; }
+  .side .meta { padding: 0 16px; }
+  .side .meta b { display: block; font: 400 22px/1 var(--f-anton); color: #fff; letter-spacing: .4px; text-transform: uppercase; }
+  .side .meta span { display: block; margin-top: 6px; font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.4px; color: rgba(255,255,255,.55); text-transform: uppercase; }
+  .side .bigN { font: 400 56px/1 var(--f-anton); color: #fff; }
+  .side.r .top { background: linear-gradient(180deg, #9fd8ff, #3d6fa8); }
+  .side.l .top { background: linear-gradient(180deg, #ff9aa6, #9b3d55); }
+  .side .avm { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #ff7a8a, #8c3a44); display: grid; place-items: center; font: 400 40px/1 var(--f-serif); color: #fff; box-shadow: 0 0 0 3px rgba(255,255,255,.85); }
+
+  .hero { z-index: 6; padding: 3px; transform: rotate(-2deg);
+    background: conic-gradient(from 210deg, #ffe08a, #ff9ad5, #9fd8ff, #b7ffb0, #ffe08a, #ff9ad5, #ffe08a);
+    box-shadow: 0 30px 60px rgba(0,0,0,.6), 0 0 50px rgba(255,180,220,.35); }
+  .hero .in { position: relative; width: 100%; height: 100%; border-radius: 13px; overflow: hidden; background: #0d0a16; }
+  .hero .pic { position: absolute; left: 8px; right: 8px; top: 8px; height: 170px; border-radius: 9px; overflow: hidden; }
+  .hero .holo { position: absolute; inset: 0; mix-blend-mode: color-dodge; opacity: .38;
+    background: linear-gradient(125deg, transparent 20%, #ff9ad5 35%, #9fd8ff 45%, #b7ffb0 55%, transparent 70%); }
+  .hero .rar { position: absolute; top: 16px; left: 16px; height: 22px; padding: 0 8px; border-radius: 11px; display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(0,0,0,.6); font: 800 10px/1 var(--f-ui); letter-spacing: 1px; color: #ffe08a; }
+  .hero .num { position: absolute; top: 16px; right: 16px; font: 700 10px/1 var(--f-mono); color: rgba(255,255,255,.85); background: rgba(0,0,0,.55); padding: 6px 7px; border-radius: 6px; }
+  .hero .name { position: absolute; left: 14px; right: 14px; top: 188px; }
+  .hero .name b { display: block; font: 400 28px/1 var(--f-anton); letter-spacing: .4px; color: #fff; text-transform: uppercase; }
+  .hero .name span { display: block; margin-top: 5px; font: 500 11.5px/1 var(--f-ui); color: rgba(255,255,255,.6); }
+  .hero .stats { position: absolute; left: 14px; right: 14px; bottom: 12px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(255,255,255,.12); padding-top: 9px; }
+  .hero .stats div { text-align: center; }
+  .hero .stats div + div { border-left: 1px solid rgba(255,255,255,.1); }
+  .hero .stats b { display: block; font: 700 17px/1 var(--f-tight); color: #fff; font-variant-numeric: tabular-nums; }
+  .hero .stats span { display: block; margin-top: 4px; font: 600 8px/1 var(--f-ui); letter-spacing: 1.2px; color: rgba(255,255,255,.5); text-transform: uppercase; }
+
+  .pack { position: absolute; left: 50%; width: 300px; margin-left: -150px; top: 526px; height: 206px; z-index: 8;
+    background: linear-gradient(100deg, #7a7d86 0%, #e6e8ee 18%, #9ea2ad 34%, #f6f7fb 50%, #8e929c 66%, #d9dce3 82%, #6e717a 100%);
+    clip-path: polygon(0 14px, 6% 4px, 12% 16px, 19% 2px, 26% 13px, 33% 5px, 40% 17px, 47% 3px, 54% 12px, 61% 1px, 68% 15px, 75% 4px, 82% 14px, 89% 2px, 95% 12px, 100% 5px, 100% 100%, 0 100%);
+    border-radius: 0 0 14px 14px; }
+  .pack .art { position: absolute; left: 14px; right: 14px; top: 26px; bottom: 14px; border-radius: 8px; background: linear-gradient(160deg, #2a1556, #120a26); display: grid; place-items: center; text-align: center; }
+  .pack .art .w { font: 400 15px/1 var(--f-serif); color: #fff; letter-spacing: 3px; text-transform: uppercase; opacity: .85; }
+  .pack .art .y { font: 900 54px/1 var(--f-tight); letter-spacing: -2px; margin-top: 2px;
+    background: linear-gradient(100deg, #ffe08a, #ff9ad5, #9fd8ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .pack .art .s { margin-top: 6px; font: 700 9.5px/1 var(--f-ui); letter-spacing: 2px; color: rgba(255,255,255,.6); text-transform: uppercase; }
+  .pack::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 1px, transparent 1px 7px); }
+
+  .share { position: absolute; top: 762px; left: 16px; right: 16px; height: 50px; display: flex; gap: 10px; z-index: 20; }
+  .share .main { flex: 1; border-radius: 25px; background: #fff; color: #170b30; display: flex; align-items: center; justify-content: center; gap: 8px; font: 700 16px/1 var(--f-ui); }
+  .share svg { width: 19px; height: 19px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .share .main svg { stroke: #170b30; }
+  .share .c { width: 50px; border-radius: 25px; display: grid; place-items: center; }
+  .share .c svg { stroke: #fff; }
+</style></head>
+<body class="phone">
+  <div class="rays"></div>
+  <div class="prog"><i class="done"></i><i class="done"></i><i class="done"></i><i class="now"></i><i></i><i></i><i></i><i></i></div>
+  <div class="shead"><span class="av">W</span><b>Wrapped 2025</b><span>4 of 8</span><span class="sp"></span>
+    <svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+
+  <div class="head"><div class="ey">You pulled a</div><h1>1 of 1.</h1></div>
+
+  <div class="card side l"><div class="top"><span class="avm">M</span></div><div class="meta"><b>MVP</b><span>Maya · 5 games</span></div></div>
+  <div class="card side r"><div class="top"><span class="bigN">19°</span></div><div class="meta"><b>Brrr.</b><span>Coldest</span></div></div>
+
+  <div class="card hero"><div class="in">
+    <div class="pic"><img class="ph" src="../../photos/lambeau-concourse.jpg" style="filter:contrast(1.1) saturate(1.1)"><div class="holo"></div></div>
+    <span class="rar">★ RARE</span><span class="num">001/001</span>
+    <div class="name"><b>The Walk-off</b><span>Lambeau Field · Jan 5, 2025</span></div>
+    <div class="stats"><div><b>51 yd</b><span>Kick</span></div><div><b>24–22</b><span>Final</span></div><div><b>212</b><span>Photos</span></div></div>
+  </div></div>
+
+  <div class="pack"><div class="art"><div><div class="w">Witness</div><div class="y">2025</div><div class="s">Season pack · 9 cards</div></div></div></div>
+
+  <div class="share">
+    <div class="main"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share this pull</div>
+    <div class="c glass"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div>
+    <div class="c glass"><svg viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg></div>
+  </div>
+<script src="../../kit/kit.js"></script>
+</body></html>

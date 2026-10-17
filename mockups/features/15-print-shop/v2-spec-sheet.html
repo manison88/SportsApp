@@ -1,0 +1,143 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Spec sheet</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { --bl: #1f4fbf; --k: #1a1a1c; background: #f3f1eb; color: var(--k); }
+  .grid { position: absolute; inset: 0; background:
+    linear-gradient(rgba(31,79,191,.07) 1px, transparent 1px) 0 0/12px 12px,
+    linear-gradient(90deg, rgba(31,79,191,.07) 1px, transparent 1px) 0 0/12px 12px; }
+  .nav { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 20; }
+  .pbtn { width: 40px; height: 40px; border-radius: 20px; display: grid; place-items: center; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.08), inset 0 0 0 .5px rgba(0,0,0,.12); }
+  .pbtn svg { width: 17px; height: 17px; stroke: var(--k); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .nav .t { font: 600 10.5px/1 var(--f-mono); letter-spacing: 1.4px; color: var(--bl); }
+  .head { position: absolute; left: 24px; right: 24px; top: 108px; }
+  .head .m { font: 600 9.5px/1 var(--f-mono); letter-spacing: 1px; color: rgba(26,26,28,.5); display: flex; justify-content: space-between; }
+  .head h1 { font: 600 25px/1.05 var(--f-fraunces); letter-spacing: -.5px; margin-top: 8px; }
+  .head h1 span { font-weight: 300; font-style: italic; color: rgba(26,26,28,.55); }
+
+  #dwg { position: absolute; left: 0; top: 168px; width: 393px; height: 252px; }
+  .cover { position: absolute; top: 210px; height: 188px; background: #1c2944; overflow: hidden; }
+  .cover.front { left: 208px; width: 150px; }
+  .cover.back { left: 34px; width: 150px; }
+  .cover.spine { left: 184px; width: 24px; background: linear-gradient(90deg, #17223b, #23345a 50%, #17223b); }
+  .cover .tex { position: absolute; inset: 0; opacity: .5; mix-blend-mode: overlay;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,.12) 0 .6px, transparent .6px 1.6px), repeating-linear-gradient(90deg, rgba(0,0,0,.18) 0 .6px, transparent .6px 1.6px); }
+  .foil { background: linear-gradient(115deg, #7d5d22, #e9c878 30%, #fff1c4 42%, #c79a46 58%, #f4d996 74%, #8b6a2c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .front .tip { position: absolute; left: 18px; right: 14px; top: 16px; height: 86px; overflow: hidden; box-shadow: 0 0 0 2px rgba(0,0,0,.3); }
+  .front .yr { position: absolute; left: 18px; top: 112px; font: 500 34px/1 var(--f-fraunces); letter-spacing: -.8px; }
+  .front .tt { position: absolute; left: 19px; top: 152px; font: 600 5.2px/1.4 var(--f-ui); letter-spacing: 1.6px; }
+  .back .list { position: absolute; left: 16px; right: 16px; top: 22px; font: 500 5.6px/2.05 var(--f-mono); color: rgba(233,200,120,.85); letter-spacing: .4px; }
+  .back .list b { color: #f4d996; font-weight: 800; }
+  .back .bc { position: absolute; right: 14px; bottom: 14px; width: 34px; height: 20px; background: #f3f1eb; padding: 3px;
+    background-image: repeating-linear-gradient(90deg, #111 0 1px, transparent 1px 2px, #111 2px 2.6px, transparent 2.6px 4px); background-clip: content-box; outline: 3px solid #f3f1eb; }
+  .spine .st { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%) rotate(90deg); white-space: nowrap; font: 600 5.6px/1 var(--f-ui); letter-spacing: 1.8px; }
+  .call { position: absolute; width: 18px; height: 18px; border-radius: 9px; background: var(--bl); color: #fff; font: 700 10px/18px var(--f-mono); text-align: center; z-index: 5;
+    box-shadow: 0 0 0 2px #f3f1eb; }
+
+  .legend { position: absolute; left: 24px; right: 24px; top: 436px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+  .lg { display: flex; gap: 10px; }
+  .lg .call { position: static; flex: none; box-shadow: none; }
+  .lg b { display: block; font: 600 13px/1.2 var(--f-ui); }
+  .lg span { display: block; font: 400 11.5px/1.3 var(--f-ui); color: rgba(26,26,28,.6); margin-top: 2px; }
+
+  .inside { position: absolute; left: 24px; right: 24px; top: 556px; }
+  .lab { font: 600 9.5px/1 var(--f-mono); letter-spacing: 1.2px; color: var(--bl); display: flex; justify-content: space-between; }
+  .lab span:last-child { color: rgba(26,26,28,.45); }
+  .bar { display: flex; height: 30px; margin-top: 10px; gap: 2px; }
+  .bar i { display: block; height: 100%; background: #dcd8cd; border-radius: 3px; position: relative; }
+  .bar i.hl { background: #1c2944; }
+  .bar i.hl2 { background: #2b4a8f; }
+  .bar i b { position: absolute; left: 6px; top: 50%; transform: translateY(-50%); font: 700 9px/1 var(--f-mono); color: #f4d996; white-space: nowrap; }
+  .ticks { display: flex; justify-content: space-between; margin-top: 6px; font: 500 9px/1 var(--f-mono); color: rgba(26,26,28,.45); }
+  .gm { display: flex; justify-content: space-between; margin-top: 10px; font: 500 11px/1.3 var(--f-ui); color: rgba(26,26,28,.65); }
+  .gm b { color: var(--k); font-weight: 600; }
+
+  .specs { position: absolute; left: 24px; right: 24px; top: 676px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid rgba(26,26,28,.85); border-bottom: 1px solid rgba(26,26,28,.15); }
+  .sp { padding: 10px 0 10px; }
+  .sp + .sp { padding-left: 10px; border-left: 1px solid rgba(26,26,28,.12); }
+  .sp .k { font: 600 8.5px/1 var(--f-mono); letter-spacing: 1px; color: rgba(26,26,28,.45); }
+  .sp .v { font: 600 13px/1.1 var(--f-ui); margin-top: 6px; white-space: nowrap; }
+  .cta { position: absolute; left: 24px; right: 24px; bottom: 34px; height: 54px; border-radius: 14px; background: var(--k); color: #f3f1eb; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+    font: 600 15px/1 var(--f-ui); }
+  .cta .p { font: 600 13px/1 var(--f-mono); color: #f4d996; }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="grid"></div>
+  <div class="nav">
+    <div class="pbtn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <span class="t">PROOF 03 · READY</span>
+    <div class="pbtn"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+  <div class="head">
+    <div class="m"><span>JOB WIT-2016-HC</span><span>SCALE 1 : 4.1</span></div>
+    <h1>2016 <span>· The Year It Happened</span></h1>
+  </div>
+
+  <svg id="dwg" viewBox="0 0 393 252">
+    <defs><marker id="ar" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L7 4 L0 7" fill="none" stroke="#1f4fbf" stroke-width="1.2"/></marker></defs>
+    <g stroke="#1f4fbf" stroke-width=".8" fill="none">
+      <!-- bleed -->
+      <rect x="28" y="36" width="336" height="200" stroke-dasharray="3 2.5" opacity=".7"/>
+      <!-- crop marks -->
+      <path d="M34 22v10 M20 42h10 M358 22v10 M372 42h-10 M34 250v-10 M20 230h10 M358 250v-10 M372 230h-10" stroke="#1a1a1c"/>
+      <!-- hinge / fold lines -->
+      <path d="M184 30v212 M208 30v212" stroke-dasharray="1.5 2" opacity=".8"/>
+      <!-- dims -->
+      <path d="M208 14 H358" marker-start="url(#ar)" marker-end="url(#ar)"/>
+      <path d="M208 9 v10 M358 9 v10 M184 9 v10" />
+      <path d="M34 14 H184" marker-start="url(#ar)" marker-end="url(#ar)"/>
+      <path d="M34 9 v10"/>
+      <path d="M380 42 V230" marker-start="url(#ar)" marker-end="url(#ar)"/>
+      <path d="M374 42 h12 M374 230 h12"/>
+    </g>
+    <g font-family="JetBrains Mono" font-size="8.5" font-weight="600" fill="#1f4fbf">
+      <rect x="262" y="8" width="44" height="12" fill="#f3f1eb"/><text x="284" y="17" text-anchor="middle">8.00 in</text>
+      <rect x="88" y="8" width="44" height="12" fill="#f3f1eb"/><text x="110" y="17" text-anchor="middle">8.00 in</text>
+      <text x="196" y="6" text-anchor="middle" font-size="7.5">0.62</text>
+      <g transform="translate(383 136) rotate(-90)"><rect x="-26" y="-6" width="52" height="12" fill="#f3f1eb"/><text x="0" y="3" text-anchor="middle">10.00 in</text></g>
+      <text x="30" y="248" font-size="7" fill="#1a1a1c" opacity=".55">BLEED 0.125</text>
+      <text x="362" y="248" font-size="7" fill="#1a1a1c" opacity=".55" text-anchor="end">FRONT</text>
+    </g>
+  </svg>
+
+  <div class="cover back"><div class="tex"></div>
+    <div class="list">APR 11 · WRIGLEY FIELD<br>APR 23 · UNITED CENTER<br>MAY 28 · WRIGLEY FIELD<br>JUN 25 · WRIGLEY FIELD<br>AUG 20 · FENWAY PARK<br>SEP 19 · SOLDIER FIELD<br><b>OCT 22 · NLCS G6 · 5–0</b><br><b>OCT 30 · WS G5 · 3–2</b></div>
+    <div class="bc"></div>
+  </div>
+  <div class="cover spine"><div class="tex"></div><div class="st foil">2016 · THE YEAR IT HAPPENED · OKAFOR</div></div>
+  <div class="cover front"><div class="tex"></div>
+    <div class="tip"><img class="ph" src="../../photos/wrigley-night.jpg"></div>
+    <div class="yr foil">2016</div>
+    <div class="tt foil">THE YEAR IT HAPPENED<br>SAM OKAFOR · EIGHT GAMES</div>
+  </div>
+  <div class="call" style="left:340px;top:218px">1</div>
+  <div class="call" style="left:300px;top:322px">2</div>
+  <div class="call" style="left:187px;top:200px">3</div>
+  <div class="call" style="left:160px;top:218px">4</div>
+
+  <div class="legend">
+    <div class="lg"><span class="call">1</span><div><b>Tipped-in photo</b><span>Your shot, NLCS G6, Oct 22</span></div></div>
+    <div class="lg"><span class="call">2</span><div><b>Gold foil, debossed</b><span>Year, title and your name</span></div></div>
+    <div class="lg"><span class="call">3</span><div><b>Rounded spine</b><span>Foil title, head bands</span></div></div>
+    <div class="lg"><span class="call">4</span><div><b>Back cover</b><span>All 8 games, in order</span></div></div>
+  </div>
+
+  <div class="inside">
+    <div class="lab"><span>INSIDE · 96 PAGES</span><span>PP. BY GAME</span></div>
+    <div class="bar">
+      <i style="flex:6"></i><i style="flex:6"></i><i style="flex:6"></i><i style="flex:6"></i><i style="flex:8"></i><i style="flex:8"></i>
+      <i class="hl2" style="flex:20"><b>NLCS</b></i><i class="hl" style="flex:28"><b>WORLD SERIES G5</b></i><i style="flex:8"></i>
+    </div>
+    <div class="ticks"><span>1</span><span>24</span><span>48</span><span>72</span><span>96</span></div>
+  </div>
+
+  <div class="specs">
+    <div class="sp"><div class="k">PAPER</div><div class="v">170 gsm</div></div>
+    <div class="sp"><div class="k">BINDING</div><div class="v">Lay-flat</div></div>
+    <div class="sp"><div class="k">PHOTOS</div><div class="v">212</div></div>
+    <div class="sp"><div class="k">SHIPS</div><div class="v">Oct 23</div></div>
+  </div>
+
+  <div class="cta"><span>Approve proof &amp; order</span><span class="p">$89.00</span></div>
+<script src="../../kit/kit.js"></script>
+</body></html>

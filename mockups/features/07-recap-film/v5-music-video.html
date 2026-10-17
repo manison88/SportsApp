@@ -1,0 +1,122 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Music video</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #050506; }
+  .stage { position: absolute; left: 0; right: 0; top: 0; height: 600px; overflow: hidden; background: #000; }
+  .slice { position: absolute; top: -30px; height: 660px; overflow: hidden; }
+  .slice img { position: absolute; top: 0; left: 0; width: 393px; height: 600px; object-fit: cover; filter: contrast(1.35) saturate(1.2) brightness(.75); }
+  .rgb { position: absolute; inset: 0; mix-blend-mode: screen; opacity: .55; }
+  .rgb img { width: 100%; height: 100%; object-fit: cover; }
+  .rgb.r { transform: translate(-7px, 0) scale(1.42); transform-origin: 40% 72%; }
+  .rgb.r img { filter: grayscale(1) brightness(.7) sepia(1) saturate(8) hue-rotate(-40deg); }
+  .rgb.b { transform: translate(7px, 0) scale(1.42); transform-origin: 40% 72%; }
+  .rgb.b img { filter: grayscale(1) brightness(.7) sepia(1) saturate(8) hue-rotate(180deg); }
+  .tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(5,5,6,.6) 0%, rgba(20,40,140,.2) 30%, rgba(5,5,6,.2) 60%, #050506 100%); }
+  .flash { position: absolute; left: 0; right: 0; top: 366px; height: 2px; background: #fff; box-shadow: 0 0 30px 8px rgba(157,182,255,.7); opacity: .8; }
+  .cutmark { position: absolute; top: 110px; bottom: 0; width: 1px; background: rgba(255,255,255,.4); }
+  .score { position: absolute; z-index: 4; left: 0; right: 0; top: 206px; text-align: center; }
+  .score .lab { font: 800 11px/1 var(--f-ui); letter-spacing: 5px; color: rgba(255,255,255,.85); text-indent: 5px; }
+  .nums { position: relative; margin-top: 10px; display: flex; justify-content: center; align-items: center; gap: 18px; }
+  .num { position: relative; font: 400 172px/.82 var(--f-anton); color: #fff; letter-spacing: -4px; }
+  .num.l { color: transparent; -webkit-text-stroke: 2px rgba(255,255,255,.75); }
+  .num.w::before, .num.w::after { content: "3"; position: absolute; left: 0; top: 0; mix-blend-mode: screen; }
+  .num.w::before { color: #ff2d55; transform: translate(-6px, 2px); }
+  .num.w::after { color: #2f6bff; transform: translate(6px, -2px); }
+  .num.w span { position: relative; z-index: 2; }
+  .num.w span.ghost { position: absolute; z-index: 1; }
+  .ghost { position: absolute; left: 50%; top: -96px; transform: translateX(-50%); font: 400 120px/.82 var(--f-anton); color: rgba(255,255,255,.1); filter: blur(3px); }
+  .dash { font: 400 70px/1 var(--f-anton); color: rgba(255,255,255,.5); }
+  .teams { margin-top: 12px; display: flex; justify-content: center; gap: 116px; font: 800 13px/1 var(--f-ui); letter-spacing: 3px; color: rgba(255,255,255,.7); }
+  .drop { position: absolute; z-index: 4; left: 50%; transform: translateX(-50%) rotate(-3deg); top: 452px; background: #fff; color: #050506; padding: 8px 14px; font: 400 16px/1 var(--f-anton); letter-spacing: 2px; white-space: nowrap; }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 6; }
+  .bpm { display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px; border-radius: 15px; font: 700 11px/1 var(--f-mono); }
+  .bpm i { width: 8px; height: 8px; border-radius: 50%; background: #ff2d55; box-shadow: 0 0 10px #ff2d55; }
+
+  .track { position: absolute; left: 20px; right: 20px; top: 600px; display: flex; align-items: center; gap: 12px; }
+  .track .art { width: 44px; height: 44px; border-radius: 10px; overflow: hidden; background: linear-gradient(135deg, #2f6bff, #ff2d55); display: grid; place-items: center; font: 400 22px/1 var(--f-anton); }
+  .track b { display: block; font: 600 15px/1.1 var(--f-ui); }
+  .track span { display: block; margin-top: 3px; font: 500 12px/1 var(--f-ui); color: var(--text-2); }
+  .track .sync { margin-left: auto; font: 700 10px/1 var(--f-ui); letter-spacing: 1.4px; color: var(--signal); padding: 7px 9px; border-radius: 8px; background: rgba(255,181,71,.12); box-shadow: inset 0 0 0 .5px rgba(255,181,71,.45); }
+  svg#wave { position: absolute; left: 0; top: 662px; width: 393px; height: 86px; overflow: visible; }
+  .tc { position: absolute; left: 20px; right: 20px; top: 760px; display: flex; justify-content: space-between; align-items: center; font: 600 11px/1 var(--f-mono); color: var(--text-2); }
+  .tc .ctr { display: flex; gap: 26px; align-items: center; }
+  .tc .ctr svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .tc .pp { width: 44px; height: 44px; border-radius: 22px; background: #fff; display: grid; place-items: center; }
+  .tc .pp svg { fill: #050506; stroke: none !important; width: 20px !important; height: 20px !important; }
+</style></head>
+<body class="phone">
+  <div class="stage" id="stage">
+    <div class="rgb r"><img src="../../photos/wrigley-night.jpg"></div>
+    <div class="rgb b"><img src="../../photos/wrigley-night.jpg"></div>
+    <div class="tint"></div>
+    <div class="flash"></div>
+  </div>
+  <div class="grain" style="height:600px;bottom:auto;opacity:.45"></div>
+
+  <div class="topbar">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+    <div class="bpm glass"><i></i>128 BPM · BEAT 97</div>
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+
+  <div class="score">
+    <div class="lab">BOTTOM 4TH · 8:47 PM</div>
+    <div class="nums">
+      <div class="num l tnum">1</div><div class="dash">–</div>
+      <div class="num w tnum"><span class="ghost">2</span><span>3</span></div>
+    </div>
+    <div class="teams"><span>CLE</span><span>CHC</span></div>
+  </div>
+  <div class="drop">DROP 3 · ROSS SAC FLY</div>
+
+  <div class="track">
+    <div class="art">W</div>
+    <div><b>“Late Innings”</b><span>Witness Sound · Night mix</span></div>
+    <span class="sync">BEAT SYNC</span>
+  </div>
+  <svg id="wave"></svg>
+  <div class="tc">
+    <span class="tnum" style="color:#fff">0:51</span>
+    <div class="ctr">
+      <svg viewBox="0 0 24 24"><path d="M19 5L9 12l10 7zM5 5v14"/></svg>
+      <span class="pp"><svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></span>
+      <svg viewBox="0 0 24 24"><path d="M5 5l10 7-10 7zM19 5v14"/></svg>
+    </div>
+    <span class="tnum">1:24</span>
+  </div>
+<script>
+  // glitch slices of the photo
+  const stage = document.getElementById('stage');
+  let html = '';
+  [[0,82,0],[82,104,-14],[186,40,22],[226,120,4],[346,88,-10],[434,79,0]].forEach(([x, w, dy]) => {
+    html += `<div class="slice" style="left:${x}px;width:${w}px;transform:translateY(${dy}px)"><img src="../../photos/wrigley-night.jpg" style="left:${-x}px;transform:scale(1.42);transform-origin:157px 432px"></div>`;
+  });
+  stage.insertAdjacentHTML('afterbegin', html);
+  [82, 186, 226, 346].forEach(x => stage.insertAdjacentHTML('beforeend', `<i class="cutmark" style="left:${x}px"></i>`));
+
+  // waveform with beat drops tied to score changes
+  const W = 393, X0 = 20, X1 = 373, N = 88, H = 86, mid = 36;
+  let seed = 7; const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  const drops = [[.12, 'CLE 1–0'], [.4, '1–1'], [.47, '2–1'], [.53, '3–1'], [.72, '3–2'], [.96, 'FINAL']];
+  const prog = .53;
+  let s = '';
+  for (let i = 0; i < N; i++) {
+    const t = i / (N - 1), x = X0 + (X1 - X0) * t;
+    let amp = .25 + .2 * Math.sin(t * 14) ** 2 + rnd() * .3;
+    drops.forEach(([d]) => { const k = Math.exp(-((t - d) ** 2) / .0006); amp = Math.max(amp, .5 + .5 * k); });
+    amp = Math.min(amp, 1);
+    const h = 6 + amp * 52, played = t <= prog;
+    s += `<rect x="${x - 1.4}" y="${mid - h / 2}" width="2.8" height="${h}" rx="1.4" fill="${played ? (Math.abs(t - prog) < .02 ? '#ffb547' : '#fff') : 'rgba(255,255,255,.22)'}"/>`;
+  }
+  drops.forEach(([d, l]) => {
+    const x = X0 + (X1 - X0) * d, cur = Math.abs(d - prog) < .01, col = l.startsWith('CLE') || l === '3–2' ? '#ff5a6e' : (l === 'FINAL' ? '#ffb547' : '#7fa2ff');
+    s += `<path d="M${x} ${mid + 33} l4 6 h-8z" fill="${col}"/>`;
+    if (!['2–1'].includes(l)) s += `<text x="${x}" y="${mid + 50}" fill="${cur ? '#fff' : col}" font-family="JetBrains Mono" font-weight="800" font-size="9" text-anchor="${d > .9 ? 'end' : d < .15 ? 'start' : 'middle'}" dx="${d > .9 ? 6 : d < .15 ? -6 : 0}">${l}</text>`;
+  });
+  const px = X0 + (X1 - X0) * prog;
+  s += `<line x1="${px}" x2="${px}" y1="-6" y2="${mid + 32}" stroke="#ffb547" stroke-width="2"/><circle cx="${px}" cy="-6" r="5" fill="#ffb547"/>`;
+  document.getElementById('wave').innerHTML = s;
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

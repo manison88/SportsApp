@@ -1,0 +1,76 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Trailer</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #000; }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+  .topbar .mid { text-align: center; }
+  .topbar .mid b { display: block; font: 600 15px/1 var(--f-ui); letter-spacing: -.2px; }
+  .topbar .mid span { display: block; margin-top: 4px; font: 500 11px/1 var(--f-ui); color: var(--text-3); }
+  .frame { position: absolute; left: 0; right: 0; top: 150px; height: 452px; overflow: hidden; background: #000; }
+  .frame img { transform: scale(1.32) translate(-14px, 30px); transform-origin: 60% 70%; filter: contrast(1.12) saturate(.75) brightness(.7) sepia(.15); }
+  .frame::before { content: ""; position: absolute; inset: 0; z-index: 2; background: radial-gradient(90% 70% at 50% 55%, rgba(0,0,0,0) 30%, rgba(0,0,0,.75) 100%), linear-gradient(180deg, rgba(10,20,40,.35), rgba(40,20,0,.25)); }
+  .bars i { position: absolute; left: 0; right: 0; height: 1px; background: rgba(255,255,255,.08); z-index: 3; }
+  .card { position: absolute; z-index: 4; left: 0; right: 0; top: 150px; height: 452px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .card .over { font: 600 10px/1 var(--f-ui); letter-spacing: 5px; color: rgba(255,255,255,.7); text-indent: 5px; }
+  .card h1 { margin-top: 18px; font: 400 58px/.92 var(--f-dm); letter-spacing: -1px; color: #fff; text-shadow: 0 6px 40px rgba(0,0,0,.6); }
+  .card h1 em { font-style: italic; color: #ffd9a0; }
+  .card .rule { margin-top: 20px; width: 40px; height: 1px; background: rgba(255,217,160,.7); }
+  .card .under { margin-top: 16px; font: 600 10px/1 var(--f-ui); letter-spacing: 4px; color: rgba(255,255,255,.6); text-indent: 4px; }
+  .sub { position: absolute; z-index: 4; left: 32px; right: 32px; top: 560px; text-align: center; font: 400 italic 15px/1.3 var(--f-serif); color: #f3e7cf; text-shadow: 0 2px 10px #000; }
+  .kb { position: absolute; z-index: 4; right: 14px; top: 162px; font: 600 9px/1 var(--f-mono); color: rgba(255,255,255,.5); letter-spacing: .5px; display: flex; align-items: center; gap: 5px; }
+  .kb i { width: 5px; height: 5px; border-radius: 50%; background: var(--live); }
+  .chapters { position: absolute; left: 20px; right: 20px; top: 640px; display: flex; gap: 6px; }
+  .ch { flex: 1; }
+  .ch .bar { height: 3px; border-radius: 2px; background: rgba(255,255,255,.18); overflow: hidden; }
+  .ch .bar b { display: block; height: 100%; background: #fff; }
+  .ch .n { margin-top: 10px; font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.6px; color: var(--text-3); white-space: nowrap; }
+  .ch .t { margin-top: 5px; font: 400 15px/1 var(--f-dm); color: var(--text-3); white-space: nowrap; }
+  .ch.on .n { color: var(--signal); } .ch.on .t { color: #fff; }
+  .ch.on .bar { position: relative; overflow: visible; }
+  .ch.on .bar::after { content: ""; position: absolute; left: 46%; top: -4.5px; width: 12px; height: 12px; border-radius: 6px; background: #fff; transform: translateX(-50%); box-shadow: 0 0 10px rgba(255,255,255,.6); }
+  .time { position: absolute; left: 20px; right: 20px; top: 712px; display: flex; justify-content: space-between; font: 600 11px/1 var(--f-mono); color: var(--text-2); }
+  .ctr { position: absolute; left: 28px; right: 28px; top: 742px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .ctr svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ctr .pp { width: 56px; height: 56px; border-radius: 28px; background: #fff; display: grid; place-items: center; }
+  .ctr .pp svg { fill: #000; stroke: none; width: 22px; height: 22px; }
+  .ctr .sm { font: 600 11px/1 var(--f-ui); color: var(--text-2); display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .ctr .sk { position: relative; }
+  .ctr .sk span { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-40%); font: 700 8px/1 var(--f-ui); color: #fff; }
+</style></head>
+<body class="phone">
+  <div class="topbar">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+    <div class="mid"><b>One More Night</b><span>Your film · World Series Game 5</span></div>
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+
+  <div class="frame"><img class="ph" src="../../photos/wrigley-night.jpg" style="object-position:22% 40%"></div>
+  <div class="bars"><i style="top:150px"></i><i style="top:601px"></i></div>
+  <div class="grain" style="top:150px;height:452px;bottom:auto;opacity:.5"></div>
+  <div class="kb"><i></i>2.39 : 1 · 24 FPS</div>
+  <div class="card">
+    <div class="over">WRIGLEY FIELD · OCT 30, 2016</div>
+    <h1>Down<br>three<br>to <em>one.</em></h1>
+    <div class="rule"></div>
+    <div class="under">ONE LOSS FROM THE END</div>
+  </div>
+  <div class="sub">“Dad said, whatever happens, we were here.”</div>
+
+  <div class="chapters">
+    <div class="ch on" style="flex:1.2"><div class="bar"><b style="width:46%"></b></div><div class="n">I · NOW</div><div class="t">The hole</div></div>
+    <div class="ch" style="flex:1.2"><div class="bar"></div><div class="n">II</div><div class="t">The swing</div></div>
+    <div class="ch"><div class="bar"></div><div class="n">III</div><div class="t">Eight outs</div></div>
+    <div class="ch" style="flex:.8"><div class="bar"></div><div class="n">IV</div><div class="t">After</div></div>
+  </div>
+  <div class="time tnum"><span>0:12</span><span>−1:40</span></div>
+
+  <div class="ctr">
+    <span class="sm"><svg viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></span>
+    <span class="sk"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/></svg><span>10</span></span>
+    <span class="pp"><svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></span>
+    <span class="sk"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7M20 4v4h-4"/></svg><span>10</span></span>
+    <span class="sm"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 15h4M13 15h4M7 11h10"/></svg></span>
+  </div>
+<script src="../../kit/kit.js"></script>
+</body></html>

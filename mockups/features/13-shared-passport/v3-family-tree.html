@@ -1,0 +1,122 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Family Tree</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #efe7d8; color: var(--paper-ink); }
+  .vig { position: absolute; inset: 0; background: radial-gradient(90% 70% at 50% 45%, transparent 55%, rgba(120,90,50,.18)); z-index: 2; pointer-events: none; }
+  .nav { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 5; }
+  .nav .btn-circle { background: rgba(29,26,22,.07); }
+  .nav .btn-circle svg { stroke: var(--paper-ink); }
+  .head { position: absolute; top: 106px; left: 24px; right: 24px; z-index: 5; }
+  .head .eyebrow { color: #8a7a62; }
+  .head h1 { font: 400 40px/1 var(--f-fraunces); font-variation-settings: "opsz" 144; letter-spacing: -1px; margin-top: 8px; }
+  .head h1 em { font-style: italic; color: #d24b62; }
+  .head p { font: 400 13.5px/1.4 var(--f-ui); color: #6d6253; margin-top: 8px; }
+
+  svg#tree { position: absolute; left: 0; top: 196px; width: 393px; height: 484px; z-index: 3; }
+  .card { position: absolute; left: 16px; right: 16px; top: 694px; height: 92px; border-radius: 22px; z-index: 5; display: flex; align-items: center; gap: 14px; padding: 0 18px 0 16px;
+    background: #fbf6ec; box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 10px 30px rgba(90,60,30,.16), 0 0 0 1px rgba(29,26,22,.06); }
+  .card .av { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font: 400 26px/1 var(--f-serif); color: #fff;
+    background: linear-gradient(135deg,#ff7a8a,#b6455a); flex: none; }
+  .card b { display: block; font: 600 17px/1.2 var(--f-ui); letter-spacing: -.2px; }
+  .card span { display: block; font: 500 12.5px/1.35 var(--f-ui); color: #6d6253; margin-top: 3px; }
+  .card .go { margin-left: auto; width: 34px; height: 34px; border-radius: 50%; background: #1d1a16; display: grid; place-items: center; flex: none; }
+  .card .go svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="paper-tex"></div>
+  <div class="vig"></div>
+  <div class="nav">
+    <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+  <div class="head">
+    <div class="eyebrow">Who came along · 2014–2026</div>
+    <h1>The family <em>tree</em></h1>
+    <p>Sixty games, branching by who sat next to you.</p>
+  </div>
+
+  <svg id="tree" viewBox="0 0 393 484"></svg>
+
+  <div class="card">
+    <div class="av">M</div>
+    <div><b>Maya’s branch</b><span>17 games · 6 venues · Chicago 11–6</span></div>
+    <div class="go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
+  </div>
+<script>
+  const svg = document.getElementById('tree');
+  const INK = '#4a3a2a';
+  const base = [196, 452], fork = [196, 300];
+  // name, count, end, ctrl, color, leaf fill
+  const B = [
+    { n: 'Maya',  c: 17, end: [214, 58],  ctrl: [176, 170], col: '#d24b62', hi: true },
+    { n: 'Leo',   c: 15, end: [330, 128], ctrl: [272, 250] },
+    { n: 'Dad',   c: 11, end: [66, 120],  ctrl: [120, 250] },
+    { n: 'Dana',  c: 9,  end: [338, 290], ctrl: [280, 300] },
+    { n: 'Chris', c: 6,  end: [56, 284],  ctrl: [110, 300] },
+  ];
+  const bez = (p0, p1, p2, t) => [(1-t)*(1-t)*p0[0] + 2*(1-t)*t*p1[0] + t*t*p2[0], (1-t)*(1-t)*p0[1] + 2*(1-t)*t*p1[1] + t*t*p2[1]];
+  const tan = (p0, p1, p2, t) => { const x = 2*(1-t)*(p1[0]-p0[0]) + 2*t*(p2[0]-p1[0]), y = 2*(1-t)*(p1[1]-p0[1]) + 2*t*(p2[1]-p1[1]); const l = Math.hypot(x, y); return [x/l, y/l]; };
+  function taper(p0, p1, p2, w0, w1) {
+    const L = [], R = [];
+    for (let i = 0; i <= 40; i++) { const t = i / 40, p = bez(p0, p1, p2, t), d = tan(p0, p1, p2, t), w = (w0 + (w1 - w0) * t) / 2;
+      L.push([p[0] - d[1]*w, p[1] + d[0]*w]); R.push([p[0] + d[1]*w, p[1] - d[0]*w]); }
+    return 'M' + L.concat(R.reverse()).map(p => p.map(v => v.toFixed(1)).join(',')).join('L') + 'Z';
+  }
+  let seed = 11; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const leaf = (x, y, ang, s, fill, stroke, op = 1) =>
+    `<path transform="translate(${x.toFixed(1)},${y.toFixed(1)}) rotate(${ang.toFixed(0)}) scale(${s})" d="M0,0 C4,-5 12,-5 16,0 C12,5 4,5 0,0Z" fill="${fill}" stroke="${stroke}" stroke-width="${0.9/s}" opacity="${op}"/>`;
+
+  let back = '', front = '', labels = '';
+  // ground + roots
+  back += `<path d="M60,${base[1]+8} Q196,${base[1]-6} 333,${base[1]+8}" fill="none" stroke="${INK}" stroke-opacity=".25" stroke-width="1"/>`;
+  back += `<path d="M190,${base[1]} q-18,8 -40,10 M202,${base[1]} q20,8 44,9 M196,${base[1]} q0,10 -4,16" fill="none" stroke="${INK}" stroke-width="2" stroke-linecap="round" opacity=".7"/>`;
+  // trunk
+  back += `<path d="${taper(base, [200, 380], fork, 26, 16)}" fill="${INK}"/>`;
+
+  B.forEach(b => {
+    const p0 = fork, p1 = b.ctrl, p2 = b.end, hi = !!b.hi;
+    const col = hi ? b.col : INK;
+    const add = v => { if (hi) front += v; else back += v; };
+    add(`<path d="${taper(p0, p1, p2, hi ? 12 : 8, hi ? 2.2 : 1.6)}" fill="${col}" opacity="${hi ? 1 : .82}"/>`);
+    // leaves along the outer 60% of the branch
+    let out = '';
+    for (let i = 0; i < b.c; i++) {
+      const t = 0.36 + 0.64 * (i / Math.max(1, b.c - 1));
+      const p = bez(p0, p1, p2, t), d = tan(p0, p1, p2, t), side = i % 2 ? 1 : -1;
+      const twig = 6 + rnd() * 5;
+      const ang = Math.atan2(d[1], d[0]) * 180 / Math.PI + side * (52 + rnd() * 20);
+      const a = ang * Math.PI / 180;
+      const sx = p[0], sy = p[1], ex = sx + Math.cos(a) * twig, ey = sy + Math.sin(a) * twig;
+      out += `<path d="M${sx.toFixed(1)},${sy.toFixed(1)}L${ex.toFixed(1)},${ey.toFixed(1)}" stroke="${col}" stroke-width="${hi ? 1.3 : 1}" opacity="${hi ? 1 : .7}"/>`;
+      out += hi ? leaf(ex, ey, ang, 1.15, '#ff8b9b', '#a8344b')
+                : leaf(ex, ey, ang, .95, '#cbbd9f', '#6b5a43', .9);
+    }
+    add(out);
+    // name label
+    const lx = b.end[0], ly = b.end[1];
+    const anchor = lx < 150 ? 'start' : lx > 250 ? 'end' : 'middle';
+    const dx = anchor === 'start' ? -30 : anchor === 'end' ? 34 : 0;
+    const dy = hi ? -22 : -18;
+    labels += `<text x="${lx + dx}" y="${ly + dy}" text-anchor="${anchor}" font-family="Fraunces" font-style="italic" font-size="${hi ? 22 : 17}" fill="${hi ? '#c23a54' : '#3d3125'}">${b.n} <tspan font-family="Inter" font-style="normal" font-weight="700" font-size="${hi ? 13 : 11}" fill="${hi ? '#c23a54' : '#7d6c55'}">${b.c}</tspan></text>`;
+  });
+
+  // annotations on Maya's branch
+  const M = B[0];
+  const ann = (t, txt, dx, dy, anchor) => {
+    const p = bez(fork, M.ctrl, M.end, t);
+    return `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4" fill="#fff" stroke="#c23a54" stroke-width="2"/>
+      <path d="M${(p[0] + (dx > 0 ? 7 : -7)).toFixed(1)},${p[1].toFixed(1)} Q${(p[0] + dx * .5).toFixed(1)},${(p[1] + dy * .2).toFixed(1)} ${(p[0] + dx * .92).toFixed(1)},${(p[1] + dy * .82).toFixed(1)}" fill="none" stroke="#c23a54" stroke-width="1.2" stroke-dasharray="2 3"/>
+      <text x="${(p[0] + dx).toFixed(1)}" y="${(p[1] + dy).toFixed(1)}" text-anchor="${anchor}" font-family="Caveat" font-weight="700" font-size="17" fill="#a8344b">${txt}</text>`;
+  };
+  labels += ann(0.36, 'her first · Wrigley ’14, age 4', 40, 44, 'start');
+  labels += ann(0.62, 'Camp Nou & the Bernabéu ’20', -40, 26, 'end');
+  labels += ann(0.84, 'Lambeau, 19° ’25', 52, 10, 'start');
+
+  // trunk label
+  labels += `<text x="196" y="${base[1] + 28}" text-anchor="middle" font-family="Inter" font-weight="700" font-size="9.5" letter-spacing="1.8" fill="#8a7a62">SAM · 60 GAMES · 22 ON YOUR OWN</text>`;
+
+  svg.innerHTML = back + front + labels;
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

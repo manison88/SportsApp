@@ -22,20 +22,21 @@
 
   /* ticket */
   .ticketWrap { position: absolute; left: 0; right: 0; top: 200px; height: 480px; z-index: 4; }
-  .ticket { position: absolute; left: 58px; top: -6px; width: 277px; height: 480px; transform: rotate(4.5deg) translateX(14px); transform-origin: 50% 0;
+  .ticket { position: absolute; left: 68px; top: -6px; width: 257px; height: 480px; transform: rotate(3.5deg) translateX(12px); transform-origin: 50% 0;
     filter: drop-shadow(0 22px 26px rgba(0,0,0,.55)); }
   .paper { position: absolute; inset: 0; background: linear-gradient(180deg, #d8d4cc 0%, #f4f1ea 7%, #f6f3ee 60%, #ece8e0 100%);
     -webkit-mask: linear-gradient(#000,#000) top/100% calc(100% - 9px) no-repeat, conic-gradient(from -45deg at 50% 100%, #000 90deg, transparent 0) bottom/14px 9px repeat-x;
     padding: 22px 20px 0; color: #1d1c1b; font-family: var(--f-mono); }
   .t-top { display: flex; justify-content: space-between; font: 600 9px/1 var(--f-mono); letter-spacing: 1px; color: #57534d; }
   .halftone { position: relative; margin-top: 12px; height: 120px; overflow: hidden; background: #fff; }
-  .halftone img { filter: grayscale(1) contrast(1.9) brightness(1.15); mix-blend-mode: multiply; }
+  .halftone img { filter: grayscale(1) contrast(1.5) brightness(1.2); mix-blend-mode: multiply; opacity: .92; }
   .halftone::after { content: ""; position: absolute; inset: 0; mix-blend-mode: screen;
-    background: radial-gradient(circle at 50% 50%, transparent 0 .9px, #fff 1.4px) 0 0/3px 3px; opacity: .85; }
+    background: repeating-linear-gradient(180deg, rgba(255,255,255,.55) 0 1px, transparent 1px 2.5px); }
+  .halftone::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(246,243,238,.0) 70%, rgba(246,243,238,.35)); }
   .league { margin-top: 12px; display: flex; justify-content: space-between; font: 600 9.5px/1 var(--f-mono); letter-spacing: 1.2px; color: #57534d; }
   .rowS { display: flex; align-items: baseline; justify-content: space-between; margin-top: 6px; }
   .rowS b { font: 800 36px/1 var(--f-mono); letter-spacing: -1.5px; }
-  .rowS .q { font: 600 10px/1 var(--f-mono); letter-spacing: 2.6px; color: #6d6860; }
+  .q4 { display: flex; } .q4 span { width: 17px; text-align: right; font: 600 10px/1 var(--f-mono); color: #6d6860; } .league .q4 span { font-size: 8.5px; letter-spacing: 0; color: #8a847a; }
   .rowS.lo b { color: #7d786f; }
   .rule { margin: 10px 0; border-top: 1.5px dashed #b8b2a8; }
   .info { font: 600 10px/1.65 var(--f-mono); letter-spacing: .4px; display: grid; grid-template-columns: 1fr auto; column-gap: 8px; }
@@ -43,12 +44,12 @@
   .info .v { text-align: right; }
   .barcode { margin-top: 12px; height: 34px; display: flex; gap: 0; align-items: stretch; }
   .barnum { margin-top: 5px; font: 500 8.5px/1 var(--f-mono); letter-spacing: 3px; text-align: center; color: #57534d; }
-  .keepstamp { position: absolute; right: 16px; top: 168px; transform: rotate(-14deg); padding: 6px 12px 5px; border: 3px solid rgba(26,170,90,.82); border-radius: 8px;
+  .keepstamp { position: absolute; right: 18px; top: 104px; transform: rotate(-12deg); background: rgba(246,243,238,.25); padding: 6px 12px 5px; border: 3px solid rgba(26,170,90,.82); border-radius: 8px;
     font: 400 26px/1 var(--f-anton); letter-spacing: 2px; color: rgba(26,170,90,.85); mix-blend-mode: multiply; }
 
-  .hint { position: absolute; top: 420px; font: 700 11px/1 var(--f-grot); letter-spacing: 2.4px; display: flex; align-items: center; gap: 6px; }
-  .hint.l { left: 14px; color: rgba(255,255,255,.22); }
-  .hint.r { right: 14px; color: #6dffa6; text-shadow: 0 0 14px rgba(109,255,166,.6); }
+  .hint { position: absolute; top: 430px; font: 700 11px/1 var(--f-grot); letter-spacing: 3px; display: flex; align-items: center; gap: 8px; }
+  .hint.l { left: -14px; transform: rotate(-90deg); color: rgba(255,255,255,.22); }
+  .hint.r { right: -14px; transform: rotate(90deg); color: #6dffa6; text-shadow: 0 0 14px rgba(109,255,166,.6); }
   .glowR { position: absolute; right: -80px; top: 280px; width: 200px; height: 340px; background: radial-gradient(closest-side, rgba(60,255,150,.16), transparent); }
 
   /* bottom */
@@ -87,9 +88,9 @@
   <div class="ticketWrap"><div class="ticket"><div class="paper">
     <div class="t-top"><span>ADMIT ONE · MATCH 012</span><span>★ RT</span></div>
     <div class="halftone"><img class="ph" src="../../photos/lambeau-concourse.jpg" style="object-position:50% 40%"></div>
-    <div class="league"><span>NFL · WEEK 18 · FINAL</span><span>Q1 Q2 Q3 Q4</span></div>
-    <div class="rowS"><b>CHI 24</b><span class="q">7 7 7 3</span></div>
-    <div class="rowS lo"><b>GB&nbsp; 22</b><span class="q">0 7 0 15</span></div>
+    <div class="league"><span>NFL · WEEK 18 · FINAL</span><span class="q4"><span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span></span></div>
+    <div class="rowS"><b>CHI 24</b><span class="q4"><span>7</span><span>7</span><span>7</span><span>3</span></span></div>
+    <div class="rowS lo"><b>GB&nbsp; 22</b><span class="q4"><span>0</span><span>7</span><span>0</span><span>15</span></span></div>
     <div class="rule"></div>
     <div class="info">
       <span class="k">VENUE</span><span class="v">LAMBEAU FIELD</span>

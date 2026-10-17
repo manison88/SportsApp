@@ -1,0 +1,93 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Movie Poster</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #04070b; }
+  .bg { position: absolute; inset: 0; }
+  .bg img { filter: contrast(1.15) saturate(.7) brightness(.78) hue-rotate(-8deg); transform: scale(1.12); transform-origin: 50% 30%; }
+  .tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4,10,20,.9) 0%, rgba(6,14,26,.6) 24%, rgba(8,20,36,.15) 38%,  rgba(4,8,14,.82) 62%, #04070b 84%); }
+  .tint2 { position: absolute; inset: 0; background: radial-gradient(70% 40% at 50% 30%, rgba(255,150,70,.18), transparent 70%); mix-blend-mode: screen; }
+  .snow { position: absolute; inset: 0; }
+  .snow i { position: absolute; border-radius: 50%; background: #fff; }
+
+  .prog { position: absolute; top: 54px; left: 10px; right: 10px; display: flex; gap: 4px; z-index: 20; }
+  .prog i { flex: 1; height: 2.5px; border-radius: 2px; background: rgba(255,255,255,.3); position: relative; overflow: hidden; }
+  .prog i.done { background: #fff; }
+  .prog i.now::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 30%; background: #fff; }
+  .shead { position: absolute; top: 66px; left: 14px; right: 10px; height: 32px; display: flex; align-items: center; z-index: 20; }
+  .shead .av { width: 30px; height: 30px; border-radius: 50%; background: #fff; color: #04070b; display: grid; place-items: center; font: 400 19px/1 var(--f-serif); margin-right: 9px; }
+  .shead b { font: 600 13.5px/1 var(--f-ui); color: #fff; }
+  .shead span { font: 500 13px/1 var(--f-ui); color: rgba(255,255,255,.6); margin-left: 6px; }
+  .shead .sp { flex: 1; }
+  .shead svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; margin-left: 12px; }
+
+  .quote { position: absolute; top: 122px; left: 30px; right: 30px; text-align: center; }
+  .quote p { font: italic 400 21px/1.15 var(--f-serif); color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,.6); }
+  .quote .stars { margin-top: 8px; font: 500 12px/1 var(--f-ui); letter-spacing: 4px; color: #ffcf7a; }
+  .quote span { display: block; margin-top: 6px; font: 600 9.5px/1 var(--f-cond); letter-spacing: 2.4px; color: rgba(255,255,255,.75); text-transform: uppercase; }
+
+  .laurel { position: absolute; top: 340px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 4px; }
+  .laurel svg { width: 30px; height: 58px; }
+  .laurel div { text-align: center; font: 600 9px/1.25 var(--f-cond); letter-spacing: 1.8px; color: #f1dfb2; text-transform: uppercase; width: 116px; }
+  .laurel div b { display: block; font: 700 13px/1.1 var(--f-cond); letter-spacing: 1.6px; color: #fff; margin: 2px 0; }
+
+  .starring { position: absolute; top: 424px; left: 0; right: 0; text-align: center; font: 600 11px/1 var(--f-cond); letter-spacing: 4px; color: rgba(255,255,255,.85); text-transform: uppercase; }
+  .title { position: absolute; top: 444px; left: 0; right: 0; text-align: center; font: 400 128px/.8 var(--f-bebas); letter-spacing: 2px; color: #fff; text-shadow: 0 6px 40px rgba(0,0,0,.6); }
+  .title em { font-style: normal; display: block; background: linear-gradient(180deg, #fff 0%, #ffd9a0 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .tagline { position: absolute; top: 664px; left: 24px; right: 24px; text-align: center; font: 400 17px/1.2 var(--f-serif); color: #f1e6d0; }
+  .tagline i { color: #ffcf7a; }
+  .billing { position: absolute; top: 700px; left: 22px; right: 22px; text-align: center; font: 500 9.2px/1.12 var(--f-cond); letter-spacing: .6px; color: rgba(255,255,255,.58); text-transform: uppercase; transform: scaleY(1.25); transform-origin: top; }
+  .billing b { font-weight: 800; color: rgba(255,255,255,.82); font-size: 10.5px; }
+  .billing small { font-size: 7px; }
+
+  .share { position: absolute; top: 762px; left: 16px; right: 16px; height: 50px; display: flex; gap: 10px; z-index: 20; }
+  .share .main { flex: 1; border-radius: 25px; background: #fff; color: #04070b; display: flex; align-items: center; justify-content: center; gap: 8px; font: 700 16px/1 var(--f-ui); }
+  .share svg { width: 19px; height: 19px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .share .main svg { stroke: #04070b; }
+  .share .c { width: 50px; border-radius: 25px; display: grid; place-items: center; }
+  .share .c svg { stroke: #fff; }
+</style></head>
+<body class="phone">
+  <div class="bg"><img class="ph" src="../../photos/lambeau-concourse.jpg"></div>
+  <div class="tint2"></div>
+  <div class="tint"></div>
+  <div class="snow" id="snow"></div>
+  <div class="grain"></div>
+
+  <div class="prog"><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="now"></i><i></i></div>
+  <div class="shead"><span class="av">W</span><b>Wrapped 2025</b><span>7 of 8</span><span class="sp"></span>
+    <svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+
+  <div class="quote">
+    <p>“I couldn’t feel my toes and<br>I didn’t care.”</p>
+    <div class="stars">★★★★★</div>
+    <span>Maya, 15 · Sec 112, Row 41</span>
+  </div>
+
+  <div class="laurel">
+    <svg viewBox="0 0 30 58" fill="#f1dfb2"><g id="lf"><path d="M24 56C10 48 4 34 6 14" stroke="#f1dfb2" stroke-width="1.4" fill="none"/>
+      <ellipse cx="5" cy="18" rx="2.6" ry="6" transform="rotate(-10 5 18)"/><ellipse cx="4" cy="28" rx="2.6" ry="6" transform="rotate(-25 4 28)"/><ellipse cx="6" cy="38" rx="2.6" ry="6" transform="rotate(-45 6 38)"/><ellipse cx="11" cy="47" rx="2.6" ry="6" transform="rotate(-62 11 47)"/>
+      <ellipse cx="12" cy="20" rx="2.2" ry="5" transform="rotate(25 12 20)"/><ellipse cx="13" cy="31" rx="2.2" ry="5" transform="rotate(15 13 31)"/><ellipse cx="16" cy="41" rx="2.2" ry="5" transform="rotate(0 16 41)"/></g></svg>
+    <div>Most photographed<b>Walk-off of 2025</b>212 frames · 4 min</div>
+    <svg viewBox="0 0 30 58" fill="#f1dfb2" style="transform:scaleX(-1)"><use href="#lf"/></svg>
+  </div>
+
+  <div class="starring">Sam Okafor in</div>
+  <div class="title">Nine<em>Nights</em></div>
+
+  <div class="tagline">Six wins. Three losses. <i>One kick through the snow.</i></div>
+
+  <div class="billing">Witness Pictures presents a <b>Sam Okafor</b> season · starring <b>Maya Okafor</b> <b>Leo Okafor</b> <b>Dana</b> with <b>Ray Okafor</b> as “Dad” · filmed on location at Lambeau Field · Wrigley Field · Soldier Field · American Family Field · Target Field · 1,284 photos · 3,180 miles · 19°F at its coldest <small>· rated W for witnessed</small></div>
+
+  <div class="share">
+    <div class="main"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share the poster</div>
+    <div class="c glass"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div>
+    <div class="c glass"><svg viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg></div>
+  </div>
+<script>
+  (function(){ const s = document.getElementById('snow'); let x = 3; const r = () => (x = (x * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < 110; i++) { const d = document.createElement('i'), z = r() < .1 ? 3.2 : r() < .4 ? 2 : 1.2;
+      d.style.cssText = `left:${r()*393}px;top:${r()*620}px;width:${z}px;height:${z}px;opacity:${.25 + r()*.55};filter:blur(${z > 3 ? 1 : 0}px)`; s.appendChild(d); } })();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

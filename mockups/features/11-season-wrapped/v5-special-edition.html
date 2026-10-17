@@ -1,0 +1,87 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Special Edition</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  :root { --np: #efe8d8; --ink3: #15130f; --red: #c0281c; }
+  body.phone { background: var(--np); color: var(--ink3); }
+  .prog { position: absolute; top: 54px; left: 10px; right: 10px; display: flex; gap: 4px; z-index: 20; }
+  .prog i { flex: 1; height: 2.5px; border-radius: 2px; background: var(--ink3); }
+  .prog i.now { background: linear-gradient(90deg, var(--ink3) 85%, rgba(21,19,15,.2) 85%); }
+  .shead { position: absolute; top: 66px; left: 14px; right: 10px; height: 32px; display: flex; align-items: center; z-index: 20; }
+  .shead .av { width: 30px; height: 30px; border-radius: 50%; background: var(--ink3); color: var(--np); display: grid; place-items: center; font: 400 19px/1 var(--f-serif); margin-right: 9px; }
+  .shead b { font: 600 13.5px/1 var(--f-ui); }
+  .shead span { font: 500 13px/1 var(--f-ui); color: rgba(21,19,15,.55); margin-left: 6px; }
+  .shead .sp { flex: 1; }
+  .shead svg { width: 22px; height: 22px; stroke: var(--ink3); fill: none; stroke-width: 2.2; stroke-linecap: round; margin-left: 12px; }
+
+  .paper { position: absolute; top: 106px; left: 16px; right: 16px; z-index: 2; }
+  .stamp { position: absolute; top: -8px; right: -8px; width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--red); color: var(--red); display: grid; place-items: center; text-align: center;
+    font: 700 8px/1.15 var(--f-ui); letter-spacing: 1px; transform: rotate(14deg); text-transform: uppercase; z-index: 3; background: rgba(239,232,216,.6); }
+  .stamp b { display: block; font: 400 15px/1 var(--f-anton); letter-spacing: .5px; }
+  .ears { display: flex; justify-content: space-between; font: 600 8.5px/1.25 var(--f-ui); letter-spacing: 1px; text-transform: uppercase; color: rgba(21,19,15,.65); }
+  .mast { text-align: center; font: 400 46px/1 var(--f-dm); letter-spacing: -1px; margin-top: 2px; }
+  .dateline { margin-top: 6px; border-top: 2.5px solid var(--ink3); border-bottom: 1px solid var(--ink3); padding: 5px 0 4px; display: flex; justify-content: space-between;
+    font: 600 8.5px/1 var(--f-ui); letter-spacing: 1.2px; text-transform: uppercase; }
+  .dateline b { color: var(--red); }
+  .kicker { margin-top: 12px; font: 700 10px/1 var(--f-ui); letter-spacing: 2.4px; text-transform: uppercase; color: var(--red); }
+  .hl { margin-top: 6px; font: 900 41px/.92 var(--f-fraunces); letter-spacing: -1.6px; font-variation-settings: "opsz" 144; }
+  .dek { margin-top: 8px; font: italic 400 15.5px/1.25 var(--f-serif); color: rgba(21,19,15,.82); }
+  .photo { margin-top: 12px; height: 192px; position: relative; overflow: hidden; }
+  .photo img { filter: grayscale(1) contrast(1.35) brightness(1.05); }
+  .photo .dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(0,0,0,.35) .8px, transparent 1.1px); background-size: 3px 3px; mix-blend-mode: multiply; }
+  .cap { margin-top: 5px; font: 400 10.5px/1.3 var(--f-ui); color: rgba(21,19,15,.7); }
+  .cap b { color: var(--ink3); }
+  .cols { margin-top: 10px; border-top: 1px solid var(--ink3); padding-top: 9px; display: grid; grid-template-columns: 1fr 128px; gap: 14px; }
+  .body { font: 400 12.5px/1.4 var(--f-fraunces); text-align: left; color: #2a261e; }
+  .body::first-letter { float: left; font: 900 36px/.82 var(--f-fraunces); margin: 3px 5px 0 0; color: var(--ink3); }
+  .box { border-left: 1px solid rgba(21,19,15,.3); padding-left: 12px; }
+  .box h4 { font: 700 9px/1 var(--f-ui); letter-spacing: 1.8px; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+  .box .r { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px dotted rgba(21,19,15,.35); padding: 4px 0 3px; }
+  .box .r b { font: 900 17px/1 var(--f-fraunces); font-variant-numeric: tabular-nums; }
+  .box .r span { font: 500 9.5px/1 var(--f-ui); color: rgba(21,19,15,.7); }
+
+  .share { position: absolute; top: 762px; left: 16px; right: 16px; height: 50px; display: flex; gap: 10px; z-index: 20; }
+  .share .main { flex: 1; border-radius: 25px; background: var(--ink3); color: var(--np); display: flex; align-items: center; justify-content: center; gap: 8px; font: 700 16px/1 var(--f-ui); }
+  .share svg { width: 19px; height: 19px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .share .main svg { stroke: var(--np); }
+  .share .c { width: 50px; border-radius: 25px; box-shadow: inset 0 0 0 1.5px rgba(21,19,15,.3); display: grid; place-items: center; }
+  .share .c svg { stroke: var(--ink3); }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="paper-tex"></div>
+  <div class="prog"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="now"></i></div>
+  <div class="shead"><span class="av">W</span><b>Wrapped 2025</b><span>8 of 8</span><span class="sp"></span>
+    <svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+
+  <div class="paper">
+    <div class="stamp"><div>Special<b>2025</b>Edition</div></div>
+    <div class="ears"><span>Logan Square<br>Edition</span><span style="text-align:right;margin-right:62px">Final<br>Free</span></div>
+    <div class="mast">The Witness</div>
+    <div class="dateline"><span>Vol. XII · No. 9</span><b>Year in review</b><span>Wed., Dec. 31, 2025</span></div>
+
+    <div class="kicker">Season final</div>
+    <div class="hl">Okafor goes 6–3, conquers the cold</div>
+    <div class="dek">Nine games, three new venues and one kick through the snow that nobody in Section 112 will forget.</div>
+
+    <div class="photo"><img class="ph" src="../../photos/lambeau-concourse.jpg"><div class="dots"></div></div>
+    <div class="cap"><b>FROZEN IN TIME</b> · Lambeau Field, Jan. 5, minutes after a 51-yard kick beat Green Bay 24–22 as time expired. Photo: S. Okafor, one of 212.</div>
+
+    <div class="cols">
+      <div class="body">GREEN BAY — It started at 19 degrees and only got better. Sam Okafor, accompanied most often by daughter Maya, watched Chicago win six of nine, added three venues to a growing passport and logged 3,180 miles in pursuit. Maya’s verdict: “Same seats next year.”</div>
+      <div class="box">
+        <h4>By the numbers</h4>
+        <div class="r"><b>9</b><span>games</span></div>
+        <div class="r"><b>6–3</b><span>record</span></div>
+        <div class="r"><b>3</b><span>new venues</span></div>
+        <div class="r"><b>19°</b><span>coldest</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="share">
+    <div class="main"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share the front page</div>
+    <div class="c"><svg viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H4a1 1 0 0 1-1-1v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6a1 1 0 0 1-1 1h-2M7 14h10v7H7z"/></svg></div>
+    <div class="c"><svg viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg></div>
+  </div>
+<script src="../../kit/kit.js"></script>
+</body></html>

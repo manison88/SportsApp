@@ -8,7 +8,7 @@
   .eb { position: absolute; left: 24px; right: 24px; top: 112px; display: flex; justify-content: space-between; font: 700 10px/1 var(--f-ui); letter-spacing: 2.2px; color: #f2c14e; }
   .eb span:last-child { color: var(--text-3); }
   .hero { position: absolute; left: 24px; top: 134px; display: flex; gap: 5px; }
-  .sub { position: absolute; left: 24px; right: 24px; top: 216px; font: 500 13px/1.35 var(--f-ui); color: var(--text-2); }
+  .sub { position: absolute; left: 24px; right: 24px; top: 204px; font: 500 13px/1.35 var(--f-ui); color: var(--text-2); }
   .sub b { color: var(--text); font-weight: 600; }
 
   .flap { position: relative; display: grid; place-items: center; border-radius: 3px; overflow: hidden; color: #f4ead2; font-family: var(--f-cond); font-weight: 700;
@@ -18,16 +18,16 @@
   .flap::before { content: ""; position: absolute; left: -1px; top: calc(50% - 3px); width: 3px; height: 6px; background: #3a3b40; border-radius: 1px; z-index: 2; box-shadow: calc(var(--w) - 1px) 0 0 #3a3b40; }
   .big { --w: 36px; width: 36px; height: 54px; font-size: 44px; letter-spacing: 0; }
   .big.amb { color: #f2c14e; }
-  .sm { --w: 22px; width: 22px; height: 30px; font-size: 22px; }
+  .sm { --w: 24px; width: 24px; height: 34px; font-size: 25px; }
   .sm.g { color: #7fe08a; }
   .sm.a { color: #f2c14e; }
   .sm.dim { color: #5c5e66; }
   .mid { position: absolute; left: 0; right: 0; top: 0; height: 50%; transform-origin: 50% 100%; transform: perspective(120px) rotateX(-58deg);
     background: linear-gradient(180deg, #2b2c31, #1c1d21); border-radius: 3px 3px 0 0; display: grid; place-items: end center; overflow: hidden; box-shadow: 0 6px 10px rgba(0,0,0,.6); z-index: 3; }
 
-  .board { position: absolute; left: 12px; right: 12px; top: 262px; padding: 6px 12px 4px; border-radius: 18px; background: #0c0c0e; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 20px 40px rgba(0,0,0,.5); }
+  .board { position: absolute; left: 12px; right: 12px; top: 256px; padding: 6px 12px 4px; border-radius: 18px; background: #0c0c0e; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 20px 40px rgba(0,0,0,.5); }
   .cols { display: flex; justify-content: space-between; padding: 10px 0 8px; border-bottom: 1px solid rgba(255,255,255,.07); font: 700 8.5px/1 var(--f-ui); letter-spacing: 1.8px; color: var(--text-3); }
-  .row { padding: 10px 0 10px; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .row { padding: 14px 0 14px; border-bottom: 1px solid rgba(255,255,255,.06); }
   .row:last-child { border-bottom: 0; }
   .row .meta { display: flex; justify-content: space-between; font: 600 9.5px/1 var(--f-mono); letter-spacing: .8px; color: #f2c14e; margin-bottom: 7px; }
   .row .meta span:last-child { color: var(--text-3); }
@@ -36,12 +36,15 @@
   .row .note { font: 500 11.5px/1 var(--f-ui); color: var(--text-2); margin-top: 7px; white-space: nowrap; }
   .row.now { background: linear-gradient(90deg, rgba(242,193,78,.09), rgba(242,193,78,0)); margin: 0 -12px; padding-left: 12px; padding-right: 12px; }
 
-  .ticker { position: absolute; left: 12px; right: 12px; top: 712px; height: 40px; border-radius: 12px; background: #0a0703; overflow: hidden;
+  .ticker { position: absolute; left: 12px; right: 12px; top: 686px; height: 40px; border-radius: 12px; background: #0a0703; overflow: hidden;
     box-shadow: inset 0 0 0 1px rgba(242,193,78,.18); display: flex; align-items: center; }
   .ticker span { white-space: nowrap; font: 800 13px/1 var(--f-mono); letter-spacing: 2.4px; color: #ffb23e; text-shadow: 0 0 8px rgba(255,170,40,.75); padding-left: 16px;
     -webkit-mask: radial-gradient(circle, #000 .9px, transparent 1.1px) 0 0/2.2px 2.2px; mask: radial-gradient(circle, #000 .9px, transparent 1.1px) 0 0/2.2px 2.2px; }
   .ticker::after { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 60px; background: linear-gradient(90deg, transparent, #0a0703); }
-  .foot { position: absolute; left: 24px; right: 24px; top: 772px; display: flex; justify-content: space-between; font: 500 11px/1 var(--f-ui); color: var(--text-3); }
+  .foot { position: absolute; left: 12px; right: 12px; top: 742px; display: flex; justify-content: space-between; align-items: center; font: 500 11px/1 var(--f-ui); color: var(--text-3); }
+  .play { height: 48px; padding: 0 20px; border-radius: 24px; display: inline-flex; align-items: center; gap: 10px; font: 600 15px/1 var(--f-ui); color: var(--text); }
+  .play i { font-style: normal; color: var(--text-3); font-weight: 500; }
+  .foot > span { padding-right: 12px; }
   .foot b { color: var(--text); font-weight: 600; }
 </style></head>
 <body class="phone">
@@ -52,7 +55,7 @@
   </div>
   <div class="eb"><span>SALIDAS · DEPARTURES</span><span>TRIP 07 OF 11</span></div>
   <div class="hero" id="hero"></div>
-  <div class="sub"><b>Feb 20 – Mar 3, 2020</b> · Sam, Dana, Maya &amp; Leo · 2 games, 3 cities, 9,150 miles</div>
+  <div class="sub"><b>Feb 20 – Mar 3, 2020</b><br>Sam, Dana, Maya &amp; Leo · 2 games · 9,150 mi</div>
 
   <div class="board">
     <div class="cols"><span>DESTINATION</span><span>RESULT</span></div>
@@ -60,14 +63,14 @@
   </div>
 
   <div class="ticker"><span>+++ THE LAST GAME BEFORE THE WORLD WENT QUIET +++ MAR 01</span></div>
-  <div class="foot"><span><b>214</b> photos · <b>3</b> videos</span><span>Tap a stop to open</span></div>
+  <div class="foot"><div class="play glass"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8z" fill="#f4ead2"/></svg>Play the trip film <i>2:14</i></div><span><b>214</b> photos</span></div>
 
 <script>
 (function(){
   const cell = (ch, cls) => `<div class="flap ${cls}">${ch === ' ' ? '' : ch}</div>`;
   const hero = document.getElementById('hero');
   hero.innerHTML = [...'ESPAÑA'].map((c, i) => i === 3
-    ? `<div class="flap big"><span style="opacity:.0">Ñ</span><span style="position:absolute;inset:0;display:grid;place-items:center;clip-path:inset(50% 0 0 0)">Ñ</span><div class="mid"><span style="font:700 44px/54px var(--f-cond);color:#f4ead2;transform:translateY(27px)">R</span></div></div>`
+    ? `<div class="flap big">A<div class="mid"><span style="position:absolute;left:0;right:0;top:0;height:54px;font:700 44px/54px var(--f-cond);color:#f4ead2;text-align:center">A</span></div></div>`
     : cell(c, 'big')).join('') + `<div style="width:6px"></div>` + [...'20'].map(c => cell(c, 'big amb')).join('');
   const pad = (s, n) => (s + ' '.repeat(n)).slice(0, n);
   const rows = [

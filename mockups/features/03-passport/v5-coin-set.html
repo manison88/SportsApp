@@ -1,0 +1,170 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Coin set</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #2a0a12; }
+  /* lid: ivory satin */
+  .lid { position: absolute; left: 0; right: 0; top: 0; height: 236px; overflow: hidden;
+    background:
+      linear-gradient(172deg, rgba(255,255,255,0) 20%, rgba(255,255,255,.55) 30%, rgba(255,255,255,0) 40%, rgba(120,90,60,.12) 55%, rgba(255,255,255,.35) 66%, rgba(255,255,255,0) 76%),
+      linear-gradient(186deg, rgba(120,90,60,.0) 30%, rgba(120,90,60,.16) 48%, rgba(120,90,60,0) 60%),
+      radial-gradient(90% 120% at 50% 100%, #efe3cc, #d8c5a3 80%, #b9a17a 100%); }
+  .lid::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 -18px 24px -10px rgba(60,30,10,.45), inset 0 0 0 6px #3a1a0c, inset 0 0 0 7px rgba(255,210,150,.25); }
+  .hinge { position: absolute; left: 0; right: 0; top: 236px; height: 14px; background: linear-gradient(#3a1a0c, #1b0a04); box-shadow: 0 4px 10px rgba(0,0,0,.6); z-index: 2; }
+  .hinge i { position: absolute; top: 2px; width: 54px; height: 10px; border-radius: 3px; background: linear-gradient(#fbe7a6, #b88a2e 55%, #6e4f12); box-shadow: inset 0 1px 0 rgba(255,255,255,.6); }
+  .hinge i::after { content: ""; position: absolute; left: 0; right: 0; top: 4px; height: 1px; background: rgba(60,40,0,.5); }
+
+  .top { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+  .top .btn-circle { background: rgba(60,30,10,.12); border: .5px solid rgba(60,30,10,.18); }
+  .top .btn-circle svg { stroke: #3a2210; }
+  .emblem { position: absolute; left: 0; right: 0; top: 104px; text-align: center; z-index: 3; }
+  .foil { background: linear-gradient(180deg, #fff1bd 0%, #c9992f 45%, #7a5410 58%, #e8c467 100%); -webkit-background-clip: text; color: transparent;
+    filter: drop-shadow(0 1px 0 rgba(255,255,255,.7)) drop-shadow(0 -1px 0 rgba(90,60,20,.35)); }
+  .emblem .k { font: 700 10px/1 var(--f-ui); letter-spacing: 3.4px; text-transform: uppercase; }
+  .emblem h1 { font: 400 34px/1 var(--f-dm); letter-spacing: -.2px; margin-top: 8px; }
+  .emblem .rule { width: 140px; height: 1px; margin: 12px auto 10px; background: linear-gradient(90deg, rgba(140,100,30,0), rgba(140,100,30,.7), rgba(140,100,30,0)); }
+  .emblem .s { font: 600 12px/1 var(--f-ui); letter-spacing: .4px; color: #6a4a24; }
+  .emblem .s b { color: #3a2210; }
+
+  /* velvet tray */
+  .velvet { position: absolute; left: 0; right: 0; top: 250px; bottom: 0;
+    background: radial-gradient(80% 50% at 40% 30%, #7a1a2c, #520c1b 60%, #2f0610 100%); }
+  .velvet::after { content: ""; position: absolute; inset: 0; opacity: .8; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='v'><feTurbulence type='fractalNoise' baseFrequency='.02 .9' numOctaves='3' seed='9'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.2 -.3'/></filter><rect width='100%' height='100%' filter='url(%23v)'/></svg>"); }
+  .tabs { position: absolute; top: 266px; left: 16px; right: 0; display: flex; gap: 8px; z-index: 3; white-space: nowrap; overflow: hidden; }
+  .tab { height: 30px; padding: 0 12px; border-radius: 6px; font: 700 11px/30px var(--f-ui); letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255,220,200,.55);
+    background: rgba(0,0,0,.22); box-shadow: inset 0 1px 2px rgba(0,0,0,.5), 0 1px 0 rgba(255,255,255,.06); }
+  .tab b { font-weight: 600; opacity: .7; margin-left: 4px; }
+  .tab.on { color: #3a2508; background: linear-gradient(180deg, #fbe7a6, #c99a3a 60%, #9c7424); box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 2px 4px rgba(0,0,0,.5); }
+
+  .well { position: absolute; width: 96px; height: 96px; border-radius: 50%; z-index: 2;
+    background: radial-gradient(circle at 50% 40%, #2a050d, #3c0814 70%, #4d0c1a);
+    box-shadow: inset 0 6px 12px rgba(0,0,0,.8), inset 0 -2px 3px rgba(255,140,160,.12), 0 1px 0 rgba(255,180,190,.12); }
+  .coin { position: absolute; width: 86px; height: 86px; border-radius: 50%; z-index: 3;
+    box-shadow: 0 3px 4px rgba(0,0,0,.6), 0 0 0 .5px rgba(0,0,0,.4); }
+  .coin .rim { position: absolute; inset: 0; border-radius: 50%; background: var(--rim); }
+  .coin .reed { position: absolute; inset: 0; border-radius: 50%;
+    background: repeating-conic-gradient(rgba(0,0,0,.28) 0 1.2deg, rgba(255,255,255,.12) 1.2deg 2.4deg);
+    -webkit-mask: radial-gradient(circle, transparent 41px, #000 41.5px); }
+  .coin .field { position: absolute; inset: 7px; border-radius: 50%; background: var(--field);
+    box-shadow: inset 0 2px 3px rgba(0,0,0,.45), inset 0 -1px 2px rgba(255,255,255,.55), 0 -1px 0 rgba(0,0,0,.2); }
+  .coin .field::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
+    background: repeating-radial-gradient(circle, rgba(255,255,255,.06) 0 .6px, rgba(0,0,0,.04) .6px 1.4px); }
+  .coin svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
+  .gold   { --rim: conic-gradient(from 20deg, #7a5612, #fbe9a8, #b78a2a, #fff6d0, #8a6418, #e8c467, #7a5612);
+            --field: radial-gradient(circle at 35% 30%, #fff3c4, #e2bb58 45%, #a77c22 85%, #7d5a14); --ink: #5a3e0a; }
+  .silver { --rim: conic-gradient(from 20deg, #5c626b, #f6f8fa, #9ea4ac, #ffffff, #6d737c, #d6dade, #5c626b);
+            --field: radial-gradient(circle at 35% 30%, #ffffff, #c9ced4 45%, #8d939b 85%, #6b7179); --ink: #3e434a; }
+  .bronze { --rim: conic-gradient(from 20deg, #5a3214, #f2c093, #9a5a2c, #ffd8b2, #6b3a18, #d9925c, #5a3214);
+            --field: radial-gradient(circle at 35% 30%, #ffd9b4, #c98552 45%, #8a4e22 85%, #64361a); --ink: #4a2610; }
+
+  .plaque { position: absolute; z-index: 3; height: 17px; padding: 0 7px; border-radius: 2px; transform: translateX(-50%);
+    font: 700 8px/17px var(--f-ui); letter-spacing: 1.2px; text-transform: uppercase; white-space: nowrap; color: #3a2508;
+    background: linear-gradient(180deg, #fbe7a6, #c99a3a 60%, #9c7424); box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 2px 3px rgba(0,0,0,.5); }
+  .plaque.empty { background: none; box-shadow: none; color: rgba(255,200,190,.38); font-weight: 600; }
+
+  .lift { z-index: 6; width: 104px; height: 104px; box-shadow: 0 18px 26px rgba(0,0,0,.6), 0 4px 6px rgba(0,0,0,.4); transform: rotate(-8deg); }
+  .lift .reed { -webkit-mask: radial-gradient(circle, transparent 49.5px, #000 50px); }
+  .lift .field { inset: 8px; }
+  .next { position: absolute; z-index: 6; left: 16px; right: 16px; bottom: 30px; height: 60px; border-radius: 18px; display: flex; align-items: center; gap: 12px; padding: 0 16px 0 12px;
+    background: rgba(30,4,10,.55); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: .5px solid rgba(255,200,190,.16); box-shadow: 0 10px 24px rgba(0,0,0,.4); }
+  .next .mini { position: relative; width: 34px; height: 34px; border-radius: 50%; box-shadow: 0 2px 3px rgba(0,0,0,.5); flex: none; }
+  .next .mini .field { inset: 4px; }
+  .next .t { flex: 1; }
+  .next .t b { display: block; font: 600 14px/1.2 var(--f-ui); color: #fbeee6; }
+  .next .t span { display: block; font: 500 12px/1.3 var(--f-ui); color: rgba(255,220,210,.6); margin-top: 1px; }
+  .next .pg { width: 64px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.12); overflow: hidden; }
+  .next .pg i { display: block; height: 100%; background: linear-gradient(90deg, #9ea4ac, #fff); border-radius: 3px; }
+  .callout { position: absolute; z-index: 6; left: 132px; top: 316px; }
+</style></head>
+<body class="phone" data-chrome="dark">
+<div class="lid"></div>
+<div class="top">
+  <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+<div class="emblem">
+  <div class="k foil">Witness Mint · Est. 2014</div>
+  <h1 class="foil">The Ballpark Series</h1>
+  <div class="rule"></div>
+  <div class="s"><b>14 of 30</b> struck · gold at 10 visits, silver at 3</div>
+</div>
+<div class="hinge"><i style="left:56px"></i><i style="right:56px"></i></div>
+<div class="velvet"></div>
+<div class="tabs">
+  <div class="tab on">Baseball <b>14</b></div>
+  <div class="tab">Football <b>2</b></div>
+  <div class="tab">Hockey <b>1</b></div>
+  <div class="tab">Soccer <b>4</b></div>
+  <div class="tab">F1 <b>1</b></div>
+</div>
+<div id="tray"></div>
+<div class="next">
+  <div class="mini silver"><div class="rim"></div><div class="field"></div></div>
+  <div class="t"><b>Target Field turns silver</b><span>One more visit · 2 of 3</span></div>
+  <div class="pg"><i style="width:66%"></i></div>
+</div>
+
+<script>
+const tray = document.getElementById('tray');
+const ICON = {
+  marquee: 'M-14 -9h28l-2 8h-24zM-9 -1v9M9 -1v9M-5 1h10v5h-10zM0 -9v-4',
+  monster: 'M-15 8V-2h30v10M-11 -2v-9M11 -2v-9M-14 -11h6M8 -11h6',
+  tower: 'M-14 9h28M-11 9V-1l11-7 11 7v10M-5 9V2h10v7',
+  arch: 'M-14 9C-12 -10 12 -10 14 9M-8 9C-7 -3 7 -3 8 9',
+  peak: 'M-15 8l8-12 5 6 5-10 12 16z',
+  diamond: 'M0 -10l11 11-11 9-11-9z',
+  bridge: 'M-15 4h30M-9 4V-8M9 4V-8M-9 -6c4 6 14 6 18 0M-15 9h30',
+  cle: '', det: ''
+};
+let n = 0;
+function coinSVG(name, year, icon, big) {
+  const R = big ? 52 : 43, id = 'a' + (n++);
+  const r = big ? 34 : 28;
+  const s = big ? 1.25 : 1;
+  const fs = big ? 8.5 : 7;
+  const word = (y, t, size, fam = 'Archivo Black', ls = 0) => `
+      <text x="${R}" y="${y + .8}" text-anchor="middle" font-family="${fam}" font-size="${size}" letter-spacing="${ls}" fill="rgba(255,255,255,.55)">${t}</text>
+      <text x="${R}" y="${y}" text-anchor="middle" font-family="${fam}" font-size="${size}" letter-spacing="${ls}" fill="var(--ink)" opacity=".78">${t}</text>`;
+  const ic = ICON[icon] ? `<g transform="translate(${R},${R - 2}) scale(${s})" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.1">
+        <path d="${ICON[icon]}" stroke="rgba(255,255,255,.55)" transform="translate(0,.8)"/>
+        <path d="${ICON[icon]}" stroke="var(--ink)" opacity=".8"/></g>` : word(R + 5, icon.toUpperCase(), big ? 22 : 17, 'Archivo Black', .5);
+  return `<svg viewBox="0 0 ${2 * R} ${2 * R}">
+    <defs><path id="${id}t" d="M${R - r},${R} a${r},${r} 0 0,1 ${2 * r},0"/><path id="${id}b" d="M${R - r - 7},${R} a${r + 7},${r + 7} 0 0,0 ${2 * r + 14},0"/></defs>
+    <text font-family="Archivo Black" font-size="${fs}" letter-spacing="1.4" fill="rgba(255,255,255,.55)" transform="translate(0,.8)"><textPath href="#${id}t" startOffset="50%" text-anchor="middle">${name}</textPath></text>
+    <text font-family="Archivo Black" font-size="${fs}" letter-spacing="1.4" fill="var(--ink)" opacity=".8"><textPath href="#${id}t" startOffset="50%" text-anchor="middle">${name}</textPath></text>
+    <text font-family="Archivo Black" font-size="${fs}" letter-spacing="2" fill="var(--ink)" opacity=".75"><textPath href="#${id}b" startOffset="50%" text-anchor="middle">★ ${year} ★</textPath></text>
+    ${ic}
+    <circle cx="${R}" cy="${R}" r="${R - (big ? 13 : 11)}" fill="none" stroke="var(--ink)" stroke-opacity=".25" stroke-width=".8" stroke-dasharray="1 2"/>
+  </svg>`;
+}
+const X = [76, 196, 316], Y = [376, 506, 636];
+const C = [
+  ['WRIGLEY', 2014, 'marquee', 'gold', 'Wrigley · 17', 'lift'],
+  ['RATE FIELD', 2015, 'tower', 'silver', 'Rate Field · 4'],
+  ['FENWAY', 2019, 'monster', 'silver', 'Fenway · 3'],
+  ['TARGET', 2018, 'diamond', 'bronze', 'Target · 2'],
+  ['BUSCH', 2022, 'arch', 'bronze', 'Busch · 1'],
+  ['COORS', 2024, 'peak', 'bronze', 'Coors · 1'],
+  ['PNC PARK', 2021, 'bridge', 'bronze', 'PNC · 1'],
+  ['PROGRESSIVE', 2016, 'cle', 'bronze', 'Progressive · 1'],
+  null,
+];
+const EMPTY = ['Oracle Park', 'Petco Park', 'Truist Park'];
+let e = 0;
+C.forEach((c, i) => {
+  const x = X[i % 3], y = Y[Math.floor(i / 3)];
+  const w = document.createElement('div'); w.className = 'well'; w.style.left = (x - 48) + 'px'; w.style.top = (y - 48) + 'px'; tray.appendChild(w);
+  const p = document.createElement('div'); p.className = 'plaque' + (c ? '' : ' empty'); p.style.left = x + 'px'; p.style.top = (y + 56) + 'px';
+  p.textContent = c ? c[4] : EMPTY[e++]; tray.appendChild(p);
+  if (!c) return;
+  const big = c[5] === 'lift';
+  const d = document.createElement('div'); d.className = 'coin ' + c[3] + (big ? ' lift' : '');
+  if (big) { d.style.left = (x - 52 + 10) + 'px'; d.style.top = (y - 52 - 16) + 'px'; }
+  else { d.style.left = (x - 43) + 'px'; d.style.top = (y - 43) + 'px'; }
+  d.innerHTML = `<div class="rim"></div><div class="reed"></div><div class="field"></div>` + coinSVG(c[0], c[2] === 'cle' ? c[1] : c[1], c[2], big);
+  tray.appendChild(d);
+});
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

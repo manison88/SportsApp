@@ -1,0 +1,182 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Enamel pins</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #1b2622; }
+  .felt { position: absolute; inset: 0; background:
+    radial-gradient(70% 40% at 50% 26%, rgba(255,240,210,.16), rgba(0,0,0,0) 70%),
+    radial-gradient(120% 70% at 50% 110%, rgba(0,0,0,.55), rgba(0,0,0,0) 60%),
+    #24332d; }
+  .felt::after { content: ""; position: absolute; inset: 0; opacity: .9; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='4' seed='3'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.7 -.45'/></filter><rect width='100%' height='100%' filter='url(%23f)'/></svg>"); }
+  .frame { position: absolute; inset: 0; box-shadow: inset 0 0 0 7px #3a2a1c, inset 0 0 0 8px rgba(255,220,170,.18), inset 0 0 30px rgba(0,0,0,.6); pointer-events: none; z-index: 2; }
+
+  .top { position: absolute; top: 58px; left: 22px; right: 22px; display: flex; justify-content: space-between; align-items: flex-start; z-index: 5; }
+  .top h1 { font: 400 32px/1 var(--f-dm); letter-spacing: -.2px; color: #f6eedd; }
+  .top p { font: 500 13px/1 var(--f-ui); color: rgba(246,238,221,.6); margin-top: 6px; }
+  .top .btn-circle { background: rgba(0,0,0,.25); border: .5px solid rgba(255,255,255,.12); }
+  svg.stage { position: absolute; inset: 0; z-index: 3; }
+
+  .cap { position: absolute; z-index: 4; left: 0; right: 0; top: 332px; text-align: center; }
+  .cap .n { font: 400 20px/1 var(--f-dm); color: #f6eedd; }
+  .cap .m { font: 600 10px/1 var(--f-ui); letter-spacing: 2px; text-transform: uppercase; color: #e5c56f; margin-top: 7px; }
+
+  .lbl { position: absolute; z-index: 4; width: 86px; text-align: center; }
+  .lbl b { display: block; font: 600 11px/1.2 var(--f-ui); color: rgba(246,238,221,.9); white-space: nowrap; }
+  .lbl span { display: block; font: 500 10px/1.2 var(--f-ui); color: rgba(246,238,221,.5); margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .lbl.g b { color: rgba(246,238,221,.42); }
+  .lbl.g span { color: rgba(246,238,221,.3); }
+
+  .bar { position: absolute; z-index: 5; left: 16px; right: 16px; bottom: 28px; height: 64px; border-radius: 20px; padding: 0 16px; display: flex; align-items: center; gap: 14px;
+    background: rgba(12,18,16,.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: .5px solid rgba(255,255,255,.12); }
+  .bar .num { font: 800 26px/1 var(--f-tight); color: #f6eedd; letter-spacing: -.6px; font-variant-numeric: tabular-nums; }
+  .bar .num span { font-size: 15px; color: rgba(246,238,221,.45); font-weight: 600; }
+  .bar .mid { flex: 1; }
+  .bar .mid div:first-child { font: 600 12px/1 var(--f-ui); color: rgba(246,238,221,.75); margin-bottom: 8px; }
+  .track { height: 6px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; }
+  .track i { display: block; width: 46.7%; height: 100%; border-radius: 3px; background: linear-gradient(90deg, #a87a22, #f6dc8c 60%, #c99a2e); }
+  .bar .seg { display: flex; gap: 4px; }
+  .bar .seg span { height: 30px; padding: 0 10px; border-radius: 15px; font: 600 12px/30px var(--f-ui); color: rgba(246,238,221,.6); background: rgba(255,255,255,.06); }
+  .bar .seg span.on { color: #1d160a; background: linear-gradient(180deg, #f6dc8c, #c99a2e); }
+</style></head>
+<body class="phone">
+<div class="felt"></div>
+<div class="frame"></div>
+<div class="top">
+  <div><h1>Pin board</h1><p>One pin per ballpark, earned at the gate</p></div>
+  <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+</div>
+
+<svg class="stage" id="st" viewBox="0 0 393 852" width="393" height="852">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff4c2"/><stop offset=".22" stop-color="#e2bd5a"/><stop offset=".48" stop-color="#8a6418"/>
+      <stop offset=".62" stop-color="#d8b14e"/><stop offset=".8" stop-color="#fbe8a4"/><stop offset="1" stop-color="#9a7420"/>
+    </linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff"/><stop offset=".25" stop-color="#c8ccd2"/><stop offset=".5" stop-color="#6c727c"/>
+      <stop offset=".7" stop-color="#d6dade"/><stop offset="1" stop-color="#868c95"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".62"/><stop offset=".55" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="enamelShade" cx="50%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset=".7" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/>
+    </radialGradient>
+    <filter id="drop" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1" flood-color="#000" flood-opacity=".55"/>
+      <feDropShadow dx="2" dy="9" stdDeviation="6" flood-color="#000" flood-opacity=".5"/>
+    </filter>
+    <filter id="inner" x="-10%" y="-10%" width="120%" height="120%">
+      <feOffset dy="1.2"/><feGaussianBlur stdDeviation="1" result="b"/>
+      <feComposite in="SourceAlpha" in2="b" operator="out" result="ring"/>
+      <feFlood flood-color="#000" flood-opacity=".5"/><feComposite in2="ring" operator="in" result="sh"/>
+      <feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="sh"/></feMerge>
+    </filter>
+    <filter id="deboss" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.4" result="b"/><feOffset in="b" dy="2.5" result="o"/>
+      <feComposite in="SourceAlpha" in2="o" operator="out" result="r"/>
+      <feFlood flood-color="#000" flood-opacity=".6"/><feComposite in2="r" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="cap"><div class="n">Wrigley Field</div><div class="m">Gold edition · since June 2014</div></div>
+
+<div class="bar">
+  <div class="num">14<span>/30</span></div>
+  <div class="mid"><div>MLB ballparks pinned</div><div class="track"><i></i></div></div>
+  <div class="seg"><span class="on">MLB</span><span>All</span></div>
+</div>
+
+<script>
+const NS = 'http://www.w3.org/2000/svg', st = document.getElementById('st');
+const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || st).appendChild(e); return e; };
+const SHAPES = {
+  circle: 'M0 -46a46 46 0 1 1 0 92a46 46 0 1 1 0-92z',
+  shield: 'M-42 -46h84v40c0 30-20 46-42 54-22-8-42-24-42-54z',
+  rsq: 'M-34 -44h68a10 10 0 0 1 10 10v68a10 10 0 0 1-10 10h-68a10 10 0 0 1-10-10v-68a10 10 0 0 1 10-10z',
+  diamond: 'M0 -50l46 46a6 6 0 0 1 0 8l-46 46-46-46a6 6 0 0 1 0-8z',
+  hex: 'M0 -48l42 24v48l-42 24-42-24v-48z',
+  pennant: 'M-46 -34L50 -6a6 6 0 0 1 0 12L-46 34z',
+  arch: 'M-44 44v-40a44 44 0 0 1 88 0v40z',
+  octo: 'M-19 -46h38l27 27v38l-27 27h-38l-27-27v-38z',
+};
+let uid = 0;
+function pin(x, y, s, rot, shape, metal, enamel, accent, art) {
+  const g = el('g', { transform: `translate(${x},${y}) rotate(${rot}) scale(${s})`, filter: 'url(#drop)' });
+  const id = 'c' + (uid++);
+  const cp = el('clipPath', { id }, g); el('path', { d: SHAPES[shape] }, cp);
+  el('path', { d: SHAPES[shape], fill: `url(#${metal})` }, g);                         // metal body
+  el('path', { d: SHAPES[shape], fill: 'none', stroke: 'rgba(60,40,0,.55)', 'stroke-width': 1 }, g);
+  const inner = el('g', { transform: 'scale(.84)', filter: 'url(#inner)' }, g);
+  el('path', { d: SHAPES[shape], fill: enamel }, inner);
+  el('path', { d: SHAPES[shape], fill: 'url(#enamelShade)' }, inner);
+  const a = el('g', {}, g); a.innerHTML = art(metal, accent);                       // raised metal art
+  const gl = el('g', { 'clip-path': `url(#${id})` }, g);
+  el('ellipse', { cx: -18, cy: -40, rx: 70, ry: 34, fill: 'url(#gloss)', transform: 'rotate(-18)' }, gl);
+  el('path', { d: 'M-34 -30 C -24 -42, -6 -46, 8 -45', stroke: 'rgba(255,255,255,.85)', 'stroke-width': 2.4, fill: 'none', 'stroke-linecap': 'round' }, gl);
+  return g;
+}
+function ghost(x, y, s, shape) {
+  const g = el('g', { transform: `translate(${x},${y}) scale(${s})` });
+  el('path', { d: SHAPES[shape], fill: 'rgba(0,0,0,.18)' }, g);
+  el('path', { d: SHAPES[shape], fill: '#000', filter: 'url(#deboss)' }, g);
+  el('path', { d: SHAPES[shape], fill: 'none', stroke: 'rgba(229,197,111,.32)', 'stroke-width': 1.4, 'stroke-dasharray': '3 4' }, g);
+  el('circle', { r: 3.2, fill: 'rgba(0,0,0,.5)' }, g);
+}
+const M = (m) => `url(#${m})`;
+const T = (txt, y, size, fill, ls = 1.5, fam = 'Archivo Black') => `<text y="${y}" text-anchor="middle" font-family="${fam}" font-size="${size}" letter-spacing="${ls}" fill="${fill}" stroke="rgba(60,40,0,.5)" stroke-width=".4">${txt}</text>`;
+
+// HERO: Wrigley marquee pin
+(function () {
+  const g = el('g', { transform: 'translate(196,236) rotate(-3)', filter: 'url(#drop)' });
+  const body = 'M-108 -54h216a8 8 0 0 1 8 8l-14 52a8 8 0 0 1-8 6h-34v50a6 6 0 0 1-6 6h-120a6 6 0 0 1-6-6v-50h-34a8 8 0 0 1-8-6l-14-52a8 8 0 0 1 8-8z';
+  el('path', { d: body, fill: 'url(#gold)' }, g);
+  el('path', { d: body, fill: 'none', stroke: 'rgba(60,40,0,.6)', 'stroke-width': 1.2 }, g);
+  const inner = el('g', { filter: 'url(#inner)' }, g);
+  el('path', { d: 'M-100 -46h200l-12 46h-176z', fill: '#c8202f' }, inner);
+  el('path', { d: 'M-100 -46h200l-12 46h-176z', fill: 'url(#enamelShade)' }, inner);
+  el('path', { d: 'M-60 16h120v46h-120z', fill: '#0e3386' }, inner);
+  el('path', { d: 'M-60 16h120v46h-120z', fill: 'url(#enamelShade)' }, inner);
+  const t = el('g', {}, g);
+  t.innerHTML = T('WRIGLEY FIELD', -22, 17.5, 'url(#gold)', 1.2, 'Archivo Black') +
+    T('HOME OF CHICAGO', -7, 8, '#fff4d6', 3, 'Archivo Black') +
+    T('17 VISITS', 49, 24, 'url(#gold)', 1.5, 'Anton') + `<path d='M-48 24h96' stroke='url(#gold)' stroke-width='2.4'/>`;
+  // the pole + ball on top
+  el('rect', { x: -2.5, y: -76, width: 5, height: 22, fill: 'url(#gold)', stroke: 'rgba(60,40,0,.5)', 'stroke-width': .6 }, g);
+  el('circle', { cx: 0, cy: -78, r: 6, fill: 'url(#gold)', stroke: 'rgba(60,40,0,.5)', 'stroke-width': .6 }, g);
+  const cp = el('clipPath', { id: 'hero' }, g); el('path', { d: body }, cp);
+  const gl = el('g', { 'clip-path': 'url(#hero)' }, g);
+  el('path', { d: 'M-120 -60 L 40 -60 L -20 0 L -120 0z', fill: 'url(#gloss)', opacity: .7 }, gl);
+  el('path', { d: 'M-96 -42 L -20 -42', stroke: 'rgba(255,255,255,.9)', 'stroke-width': 2.4, 'stroke-linecap': 'round' }, gl);
+  // spark
+  el('path', { d: 'M86 -60l2 8 8 2-8 2-2 8-2-8-8-2 8-2z', fill: '#fffbe8', opacity: .95 }, g);
+})();
+
+// grid
+const cols = [56, 148, 245, 337], rows = [428, 548, 668];
+const P = [
+  [cols[0], rows[0], 'circle', 'gold', '#0f5c3a', (m) => `<path d="M-30 20V-4h60v24M-22 -4v-18M22 -4v-18M-28 -24h12M16 -24h12" stroke="${M(m)}" stroke-width="5.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>`, 'Fenway Park', '×3 · ’19', -4],
+  [cols[1], rows[0], 'octo', 'silver', '#121418', (m) => `<path d="M-22 18c0-24 10-36 22-36s22 12 22 36" stroke="${M(m)}" stroke-width="5" fill="none"/>` + T('RATE', 30, 13, M(m)), 'Rate Field', '×4 · ’15', 3],
+  [cols[2], rows[0], 'arch', 'gold', '#b51f2a', (m) => `<path d="M-26 34v-26a26 26 0 0 1 52 0v26" stroke="${M(m)}" stroke-width="5" fill="none"/>` + T('STL', 22, 16, M(m)), 'Busch Stadium', '×1 · ’22', -2],
+  [cols[3], rows[0], 'hex', 'silver', '#4b2a83', (m) => `<path d="M-32 20l16-26 10 13 13-23 25 36z" fill="${M(m)}"/>`, 'Coors Field', '×1 · ’24', 5],
+  [cols[0], rows[1], 'diamond', 'gold', '#0c2a5a', (m) => T('TGT', 5, 16, M(m)) + `<circle cy="-18" r="5" fill="${M(m)}"/>`, 'Target Field', '×2 · ’18', 2],
+  [cols[0], rows[2], 'rsq', 'gold', '#0c2340', (m) => T('CLE', 8, 20, M(m)), 'Progressive', '×1 · ’16', 4],
+  [cols[1], rows[2], 'circle', 'silver', '#0c2c56', (m) => `<circle r="30" fill="none" stroke="${M(m)}" stroke-width="3"/>` + T('DET', 7, 17, M(m)), 'Comerica Park', '×1 · ’17', -3],
+  [cols[1], rows[1], 'shield', 'gold', '#16161a', (m) => `<path d="M-26 10h52M-18 10v-22M18 10v-22M-18 -10c8 10 28 10 36 0" stroke="${M(m)}" stroke-width="4" fill="none"/>` + T('PNC', 30, 11, '#f6c844'), 'PNC Park', '×1 · ’21', -5],
+];
+P.forEach(([x, y, sh, m, en, art, name, meta, r]) => {
+  pin(x, y, .62, r, sh, m, en, null, art);
+  const d = document.createElement('div'); d.className = 'lbl'; d.style.left = (x - 43) + 'px'; d.style.top = (y + 40) + 'px';
+  d.innerHTML = `<b>${name}</b><span>${meta}</span>`; document.body.appendChild(d);
+});
+[[cols[2], rows[1], 'circle', 'Oracle Park', 'San Francisco'], [cols[3], rows[1], 'rsq', 'Petco Park', 'San Diego'], [cols[2], rows[2], 'pennant', 'T-Mobile Park', 'Seattle'], [cols[3], rows[2], 'hex', 'Truist Park', 'Atlanta']].forEach(([x, y, sh, name, meta]) => {
+  ghost(x, y, .62, sh);
+  const d = document.createElement('div'); d.className = 'lbl g'; d.style.left = (x - 43) + 'px'; d.style.top = (y + 40) + 'px';
+  d.innerHTML = `<b>${name}</b><span>${meta}</span>`; document.body.appendChild(d);
+});
+// pushpin-style divider label
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

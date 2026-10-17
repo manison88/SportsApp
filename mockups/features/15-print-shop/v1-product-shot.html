@@ -1,0 +1,146 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Product shot</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #efe9df; color: #1d1a16; }
+  /* ---------- photographic set ---------- */
+  .wall { position: absolute; left: 0; right: 0; top: 0; height: 356px;
+    background: radial-gradient(70% 80% at 72% 30%, #f6f1e8 0%, #e6ddcf 55%, #cfc4b3 100%); }
+  .window { position: absolute; left: 196px; top: 40px; width: 260px; height: 330px; transform: skewX(-18deg); filter: blur(14px); opacity: .55;
+    background:
+      linear-gradient(90deg, transparent 0 46%, rgba(120,100,80,.45) 46% 52%, transparent 52%),
+      linear-gradient(180deg, transparent 0 44%, rgba(120,100,80,.45) 44% 49%, transparent 49%),
+      rgba(255,250,238,.9); mix-blend-mode: soft-light; }
+  .leaf { position: absolute; left: -30px; top: 60px; width: 200px; height: 260px; filter: blur(10px); opacity: .22; }
+  .table { position: absolute; left: 0; right: 0; top: 356px; height: 220px; overflow: hidden;
+    background: linear-gradient(180deg, #c9b08c 0%, #d8c19e 18%, #cfb58f 100%); }
+  .table::before { content: ""; position: absolute; inset: 0; opacity: .5; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200'><filter id='w'><feTurbulence type='fractalNoise' baseFrequency='.004 .09' numOctaves='3' seed='4'/><feColorMatrix values='0 0 0 0 .55  0 0 0 0 .40  0 0 0 0 .25  0 0 0 1.1 -.25'/></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>"); background-size: 400px 200px; }
+  .table::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.18) 0, rgba(0,0,0,0) 10px), radial-gradient(80% 90% at 70% 0%, rgba(255,245,225,.35), transparent 70%); }
+  .edge { position: absolute; left: 0; right: 0; top: 355px; height: 1px; background: rgba(90,70,40,.25); }
+
+  .castshadow { position: absolute; left: 18px; top: 398px; width: 230px; height: 40px; border-radius: 50%; background: rgba(70,45,20,.38); filter: blur(13px); transform: rotate(-6deg) skewX(50deg); }
+  .contact { position: absolute; left: 106px; top: 405px; width: 200px; height: 10px; border-radius: 50%; background: rgba(30,20,10,.7); filter: blur(3.5px); transform: rotate(-9deg); }
+  .ao { position: absolute; left: 92px; top: 394px; width: 230px; height: 36px; border-radius: 50%; background: rgba(50,30,10,.35); filter: blur(10px); transform: rotate(-9deg); }
+
+  /* ---------- the book (CSS 3D) ---------- */
+  .stage { position: absolute; left: 0; right: 0; top: 128px; height: 320px; perspective: 1100px; perspective-origin: 50% 20%; }
+  .book { --W: 196px; --H: 246px; --T: 30px; position: absolute; left: 104px; top: 30px; width: var(--W); height: var(--H);
+    transform-style: preserve-3d; transform: rotateX(-9deg) rotateY(30deg); }
+  .face { position: absolute; backface-visibility: hidden; }
+  .front { width: var(--W); height: var(--H); transform: translateZ(calc(var(--T) / 2)); border-radius: 2px 4px 4px 2px; overflow: hidden; background: #1c2944;
+    box-shadow: inset -1.5px 0 0 rgba(255,255,255,.14), inset 0 1.5px 0 rgba(255,255,255,.16), inset 0 -2px 2px rgba(0,0,0,.35); }
+  .back { width: var(--W); height: var(--H); transform: rotateY(180deg) translateZ(calc(var(--T) / 2)); background: #16213a; }
+  .spine { width: var(--T); height: var(--H); left: calc((var(--W) - var(--T)) / 2); transform: rotateY(-90deg) translateZ(calc(var(--W) / 2)); overflow: hidden;
+    background: linear-gradient(90deg, #121b30 0%, #1f2d4b 30%, #263659 55%, #17223b 100%); }
+  .top { width: var(--W); height: var(--T); top: calc((var(--H) - var(--T)) / 2); transform: rotateX(90deg) translateZ(calc(var(--H) / 2)); overflow: hidden; background: #1c2944; }
+  .top .pages { position: absolute; left: 6px; right: 3px; top: 2px; bottom: 2px; border-radius: 0 2px 2px 0;
+    background: repeating-linear-gradient(180deg, #f3ecdc 0 .7px, #d9cfbb .7px 1.2px), #efe7d5; box-shadow: inset 0 0 3px rgba(0,0,0,.25); }
+  .top .shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,.35), transparent 30%); }
+  .fore { width: var(--T); height: var(--H); left: calc((var(--W) - var(--T)) / 2); transform: rotateY(90deg) translateZ(calc(var(--W) / 2)); background: #1c2944; }
+
+  .cloth { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; opacity: .9;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='a'><feTurbulence type='fractalNoise' baseFrequency='1.6 .06' numOctaves='2' seed='2'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.4 -.2'/></filter><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='.06 1.6' numOctaves='2' seed='9'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.4 -.2'/></filter><rect width='100%' height='100%' filter='url(%23a)'/><rect width='100%' height='100%' filter='url(%23b)' opacity='.8'/></svg>");
+    background-size: 60px 60px; }
+  .hinge { position: absolute; left: 12px; top: 0; bottom: 0; width: 6px; background: linear-gradient(90deg, rgba(0,0,0,.35), rgba(255,255,255,.08) 50%, rgba(0,0,0,.25)); }
+  .tip { position: absolute; left: 28px; right: 20px; top: 24px; height: 120px; border-radius: 1px; overflow: hidden;
+    box-shadow: 0 0 0 3px rgba(0,0,0,.28), inset 0 0 0 .5px rgba(255,255,255,.2), 0 1px 0 4px rgba(255,255,255,.05); }
+  .tip img { filter: contrast(1.05) saturate(.85) brightness(.95); }
+  .foil { background: linear-gradient(115deg, #7d5d22 0%, #e9c878 28%, #fff1c4 40%, #c79a46 55%, #f4d996 72%, #8b6a2c 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 -0.6px 0 rgba(0,0,0,.55)) drop-shadow(0 .6px 0 rgba(255,255,255,.12)); }
+  .yr { position: absolute; left: 28px; top: 158px; font: 500 48px/1 var(--f-fraunces); letter-spacing: -1px; }
+  .ttl { position: absolute; left: 29px; top: 212px; font: 600 7px/1.3 var(--f-ui); letter-spacing: 2.2px; }
+  .light { position: absolute; inset: 0; background: linear-gradient(105deg, rgba(255,255,255,0) 30%, rgba(255,248,230,.14) 62%, rgba(255,255,255,0) 80%), linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.18)); pointer-events: none; }
+  .spine .t { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(90deg); white-space: nowrap; font: 600 7px/1 var(--f-ui); letter-spacing: 2.4px; }
+  .spine .y { position: absolute; left: 0; right: 0; top: 14px; text-align: center; font: 600 9px/1 var(--f-fraunces); }
+  .spine .bands { position: absolute; left: 0; right: 0; top: 6px; bottom: 6px; border-top: 1px solid rgba(233,200,120,.5); border-bottom: 1px solid rgba(233,200,120,.5); }
+
+  .ticket { position: absolute; left: 236px; top: 446px; width: 116px; height: 50px; transform: rotate(-12deg) skewX(14deg) scaleY(.82); z-index: 4; border-radius: 3px;
+    background: linear-gradient(135deg, #f6f1e6, #e8dfcc); box-shadow: 0 6px 8px rgba(60,40,20,.28); display: flex; overflow: hidden; }
+  .ticket .c { width: 6px; background: #0e3386; }
+  .ticket .b { padding: 6px 8px; font: 700 6.5px/1.35 var(--f-mono); color: #3a352c; }
+  .ticket .b b { display: block; font: 800 12px/1 var(--f-cond); color: #0e3386; letter-spacing: .3px; }
+
+  .nav { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 20; }
+  .pbtn { width: 40px; height: 40px; border-radius: 20px; display: grid; place-items: center; background: rgba(255,252,246,.6); backdrop-filter: blur(20px); box-shadow: inset 0 0 0 .5px rgba(60,40,10,.15); position: relative; }
+  .pbtn svg { width: 17px; height: 17px; stroke: #1d1a16; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .pbtn .n { position: absolute; right: -2px; top: -2px; width: 16px; height: 16px; border-radius: 8px; background: #c4442c; color: #fff; font: 700 9px/16px var(--f-ui); text-align: center; }
+  .nav .t { font: 600 11px/1 var(--f-ui); letter-spacing: 2px; text-transform: uppercase; color: rgba(29,26,22,.55); }
+  .dots { position: absolute; top: 112px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; z-index: 5; }
+  .dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(29,26,22,.2); }
+  .dots i.on { width: 18px; background: rgba(29,26,22,.7); }
+
+  /* ---------- sheet ---------- */
+  .sheet { position: absolute; left: 0; right: 0; top: 540px; bottom: 0; background: #fbf8f3; border-radius: 28px 28px 0 0; padding: 22px 24px 0;
+    box-shadow: 0 -12px 30px rgba(60,40,20,.14); z-index: 10; }
+  .row1 { display: flex; justify-content: space-between; align-items: flex-start; }
+  .row1 h1 { font: 400 30px/1 var(--f-serif); letter-spacing: -.4px; }
+  .row1 h1 em { color: #8a6a2a; }
+  .row1 .sub { font: 500 13px/1.3 var(--f-ui); color: rgba(29,26,22,.55); margin-top: 6px; }
+  .price { font: 700 24px/1 var(--f-tight); letter-spacing: -.4px; font-variant-numeric: tabular-nums; text-align: right; }
+  .price small { display: block; font: 500 11px/1 var(--f-ui); color: rgba(29,26,22,.45); margin-top: 6px; letter-spacing: 0; }
+  .lbl { font: 700 9.5px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: rgba(29,26,22,.45); margin: 20px 0 10px; display: flex; justify-content: space-between; }
+  .lbl span:last-child { color: #1d1a16; letter-spacing: .2px; text-transform: none; font-size: 12px; font-weight: 600; }
+  .sw { display: flex; gap: 12px; }
+  .sw i { width: 34px; height: 34px; border-radius: 17px; position: relative; box-shadow: inset 0 0 0 .5px rgba(0,0,0,.2); }
+  .sw i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background-image: inherit; }
+  .sw i.on { box-shadow: 0 0 0 2px #fbf8f3, 0 0 0 3.5px #1d1a16; }
+  .inc { display: flex; gap: 8px; margin-top: 18px; }
+  .inc span { height: 30px; padding: 0 11px; border-radius: 15px; background: #f0eadf; display: inline-flex; align-items: center; font: 600 11.5px/1 var(--f-ui); color: rgba(29,26,22,.75); white-space: nowrap; }
+  .cta { position: absolute; left: 24px; right: 24px; bottom: 34px; height: 54px; border-radius: 27px; background: #1d1a16; color: #fbf8f3; display: flex; align-items: center; justify-content: center; gap: 10px;
+    font: 600 16px/1 var(--f-ui); box-shadow: 0 10px 24px rgba(29,26,22,.25); }
+  .cta small { font: 500 13px/1 var(--f-ui); color: rgba(251,248,243,.55); }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="wall"></div>
+  <svg class="leaf" viewBox="0 0 200 260"><g fill="#4a3a28"><ellipse cx="60" cy="60" rx="50" ry="16" transform="rotate(30 60 60)"/><ellipse cx="110" cy="120" rx="60" ry="18" transform="rotate(-20 110 120)"/><ellipse cx="70" cy="190" rx="55" ry="15" transform="rotate(40 70 190)"/><rect x="20" y="0" width="5" height="260" transform="rotate(10 20 0)"/></g></svg>
+  <div class="window"></div>
+  <div class="table"></div>
+  <div class="edge"></div>
+  <div class="castshadow"></div>
+  <div class="ao"></div><div class="contact"></div>
+
+  <div class="stage">
+    <div class="book">
+      <div class="face back"></div>
+      <div class="face fore"></div>
+      <div class="face top"><div class="cloth"></div><div class="pages"></div><div class="shade"></div></div>
+      <div class="face spine"><div class="cloth"></div><div class="bands"></div><div class="y foil">’16</div><div class="t foil">THE YEAR IT HAPPENED · OKAFOR</div></div>
+      <div class="face front">
+        <div class="cloth"></div>
+        <div class="hinge"></div>
+        <div class="tip"><img class="ph" src="../../photos/wrigley-night.jpg"></div>
+        <div class="yr foil">2016</div>
+        <div class="ttl foil">THE YEAR IT HAPPENED<br>SAM OKAFOR · EIGHT GAMES</div>
+        <div class="light"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticket"><div class="c"></div><div class="b"><b>WORLD SERIES · G5</b>OCT 30 2016<br>BLEACHERS 314</div></div>
+
+  <div class="nav">
+    <div class="pbtn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <span class="t">Print shop</span>
+    <div class="pbtn"><svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7z M9 7a3 3 0 0 1 6 0"/></svg><span class="n">1</span></div>
+  </div>
+  <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+
+  <div class="sheet">
+    <div class="row1">
+      <div><h1>The <em>2016</em> Book</h1><div class="sub">Linen hardcover · 8 × 10 in · 96 pages</div></div>
+      <div class="price">$89<small>Ships in 6 days</small></div>
+    </div>
+    <div class="lbl"><span>Cloth</span><span>Midnight navy</span></div>
+    <div class="sw">
+      <i class="on" style="background:#1c2944"></i>
+      <i style="background:#6e2229"></i>
+      <i style="background:#2c4a3a"></i>
+      <i style="background:#d9cfbd"></i>
+      <i style="background:#2a2a2c"></i>
+    </div>
+    <div class="inc"><span>8 games</span><span>212 of your photos</span><span>Box scores &amp; seats</span></div>
+    <div class="cta">Add to bag <small>· $89</small></div>
+  </div>
+<script src="../../kit/kit.js"></script>
+</body></html>

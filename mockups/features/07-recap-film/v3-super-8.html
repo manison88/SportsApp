@@ -1,0 +1,91 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Super 8</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: radial-gradient(100% 60% at 50% 40%, #2a1a0e 0%, #140d07 60%, #0b0704 100%); color: #f6e6c8; }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 9; }
+  .topbar .btn-circle { background: rgba(246,230,200,.1); box-shadow: inset 0 0 0 .5px rgba(246,230,200,.25); }
+  .topbar .btn-circle svg { stroke: #f6e6c8; }
+  .topbar .mid { text-align: center; }
+  .topbar .mid b { display: block; font: 400 17px/1 var(--f-type); letter-spacing: .5px; }
+  .topbar .mid span { display: block; margin-top: 5px; font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.8px; color: rgba(246,230,200,.5); }
+
+  .strip { position: absolute; left: 14px; right: 14px; top: 108px; height: 500px; background: #0a0705; border-radius: 4px; overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 91%, transparent 100%); }
+  .holes { position: absolute; left: 7px; top: -20px; bottom: 0; width: 16px; display: flex; flex-direction: column; gap: 24px; }
+  .holes i { flex: none; width: 13px; height: 18px; border-radius: 3px; background: #2b2118; box-shadow: inset 0 1px 2px rgba(0,0,0,.8); }
+  .edge { position: absolute; right: 6px; top: 0; bottom: 0; width: 10px; writing-mode: vertical-rl; font: 600 8px/10px var(--f-mono); color: rgba(255,170,80,.45); letter-spacing: 3px; padding-top: 30px; }
+  .fr { position: absolute; left: 32px; right: 22px; overflow: hidden; border-radius: 18px / 22px; }
+  .fr img, .fr canvas { filter: sepia(.45) saturate(1.35) contrast(1.08) brightness(.92) hue-rotate(-8deg); }
+  .fr.cur { top: 76px; height: 348px; box-shadow: 0 0 0 1px rgba(0,0,0,.6); }
+  .fr.prev { top: -290px; height: 348px; opacity: .8; }
+  .fr.next { top: 442px; height: 348px; opacity: .8; }
+  .leak { position: absolute; inset: 0; z-index: 2; mix-blend-mode: screen; pointer-events: none;
+    background: radial-gradient(60% 70% at 100% 30%, rgba(255,110,40,.85), rgba(255,80,30,.25) 45%, transparent 70%), radial-gradient(40% 30% at 0% 100%, rgba(255,200,90,.5), transparent 70%); }
+  .burn { position: absolute; inset: 0; z-index: 3; box-shadow: inset 0 0 50px 10px rgba(30,10,0,.8); border-radius: inherit; }
+  .stamp { position: absolute; z-index: 4; right: 16px; bottom: 14px; font: 800 16px/1 var(--f-mono); letter-spacing: 1px; color: #ff9a3c; text-shadow: 0 0 8px rgba(255,120,30,.9), 0 0 2px #ffcf8a; }
+  .rec { position: absolute; z-index: 4; left: 16px; top: 14px; font: 800 11px/1 var(--f-mono); letter-spacing: 1px; color: #ffe2b0; display: flex; align-items: center; gap: 6px; text-shadow: 0 0 6px rgba(0,0,0,.6); }
+  .rec i { width: 7px; height: 7px; border-radius: 50%; background: #ff5a3a; box-shadow: 0 0 8px #ff5a3a; }
+  .dust { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
+  .gr { z-index: 5; opacity: .6; }
+
+  .cap { position: absolute; left: 24px; right: 24px; top: 620px; text-align: center; font: 500 25px/1.05 var(--f-hand); color: #ffd9a0; }
+  .reel { position: absolute; left: 20px; right: 20px; top: 676px; height: 34px; display: flex; gap: 2px; border-radius: 6px; overflow: hidden; padding: 3px; background: #0a0705; box-shadow: inset 0 0 0 .5px rgba(246,230,200,.15); }
+  .reel span { flex: 1; overflow: hidden; border-radius: 2px; opacity: .45; }
+  .reel span.done { opacity: .9; }
+  .reel span img, .reel span canvas { filter: sepia(.5) saturate(1.3); }
+  .ph-head { position: absolute; top: 668px; width: 3px; height: 50px; border-radius: 2px; background: #ffb547; box-shadow: 0 0 10px rgba(255,181,71,.9); left: 147px; }
+  .tc { position: absolute; left: 20px; right: 20px; top: 722px; display: flex; justify-content: space-between; font: 400 13px/1 var(--f-type); color: rgba(246,230,200,.65); }
+  .tc b { font-weight: 400; color: #ffd9a0; }
+  .ctr { position: absolute; left: 32px; right: 32px; top: 748px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .ctr svg { width: 24px; height: 24px; stroke: #f6e6c8; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .ctr .pp { width: 56px; height: 56px; border-radius: 28px; background: #f6e6c8; display: grid; place-items: center; box-shadow: 0 0 30px rgba(255,170,80,.25); }
+  .ctr .pp svg { fill: #2a1a0e; stroke: none; width: 22px; height: 22px; }
+  .ctr .tx { font: 400 12px/1 var(--f-type); color: rgba(246,230,200,.75); padding: 7px 9px; border-radius: 8px; box-shadow: inset 0 0 0 .5px rgba(246,230,200,.3); }
+</style></head>
+<body class="phone">
+  <div class="topbar">
+    <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div>
+    <div class="mid"><b>Game 5, home movie</b><span>SUPER 8 · 18 FPS</span></div>
+    <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+
+  <div class="strip">
+    <div class="holes" id="holes"></div>
+    <div class="edge">SAFETY FILM 7266 · WITNESS · 2016 · ▸ 14</div>
+    <div class="fr prev"><img class="ph" src="../../photos/wrigley-night-2.jpg" style="object-position:50% 60%"></div>
+    <div class="fr cur">
+      <img class="ph" src="../../photos/wrigley-bleachers.jpg" style="object-position:38% 50%">
+      <div class="leak"></div>
+      <svg class="dust" viewBox="0 0 330 348" preserveAspectRatio="none"><path d="M60 80c8 3 14 9 12 16M250 250c-3 6-1 12 5 15M120 300l9-4" stroke="rgba(0,0,0,.55)" stroke-width="1.2" fill="none"/><circle cx="210" cy="70" r="1.8" fill="rgba(255,255,255,.7)"/><circle cx="90" cy="210" r="1.2" fill="rgba(255,255,255,.6)"/><line x1="232" y1="0" x2="229" y2="348" stroke="rgba(255,240,210,.18)" stroke-width="1"/></svg>
+      <div class="burn"></div>
+      <div class="rec"><i></i>PLAY ▸</div>
+      <div class="stamp">OCT 30 '16 5:52P</div>
+      <div class="grain gr"></div>
+    </div>
+    <div class="fr next"><img class="ph" src="../../photos/wrigley-night.jpg" style="object-position:40% 85%"></div>
+  </div>
+
+  <div class="cap">Pregame. Dad, saving our spot.</div>
+
+  <div class="reel" id="reel"></div>
+  <span class="ph-head"></span>
+  <div class="tc"><b>00:38</b><span>Reel 1 of 3</span><span>01:46</span></div>
+  <div class="ctr">
+    <span class="tx">18 fps</span>
+    <svg viewBox="0 0 24 24"><path d="M19 5L9 12l10 7zM5 5v14"/></svg>
+    <span class="pp"><svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></span>
+    <svg viewBox="0 0 24 24"><path d="M5 5l10 7-10 7zM19 5v14"/></svg>
+    <span class="tx">♪ On</span>
+  </div>
+<script>
+  document.getElementById('holes').innerHTML = '<i></i>'.repeat(14);
+  const src = ['wrigley-bleachers.jpg|30% 50%','wrigley-bleachers.jpg|70% 50%','wrigley-night-2.jpg|50% 60%','c:diamond:11','wrigley-night.jpg|40% 60%','wrigley-night.jpg|60% 40%','c:crowd:21','c:lightTower:4','wrigley-scoreboard.jpg|50% 30%','c:scoreboard:6','c:celebration:3','wrigley-night-2.jpg|30% 70%','c:celebration:9','wrigley-bleachers.jpg|90% 50%'];
+  document.getElementById('reel').innerHTML = src.map((s, i) => {
+    const done = i < 5 ? ' class="done"' : '';
+    if (s.startsWith('c:')) { const [, st, sd] = s.split(':'); return `<span${done}><canvas class="photo" data-style="${st}" data-seed="${sd}" data-accent="#ff9a3c" data-secondary="#2f6bff" ${st === 'scoreboard' ? 'data-board="CLE 2|CHC 3"' : ''}></canvas></span>`; }
+    const [f, p] = s.split('|'); return `<span${done}><img class="ph" src="../../photos/${f}" style="object-position:${p}"></span>`;
+  }).join('');
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

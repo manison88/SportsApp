@@ -1,0 +1,63 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Story slides</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #000; }
+  .slide { position: absolute; left: 0; right: 0; top: 0; height: 772px; border-radius: 0 0 22px 22px; overflow: hidden; background: #0e3386; }
+  .slide img { transform: scale(1.25); transform-origin: 62% 70%; }
+  .slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 45%, rgba(4,10,30,.85) 100%); }
+  .prog { position: absolute; z-index: 5; top: 56px; left: 10px; right: 10px; display: flex; gap: 4px; }
+  .prog i { flex: 1; height: 2.5px; border-radius: 2px; background: rgba(255,255,255,.35); overflow: hidden; }
+  .prog i.done { background: #fff; }
+  .prog i.cur { background: linear-gradient(90deg, #fff 62%, rgba(255,255,255,.35) 62%); }
+  .who { position: absolute; z-index: 5; top: 70px; left: 14px; right: 14px; display: flex; align-items: center; gap: 9px; }
+  .who .av { width: 32px; height: 32px; border-radius: 50%; background: #050506; display: grid; place-items: center; font: 400 18px/1 var(--f-serif); color: var(--signal); box-shadow: 0 0 0 1.5px rgba(255,255,255,.7); }
+  .who b { font: 600 13.5px/1 var(--f-ui); }
+  .who span { font: 500 13px/1 var(--f-ui); color: rgba(255,255,255,.7); }
+  .who .r { margin-left: auto; display: flex; gap: 18px; align-items: center; }
+  .who .r svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; }
+  .who .r .pause svg { fill: #fff; stroke: none; width: 18px; height: 18px; }
+
+  .time { position: absolute; z-index: 5; left: 18px; top: 132px; transform: rotate(-4deg); background: var(--signal); color: #1d1405; padding: 8px 12px 6px; border-radius: 10px; font: 400 32px/1 var(--f-black); letter-spacing: -1px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+  .time small { display: block; font: 800 10px/1 var(--f-ui); letter-spacing: 1.6px; margin-bottom: 4px; }
+  .head { position: absolute; z-index: 5; left: 18px; right: 18px; top: 416px; }
+  .head h1 { font: 400 70px/.86 var(--f-black); letter-spacing: -3.5px; color: #fff; text-transform: uppercase; text-shadow: 0 8px 40px rgba(0,0,0,.5); }
+  .head h1 span { color: #9db6ff; }
+  .poll { position: absolute; z-index: 5; left: 18px; right: 64px; top: 618px; padding: 14px 16px; border-radius: 18px; background: #fff; color: #050506; box-shadow: 0 16px 40px rgba(0,0,0,.4); transform: rotate(1.5deg); }
+  .poll .k { font: 800 10px/1 var(--f-ui); letter-spacing: 1.6px; color: #6f695e; }
+  .poll .bar { margin-top: 10px; height: 26px; border-radius: 13px; background: #f0ece4; position: relative; overflow: hidden; }
+  .poll .bar b { position: absolute; left: 0; top: 0; bottom: 0; width: 48%; background: linear-gradient(90deg, #0e3386, #2f6bff); border-radius: 13px; }
+  .poll .bar .was { position: absolute; left: 33%; top: 3px; bottom: 3px; width: 2px; background: #fff; opacity: .9; }
+  .poll .bar span { position: absolute; right: 12px; top: 0; line-height: 26px; font: 800 12px/26px var(--f-ui); color: #050506; }
+  .poll .bar em { position: absolute; left: 10px; top: 0; font: 800 12px/26px var(--f-ui); color: #fff; font-style: normal; }
+  .poll .sub { margin-top: 8px; font: 600 11.5px/1.2 var(--f-ui); color: #3d3830; }
+  .stamp { position: absolute; z-index: 5; right: 18px; top: 680px; width: 64px; height: 64px; border-radius: 50%; background: #050506; color: var(--signal); display: grid; place-items: center; text-align: center; font: 800 8.5px/1.15 var(--f-ui); letter-spacing: 1px; transform: rotate(12deg); box-shadow: 0 0 0 2px var(--signal), 0 10px 24px rgba(0,0,0,.4); }
+  .stamp b { display: block; font: 400 20px/1 var(--f-serif); letter-spacing: 0; color: #fff; }
+  .wm { position: absolute; z-index: 5; right: 16px; top: 132px; font: 400 15px/1 var(--f-serif); color: rgba(255,255,255,.75); }
+  .reply { position: absolute; left: 14px; right: 14px; top: 784px; height: 30px; display: flex; align-items: center; gap: 12px; }
+  .reply .in { flex: 1; height: 30px; border-radius: 15px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); display: flex; align-items: center; padding: 0 14px; font: 500 13.5px/1 var(--f-ui); color: rgba(255,255,255,.8); }
+  .reply svg { width: 24px; height: 24px; stroke: #fff; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+</style></head>
+<body class="phone">
+  <div class="slide"><img class="ph" src="../../photos/wrigley-night.jpg" style="object-position:28% 50%"></div>
+  <div class="grain" style="height:772px;bottom:auto;opacity:.25"></div>
+  <div class="prog"><i class="done"></i><i class="done"></i><i class="done"></i><i class="cur"></i><i></i><i></i><i></i><i></i></div>
+  <div class="who">
+    <span class="av">W</span><b>Game 5 recap</b><span>4 of 8</span>
+    <div class="r"><span class="pause"><svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></span><svg viewBox="0 0 24 24"><path d="M11 5L6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7"/></svg><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+  </div>
+  <div class="time"><small>BOT 4TH · YOUR PHOTO</small>8:34 PM</div>
+  <div class="head"><h1>Bryant.<br><span>Tied.</span><br>Loud.</h1></div>
+  <div class="poll">
+    <div class="k">CHICAGO WIN PROBABILITY</div>
+    <div class="bar"><b></b><i class="was"></i><em>48%</em><span>was 33%</span></div>
+    <div class="sub">The swing that started a comeback.</div>
+  </div>
+  <div class="stamp"><div><b>14s</b>AFTER<br>CONTACT</div></div>
+  <div class="reply">
+    <div class="in">Send to Dad…</div>
+    <svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.3-9.2C1.4 8 3.4 4.5 7 4.5c2 0 3.5 1.1 5 3 1.5-1.9 3-3 5-3 3.6 0 5.6 3.5 4.3 6.8-1.8 4.6-9.3 9.2-9.3 9.2z"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg>
+  </div>
+<script src="../../kit/kit.js"></script>
+</body></html>

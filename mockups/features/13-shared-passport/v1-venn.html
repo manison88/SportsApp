@@ -1,0 +1,104 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Venn</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #08070a; }
+  .wash { position: absolute; inset: 0; background: radial-gradient(60% 34% at 60% 40%, rgba(255,140,120,.13), transparent 70%); }
+  .nav { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 5; }
+  .head { position: absolute; top: 108px; left: 24px; right: 24px; z-index: 5; }
+  .head .eyebrow { color: var(--text-3); }
+  .head h1 { font: 400 40px/1 var(--f-serif); letter-spacing: -.6px; margin-top: 8px; }
+  .head h1 .s { color: var(--signal); }
+  .head h1 .m { color: #ff8b99; font-style: italic; }
+  .head p { font: 400 13.5px/1.4 var(--f-ui); color: var(--text-2); margin-top: 8px; }
+
+  svg#venn { position: absolute; left: 0; top: 214px; width: 393px; height: 330px; z-index: 3; }
+  .lbl { position: absolute; z-index: 4; text-align: center; }
+  .lbl b { display: block; font: 400 30px/1 var(--f-serif); }
+  .lbl span { display: block; font: 600 9.5px/1.3 var(--f-ui); letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-2); margin-top: 4px; }
+  .core { position: absolute; z-index: 4; text-align: center; left: 156px; top: 325px; width: 120px; }
+  .core b { display: block; font: 400 76px/.86 var(--f-serif); letter-spacing: -2px; color: #fff; text-shadow: 0 0 30px rgba(255,150,120,.7); }
+  .core span { display: block; font: 700 9.5px/1 var(--f-ui); letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-top: 8px; }
+
+  .quote { position: absolute; left: 24px; right: 24px; top: 566px; z-index: 5; }
+  .quote p { font: italic 400 25px/1.12 var(--f-serif); letter-spacing: -.3px; color: var(--text); }
+  .quote p em { color: #ff8b99; }
+
+  .row { position: absolute; left: 24px; right: 0; top: 650px; display: flex; gap: 10px; z-index: 5; }
+  .card { width: 150px; height: 150px; border-radius: 18px; overflow: hidden; position: relative; flex: none; box-shadow: inset 0 0 0 .5px rgba(255,255,255,.12); }
+  .card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,.82)); }
+  .card .t { position: absolute; left: 12px; right: 10px; bottom: 11px; z-index: 2; }
+  .card .t b { display: block; font: 600 13px/1.2 var(--f-ui); letter-spacing: -.1px; }
+  .card .t span { display: block; font: 500 11px/1.3 var(--f-ui); color: rgba(255,255,255,.7); margin-top: 2px; }
+  .card .tag { position: absolute; left: 10px; top: 10px; z-index: 2; height: 20px; padding: 0 8px; border-radius: 10px; display: inline-flex; align-items: center;
+    font: 700 8.5px/1 var(--f-ui); letter-spacing: 1.2px; text-transform: uppercase; background: rgba(255,139,153,.92); color: #2a0c12; }
+  .fade { position: absolute; right: 0; top: 640px; width: 40px; height: 170px; background: linear-gradient(90deg, transparent, #08070a); z-index: 6; }
+</style></head>
+<body class="phone">
+  <div class="wash"></div>
+  <div class="nav">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+
+  <div class="head">
+    <div class="eyebrow">Shared passport · since 2014</div>
+    <h1><span class="s">Sam</span> &amp; <span class="m">Maya</span></h1>
+    <p>Every game either of you has seen, and the ones you saw side by side.</p>
+  </div>
+
+  <svg id="venn" viewBox="0 0 393 330"></svg>
+  <div class="lbl" style="left:24px;top:498px;width:120px"><b style="color:var(--signal)">43</b><span>Sam solo</span></div>
+  <div class="core"><b>17</b><span>Together</span></div>
+  <div class="lbl" style="left:268px;top:498px;width:110px"><b style="color:#ff8b99">0</b><span>Without you</span></div>
+
+  <div class="quote"><p>Maya has never been to a game<br><em>without you.</em></p></div>
+
+  <div class="row">
+    <div class="card"><img class="ph graded" src="../../photos/wrigley-bleachers.jpg"><span class="tag">Her first</span><div class="t"><b>Wrigley Field</b><span>Jun 14, 2014 · age 4</span></div></div>
+    <div class="card"><img class="ph graded" src="../../photos/camp-nou-aerial.jpg"><div class="t"><b>Camp Nou</b><span>Feb 22, 2020 · 5–0</span></div></div>
+    <div class="card"><img class="ph graded" src="../../photos/lambeau-concourse.jpg"><div class="t"><b>Lambeau Field</b><span>Jan 5, 2025 · 24–22</span></div></div>
+  </div>
+  <div class="fade"></div>
+<script>
+  const S = { x: 150, y: 150, r: 132 }, M = { x: 236, y: 150, r: 86 };
+  const svg = document.getElementById('venn');
+  let h = `<defs>
+    <radialGradient id="gs" cx="35%" cy="40%" r="70%"><stop offset="0" stop-color="#ffb547" stop-opacity=".16"/><stop offset="1" stop-color="#ffb547" stop-opacity=".04"/></radialGradient>
+    <radialGradient id="gm" cx="70%" cy="40%" r="70%"><stop offset="0" stop-color="#ff7a8a" stop-opacity=".14"/><stop offset="1" stop-color="#ff7a8a" stop-opacity=".03"/></radialGradient>
+    <linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#ffb547"/><stop offset="1" stop-color="#ff7a8a"/></linearGradient>
+    <clipPath id="cs"><circle cx="${S.x}" cy="${S.y}" r="${S.r}"/></clipPath>
+    <filter id="bl"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <circle cx="${S.x}" cy="${S.y}" r="${S.r}" fill="url(#gs)" stroke="#ffb547" stroke-opacity=".7" stroke-width="1.2"/>
+  <circle cx="${M.x}" cy="${M.y}" r="${M.r}" fill="url(#gm)" stroke="#ff8b99" stroke-opacity=".75" stroke-width="1.2" stroke-dasharray="2 4" stroke-linecap="round"/>
+  <g clip-path="url(#cs)">
+    <circle cx="${M.x}" cy="${M.y}" r="${M.r}" fill="url(#gl)" opacity=".38" filter="url(#bl)"/>
+    <circle cx="${M.x}" cy="${M.y}" r="${M.r}" fill="url(#gl)" opacity=".32"/>
+    <circle cx="${M.x}" cy="${M.y}" r="${M.r}" fill="none" stroke="#fff" stroke-opacity=".9" stroke-width="1.5"/>
+  </g>`;
+  // 43 dots in Sam-only region, 17 in the lens
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const inS = (x, y, pad = 0) => Math.hypot(x - S.x, y - S.y) < S.r - pad;
+  const inM = (x, y, pad = 0) => Math.hypot(x - M.x, y - M.y) < M.r + pad;
+  const pts = [];
+  const place = (n, test, minD) => { let tries = 0, out = [];
+    while (out.length < n && tries < 40000) { tries++;
+      const x = S.x - S.r + rnd() * 2 * (S.r + M.r), y = S.y - S.r + rnd() * 2 * S.r;
+      if (!test(x, y)) continue;
+      if (pts.some(p => Math.hypot(p[0] - x, p[1] - y) < minD)) continue;
+      pts.push([x, y]); out.push([x, y]); }
+    return out; };
+  // keep the "43" label zone and the core text clear
+  const solo = place(43, (x, y) => inS(x, y, 12) && !inM(x, y, 10) && !(y > 228), 15.5);
+  solo.forEach(([x, y], i) => h += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${i % 7 === 0 ? 3.6 : 2.8}" fill="#ffb547" opacity="${(0.55 + rnd() * 0.45).toFixed(2)}"/>`);
+  // 17 shared games ring the number like a clock face
+  for (let i = 0; i < 17; i++) {
+    const t = -Math.PI / 2 + (i / 17) * Math.PI * 2;
+    const x = 216 + Math.cos(t) * 60, y = 150 + Math.sin(t) * 60;
+    h += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.4" fill="#fff"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="#ffc0a0" opacity=".18"/>`;
+  }
+  svg.innerHTML = h;
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>
