@@ -138,5 +138,8 @@ enum Appearance {
         UINavigationBar.appearance().standardAppearance = scrolled
         UINavigationBar.appearance().compactAppearance = scrolled
         UINavigationBar.appearance().scrollEdgeAppearance = nav
+        UINavigationBar.appearance().compactScrollEdgeAppearance = nav
+        UINavigationBar.appearance().largeTitleTextAttributes = nav.largeTitleTextAttributes
+        UINavigationBar.appearance().titleTextAttributes = nav.titleTextAttributes
     }
 }

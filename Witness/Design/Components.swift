@@ -123,6 +123,7 @@ struct ScoreBug: View {
                 }
             }
         }
+        .fixedSize()
         .accessibilityElement(children: .combine)
     }
 
