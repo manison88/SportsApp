@@ -18,8 +18,8 @@
             {
               "children" : [
                 {
-                  "duration" : "0.052s",
-                  "durationInSeconds" : 0.05197501182556152,
+                  "duration" : "0.059s",
+                  "durationInSeconds" : 0.05942392349243164,
                   "name" : "testAlbumGroupsVisitsAsksForTheRest()",
                   "nodeIdentifier" : "AlbumAndScoreboardTests/testAlbumGroupsVisitsAsksForTheRest()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/AlbumAndScoreboardTests/testAlbumGroupsVisitsAsksForTheRest",
@@ -28,7 +28,7 @@
                 },
                 {
                   "duration" : "0.019s",
-                  "durationInSeconds" : 0.01902604103088379,
+                  "durationInSeconds" : 0.01877307891845703,
                   "name" : "testCrestBoardConfirmsByScoreAlone()",
                   "nodeIdentifier" : "AlbumAndScoreboardTests/testCrestBoardConfirmsByScoreAlone()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/AlbumAndScoreboardTests/testCrestBoardConfirmsByScoreAlone",
@@ -36,8 +36,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.03s",
-                  "durationInSeconds" : 0.030313968658447266,
+                  "duration" : "0.021s",
+                  "durationInSeconds" : 0.02149200439453125,
                   "name" : "testDiscoveryRuleSkipsDriveBys()",
                   "nodeIdentifier" : "AlbumAndScoreboardTests/testDiscoveryRuleSkipsDriveBys()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/AlbumAndScoreboardTests/testDiscoveryRuleSkipsDriveBys",
@@ -45,8 +45,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.025s",
-                  "durationInSeconds" : 0.025065064430236816,
+                  "duration" : "0.02s",
+                  "durationInSeconds" : 0.02009594440460205,
                   "name" : "testMatchdayPubJoinsTheGameAndTourStandsAlone()",
                   "nodeIdentifier" : "AlbumAndScoreboardTests/testMatchdayPubJoinsTheGameAndTourStandsAlone()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/AlbumAndScoreboardTests/testMatchdayPubJoinsTheGameAndTourStandsAlone",
@@ -54,8 +54,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.013s",
-                  "durationInSeconds" : 0.013277888298034668,
+                  "duration" : "0.015s",
+                  "durationInSeconds" : 0.015075922012329102,
                   "name" : "testReadingTokensAndScoreSupport()",
                   "nodeIdentifier" : "AlbumAndScoreboardTests/testReadingTokensAndScoreSupport()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/AlbumAndScoreboardTests/testReadingTokensAndScoreSupport",
@@ -63,32 +63,25 @@
                   "result" : "Passed"
                 },
                 {
-                  "children" : [
-                    {
-                      "name" : "AlbumAndScoreboardTests.swift:114: XCTAssertEqual failed: (\"0\") is not equal to (\"2\") - Vision read: TB O\nCHI 2\nFINAL",
-                      "nodeType" : "Failure Message",
-                      "result" : "Failed"
-                    }
-                  ],
-                  "duration" : "4s",
-                  "durationInSeconds" : 4.092772960662842,
+                  "duration" : "3s",
+                  "durationInSeconds" : 3.003389000892639,
                   "name" : "testVisionReadsARenderedScoreboard()",
                   "nodeIdentifier" : "AlbumAndScoreboardTests/testVisionReadsARenderedScoreboard()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/AlbumAndScoreboardTests/testVisionReadsARenderedScoreboard",
                   "nodeType" : "Test Case",
-                  "result" : "Failed"
+                  "result" : "Passed"
                 }
               ],
               "name" : "AlbumAndScoreboardTests",
               "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/AlbumAndScoreboardTests",
               "nodeType" : "Test Suite",
-              "result" : "Failed"
+              "result" : "Passed"
             },
             {
               "children" : [
                 {
-                  "duration" : "0.0031s",
-                  "durationInSeconds" : 0.0031279325485229492,
+                  "duration" : "0.0033s",
+                  "durationInSeconds" : 0.0033119916915893555,
                   "name" : "testHandEnteredLabels()",
                   "nodeIdentifier" : "BigGameTests/testHandEnteredLabels()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/BigGameTests/testHandEnteredLabels",
@@ -96,8 +89,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.00081s",
-                  "durationInSeconds" : 0.0008109807968139648,
+                  "duration" : "0.00072s",
+                  "durationInSeconds" : 0.0007170438766479492,
                   "name" : "testPlayoffsAndKnockouts()",
                   "nodeIdentifier" : "BigGameTests/testPlayoffsAndKnockouts()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/BigGameTests/testPlayoffsAndKnockouts",
@@ -105,8 +98,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.00079s",
-                  "durationInSeconds" : 0.0007899999618530273,
+                  "duration" : "0.00049s",
+                  "durationInSeconds" : 0.0004889965057373047,
                   "name" : "testQualifyingPlayoffs()",
                   "nodeIdentifier" : "BigGameTests/testQualifyingPlayoffs()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/BigGameTests/testQualifyingPlayoffs",
@@ -115,7 +108,7 @@
                 },
                 {
                   "duration" : "1s",
-                  "durationInSeconds" : 1.0514440536499023,
+                  "durationInSeconds" : 1.6827679872512817,
                   "name" : "testSampleLibraryHasBigGames()",
                   "nodeIdentifier" : "BigGameTests/testSampleLibraryHasBigGames()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/BigGameTests/testSampleLibraryHasBigGames",
@@ -123,8 +116,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.00083s",
-                  "durationInSeconds" : 0.0008320808410644531,
+                  "duration" : "0.00093s",
+                  "durationInSeconds" : 0.0009289979934692383,
                   "name" : "testTitleGamesAcrossSports()",
                   "nodeIdentifier" : "BigGameTests/testTitleGamesAcrossSports()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/BigGameTests/testTitleGamesAcrossSports",
@@ -132,8 +125,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.00056s",
-                  "durationInSeconds" : 0.0005640983581542969,
+                  "duration" : "0.00058s",
+                  "durationInSeconds" : 0.0005830526351928711,
                   "name" : "testTournamentsAllStarsAndOrdinaryGames()",
                   "nodeIdentifier" : "BigGameTests/testTournamentsAllStarsAndOrdinaryGames()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/BigGameTests/testTournamentsAllStarsAndOrdinaryGames",
@@ -149,8 +142,8 @@
             {
               "children" : [
                 {
-                  "duration" : "0.054s",
-                  "durationInSeconds" : 0.05382406711578369,
+                  "duration" : "0.12s",
+                  "durationInSeconds" : 0.11907100677490234,
                   "name" : "testClassifierTaxonomyHasSportsLabels()",
                   "nodeIdentifier" : "DetectionTuningTests/testClassifierTaxonomyHasSportsLabels()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/DetectionTuningTests/testClassifierTaxonomyHasSportsLabels",
@@ -158,8 +151,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.015s",
-                  "durationInSeconds" : 0.0147019624710083,
+                  "duration" : "0.035s",
+                  "durationInSeconds" : 0.034780025482177734,
                   "name" : "testGeofenceIsTightButFitsBigBowls()",
                   "nodeIdentifier" : "DetectionTuningTests/testGeofenceIsTightButFitsBigBowls()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/DetectionTuningTests/testGeofenceIsTightButFitsBigBowls",
@@ -167,8 +160,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.013s",
-                  "durationInSeconds" : 0.013163089752197266,
+                  "duration" : "0.026s",
+                  "durationInSeconds" : 0.02582693099975586,
                   "name" : "testSceneScoring()",
                   "nodeIdentifier" : "DetectionTuningTests/testSceneScoring()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/DetectionTuningTests/testSceneScoring",
@@ -176,8 +169,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.027s",
-                  "durationInSeconds" : 0.027414917945861816,
+                  "duration" : "0.051s",
+                  "durationInSeconds" : 0.05117499828338623,
                   "name" : "testTicketScreenshotBecomesAnAnchor()",
                   "nodeIdentifier" : "DetectionTuningTests/testTicketScreenshotBecomesAnAnchor()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/DetectionTuningTests/testTicketScreenshotBecomesAnAnchor",
@@ -193,8 +186,8 @@
             {
               "children" : [
                 {
-                  "duration" : "0.021s",
-                  "durationInSeconds" : 0.020876049995422363,
+                  "duration" : "0.025s",
+                  "durationInSeconds" : 0.025493979454040527,
                   "name" : "testApplyLearnsTeamsAndFillsTheGame()",
                   "nodeIdentifier" : "GameLookupTests/testApplyLearnsTeamsAndFillsTheGame()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/GameLookupTests/testApplyLearnsTeamsAndFillsTheGame",
@@ -202,8 +195,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.001s",
-                  "durationInSeconds" : 0.0010470151901245117,
+                  "duration" : "0.0014s",
+                  "durationInSeconds" : 0.0013880729675292969,
                   "name" : "testDaysFollowTheVenueTimeZone()",
                   "nodeIdentifier" : "GameLookupTests/testDaysFollowTheVenueTimeZone()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/GameLookupTests/testDaysFollowTheVenueTimeZone",
@@ -211,8 +204,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.0034s",
-                  "durationInSeconds" : 0.003444075584411621,
+                  "duration" : "0.0024s",
+                  "durationInSeconds" : 0.002402067184448242,
                   "name" : "testDetailGivesScoringPlaysWinProbabilityAndAttendance()",
                   "nodeIdentifier" : "GameLookupTests/testDetailGivesScoringPlaysWinProbabilityAndAttendance()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/GameLookupTests/testDetailGivesScoringPlaysWinProbabilityAndAttendance",
@@ -220,8 +213,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.00048s",
-                  "durationInSeconds" : 0.0004830360412597656,
+                  "duration" : "0.00055s",
+                  "durationInSeconds" : 0.0005450248718261719,
                   "name" : "testLeagueGuessForVenuesWithoutLeagues()",
                   "nodeIdentifier" : "GameLookupTests/testLeagueGuessForVenuesWithoutLeagues()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/GameLookupTests/testLeagueGuessForVenuesWithoutLeagues",
@@ -229,8 +222,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.0021s",
-                  "durationInSeconds" : 0.0021300315856933594,
+                  "duration" : "0.004s",
+                  "durationInSeconds" : 0.004016995429992676,
                   "name" : "testScoreboardFindsTheGameAtTheVenue()",
                   "nodeIdentifier" : "GameLookupTests/testScoreboardFindsTheGameAtTheVenue()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/GameLookupTests/testScoreboardFindsTheGameAtTheVenue",
@@ -238,8 +231,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.00056s",
-                  "durationInSeconds" : 0.00055694580078125,
+                  "duration" : "0.00075s",
+                  "durationInSeconds" : 0.0007469654083251953,
                   "name" : "testVenueMatchingUsesAliasesAndIgnoresGenericWords()",
                   "nodeIdentifier" : "GameLookupTests/testVenueMatchingUsesAliasesAndIgnoresGenericWords()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/GameLookupTests/testVenueMatchingUsesAliasesAndIgnoresGenericWords",
@@ -255,8 +248,8 @@
             {
               "children" : [
                 {
-                  "duration" : "0.045s",
-                  "durationInSeconds" : 0.04542195796966553,
+                  "duration" : "0.076s",
+                  "durationInSeconds" : 0.07624697685241699,
                   "name" : "testAddPersistsAndReloads()",
                   "nodeIdentifier" : "LibraryTests/testAddPersistsAndReloads()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testAddPersistsAndReloads",
@@ -264,8 +257,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.021s",
-                  "durationInSeconds" : 0.020756959915161133,
+                  "duration" : "0.023s",
+                  "durationInSeconds" : 0.023174047470092773,
                   "name" : "testAddPerson()",
                   "nodeIdentifier" : "LibraryTests/testAddPerson()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testAddPerson",
@@ -273,8 +266,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.036s",
-                  "durationInSeconds" : 0.03637206554412842,
+                  "duration" : "0.039s",
+                  "durationInSeconds" : 0.03908896446228027,
                   "name" : "testCustomVenueDedupesAndPersists()",
                   "nodeIdentifier" : "LibraryTests/testCustomVenueDedupesAndPersists()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testCustomVenueDedupesAndPersists",
@@ -283,7 +276,7 @@
                 },
                 {
                   "duration" : "1s",
-                  "durationInSeconds" : 1.0619850158691406,
+                  "durationInSeconds" : 1.1518049240112305,
                   "name" : "testRemoveSampleKeepsUserGames()",
                   "nodeIdentifier" : "LibraryTests/testRemoveSampleKeepsUserGames()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testRemoveSampleKeepsUserGames",
@@ -291,8 +284,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.95s",
-                  "durationInSeconds" : 0.9469180107116699,
+                  "duration" : "1s",
+                  "durationInSeconds" : 1.1152249574661255,
                   "name" : "testResetClearsEverything()",
                   "nodeIdentifier" : "LibraryTests/testResetClearsEverything()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testResetClearsEverything",
@@ -300,8 +293,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.97s",
-                  "durationInSeconds" : 0.9721120595932007,
+                  "duration" : "1s",
+                  "durationInSeconds" : 1.0677329301834106,
                   "name" : "testSampleLibrary()",
                   "nodeIdentifier" : "LibraryTests/testSampleLibrary()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testSampleLibrary",
@@ -310,7 +303,7 @@
                 },
                 {
                   "duration" : "0.93s",
-                  "durationInSeconds" : 0.9349280595779419,
+                  "durationInSeconds" : 0.9259539842605591,
                   "name" : "testStats()",
                   "nodeIdentifier" : "LibraryTests/testStats()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/LibraryTests/testStats",
@@ -326,8 +319,8 @@
             {
               "children" : [
                 {
-                  "duration" : "0.0034s",
-                  "durationInSeconds" : 0.003365039825439453,
+                  "duration" : "0.0033s",
+                  "durationInSeconds" : 0.003298044204711914,
                   "name" : "testGameDayKeyUsesVenueTimeZone()",
                   "nodeIdentifier" : "PhotoMatcherTests/testGameDayKeyUsesVenueTimeZone()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/PhotoMatcherTests/testGameDayKeyUsesVenueTimeZone",
@@ -335,8 +328,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.00052s",
-                  "durationInSeconds" : 0.0005240440368652344,
+                  "duration" : "0.00081s",
+                  "durationInSeconds" : 0.0008130073547363281,
                   "name" : "testPhotosAcrossAnEveningAreAGame()",
                   "nodeIdentifier" : "PhotoMatcherTests/testPhotosAcrossAnEveningAreAGame()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/PhotoMatcherTests/testPhotosAcrossAnEveningAreAGame",
@@ -344,8 +337,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.00092s",
-                  "durationInSeconds" : 0.0009180307388305664,
+                  "duration" : "0.00066s",
+                  "durationInSeconds" : 0.0006570816040039062,
                   "name" : "testQuickBurstIsNotAGame()",
                   "nodeIdentifier" : "PhotoMatcherTests/testQuickBurstIsNotAGame()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/PhotoMatcherTests/testQuickBurstIsNotAGame",
@@ -353,8 +346,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.00052s",
-                  "durationInSeconds" : 0.0005230903625488281,
+                  "duration" : "0.00062s",
+                  "durationInSeconds" : 0.0006210803985595703,
                   "name" : "testSinglePhotoIsNotAGame()",
                   "nodeIdentifier" : "PhotoMatcherTests/testSinglePhotoIsNotAGame()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/PhotoMatcherTests/testSinglePhotoIsNotAGame",
@@ -370,8 +363,8 @@
             {
               "children" : [
                 {
-                  "duration" : "0.067s",
-                  "durationInSeconds" : 0.06679201126098633,
+                  "duration" : "0.071s",
+                  "durationInSeconds" : 0.07050108909606934,
                   "name" : "testPDFThroughImport()",
                   "nodeIdentifier" : "TicketOCRTests/testPDFThroughImport()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketOCRTests/testPDFThroughImport",
@@ -379,8 +372,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "1s",
-                  "durationInSeconds" : 1.870892882347107,
+                  "duration" : "3s",
+                  "durationInSeconds" : 3.5825620889663696,
                   "name" : "testScreenshotThroughVision()",
                   "nodeIdentifier" : "TicketOCRTests/testScreenshotThroughVision()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketOCRTests/testScreenshotThroughVision",
@@ -396,8 +389,8 @@
             {
               "children" : [
                 {
-                  "duration" : "0.019s",
-                  "durationInSeconds" : 0.019372940063476562,
+                  "duration" : "0.025s",
+                  "durationInSeconds" : 0.024618029594421387,
                   "name" : "testAXSSoccerWithAccentsAndEuropeanDate()",
                   "nodeIdentifier" : "TicketParserTests/testAXSSoccerWithAccentsAndEuropeanDate()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testAXSSoccerWithAccentsAndEuropeanDate",
@@ -405,8 +398,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.012s",
-                  "durationInSeconds" : 0.0124589204788208,
+                  "duration" : "0.014s",
+                  "durationInSeconds" : 0.013792991638183594,
                   "name" : "testCatalogLoaded()",
                   "nodeIdentifier" : "TicketParserTests/testCatalogLoaded()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testCatalogLoaded",
@@ -414,8 +407,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.019s",
-                  "durationInSeconds" : 0.01935100555419922,
+                  "duration" : "0.02s",
+                  "durationInSeconds" : 0.020475029945373535,
                   "name" : "testMLSAtSoldierFieldISODate()",
                   "nodeIdentifier" : "TicketParserTests/testMLSAtSoldierFieldISODate()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testMLSAtSoldierFieldISODate",
@@ -424,7 +417,7 @@
                 },
                 {
                   "duration" : "0.028s",
-                  "durationInSeconds" : 0.02808094024658203,
+                  "durationInSeconds" : 0.02788102626800537,
                   "name" : "testNothingUsefulGivesEmptyDraft()",
                   "nodeIdentifier" : "TicketParserTests/testNothingUsefulGivesEmptyDraft()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testNothingUsefulGivesEmptyDraft",
@@ -432,8 +425,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.022s",
-                  "durationInSeconds" : 0.02192211151123047,
+                  "duration" : "0.025s",
+                  "durationInSeconds" : 0.024940967559814453,
                   "name" : "testOCRScreenshotWithCodesOnly()",
                   "nodeIdentifier" : "TicketParserTests/testOCRScreenshotWithCodesOnly()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testOCRScreenshotWithCodesOnly",
@@ -441,8 +434,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.023s",
-                  "durationInSeconds" : 0.023144960403442383,
+                  "duration" : "0.021s",
+                  "durationInSeconds" : 0.020723938941955566,
                   "name" : "testSeatGeekFootballAtLambeauWithStackedLabels()",
                   "nodeIdentifier" : "TicketParserTests/testSeatGeekFootballAtLambeauWithStackedLabels()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testSeatGeekFootballAtLambeauWithStackedLabels",
@@ -450,8 +443,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "0.019s",
-                  "durationInSeconds" : 0.018568038940429688,
+                  "duration" : "0.022s",
+                  "durationInSeconds" : 0.021713972091674805,
                   "name" : "testStubHubConfirmation()",
                   "nodeIdentifier" : "TicketParserTests/testStubHubConfirmation()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testStubHubConfirmation",
@@ -460,7 +453,7 @@
                 },
                 {
                   "duration" : "0.02s",
-                  "durationInSeconds" : 0.02044999599456787,
+                  "durationInSeconds" : 0.020376920700073242,
                   "name" : "testTicketmasterEmail()",
                   "nodeIdentifier" : "TicketParserTests/testTicketmasterEmail()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/TicketParserTests/testTicketmasterEmail",
@@ -477,15 +470,15 @@
           "name" : "WitnessTests",
           "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests",
           "nodeType" : "Unit test bundle",
-          "result" : "Failed"
+          "result" : "Passed"
         },
         {
           "children" : [
             {
               "children" : [
                 {
-                  "duration" : "39s",
-                  "durationInSeconds" : 39.23409903049469,
+                  "duration" : "57s",
+                  "durationInSeconds" : 57.0589040517807,
                   "name" : "testAddCustomVenue()",
                   "nodeIdentifier" : "WitnessUITests/testAddCustomVenue()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testAddCustomVenue",
@@ -493,8 +486,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "35s",
-                  "durationInSeconds" : 35.95298898220062,
+                  "duration" : "52s",
+                  "durationInSeconds" : 52.981314063072205,
                   "name" : "testAddGameManually()",
                   "nodeIdentifier" : "WitnessUITests/testAddGameManually()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testAddGameManually",
@@ -502,8 +495,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "34s",
-                  "durationInSeconds" : 34.59904110431671,
+                  "duration" : "52s",
+                  "durationInSeconds" : 52.562050104141235,
                   "name" : "testDiscoveryFromPhotos()",
                   "nodeIdentifier" : "WitnessUITests/testDiscoveryFromPhotos()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testDiscoveryFromPhotos",
@@ -511,8 +504,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "31s",
-                  "durationInSeconds" : 31.13679599761963,
+                  "duration" : "36s",
+                  "durationInSeconds" : 36.99123001098633,
                   "name" : "testGameMemoryRecapAndYouWereThere()",
                   "nodeIdentifier" : "WitnessUITests/testGameMemoryRecapAndYouWereThere()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testGameMemoryRecapAndYouWereThere",
@@ -520,24 +513,17 @@
                   "result" : "Passed"
                 },
                 {
-                  "children" : [
-                    {
-                      "name" : "WitnessUITests.swift:300: XCTAssertTrue failed - A game should be confirmed from a scoreboard photo",
-                      "nodeType" : "Failure Message",
-                      "result" : "Failed"
-                    }
-                  ],
-                  "duration" : "57s",
-                  "durationInSeconds" : 57.25171709060669,
+                  "duration" : "46s",
+                  "durationInSeconds" : 46.243674993515015,
                   "name" : "testImportAlbumWithScoreboardReading()",
                   "nodeIdentifier" : "WitnessUITests/testImportAlbumWithScoreboardReading()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testImportAlbumWithScoreboardReading",
                   "nodeType" : "Test Case",
-                  "result" : "Failed"
+                  "result" : "Passed"
                 },
                 {
-                  "duration" : "30s",
-                  "durationInSeconds" : 30.339475989341736,
+                  "duration" : "33s",
+                  "durationInSeconds" : 33.23106801509857,
                   "name" : "testImportTicketFromPastedEmail()",
                   "nodeIdentifier" : "WitnessUITests/testImportTicketFromPastedEmail()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testImportTicketFromPastedEmail",
@@ -545,8 +531,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "34s",
-                  "durationInSeconds" : 34.26893997192383,
+                  "duration" : "18s",
+                  "durationInSeconds" : 18.82592499256134,
                   "name" : "testLambeauMemoryAndTrip()",
                   "nodeIdentifier" : "WitnessUITests/testLambeauMemoryAndTrip()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testLambeauMemoryAndTrip",
@@ -554,8 +540,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "32s",
-                  "durationInSeconds" : 32.766860008239746,
+                  "duration" : "24s",
+                  "durationInSeconds" : 24.80119001865387,
                   "name" : "testLiveCheckIn()",
                   "nodeIdentifier" : "WitnessUITests/testLiveCheckIn()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testLiveCheckIn",
@@ -563,8 +549,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "25s",
-                  "durationInSeconds" : 25.197939038276672,
+                  "duration" : "24s",
+                  "durationInSeconds" : 24.504886031150818,
                   "name" : "testSpainTrip()",
                   "nodeIdentifier" : "WitnessUITests/testSpainTrip()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testSpainTrip",
@@ -572,8 +558,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "46s",
-                  "durationInSeconds" : 46.82800006866455,
+                  "duration" : "40s",
+                  "durationInSeconds" : 40.40691602230072,
                   "name" : "testTabsTour()",
                   "nodeIdentifier" : "WitnessUITests/testTabsTour()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testTabsTour",
@@ -581,8 +567,8 @@
                   "result" : "Passed"
                 },
                 {
-                  "duration" : "15s",
-                  "durationInSeconds" : 15.823338031768799,
+                  "duration" : "12s",
+                  "durationInSeconds" : 12.150445938110352,
                   "name" : "testWelcome()",
                   "nodeIdentifier" : "WitnessUITests/testWelcome()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testWelcome",
@@ -593,18 +579,18 @@
               "name" : "WitnessUITests",
               "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests",
               "nodeType" : "Test Suite",
-              "result" : "Failed"
+              "result" : "Passed"
             }
           ],
           "name" : "WitnessUITests",
           "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests",
           "nodeType" : "UI test bundle",
-          "result" : "Failed"
+          "result" : "Passed"
         }
       ],
       "name" : "Witness",
       "nodeType" : "Test Plan",
-      "result" : "Failed"
+      "result" : "Passed"
     }
   ],
   "testPlanConfigurations" : [
