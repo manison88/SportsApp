@@ -27,6 +27,8 @@ final class Library {
     /// Teams learned from real schedules (any league, any country).
     private(set) var customTeams: [Team] = []
     private(set) var hasLibrary = false
+    /// Catalog teams by "leagueKey#espnId", so a schedule's team finds the team the app already has.
+    private(set) var espnIndex: [String: Team] = [:]
 
     let storeURL: URL
     private let bundle: Bundle
@@ -254,6 +256,9 @@ final class Library {
     /// Returns the catalog team that matches, or remembers a new one.
     @discardableResult
     func addTeam(_ team: Team) -> Team {
+        if let known = catalogTeam(league: team.externalIds?.espnLeague ?? team.leagueKey, espnId: team.externalIds?.espn) {
+            return known
+        }
         if let known = allTeams.first(where: { $0.sport == team.sport && $0.abbreviation == team.abbreviation
             && $0.locationName.caseInsensitiveCompare(team.locationName) == .orderedSame }) {
             return known
@@ -341,6 +346,63 @@ final class Library {
         sampleTrips = decode("trips", subdirectory: "Sample") ?? []
         samplePeople = decode("people", subdirectory: "Sample") ?? []
         sampleProfile = decode("profile", subdirectory: "Sample")
+    }
+
+    // MARK: Downloaded packs
+
+    /// What a downloaded teams pack holds: new teams, and league keys and ESPN ids for teams the app ships with.
+    private struct PackTeams: Decodable {
+        struct Overlay: Decodable {
+            struct Ids: Decodable { var espn: String?; var espnLeague: String? }
+            let id: String
+            var leagueKey: String?
+            var externalIds: Ids?
+        }
+        let teams: [Lossy<Team>]
+        let overlays: [Overlay]
+    }
+
+    /// Decodes an element or skips it, so one unreadable record never loses the whole pack.
+    private struct Lossy<T: Decodable>: Decodable {
+        let value: T?
+        init(from decoder: Decoder) throws { value = try? T(from: decoder) }
+    }
+
+    /// Merges downloaded catalog packs over what the app ships with. The shipped records win; packs add.
+    func applyPacks() async {
+        if let data = await PackStore.shared.data("catalog/teams"),
+           let pack = try? Self.decoder.decode(PackTeams.self, from: data) {
+            for overlay in pack.overlays {
+                guard let i = allTeams.firstIndex(where: { $0.id == overlay.id }) else { continue }
+                var team = allTeams[i]
+                if team.leagueKey == nil { team.leagueKey = overlay.leagueKey }
+                var ids = team.externalIds ?? Team.ExternalIds()
+                if ids.espn == nil { ids.espn = overlay.externalIds?.espn }
+                if ids.espnLeague == nil { ids.espnLeague = overlay.externalIds?.espnLeague }
+                team.externalIds = ids
+                allTeams[i] = team
+            }
+            let known = Set(allTeams.map(\.id))
+            allTeams += pack.teams.compactMap(\.value).filter { !known.contains($0.id) }
+            teams = Dictionary(allTeams.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
+            espnIndex = [:]
+            for team in allTeams {
+                guard let espn = team.externalIds?.espn, let league = team.externalIds?.espnLeague ?? team.leagueKey else { continue }
+                espnIndex["\(league)#\(espn)"] = espnIndex["\(league)#\(espn)"] ?? team
+            }
+        }
+        if let data = await PackStore.shared.data("catalog/venues"),
+           let extra = try? Self.decoder.decode([Lossy<Venue>].self, from: data) {
+            let known = Set(catalogVenues.map(\.id))
+            catalogVenues += extra.compactMap(\.value).filter { !known.contains($0.id) }
+        }
+        await ScheduleCache.shared.reset()
+    }
+
+    /// The team the app has for an ESPN team in a league, if any.
+    func catalogTeam(league: String?, espnId: String?) -> Team? {
+        guard let league, let espnId else { return nil }
+        return espnIndex["\(league)#\(espnId)"]
     }
 
     private func decode<T: Decodable>(_ name: String, subdirectory: String) -> T? {

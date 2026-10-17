@@ -60,9 +60,15 @@ enum GameLookup {
         let windowEnd = to.addingTimeInterval(1 * 3600)
         let days = dayStrings(from: windowStart, to: windowEnd, tz: venue.tz)
 
+        // Past games of a league whose seasons are downloaded come from the phone: no network, nothing leaves the device.
+        let covered = await LocalSchedule.covered(leagues, from: windowStart, to: windowEnd)
         var found: [FoundGame] = []
+        if !covered.isEmpty {
+            found = await LocalSchedule.games(at: venue, leagues: leagues.filter { covered.contains($0) },
+                                              from: windowStart, to: windowEnd)
+        }
         await withTaskGroup(of: [FoundGame].self) { group in
-            for league in leagues {
+            for league in leagues where !covered.contains(league) {
                 for day in days {
                     group.addTask {
                         guard let data = await fetch(scoreboardURL(league: league, day: day)) else { return [] }
@@ -201,7 +207,8 @@ enum GameLookup {
                     abbreviation: side.abbreviation, locationName: side.location, teamName: side.name,
                     monogram: String(side.abbreviation.prefix(1)),
                     colors: .init(primary: primary, secondary: side.altColor ?? primary, accent: accent),
-                    externalIds: .init(mlbStatsApi: nil, theSportsDb: nil, espn: side.espnId))
+                    externalIds: .init(mlbStatsApi: nil, theSportsDb: nil, espn: side.espnId, espnLeague: game.league),
+                    leagueKey: game.league)
     }
 
     // MARK: Parsing (pure; unit tested with saved responses)

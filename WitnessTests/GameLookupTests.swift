@@ -1,4 +1,5 @@
 import XCTest
+import CryptoKit
 @testable import Witness
 
 /// Schedule verification and stats, against saved ESPN responses
@@ -95,5 +96,49 @@ final class GameLookupTests: XCTestCase {
         let days = GameLookup.dayStrings(from: start.addingTimeInterval(-5 * 3600), to: start.addingTimeInterval(4 * 3600),
                                          tz: TimeZone(identifier: "America/Chicago")!)
         XCTAssertEqual(days, ["20161030"])
+    }
+
+    // MARK: Downloaded schedule packs
+
+    func testLocalScheduleFindsAPastGameAtTheVenue() throws {
+        let json = """
+        {"league":"football/nfl","season":2024,"teams":{"9":"GB","3":"CHI"},"venues":{"3731":["Lambeau Field","Green Bay","WI","US"],"1":["Soldier Field","Chicago","IL","US"]},
+         "games":[["g1","2025-01-05T21:25Z","9","3",24,22,"3731","F","Regular season"],
+                  ["g2","2025-01-05T21:25Z","3","9",null,null,"1","F",""],
+                  ["g3","2025-01-06T21:25Z","9","3",null,null,"3731","C",""]]}
+        """
+        let pack = try JSONDecoder().decode(SchedulePack.self, from: Data(json.utf8))
+        XCTAssertEqual(pack.games.count, 3)
+        let kickoff = ISO8601DateFormatter().date(from: "2025-01-05T21:25:00Z")!
+        let found = LocalSchedule.games(in: pack, at: lambeau, from: kickoff.addingTimeInterval(-3600),
+                                        to: kickoff.addingTimeInterval(3600 * 4), names: [:])
+        XCTAssertEqual(found.map(\.eventId), ["g1"], "Only the game at this venue, and not the cancelled one")
+        XCTAssertEqual(found.first?.home.abbreviation, "GB")
+        XCTAssertEqual(found.first?.home.score, 24)
+        XCTAssertTrue(found.first?.completed == true)
+    }
+
+    func testLocalScheduleSeasonsAndNumericIds() throws {
+        let from = ISO8601DateFormatter().date(from: "2025-01-05T00:00:00Z")!
+        XCTAssertEqual(LocalSchedule.seasons(from: from, to: from), 2024...2025)
+        let json = #"{"league":"soccer/eng.1","season":2024,"teams":{"1":"ARS"},"venues":{},"games":[[101,"2025-01-05T15:00Z",1,2,null,null,null,"S"]]}"#
+        let pack = try JSONDecoder().decode(SchedulePack.self, from: Data(json.utf8))
+        XCTAssertEqual(pack.games.first?.eventId, "101", "Numeric ids are read as text")
+        XCTAssertEqual(pack.games.first?.note, "")
+    }
+
+    func testManifestSignatureIsChecked() throws {
+        let body = #"{"schema":1,"minAppVersion":"1.0","packs":[]}"#
+        let key = Curve25519.Signing.PrivateKey()
+        let signature = try key.signature(for: Data(body.utf8)).base64EncodedString()
+        let envelope = try JSONSerialization.data(withJSONObject: ["body": body, "signature": signature])
+        let publicKey = key.publicKey.rawRepresentation.base64EncodedString()
+        XCTAssertNotNil(PackStore.verified(envelope, publicKey: publicKey))
+        let tampered = try JSONSerialization.data(withJSONObject: ["body": body + " ", "signature": signature])
+        XCTAssertNil(PackStore.verified(tampered, publicKey: publicKey), "A changed body fails the signature")
+        XCTAssertNotNil(PackStore.verified(tampered, publicKey: ""), "No key configured: development mode accepts it")
+        let manifest = try XCTUnwrap(PackStore.verified(envelope, publicKey: ""))
+        XCTAssertTrue(PackStore.isSupported(manifest, appVersion: "1.0"))
+        XCTAssertFalse(PackStore.isSupported(PackManifest(schema: 1, minAppVersion: "2.0", packs: []), appVersion: "1.5"))
     }
 }

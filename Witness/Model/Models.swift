@@ -59,7 +59,7 @@ enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
 
 struct Team: Codable, Hashable, Identifiable {
     struct Colors: Codable, Hashable { var primary: String; var secondary: String; var accent: String }
-    struct ExternalIds: Codable, Hashable { var mlbStatsApi: Int?; var theSportsDb: String?; var espn: String? }
+    struct ExternalIds: Codable, Hashable { var mlbStatsApi: Int?; var theSportsDb: String?; var espn: String?; var espnLeague: String? }
 
     let id: String
     let sport: Sport
@@ -70,6 +70,8 @@ struct Team: Codable, Hashable, Identifiable {
     let monogram: String
     let colors: Colors
     var externalIds: ExternalIds?
+    /// The league path teams are matched on ("baseball/mlb"), with `externalIds.espn`.
+    var leagueKey: String? = nil
 
     /// UI shows city names and codes only, never marks or nicknames.
     var displayName: String { locationName }
