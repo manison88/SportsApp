@@ -24,6 +24,9 @@ SHOTS = [
     ("wrigley-scoreboard", "2016-10-30 20:34", "-05:00", 41.9486, -87.6556),
     ("wrigley-night-2", "2016-10-30 22:42", "-05:00", 41.9482, -87.6550),
     ("wrigley-bleachers", "2016-10-30 22:43", "-05:00", 41.9489, -87.6549),
+    # Soldier Field on a day with nothing on the schedule: an "other" visit (a concert, a tour)
+    ("soldier-aerial", "2019-02-12 19:00", "-06:00", 41.8625, -87.6165),
+    ("soldier-soccer", "2019-02-12 20:10", "-06:00", 41.8626, -87.6166),
     # Not at a stadium: must not match
     ("soldier-skyline", "2019-05-01 12:00", "-05:00", 41.8827, -87.6233),
 ]

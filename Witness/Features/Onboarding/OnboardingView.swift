@@ -18,7 +18,7 @@ struct OnboardingView: View {
             } else {
                 switch scan.state {
                 case .idle, .denied: pages(denied: scan.state == .denied)
-                case .scanning: ScanScreen(scan: scan, finished: false) { leaveWhileScanning() }
+                case .scanning, .matching: ScanProgressView(scan: scan)
                 case .done: ResultScreen(scan: scan) { presenter.modal = .discovery }
                 case .empty: emptyScreen(scan)
                 }
@@ -32,9 +32,6 @@ struct OnboardingView: View {
             }
         }
     }
-
-    /// "Keep going in background": the Timeline opens and the scan carries on, with a banner showing where it is.
-    private func leaveWhileScanning() { library.startEmpty() }
 
     // MARK: Pages
 
@@ -108,7 +105,7 @@ struct OnboardingView: View {
 
     private func emptyScreen(_ scan: ScanModel) -> some View {
         ZStack {
-            ScanScreen(scan: scan, finished: true) {}
+            ScanProgressView(scan: scan, finished: true)
                 .opacity(0.45)
             EmptySheet(checked: scan.progress.total)
         }
@@ -491,131 +488,6 @@ private struct EmptySheet: View {
     }
 }
 
-// MARK: - Scan
-
-/// Real progress only: photos checked, stadiums found, the photos that landed inside one.
-private struct ScanScreen: View {
-    let scan: ScanModel
-    let finished: Bool
-    let onBackground: () -> Void
-
-    var body: some View {
-        let p = scan.progress
-        VStack(alignment: .leading, spacing: 16) {
-            HStack(spacing: 8) {
-                Circle().fill(Color.signal).frame(width: 7, height: 7)
-                Text(finished ? "Scan finished" : "Scanning on this iPhone").unitLabel().foregroundStyle(Color.textSecondary)
-            }
-            VStack(alignment: .leading, spacing: 2) {
-                Text(p.scanned.formatted())
-                    .displayFont(88)
-                    .contentTransition(.numericText())
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                    .foregroundStyle(.white)
-                    .accessibilityIdentifier("onboarding-scanning")
-                Text("of \(p.total.formatted()) photos checked").unitLabel().foregroundStyle(Color.textSecondary)
-            }
-            ThumbStrip(ids: p.recentIds)
-            ProgressView(value: Double(p.scanned), total: Double(max(p.total, 1)))
-                .tint(Color.signal)
-            HStack(alignment: .top) {
-                stat(p.atStadiums, "Near a\nstadium")
-                stat(p.venues.count, "Venues\nfound")
-                stat(p.visits, "Visits\nso far")
-            }
-            if !p.venues.isEmpty {
-                Text("Venues found so far").unitLabel().foregroundStyle(Color.textTertiary)
-                VStack(spacing: 0) {
-                    ForEach(Array(p.venues.reversed().prefix(4).enumerated()), id: \.element.id) { i, v in
-                        VenueRow(venue: v, isNew: i == 0 && !finished)
-                    }
-                }
-            }
-            Spacer(minLength: 0)
-            if !finished {
-                Label("This can take a few minutes. You can leave and keep using the app.", systemImage: "clock")
-                    .font(.footnote)
-                    .foregroundStyle(Color.textSecondary)
-                    .padding(14)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color.panel, in: .rect(cornerRadius: 12))
-                Button("Keep going in background", action: onBackground)
-                    .buttonStyle(.primary)
-                    .accessibilityIdentifier("onboarding-background")
-            }
-        }
-        .gutter()
-        .padding(.top, 24)
-        .padding(.bottom, 12)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .animation(.smooth, value: p.venues.count)
-    }
-
-    private func stat(_ value: Int, _ label: String) -> some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(value.formatted()).displayFont(44).contentTransition(.numericText()).foregroundStyle(.white)
-            Text(label).unitLabel().foregroundStyle(Color.textSecondary).fixedSize(horizontal: false, vertical: true)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .accessibilityElement(children: .combine)
-    }
-}
-
-/// The last photos that landed inside a stadium, lit; the rest of the strip stays dim.
-private struct ThumbStrip: View {
-    let ids: [String]
-
-    var body: some View {
-        HStack(spacing: 8) {
-            ForEach(0..<5, id: \.self) { i in
-                Color.panel
-                    .aspectRatio(1, contentMode: .fit)
-                    .overlay {
-                        if i < ids.count {
-                            PhotoView(ref: .library(ids[i]))
-                        }
-                    }
-                    .clipShape(.rect(cornerRadius: 8))
-                    .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(i < ids.count ? Color.signal : Color.hairline, lineWidth: 2))
-            }
-        }
-        .accessibilityHidden(true)
-    }
-}
-
-private struct VenueRow: View {
-    let venue: PhotoMatcher.VenueTally
-    let isNew: Bool
-
-    var body: some View {
-        let color = venue.sport?.lineColor ?? Color.panelRaised
-        HStack(spacing: 12) {
-            Text(String(venue.name.filter(\.isLetter).prefix(3)).uppercased())
-                .font(.condensed(.caption, weight: .heavy))
-                .foregroundStyle(color.readableInk)
-                .frame(width: 44, height: 44)
-                .background(color, in: .rect(cornerRadius: 10))
-            VStack(alignment: .leading, spacing: 2) {
-                HStack(spacing: 8) {
-                    Text(venue.name).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).lineLimit(1)
-                    if isNew {
-                        Text("New").font(.condensed(.caption2, weight: .heavy)).textCase(.uppercase)
-                            .foregroundStyle(Color.signal)
-                    }
-                }
-                if let sport = venue.sport { Text(sport.name).font(.footnote).foregroundStyle(Color.textSecondary) }
-            }
-            Spacer()
-            Text(venue.count.formatted()).font(.condensed(.title3, weight: .heavy)).monospacedDigit()
-        }
-        .foregroundStyle(.white)
-        .frame(minHeight: 56)
-        .overlay(alignment: .top) { Rectangle().fill(Color.hairline).frame(height: 1) }
-        .accessibilityElement(children: .combine)
-    }
-}
-
 // MARK: - First result
 
 private struct ResultScreen: View {
@@ -627,7 +499,7 @@ private struct ResultScreen: View {
         let p = scan.progress
         VStack(alignment: .leading, spacing: Spacing.block) {
             HStack(alignment: .firstTextBaseline, spacing: 12) {
-                Text("\(scan.clusters.count)")
+                Text("\(scan.games.count)")
                     .displayFont(150)
                     .foregroundStyle(.white)
                     .minimumScaleFactor(0.5)
@@ -640,9 +512,16 @@ private struct ResultScreen: View {
                 stat(p.atStadiums, "Photos at\nstadiums")
             }
             newestCard
+            if !scan.others.isEmpty {
+                Label("\(scan.others.count) other \(scan.others.count == 1 ? "visit" : "visits") near a stadium to look at after your games: a concert, a tour, a tailgate.",
+                      systemImage: "ticket")
+                    .font(.footnote)
+                    .foregroundStyle(Color.textSecondary)
+                    .accessibilityIdentifier("onboarding-other-note")
+            }
             Spacer(minLength: 0)
             VStack(spacing: 8) {
-                Button("Review games", action: onReview)
+                Button(scan.games.isEmpty ? "Review other visits" : "Review games", action: onReview)
                     .buttonStyle(.primary)
                     .accessibilityIdentifier("onboarding-review")
                 Label("Found on this iPhone. Nothing was uploaded.", systemImage: "lock.fill")
@@ -668,7 +547,7 @@ private struct ResultScreen: View {
 
     @ViewBuilder
     private var newestCard: some View {
-        if let c = scan.clusters.first {
+        if let c = scan.games.first {
             let hero = c.assetIds.isEmpty ? nil : c.assetIds[c.assetIds.count / 2]
             ZStack(alignment: .bottomLeading) {
                 Color.panel
@@ -714,12 +593,15 @@ struct ScanBanner: View {
     var body: some View {
         let scan = presenter.scan
         switch scan.state {
-        case .scanning:
+        case .scanning, .matching:
             HStack(spacing: 12) {
                 ProgressView().tint(.white)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Scanning your photos").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
-                    Text("\(scan.progress.scanned.formatted()) of \(scan.progress.total.formatted()) · \(scan.progress.visits) visits so far")
+                    Text(scan.state == .matching ? "Matching to the schedule" : "Scanning your photos")
+                        .font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
+                    Text(scan.state == .matching
+                         ? "\(scan.checkedVisits) of \(scan.totalVisits) visits, \(scan.matchedCount) games so far"
+                         : "\(scan.progress.scanned.formatted()) of \(scan.progress.total.formatted()), \(scan.progress.visits) visits so far")
                         .font(.footnote).foregroundStyle(Color.textSecondary)
                 }
                 Spacer()
@@ -735,7 +617,7 @@ struct ScanBanner: View {
             Button { presenter.modal = .discovery } label: {
                 HStack {
                     Image(systemName: "photo.on.rectangle.angled")
-                    Text("\(scan.clusters.count) games found in your photos")
+                    Text("\(scan.games.count) games found in your photos")
                         .font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
                     Spacer()
                     Text("Review").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase).foregroundStyle(Color.signal)

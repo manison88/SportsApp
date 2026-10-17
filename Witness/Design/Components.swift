@@ -218,6 +218,7 @@ struct PhotoView: View {
     let ref: PhotoRef
     var contentMode: ContentMode = .fill
     @State private var image: UIImage?
+    @State private var failed = false
 
     var body: some View {
         // A clear base takes the proposed size, so a filled photo never widens its parent.
@@ -229,6 +230,11 @@ struct PhotoView: View {
                 default:
                     if let image {
                         Image(uiImage: image).resizable().aspectRatio(contentMode: contentMode)
+                    } else if failed {
+                        ZStack {
+                            Color.panel
+                            Image(systemName: "photo").foregroundStyle(Color.textTertiary)
+                        }
                     } else {
                         Color.panel
                     }
@@ -238,13 +244,21 @@ struct PhotoView: View {
             .task(id: ref) {
                 // Clear first so a reused cell never shows the previous photo.
                 image = nil
+                failed = false
                 image = await PhotoLoader.load(ref)
+                failed = image == nil
             }
         .accessibilityHidden(true)
     }
 }
 
 enum PhotoLoader {
+    private static let cache: NSCache<NSString, UIImage> = {
+        let c = NSCache<NSString, UIImage>()
+        c.countLimit = 160
+        return c
+    }()
+
     static func load(_ ref: PhotoRef, size: CGSize = CGSize(width: 1400, height: 1400)) async -> UIImage? {
         switch ref {
         case .bundled(let name):
@@ -253,15 +267,47 @@ enum PhotoLoader {
             let url = URL.documentsDirectory.appending(path: name)
             return UIImage(contentsOfFile: url.path)
         case .library(let id):
-            let assets = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil)
-            guard let asset = assets.firstObject else { return nil }
-            let options = PHImageRequestOptions()
-            options.deliveryMode = .highQualityFormat
-            options.isNetworkAccessAllowed = true
-            return await withCheckedContinuation { cont in
-                PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { img, _ in
-                    cont.resume(returning: img)
+            let key = "\(id)@\(Int(size.width))" as NSString
+            if let hit = cache.object(forKey: key) { return hit }
+            // A request can come back empty while Photos is busy (a big scan) or while the original is still in
+            // iCloud, so ask again a couple of times before giving up.
+            for attempt in 0..<3 {
+                if let image = await request(id, size: size) {
+                    cache.setObject(image, forKey: key)
+                    return image
                 }
+                if Task.isCancelled { return nil }
+                try? await Task.sleep(for: .milliseconds(500 * (attempt + 1)))
+            }
+            return nil
+        }
+    }
+
+    /// Resumes a continuation exactly once, however many times Photos calls back.
+    private final class Once: @unchecked Sendable {
+        private let lock = NSLock()
+        private var done = false
+        func take() -> Bool {
+            lock.lock(); defer { lock.unlock() }
+            if done { return false }
+            done = true
+            return true
+        }
+    }
+
+    private static func request(_ id: String, size: CGSize) async -> UIImage? {
+        guard let asset = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil).firstObject else { return nil }
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .highQualityFormat
+        options.resizeMode = .fast
+        options.isNetworkAccessAllowed = true
+        return await withCheckedContinuation { (cont: CheckedContinuation<UIImage?, Never>) in
+            let once = Once()
+            PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { image, info in
+                // A low-quality stand-in is followed by the real image; wait for that one.
+                if (info?[PHImageResultIsDegradedKey] as? Bool) == true, image != nil { return }
+                guard once.take() else { return }
+                cont.resume(returning: image)
             }
         }
     }

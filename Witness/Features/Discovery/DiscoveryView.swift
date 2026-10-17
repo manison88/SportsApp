@@ -11,7 +11,12 @@ struct DiscoveryView: View {
     enum Phase: Equatable { case requesting, scanning, denied, results }
 
     @State private var phase: Phase = .requesting
-    @State private var scanProgress: PhotoMatcher.ScanProgress?
+    /// Visits at a stadium with no game on the schedule: a concert, a tour, a tailgate. Reviewed after the games.
+    @State private var others: [PhotoCluster] = []
+    @State private var otherIndex = 0
+    @State private var addedOther = 0
+    @State private var otherKind = "Concert"
+    @State private var otherTitle = ""
     @State private var clusters: [PhotoCluster] = []
     @State private var index = 0
     @State private var confirmed = 0
@@ -43,17 +48,18 @@ struct DiscoveryView: View {
     private var content: some View {
         switch phase {
         case .requesting, .scanning:
-            scanning
+            ScanProgressView(scan: presenter.scan)
                 .frame(maxWidth: .infinity)
         case .denied:
             message(title: "Witness can't see your photos.",
                     body: "Allow photo access in Settings and Witness will match them to stadiums on this iPhone.",
                     showSettings: true, id: "discovery-denied")
         case .results:
-            if clusters.isEmpty {
+            if clusters.isEmpty && others.isEmpty {
                 message(title: "No games found in your photos yet.", body: nil, showSettings: false, id: "discovery-empty")
             } else if index >= clusters.count {
-                done
+                // Games first; then the visits that were near a stadium but not a game.
+                if otherIndex < others.count { otherReview(others[otherIndex]) } else { done }
             } else {
                 results(clusters[index])
             }
@@ -180,40 +186,95 @@ struct DiscoveryView: View {
         }
     }
 
-    private var scanning: some View {
-        VStack(spacing: Spacing.inner) {
-            Spacer()
-            if let p = scanProgress, p.total > 0 {
-                Text(p.date.map { $0.formatted(.dateTime.month(.wide).year()) } ?? "Starting")
-                    .displayFont(48)
-                    .textCase(.uppercase)
-                    .contentTransition(.numericText())
-                ProgressView(value: Double(p.scanned), total: Double(p.total))
-                    .tint(Color.signal)
-                    .padding(.horizontal, 48)
-                Text("\(p.scanned.formatted()) of \(p.total.formatted()) photos")
-                    .font(.condensed(.headline))
-                    .foregroundStyle(Color.textSecondary)
-                if p.atStadiums > 0 {
-                    Label("\(p.atStadiums) near a stadium" + (p.latestVenue.map { " · \($0)" } ?? ""), systemImage: "building.columns")
-                        .font(.footnote)
-                        .foregroundStyle(Color.textSecondary)
-                        .accessibilityIdentifier("discovery-progress-found")
+    // MARK: Other
+
+    private static let otherKinds = ["Concert", "Stadium tour", "Tailgate", "Other event"]
+
+    /// A visit at or near a stadium with no game on the schedule. The person says what it was, or skips it.
+    private func otherReview(_ cluster: PhotoCluster) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Spacing.block) {
+                VStack(alignment: .leading, spacing: Spacing.inner) {
+                    Text("Other").displayFont(80).textCase(.uppercase)
+                        .accessibilityIdentifier("discovery-other-title")
+                    Text("Near or at a stadium, but not part of a game on the schedule. A concert, a tour, a tailgate? Add what it was, or skip it.")
+                        .font(.subheadline).foregroundStyle(Color.textSecondary)
+                    Text("\(otherIndex + 1) of \(others.count)").unitLabel()
                 }
-            } else {
-                ProgressView().controlSize(.large).tint(.white)
+
+                VStack(alignment: .leading, spacing: Spacing.inner) {
+                    Text(cluster.venue.name).font(.condensed(.title3, weight: .heavy)).textCase(.uppercase)
+                    Text("\(Fmt.dayTitle(cluster.start, in: cluster.venue.tz)) \u{00B7} \(Fmt.time(cluster.start, in: cluster.venue.tz)) \u{00B7} \(cluster.assetIds.count) \(cluster.assetIds.count == 1 ? "photo" : "photos")")
+                        .font(.footnote).foregroundStyle(Color.textSecondary)
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
+                        ForEach(cluster.assetIds.prefix(6), id: \.self) { id in
+                            Color.panel.aspectRatio(1, contentMode: .fit)
+                                .overlay { PhotoView(ref: .library(id)) }
+                                .clipShape(.rect(cornerRadius: 8))
+                        }
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: Spacing.inner) {
+                    Text("What was it?").unitLabel()
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 8) {
+                            ForEach(Self.otherKinds, id: \.self) { kind in
+                                Button { otherKind = kind } label: {
+                                    Text(kind)
+                                        .font(.condensed(.subheadline, weight: .heavy))
+                                        .textCase(.uppercase)
+                                        .foregroundStyle(otherKind == kind ? Color.black : Color.white)
+                                        .padding(.horizontal, 14)
+                                        .frame(minHeight: 44)
+                                        .background(otherKind == kind ? Color.white : Color.panelRaised, in: .capsule)
+                                }
+                                .accessibilityAddTraits(otherKind == kind ? .isSelected : [])
+                                .accessibilityIdentifier("discovery-other-kind-\(kind)")
+                            }
+                        }
+                    }
+                    .scrollIndicators(.hidden)
+                    TextField("Name it (optional)", text: $otherTitle)
+                        .textInputAutocapitalization(.words)
+                        .padding(14)
+                        .background(Color.panel, in: .rect(cornerRadius: 12))
+                        .accessibilityIdentifier("discovery-other-name")
+                }
+
+                HStack(spacing: Spacing.inner) {
+                    Button("Skip") { advanceOther() }
+                        .buttonStyle(.secondary)
+                        .frame(maxWidth: 120)
+                        .accessibilityIdentifier("discovery-other-skip")
+                    Button { addOther(cluster) } label: { Label("Add", systemImage: "plus") }
+                        .buttonStyle(.primary)
+                        .accessibilityIdentifier("discovery-other-add")
+                }
             }
-            Text("Looking for stadiums in your photos")
-                .font(.condensed(.headline))
-                .foregroundStyle(Color.textTertiary)
-            Label("Matched privately on this iPhone", systemImage: "lock.fill")
-                .font(.footnote)
-                .foregroundStyle(Color.textTertiary)
-            Spacer()
+            .gutter()
+            .padding(.top, 8)
+            .padding(.bottom, 24)
         }
-        .animation(.default, value: scanProgress?.atStadiums)
-        .accessibilityElement(children: .combine)
-        .accessibilityIdentifier("discovery-scanning")
+        .scrollIndicators(.hidden)
+    }
+
+    private func addOther(_ cluster: PhotoCluster) {
+        var entry = GameEntry(sport: cluster.venue.sports.first ?? .baseball, date: cluster.start, venueId: cluster.venue.id,
+                              photos: cluster.assetIds.prefix(12).map { PhotoRef.library($0) }, origin: .photos)
+        entry.kind = .visit
+        entry.competition = otherKind
+        let title = otherTitle.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !title.isEmpty { entry.headline = title }
+        library.add(entry)
+        addedOther += 1
+        advanceOther()
+    }
+
+    private func advanceOther() {
+        otherIndex += 1
+        otherKind = "Concert"
+        otherTitle = ""
     }
 
     private var done: some View {
@@ -224,6 +285,12 @@ struct DiscoveryView: View {
             Text(confirmed == 1 ? "Game added" : "Games added")
                 .font(.condensed(.title2, weight: .heavy))
                 .textCase(.uppercase)
+            if addedOther > 0 {
+                Text("And \(addedOther) other \(addedOther == 1 ? "event" : "events")")
+                    .font(.condensed(.headline, weight: .bold))
+                    .foregroundStyle(Color.textSecondary)
+                    .textCase(.uppercase)
+            }
             Spacer()
             Button("Done") { close() }
                 .buttonStyle(.primary)
@@ -277,19 +344,21 @@ struct DiscoveryView: View {
 
     private func run() async {
         guard phase == .requesting else { return }
-        let granted = await PhotoMatcher.requestAccess()
-        guard granted else { phase = .denied; return }
         phase = .scanning
-        // Onboarding already scanned the library: review those results instead of scanning twice.
-        var found: [PhotoCluster]
-        if presenter.scan.state == .done, !presenter.scan.clusters.isEmpty {
-            found = presenter.scan.clusters
-            presenter.scan.markReviewed()
-        } else {
-            found = await PhotoMatcher.discover(venues: library.venues, existing: library.games) { p in
-                Task { @MainActor in scanProgress = p }
-            }
+        let scan = presenter.scan
+        // Onboarding may already have scanned and matched everything: review that. Otherwise run the same scan here.
+        if !(scan.state == .done && !scan.reviewed) {
+            scan.reset()
+            scan.start(library: library)
         }
+        while scan.state == .idle || scan.inProgress {
+            try? await Task.sleep(for: .milliseconds(300))
+            if Task.isCancelled { return }
+        }
+        if scan.state == .denied { phase = .denied; return }
+        scan.markReviewed()
+        var found = scan.games
+        others = scan.others
         // Ticket screenshots pin games on their own, even when none of the night's photos have GPS.
         let have = Set(library.games.compactMap { g in library.venue(g.venueId).map { VisitGrouping.key(venueId: $0.id, date: g.date, tz: $0.tz) } })
         let anchors = await TicketAnchors.find(in: TicketAnchors.screenshots(limit: 200), teams: library.allTeams, venues: library.venues)
@@ -311,12 +380,19 @@ struct DiscoveryView: View {
     private func lookUp(_ cluster: PhotoCluster) async {
         lookup = nil
         lookupFor = nil
-        for venue in [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: library.venues) {
-            if let game = await GameLookup.games(at: venue, from: cluster.start, to: cluster.end).first {
-                lookup = game
-                lookupFor = cluster.id
-                lookupVenue = venue
-                break
+        if let known = presenter.scan.matches[cluster.id] {
+            // Already matched during the scan.
+            lookup = known
+            lookupFor = cluster.id
+            lookupVenue = GameLookup.venue(of: known, in: library.venues) ?? cluster.venue
+        } else {
+            for venue in [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: library.venues) {
+                if let game = await GameLookup.games(at: venue, from: cluster.start, to: cluster.end).first {
+                    lookup = game
+                    lookupFor = cluster.id
+                    lookupVenue = venue
+                    break
+                }
             }
         }
         checkedFor = cluster.id
@@ -383,7 +459,7 @@ struct DiscoveryView: View {
     }
 
     private func close() {
-        if confirmed > 0 && !library.hasLibrary { library.startEmpty() }
+        if (confirmed > 0 || addedOther > 0) && !library.hasLibrary { library.startEmpty() }
         dismiss()
     }
 }
