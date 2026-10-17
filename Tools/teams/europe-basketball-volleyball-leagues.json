@@ -6,7 +6,7 @@
   "country": "Spain",
   "countryCode": "ES",
   "tier": 1,
-  "teamCount": 16,
+  "teamCount": 17,
   "season": "Sep-Jun",
   "espnPath": null,
   "teamIds": [
@@ -24,6 +24,7 @@
    "eurbb-esp-zar",
    "eurbb-esp-mur",
    "eurbb-esp-bre",
+   "eurbb-esp-and",
    "eurbb-esp-gra",
    "eurbb-esp-vll"
   ],
@@ -44,7 +45,8 @@
     "pabellon-principe-felipe",
     "palacio-deportes-murcia",
     "pazo-dos-deportes-lugo",
-    "nuevo-los-carmenes",
+    "poliesportiu-andorra",
+    "palacio-deportes-granada",
     "polideportivo-pisuerga"
    ]
   }
@@ -102,7 +104,7 @@
   "country": "Germany",
   "countryCode": "DE",
   "tier": 1,
-  "teamCount": 17,
+  "teamCount": 18,
   "season": "Sep-Jun",
   "espnPath": null,
   "teamIds": [
@@ -122,6 +124,7 @@
    "eurbb-ger-mbc",
    "eurbb-ger-tri",
    "eurbb-ger-ros",
+   "eurbb-ger-cra",
    "eurbb-ger-fra"
   ],
   "passport": {
@@ -143,6 +146,7 @@
     "stadthalle-weissenfels",
     "arena-trier",
     "stadthalle-rostock",
+    "arena-hohenlohe",
     "ballsporthalle-frankfurt"
    ]
   }
@@ -187,7 +191,7 @@
     "ldlc-arena",
     "adidas-arena",
     "palais-sports-nanterre",
-    "palais-sports-dijon",
+    "palais-sports-dijon-fr",
     "sportica",
     "palais-sports-pau",
     "halle-vacheresse",
@@ -269,7 +273,7 @@
   "country": "Serbia",
   "countryCode": "RS",
   "tier": 1,
-  "teamCount": 9,
+  "teamCount": 10,
   "season": "Oct-Jun",
   "espnPath": null,
   "teamIds": [
@@ -281,7 +285,8 @@
    "eurol-par",
    "eurol-dub",
    "eurbb-aba-fmp",
-   "eurbb-aba-igo"
+   "eurbb-aba-igo",
+   "eurbb-aba-dvo"
   ],
   "passport": {
    "label": "ABA League arenas",
@@ -293,7 +298,8 @@
     "belgrade-arena",
     "coca-cola-arena-dubai",
     "fmp-hall",
-    "laktasi-hall"
+    "laktasi-hall",
+    "dvorana-dubrava"
    ]
   }
  },
@@ -338,7 +344,7 @@
   "country": "Poland",
   "countryCode": "PL",
   "tier": 1,
-  "teamCount": 9,
+  "teamCount": 8,
   "season": "Sep-Jun",
   "espnPath": null,
   "teamIds": [
@@ -347,7 +353,6 @@
    "eurbb-pol-sop",
    "eurbb-pol-zgo",
    "eurbb-pol-anw",
-   "eurbb-pol-tor",
    "eurbb-pol-lub",
    "eurbb-pol-slu",
    "eurbb-pol-kat"
@@ -356,14 +361,13 @@
    "label": "Polska Liga Koszykówki arenas",
    "venueIds": [
     "hala-orbita",
-    "netto-arena",
+    "azoty-arena",
     "ergo-arena",
     "hala-cre-zielona-gora",
     "hala-mistrzow",
-    "arena-torun",
     "hala-globus",
     "gryf-arena",
-    "spodek"
+    "spodek-pl"
    ]
   }
  },
@@ -374,24 +378,20 @@
   "country": "Czechia",
   "countryCode": "CZ",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 3,
   "season": "Sep-Jun",
   "espnPath": null,
   "teamIds": [
    "eurbb-cze-nym",
    "eurbb-cze-prg",
-   "eurbb-cze-opa",
-   "eurbb-cze-brn",
-   "eurbb-cze-usb"
+   "eurbb-cze-brn"
   ],
   "passport": {
    "label": "Kooperativa NBL arenas",
    "venueIds": [
     "nymburk-arena",
     "hala-folimanka",
-    "opava-arena",
-    "winning-group-arena",
-    "hala-usti"
+    "winning-group-arena"
    ]
   }
  },
@@ -402,15 +402,14 @@
   "country": "Israel",
   "countryCode": "IL",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 4,
   "season": "Oct-Jun",
   "espnPath": null,
   "teamIds": [
    "bsl-il-hjm",
    "bsl-il-hho",
    "eurol-mta",
-   "eurol-hta",
-   "eurbb-isr-nes"
+   "eurol-hta"
   ],
   "passport": {
    "label": "Israeli Basketball Premier League arenas",
@@ -418,8 +417,7 @@
     "pais-arena",
     "holon-toto-hall",
     "menora-mivtachim-arena",
-    "drive-in-arena",
-    "ness-ziona-hall"
+    "drive-in-arena"
    ]
   }
  },
@@ -477,7 +475,7 @@
     "maaspoort",
     "martiniplaza",
     "landstede-sportcentrum",
-    "de-kuip"
+    "topsportcentrum-rotterdam"
    ]
   }
  },
@@ -488,20 +486,22 @@
   "country": "United Kingdom",
   "countryCode": "GB",
   "tier": 1,
-  "teamCount": 3,
+  "teamCount": 4,
   "season": "Sep-May",
   "espnPath": null,
   "teamIds": [
    "eurbb-gbr-lon",
    "eurbb-gbr-new",
-   "eurbb-gbr-man"
+   "eurbb-gbr-man",
+   "eurbb-gbr-ply"
   ],
   "passport": {
    "label": "British Basketball League arenas",
    "venueIds": [
     "copper-box-arena",
     "vertu-motors-arena",
-    "national-basketball-performance-centre"
+    "national-basketball-performance-centre",
+    "plymouth-pavilions"
    ]
   }
  },
@@ -512,12 +512,11 @@
   "country": "Finland",
   "countryCode": "FI",
   "tier": 1,
-  "teamCount": 4,
+  "teamCount": 3,
   "season": "Oct-May",
   "espnPath": null,
   "teamIds": [
    "eurbb-fin-kan",
-   "eurbb-fin-hel",
    "eurbb-fin-lah",
    "eurbb-fin-tam"
   ],
@@ -525,7 +524,6 @@
    "label": "Korisliiga arenas",
    "venueIds": [
     "joensuu-arena",
-    "makelanrinne",
     "isku-areena",
     "pyrinto-hall"
    ]
@@ -545,7 +543,7 @@
    "eurbb-swe-lul",
    "eurbb-swe-nor",
    "eurbb-swe-sod",
-   "eurbb-swe-kfu"
+   "eurbb-swe-jon"
   ],
   "passport": {
    "label": "Basketligan arenas",
@@ -553,7 +551,7 @@
     "luleahallen",
     "stadium-arena-norrkoping",
     "taby-arena",
-    "nassjo-hall"
+    "jamtlands-hall"
    ]
   }
  },
@@ -564,38 +562,20 @@
   "country": "Denmark",
   "countryCode": "DK",
   "tier": 1,
-  "teamCount": 2,
+  "teamCount": 3,
   "season": "Sep-May",
   "espnPath": null,
   "teamIds": [
    "eurbb-den-sve",
-   "eurbb-den-sis"
+   "eurbb-den-sis",
+   "eurbb-den-ama"
   ],
   "passport": {
    "label": "Basketligaen arenas",
    "venueIds": [
-    "svendborg-hall",
-    "casa-arena-horsens"
-   ]
-  }
- },
- {
-  "key": "basketball/nor.bli",
-  "name": "BLNO",
-  "sport": "basketball",
-  "country": "Norway",
-  "countryCode": "NO",
-  "tier": 1,
-  "teamCount": 1,
-  "season": "Sep-May",
-  "espnPath": null,
-  "teamIds": [
-   "eurbb-nor-ask"
-  ],
-  "passport": {
-   "label": "BLNO arenas",
-   "venueIds": [
-    "askerhallen"
+    "svendborg-hallen",
+    "casa-arena-horsens",
+    "amager-hall"
    ]
   }
  },
@@ -630,22 +610,16 @@
   "country": "Romania",
   "countryCode": "RO",
   "tier": 1,
-  "teamCount": 4,
+  "teamCount": 1,
   "season": "Oct-Jun",
   "espnPath": null,
   "teamIds": [
-   "eurbb-rou-clu",
-   "eurbb-rou-csm",
-   "eurbb-rou-din",
-   "eurbb-rou-scp"
+   "eurbb-rou-csm"
   ],
   "passport": {
    "label": "Liga Națională arenas",
    "venueIds": [
-    "cluj-arena",
-    "arena-antonio-alexe",
-    "sala-dinamo",
-    "stadionul-ion-oblemenco"
+    "arena-antonio-alexe"
    ]
   }
  },
@@ -703,12 +677,13 @@
   "country": "Croatia",
   "countryCode": "HR",
   "tier": 1,
-  "teamCount": 4,
+  "teamCount": 5,
   "season": "Oct-May",
   "espnPath": null,
   "teamIds": [
    "aba-cib",
    "aba-spl",
+   "eurbb-cro-dvo",
    "eurbb-cro-gor",
    "eurbb-cro-sib"
   ],
@@ -717,6 +692,7 @@
    "venueIds": [
     "drazen-petrovic-hall",
     "spaladium-arena",
+    "dvorana-dubrava",
     "gorica-hall",
     "sibenik-hall"
    ]
@@ -767,38 +743,6 @@
   }
  },
  {
-  "key": "basketball/mne.ucl",
-  "name": "Prva A liga",
-  "sport": "basketball",
-  "country": "Montenegro",
-  "countryCode": "ME",
-  "tier": 1,
-  "teamCount": 0,
-  "season": "Oct-May",
-  "espnPath": null,
-  "teamIds": [],
-  "passport": {
-   "label": "Prva A liga arenas",
-   "venueIds": []
-  }
- },
- {
-  "key": "basketball/mkd.mbl",
-  "name": "Macedonian First League",
-  "sport": "basketball",
-  "country": "North Macedonia",
-  "countryCode": "MK",
-  "tier": 1,
-  "teamCount": 0,
-  "season": "Oct-May",
-  "espnPath": null,
-  "teamIds": [],
-  "passport": {
-   "label": "Macedonian First League arenas",
-   "venueIds": []
-  }
- },
- {
   "key": "basketball/kos.sl",
   "name": "Kosovo Superleague",
   "sport": "basketball",
@@ -815,7 +759,7 @@
   "passport": {
    "label": "Kosovo Superleague arenas",
    "venueIds": [
-    "fadil-vokrri"
+    "pallati-rinise"
    ]
   }
  },
@@ -826,16 +770,18 @@
   "country": "Cyprus",
   "countryCode": "CY",
   "tier": 1,
-  "teamCount": 1,
+  "teamCount": 2,
   "season": "Oct-May",
   "espnPath": null,
   "teamIds": [
-   "eurbb-cyp-ano"
+   "eurbb-cyp-ano",
+   "eurbb-cyp-aek"
   ],
   "passport": {
    "label": "Cyprus Basketball Division A arenas",
    "venueIds": [
-    "eleftheria-nicosia"
+    "eleftheria-nicosia",
+    "aek-arena"
    ]
   }
  },
@@ -846,11 +792,10 @@
   "country": "Portugal",
   "countryCode": "PT",
   "tier": 1,
-  "teamCount": 4,
+  "teamCount": 3,
   "season": "Oct-Jun",
   "espnPath": null,
   "teamIds": [
-   "eurbb-por-ben",
    "eurbb-por-spo",
    "eurbb-por-fcp",
    "eurbb-por-vit"
@@ -858,7 +803,6 @@
   "passport": {
    "label": "Liga Betclic arenas",
    "venueIds": [
-    "estadio-da-luz",
     "pavilhao-joao-rocha",
     "dragao-arena",
     "multiusos-guimaraes"
@@ -872,40 +816,16 @@
   "country": "Austria",
   "countryCode": "AT",
   "tier": 1,
-  "teamCount": 2,
+  "teamCount": 1,
   "season": "Oct-May",
   "espnPath": null,
   "teamIds": [
-   "eurbb-aut-klo",
-   "eurbb-aut-swa"
+   "eurbb-aut-klo"
   ],
   "passport": {
    "label": "Austrian Basketball Superliga arenas",
    "venueIds": [
-    "babenbergerhalle",
-    "volksbank-arena-gmunden"
-   ]
-  }
- },
- {
-  "key": "basketball/sui.snl",
-  "name": "SB League",
-  "sport": "basketball",
-  "country": "Switzerland",
-  "countryCode": "CH",
-  "tier": 1,
-  "teamCount": 2,
-  "season": "Oct-May",
-  "espnPath": null,
-  "teamIds": [
-   "eurbb-sui-fri",
-   "eurbb-sui-mon"
-  ],
-  "passport": {
-   "label": "SB League arenas",
-   "venueIds": [
-    "bcf-arena",
-    "reposieux"
+    "babenbergerhalle"
    ]
   }
  },
@@ -925,7 +845,7 @@
   "passport": {
    "label": "Úrvalsdeild karla arenas",
    "venueIds": [
-    "keflavikurvollur"
+    "blue-hollin"
    ]
   }
  },
@@ -979,19 +899,21 @@
   "country": "Latvia",
   "countryCode": "LV",
   "tier": 1,
-  "teamCount": 3,
+  "teamCount": 4,
   "season": "Oct-May",
   "espnPath": null,
   "teamIds": [
    "eurbb-lva-vef",
    "eurbb-lva-rig",
-   "eurbb-lva-lie"
+   "eurbb-lva-lie",
+   "eurbb-lva-val"
   ],
   "passport": {
    "label": "Latvijas Basketbola līga arenas",
    "venueIds": [
     "arena-riga",
-    "olympic-center-liepaja"
+    "liepaja-ledus-halle",
+    "valmiera-hall"
    ]
   }
  },
@@ -1038,43 +960,21 @@
   }
  },
  {
-  "key": "basketball/svk.sbl",
-  "name": "Slovak Basketball League",
-  "sport": "basketball",
-  "country": "Slovakia",
-  "countryCode": "SK",
-  "tier": 1,
-  "teamCount": 1,
-  "season": "Oct-May",
-  "espnPath": null,
-  "teamIds": [
-   "eurbb-svk-han"
-  ],
-  "passport": {
-   "label": "Slovak Basketball League arenas",
-   "venueIds": [
-    "tehelne-pole"
-   ]
-  }
- },
- {
   "key": "volleyball/ita.superlega",
   "name": "SuperLega Credem Banca",
   "sport": "volleyball",
   "country": "Italy",
   "countryCode": "IT",
   "tier": 1,
-  "teamCount": 8,
+  "teamCount": 6,
   "season": "Oct-May",
   "espnPath": null,
   "teamIds": [
    "eurvb-ita-m-lub",
    "eurvb-ita-m-mod",
-   "eurvb-ita-m-pia",
    "eurvb-ita-m-pad",
    "eurvb-ita-m-mon",
    "eurvb-ita-m-mil",
-   "eurvb-ita-m-tar",
    "eurvb-ita-m-gro"
   ],
   "passport": {
@@ -1082,11 +982,9 @@
    "venueIds": [
     "eurosuole-forum",
     "pala-panini",
-    "palabanca-piacenza",
     "kioene-arena",
-    "u-power-stadium",
+    "opiquad-arena",
     "allianz-cloud",
-    "palamazzola",
     "pala-casa-grottazzolina"
    ]
   }
@@ -1098,14 +996,13 @@
   "country": "Italy",
   "countryCode": "IT",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 5,
   "season": "Oct-Apr",
   "espnPath": null,
   "teamIds": [
    "eurvb-ita-w-con",
    "eurvb-ita-w-mil",
    "eurvb-ita-w-sca",
-   "eurvb-ita-w-nov",
    "eurvb-ita-w-bus",
    "eurvb-ita-w-rom"
   ],
@@ -1115,7 +1012,6 @@
     "palaverde-villorba",
     "allianz-cloud",
     "pala-wanny",
-    "pala-igor",
     "e-work-arena",
     "pala-eur"
    ]
@@ -1128,7 +1024,7 @@
   "country": "Poland",
   "countryCode": "PL",
   "tier": 1,
-  "teamCount": 8,
+  "teamCount": 7,
   "season": "Sep-May",
   "espnPath": null,
   "teamIds": [
@@ -1136,7 +1032,6 @@
    "eurvb-pol-m-res",
    "eurvb-pol-m-gda",
    "eurvb-pol-m-lub",
-   "eurvb-pol-m-cup",
    "eurvb-pol-m-kat",
    "eurvb-pol-m-nys",
    "eurvb-pol-m-suw"
@@ -1148,8 +1043,7 @@
     "hala-podpromie",
     "ergo-arena",
     "hala-globus",
-    "hala-gorzow",
-    "spodek",
+    "spodek-pl",
     "nysa-hall",
     "suwalki-hall"
    ]
@@ -1162,23 +1056,21 @@
   "country": "Poland",
   "countryCode": "PL",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 4,
   "season": "Sep-Apr",
   "espnPath": null,
   "teamIds": [
    "eurvb-pol-w-dev",
    "eurvb-pol-w-chp",
    "eurvb-pol-w-lod",
-   "eurvb-pol-w-rad",
    "eurvb-pol-w-wro"
   ],
   "passport": {
    "label": "Tauron Liga halls",
    "venueIds": [
     "hala-podpromie",
-    "netto-arena",
+    "azoty-arena",
     "atlas-arena",
-    "radom-arena",
     "hala-orbita"
    ]
   }
@@ -1190,15 +1082,17 @@
   "country": "Turkey",
   "countryCode": "TR",
   "tier": 1,
-  "teamCount": 1,
+  "teamCount": 2,
   "season": "Oct-Apr",
   "espnPath": null,
   "teamIds": [
+   "eurvb-tur-m-zir",
    "eurvb-tur-m-gal"
   ],
   "passport": {
    "label": "Efeler Ligi halls",
    "venueIds": [
+    "ataturk-spor-salonu-ankara",
     "sinan-erdem-dome"
    ]
   }
@@ -1210,53 +1104,23 @@
   "country": "Turkey",
   "countryCode": "TR",
   "tier": 1,
-  "teamCount": 3,
+  "teamCount": 4,
   "season": "Oct-Apr",
   "espnPath": null,
   "teamIds": [
    "eurvb-tur-w-vak",
    "eurvb-tur-w-ecz",
-   "eurvb-tur-w-gal"
+   "eurvb-tur-w-gal",
+   "eurvb-tur-w-nil"
   ],
   "passport": {
    "label": "Misli.com Sultanlar Ligi halls",
    "venueIds": [
     "vakifbank-spor-sarayi",
     "ecza-spor-salonu",
-    "sinan-erdem-dome"
+    "sinan-erdem-dome",
+    "tofas-spor-salonu"
    ]
-  }
- },
- {
-  "key": "volleyball/rus.superleague",
-  "name": "Russian Volleyball Super League",
-  "sport": "volleyball",
-  "country": "Russia",
-  "countryCode": "RU",
-  "tier": 1,
-  "teamCount": 0,
-  "season": "Oct-Apr",
-  "espnPath": null,
-  "teamIds": [],
-  "passport": {
-   "label": "Russian Volleyball Super League halls",
-   "venueIds": []
-  }
- },
- {
-  "key": "volleyball/rus.superleague-w",
-  "name": "Russian Women's Volleyball Super League",
-  "sport": "volleyball",
-  "country": "Russia",
-  "countryCode": "RU",
-  "tier": 1,
-  "teamCount": 0,
-  "season": "Oct-Apr",
-  "espnPath": null,
-  "teamIds": [],
-  "passport": {
-   "label": "Russian Women's Volleyball Super League halls",
-   "venueIds": []
   }
  },
  {
@@ -1357,7 +1221,7 @@
   "passport": {
    "label": "Volleyball Bundesliga (Women) halls",
    "venueIds": [
-    "mhparena",
+    "scharrena-stuttgart",
     "sport-und-kongresshalle",
     "margon-arena",
     "sc-potsdam-hall",
@@ -1372,11 +1236,12 @@
   "country": "Greece",
   "countryCode": "GR",
   "tier": 1,
-  "teamCount": 2,
+  "teamCount": 3,
   "season": "Oct-Apr",
   "espnPath": null,
   "teamIds": [
    "eurvb-gre-m-oly",
+   "eurvb-gre-m-paok",
    "eurvb-gre-m-ari"
   ],
   "passport": {
@@ -1394,16 +1259,18 @@
   "country": "Greece",
   "countryCode": "GR",
   "tier": 1,
-  "teamCount": 1,
+  "teamCount": 2,
   "season": "Oct-Apr",
   "espnPath": null,
   "teamIds": [
-   "eurvb-gre-w-oly"
+   "eurvb-gre-w-oly",
+   "eurvb-gre-w-paok"
   ],
   "passport": {
    "label": "Volleyleague Women halls",
    "venueIds": [
-    "peace-and-friendship-stadium"
+    "peace-and-friendship-stadium",
+    "alexandreio-melathron"
    ]
   }
  },
@@ -1467,51 +1334,9 @@
   "passport": {
    "label": "Superliga Srbije (Men) halls",
    "venueIds": [
-    "karadorde-stadium",
+    "spens",
     "jezero-hall",
     "sc-sportski-centar-vozdovac"
-   ]
-  }
- },
- {
-  "key": "volleyball/rou.a1",
-  "name": "Divizia A1 (Men)",
-  "sport": "volleyball",
-  "country": "Romania",
-  "countryCode": "RO",
-  "tier": 1,
-  "teamCount": 2,
-  "season": "Oct-Apr",
-  "espnPath": null,
-  "teamIds": [
-   "eurvb-rou-m-arc",
-   "eurvb-rou-m-din"
-  ],
-  "passport": {
-   "label": "Divizia A1 (Men) halls",
-   "venueIds": [
-    "galati-sala-sporturilor",
-    "sala-dinamo"
-   ]
-  }
- },
- {
-  "key": "volleyball/rou.a1w",
-  "name": "Divizia A1 (Women)",
-  "sport": "volleyball",
-  "country": "Romania",
-  "countryCode": "RO",
-  "tier": 1,
-  "teamCount": 1,
-  "season": "Oct-Apr",
-  "espnPath": null,
-  "teamIds": [
-   "eurvb-rou-w-csm"
-  ],
-  "passport": {
-   "label": "Divizia A1 (Women) halls",
-   "venueIds": [
-    "rapid-giulesti"
    ]
   }
  }

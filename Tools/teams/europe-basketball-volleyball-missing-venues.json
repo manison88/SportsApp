@@ -63,6 +63,48 @@
   "opened": null
  },
  {
+  "id": "poliesportiu-andorra",
+  "name": "Poliesportiu d'Andorra",
+  "aliases": [],
+  "city": "Andorra la Vella",
+  "region": null,
+  "country": "Spain",
+  "countryCode": "ES",
+  "latitude": 42.50488,
+  "longitude": 1.51657,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "MoraBanc Andorra"
+  ],
+  "timeZone": "Europe/Madrid",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "palacio-deportes-granada",
+  "name": "Palacio de Deportes de Granada",
+  "aliases": [],
+  "city": "Granada",
+  "region": null,
+  "country": "Spain",
+  "countryCode": "ES",
+  "latitude": 37.15453,
+  "longitude": -3.59286,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Covirán Granada"
+  ],
+  "timeZone": "Europe/Madrid",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "polideportivo-pisuerga",
   "name": "Polideportivo Pisuerga",
   "aliases": [],
@@ -378,6 +420,27 @@
   "opened": null
  },
  {
+  "id": "arena-hohenlohe",
+  "name": "Arena Hohenlohe",
+  "aliases": [],
+  "city": "Crailsheim",
+  "region": null,
+  "country": "Germany",
+  "countryCode": "DE",
+  "latitude": 49.16577,
+  "longitude": 9.95183,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Crailsheim Merlins"
+  ],
+  "timeZone": "Europe/Berlin",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "ballsporthalle-frankfurt",
   "name": "Ballsporthalle Frankfurt",
   "aliases": [],
@@ -414,27 +477,6 @@
   "leagues": [],
   "homeTeams": [
    "Nanterre 92"
-  ],
-  "timeZone": "Europe/Paris",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "palais-sports-dijon",
-  "name": "Palais des Sports Jean-Michel Geoffroy",
-  "aliases": [],
-  "city": "Dijon",
-  "region": null,
-  "country": "France",
-  "countryCode": "FR",
-  "latitude": 47.33236,
-  "longitude": 5.05595,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "JDA Dijon"
   ],
   "timeZone": "Europe/Paris",
   "capacity": null,
@@ -760,29 +802,6 @@
   "opened": null
  },
  {
-  "id": "netto-arena",
-  "name": "Netto Arena",
-  "aliases": [],
-  "city": "Szczecin",
-  "region": null,
-  "country": "Poland",
-  "countryCode": "PL",
-  "latitude": 53.4582,
-  "longitude": 14.49397,
-  "sports": [
-   "basketball",
-   "volleyball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "King Szczecin",
-   "Chemik Police"
-  ],
-  "timeZone": "Europe/Warsaw",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "hala-cre-zielona-gora",
   "name": "Hala CRS",
   "aliases": [],
@@ -819,27 +838,6 @@
   "leagues": [],
   "homeTeams": [
    "Anwil Włocławek"
-  ],
-  "timeZone": "Europe/Warsaw",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "arena-torun",
-  "name": "Arena Toruń",
-  "aliases": [],
-  "city": "Toruń",
-  "region": null,
-  "country": "Poland",
-  "countryCode": "PL",
-  "latitude": 53.01775,
-  "longitude": 18.58829,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Twarde Pierniki Toruń"
   ],
   "timeZone": "Europe/Warsaw",
   "capacity": null,
@@ -890,29 +888,6 @@
   "opened": null
  },
  {
-  "id": "spodek",
-  "name": "Spodek",
-  "aliases": [],
-  "city": "Katowice",
-  "region": null,
-  "country": "Poland",
-  "countryCode": "PL",
-  "latitude": 50.26611,
-  "longitude": 19.02533,
-  "sports": [
-   "basketball",
-   "volleyball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "GKS Katowice",
-   "GKS Katowice"
-  ],
-  "timeZone": "Europe/Warsaw",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "nymburk-arena",
   "name": "Městská sportovní hala Nymburk",
   "aliases": [],
@@ -951,69 +926,6 @@
    "USK Praha"
   ],
   "timeZone": "Europe/Prague",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "opava-arena",
-  "name": "Hala Opava",
-  "aliases": [],
-  "city": "Opava",
-  "region": null,
-  "country": "Czechia",
-  "countryCode": "CZ",
-  "latitude": 49.79734,
-  "longitude": 17.62728,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Opava"
-  ],
-  "timeZone": "Europe/Prague",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "hala-usti",
-  "name": "Sportovní hala Ústí nad Labem",
-  "aliases": [],
-  "city": "Ústí nad Labem",
-  "region": null,
-  "country": "Czechia",
-  "countryCode": "CZ",
-  "latitude": 50.66527,
-  "longitude": 14.01285,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Ústí nad Labem"
-  ],
-  "timeZone": "Europe/Prague",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "ness-ziona-hall",
-  "name": "Ness Ziona Hall",
-  "aliases": [],
-  "city": "Ness Ziona",
-  "region": null,
-  "country": "Israel",
-  "countryCode": "IL",
-  "latitude": 31.92932,
-  "longitude": 34.7997,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Ironi Ness Ziona"
-  ],
-  "timeZone": "Europe/Jerusalem",
   "capacity": null,
   "opened": null
  },
@@ -1230,6 +1142,27 @@
   "opened": null
  },
  {
+  "id": "topsportcentrum-rotterdam",
+  "name": "Topsportcentrum Rotterdam",
+  "aliases": [],
+  "city": "Rotterdam",
+  "region": null,
+  "country": "Netherlands",
+  "countryCode": "NL",
+  "latitude": 51.8939,
+  "longitude": 4.52676,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Feyenoord Basketball"
+  ],
+  "timeZone": "Europe/Amsterdam",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "national-basketball-performance-centre",
   "name": "National Basketball Performance Centre",
   "aliases": [],
@@ -1251,6 +1184,27 @@
   "opened": null
  },
  {
+  "id": "plymouth-pavilions",
+  "name": "Plymouth Pavilions",
+  "aliases": [],
+  "city": "Plymouth",
+  "region": null,
+  "country": "United Kingdom",
+  "countryCode": "GB",
+  "latitude": 50.36975,
+  "longitude": -4.14974,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Plymouth Raiders"
+  ],
+  "timeZone": "Europe/London",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "joensuu-arena",
   "name": "Joensuu Areena",
   "aliases": [],
@@ -1266,27 +1220,6 @@
   "leagues": [],
   "homeTeams": [
    "Kataja Joensuu"
-  ],
-  "timeZone": "Europe/Helsinki",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "makelanrinne",
-  "name": "Mäkelänrinteen uintikeskus",
-  "aliases": [],
-  "city": "Helsinki",
-  "region": null,
-  "country": "Finland",
-  "countryCode": "FI",
-  "latitude": 60.19976,
-  "longitude": 24.94802,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Helsinki Seagulls"
   ],
   "timeZone": "Europe/Helsinki",
   "capacity": null,
@@ -1377,65 +1310,44 @@
   "opened": null
  },
  {
-  "id": "nassjo-hall",
-  "name": "Nässjö Sporthall",
+  "id": "jamtlands-hall",
+  "name": "Östersunds Arena",
   "aliases": [],
-  "city": "Nässjö",
+  "city": "Östersund",
   "region": null,
   "country": "Sweden",
   "countryCode": "SE",
-  "latitude": 57.65858,
-  "longitude": 14.69965,
+  "latitude": 63.19578,
+  "longitude": 14.66044,
   "sports": [
    "basketball"
   ],
   "leagues": [],
   "homeTeams": [
-   "KFUM Nässjö"
+   "Jämtland Basket"
   ],
   "timeZone": "Europe/Stockholm",
   "capacity": null,
   "opened": null
  },
  {
-  "id": "svendborg-hall",
-  "name": "Svendborg Idrætscenter",
+  "id": "amager-hall",
+  "name": "Amager Hallen",
   "aliases": [],
-  "city": "Svendborg",
+  "city": "Copenhagen",
   "region": null,
   "country": "Denmark",
   "countryCode": "DK",
-  "latitude": 55.05765,
-  "longitude": 10.57487,
+  "latitude": 55.62391,
+  "longitude": 12.61549,
   "sports": [
    "basketball"
   ],
   "leagues": [],
   "homeTeams": [
-   "Svendborg Rabbits"
+   "Amager"
   ],
   "timeZone": "Europe/Copenhagen",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "askerhallen",
-  "name": "Askerhallen",
-  "aliases": [],
-  "city": "Asker",
-  "region": null,
-  "country": "Norway",
-  "countryCode": "NO",
-  "latitude": 59.82555,
-  "longitude": 10.4466,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Asker Aliens"
-  ],
-  "timeZone": "Europe/Oslo",
   "capacity": null,
   "opened": null
  },
@@ -1518,29 +1430,6 @@
   "leagues": [],
   "homeTeams": [
    "CSM Oradea"
-  ],
-  "timeZone": "Europe/Bucharest",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "sala-dinamo",
-  "name": "Sala Dinamo",
-  "aliases": [],
-  "city": "Bucharest",
-  "region": null,
-  "country": "Romania",
-  "countryCode": "RO",
-  "latitude": 44.45403,
-  "longitude": 26.10408,
-  "sports": [
-   "basketball",
-   "volleyball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Dinamo București",
-   "Dinamo București"
   ],
   "timeZone": "Europe/Bucharest",
   "capacity": null,
@@ -1694,6 +1583,28 @@
   "opened": null
  },
  {
+  "id": "pallati-rinise",
+  "name": "Palace of Youth and Sports",
+  "aliases": [],
+  "city": "Pristina",
+  "region": null,
+  "country": "Kosovo",
+  "countryCode": "XK",
+  "latitude": 42.66112,
+  "longitude": 21.1572,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Prishtina",
+   "Sigal Prishtina"
+  ],
+  "timeZone": "Europe/Belgrade",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "eleftheria-nicosia",
   "name": "Eleftheria Indoor Hall",
   "aliases": [],
@@ -1757,44 +1668,23 @@
   "opened": null
  },
  {
-  "id": "volksbank-arena-gmunden",
-  "name": "Volksbank Arena",
+  "id": "blue-hollin",
+  "name": "Blue-höllin",
   "aliases": [],
-  "city": "Gmunden",
+  "city": "Keflavík",
   "region": null,
-  "country": "Austria",
-  "countryCode": "AT",
-  "latitude": 47.91102,
-  "longitude": 13.77729,
+  "country": "Iceland",
+  "countryCode": "IS",
+  "latitude": 63.99717,
+  "longitude": -22.56117,
   "sports": [
    "basketball"
   ],
   "leagues": [],
   "homeTeams": [
-   "Swans Gmunden"
+   "Keflavík"
   ],
-  "timeZone": "Europe/Vienna",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "reposieux",
-  "name": "Reposieux",
-  "aliases": [],
-  "city": "Monthey",
-  "region": null,
-  "country": "Switzerland",
-  "countryCode": "CH",
-  "latitude": 46.25926,
-  "longitude": 6.95255,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Monthey"
-  ],
-  "timeZone": "Europe/Zurich",
+  "timeZone": "Atlantic/Reykjavik",
   "capacity": null,
   "opened": null
  },
@@ -1841,21 +1731,21 @@
   "opened": null
  },
  {
-  "id": "olympic-center-liepaja",
-  "name": "Liepājas Olimpiskais centrs",
+  "id": "valmiera-hall",
+  "name": "Valmieras Olimpiskais centrs",
   "aliases": [],
-  "city": "Liepāja",
+  "city": "Valmiera",
   "region": null,
   "country": "Latvia",
   "countryCode": "LV",
-  "latitude": 56.51906,
-  "longitude": 21.01784,
+  "latitude": 57.52812,
+  "longitude": 25.38789,
   "sports": [
    "basketball"
   ],
   "leagues": [],
   "homeTeams": [
-   "Liepāja"
+   "Valmiera Glass ViA"
   ],
   "timeZone": "Europe/Riga",
   "capacity": null,
@@ -1967,27 +1857,6 @@
   "opened": null
  },
  {
-  "id": "palabanca-piacenza",
-  "name": "PalaBanca",
-  "aliases": [],
-  "city": "Piacenza",
-  "region": null,
-  "country": "Italy",
-  "countryCode": "IT",
-  "latitude": 45.04008,
-  "longitude": 9.75775,
-  "sports": [
-   "volleyball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Gas Sales Bluenergy Piacenza"
-  ],
-  "timeZone": "Europe/Rome",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "kioene-arena",
   "name": "Kioene Arena",
   "aliases": [],
@@ -2003,6 +1872,27 @@
   "leagues": [],
   "homeTeams": [
    "Kioene Padova"
+  ],
+  "timeZone": "Europe/Rome",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "opiquad-arena",
+  "name": "Opiquad Arena",
+  "aliases": [],
+  "city": "Monza",
+  "region": null,
+  "country": "Italy",
+  "countryCode": "IT",
+  "latitude": 45.58542,
+  "longitude": 9.3091,
+  "sports": [
+   "volleyball"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Vero Volley Monza"
   ],
   "timeZone": "Europe/Rome",
   "capacity": null,
@@ -2025,27 +1915,6 @@
   "homeTeams": [
    "Allianz Milano",
    "Numia Vero Volley Milano"
-  ],
-  "timeZone": "Europe/Rome",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "palamazzola",
-  "name": "PalaMazzola",
-  "aliases": [],
-  "city": "Taranto",
-  "region": null,
-  "country": "Italy",
-  "countryCode": "IT",
-  "latitude": 40.46528,
-  "longitude": 17.274,
-  "sports": [
-   "volleyball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Gioiella Prisma Taranto"
   ],
   "timeZone": "Europe/Rome",
   "capacity": null,
@@ -2109,27 +1978,6 @@
   "leagues": [],
   "homeTeams": [
    "Savino Del Bene Scandicci"
-  ],
-  "timeZone": "Europe/Rome",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "pala-igor",
-  "name": "PalaIgor",
-  "aliases": [],
-  "city": "Novara",
-  "region": null,
-  "country": "Italy",
-  "countryCode": "IT",
-  "latitude": 45.45089,
-  "longitude": 8.65057,
-  "sports": [
-   "volleyball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Igor Gorgonzola Novara"
   ],
   "timeZone": "Europe/Rome",
   "capacity": null,
@@ -2221,27 +2069,6 @@
   "opened": null
  },
  {
-  "id": "hala-gorzow",
-  "name": "Hala Gorzów",
-  "aliases": [],
-  "city": "Gorzów Wielkopolski",
-  "region": null,
-  "country": "Poland",
-  "countryCode": "PL",
-  "latitude": 52.73455,
-  "longitude": 15.22498,
-  "sports": [
-   "volleyball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Cuprum Stilon Gorzów"
-  ],
-  "timeZone": "Europe/Warsaw",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "nysa-hall",
   "name": "Hala Nysa",
   "aliases": [],
@@ -2284,23 +2111,23 @@
   "opened": null
  },
  {
-  "id": "radom-arena",
-  "name": "Radomskie Centrum Sportu",
+  "id": "ataturk-spor-salonu-ankara",
+  "name": "Ankara Atatürk Spor Salonu",
   "aliases": [],
-  "city": "Radom",
+  "city": "Ankara",
   "region": null,
-  "country": "Poland",
-  "countryCode": "PL",
-  "latitude": 51.39076,
-  "longitude": 21.11221,
+  "country": "Turkey",
+  "countryCode": "TR",
+  "latitude": 39.93927,
+  "longitude": 32.84889,
   "sports": [
    "volleyball"
   ],
   "leagues": [],
   "homeTeams": [
-   "E.Leclerc Radomka Radom"
+   "Ziraat Bankası Ankara"
   ],
-  "timeZone": "Europe/Warsaw",
+  "timeZone": "Europe/Istanbul",
   "capacity": null,
   "opened": null
  },
@@ -2536,6 +2363,27 @@
   "opened": null
  },
  {
+  "id": "scharrena-stuttgart",
+  "name": "SCHARRena",
+  "aliases": [],
+  "city": "Stuttgart",
+  "region": null,
+  "country": "Germany",
+  "countryCode": "DE",
+  "latitude": 48.79162,
+  "longitude": 9.2334,
+  "sports": [
+   "volleyball"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Allianz MTV Stuttgart"
+  ],
+  "timeZone": "Europe/Berlin",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "sport-und-kongresshalle",
   "name": "Sport- und Kongresshalle Schwerin",
   "aliases": [],
@@ -2700,27 +2548,6 @@
    "OK Partizan"
   ],
   "timeZone": "Europe/Belgrade",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "galati-sala-sporturilor",
-  "name": "Sala Sporturilor Galați",
-  "aliases": [],
-  "city": "Galați",
-  "region": null,
-  "country": "Romania",
-  "countryCode": "RO",
-  "latitude": 45.41954,
-  "longitude": 28.02147,
-  "sports": [
-   "volleyball"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Arcada Galați"
-  ],
-  "timeZone": "Europe/Bucharest",
   "capacity": null,
   "opened": null
  }
