@@ -57,6 +57,7 @@ struct YouWereThereView: View {
             ToolbarItem(placement: .principal) {
                 ScoreBug(game: game, showFinal: true)
             }
+            .withoutGlass()
             ToolbarItem(placement: .topBarTrailing) {
                 ShareLink(item: shareText(game)) {
                     Image(systemName: "square.and.arrow.up")
