@@ -23,22 +23,22 @@
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
   "failedTests" : 1,
-  "finishTime" : 1792265207.231,
+  "finishTime" : 1792266618.002,
   "passedTests" : 62,
   "result" : "Failed",
   "skippedTests" : 0,
-  "startTime" : 1792264549.366,
+  "startTime" : 1792265629.628,
   "statistics" : [
 
   ],
   "testFailures" : [
     {
-      "failureText" : "Failed to get matching snapshots: Error getting main window kAXErrorServerNotFound",
+      "failureText" : "Failed to failed to scroll to visible (by AX action) Button, {{203.0, 792.0}, {97.0, 48.0}}, label: 'Passport', error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 40996, elementOrHash.elementID: 4399379104.15. (Underlying Error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 40996, elementOrHash.elementID: 4399379104.15)",
       "targetName" : "WitnessUITests",
-      "testIdentifier" : 53,
-      "testIdentifierString" : "WitnessUITests/testAddCustomVenue()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testAddCustomVenue",
-      "testName" : "testAddCustomVenue()"
+      "testIdentifier" : 62,
+      "testIdentifierString" : "WitnessUITests/testTabsTour()",
+      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testTabsTour",
+      "testName" : "testTabsTour()"
     }
   ],
   "title" : "Test - Witness",
@@ -46,7 +46,7 @@
     {
       "category" : "Longest Test Runs",
       "impact" : "36% of duration",
-      "text" : "2 longest test runs with outlier durations exceeding 2.39s (three standard deviations)"
+      "text" : "2 longest test runs with outlier durations exceeding 2.89s (three standard deviations)"
     }
   ],
   "totalTestCount" : 63
