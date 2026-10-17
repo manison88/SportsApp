@@ -1,0 +1,2169 @@
+{
+ "teams": [
+  {
+   "id": "f1-mer",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "Germany",
+   "countryCode": "DE",
+   "abbreviation": "MER",
+   "locationName": "Mercedes",
+   "teamName": "Mercedes-AMG Petronas Formula One Team",
+   "monogram": "M",
+   "colors": {
+    "primary": "00D2BE",
+    "secondary": "000000",
+    "accent": "00D2BE"
+   },
+   "externalIds": {
+    "espn": "106893",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q65954812",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 1954,
+   "tier": 1,
+   "foundedNote": "Works debut 1954; current team since 2010 (Brackley, UK base)",
+   "contrastAccentVsBackground": 10.2
+  },
+  {
+   "id": "f1-fer",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "Italy",
+   "countryCode": "IT",
+   "abbreviation": "FER",
+   "locationName": "Ferrari",
+   "teamName": "Scuderia Ferrari HP",
+   "monogram": "F",
+   "colors": {
+    "primary": "DC0000",
+    "secondary": "FFEB00",
+    "accent": "DC0000"
+   },
+   "externalIds": {
+    "espn": "106842",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q169898",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 1950,
+   "tier": 1,
+   "foundedNote": "Only team in every season since 1950",
+   "contrastAccentVsBackground": 3.76
+  },
+  {
+   "id": "f1-mcl",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "United Kingdom",
+   "countryCode": "GB",
+   "abbreviation": "MCL",
+   "locationName": "McLaren",
+   "teamName": "McLaren Formula 1 Team",
+   "monogram": "M",
+   "colors": {
+    "primary": "FF8000",
+    "secondary": "47C7FC",
+    "accent": "FF8000"
+   },
+   "externalIds": {
+    "espn": "106892",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q172030",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 1966,
+   "tier": 1,
+   "foundedNote": null,
+   "contrastAccentVsBackground": 7.76
+  },
+  {
+   "id": "f1-rbr",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "Austria",
+   "countryCode": "AT",
+   "abbreviation": "RBR",
+   "locationName": "Red Bull",
+   "teamName": "Oracle Red Bull Racing",
+   "monogram": "R",
+   "colors": {
+    "primary": "1E41FF",
+    "secondary": "FCD700",
+    "accent": "1E41FF"
+   },
+   "externalIds": {
+    "espn": "106921",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q173663",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 2005,
+   "tier": 1,
+   "foundedNote": "Entry bought from Jaguar (2000-2004)",
+   "contrastAccentVsBackground": 3.03
+  },
+  {
+   "id": "f1-haa",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "United States",
+   "countryCode": "US",
+   "abbreviation": "HAA",
+   "locationName": "Haas",
+   "teamName": "TGR Haas F1 Team",
+   "monogram": "H",
+   "colors": {
+    "primary": "DA291C",
+    "secondary": "FFFFFF",
+    "accent": "DA291C"
+   },
+   "externalIds": {
+    "espn": "111427",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q16300222",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 2016,
+   "tier": 1,
+   "foundedNote": null,
+   "contrastAccentVsBackground": 4.02
+  },
+  {
+   "id": "f1-wil",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "United Kingdom",
+   "countryCode": "GB",
+   "abbreviation": "WIL",
+   "locationName": "Williams",
+   "teamName": "Atlassian Williams Racing",
+   "monogram": "W",
+   "colors": {
+    "primary": "041E42",
+    "secondary": "64C4FF",
+    "accent": "64C4FF"
+   },
+   "externalIds": {
+    "espn": "106967",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q171337",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 1977,
+   "tier": 1,
+   "foundedNote": "First season as a constructor (Williams Grand Prix Engineering)",
+   "contrastAccentVsBackground": 10.13
+  },
+  {
+   "id": "f1-alp",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "France",
+   "countryCode": "FR",
+   "abbreviation": "ALP",
+   "locationName": "Alpine",
+   "teamName": "BWT Alpine F1 Team",
+   "monogram": "A",
+   "colors": {
+    "primary": "0093CC",
+    "secondary": "FF87BC",
+    "accent": "0093CC"
+   },
+   "externalIds": {
+    "espn": "106922",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q98930155",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 1981,
+   "tier": 1,
+   "foundedNote": "Lineage: Toleman 1981, Benetton, Renault, Lotus, Renault, Alpine from 2021",
+   "contrastAccentVsBackground": 5.63
+  },
+  {
+   "id": "f1-ast",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "United Kingdom",
+   "countryCode": "GB",
+   "abbreviation": "AMR",
+   "locationName": "Aston Martin",
+   "teamName": "Aston Martin Aramco F1 Team",
+   "monogram": "A",
+   "colors": {
+    "primary": "00665E",
+    "secondary": "CEDC00",
+    "accent": "CEDC00"
+   },
+   "externalIds": {
+    "espn": "123986",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q25412511",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 1991,
+   "tier": 1,
+   "foundedNote": "Lineage: Jordan 1991, Midland, Spyker, Force India, Racing Point, Aston Martin from 2021",
+   "contrastAccentVsBackground": 12.9
+  },
+  {
+   "id": "f1-rb",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "Italy",
+   "countryCode": "IT",
+   "abbreviation": "RB",
+   "locationName": "Racing Bulls",
+   "teamName": "Visa Cash App Racing Bulls Formula One Team",
+   "monogram": "R",
+   "colors": {
+    "primary": "6692FF",
+    "secondary": "FFFFFF",
+    "accent": "6692FF"
+   },
+   "externalIds": {
+    "espn": "123988",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q124350606",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 1985,
+   "tier": 1,
+   "foundedNote": "Lineage: Minardi 1985, Toro Rosso, AlphaTauri, RB, Racing Bulls (2025)",
+   "contrastAccentVsBackground": 6.63
+  },
+  {
+   "id": "f1-aud",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "Germany",
+   "countryCode": "DE",
+   "abbreviation": "AUD",
+   "locationName": "Audi",
+   "teamName": "Audi Revolut F1 Team",
+   "monogram": "A",
+   "colors": {
+    "primary": "F50537",
+    "secondary": "B2B6B9",
+    "accent": "F50537"
+   },
+   "externalIds": {
+    "espn": "132212",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q113640151",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 1993,
+   "tier": 1,
+   "foundedNote": "New works team for 2026 on the Sauber lineage (Sauber 1993, BMW Sauber, Alfa Romeo)",
+   "contrastAccentVsBackground": 4.62
+  },
+  {
+   "id": "f1-cad",
+   "kind": "club",
+   "sport": "motorsport",
+   "league": "Formula 1",
+   "leagueKey": "racing/f1",
+   "country": "United States",
+   "countryCode": "US",
+   "abbreviation": "CAD",
+   "locationName": "Cadillac",
+   "teamName": "Cadillac Formula 1 Team",
+   "monogram": "C",
+   "colors": {
+    "primary": "A2AAAD",
+    "secondary": "000000",
+    "accent": "A2AAAD"
+   },
+   "externalIds": {
+    "espn": "132211",
+    "espnLeague": "racing/f1",
+    "wikidata": "Q131323401",
+    "theSportsDb": null
+   },
+   "homeVenueId": null,
+   "founded": 2026,
+   "tier": 1,
+   "foundedNote": "New entry for 2026",
+   "contrastAccentVsBackground": 8.27
+  }
+ ],
+ "drivers": [
+  {
+   "id": "drv-alo",
+   "code": "ALO",
+   "number": 14,
+   "name": "Fernando Alonso",
+   "constructorId": "f1-ast",
+   "country": "Spain",
+   "countryCode": "ES",
+   "seasons": [
+    2018,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-mcl"
+    ],
+    "2021": [
+     "f1-alp"
+    ],
+    "2022": [
+     "f1-alp"
+    ],
+    "2023": [
+     "f1-ast"
+    ],
+    "2024": [
+     "f1-ast"
+    ],
+    "2025": [
+     "f1-ast"
+    ],
+    "2026": [
+     "f1-ast"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 14,
+    "2021": 14,
+    "2022": 14,
+    "2023": 14,
+    "2024": 14,
+    "2025": 14,
+    "2026": 14
+   },
+   "raceStarts2018to2026": 152,
+   "dateOfBirth": "1981-07-29",
+   "currentSeason": true,
+   "jolpicaId": "alonso"
+  },
+  {
+   "id": "drv-bot",
+   "code": "BOT",
+   "number": 77,
+   "name": "Valtteri Bottas",
+   "constructorId": "f1-cad",
+   "country": "Finland",
+   "countryCode": "FI",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-mer"
+    ],
+    "2019": [
+     "f1-mer"
+    ],
+    "2020": [
+     "f1-mer"
+    ],
+    "2021": [
+     "f1-mer"
+    ],
+    "2022": [
+     "f1-aud"
+    ],
+    "2023": [
+     "f1-aud"
+    ],
+    "2024": [
+     "f1-aud"
+    ],
+    "2026": [
+     "f1-cad"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 77,
+    "2019": 77,
+    "2020": 77,
+    "2021": 77,
+    "2022": 77,
+    "2023": 77,
+    "2024": 77,
+    "2026": 77
+   },
+   "raceStarts2018to2026": 166,
+   "dateOfBirth": "1989-08-28",
+   "currentSeason": true,
+   "jolpicaId": "bottas"
+  },
+  {
+   "id": "drv-har",
+   "code": "HAR",
+   "number": 28,
+   "name": "Brendon Hartley",
+   "constructorId": "f1-rb",
+   "country": "New Zealand",
+   "countryCode": "NZ",
+   "seasons": [
+    2018
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-rb"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 28
+   },
+   "raceStarts2018to2026": 21,
+   "dateOfBirth": "1989-11-10",
+   "currentSeason": false,
+   "jolpicaId": "brendon_hartley"
+  },
+  {
+   "id": "drv-eri",
+   "code": "ERI",
+   "number": 9,
+   "name": "Marcus Ericsson",
+   "constructorId": "f1-aud",
+   "country": "Sweden",
+   "countryCode": "SE",
+   "seasons": [
+    2018
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-aud"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 9
+   },
+   "raceStarts2018to2026": 21,
+   "dateOfBirth": "1990-09-02",
+   "currentSeason": false,
+   "jolpicaId": "ericsson"
+  },
+  {
+   "id": "drv-gas",
+   "code": "GAS",
+   "number": 10,
+   "name": "Pierre Gasly",
+   "constructorId": "f1-alp",
+   "country": "France",
+   "countryCode": "FR",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-rb"
+    ],
+    "2019": [
+     "f1-rbr",
+     "f1-rb"
+    ],
+    "2020": [
+     "f1-rb"
+    ],
+    "2021": [
+     "f1-rb"
+    ],
+    "2022": [
+     "f1-rb"
+    ],
+    "2023": [
+     "f1-alp"
+    ],
+    "2024": [
+     "f1-alp"
+    ],
+    "2025": [
+     "f1-alp"
+    ],
+    "2026": [
+     "f1-alp"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 10,
+    "2019": 10,
+    "2020": 10,
+    "2021": 10,
+    "2022": 10,
+    "2023": 10,
+    "2024": 10,
+    "2025": 10,
+    "2026": 10
+   },
+   "raceStarts2018to2026": 190,
+   "dateOfBirth": "1996-02-07",
+   "currentSeason": true,
+   "jolpicaId": "gasly"
+  },
+  {
+   "id": "drv-gro",
+   "code": "GRO",
+   "number": 8,
+   "name": "Romain Grosjean",
+   "constructorId": "f1-haa",
+   "country": "France",
+   "countryCode": "FR",
+   "seasons": [
+    2018,
+    2019,
+    2020
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-haa"
+    ],
+    "2019": [
+     "f1-haa"
+    ],
+    "2020": [
+     "f1-haa"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 8,
+    "2019": 8,
+    "2020": 8
+   },
+   "raceStarts2018to2026": 57,
+   "dateOfBirth": "1986-04-17",
+   "currentSeason": false,
+   "jolpicaId": "grosjean"
+  },
+  {
+   "id": "drv-ham",
+   "code": "HAM",
+   "number": 44,
+   "name": "Lewis Hamilton",
+   "constructorId": "f1-fer",
+   "country": "United Kingdom",
+   "countryCode": "GB",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-mer"
+    ],
+    "2019": [
+     "f1-mer"
+    ],
+    "2020": [
+     "f1-mer"
+    ],
+    "2021": [
+     "f1-mer"
+    ],
+    "2022": [
+     "f1-mer"
+    ],
+    "2023": [
+     "f1-mer"
+    ],
+    "2024": [
+     "f1-mer"
+    ],
+    "2025": [
+     "f1-fer"
+    ],
+    "2026": [
+     "f1-fer"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 44,
+    "2019": 44,
+    "2020": 44,
+    "2021": 44,
+    "2022": 44,
+    "2023": 44,
+    "2024": 44,
+    "2025": 44,
+    "2026": 44
+   },
+   "raceStarts2018to2026": 189,
+   "dateOfBirth": "1985-01-07",
+   "currentSeason": true,
+   "jolpicaId": "hamilton"
+  },
+  {
+   "id": "drv-hul",
+   "code": "HUL",
+   "number": 27,
+   "name": "Nico Hülkenberg",
+   "constructorId": "f1-aud",
+   "country": "Germany",
+   "countryCode": "DE",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-alp"
+    ],
+    "2019": [
+     "f1-alp"
+    ],
+    "2020": [
+     "f1-ast"
+    ],
+    "2022": [
+     "f1-ast"
+    ],
+    "2023": [
+     "f1-haa"
+    ],
+    "2024": [
+     "f1-haa"
+    ],
+    "2025": [
+     "f1-aud"
+    ],
+    "2026": [
+     "f1-aud"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 27,
+    "2019": 27,
+    "2020": 27,
+    "2022": 27,
+    "2023": 27,
+    "2024": 27,
+    "2025": 27,
+    "2026": 27
+   },
+   "raceStarts2018to2026": 134,
+   "dateOfBirth": "1987-08-19",
+   "currentSeason": true,
+   "jolpicaId": "hulkenberg"
+  },
+  {
+   "id": "drv-mag",
+   "code": "MAG",
+   "number": 20,
+   "name": "Kevin Magnussen",
+   "constructorId": "f1-haa",
+   "country": "Denmark",
+   "countryCode": "DK",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2022,
+    2023,
+    2024
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-haa"
+    ],
+    "2019": [
+     "f1-haa"
+    ],
+    "2020": [
+     "f1-haa"
+    ],
+    "2022": [
+     "f1-haa"
+    ],
+    "2023": [
+     "f1-haa"
+    ],
+    "2024": [
+     "f1-haa"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 20,
+    "2019": 20,
+    "2020": 20,
+    "2022": 20,
+    "2023": 20,
+    "2024": 20
+   },
+   "raceStarts2018to2026": 125,
+   "dateOfBirth": "1992-10-05",
+   "currentSeason": false,
+   "jolpicaId": "kevin_magnussen"
+  },
+  {
+   "id": "drv-lec",
+   "code": "LEC",
+   "number": 16,
+   "name": "Charles Leclerc",
+   "constructorId": "f1-fer",
+   "country": "Monaco",
+   "countryCode": "MC",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-aud"
+    ],
+    "2019": [
+     "f1-fer"
+    ],
+    "2020": [
+     "f1-fer"
+    ],
+    "2021": [
+     "f1-fer"
+    ],
+    "2022": [
+     "f1-fer"
+    ],
+    "2023": [
+     "f1-fer"
+    ],
+    "2024": [
+     "f1-fer"
+    ],
+    "2025": [
+     "f1-fer"
+    ],
+    "2026": [
+     "f1-fer"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 16,
+    "2019": 16,
+    "2020": 16,
+    "2021": 16,
+    "2022": 16,
+    "2023": 16,
+    "2024": 16,
+    "2025": 16,
+    "2026": 16
+   },
+   "raceStarts2018to2026": 190,
+   "dateOfBirth": "1997-10-16",
+   "currentSeason": true,
+   "jolpicaId": "leclerc"
+  },
+  {
+   "id": "drv-ver",
+   "code": "VER",
+   "number": 3,
+   "name": "Max Verstappen",
+   "constructorId": "f1-rbr",
+   "country": "Netherlands",
+   "countryCode": "NL",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-rbr"
+    ],
+    "2019": [
+     "f1-rbr"
+    ],
+    "2020": [
+     "f1-rbr"
+    ],
+    "2021": [
+     "f1-rbr"
+    ],
+    "2022": [
+     "f1-rbr"
+    ],
+    "2023": [
+     "f1-rbr"
+    ],
+    "2024": [
+     "f1-rbr"
+    ],
+    "2025": [
+     "f1-rbr"
+    ],
+    "2026": [
+     "f1-rbr"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 33,
+    "2019": 33,
+    "2020": 33,
+    "2021": 33,
+    "2022": 1,
+    "2023": 1,
+    "2024": 1,
+    "2025": 1,
+    "2026": 3
+   },
+   "raceStarts2018to2026": 190,
+   "dateOfBirth": "1997-09-30",
+   "currentSeason": true,
+   "jolpicaId": "max_verstappen"
+  },
+  {
+   "id": "drv-oco",
+   "code": "OCO",
+   "number": 31,
+   "name": "Esteban Ocon",
+   "constructorId": "f1-haa",
+   "country": "France",
+   "countryCode": "FR",
+   "seasons": [
+    2018,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-ast"
+    ],
+    "2020": [
+     "f1-alp"
+    ],
+    "2021": [
+     "f1-alp"
+    ],
+    "2022": [
+     "f1-alp"
+    ],
+    "2023": [
+     "f1-alp"
+    ],
+    "2024": [
+     "f1-alp"
+    ],
+    "2025": [
+     "f1-haa"
+    ],
+    "2026": [
+     "f1-haa"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 31,
+    "2020": 31,
+    "2021": 31,
+    "2022": 31,
+    "2023": 31,
+    "2024": 31,
+    "2025": 31,
+    "2026": 31
+   },
+   "raceStarts2018to2026": 168,
+   "dateOfBirth": "1996-09-17",
+   "currentSeason": true,
+   "jolpicaId": "ocon"
+  },
+  {
+   "id": "drv-per",
+   "code": "PER",
+   "number": 11,
+   "name": "Sergio Pérez",
+   "constructorId": "f1-cad",
+   "country": "Mexico",
+   "countryCode": "MX",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-ast"
+    ],
+    "2019": [
+     "f1-ast"
+    ],
+    "2020": [
+     "f1-ast"
+    ],
+    "2021": [
+     "f1-rbr"
+    ],
+    "2022": [
+     "f1-rbr"
+    ],
+    "2023": [
+     "f1-rbr"
+    ],
+    "2024": [
+     "f1-rbr"
+    ],
+    "2026": [
+     "f1-cad"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 11,
+    "2019": 11,
+    "2020": 11,
+    "2021": 11,
+    "2022": 11,
+    "2023": 11,
+    "2024": 11,
+    "2026": 11
+   },
+   "raceStarts2018to2026": 164,
+   "dateOfBirth": "1990-01-26",
+   "currentSeason": true,
+   "jolpicaId": "perez"
+  },
+  {
+   "id": "drv-rai",
+   "code": "RAI",
+   "number": 7,
+   "name": "Kimi Räikkönen",
+   "constructorId": "f1-aud",
+   "country": "Finland",
+   "countryCode": "FI",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-fer"
+    ],
+    "2019": [
+     "f1-aud"
+    ],
+    "2020": [
+     "f1-aud"
+    ],
+    "2021": [
+     "f1-aud"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 7,
+    "2019": 7,
+    "2020": 7,
+    "2021": 7
+   },
+   "raceStarts2018to2026": 79,
+   "dateOfBirth": "1979-10-17",
+   "currentSeason": false,
+   "jolpicaId": "raikkonen"
+  },
+  {
+   "id": "drv-ric",
+   "code": "RIC",
+   "number": 3,
+   "name": "Daniel Ricciardo",
+   "constructorId": "f1-rb",
+   "country": "Australia",
+   "countryCode": "AU",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-rbr"
+    ],
+    "2019": [
+     "f1-alp"
+    ],
+    "2020": [
+     "f1-alp"
+    ],
+    "2021": [
+     "f1-mcl"
+    ],
+    "2022": [
+     "f1-mcl"
+    ],
+    "2023": [
+     "f1-rb"
+    ],
+    "2024": [
+     "f1-rb"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 3,
+    "2019": 3,
+    "2020": 3,
+    "2021": 3,
+    "2022": 3,
+    "2023": 3,
+    "2024": 3
+   },
+   "raceStarts2018to2026": 128,
+   "dateOfBirth": "1989-07-01",
+   "currentSeason": false,
+   "jolpicaId": "ricciardo"
+  },
+  {
+   "id": "drv-sai",
+   "code": "SAI",
+   "number": 55,
+   "name": "Carlos Sainz",
+   "constructorId": "f1-wil",
+   "country": "Spain",
+   "countryCode": "ES",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-alp"
+    ],
+    "2019": [
+     "f1-mcl"
+    ],
+    "2020": [
+     "f1-mcl"
+    ],
+    "2021": [
+     "f1-fer"
+    ],
+    "2022": [
+     "f1-fer"
+    ],
+    "2023": [
+     "f1-fer"
+    ],
+    "2024": [
+     "f1-fer"
+    ],
+    "2025": [
+     "f1-wil"
+    ],
+    "2026": [
+     "f1-wil"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 55,
+    "2019": 55,
+    "2020": 55,
+    "2021": 55,
+    "2022": 55,
+    "2023": 55,
+    "2024": 55,
+    "2025": 55,
+    "2026": 55
+   },
+   "raceStarts2018to2026": 189,
+   "dateOfBirth": "1994-09-01",
+   "currentSeason": true,
+   "jolpicaId": "sainz"
+  },
+  {
+   "id": "drv-sir",
+   "code": "SIR",
+   "number": 35,
+   "name": "Sergey Sirotkin",
+   "constructorId": "f1-wil",
+   "country": "Russia",
+   "countryCode": "RU",
+   "seasons": [
+    2018
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-wil"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 35
+   },
+   "raceStarts2018to2026": 21,
+   "dateOfBirth": "1995-08-27",
+   "currentSeason": false,
+   "jolpicaId": "sirotkin"
+  },
+  {
+   "id": "drv-str",
+   "code": "STR",
+   "number": 18,
+   "name": "Lance Stroll",
+   "constructorId": "f1-ast",
+   "country": "Canada",
+   "countryCode": "CA",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-wil"
+    ],
+    "2019": [
+     "f1-ast"
+    ],
+    "2020": [
+     "f1-ast"
+    ],
+    "2021": [
+     "f1-ast"
+    ],
+    "2022": [
+     "f1-ast"
+    ],
+    "2023": [
+     "f1-ast"
+    ],
+    "2024": [
+     "f1-ast"
+    ],
+    "2025": [
+     "f1-ast"
+    ],
+    "2026": [
+     "f1-ast"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 18,
+    "2019": 18,
+    "2020": 18,
+    "2021": 18,
+    "2022": 18,
+    "2023": 18,
+    "2024": 18,
+    "2025": 18,
+    "2026": 18
+   },
+   "raceStarts2018to2026": 188,
+   "dateOfBirth": "1998-10-29",
+   "currentSeason": true,
+   "jolpicaId": "stroll"
+  },
+  {
+   "id": "drv-van",
+   "code": "VAN",
+   "number": 2,
+   "name": "Stoffel Vandoorne",
+   "constructorId": "f1-mcl",
+   "country": "Belgium",
+   "countryCode": "BE",
+   "seasons": [
+    2018
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-mcl"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 2
+   },
+   "raceStarts2018to2026": 21,
+   "dateOfBirth": "1992-03-26",
+   "currentSeason": false,
+   "jolpicaId": "vandoorne"
+  },
+  {
+   "id": "drv-vet",
+   "code": "VET",
+   "number": 5,
+   "name": "Sebastian Vettel",
+   "constructorId": "f1-ast",
+   "country": "Germany",
+   "countryCode": "DE",
+   "seasons": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+   ],
+   "constructorBySeason": {
+    "2018": [
+     "f1-fer"
+    ],
+    "2019": [
+     "f1-fer"
+    ],
+    "2020": [
+     "f1-fer"
+    ],
+    "2021": [
+     "f1-ast"
+    ],
+    "2022": [
+     "f1-ast"
+    ]
+   },
+   "numberBySeason": {
+    "2018": 5,
+    "2019": 5,
+    "2020": 5,
+    "2021": 5,
+    "2022": 5
+   },
+   "raceStarts2018to2026": 101,
+   "dateOfBirth": "1987-07-03",
+   "currentSeason": false,
+   "jolpicaId": "vettel"
+  },
+  {
+   "id": "drv-alb",
+   "code": "ALB",
+   "number": 23,
+   "name": "Alexander Albon",
+   "constructorId": "f1-wil",
+   "country": "Thailand",
+   "countryCode": "TH",
+   "seasons": [
+    2019,
+    2020,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2019": [
+     "f1-rb",
+     "f1-rbr"
+    ],
+    "2020": [
+     "f1-rbr"
+    ],
+    "2022": [
+     "f1-wil"
+    ],
+    "2023": [
+     "f1-wil"
+    ],
+    "2024": [
+     "f1-wil"
+    ],
+    "2025": [
+     "f1-wil"
+    ],
+    "2026": [
+     "f1-wil"
+    ]
+   },
+   "numberBySeason": {
+    "2019": 23,
+    "2020": 23,
+    "2022": 23,
+    "2023": 23,
+    "2024": 23,
+    "2025": 23,
+    "2026": 23
+   },
+   "raceStarts2018to2026": 146,
+   "dateOfBirth": "1996-03-23",
+   "currentSeason": true,
+   "jolpicaId": "albon"
+  },
+  {
+   "id": "drv-gio",
+   "code": "GIO",
+   "number": 99,
+   "name": "Antonio Giovinazzi",
+   "constructorId": "f1-aud",
+   "country": "Italy",
+   "countryCode": "IT",
+   "seasons": [
+    2019,
+    2020,
+    2021
+   ],
+   "constructorBySeason": {
+    "2019": [
+     "f1-aud"
+    ],
+    "2020": [
+     "f1-aud"
+    ],
+    "2021": [
+     "f1-aud"
+    ]
+   },
+   "numberBySeason": {
+    "2019": 99,
+    "2020": 99,
+    "2021": 99
+   },
+   "raceStarts2018to2026": 60,
+   "dateOfBirth": "1993-12-14",
+   "currentSeason": false,
+   "jolpicaId": "giovinazzi"
+  },
+  {
+   "id": "drv-kub",
+   "code": "KUB",
+   "number": 88,
+   "name": "Robert Kubica",
+   "constructorId": "f1-aud",
+   "country": "Poland",
+   "countryCode": "PL",
+   "seasons": [
+    2019,
+    2021
+   ],
+   "constructorBySeason": {
+    "2019": [
+     "f1-wil"
+    ],
+    "2021": [
+     "f1-aud"
+    ]
+   },
+   "numberBySeason": {
+    "2019": 88,
+    "2021": 88
+   },
+   "raceStarts2018to2026": 23,
+   "dateOfBirth": "1984-12-07",
+   "currentSeason": false,
+   "jolpicaId": "kubica"
+  },
+  {
+   "id": "drv-kvy",
+   "code": "KVY",
+   "number": 26,
+   "name": "Daniil Kvyat",
+   "constructorId": "f1-rb",
+   "country": "Russia",
+   "countryCode": "RU",
+   "seasons": [
+    2019,
+    2020
+   ],
+   "constructorBySeason": {
+    "2019": [
+     "f1-rb"
+    ],
+    "2020": [
+     "f1-rb"
+    ]
+   },
+   "numberBySeason": {
+    "2019": 26,
+    "2020": 26
+   },
+   "raceStarts2018to2026": 38,
+   "dateOfBirth": "1994-04-26",
+   "currentSeason": false,
+   "jolpicaId": "kvyat"
+  },
+  {
+   "id": "drv-nor",
+   "code": "NOR",
+   "number": 1,
+   "name": "Lando Norris",
+   "constructorId": "f1-mcl",
+   "country": "United Kingdom",
+   "countryCode": "GB",
+   "seasons": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2019": [
+     "f1-mcl"
+    ],
+    "2020": [
+     "f1-mcl"
+    ],
+    "2021": [
+     "f1-mcl"
+    ],
+    "2022": [
+     "f1-mcl"
+    ],
+    "2023": [
+     "f1-mcl"
+    ],
+    "2024": [
+     "f1-mcl"
+    ],
+    "2025": [
+     "f1-mcl"
+    ],
+    "2026": [
+     "f1-mcl"
+    ]
+   },
+   "numberBySeason": {
+    "2019": 4,
+    "2020": 4,
+    "2021": 4,
+    "2022": 4,
+    "2023": 4,
+    "2024": 4,
+    "2025": 4,
+    "2026": 1
+   },
+   "raceStarts2018to2026": 169,
+   "dateOfBirth": "1999-11-13",
+   "currentSeason": true,
+   "jolpicaId": "norris"
+  },
+  {
+   "id": "drv-rus",
+   "code": "RUS",
+   "number": 63,
+   "name": "George Russell",
+   "constructorId": "f1-mer",
+   "country": "United Kingdom",
+   "countryCode": "GB",
+   "seasons": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2019": [
+     "f1-wil"
+    ],
+    "2020": [
+     "f1-wil",
+     "f1-mer"
+    ],
+    "2021": [
+     "f1-wil"
+    ],
+    "2022": [
+     "f1-mer"
+    ],
+    "2023": [
+     "f1-mer"
+    ],
+    "2024": [
+     "f1-mer"
+    ],
+    "2025": [
+     "f1-mer"
+    ],
+    "2026": [
+     "f1-mer"
+    ]
+   },
+   "numberBySeason": {
+    "2019": 63,
+    "2020": 63,
+    "2021": 63,
+    "2022": 63,
+    "2023": 63,
+    "2024": 63,
+    "2025": 63,
+    "2026": 63
+   },
+   "raceStarts2018to2026": 169,
+   "dateOfBirth": "1998-02-15",
+   "currentSeason": true,
+   "jolpicaId": "russell"
+  },
+  {
+   "id": "drv-ait",
+   "code": "AIT",
+   "number": 89,
+   "name": "Jack Aitken",
+   "constructorId": "f1-wil",
+   "country": "United Kingdom",
+   "countryCode": "GB",
+   "seasons": [
+    2020
+   ],
+   "constructorBySeason": {
+    "2020": [
+     "f1-wil"
+    ]
+   },
+   "numberBySeason": {
+    "2020": 89
+   },
+   "raceStarts2018to2026": 1,
+   "dateOfBirth": "1995-09-23",
+   "currentSeason": false,
+   "jolpicaId": "aitken"
+  },
+  {
+   "id": "drv-lat",
+   "code": "LAT",
+   "number": 6,
+   "name": "Nicholas Latifi",
+   "constructorId": "f1-wil",
+   "country": "Canada",
+   "countryCode": "CA",
+   "seasons": [
+    2020,
+    2021,
+    2022
+   ],
+   "constructorBySeason": {
+    "2020": [
+     "f1-wil"
+    ],
+    "2021": [
+     "f1-wil"
+    ],
+    "2022": [
+     "f1-wil"
+    ]
+   },
+   "numberBySeason": {
+    "2020": 6,
+    "2021": 6,
+    "2022": 6
+   },
+   "raceStarts2018to2026": 61,
+   "dateOfBirth": "1995-06-29",
+   "currentSeason": false,
+   "jolpicaId": "latifi"
+  },
+  {
+   "id": "drv-fit",
+   "code": "FIT",
+   "number": 51,
+   "name": "Pietro Fittipaldi",
+   "constructorId": "f1-haa",
+   "country": "Brazil",
+   "countryCode": "BR",
+   "seasons": [
+    2020
+   ],
+   "constructorBySeason": {
+    "2020": [
+     "f1-haa"
+    ]
+   },
+   "numberBySeason": {
+    "2020": 51
+   },
+   "raceStarts2018to2026": 2,
+   "dateOfBirth": "1996-06-25",
+   "currentSeason": false,
+   "jolpicaId": "pietro_fittipaldi"
+  },
+  {
+   "id": "drv-maz",
+   "code": "MAZ",
+   "number": 9,
+   "name": "Nikita Mazepin",
+   "constructorId": "f1-haa",
+   "country": "Russia",
+   "countryCode": "RU",
+   "seasons": [
+    2021
+   ],
+   "constructorBySeason": {
+    "2021": [
+     "f1-haa"
+    ]
+   },
+   "numberBySeason": {
+    "2021": 9
+   },
+   "raceStarts2018to2026": 22,
+   "dateOfBirth": "1999-03-02",
+   "currentSeason": false,
+   "jolpicaId": "mazepin"
+  },
+  {
+   "id": "drv-msc",
+   "code": "MSC",
+   "number": 47,
+   "name": "Mick Schumacher",
+   "constructorId": "f1-haa",
+   "country": "Germany",
+   "countryCode": "DE",
+   "seasons": [
+    2021,
+    2022
+   ],
+   "constructorBySeason": {
+    "2021": [
+     "f1-haa"
+    ],
+    "2022": [
+     "f1-haa"
+    ]
+   },
+   "numberBySeason": {
+    "2021": 47,
+    "2022": 47
+   },
+   "raceStarts2018to2026": 44,
+   "dateOfBirth": "1999-03-22",
+   "currentSeason": false,
+   "jolpicaId": "mick_schumacher"
+  },
+  {
+   "id": "drv-tsu",
+   "code": "TSU",
+   "number": 22,
+   "name": "Yuki Tsunoda",
+   "constructorId": "f1-rb",
+   "country": "Japan",
+   "countryCode": "JP",
+   "seasons": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2021": [
+     "f1-rb"
+    ],
+    "2022": [
+     "f1-rb"
+    ],
+    "2023": [
+     "f1-rb"
+    ],
+    "2024": [
+     "f1-rb"
+    ],
+    "2025": [
+     "f1-rbr",
+     "f1-rb"
+    ],
+    "2026": [
+     "f1-rb"
+    ]
+   },
+   "numberBySeason": {
+    "2021": 22,
+    "2022": 22,
+    "2023": 22,
+    "2024": 22,
+    "2025": 22,
+    "2026": 22
+   },
+   "raceStarts2018to2026": 117,
+   "dateOfBirth": "2000-05-11",
+   "currentSeason": true,
+   "jolpicaId": "tsunoda"
+  },
+  {
+   "id": "drv-dev",
+   "code": "DEV",
+   "number": 21,
+   "name": "Nyck de Vries",
+   "constructorId": "f1-rb",
+   "country": "Netherlands",
+   "countryCode": "NL",
+   "seasons": [
+    2022,
+    2023
+   ],
+   "constructorBySeason": {
+    "2022": [
+     "f1-wil"
+    ],
+    "2023": [
+     "f1-rb"
+    ]
+   },
+   "numberBySeason": {
+    "2022": 45,
+    "2023": 21
+   },
+   "raceStarts2018to2026": 11,
+   "dateOfBirth": "1995-02-06",
+   "currentSeason": false,
+   "jolpicaId": "de_vries"
+  },
+  {
+   "id": "drv-zho",
+   "code": "ZHO",
+   "number": 24,
+   "name": "Guanyu Zhou",
+   "constructorId": "f1-aud",
+   "country": "China",
+   "countryCode": "CN",
+   "seasons": [
+    2022,
+    2023,
+    2024
+   ],
+   "constructorBySeason": {
+    "2022": [
+     "f1-aud"
+    ],
+    "2023": [
+     "f1-aud"
+    ],
+    "2024": [
+     "f1-aud"
+    ]
+   },
+   "numberBySeason": {
+    "2022": 24,
+    "2023": 24,
+    "2024": 24
+   },
+   "raceStarts2018to2026": 68,
+   "dateOfBirth": "1999-05-30",
+   "currentSeason": false,
+   "jolpicaId": "zhou"
+  },
+  {
+   "id": "drv-law",
+   "code": "LAW",
+   "number": 30,
+   "name": "Liam Lawson",
+   "constructorId": "f1-rb",
+   "country": "New Zealand",
+   "countryCode": "NZ",
+   "seasons": [
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2023": [
+     "f1-rb"
+    ],
+    "2024": [
+     "f1-rb"
+    ],
+    "2025": [
+     "f1-rb",
+     "f1-rbr"
+    ],
+    "2026": [
+     "f1-rb",
+     "f1-rbr"
+    ]
+   },
+   "numberBySeason": {
+    "2023": 40,
+    "2024": 30,
+    "2025": 30,
+    "2026": 30
+   },
+   "raceStarts2018to2026": 52,
+   "dateOfBirth": "2002-02-11",
+   "currentSeason": true,
+   "jolpicaId": "lawson"
+  },
+  {
+   "id": "drv-pia",
+   "code": "PIA",
+   "number": 81,
+   "name": "Oscar Piastri",
+   "constructorId": "f1-mcl",
+   "country": "Australia",
+   "countryCode": "AU",
+   "seasons": [
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2023": [
+     "f1-mcl"
+    ],
+    "2024": [
+     "f1-mcl"
+    ],
+    "2025": [
+     "f1-mcl"
+    ],
+    "2026": [
+     "f1-mcl"
+    ]
+   },
+   "numberBySeason": {
+    "2023": 81,
+    "2024": 81,
+    "2025": 81,
+    "2026": 81
+   },
+   "raceStarts2018to2026": 87,
+   "dateOfBirth": "2001-04-06",
+   "currentSeason": true,
+   "jolpicaId": "piastri"
+  },
+  {
+   "id": "drv-sar",
+   "code": "SAR",
+   "number": 2,
+   "name": "Logan Sargeant",
+   "constructorId": "f1-wil",
+   "country": "United States",
+   "countryCode": "US",
+   "seasons": [
+    2023,
+    2024
+   ],
+   "constructorBySeason": {
+    "2023": [
+     "f1-wil"
+    ],
+    "2024": [
+     "f1-wil"
+    ]
+   },
+   "numberBySeason": {
+    "2023": 2,
+    "2024": 2
+   },
+   "raceStarts2018to2026": 36,
+   "dateOfBirth": "2000-12-31",
+   "currentSeason": false,
+   "jolpicaId": "sargeant"
+  },
+  {
+   "id": "drv-bea",
+   "code": "BEA",
+   "number": 87,
+   "name": "Oliver Bearman",
+   "constructorId": "f1-haa",
+   "country": "United Kingdom",
+   "countryCode": "GB",
+   "seasons": [
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2024": [
+     "f1-haa",
+     "f1-fer"
+    ],
+    "2025": [
+     "f1-haa"
+    ],
+    "2026": [
+     "f1-haa"
+    ]
+   },
+   "numberBySeason": {
+    "2024": 50,
+    "2025": 87,
+    "2026": 87
+   },
+   "raceStarts2018to2026": 44,
+   "dateOfBirth": "2005-05-08",
+   "currentSeason": true,
+   "jolpicaId": "bearman"
+  },
+  {
+   "id": "drv-col",
+   "code": "COL",
+   "number": 43,
+   "name": "Franco Colapinto",
+   "constructorId": "f1-alp",
+   "country": "Argentina",
+   "countryCode": "AR",
+   "seasons": [
+    2024,
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2024": [
+     "f1-wil"
+    ],
+    "2025": [
+     "f1-alp"
+    ],
+    "2026": [
+     "f1-alp"
+    ]
+   },
+   "numberBySeason": {
+    "2024": 43,
+    "2025": 43,
+    "2026": 43
+   },
+   "raceStarts2018to2026": 44,
+   "dateOfBirth": "2003-05-27",
+   "currentSeason": true,
+   "jolpicaId": "colapinto"
+  },
+  {
+   "id": "drv-doo",
+   "code": "DOO",
+   "number": 7,
+   "name": "Jack Doohan",
+   "constructorId": "f1-alp",
+   "country": "Australia",
+   "countryCode": "AU",
+   "seasons": [
+    2024,
+    2025
+   ],
+   "constructorBySeason": {
+    "2024": [
+     "f1-alp"
+    ],
+    "2025": [
+     "f1-alp"
+    ]
+   },
+   "numberBySeason": {
+    "2024": 61,
+    "2025": 7
+   },
+   "raceStarts2018to2026": 7,
+   "dateOfBirth": "2003-01-20",
+   "currentSeason": false,
+   "jolpicaId": "doohan"
+  },
+  {
+   "id": "drv-ant",
+   "code": "ANT",
+   "number": 12,
+   "name": "Kimi Antonelli",
+   "constructorId": "f1-mer",
+   "country": "Italy",
+   "countryCode": "IT",
+   "seasons": [
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2025": [
+     "f1-mer"
+    ],
+    "2026": [
+     "f1-mer"
+    ]
+   },
+   "numberBySeason": {
+    "2025": 12,
+    "2026": 12
+   },
+   "raceStarts2018to2026": 41,
+   "dateOfBirth": "2006-08-25",
+   "currentSeason": true,
+   "jolpicaId": "antonelli"
+  },
+  {
+   "id": "drv-bor",
+   "code": "BOR",
+   "number": 5,
+   "name": "Gabriel Bortoleto",
+   "constructorId": "f1-aud",
+   "country": "Brazil",
+   "countryCode": "BR",
+   "seasons": [
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2025": [
+     "f1-aud"
+    ],
+    "2026": [
+     "f1-aud"
+    ]
+   },
+   "numberBySeason": {
+    "2025": 5,
+    "2026": 5
+   },
+   "raceStarts2018to2026": 41,
+   "dateOfBirth": "2004-10-14",
+   "currentSeason": true,
+   "jolpicaId": "bortoleto"
+  },
+  {
+   "id": "drv-had",
+   "code": "HAD",
+   "number": 6,
+   "name": "Isack Hadjar",
+   "constructorId": "f1-rbr",
+   "country": "France",
+   "countryCode": "FR",
+   "seasons": [
+    2025,
+    2026
+   ],
+   "constructorBySeason": {
+    "2025": [
+     "f1-rb"
+    ],
+    "2026": [
+     "f1-rbr"
+    ]
+   },
+   "numberBySeason": {
+    "2025": 6,
+    "2026": 6
+   },
+   "raceStarts2018to2026": 38,
+   "dateOfBirth": "2004-09-28",
+   "currentSeason": true,
+   "jolpicaId": "hadjar"
+  },
+  {
+   "id": "drv-lin",
+   "code": "LIN",
+   "number": 41,
+   "name": "Arvid Lindblad",
+   "constructorId": "f1-rb",
+   "country": "United Kingdom",
+   "countryCode": "GB",
+   "seasons": [
+    2026
+   ],
+   "constructorBySeason": {
+    "2026": [
+     "f1-rb"
+    ]
+   },
+   "numberBySeason": {
+    "2026": 41
+   },
+   "raceStarts2018to2026": 17,
+   "dateOfBirth": "2007-08-08",
+   "currentSeason": true,
+   "jolpicaId": "arvid_lindblad"
+  }
+ ],
+ "constructorLineage": {
+  "ferrari": "f1-fer",
+  "mercedes": "f1-mer",
+  "mclaren": "f1-mcl",
+  "red_bull": "f1-rbr",
+  "haas": "f1-haa",
+  "williams": "f1-wil",
+  "alpine": "f1-alp",
+  "renault": "f1-alp",
+  "aston_martin": "f1-ast",
+  "racing_point": "f1-ast",
+  "force_india": "f1-ast",
+  "rb": "f1-rb",
+  "alphatauri": "f1-rb",
+  "toro_rosso": "f1-rb",
+  "sauber": "f1-aud",
+  "alfa": "f1-aud",
+  "audi": "f1-aud",
+  "cadillac": "f1-cad"
+ },
+ "note": "teams = 2026 grid in Tools/teams/SPEC.md TEAM format. drivers: one record per driver for 2018-2026; constructorBySeason uses current team ids via constructorLineage (e.g. toro_rosso, alphatauri -> f1-rb)."
+}

@@ -1,0 +1,3732 @@
+[
+ {
+  "id": "albert-park",
+  "name": "Albert Park Circuit",
+  "aliases": [
+   "Melbourne Grand Prix Circuit",
+   "Albert Park Grand Prix Circuit",
+   "Albert Park"
+  ],
+  "city": "Melbourne",
+  "region": "Victoria",
+  "country": "Australia",
+  "countryCode": "AU",
+  "latitude": -37.84976,
+  "longitude": 144.96864,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Australia/Melbourne",
+  "capacity": 125000,
+  "opened": 1953,
+  "lengthKm": 5.278,
+  "turns": 14,
+  "lapRecord": {
+   "time": "1:19.813",
+   "driver": "Charles Leclerc",
+   "year": 2024
+  },
+  "firstGrandPrix": 1996,
+  "direction": "clockwise",
+  "street": true,
+  "grandstandsLatLon": [
+   [
+    -37.84976,
+    144.96864
+   ]
+  ],
+  "grandstandLabels": [
+   "Start/finish straight and pit/paddock building (Lakeside Dr)"
+  ],
+  "geofenceMeters": 800,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 7,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Street-style park circuit around Albert Lake; pits, paddock and main grandstand sit within ~150 m of the start/finish line. 800 m also covers the Lakeside/Aughtie Dr entrance gates.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171288",
+   "wikidataCoord": [
+    -37.84972,
+    144.96833
+   ],
+   "ergastCoord": [
+    -37.8497,
+    144.968
+   ],
+   "centerline": "bacinger/f1-circuits au-1953",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0
+   ],
+   "distToCityKm": 4.1
+  }
+ },
+ {
+  "id": "bahrain",
+  "name": "Bahrain International Circuit",
+  "aliases": [
+   "Sakhir",
+   "BIC",
+   "Bahrain International Circuit Sakhir"
+  ],
+  "city": "Sakhir",
+  "region": "Southern Governorate",
+  "country": "Bahrain",
+  "countryCode": "BH",
+  "latitude": 26.0325,
+  "longitude": 50.51056,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Bahrain",
+  "capacity": 70000,
+  "opened": 2004,
+  "lengthKm": 5.412,
+  "turns": 15,
+  "lapRecord": {
+   "time": "1:31.447",
+   "driver": "Pedro de la Rosa",
+   "year": 2005
+  },
+  "firstGrandPrix": 2004,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    26.0325,
+    50.51056
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building, paddock and main grandstand"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "cancelled",
+  "grandsPrix2018to2026": 9,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025
+  ],
+  "lastGrandPrix": 2025,
+  "notes": "Desert complex with a large single pit/paddock/grandstand block; car parks and gates extend ~800 m, so 1000 m. 2026 Bahrain round shown as cancelled in ESPN.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171332",
+   "wikidataCoord": [
+    26.0325,
+    50.51056
+   ],
+   "ergastCoord": [
+    26.0325,
+    50.5106
+   ],
+   "centerline": "bacinger/f1-circuits bh-2002",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0
+   ],
+   "distToCityKm": 0.3
+  }
+ },
+ {
+  "id": "baku",
+  "name": "Baku City Circuit",
+  "aliases": [
+   "Baku Street Circuit",
+   "Baku Circuit",
+   "Azadliq Square circuit"
+  ],
+  "city": "Baku",
+  "region": null,
+  "country": "Azerbaijan",
+  "countryCode": "AZ",
+  "latitude": 40.3725,
+  "longitude": 49.8533,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Baku",
+  "capacity": 18500,
+  "opened": 2016,
+  "lengthKm": 6.003,
+  "turns": 20,
+  "lapRecord": {
+   "time": "1:43.009",
+   "driver": "Charles Leclerc",
+   "year": 2019
+  },
+  "firstGrandPrix": 2016,
+  "direction": "anticlockwise",
+  "street": true,
+  "grandstandsLatLon": [
+   [
+    40.3725,
+    49.8533
+   ]
+  ],
+  "grandstandLabels": [
+   "Azadliq Square: pit building, paddock and main grandstands"
+  ],
+  "geofenceMeters": 900,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 8,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Street circuit; pits and paddock are temporary structures on Azadliq Square by Government House. Fans also use the Boulevard and Old City sections 1-1.5 km away, which a 900 m photo radius does not cover.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q17004958",
+   "wikidataCoord": [
+    40.3725,
+    49.8533
+   ],
+   "ergastCoord": [
+    40.3725,
+    49.8533
+   ],
+   "centerline": "bacinger/f1-circuits az-2016",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    21
+   ],
+   "distToCityKm": 4.3
+  }
+ },
+ {
+  "id": "catalunya",
+  "name": "Circuit de Barcelona-Catalunya",
+  "aliases": [
+   "Circuit de Catalunya",
+   "Barcelona-Catalunya",
+   "Montmelo",
+   "Montmeló",
+   "Barcelona Circuit"
+  ],
+  "city": "Montmeló",
+  "region": "Catalonia",
+  "country": "Spain",
+  "countryCode": "ES",
+  "latitude": 41.57,
+  "longitude": 2.26111,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Madrid",
+  "capacity": 140700,
+  "opened": 1991,
+  "lengthKm": 4.657,
+  "turns": 14,
+  "lapRecord": {
+   "time": "1:15.743",
+   "driver": "Oscar Piastri",
+   "year": 2025
+  },
+  "firstGrandPrix": 1991,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    41.57,
+    2.26111
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and Tribuna Principal (main grandstand)"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 9,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Permanent autodrome; main grandstand and paddock are one block. 1000 m covers the Montmeló gates and car parks. Hosts the 2026 Barcelona Grand Prix.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171404",
+   "wikidataCoord": [
+    41.57,
+    2.26111
+   ],
+   "ergastCoord": [
+    41.57,
+    2.26111
+   ],
+   "centerline": "bacinger/f1-circuits es-1991",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    6
+   ],
+   "distToCityKm": 2.4
+  }
+ },
+ {
+  "id": "cota",
+  "name": "Circuit of the Americas",
+  "aliases": [
+   "COTA",
+   "Circuit of the Americas Austin",
+   "Austin circuit",
+   "Circuit Of The Americas"
+  ],
+  "city": "Austin",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 30.1328,
+  "longitude": -97.6411,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/Chicago",
+  "capacity": 120000,
+  "opened": 2012,
+  "lengthKm": 5.513,
+  "turns": 20,
+  "lapRecord": {
+   "time": "1:36.169",
+   "driver": "Charles Leclerc",
+   "year": 2019
+  },
+  "firstGrandPrix": 2012,
+  "direction": "anticlockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    30.1328,
+    -97.6411
+   ],
+   [
+    30.13176,
+    -97.63965
+   ]
+  ],
+  "grandstandLabels": [
+   "The Tower, pit building and paddock",
+   "Start/finish straight and Turn 1 hill"
+  ],
+  "geofenceMeters": 1200,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "scheduled",
+  "grandsPrix2018to2026": 7,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2025,
+  "notes": "Existing venues.json record reused (id, coordinates 30.1328,-97.6411, capacity 120000, opened 2012). Tower/paddock and start line 180 m apart; Turn 1 hill and Austin360 Amphitheater add up to ~1 km, so 1200 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q59626",
+   "wikidataCoord": [
+    30.1328,
+    -97.6411
+   ],
+   "ergastCoord": [
+    30.1328,
+    -97.6411
+   ],
+   "centerline": "bacinger/f1-circuits us-2012",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    5,
+    0
+   ],
+   "distToCityKm": 17.9
+  },
+  "reusesCatalogId": true
+ },
+ {
+  "id": "gilles-villeneuve",
+  "name": "Circuit Gilles Villeneuve",
+  "aliases": [
+   "Circuit Gilles-Villeneuve",
+   "Montreal Grand Prix Circuit",
+   "Ile Notre-Dame circuit",
+   "Île Notre-Dame",
+   "Circuit de l'Île Notre-Dame"
+  ],
+  "city": "Montreal",
+  "region": "Quebec",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 45.50182,
+  "longitude": -73.52325,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/Toronto",
+  "capacity": 100000,
+  "opened": 1978,
+  "lengthKm": 4.361,
+  "turns": 14,
+  "lapRecord": {
+   "time": "1:13.078",
+   "driver": "Valtteri Bottas",
+   "year": 2019
+  },
+  "firstGrandPrix": 1978,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    45.50182,
+    -73.52325
+   ],
+   [
+    45.50056,
+    -73.5225
+   ]
+  ],
+  "grandstandLabels": [
+   "Start/finish line",
+   "Pit building and paddock (Casino side of the straight)"
+  ],
+  "geofenceMeters": 900,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 7,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Semi-permanent park circuit on Ile Notre-Dame; pits and the start line are 150 m apart and fans move along the whole island. 900 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q172860",
+   "wikidataCoord": [
+    45.50056,
+    -73.5225
+   ],
+   "ergastCoord": [
+    45.5,
+    -73.5228
+   ],
+   "centerline": "bacinger/f1-circuits ca-1978",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0,
+    27
+   ],
+   "distToCityKm": 3.4
+  }
+ },
+ {
+  "id": "hermanos-rodriguez",
+  "name": "Autodromo Hermanos Rodriguez",
+  "aliases": [
+   "Autódromo Hermanos Rodríguez",
+   "Magdalena Mixhuca",
+   "Foro Sol circuit",
+   "Mexico City circuit",
+   "Autodromo Hermanos Rodriguez"
+  ],
+  "city": "Mexico City",
+  "region": "Mexico City",
+  "country": "Mexico",
+  "countryCode": "MX",
+  "latitude": 19.4042,
+  "longitude": -99.0907,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/Mexico_City",
+  "capacity": 110000,
+  "opened": 1959,
+  "lengthKm": 4.304,
+  "turns": 17,
+  "lapRecord": {
+   "time": "1:17.774",
+   "driver": "Valtteri Bottas",
+   "year": 2021
+  },
+  "firstGrandPrix": 1963,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    19.4042,
+    -99.0907
+   ],
+   [
+    19.40623,
+    -99.09434
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and paddock beside the main straight",
+   "Start of the main straight / Turn 17 Peraltada approach"
+  ],
+  "geofenceMeters": 1200,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "scheduled",
+  "grandsPrix2018to2026": 7,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2025,
+  "notes": "City park circuit through Magdalena Mixhuca; the Foro Sol stadium is built into the infield (Turns 12-14). Pit complex and start node are ~440 m apart, so two points at 1200 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q173099",
+   "wikidataCoord": [
+    19.4042,
+    -99.08875
+   ],
+   "ergastCoord": [
+    19.4042,
+    -99.0907
+   ],
+   "centerline": "bacinger/f1-circuits mx-1962",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    126,
+    0
+   ],
+   "distToCityKm": 5.5
+  }
+ },
+ {
+  "id": "hungaroring",
+  "name": "Hungaroring",
+  "aliases": [
+   "Hungaroring Mogyorod",
+   "Mogyoród",
+   "Budapest circuit"
+  ],
+  "city": "Mogyoród",
+  "region": "Pest County",
+  "country": "Hungary",
+  "countryCode": "HU",
+  "latitude": 47.5789,
+  "longitude": 19.2486,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Budapest",
+  "capacity": 70000,
+  "opened": 1986,
+  "lengthKm": 4.381,
+  "turns": 14,
+  "lapRecord": {
+   "time": "1:16.627",
+   "driver": "Lewis Hamilton",
+   "year": 2020
+  },
+  "firstGrandPrix": 1986,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    47.5789,
+    19.2486
+   ],
+   [
+    47.58026,
+    19.24589
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building, paddock and main grandstand",
+   "End of start/finish straight and Turn 1 grandstands"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 9,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Natural-amphitheatre circuit; main stand and Turn 1 are 250 m apart. 1000 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171356",
+   "wikidataCoord": [
+    47.58222,
+    19.25111
+   ],
+   "ergastCoord": [
+    47.5789,
+    19.2486
+   ],
+   "centerline": "bacinger/f1-circuits hu-1986",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    8,
+    0
+   ],
+   "distToCityKm": 0.5
+  }
+ },
+ {
+  "id": "interlagos",
+  "name": "Autodromo Jose Carlos Pace",
+  "aliases": [
+   "Autódromo José Carlos Pace",
+   "Interlagos",
+   "Interlagos Circuit",
+   "Autodromo de Interlagos",
+   "Autodromo de Interlagos Jose Carlos Pace"
+  ],
+  "city": "Sao Paulo",
+  "region": "Sao Paulo",
+  "country": "Brazil",
+  "countryCode": "BR",
+  "latitude": -23.70374,
+  "longitude": -46.69991,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/Sao_Paulo",
+  "capacity": 60000,
+  "opened": 1940,
+  "lengthKm": 4.309,
+  "turns": 15,
+  "lapRecord": {
+   "time": "1:10.540",
+   "driver": "Valtteri Bottas",
+   "year": 2018
+  },
+  "firstGrandPrix": 1973,
+  "direction": "anticlockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    -23.70374,
+    -46.69991
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building, paddock and start/finish (Reta Oposta side)"
+  ],
+  "geofenceMeters": 900,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "scheduled",
+  "grandsPrix2018to2026": 7,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2025,
+  "notes": "Compact hill circuit in the Interlagos district; Wikidata point (400 m away) is at the Descida do Lago end and is not used. 900 m covers the Setor A/B grandstands.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171387",
+   "wikidataCoord": [
+    -23.70111,
+    -46.69722
+   ],
+   "ergastCoord": [
+    -23.7036,
+    -46.6997
+   ],
+   "centerline": "bacinger/f1-circuits br-1940",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0
+   ],
+   "distToCityKm": 18.3
+  }
+ },
+ {
+  "id": "jeddah",
+  "name": "Jeddah Corniche Circuit",
+  "aliases": [
+   "Jeddah Street Circuit",
+   "Jeddah Corniche",
+   "Jeddah circuit"
+  ],
+  "city": "Jeddah",
+  "region": "Makkah",
+  "country": "Saudi Arabia",
+  "countryCode": "SA",
+  "latitude": 21.63105,
+  "longitude": 39.10508,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Riyadh",
+  "capacity": 50000,
+  "opened": 2021,
+  "lengthKm": 6.174,
+  "turns": 27,
+  "lapRecord": {
+   "time": "1:30.734",
+   "driver": "Lewis Hamilton",
+   "year": 2021
+  },
+  "firstGrandPrix": 2021,
+  "direction": "anticlockwise",
+  "street": true,
+  "grandstandsLatLon": [
+   [
+    21.63105,
+    39.10508
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and paddock with start/finish, south end of the Corniche"
+  ],
+  "geofenceMeters": 1200,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "cancelled",
+  "grandsPrix2018to2026": 5,
+  "seasonsOnCalendar2018to2026": [
+   2021,
+   2022,
+   2023,
+   2024,
+   2025
+  ],
+  "lastGrandPrix": 2025,
+  "notes": "Fast street circuit along the Red Sea corniche; pits at the south end. 2026 round (Saudi Arabian GP) is listed as cancelled by ESPN. Temporary grandstands along the 6.2 km, so 1200 m around the pit complex only.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q102141307",
+   "wikidataCoord": [
+    21.63194,
+    39.10444
+   ],
+   "ergastCoord": [
+    21.6319,
+    39.1044
+   ],
+   "centerline": "bacinger/f1-circuits sa-2021",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0
+   ],
+   "distToCityKm": 18.5
+  }
+ },
+ {
+  "id": "las-vegas",
+  "name": "Las Vegas Strip Circuit",
+  "aliases": [
+   "Las Vegas Street Circuit",
+   "Las Vegas Strip Street Circuit",
+   "Las Vegas Grand Prix circuit",
+   "Las Vegas Strip"
+  ],
+  "city": "Las Vegas",
+  "region": "Nevada",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.1099,
+  "longitude": -115.1612,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 100000,
+  "opened": 2023,
+  "lengthKm": 6.201,
+  "turns": 17,
+  "lapRecord": {
+   "time": "1:33.365",
+   "driver": "Max Verstappen",
+   "year": 2025
+  },
+  "firstGrandPrix": 2023,
+  "direction": "anticlockwise",
+  "street": true,
+  "grandstandsLatLon": [
+   [
+    36.1099,
+    -115.1612
+   ],
+   [
+    36.1147,
+    -115.173
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and paddock at Harmon Ave and Koval Ln (start/finish)",
+   "Las Vegas Boulevard Strip grandstands near Flamingo Rd"
+  ],
+  "geofenceMeters": 1500,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "scheduled",
+  "grandsPrix2018to2026": 3,
+  "seasonsOnCalendar2018to2026": [
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2025,
+  "notes": "Night street race on the Strip; the pit building is 1.2 km east of the Strip section. Two points at 1500 m. Wikidata has no coordinate for the circuit (point is on the Grand Prix event item).",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q111443584",
+   "wikidataCoord": null,
+   "ergastCoord": [
+    36.1147,
+    -115.173
+   ],
+   "centerline": "bacinger/f1-circuits us-2023",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0,
+    3
+   ],
+   "distToCityKm": 6.9
+  }
+ },
+ {
+  "id": "losail",
+  "name": "Lusail International Circuit",
+  "aliases": [
+   "Losail International Circuit",
+   "Losail",
+   "Lusail Circuit",
+   "Losail Circuit"
+  ],
+  "city": "Lusail",
+  "region": "Al Daayen",
+  "country": "Qatar",
+  "countryCode": "QA",
+  "latitude": 25.48908,
+  "longitude": 51.44968,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Qatar",
+  "capacity": 52000,
+  "opened": 2004,
+  "lengthKm": 5.419,
+  "turns": 16,
+  "lapRecord": {
+   "time": "1:22.384",
+   "driver": "Lando Norris",
+   "year": 2024
+  },
+  "firstGrandPrix": 2021,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    25.48908,
+    51.44968
+   ],
+   [
+    25.49,
+    51.4542
+   ]
+  ],
+  "grandstandLabels": [
+   "Start/finish and main grandstand",
+   "Pit building and paddock"
+  ],
+  "geofenceMeters": 1200,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "scheduled",
+  "grandsPrix2018to2026": 4,
+  "seasonsOnCalendar2018to2026": [
+   2021,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2025,
+  "notes": "Desert circuit with a very long pit building; start line and Wikidata paddock point are 470 m apart. 1200 m. ESPN spells it Losail.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q547535",
+   "wikidataCoord": [
+    25.49,
+    51.45417
+   ],
+   "ergastCoord": [
+    25.49,
+    51.4542
+   ],
+   "centerline": "bacinger/f1-circuits qa-2004",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0,
+    32
+   ],
+   "distToCityKm": 7.9
+  }
+ },
+ {
+  "id": "madring",
+  "name": "Madring",
+  "aliases": [
+   "Circuito de Madring",
+   "IFEMA Madrid circuit",
+   "Madrid circuit",
+   "Circuito de Madrid",
+   "Madring Madrid"
+  ],
+  "city": "Madrid",
+  "region": "Community of Madrid",
+  "country": "Spain",
+  "countryCode": "ES",
+  "latitude": 40.46528,
+  "longitude": -3.61528,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Madrid",
+  "capacity": 110000,
+  "opened": 2026,
+  "lengthKm": 5.414,
+  "turns": 22,
+  "lapRecord": {
+   "time": "1:35.587",
+   "driver": "George Russell",
+   "year": 2026
+  },
+  "firstGrandPrix": 2026,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    40.46528,
+    -3.61528
+   ],
+   [
+    40.46361,
+    -3.61778
+   ]
+  ],
+  "grandstandLabels": [
+   "Start/finish and main grandstand",
+   "IFEMA Madrid exhibition centre (paddock and hospitality)"
+  ],
+  "geofenceMeters": 1200,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 1,
+  "seasonsOnCalendar2018to2026": [
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "New semi-street circuit around the IFEMA Madrid fairground, host of the 2026 Spanish Grand Prix (first race Sep 2026). Start and IFEMA centre are 220 m apart. 1200 m.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": "Q126193406",
+   "wikidataCoord": [
+    40.46361,
+    -3.61778
+   ],
+   "ergastCoord": [
+    40.46528,
+    -3.61528
+   ],
+   "centerline": "bacinger/f1-circuits es-2026",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    12,
+    155
+   ],
+   "distToCityKm": 9.2
+  }
+ },
+ {
+  "id": "marina-bay",
+  "name": "Marina Bay Street Circuit",
+  "aliases": [
+   "Marina Bay",
+   "Singapore Street Circuit",
+   "Marina Bay Circuit",
+   "Singapore Grand Prix circuit"
+  ],
+  "city": "Singapore",
+  "region": null,
+  "country": "Singapore",
+  "countryCode": "SG",
+  "latitude": 1.29173,
+  "longitude": 103.86414,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Singapore",
+  "capacity": 90000,
+  "opened": 2008,
+  "lengthKm": 4.927,
+  "turns": 19,
+  "lapRecord": {
+   "time": "1:33.808",
+   "driver": "Lewis Hamilton",
+   "year": 2025
+  },
+  "firstGrandPrix": 2008,
+  "direction": "anticlockwise",
+  "street": true,
+  "grandstandsLatLon": [
+   [
+    1.29173,
+    103.86414
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit Building and paddock (Republic Blvd) with start/finish"
+  ],
+  "geofenceMeters": 1100,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 7,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Night street race; Zone grandstands, Padang and Esplanade sections stretch 1.5 km west of the Pit Building, so 1100 m around the pit point is a compromise.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171390",
+   "wikidataCoord": [
+    1.2914,
+    103.86415
+   ],
+   "ergastCoord": [
+    1.2914,
+    103.864
+   ],
+   "centerline": "bacinger/f1-circuits sg-2008",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0
+   ],
+   "distToCityKm": 8.3
+  }
+ },
+ {
+  "id": "miami",
+  "name": "Miami International Autodrome",
+  "aliases": [
+   "Miami Autodrome",
+   "Hard Rock Stadium circuit",
+   "Miami Gardens circuit",
+   "Miami Grand Prix circuit"
+  ],
+  "city": "Miami Gardens",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 25.95909,
+  "longitude": -80.23737,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": 65000,
+  "opened": 2022,
+  "lengthKm": 5.412,
+  "turns": 19,
+  "lapRecord": {
+   "time": "1:29.708",
+   "driver": "Max Verstappen",
+   "year": 2023
+  },
+  "firstGrandPrix": 2022,
+  "direction": "anticlockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    25.95909,
+    -80.23737
+   ],
+   [
+    25.9581,
+    -80.2389
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building, paddock and start/finish",
+   "Hard Rock Stadium plaza and Turn 1 grandstands"
+  ],
+  "geofenceMeters": 1500,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 5,
+  "seasonsOnCalendar2018to2026": [
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Temporary circuit built around Hard Rock Stadium (which is its own venue in the catalog) and its car parks; the stadium point is 190 m from the track. Pit/start node and the stadium are ~190 m apart; 1500 m because the Turn 1 and Turns 11-16 grandstands are 700 m from the pits.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": "Q106544792",
+   "wikidataCoord": [
+    25.95806,
+    -80.23889
+   ],
+   "ergastCoord": [
+    25.9581,
+    -80.2389
+   ],
+   "centerline": "bacinger/f1-circuits us-2022",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0,
+    174
+   ],
+   "distToCityKm": 2.1
+  }
+ },
+ {
+  "id": "monaco",
+  "name": "Circuit de Monaco",
+  "aliases": [
+   "Monte Carlo",
+   "Monte-Carlo Street Circuit",
+   "Monaco Street Circuit"
+  ],
+  "city": "Monaco",
+  "region": null,
+  "country": "Monaco",
+  "countryCode": "MC",
+  "latitude": 43.73692,
+  "longitude": 7.42359,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Monaco",
+  "capacity": 37000,
+  "opened": 1929,
+  "lengthKm": 3.337,
+  "turns": 19,
+  "lapRecord": {
+   "time": "1:12.909",
+   "driver": "Lewis Hamilton",
+   "year": 2021
+  },
+  "firstGrandPrix": 1950,
+  "direction": "clockwise",
+  "street": true,
+  "grandstandsLatLon": [
+   [
+    43.73692,
+    7.42359
+   ],
+   [
+    43.7394,
+    7.42719
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit straight, Boulevard Albert 1er (pit lane and paddock)",
+   "Casino Square grandstands"
+  ],
+  "geofenceMeters": 1200,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 8,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Whole circuit is inside ~1.5 km in a tiny principality; harbour paddock, Sainte Devote and Casino grandstands are 400-500 m apart. Two points with 1200 m. Wikidata/Ergast point sits at the harbour west end (60 m off track) and is not used.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171400",
+   "wikidataCoord": [
+    43.73472,
+    7.42056
+   ],
+   "ergastCoord": [
+    43.7347,
+    7.42056
+   ],
+   "centerline": "bacinger/f1-circuits mc-1929",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    1,
+    0
+   ],
+   "distToCityKm": 0.2
+  }
+ },
+ {
+  "id": "monza",
+  "name": "Autodromo Nazionale Monza",
+  "aliases": [
+   "Monza Circuit",
+   "Autodromo Nazionale di Monza",
+   "Autodromo di Monza",
+   "Monza",
+   "Temple of Speed"
+  ],
+  "city": "Monza",
+  "region": "Lombardy",
+  "country": "Italy",
+  "countryCode": "IT",
+  "latitude": 45.61897,
+  "longitude": 9.28122,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Rome",
+  "capacity": 118865,
+  "opened": 1922,
+  "lengthKm": 5.793,
+  "turns": 11,
+  "lapRecord": {
+   "time": "1:20.901",
+   "driver": "Lando Norris",
+   "year": 2025
+  },
+  "firstGrandPrix": 1950,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    45.61897,
+    9.28122
+   ],
+   [
+    45.6156,
+    9.28111
+   ]
+  ],
+  "grandstandLabels": [
+   "Start/finish straight: pit building, podium and Tribuna Centrale",
+   "Parabolica exit grandstands"
+  ],
+  "geofenceMeters": 1200,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 9,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Royal Park circuit; pit/paddock complex and Parabolica exit are 375 m apart, the Prima Variante stands another 600 m north. 1200 m. Wikidata point (45.6206, 9.2894) is at Curva Grande, 700 m from the pits, so it is not used.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171417",
+   "wikidataCoord": [
+    45.62056,
+    9.28944
+   ],
+   "ergastCoord": [
+    45.6156,
+    9.28111
+   ],
+   "centerline": "bacinger/f1-circuits it-1922",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0,
+    31
+   ],
+   "distToCityKm": 3.9
+  }
+ },
+ {
+  "id": "red-bull-ring",
+  "name": "Red Bull Ring",
+  "aliases": [
+   "A1-Ring",
+   "Osterreichring",
+   "Österreichring",
+   "Spielberg",
+   "Red Bull Ring Spielberg"
+  ],
+  "city": "Spielberg",
+  "region": "Styria",
+  "country": "Austria",
+  "countryCode": "AT",
+  "latitude": 47.22002,
+  "longitude": 14.76512,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Vienna",
+  "capacity": 105000,
+  "opened": 1969,
+  "lengthKm": 4.326,
+  "turns": 10,
+  "lapRecord": {
+   "time": "1:07.924",
+   "driver": "Oscar Piastri",
+   "year": 2025
+  },
+  "firstGrandPrix": 1970,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    47.22002,
+    14.76512
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building, start/finish and main grandstand"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 11,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Compact permanent circuit in a valley; grandstands, paddock and Red Bull Mobile Home area are within ~500 m. 1000 m covers the camp sites on the hillsides.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171566",
+   "wikidataCoord": [
+    47.21972,
+    14.76472
+   ],
+   "ergastCoord": [
+    47.2197,
+    14.7647
+   ],
+   "centerline": "bacinger/f1-circuits at-1969",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0
+   ],
+   "distToCityKm": 1.4
+  }
+ },
+ {
+  "id": "sepang",
+  "name": "Sepang International Circuit",
+  "aliases": [
+   "Sepang",
+   "SIC",
+   "Sepang Circuit",
+   "Kuala Lumpur circuit"
+  ],
+  "city": "Sepang",
+  "region": "Selangor",
+  "country": "Malaysia",
+  "countryCode": "MY",
+  "latitude": 2.76083,
+  "longitude": 101.738,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Kuala_Lumpur",
+  "capacity": 130000,
+  "opened": 1999,
+  "lengthKm": 5.543,
+  "turns": 15,
+  "lapRecord": {
+   "time": "1:34.080",
+   "driver": "Sebastian Vettel",
+   "year": 2017
+  },
+  "firstGrandPrix": 1999,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    2.76083,
+    101.738
+   ],
+   [
+    2.76053,
+    101.73564
+   ]
+  ],
+  "grandstandLabels": [
+   "Main grandstand, pit building and paddock",
+   "Pit straight west end / Turn 1 grandstands"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 1,
+  "seasonsOnCalendar2018to2026": [
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Hosted F1 1999-2017 and the 2026 round (Bahrain Grand Prix in Malaysia). Twin-grandstand pit complex; pit building and the pit straight west end are 260 m apart. Not near Kuala Lumpur city center (about 55 km).",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q172738",
+   "wikidataCoord": [
+    2.76056,
+    101.7375
+   ],
+   "ergastCoord": [
+    2.76083,
+    101.738
+   ],
+   "centerline": "bacinger/f1-circuits my-1999",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    13,
+    0
+   ],
+   "distToCityKm": 8.0
+  }
+ },
+ {
+  "id": "shanghai",
+  "name": "Shanghai International Circuit",
+  "aliases": [
+   "SIC",
+   "Shanghai Circuit",
+   "上海国际赛车场"
+  ],
+  "city": "Shanghai",
+  "region": "Shanghai",
+  "country": "China",
+  "countryCode": "CN",
+  "latitude": 31.33684,
+  "longitude": 121.21838,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Shanghai",
+  "capacity": 200000,
+  "opened": 2004,
+  "lengthKm": 5.451,
+  "turns": 16,
+  "lapRecord": {
+   "time": "1:32.238",
+   "driver": "Michael Schumacher",
+   "year": 2004
+  },
+  "firstGrandPrix": 2004,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    31.33684,
+    121.21838
+   ],
+   [
+    31.33889,
+    121.21972
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit straight start/finish",
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 1100,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 5,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Largest grandstand complex on the calendar (200,000 capacity); start line node and Wikidata building point are 260 m apart, so two points and 1100 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171358",
+   "wikidataCoord": [
+    31.33889,
+    121.21972
+   ],
+   "ergastCoord": [
+    31.3389,
+    121.22
+   ],
+   "centerline": "bacinger/f1-circuits cn-2004",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    1,
+    114
+   ],
+   "distToCityKm": 27.0
+  }
+ },
+ {
+  "id": "silverstone",
+  "name": "Silverstone Circuit",
+  "aliases": [
+   "Silverstone",
+   "Silverstone Circuit Northamptonshire",
+   "The Wing"
+  ],
+  "city": "Silverstone",
+  "region": "Northamptonshire",
+  "country": "United Kingdom",
+  "countryCode": "GB",
+  "latitude": 52.0786,
+  "longitude": -1.01694,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/London",
+  "capacity": 175000,
+  "opened": 1948,
+  "lengthKm": 5.891,
+  "turns": 18,
+  "lapRecord": {
+   "time": "1:27.097",
+   "driver": "Max Verstappen",
+   "year": 2020
+  },
+  "firstGrandPrix": 1950,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    52.0786,
+    -1.01694
+   ],
+   [
+    52.075,
+    -1.01667
+   ]
+  ],
+  "grandstandLabels": [
+   "Hamilton Straight: The Wing, pit lane and Wing paddock",
+   "Infield (Maggotts/Becketts side) grandstands"
+  ],
+  "geofenceMeters": 1500,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 10,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Biggest site on the calendar (175,000 capacity) with grandstands spread over ~3 km, huge campsites and the Wing; 1500 m (the maximum) around two points.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171402",
+   "wikidataCoord": [
+    52.075,
+    -1.01667
+   ],
+   "ergastCoord": [
+    52.0786,
+    -1.01694
+   ],
+   "centerline": "bacinger/f1-circuits gb-1948",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    11,
+    83
+   ],
+   "distToCityKm": 1.5
+  }
+ },
+ {
+  "id": "spa",
+  "name": "Circuit de Spa-Francorchamps",
+  "aliases": [
+   "Spa-Francorchamps",
+   "Spa",
+   "Circuit de Spa Francorchamps",
+   "Stavelot circuit"
+  ],
+  "city": "Stavelot",
+  "region": "Wallonia",
+  "country": "Belgium",
+  "countryCode": "BE",
+  "latitude": 50.44425,
+  "longitude": 5.96502,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Brussels",
+  "capacity": 130000,
+  "opened": 1925,
+  "lengthKm": 7.004,
+  "turns": 19,
+  "lapRecord": {
+   "time": "1:44.701",
+   "driver": "Sergio Perez",
+   "year": 2024
+  },
+  "firstGrandPrix": 1950,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    50.44425,
+    5.96502
+   ],
+   [
+    50.44217,
+    5.97131
+   ]
+  ],
+  "grandstandLabels": [
+   "La Source: pit building, paddock and start/finish",
+   "Eau Rouge / Raidillon grandstands"
+  ],
+  "geofenceMeters": 1500,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 9,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "7 km track in the Ardennes forest; the pit complex and Eau Rouge are 900 m apart and fans camp around both. Two points at 1500 m. ESPN lists the town as Stavelot. The Ergast/Wikidata point (50.4372, 5.9714) is 240 m off the track and is not used.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q172851",
+   "wikidataCoord": [
+    50.43722,
+    5.97139
+   ],
+   "ergastCoord": [
+    50.4372,
+    5.97139
+   ],
+   "centerline": "bacinger/f1-circuits be-1925",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0,
+    0
+   ],
+   "distToCityKm": 5.9
+  }
+ },
+ {
+  "id": "suzuka",
+  "name": "Suzuka Circuit",
+  "aliases": [
+   "Suzuka International Racing Course",
+   "Suzuka",
+   "鈴鹿サーキット"
+  ],
+  "city": "Suzuka",
+  "region": "Mie",
+  "country": "Japan",
+  "countryCode": "JP",
+  "latitude": 34.84334,
+  "longitude": 136.54028,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Tokyo",
+  "capacity": 155000,
+  "opened": 1962,
+  "lengthKm": 5.807,
+  "turns": 18,
+  "lapRecord": {
+   "time": "1:30.965",
+   "driver": "Kimi Antonelli",
+   "year": 2025
+  },
+  "firstGrandPrix": 1987,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    34.84334,
+    136.54028
+   ]
+  ],
+  "grandstandLabels": [
+   "Start/finish, pit building and main grandstand"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 7,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Figure-eight circuit inside the Suzuka Circuit Park with a Ferris wheel, hotel and 155,000 capacity; main grandstand and park gates within ~700 m. 1000 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": null,
+   "wikidataCoord": null,
+   "ergastCoord": [
+    34.8431,
+    136.541
+   ],
+   "centerline": "bacinger/f1-circuits jp-1962",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0
+   ],
+   "distToCityKm": 5.9
+  }
+ },
+ {
+  "id": "yas-marina",
+  "name": "Yas Marina Circuit",
+  "aliases": [
+   "Yas Marina",
+   "Yas Island circuit",
+   "Abu Dhabi circuit",
+   "Yas Marina Circuit Abu Dhabi"
+  ],
+  "city": "Abu Dhabi",
+  "region": "Abu Dhabi",
+  "country": "United Arab Emirates",
+  "countryCode": "AE",
+  "latitude": 24.46997,
+  "longitude": 54.60546,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Dubai",
+  "capacity": 60000,
+  "opened": 2009,
+  "lengthKm": 5.281,
+  "turns": 16,
+  "lapRecord": {
+   "time": "1:25.637",
+   "driver": "Kevin Magnussen",
+   "year": 2024
+  },
+  "firstGrandPrix": 2009,
+  "direction": "anticlockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    24.46997,
+    54.60546
+   ],
+   [
+    24.4672,
+    54.6031
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and paddock with start/finish",
+   "W Abu Dhabi hotel section (marina)"
+  ],
+  "geofenceMeters": 1100,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "scheduled",
+  "grandsPrix2018to2026": 8,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2025,
+  "notes": "Yas Island complex with the W Hotel straddling the track and the marina 390 m from the pits. 1100 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q172869",
+   "wikidataCoord": [
+    24.47024,
+    54.60607
+   ],
+   "ergastCoord": [
+    24.4672,
+    54.6031
+   ],
+   "centerline": "bacinger/f1-circuits ae-2009",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0,
+    40
+   ],
+   "distToCityKm": 23.2
+  }
+ },
+ {
+  "id": "zandvoort",
+  "name": "Circuit Zandvoort",
+  "aliases": [
+   "Circuit Park Zandvoort",
+   "Zandvoort",
+   "Zandvoort Circuit"
+  ],
+  "city": "Zandvoort",
+  "region": "North Holland",
+  "country": "Netherlands",
+  "countryCode": "NL",
+  "latitude": 52.3888,
+  "longitude": 4.54092,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Amsterdam",
+  "capacity": 105000,
+  "opened": 1948,
+  "lengthKm": 4.259,
+  "turns": 14,
+  "lapRecord": {
+   "time": "1:11.097",
+   "driver": "Lewis Hamilton",
+   "year": 2021
+  },
+  "firstGrandPrix": 1952,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    52.3888,
+    4.54092
+   ],
+   [
+    52.38829,
+    4.54301
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building, paddock and main grandstand",
+   "Hugenholtzbocht / Scheivlak dunes grandstands"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "on-2026-calendar",
+  "onCalendar2026": true,
+  "calendar2026Status": "completed",
+  "grandsPrix2018to2026": 6,
+  "seasonsOnCalendar2018to2026": [
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "lastGrandPrix": 2026,
+  "notes": "Seaside-dunes circuit where the pit complex and the far-end grandstands are 170 m apart; campsites and the beach are within ~1 km. 1000 m. F1 returned in 2021 after 1985.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q173083",
+   "wikidataCoord": [
+    52.38829,
+    4.54301
+   ],
+   "ergastCoord": [
+    52.3888,
+    4.54092
+   ],
+   "centerline": "bacinger/f1-circuits nl-1948",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    10,
+    5
+   ],
+   "distToCityKm": 2.0
+  }
+ },
+ {
+  "id": "hockenheim",
+  "name": "Hockenheimring",
+  "aliases": [
+   "Hockenheimring Baden-Wurttemberg",
+   "Hockenheimring Baden-Württemberg",
+   "Motodrom",
+   "Hockenheim"
+  ],
+  "city": "Hockenheim",
+  "region": "Baden-Wurttemberg",
+  "country": "Germany",
+  "countryCode": "DE",
+  "latitude": 49.32777,
+  "longitude": 8.56587,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Berlin",
+  "capacity": 70000,
+  "opened": 1932,
+  "lengthKm": 4.574,
+  "turns": 17,
+  "lapRecord": {
+   "time": "1:13.780",
+   "driver": "Kimi Räikkönen",
+   "year": 2004
+  },
+  "firstGrandPrix": 1970,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    49.32777,
+    8.56587
+   ]
+  ],
+  "grandstandLabels": [
+   "Motodrom: start/finish, pit building and main grandstand"
+  ],
+  "geofenceMeters": 900,
+  "f1Status": "2018-2025",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 2,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019
+  ],
+  "lastGrandPrix": 2019,
+  "notes": "Hosted F1 2018 and 2019. Stadium-like Motodrom keeps the grandstands inside ~400 m; 900 m for the car parks and gates.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q152408",
+   "wikidataCoord": [
+    49.32778,
+    8.56583
+   ],
+   "ergastCoord": [
+    49.3278,
+    8.56583
+   ],
+   "centerline": "bacinger/f1-circuits de-1932",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0
+   ],
+   "distToCityKm": 1.4
+  }
+ },
+ {
+  "id": "imola",
+  "name": "Autodromo Enzo e Dino Ferrari",
+  "aliases": [
+   "Imola Circuit",
+   "Autodromo Internazionale Enzo e Dino Ferrari",
+   "Autodromo di Imola",
+   "Imola"
+  ],
+  "city": "Imola",
+  "region": "Emilia-Romagna",
+  "country": "Italy",
+  "countryCode": "IT",
+  "latitude": 44.34406,
+  "longitude": 11.7167,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Rome",
+  "capacity": 78000,
+  "opened": 1953,
+  "lengthKm": 4.909,
+  "turns": 19,
+  "lapRecord": {
+   "time": "1:15.484",
+   "driver": "Lewis Hamilton",
+   "year": 2020
+  },
+  "firstGrandPrix": 1980,
+  "direction": "anticlockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    44.34406,
+    11.7167
+   ],
+   [
+    44.34111,
+    11.71333
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building, paddock and start/finish",
+   "Tamburello / Villeneuve chicane grandstands"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "2018-2025",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 5,
+  "seasonsOnCalendar2018to2026": [
+   2020,
+   2021,
+   2022,
+   2024,
+   2025
+  ],
+  "lastGrandPrix": 2025,
+  "notes": "Hosted F1 2020-2022 and 2024-2025. Park circuit on the Santerno river; pits and Tamburello are 420 m apart. ESPN calls the 2020-2025 events Emilia Romagna GP.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171313",
+   "wikidataCoord": [
+    44.34111,
+    11.71333
+   ],
+   "ergastCoord": [
+    44.3439,
+    11.7167
+   ],
+   "centerline": "bacinger/f1-circuits it-1953",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0,
+    42
+   ],
+   "distToCityKm": 1.7
+  }
+ },
+ {
+  "id": "istanbul-park",
+  "name": "Istanbul Park",
+  "aliases": [
+   "Intercity Istanbul Park",
+   "Istanbul Otodrom",
+   "İstanbul Park",
+   "Istanbul Park Circuit",
+   "Istanbul Racing Circuit"
+  ],
+  "city": "Istanbul",
+  "region": "Istanbul",
+  "country": "Turkey",
+  "countryCode": "TR",
+  "latitude": 40.95167,
+  "longitude": 29.405,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Istanbul",
+  "capacity": 125000,
+  "opened": 2005,
+  "lengthKm": 5.338,
+  "turns": 14,
+  "lapRecord": {
+   "time": "1:24.770",
+   "driver": "Juan Pablo Montoya",
+   "year": 2005
+  },
+  "firstGrandPrix": 2005,
+  "direction": "anticlockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    40.95167,
+    29.405
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building, paddock and main grandstand"
+  ],
+  "geofenceMeters": 900,
+  "f1Status": "2018-2025",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 2,
+  "seasonsOnCalendar2018to2026": [
+   2020,
+   2021
+  ],
+  "lastGrandPrix": 2021,
+  "notes": "Hosted F1 2005-2011, 2020 and 2021 (Tuzla, Asian side, ~45 km from the centre). Single pit/grandstand block, 900 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q172743",
+   "wikidataCoord": [
+    40.95167,
+    29.405
+   ],
+   "ergastCoord": [
+    40.9517,
+    29.405
+   ],
+   "centerline": "bacinger/f1-circuits tr-2005",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    32
+   ],
+   "distToCityKm": 17.4
+  }
+ },
+ {
+  "id": "mugello",
+  "name": "Autodromo Internazionale del Mugello",
+  "aliases": [
+   "Mugello Circuit",
+   "Mugello",
+   "Autodromo del Mugello"
+  ],
+  "city": "Scarperia e San Piero",
+  "region": "Tuscany",
+  "country": "Italy",
+  "countryCode": "IT",
+  "latitude": 43.9975,
+  "longitude": 11.37194,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Rome",
+  "capacity": 50000,
+  "opened": 1974,
+  "lengthKm": 5.245,
+  "turns": 15,
+  "lapRecord": {
+   "time": "1:18.833",
+   "driver": "Lewis Hamilton",
+   "year": 2020
+  },
+  "firstGrandPrix": 2020,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    43.9975,
+    11.37194
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and start/finish grandstands"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "2018-2025",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 1,
+  "seasonsOnCalendar2018to2026": [
+   2020
+  ],
+  "lastGrandPrix": 2020,
+  "notes": "Hosted a single F1 round, the 2020 Tuscan Grand Prix (Ferrari's 1000th GP), behind closed doors apart from a small crowd. 1000 m covers the hill grandstands.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q782455",
+   "wikidataCoord": [
+    43.9975,
+    11.37194
+   ],
+   "ergastCoord": [
+    43.9975,
+    11.3719
+   ],
+   "centerline": "bacinger/f1-circuits it-1914",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    39
+   ],
+   "distToCityKm": 1.3
+  }
+ },
+ {
+  "id": "nurburgring",
+  "name": "Nurburgring Grand Prix Circuit",
+  "aliases": [
+   "Nürburgring",
+   "Nurburgring",
+   "Nürburgring GP-Strecke",
+   "Nurburgring GP",
+   "Nürburgring Grand Prix Circuit",
+   "Mercedes-Arena"
+  ],
+  "city": "Nurburg",
+  "region": "Rhineland-Palatinate",
+  "country": "Germany",
+  "countryCode": "DE",
+  "latitude": 50.33556,
+  "longitude": 6.9475,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Berlin",
+  "capacity": 150000,
+  "opened": 1927,
+  "lengthKm": 5.148,
+  "turns": 15,
+  "lapRecord": {
+   "time": "1:28.139",
+   "driver": "Max Verstappen",
+   "year": 2020
+  },
+  "firstGrandPrix": 1984,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    50.33556,
+    6.9475
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building, paddock and Mercedes-Arena"
+  ],
+  "geofenceMeters": 900,
+  "f1Status": "2018-2025",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 1,
+  "seasonsOnCalendar2018to2026": [
+   2020
+  ],
+  "lastGrandPrix": 2020,
+  "notes": "F1 used the 5.148 km GP circuit in 2020 (Eifel GP); the Nordschleife next door is a separate track. Pits/paddock and Mercedes-Arena are one cluster, 900 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q152207",
+   "wikidataCoord": [
+    50.33556,
+    6.9475
+   ],
+   "ergastCoord": [
+    50.3356,
+    6.9475
+   ],
+   "centerline": "bacinger/f1-circuits de-1927",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    8
+   ],
+   "distToCityKm": 0.3
+  }
+ },
+ {
+  "id": "paul-ricard",
+  "name": "Circuit Paul Ricard",
+  "aliases": [
+   "Paul Ricard",
+   "Le Castellet",
+   "HTTT",
+   "Circuit Paul-Ricard"
+  ],
+  "city": "Le Castellet",
+  "region": "Provence-Alpes-Cote d'Azur",
+  "country": "France",
+  "countryCode": "FR",
+  "latitude": 43.25202,
+  "longitude": 5.79157,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Paris",
+  "capacity": 90000,
+  "opened": 1970,
+  "lengthKm": 5.842,
+  "turns": 15,
+  "lapRecord": {
+   "time": "1:32.740",
+   "driver": "Sebastian Vettel",
+   "year": 2019
+  },
+  "firstGrandPrix": 1971,
+  "direction": "anticlockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    43.25202,
+    5.79157
+   ],
+   [
+    43.25056,
+    5.79167
+   ]
+  ],
+  "grandstandLabels": [
+   "Start/finish and pit straight",
+   "Paddock and pit building"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "2018-2025",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 4,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2021,
+   2022
+  ],
+  "lastGrandPrix": 2022,
+  "notes": "Hosted F1 2018-2019, 2021-2022. Permanent autodrome with a long pit building; two points 160 m apart, 1000 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171424",
+   "wikidataCoord": [
+    43.25056,
+    5.79167
+   ],
+   "ergastCoord": [
+    43.2506,
+    5.79167
+   ],
+   "centerline": "bacinger/f1-circuits fr-1969",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0,
+    124
+   ],
+   "distToCityKm": 0.7
+  }
+ },
+ {
+  "id": "portimao",
+  "name": "Autodromo Internacional do Algarve",
+  "aliases": [
+   "Autódromo Internacional do Algarve",
+   "Algarve International Circuit",
+   "Portimao circuit",
+   "AIA",
+   "Portimão"
+  ],
+  "city": "Portimao",
+  "region": "Algarve",
+  "country": "Portugal",
+  "countryCode": "PT",
+  "latitude": 37.2294,
+  "longitude": -8.63053,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Lisbon",
+  "capacity": 100000,
+  "opened": 2008,
+  "lengthKm": 4.653,
+  "turns": 15,
+  "lapRecord": {
+   "time": "1:18.750",
+   "driver": "Lewis Hamilton",
+   "year": 2020
+  },
+  "firstGrandPrix": 2020,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    37.2294,
+    -8.63053
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand on the pit straight"
+  ],
+  "geofenceMeters": 900,
+  "f1Status": "2018-2025",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 2,
+  "seasonsOnCalendar2018to2026": [
+   2020,
+   2021
+  ],
+  "lastGrandPrix": 2021,
+  "notes": "Hosted F1 2020 and 2021. Hilly rollercoaster circuit with the pit straight on a slope; 900 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q789427",
+   "wikidataCoord": [
+    37.2294,
+    -8.63053
+   ],
+   "ergastCoord": [
+    37.227,
+    -8.6267
+   ],
+   "centerline": "bacinger/f1-circuits pt-2008",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    60
+   ],
+   "distToCityKm": 13.0
+  }
+ },
+ {
+  "id": "sochi",
+  "name": "Sochi Autodrom",
+  "aliases": [
+   "Sirius Autodrom",
+   "Sochi Olympic Park Circuit",
+   "Sochi International Street Circuit",
+   "Sochi"
+  ],
+  "city": "Sochi",
+  "region": "Krasnodar Krai",
+  "country": "Russia",
+  "countryCode": "RU",
+  "latitude": 43.4057,
+  "longitude": 39.9578,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Moscow",
+  "capacity": 55000,
+  "opened": 2014,
+  "lengthKm": 5.848,
+  "turns": 18,
+  "lapRecord": {
+   "time": "1:35.761",
+   "driver": "Lewis Hamilton",
+   "year": 2019
+  },
+  "firstGrandPrix": 2014,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    43.4057,
+    39.9578
+   ],
+   [
+    43.4068,
+    39.9617
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and paddock beside Fisht Stadium",
+   "Start/finish straight grandstands"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "2018-2025",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 4,
+  "seasonsOnCalendar2018to2026": [
+   2018,
+   2019,
+   2020,
+   2021
+  ],
+  "lastGrandPrix": 2021,
+  "notes": "Hosted F1 2018-2021 (Russian GP dropped from 2022). Circuit weaves through the Olympic Park; pit building and main straight are 300 m apart, 1000 m.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": null,
+   "wikidataCoord": null,
+   "ergastCoord": [
+    43.4057,
+    39.9578
+   ],
+   "centerline": "bacinger/f1-circuits ru-2014",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    39,
+    2
+   ],
+   "distToCityKm": 27.7
+  }
+ },
+ {
+  "id": "anderstorp",
+  "name": "Scandinavian Raceway",
+  "aliases": [
+   "Anderstorp",
+   "Anderstorp Raceway",
+   "Anderstorp Scandinavian Raceway"
+  ],
+  "city": "Anderstorp",
+  "region": "Jonkoping County",
+  "country": "Sweden",
+  "countryCode": "SE",
+  "latitude": 57.2647,
+  "longitude": 13.6044,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Stockholm",
+  "capacity": null,
+  "opened": 1968,
+  "lengthKm": 4.031,
+  "turns": 8,
+  "lapRecord": {
+   "time": "1:24.836",
+   "driver": "Niki Lauda",
+   "year": 1978
+  },
+  "firstGrandPrix": 1973,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    57.2647,
+    13.6044
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 700,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 1978,
+  "layoutNote": "1978 F1 layout",
+  "notes": "F1 host 1973-1978 (Swedish GP; Brabham fan-car win 1978). Coordinate from Wikipedia text; Wikidata item not resolved, lower confidence; OSM Nominatim agrees within 170 m.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": null,
+   "wikidataCoord": null,
+   "ergastCoord": null,
+   "centerline": null,
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCityKm": 2.7
+  }
+ },
+ {
+  "id": "brands-hatch",
+  "name": "Brands Hatch",
+  "aliases": [
+   "Brands Hatch Circuit",
+   "Brands Hatch GP circuit"
+  ],
+  "city": "West Kingsdown",
+  "region": "Kent",
+  "country": "United Kingdom",
+  "countryCode": "GB",
+  "latitude": 51.35667,
+  "longitude": 0.2625,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/London",
+  "capacity": null,
+  "opened": 1950,
+  "lengthKm": null,
+  "turns": null,
+  "lapRecord": null,
+  "firstGrandPrix": 1964,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    51.35667,
+    0.2625
+   ]
+  ],
+  "grandstandLabels": [
+   "Paddock and Clearways grandstands"
+  ],
+  "geofenceMeters": 800,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 1986,
+  "notes": "F1 host 1964-1986 (British / European GP, alternating with Silverstone). No clean official F1 lap record in the source, so lapRecord is null.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": "Q172880",
+   "wikidataCoord": [
+    51.35667,
+    0.2625
+   ],
+   "ergastCoord": null,
+   "centerline": null,
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCityKm": 0.5
+  }
+ },
+ {
+  "id": "buddh",
+  "name": "Buddh International Circuit",
+  "aliases": [
+   "BIC",
+   "Buddh Circuit",
+   "Greater Noida circuit",
+   "Jaypee Circuit"
+  ],
+  "city": "Greater Noida",
+  "region": "Uttar Pradesh",
+  "country": "India",
+  "countryCode": "IN",
+  "latitude": 28.35056,
+  "longitude": 77.535,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Kolkata",
+  "capacity": 110000,
+  "opened": 2011,
+  "lengthKm": 5.125,
+  "turns": 16,
+  "lapRecord": {
+   "time": "1:27.249",
+   "driver": "Sebastian Vettel",
+   "year": 2011
+  },
+  "firstGrandPrix": 2011,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    28.35056,
+    77.535
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 2013,
+  "notes": "F1 host 2011-2013 (Indian GP).",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": "Q172906",
+   "wikidataCoord": [
+    28.35056,
+    77.535
+   ],
+   "ergastCoord": null,
+   "centerline": null,
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCityKm": 14.1
+  }
+ },
+ {
+  "id": "buenos-aires",
+  "name": "Autodromo Oscar y Juan Galvez",
+  "aliases": [
+   "Autódromo Oscar y Juan Gálvez",
+   "Autodromo de Buenos Aires",
+   "Autódromo de Buenos Aires",
+   "Autodromo Municipal de Buenos Aires"
+  ],
+  "city": "Buenos Aires",
+  "region": "Buenos Aires",
+  "country": "Argentina",
+  "countryCode": "AR",
+  "latitude": -34.69405,
+  "longitude": -58.46126,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/Argentina/Buenos_Aires",
+  "capacity": null,
+  "opened": 1952,
+  "lengthKm": null,
+  "turns": null,
+  "lapRecord": null,
+  "firstGrandPrix": 1953,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    -34.69405,
+    -58.46126
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 900,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 1998,
+  "notes": "F1 host 1953-1981 and 1995-1998 (Argentine GP). Centerline node used for the pits; lap record and turns not sourced, so left null.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": null,
+   "wikidataCoord": null,
+   "ergastCoord": null,
+   "centerline": "bacinger/f1-circuits ar-1952",
+   "wikipedia": null
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0
+   ],
+   "distToCityKm": 12.4
+  }
+ },
+ {
+  "id": "dijon",
+  "name": "Dijon-Prenois",
+  "aliases": [
+   "Circuit de Dijon-Prenois",
+   "Dijon",
+   "Circuit Dijon-Prenois"
+  ],
+  "city": "Prenois",
+  "region": "Burgundy",
+  "country": "France",
+  "countryCode": "FR",
+  "latitude": 47.36199,
+  "longitude": 4.89962,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Paris",
+  "capacity": null,
+  "opened": 1972,
+  "lengthKm": null,
+  "turns": null,
+  "lapRecord": null,
+  "firstGrandPrix": 1974,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    47.36199,
+    4.89962
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 700,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 1984,
+  "notes": "F1 host 1974, 1977, 1979, 1981, 1982 and 1984 (French/Swiss GP). No clean official F1 lap record on the current 3.801 km layout, so lapRecord is null.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": "Q172888",
+   "wikidataCoord": [
+    47.36199,
+    4.89962
+   ],
+   "ergastCoord": null,
+   "centerline": null,
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCityKm": 11.6
+  }
+ },
+ {
+  "id": "estoril",
+  "name": "Autodromo do Estoril",
+  "aliases": [
+   "Circuito do Estoril",
+   "Autódromo do Estoril",
+   "Autodromo Fernanda Pires da Silva",
+   "Estoril"
+  ],
+  "city": "Cascais",
+  "region": "Lisbon",
+  "country": "Portugal",
+  "countryCode": "PT",
+  "latitude": 38.74902,
+  "longitude": -9.39307,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Lisbon",
+  "capacity": 45000,
+  "opened": 1972,
+  "lengthKm": 4.36,
+  "turns": 13,
+  "lapRecord": {
+   "time": "1:22.446",
+   "driver": "David Coulthard",
+   "year": 1994
+  },
+  "firstGrandPrix": 1984,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    38.74902,
+    -9.39307
+   ],
+   [
+    38.7515,
+    -9.3917
+   ]
+  ],
+  "grandstandLabels": [
+   "Start/finish and pit building",
+   "Pit straight main grandstand"
+  ],
+  "geofenceMeters": 800,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 1996,
+  "notes": "F1 host 1984-1996 (Portuguese GP). No Wikidata/Ergast point checked beyond the site coordinate; centerline node used for the pits.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": null,
+   "wikidataCoord": null,
+   "ergastCoord": null,
+   "centerline": "bacinger/f1-circuits pt-1972",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0,
+    5
+   ],
+   "distToCityKm": 4.9
+  }
+ },
+ {
+  "id": "fuji",
+  "name": "Fuji Speedway",
+  "aliases": [
+   "Fuji International Speedway",
+   "富士スピードウェイ"
+  ],
+  "city": "Oyama",
+  "region": "Shizuoka",
+  "country": "Japan",
+  "countryCode": "JP",
+  "latitude": 35.37167,
+  "longitude": 138.92667,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Tokyo",
+  "capacity": 110000,
+  "opened": 1966,
+  "lengthKm": 4.563,
+  "turns": 16,
+  "lapRecord": {
+   "time": "1:18.426",
+   "driver": "Felipe Massa",
+   "year": 2008
+  },
+  "firstGrandPrix": 1976,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    35.37167,
+    138.92667
+   ]
+  ],
+  "grandstandLabels": [
+   "Main grandstand and pit building"
+  ],
+  "geofenceMeters": 1200,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 2008,
+  "notes": "F1 host 1976-1977 and 2007-2008 (Japanese GP); current track is the 2005 Tilke layout.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": "Q171399",
+   "wikidataCoord": [
+    35.37167,
+    138.92667
+   ],
+   "ergastCoord": null,
+   "centerline": null,
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCityKm": 0.8
+  }
+ },
+ {
+  "id": "indianapolis",
+  "name": "Indianapolis Motor Speedway",
+  "aliases": [
+   "IMS",
+   "The Brickyard",
+   "Indianapolis Motor Speedway Road Course",
+   "Indy"
+  ],
+  "city": "Speedway",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.79485,
+  "longitude": -86.23482,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/Indiana/Indianapolis",
+  "capacity": 257325,
+  "opened": 1909,
+  "lengthKm": 4.192,
+  "turns": 13,
+  "lapRecord": {
+   "time": "1:10.399",
+   "driver": "Rubens Barrichello",
+   "year": 2004
+  },
+  "firstGrandPrix": 2000,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    39.79485,
+    -86.23482
+   ]
+  ],
+  "grandstandLabels": [
+   "Pagoda, start/finish and Gasoline Alley"
+  ],
+  "geofenceMeters": 1500,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 2007,
+  "layoutNote": "2000-2007 F1 road course",
+  "notes": "F1 US GP used the infield road course 2000-2007 (Indy 500 counted in the World Championship 1950-1960). Largest grandstand capacity on Earth; 2.5 mile oval, so 1500 m around the Pagoda only.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q172732",
+   "wikidataCoord": [
+    39.79485,
+    -86.23482
+   ],
+   "ergastCoord": null,
+   "centerline": "bacinger/f1-circuits us-1909",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    11
+   ],
+   "distToCityKm": 7.2
+  }
+ },
+ {
+  "id": "jarama",
+  "name": "Circuito del Jarama",
+  "aliases": [
+   "Jarama",
+   "Circuito Permanente del Jarama",
+   "Circuito del Jarama - RACE"
+  ],
+  "city": "San Sebastian de los Reyes",
+  "region": "Community of Madrid",
+  "country": "Spain",
+  "countryCode": "ES",
+  "latitude": 40.61711,
+  "longitude": -3.58558,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Madrid",
+  "capacity": null,
+  "opened": 1967,
+  "lengthKm": 3.404,
+  "turns": 14,
+  "lapRecord": {
+   "time": "1:15.467",
+   "driver": "Alan Jones",
+   "year": 1980
+  },
+  "firstGrandPrix": 1968,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    40.61711,
+    -3.58558
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 700,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 1981,
+  "layoutNote": "1980 F1 layout",
+  "notes": "F1 host 1968-1981 (Spanish GP). Lap record is for the 1980 layout.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": "Q172897",
+   "wikidataCoord": [
+    40.61711,
+    -3.58558
+   ],
+   "ergastCoord": null,
+   "centerline": null,
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCityKm": 7.9
+  }
+ },
+ {
+  "id": "jerez",
+  "name": "Circuito de Jerez - Angel Nieto",
+  "aliases": [
+   "Circuito de Jerez",
+   "Circuito de Jerez Ángel Nieto",
+   "Jerez",
+   "Jerez Circuit"
+  ],
+  "city": "Jerez de la Frontera",
+  "region": "Andalusia",
+  "country": "Spain",
+  "countryCode": "ES",
+  "latitude": 36.70833,
+  "longitude": -6.03417,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Madrid",
+  "capacity": 125000,
+  "opened": 1985,
+  "lengthKm": 4.428,
+  "turns": 15,
+  "lapRecord": {
+   "time": "1:23.135",
+   "driver": "Heinz-Harald Frentzen",
+   "year": 1997
+  },
+  "firstGrandPrix": 1986,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    36.70833,
+    -6.03417
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 800,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 1997,
+  "notes": "F1 host 1986-1990 (Spanish GP) and 1994, 1997 (European GP; 1997 title decider).",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": "Q172884",
+   "wikidataCoord": [
+    36.70833,
+    -6.03417
+   ],
+   "ergastCoord": null,
+   "centerline": null,
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCityKm": 8.6
+  }
+ },
+ {
+  "id": "kyalami",
+  "name": "Kyalami Grand Prix Circuit",
+  "aliases": [
+   "Kyalami",
+   "Kyalami Race Circuit",
+   "Kyalami Circuit"
+  ],
+  "city": "Midrand",
+  "region": "Gauteng",
+  "country": "South Africa",
+  "countryCode": "ZA",
+  "latitude": -25.99803,
+  "longitude": 28.06892,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Africa/Johannesburg",
+  "capacity": 100000,
+  "opened": 1961,
+  "lengthKm": 4.261,
+  "turns": 13,
+  "lapRecord": {
+   "time": "1:17.578",
+   "driver": "Nigel Mansell",
+   "year": 1992
+  },
+  "firstGrandPrix": 1967,
+  "direction": "anticlockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    -25.99803,
+    28.06892
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 900,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 1993,
+  "layoutNote": "1992 F1 layout",
+  "notes": "F1 host 1967-1985 and 1992-1993. Lap record is for the 4.261 km 1992 F1 layout; the current GP circuit is 4.529 km.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q171667",
+   "wikidataCoord": [
+    -25.99803,
+    28.06892
+   ],
+   "ergastCoord": null,
+   "centerline": "bacinger/f1-circuits za-1961",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    112
+   ],
+   "distToCityKm": 5.7
+  }
+ },
+ {
+  "id": "magny-cours",
+  "name": "Circuit de Nevers Magny-Cours",
+  "aliases": [
+   "Magny-Cours",
+   "Circuit de Magny-Cours",
+   "Nevers Magny-Cours"
+  ],
+  "city": "Magny-Cours",
+  "region": "Bourgogne-Franche-Comte",
+  "country": "France",
+  "countryCode": "FR",
+  "latitude": 46.86395,
+  "longitude": 3.16231,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Paris",
+  "capacity": 139112,
+  "opened": 1960,
+  "lengthKm": 4.411,
+  "turns": 17,
+  "lapRecord": {
+   "time": "1:15.377",
+   "driver": "Michael Schumacher",
+   "year": 2004
+  },
+  "firstGrandPrix": 1991,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    46.86395,
+    3.16231
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 900,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 2008,
+  "notes": "F1 host 1991-2008 (French GP). Permanent circuit still used for motorcycle and club racing.",
+  "coordConfidence": "high",
+  "sources": {
+   "wikidata": "Q172876",
+   "wikidataCoord": [
+    46.86395,
+    3.16231
+   ],
+   "ergastCoord": null,
+   "centerline": "bacinger/f1-circuits fr-1960",
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCenterlineM": [
+    56
+   ],
+   "distToCityKm": 1.0
+  }
+ },
+ {
+  "id": "watkins-glen",
+  "name": "Watkins Glen International",
+  "aliases": [
+   "Watkins Glen",
+   "The Glen"
+  ],
+  "city": "Watkins Glen",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.34105,
+  "longitude": -76.92884,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": 1956,
+  "lengthKm": null,
+  "turns": null,
+  "lapRecord": null,
+  "firstGrandPrix": 1961,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    42.34105,
+    -76.92884
+   ]
+  ],
+  "grandstandLabels": [
+   "Start/finish and pit building"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 1980,
+  "notes": "F1 US GP host 1961-1980. Centerline node used for the pits; lap record and turns not sourced, so left null.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": null,
+   "wikidataCoord": null,
+   "ergastCoord": null,
+   "centerline": "bacinger/f1-circuits us-1956",
+   "wikipedia": null
+  },
+  "checks": {
+   "distToCenterlineM": [
+    0
+   ],
+   "distToCityKm": 6.6
+  }
+ },
+ {
+  "id": "yeongam",
+  "name": "Korea International Circuit",
+  "aliases": [
+   "KIC",
+   "Korean International Circuit",
+   "Yeongam circuit"
+  ],
+  "city": "Yeongam",
+  "region": "South Jeolla",
+  "country": "South Korea",
+  "countryCode": "KR",
+  "latitude": 34.7333,
+  "longitude": 126.4167,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Asia/Seoul",
+  "capacity": 135000,
+  "opened": 2010,
+  "lengthKm": 5.615,
+  "turns": 18,
+  "lapRecord": {
+   "time": "1:39.605",
+   "driver": "Sebastian Vettel",
+   "year": 2011
+  },
+  "firstGrandPrix": 2010,
+  "direction": "anticlockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    34.7333,
+    126.4167
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 1000,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 2013,
+  "notes": "F1 host 2010-2013 (Korean GP). Coordinate from the Wikipedia article (Wikidata has no P625 on the circuit item), rounded to 4 decimals, so lower confidence; OSM Nominatim agrees within 290 m.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": null,
+   "wikidataCoord": null,
+   "ergastCoord": null,
+   "centerline": null,
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCityKm": 26.9
+  }
+ },
+ {
+  "id": "zolder",
+  "name": "Circuit Zolder",
+  "aliases": [
+   "Zolder",
+   "Circuit Terlaemen",
+   "Terlaemen"
+  ],
+  "city": "Heusden-Zolder",
+  "region": "Limburg",
+  "country": "Belgium",
+  "countryCode": "BE",
+  "latitude": 50.98889,
+  "longitude": 5.25556,
+  "sports": [
+   "motorsport"
+  ],
+  "leagues": [
+   "racing/f1"
+  ],
+  "homeTeams": [],
+  "timeZone": "Europe/Brussels",
+  "capacity": null,
+  "opened": 1963,
+  "lengthKm": 4.262,
+  "turns": 15,
+  "lapRecord": {
+   "time": "1:19.294",
+   "driver": "Rene Arnoux",
+   "year": 1984
+  },
+  "firstGrandPrix": 1973,
+  "direction": "clockwise",
+  "street": false,
+  "grandstandsLatLon": [
+   [
+    50.98889,
+    5.25556
+   ]
+  ],
+  "grandstandLabels": [
+   "Pit building and main grandstand"
+  ],
+  "geofenceMeters": 700,
+  "f1Status": "historic",
+  "onCalendar2026": false,
+  "calendar2026Status": null,
+  "grandsPrix2018to2026": 0,
+  "seasonsOnCalendar2018to2026": [],
+  "lastGrandPrix": 1984,
+  "layoutNote": "1984 F1 layout",
+  "notes": "F1 host 1973-1984 (Belgian GP, alternating with Nivelles/Spa). Lap record is for the 1984 F1 layout.",
+  "coordConfidence": "medium",
+  "sources": {
+   "wikidata": "Q172868",
+   "wikidataCoord": [
+    50.98889,
+    5.25556
+   ],
+   "ergastCoord": null,
+   "centerline": null,
+   "wikipedia": "en.wikipedia.org infobox"
+  },
+  "checks": {
+   "distToCityKm": 5.0
+  }
+ }
+]
