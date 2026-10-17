@@ -1,0 +1,52 @@
+<html><head><meta charset="utf-8"><title>World Cup</title>
+<link rel="stylesheet" href="../../../../../kit/kit.css">
+<link rel="stylesheet" href="../../../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../../../final/system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.62); }
+  .crop { position: absolute; inset: 0; overflow: hidden; }
+  .hx-badge { display: block; filter: drop-shadow(0 12px 18px rgba(0,0,0,.55)) drop-shadow(0 1px 1px rgba(0,0,0,.7)); overflow: visible; }
+  .hx-glyph { display: block; flex: none; }
+  .hx-chip { display: inline-flex; align-items: center; gap: 7px; height: 28px; padding: 0 12px 0 6px; border-radius: 14px;
+             font: 700 12.5px/1 var(--b-cond); letter-spacing: 1.1px; text-transform: uppercase; white-space: nowrap;
+             box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); }
+  .ls { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .ls th { font: 700 12px/1 var(--b-cond); letter-spacing: 2px; color: var(--b-text-3); text-align: center; padding-bottom: 8px; }
+  .ls td { height: 48px; box-shadow: inset 0 1px 0 var(--b-line); text-align: center; font: 600 20px/1 var(--b-cond); color: var(--b-text-2); width: 28px; }
+  .ls td.tm { text-align: left; width: auto; }
+  .ls td.tm div { display: flex; align-items: center; gap: 12px; font: 700 20px/1 var(--b-cond); letter-spacing: .4px; text-transform: uppercase; color: #fff; }
+  .ls td.t { width: 52px; text-align: right; font: 800 32px/1 var(--b-cond); color: #fff; }
+  .ls tr.lose td.tm div, .ls tr.lose td.t { color: rgba(255,255,255,.58); }
+  .cta { position: absolute; left: 20px; right: 20px; bottom: 40px; }
+  .cta .b-btn { width: 100%; height: 54px; font-size: 17px; box-shadow: inset 0 1px 0 rgba(255,255,255,.7), inset 0 -1px 0 rgba(0,0,0,.25); }
+  .cta svg { width: 16px; height: 16px; fill: currentColor; }
+
+  .f-hero { height: 470px; }
+  .f-hero .crop img { filter: var(--grade); }
+  .f-hero::after { background: linear-gradient(180deg, rgba(7,8,10,.55) 0%, rgba(7,8,10,0) 20%, rgba(7,8,10,0) 40%, rgba(7,8,10,.72) 74%, #07080a 100%); z-index: 2; }
+  .tint { position: absolute; inset: 0; z-index: 1; }
+  .pin { position: absolute; left: 20px; top: 104px; z-index: 5; }
+  .head { top: 296px; z-index: 6; gap: 10px !important; }
+  .head .b-display { font-size: 54px; }
+  .head .where { font: 500 15px/1.3 var(--b-ui); color: rgba(255,255,255,.8); }
+  .body { top: 506px; }
+
+  body.b { --grade: contrast(1.05) saturate(.85) brightness(.85); }
+  .head { top: 292px; }
+  .head .b-display { font-size: 50px; }</style></head>
+<body class="phone b">
+<div class="f-hero"><div class="crop" data-crop="soldier-soccer.jpg 0 500 1280 1100"></div></div><div class="pin"><svg class="hx-badge" style="" width="168.0" height="168" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hx22-rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0.000" stop-color="#5f656c"/><stop offset="0.200" stop-color="#e8ecf0"/><stop offset="0.400" stop-color="#9aa1a8"/><stop offset="0.600" stop-color="#ffffff"/><stop offset="0.800" stop-color="#b9c0c6"/><stop offset="1.000" stop-color="#6b7178"/></linearGradient><linearGradient id="hx22-txt" x1="0" y1="0" x2="1" y2="1"><stop offset="0.000" stop-color="#ffffff"/><stop offset="0.333" stop-color="#cdd3d9"/><stop offset="0.667" stop-color="#f4f6f8"/><stop offset="1.000" stop-color="#bcc3ca"/></linearGradient></defs><circle cx="80" cy="80" r="77" fill="url(#hx22-rim)"/><circle cx="80" cy="80" r="70" fill="#002868" stroke="rgba(0,0,0,.55)" stroke-width="1"/><circle cx="80" cy="80" r="65" fill="none" stroke="url(#hx22-rim)" stroke-width=".9" opacity=".85"/><rect x="56" y="98.0" width="48" height="3" fill="#C8102E"/><rect x="56" y="102.6" width="48" height="3" fill="#FFFFFF"/><rect x="56" y="107.2" width="48" height="3" fill="#C8102E"/><path id="hx22-arct" d="M28,80 A52,52 0 0 1 132,80" fill="none"/><text font-family="Barlow Condensed" font-weight="700" font-size="13" letter-spacing="2.6" fill="#FFFFFF"><textPath href="#hx22-arct" startOffset="50%" text-anchor="middle">WORLD CUP</textPath></text><path id="hx22-arcb" d="M19.5,80 A60.5,60.5 0 0 0 140.5,80" fill="none"/><text font-family="Barlow Condensed" font-weight="700" font-size="12" letter-spacing="1.6" fill="#DCE1E7"><textPath href="#hx22-arcb" startOffset="50%" text-anchor="middle">OPENING MATCH</textPath></text><polygon points="24.00,76.60 24.84,78.84 27.23,78.95 25.36,80.44 26.00,82.75 24.00,81.43 22.00,82.75 22.64,80.44 20.77,78.95 23.16,78.84" fill="url(#hx22-txt)"/><polygon points="136.00,76.60 136.84,78.84 139.23,78.95 137.36,80.44 138.00,82.75 136.00,81.43 134.00,82.75 134.64,80.44 132.77,78.95 135.16,78.84" fill="url(#hx22-txt)"/><text x="80" y="88" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="38" letter-spacing="0.76" style="font-variation-settings:'opsz' 72" fill="rgba(0,0,0,.6)" transform="translate(0 1.3)">1994</text><text x="80" y="88" text-anchor="middle" font-family="Fraunces" font-weight="600" font-size="38" letter-spacing="0.76" style="font-variation-settings:'opsz' 72" fill="url(#hx22-txt)">1994</text></svg></div><div class="b-nav" style="z-index:7"><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div></div><div class="f-col head"><div class="b-display">The world<br>came to<br>Chicago.</div><div class="where">Soldier Field, Jun 17, 1994</div></div><div class="f-col body"><table class="ls"><tr><th></th><th>1H</th><th>2H</th><th style="text-align:right">T</th></tr><tr class="lose"><td class="tm"><div><span class="f-mono" style="--c:#00843d;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)">BOL</span>Bolivia</div></td><td>0</td><td>0</td><td class="t">0</td></tr><tr class=""><td class="tm"><div><span class="f-mono" style="--c:#2b2b30;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)">GER</span>Germany</div></td><td>0</td><td>1</td><td class="t">1</td></tr></table></div><div class="cta"><div class="b-btn" style="background:linear-gradient(180deg,#f7f9fa 0%,#c4cbd1 52%,#e6eaed 100%);color:#002868"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg>Play recap</div></div><script>
+(function () {
+  const N = {"wrigley-night.jpg": [1920, 2560], "united-center-court.jpg": [1280, 853], "camp-nou-aerial.jpg": [1280, 960], "soldier-soccer.jpg": [1280, 1707], "wrigley-bleachers.jpg": [1280, 853]};
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../../../kit/kit.js"></script>
+</body></html>

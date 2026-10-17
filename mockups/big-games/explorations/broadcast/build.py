@@ -235,16 +235,17 @@ memory(3, "scf15", "Stanley Cup Final", '<div class="crop" data-crop="united-cen
        "Clinched on home ice.", "United Center, Jun 15, 2015",
        table([1, 2, 3], [("TB", "#0b3d91", "#fff", "Tampa Bay", [0, 0, 0], 0, True),
                          ("CHI", "#cf0a2c", "#fff", "Chicago", [0, 1, 1], 2, False)]),
-       grade="grayscale(.4) contrast(1.1) brightness(.8)")
+       grade="blur(1.4px) grayscale(.4) contrast(1.1) brightness(.72)")
 memory(4, "ucl99", "Champions League Final", '<div class="crop" data-crop="camp-nou-aerial.jpg 200 60 880 900"></div>',
        "Two goals. Injury time.", "Camp Nou, May 26, 1999",
        table(["1H", "2H"], [("BAY", "#dc052d", "#fff", "Bayern", [1, 0], 1, True),
                             ("MUN", "#da291c", "#fff", "Manchester Utd", [0, 2], 2, False)]),
-       grade="grayscale(1) contrast(1.15) brightness(.7) sepia(1) hue-rotate(185deg) saturate(2)")
-memory(5, "wc94", "World Cup 1994", '<div class="crop" data-crop="soldier-soccer.jpg 0 500 1280 1100"></div>',
+       grade="grayscale(1) contrast(1.15) brightness(.7) sepia(1) hue-rotate(185deg) saturate(2) brightness(.78)")
+memory(5, "wc94", "World Cup 1994", '<div class="crop" data-crop="soldier-soccer.jpg 0 400 1280 1100"></div>',
        "The world came to Chicago.", "Soldier Field, Jun 17, 1994",
        table(["1H", "2H"], [("BOL", "#00843d", "#fff", "Bolivia", [0, 0], 0, True),
-                            ("GER", "#2a2a2a", "#fff", "Germany", [0, 1], 1, False)]))
+                            ("GER", "#2a2a2a", "#fff", "Germany", [0, 1], 1, False)]),
+       grade="blur(1.6px) contrast(1.05) saturate(.85) brightness(.82)")
 sb = THEMES["sb59"]
 nophoto = (f'<div class="nophoto" style="--field:{sb["field"]}">'
            f'<i style="left:150px;width:120px;background:#F2B705"></i><i style="left:300px;width:46px;background:#0B7A3E"></i>'
