@@ -114,3 +114,29 @@ Each screen lists its **base** (start from that render), what to **borrow** from
 - Render with: `cd /home/user/SportsApp/mockups && FEATURES_DIR=final/features OUT_DIR=final/png NODE_PATH=$(npm root -g) node render.cjs <NN-slug>`
 - Open every PNG with Read and critique it against the five rules and the question: **"Is this the cleanest version that still feels like Witness?"** Check alignment to the 20pt gutters, consistent nav position (y=56), no clipping, and nothing within 34pt of the bottom except the home indicator and tab bar.
 - Iterate until each screen is excellent, usually 2–3 passes.
+
+## Client addendum: no AI slop (overrides anything above)
+
+The client: *"I don't want subheadings everywhere and other typical AI slop."* These are hard rules:
+
+1. **No eyebrows or kickers.** No small tracked-caps label above titles or blocks (e.g. "LIFE MAP · 2014–2026", "HEAD TO HEAD", "UP NEXT", "WHERE YOU SAT"). The title or the content speaks for itself.
+   - The only small caps allowed are functional state: LIVE, FINAL, a score bug, and units directly attached to a number ("MILES", "OF 30 MLB PARKS").
+   - Budget: **at most one small label per screen**, beyond tab labels.
+2. **No subtitle under every title.** A title stands alone. A supporting line is allowed only on the single hero, and only if it adds a fact.
+3. **No section headers inside a screen.** Separate blocks with space, not labels.
+4. **No filler or marketing copy.** No "Keep buying tickets", "Rare, but real", "Every road starts…", "Your numbers", "Found in 2,814 photos" footers, invented quotes or taglines. Exceptions:
+   - The user's own note on 05: one short line.
+   - The trip quote on 14.
+   - The one-line claim on the 11 share card and 09's single line.
+5. **No ornament.** No decorative dots, bullets, sparkles, emoji, "·"-chained metadata strings longer than 2 items, badges, or pills that repeat what's already on screen.
+6. **No duplicate information.** If a number is the hero, don't repeat it in a stat row.
+7. **Plain words.** Buttons are verbs: Confirm, Skip, Share, Save. Labels are nouns.
+
+## UX checklist (ui-ux-pro-max)
+
+- **Contrast:** all text at least 4.5:1 on its background. No body or label text below rgba(255,255,255,.55) on near-black.
+- **Touch targets:** at least 44 × 44pt. Icon buttons are 40pt visual inside a 44pt hit area.
+- **Body text:** at least 15pt. The single smallest text is 12pt (data labels only).
+- **Icons:** one stroked SVG icon set (24 viewBox, 2px stroke). No emoji or text glyphs as icons (no ✓ ✕ ▶ ❄ characters); draw them as SVG.
+- **Color is never the only signal:** W/L uses letters or position, and the selected state has a shape change too.
+- **Consistency:** same nav y, same title style, same tab bar, same list rows on every screen.
