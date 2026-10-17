@@ -210,19 +210,22 @@ struct PhotoView: View {
     @State private var image: UIImage?
 
     var body: some View {
-        Group {
-            switch ref {
-            case .bundled(let name):
-                Image(name).resizable().aspectRatio(contentMode: contentMode)
-            default:
-                if let image {
-                    Image(uiImage: image).resizable().aspectRatio(contentMode: contentMode)
-                } else {
-                    Color.panel
+        // A clear base takes the proposed size, so a filled photo never widens its parent.
+        Color.clear
+            .overlay {
+                switch ref {
+                case .bundled(let name):
+                    Image(name).resizable().aspectRatio(contentMode: contentMode)
+                default:
+                    if let image {
+                        Image(uiImage: image).resizable().aspectRatio(contentMode: contentMode)
+                    } else {
+                        Color.panel
+                    }
                 }
             }
-        }
-        .task(id: ref) { image = await PhotoLoader.load(ref) }
+            .clipped()
+            .task(id: ref) { image = await PhotoLoader.load(ref) }
         .accessibilityHidden(true)
     }
 }
@@ -261,7 +264,7 @@ struct GameBackdrop: View {
             PhotoView(ref: game.photos[index])
         } else {
             let team = library.team(library.rootingTeam(game))
-            ZStack {
+            Color.clear.overlay {
                 LinearGradient(colors: [(team?.accent ?? .gray).opacity(0.55), Color.ink],
                                startPoint: .topTrailing, endPoint: .bottomLeading)
                 Image(systemName: game.sport.symbol)
@@ -270,6 +273,7 @@ struct GameBackdrop: View {
                     .rotationEffect(.degrees(-12))
                     .offset(x: 70, y: -20)
             }
+            .clipped()
             .accessibilityHidden(true)
         }
     }

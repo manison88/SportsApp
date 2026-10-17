@@ -7,13 +7,8 @@ struct WelcomeView: View {
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Image("wrigley-night")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .clipped()
+            PhotoView(ref: .bundled("wrigley-night"))
                 .ignoresSafeArea()
-                .accessibilityHidden(true)
             Scrim().ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: Spacing.block) {

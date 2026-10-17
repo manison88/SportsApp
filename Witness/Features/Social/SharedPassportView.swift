@@ -128,7 +128,9 @@ private struct Rings: View {
                     Circle().fill(person.color)
                     VStack(spacing: 0) {
                         Text("\(shared)")
-                            .displayFont(110)
+                            .displayFont(96)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                             .foregroundStyle(.black)
                         Text("With \(person.name)")
                             .font(.condensed(.caption, weight: .heavy))
@@ -136,6 +138,7 @@ private struct Rings: View {
                             .textCase(.uppercase)
                             .foregroundStyle(.black.opacity(0.75))
                     }
+                    .padding(.bottom, 10)
                 }
                 .frame(width: inner, height: inner)
                 .offset(y: outer * 0.06)

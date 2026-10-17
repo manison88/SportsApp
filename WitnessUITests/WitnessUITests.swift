@@ -52,8 +52,27 @@ final class WitnessUITests: XCTestCase {
             app.swipeDown()
         }
         XCTAssertTrue(field.waitForExistence(timeout: 5))
-        field.tap()
-        field.typeText(text)
+        for _ in 0..<3 {
+            field.tap()
+            if app.keyboards.firstMatch.waitForExistence(timeout: 3) { break }
+        }
+        app.typeText(text)
+    }
+
+    /// The system photo prompt is drawn by SpringBoard on iOS 18.
+    func allowPhotoAccess() {
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        let labels = ["Allow Full Access", "Allow Access to All Photos", "Allow"]
+        let deadline = Date().addingTimeInterval(10)
+        while Date() < deadline {
+            for source in [springboard, app!] {
+                for label in labels where source.buttons[label].exists {
+                    source.buttons[label].tap()
+                    return
+                }
+            }
+            sleep(1)
+        }
     }
 
     func openGame(_ id: String, query: String) {
@@ -151,8 +170,9 @@ final class WitnessUITests: XCTestCase {
     func testAddGameManually() {
         launch(["-empty"])
         tap("empty-add")
-        XCTAssertTrue(el("add-save").waitForExistence(timeout: 5))
-        XCTAssertFalse(el("add-save").isEnabled, "Save must wait for a venue")
+        let save = app.buttons["add-save"]
+        XCTAssertTrue(save.waitForExistence(timeout: 5))
+        XCTAssertFalse(save.isEnabled, "Save must wait for a venue")
         snap("add-game-empty")
 
         tap("add-venue")
@@ -239,13 +259,7 @@ final class WitnessUITests: XCTestCase {
     func testDiscoveryFromPhotos() {
         launch([])
         tap("welcome-photos")
-        addUIInterruptionMonitor(withDescription: "Photos") { alert in
-            for label in ["Allow Full Access", "Allow Access to All Photos", "OK", "Allow"] where alert.buttons[label].exists {
-                alert.buttons[label].tap(); return true
-            }
-            return false
-        }
-        app.tap()
+        allowPhotoAccess()
         let found = el("discovery-count")
         let empty = el("discovery-empty")
         let denied = el("discovery-denied")

@@ -47,14 +47,16 @@ struct LifeMapView: View {
                 }
                 .mapStyle(.standard(elevation: .realistic, emphasis: .muted, pointsOfInterest: .excludingAll, showsTraffic: false))
                 .mapControlVisibility(.hidden)
-                .frame(height: 440)
+                .frame(height: 400)
+                .containerRelativeFrame(.horizontal) { width, _ in width - 2 * Spacing.gutter }
                 .clipShape(.rect(cornerRadius: 22))
+                .frame(maxWidth: .infinity)
                 .accessibilityIdentifier("life-map")
 
                 VStack(alignment: .leading, spacing: Spacing.block) {
                     HStack(alignment: .lastTextBaseline, spacing: 10) {
                         Text(Fmt.number(stats.miles))
-                            .displayFont(110)
+                            .displayFont(96)
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
                         Text("Miles")
@@ -77,7 +79,7 @@ struct LifeMapView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .inkBackground()
-        .navigationTitle("Map")
+        .navigationTitle("MAP")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
@@ -116,7 +118,7 @@ struct LifeMapView: View {
         let center = venues.isEmpty ? home : CLLocationCoordinate2D(
             latitude: (venues.map(\.latitude).reduce(home.latitude, +)) / Double(venues.count + 1) + 8,
             longitude: (venues.map(\.longitude).max()! + venues.map(\.longitude).min()!) / 2 * 0.5 + home.longitude * 0.5)
-        let distance = min(max(far * 3.2, 2_500_000), 22_000_000)
+        let distance = min(max(far * 4, 2_500_000), 30_000_000)
         return MapCamera(centerCoordinate: center, distance: distance, heading: 0, pitch: 0)
     }
 }

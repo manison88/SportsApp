@@ -9,13 +9,14 @@ struct VenuePickerView: View {
     @Environment(Library.self) private var library
     @Environment(\.dismiss) private var dismiss
     @State private var query = ""
+    @State private var showNew = false
     @State private var mapResults: [MKMapItem] = []
 
     var body: some View {
         List {
             Section {
-                NavigationLink {
-                    AddVenueView(venueId: $venueId, sport: sport, initialName: query, onSaved: { dismiss() })
+                Button {
+                    showNew = true
                 } label: {
                     Label("New venue", systemImage: "plus")
                 }
@@ -53,6 +54,13 @@ struct VenuePickerView: View {
         }
         .scrollContentBackground(.hidden)
         .background(Color.ink.ignoresSafeArea())
+        .navigationDestination(isPresented: $showNew) {
+            // Pop the new-venue form first, then this picker, so Add Game is shown with the venue set.
+            AddVenueView(venueId: $venueId, sport: sport, initialName: query, onSaved: {
+                showNew = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) { dismiss() }
+            })
+        }
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search venues")
         .navigationTitle("Venue")
         .navigationBarTitleDisplayMode(.inline)
