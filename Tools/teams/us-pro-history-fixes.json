@@ -1,0 +1,586 @@
+[
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "rate-field",
+  "field": "name",
+  "old": "Guaranteed Rate Field",
+  "new": "Rate Field",
+  "source": "White Sox/Rate Companies naming-rights change effective 2025 (MLB.com); venue record already lists Rate Field as alias. Same change in Witness/Resources/SeedData/venues.json and Tools/venues/us-pro.json."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "nrg-stadium",
+  "field": "name",
+  "old": "Reliant Stadium",
+  "new": "NRG Stadium",
+  "source": "Houston Texans stadium renamed NRG Stadium in 2014 (Wikipedia: NRG Stadium); alias already present. Same change in Tools/venues/us-pro.json."
+ },
+ {
+  "file": "Witness/Resources/Catalog/teams.json",
+  "id": "mlb-cle",
+  "field": "teamName",
+  "old": "Indians",
+  "new": "Guardians",
+  "source": "Cleveland Guardians rename effective Nov 2021 (MLB.com); ESPN baseball/mlb team 5 displayName is Cleveland Guardians."
+ },
+ {
+  "file": "Witness/Resources/SeedData/teams.json",
+  "id": "mlb-cle",
+  "field": "teamName",
+  "old": "Indians",
+  "new": "Guardians",
+  "source": "Cleveland Guardians rename effective Nov 2021 (MLB.com); ESPN baseball/mlb team 5 displayName is Cleveland Guardians."
+ },
+ {
+  "file": "Tools/teams/other-sports-teams.json",
+  "id": "mlb-cle",
+  "field": "teamName",
+  "old": "Indians",
+  "new": "Guardians",
+  "source": "Cleveland Guardians rename effective Nov 2021 (MLB.com); ESPN baseball/mlb team 5 displayName is Cleveland Guardians."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "bc-place",
+  "field": "aliases",
+  "old": [
+   "BC Place Stadium",
+   "General Motors Place",
+   "GM Place",
+   "Rogers Arena"
+  ],
+  "new": [
+   "BC Place Stadium"
+  ],
+  "source": "GM Place/Rogers Arena is the separate NHL arena (catalog id rogers-arena, Wikidata Q517318); BC Place Wikipedia has no such names. Same fix needed in Tools/venues/canada.json and us-pro.json."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "bc-place",
+  "field": "sports",
+  "old": [
+   "football",
+   "soccer",
+   "hockey"
+  ],
+  "new": [
+   "football",
+   "soccer"
+  ],
+  "source": "Vancouver Canucks play at Rogers Arena, not BC Place (see rogers-arena)."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "bc-place",
+  "field": "leagues",
+  "old": [
+   "football/cfl",
+   "soccer/usa.1",
+   "hockey/nhl"
+  ],
+  "new": [
+   "football/cfl",
+   "soccer/usa.1"
+  ],
+  "source": "Canucks (NHL) play at Rogers Arena."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "bc-place",
+  "field": "homeTeams",
+  "old": [
+   "BC Lions",
+   "Vancouver Whitecaps FC",
+   "Vancouver Canucks"
+  ],
+  "new": [
+   "BC Lions",
+   "Vancouver Whitecaps FC"
+  ],
+  "source": "Canucks play at Rogers Arena."
+ },
+ {
+  "file": "Tools/teams/other-sports-teams.json",
+  "id": "wnba-dal",
+  "field": "homeVenueId",
+  "old": "american-airlines-center",
+  "new": "college-park-center",
+  "source": "ESPN 2026 WNBA schedule for Dallas Wings (team 3): 21 of 25 home games at College Park Center (Arlington), 3 at American Airlines Center, 1 at Moody Center. Venue record college-park-center is in us-pro-history-missing-venues.json."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "center-parc-stadium",
+  "field": "sports",
+  "old": [
+   "football"
+  ],
+  "new": [
+   "football",
+   "baseball"
+  ],
+  "source": "Center Parc Stadium is the converted Turner Field (Atlanta Braves 1997-2016), same site 33.7353,-84.3894 (Wikipedia: Turner Field)."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "center-parc-stadium",
+  "field": "leagues",
+  "old": [
+   "football/college-football"
+  ],
+  "new": [
+   "football/college-football",
+   "baseball/mlb"
+  ],
+  "source": "Turner Field hosted MLB (Braves) through 2016."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "center-parc-stadium",
+  "field": "homeTeams",
+  "old": [
+   "Georgia State Panthers"
+  ],
+  "new": [
+   "Georgia State Panthers",
+   "Atlanta Braves (through 2016)"
+  ],
+  "source": "Braves played at Turner Field 1997-2016."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "bok-center",
+  "field": "leagues",
+  "old": [
+   "basketball/mens-college-basketball",
+   "basketball/womens-college-basketball"
+  ],
+  "new": [
+   "basketball/mens-college-basketball",
+   "basketball/womens-college-basketball",
+   "basketball/wnba"
+  ],
+  "source": "Tulsa Shock (WNBA) home 2010-2015, ESPN team 3."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "bok-center",
+  "field": "homeTeams",
+  "old": [
+   "Tulsa Oilers"
+  ],
+  "new": [
+   "Tulsa Oilers",
+   "Tulsa Shock (2010-2015)"
+  ],
+  "source": "Tulsa Shock home arena."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "mccamish-pavilion",
+  "field": "leagues",
+  "old": [
+   "basketball/mens-college-basketball",
+   "basketball/womens-college-basketball"
+  ],
+  "new": [
+   "basketball/mens-college-basketball",
+   "basketball/womens-college-basketball",
+   "basketball/wnba"
+  ],
+  "source": "Atlanta Dream played 2018 at McCamish Pavilion (Wikipedia: Atlanta Dream)."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "mccamish-pavilion",
+  "field": "homeTeams",
+  "old": [
+   "Georgia Tech Yellow Jackets"
+  ],
+  "new": [
+   "Georgia Tech Yellow Jackets",
+   "Atlanta Dream (2018)"
+  ],
+  "source": "Atlanta Dream 2018."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "hec-edmundson-pavilion",
+  "field": "leagues",
+  "old": [
+   "basketball/mens-college-basketball",
+   "basketball/womens-college-basketball"
+  ],
+  "new": [
+   "basketball/mens-college-basketball",
+   "basketball/womens-college-basketball",
+   "basketball/wnba"
+  ],
+  "source": "Seattle Storm played 2019-2020 at Alaska Airlines Arena (KeyArena rebuild)."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "hec-edmundson-pavilion",
+  "field": "homeTeams",
+  "old": [
+   "Washington Huskies"
+  ],
+  "new": [
+   "Washington Huskies",
+   "Seattle Storm (2019-2020)"
+  ],
+  "source": "Seattle Storm 2019-2020."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "nippert-stadium",
+  "field": "sports",
+  "old": [
+   "football"
+  ],
+  "new": [
+   "football",
+   "soccer"
+  ],
+  "source": "FC Cincinnati played MLS 2019-2020 at Nippert Stadium."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "nippert-stadium",
+  "field": "leagues",
+  "old": [
+   "football/college-football"
+  ],
+  "new": [
+   "football/college-football",
+   "soccer/usa.1"
+  ],
+  "source": "FC Cincinnati 2019-2020."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "nippert-stadium",
+  "field": "homeTeams",
+  "old": [
+   "Cincinnati Bearcats"
+  ],
+  "new": [
+   "Cincinnati Bearcats",
+   "FC Cincinnati (2019-2020)"
+  ],
+  "source": "FC Cincinnati 2019-2020."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "gocheok-sky-dome",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "baseball/mlb"
+  ],
+  "source": "MLB Seoul Series 2024 (Dodgers vs Padres)."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "tokyo-dome",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "baseball/mlb"
+  ],
+  "source": "MLB Opening Series games in Tokyo (2012, 2019, 2025)."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "london-stadium",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "baseball/mlb"
+  ],
+  "source": "MLB London Series 2019, 2023, 2024."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "estadio-alfredo-harp-helu",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "baseball/mlb"
+  ],
+  "source": "MLB Mexico City Series 2023."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "wembley",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "football/nfl"
+  ],
+  "source": "NFL International Series, Wembley Stadium"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "tottenham-hotspur-stadium",
+  "field": "leagues",
+  "old": [
+   "soccer/eng.1"
+  ],
+  "new": [
+   "soccer/eng.1",
+   "football/nfl"
+  ],
+  "source": "NFL International Series since 2019"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "allianz-arena",
+  "field": "leagues",
+  "old": [
+   "soccer/ger.1"
+  ],
+  "new": [
+   "soccer/ger.1",
+   "football/nfl"
+  ],
+  "source": "NFL Munich Games (2022 and 2026 per ESPN schedule)"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "deutsche-bank-park",
+  "field": "leagues",
+  "old": [
+   "soccer/ger.1"
+  ],
+  "new": [
+   "soccer/ger.1",
+   "football/nfl"
+  ],
+  "source": "NFL Frankfurt Games 2023-2024"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "estadio-azteca",
+  "field": "leagues",
+  "old": [
+   "soccer/mex.1"
+  ],
+  "new": [
+   "soccer/mex.1",
+   "football/nfl"
+  ],
+  "source": "NFL Mexico City Games 2016, 2017, 2019 and later"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "neo-quimica-arena",
+  "field": "leagues",
+  "old": [
+   "soccer/bra.1",
+   "soccer/conmebol.libertadores"
+  ],
+  "new": [
+   "soccer/bra.1",
+   "soccer/conmebol.libertadores",
+   "football/nfl"
+  ],
+  "source": "NFL Sao Paulo Game 2024 (ESPN: Corinthians Arena)"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "bernabeu",
+  "field": "leagues",
+  "old": [
+   "soccer/esp.1"
+  ],
+  "new": [
+   "soccer/esp.1",
+   "football/nfl"
+  ],
+  "source": "NFL Madrid Game 2025"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "maracana",
+  "field": "leagues",
+  "old": [
+   "soccer/bra.1",
+   "soccer/conmebol.libertadores"
+  ],
+  "new": [
+   "soccer/bra.1",
+   "soccer/conmebol.libertadores",
+   "football/nfl"
+  ],
+  "source": "NFL Rio de Janeiro Game 2026 (ESPN event data: Cowboys home, Maracana Stadium)"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "allianz-arena",
+  "field": "aliases",
+  "old": [
+   "Fußball Arena München",
+   "Munich Football Arena"
+  ],
+  "new": [
+   "Fußball Arena München",
+   "Munich Football Arena",
+   "FC Bayern Munich Stadium"
+  ],
+  "source": "ESPN schedule venue name for NFL Munich game"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "deutsche-bank-park",
+  "field": "aliases",
+  "old": [
+   "Waldstadion",
+   "Commerzbank-Arena"
+  ],
+  "new": [
+   "Waldstadion",
+   "Commerzbank-Arena",
+   "Frankfurt Stadium"
+  ],
+  "source": "ESPN schedule venue name for NFL Frankfurt game"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "neo-quimica-arena",
+  "field": "aliases",
+  "old": [
+   "Arena Corinthians",
+   "Itaquerão",
+   "Arena de São Paulo"
+  ],
+  "new": [
+   "Arena Corinthians",
+   "Itaquerão",
+   "Arena de São Paulo",
+   "Corinthians Arena"
+  ],
+  "source": "ESPN schedule venue name for NFL Sao Paulo game"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "o2-arena-prague",
+  "field": "aliases",
+  "old": [
+   "Sazka Arena"
+  ],
+  "new": [
+   "Sazka Arena",
+   "O2 Arena (Prague)"
+  ],
+  "source": "ESPN schedule venue name for NHL Global Series Prague"
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "o2-arena-prague",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "hockey/nhl"
+  ],
+  "source": "ESPN NHL schedule data: NHL Global Series games in Prague 2023-2025 (venue O2 Arena (Prague))."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "accor-arena",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "basketball/nba"
+  ],
+  "source": "ESPN NBA schedule data: NBA Paris Games 2020-2025 (venue Bercy Arena / Accor Arena)."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "accor-arena",
+  "field": "aliases",
+  "old": [
+   "Bercy",
+   "Palais omnisports de Paris-Bercy"
+  ],
+  "new": [
+   "Bercy",
+   "Palais omnisports de Paris-Bercy",
+   "Bercy Arena"
+  ],
+  "source": "ESPN schedule venue name."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "uber-arena",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
+  "source": "ESPN schedule data: NBA Berlin game 2026 (Uber Arena), NHL Global Series Berlin 2012 (O2 World)."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "olympiastadion-berlin",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "football/nfl"
+  ],
+  "source": "ESPN NFL schedule data: NFL Berlin game 2025."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "scandinavium",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "hockey/nhl"
+  ],
+  "source": "ESPN NHL schedule data: NHL Global Series Gothenburg 2019."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "raymond-james-stadium",
+  "field": "leagues",
+  "old": [
+   "football/nfl"
+  ],
+  "new": [
+   "football/nfl",
+   "hockey/nhl"
+  ],
+  "source": "ESPN NHL schedule data: NHL Stadium Series 2026."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "stade-de-france",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "football/nfl"
+  ],
+  "source": "ESPN NFL schedule data: NFL Paris game 2026."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "avicii-arena",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "hockey/nhl"
+  ],
+  "source": "ESPN NHL schedule data: 14 NHL Global Series games at Avicii Arena (Stockholm) 2011-2026."
+ },
+ {
+  "file": "Witness/Resources/Catalog/venues.json",
+  "id": "nokia-arena",
+  "field": "leagues",
+  "old": [],
+  "new": [
+   "hockey/nhl"
+  ],
+  "source": "ESPN NHL schedule data: NHL Global Series games in Tampere 2023-2025."
+ }
+]
