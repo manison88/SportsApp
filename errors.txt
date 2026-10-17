@@ -1,7 +1,0 @@
-/Users/runner/work/SportsApp/SportsApp/Witness/Design/Components.swift:459:18: error: value of type 'Self' has no member 'sharedBackgroundVisibility'
-/Users/runner/work/SportsApp/SportsApp/Witness/Design/Components.swift:459:46: error: cannot infer contextual base in reference to member 'hidden'
-/Users/runner/work/SportsApp/SportsApp/Witness/Features/You/WrappedView.swift:114:43: error: call to main actor-isolated instance method 'outcome' in a synchronous nonisolated context
-/Users/runner/work/SportsApp/SportsApp/Witness/Features/You/WrappedView.swift:119:28: error: main actor-isolated property 'isSample' can not be referenced from a nonisolated context
-/Users/runner/work/SportsApp/SportsApp/Witness/Features/You/WrappedView.swift:119:62: error: main actor-isolated property 'profile' can not be referenced from a nonisolated context
-/Users/runner/work/SportsApp/SportsApp/Witness/Features/You/WrappedView.swift:93:17: error: main actor-isolated property 'profile' can not be referenced from a nonisolated context
-/Users/runner/work/SportsApp/SportsApp/Witness/Features/You/WrappedView.swift:93:62: error: call to main actor-isolated instance method 'team' in a synchronous nonisolated context
