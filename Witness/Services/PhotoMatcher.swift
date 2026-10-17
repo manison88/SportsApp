@@ -78,8 +78,9 @@ enum PhotoMatcher {
                 entry.1.append(a)
                 groups[k] = entry
             }
-            return groups.map { k, value in
+            return groups.compactMap { k, value -> PhotoCluster? in
                 let sorted = value.1.sorted { $0.date < $1.date }
+                guard looksLikeAGame(sorted.map(\.date)) else { return nil }
                 return PhotoCluster(id: k, venue: value.0, start: sorted.first!.date, end: sorted.last!.date,
                                     assetIds: sorted.map(\.id), times: sorted.map(\.date))
             }
@@ -95,6 +96,13 @@ enum PhotoMatcher {
                 .filter { self.venue(for: $0, in: [venue], radius: radius) != nil }
                 .map(\.id)
         }.value
+    }
+
+    /// A drive-by snapshot isn't a game: ask for at least two photos taken
+    /// at least 15 minutes apart, the shortest plausible stay in the stands.
+    static func looksLikeAGame(_ times: [Date], minimumStay: TimeInterval = 15 * 60) -> Bool {
+        guard times.count >= 2, let first = times.min(), let last = times.max() else { return false }
+        return last.timeIntervalSince(first) >= minimumStay
     }
 
     /// "wrigley|2016-10-30", the venue's local calendar day.
