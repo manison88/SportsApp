@@ -95,11 +95,13 @@ final class WitnessUITests: XCTestCase {
         tab("Map")
         XCTAssertTrue(el("map-miles").waitForExistence(timeout: 5))
         XCTAssertTrue(el("map-legend").exists, "The map names each sport's line color")
-        tap("map-expand")
+        let expand = app.buttons["Expand map"].firstMatch
+        XCTAssertTrue(expand.waitForExistence(timeout: 5), "Missing the expand button")
+        expand.tap()
         XCTAssertTrue(el("life-map-expanded").waitForExistence(timeout: 5))
-        tap("map-zoom-in")
+        app.buttons["Zoom in"].firstMatch.tap()
         snap("02b-map-expanded")
-        tap("map-close")
+        app.buttons["Close map"].firstMatch.tap()
         sleep(3) // let map tiles load for the screenshot
         snap("02-map")
 
@@ -147,7 +149,7 @@ final class WitnessUITests: XCTestCase {
             tap("game-photo-0")
             XCTAssertTrue(el("photo-viewer").waitForExistence(timeout: 5), "A photo should open full screen")
             snap("05b-photo-viewer")
-            tap("photo-viewer-close")
+            app.buttons["Close"].firstMatch.tap()
         }
 
         tap("open-you-were-there")

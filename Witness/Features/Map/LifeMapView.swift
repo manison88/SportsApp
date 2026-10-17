@@ -23,12 +23,11 @@ struct LifeMapView: View {
             VStack(alignment: .leading, spacing: Spacing.block) {
                 WorldMapCanvas(legs: legs, venues: venues, home: home, homeCity: library.profile.homeCity, labeled: labeled,
                                initialCamera: Self.camera(home: home, venues: venues), resetToken: sport?.rawValue ?? "all",
-                               linksToVenues: true, onExpand: { expanded = true })
+                               mapIdentifier: "life-map", linksToVenues: true, onExpand: { expanded = true })
                     .frame(height: 400)
                     .containerRelativeFrame(.horizontal) { width, _ in width - 2 * Spacing.gutter }
                     .clipShape(.rect(cornerRadius: 22))
                     .frame(maxWidth: .infinity)
-                    .accessibilityIdentifier("life-map")
 
                 legend
 
@@ -166,6 +165,7 @@ struct WorldMapCanvas: View {
     let labeled: Set<String>
     let initialCamera: MapCamera
     let resetToken: String
+    let mapIdentifier: String
     var linksToVenues = false
     var onExpand: (() -> Void)?
 
@@ -173,7 +173,9 @@ struct WorldMapCanvas: View {
     @State private var current: MapCamera?
 
     init(legs: [MapLeg], venues: [Venue], home: CLLocationCoordinate2D, homeCity: String, labeled: Set<String>,
-         initialCamera: MapCamera, resetToken: String, linksToVenues: Bool = false, onExpand: (() -> Void)? = nil) {
+         initialCamera: MapCamera, resetToken: String, mapIdentifier: String, linksToVenues: Bool = false,
+         onExpand: (() -> Void)? = nil) {
+        self.mapIdentifier = mapIdentifier
         self.legs = legs; self.venues = venues; self.home = home; self.homeCity = homeCity; self.labeled = labeled
         self.initialCamera = initialCamera; self.resetToken = resetToken
         self.linksToVenues = linksToVenues; self.onExpand = onExpand
@@ -215,6 +217,7 @@ struct WorldMapCanvas: View {
         }
         .mapStyle(.standard(elevation: .realistic, emphasis: .muted, pointsOfInterest: .excludingAll, showsTraffic: false))
         .mapControlVisibility(.hidden)
+        .accessibilityIdentifier(mapIdentifier)
         .onMapCameraChange(frequency: .onEnd) { current = $0.camera }
         .onChange(of: resetToken) {
             withAnimation(reduceMotion ? nil : .smooth(duration: 0.8)) { position = .camera(initialCamera) }
@@ -272,7 +275,7 @@ struct ExpandedMap: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             WorldMapCanvas(legs: legs, venues: venues, home: home, homeCity: homeCity, labeled: labeled,
-                           initialCamera: initialCamera, resetToken: "expanded")
+                           initialCamera: initialCamera, resetToken: "expanded", mapIdentifier: "life-map-expanded")
                 .ignoresSafeArea()
             CircleButton(systemName: "xmark", label: "Close map") { dismiss() }
                 .padding(.leading, 12)
@@ -280,6 +283,5 @@ struct ExpandedMap: View {
                 .accessibilityIdentifier("map-close")
         }
         .background(Color.ink)
-        .accessibilityIdentifier("life-map-expanded")
     }
 }

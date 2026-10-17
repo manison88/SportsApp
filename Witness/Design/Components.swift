@@ -545,7 +545,7 @@ struct PhotoPager: View {
 
     var body: some View {
         ZStack(alignment: .top) {
-            Color.black.ignoresSafeArea()
+            Color.black.ignoresSafeArea().accessibilityIdentifier("photo-viewer")
             TabView(selection: $index) {
                 ForEach(Array(photos.enumerated()), id: \.offset) { i, ref in
                     ZoomablePhoto(ref: ref).tag(i)
@@ -566,7 +566,6 @@ struct PhotoPager: View {
             .padding(.horizontal, 16)
             .padding(.top, 8)
         }
-        .accessibilityIdentifier("photo-viewer")
     }
 }
 
