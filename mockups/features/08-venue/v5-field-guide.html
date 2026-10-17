@@ -1,0 +1,93 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Field guide</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #efe7d4; color: #221e18; }
+  .pg { position: absolute; inset: 0; background: radial-gradient(120% 80% at 30% 20%, #f6f0e2 0%, #ece3cd 70%, #e1d6bb 100%); }
+  .gutter { position: absolute; left: 0; top: 0; bottom: 0; width: 18px; background: linear-gradient(90deg, rgba(90,70,40,.22), rgba(90,70,40,0)); z-index: 2; }
+  .top { position: absolute; top: 56px; left: 14px; right: 14px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+  .ico { width: 36px; height: 36px; display: grid; place-items: center; }
+  .ico svg { width: 21px; height: 21px; stroke: #2a251d; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .run { font: 500 10px/1 var(--f-ui); letter-spacing: 2.2px; text-transform: uppercase; color: #6f6551; }
+  .tab { position: absolute; right: 0; top: 118px; width: 26px; height: 62px; background: #2a251d; color: #efe7d4; border-radius: 6px 0 0 6px; z-index: 5;
+    display: grid; place-items: center; font: 600 17px/1 var(--f-fraunces); }
+
+  .entry { position: absolute; left: 26px; right: 40px; top: 108px; z-index: 3; }
+  .entry .cat { font: 600 9.5px/1 var(--f-ui); letter-spacing: 2px; text-transform: uppercase; color: #8c3b23; }
+  .entry h1 { font: 500 46px/1 var(--f-fraunces); letter-spacing: -1.4px; margin-top: 8px; font-variation-settings: "opsz" 144; }
+  .entry .pr { font: italic 400 15px/1.2 var(--f-fraunces); color: #5f5645; margin-top: 6px; }
+  .entry .pr b { font-style: normal; font-weight: 600; color: #221e18; }
+  .def { position: absolute; left: 26px; right: 26px; top: 206px; z-index: 3; font: 400 14px/1.45 var(--f-fraunces); color: #2d2820; text-wrap: pretty; font-variation-settings: "opsz" 14; }
+  .def .dc { float: left; font: 600 46px/.82 var(--f-fraunces); margin: 5px 7px 0 0; color: #8c3b23; }
+  .def em { font-style: italic; }
+
+  .plate { position: absolute; left: 26px; top: 338px; width: 214px; z-index: 3; }
+  .plate .fr { height: 142px; padding: 5px; background: #faf6ec; box-shadow: 0 0 0 .5px rgba(40,30,15,.35), 0 2px 6px rgba(40,30,15,.15); }
+  .plate .fr div { position: relative; width: 100%; height: 100%; overflow: hidden; }
+  .plate img { filter: grayscale(1) sepia(.25) contrast(1.25) brightness(1.02); object-position: 50% 18%; }
+  .plate .ht { position: absolute; inset: 0; mix-blend-mode: multiply; opacity: .32; background: radial-gradient(circle, #000 .55px, transparent .9px) 0 0/2.4px 2.4px; }
+  .plate .cap { font: italic 400 11px/1.35 var(--f-fraunces); color: #4f4738; margin-top: 7px; }
+  .plate .cap b { font-style: normal; font-weight: 600; letter-spacing: .5px; }
+
+  .hand { font-family: var(--f-hand); color: #1f3c8a; font-weight: 700; }
+  .n1 { position: absolute; left: 252px; top: 344px; width: 120px; font-size: 18px; line-height: 1.02; transform: rotate(3deg); z-index: 4; }
+  svg.arr { position: absolute; z-index: 4; overflow: visible; }
+
+  .facts { position: absolute; left: 26px; right: 26px; top: 528px; z-index: 3; border-top: 1.5px solid #2a251d; }
+  .facts .r { display: flex; align-items: baseline; height: 25px; border-bottom: .5px solid rgba(42,37,29,.22); }
+  .facts .k { font: 600 9px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; color: #6f6551; width: 96px; flex: none; }
+  .facts .v { font: 400 14px/1 var(--f-fraunces); color: #221e18; position: relative; }
+  .circ { position: absolute; left: -7px; top: -6px; right: -8px; bottom: -6px; border: 1.8px solid #1f3c8a; border-radius: 50%; transform: rotate(-4deg); opacity: .85; }
+  .n2 { position: absolute; right: 26px; top: 553px; font-size: 18px; transform: rotate(-4deg); z-index: 4; }
+  .tick { position: absolute; left: 330px; z-index: 4; font-size: 20px; }
+
+  .notes { position: absolute; left: 18px; right: 18px; top: 700px; height: 96px; z-index: 3; background: #fbf8ef; padding: 10px 14px 0 18px; transform: rotate(-1.2deg);
+    box-shadow: 0 1px 2px rgba(40,30,15,.25), 0 8px 18px rgba(40,30,15,.12);
+    background-image: linear-gradient(transparent 23px, rgba(31,60,138,.18) 23px 24px); background-size: 100% 24px; background-position: 0 6px; }
+  .notes::before { content: ""; position: absolute; left: 10px; top: 0; bottom: 0; width: 1px; background: rgba(200,60,60,.4); }
+  .notes .tape { position: absolute; top: -10px; left: 50%; width: 70px; height: 20px; margin-left: -35px; background: rgba(230,215,170,.75); transform: rotate(3deg); box-shadow: 0 1px 1px rgba(0,0,0,.08); }
+  .notes .l { font-size: 19.5px; line-height: 24px; white-space: nowrap; }
+  .notes .l b { color: #8c3b23; }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="pg"></div><div class="paper-tex" style="opacity:.6"></div><div class="gutter"></div>
+  <div class="top">
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="run">Field guide · Ballparks</div>
+    <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z" fill="#8c3b23" stroke="#8c3b23"/></svg></div>
+  </div>
+  <div class="tab">W</div>
+
+  <div class="entry">
+    <div class="cat">Ballpark · Chicago, Illinois</div>
+    <h1>Wrigley Field</h1>
+    <div class="pr">/ˈrɪɡ·lē fēld/ <b>n.</b> &nbsp;est. 1914</div>
+  </div>
+  <div class="def"><span class="dc">T</span>he second-oldest park in the major leagues, at Clark and Addison on Chicago’s North Side. Known for its <em>ivy-covered brick walls</em>, a scoreboard still turned by hand, and neighbors who watch from the rooftops across Waveland and Sheffield.</div>
+
+  <div class="plate">
+    <div class="fr"><div><img class="ph" src="../../photos/wrigley-scoreboard-wide.jpg"><div class="ht"></div></div></div>
+    <div class="cap"><b>Pl. VIII.</b> The center-field scoreboard, operated by hand since 1937.</div>
+  </div>
+  <div class="hand n1">Sec 314 is right under the clock. Game 5 w/ Dad!!</div>
+  <svg class="arr" style="left:200px;top:394px" width="60" height="40" viewBox="0 0 60 40"><path d="M56 4 C 40 2, 22 10, 10 26" fill="none" stroke="#1f3c8a" stroke-width="1.8" stroke-linecap="round"/><path d="M8 16 L10 27 L20 23" fill="none" stroke="#1f3c8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+  <div class="facts">
+    <div class="r"><span class="k">Opened</span><span class="v">April 23, 1914</span></div>
+    <div class="r"><span class="k">Capacity</span><span class="v tnum">41,649</span></div>
+    <div class="r"><span class="k">Dimensions</span><span class="v tnum">355 · 400 · 353 ft</span></div>
+    <div class="r"><span class="k">Ivy planted</span><span class="v">1937</span></div>
+    <div class="r"><span class="k">Lights on</span><span class="v">Aug 8, 1988</span></div>
+    <div class="r"><span class="k">Your record</span><span class="v tnum"><span style="font-weight:600">11–6</span> in 17 visits<i class="circ" style="right:auto;left:-9px;width:52px"></i></span></div>
+  </div>
+  <div class="hand n2">+ me, 17 times</div>
+  <div class="hand tick" style="top:603px">✓</div>
+
+  <div class="notes hand">
+    <div class="tape"></div>
+    <div class="l">First: <b>Jun 14, 2014</b>. Rain delay, best hot dog.</div>
+    <div class="l">Last: <b>Jul 4, 2026</b>. Fireworks over Sheffield.</div>
+    <div class="l">Next: bring Leo to the bleachers.</div>
+  </div>
+<script src="../../kit/kit.js"></script>
+</body></html>

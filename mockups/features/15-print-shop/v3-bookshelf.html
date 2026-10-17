@@ -1,0 +1,139 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Bookshelf</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #0d0a08; }
+  .room { position: absolute; left: 0; right: 0; top: 0; height: 520px;
+    background: radial-gradient(70% 55% at 50% 30%, #3b2a1d 0%, #1f160f 55%, #0d0a08 100%); }
+  .lamp { position: absolute; left: 50%; top: 150px; width: 420px; height: 300px; transform: translateX(-50%); background: radial-gradient(50% 50% at 50% 30%, rgba(255,200,130,.22), transparent 70%); }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 20; }
+  .head { position: absolute; left: 24px; right: 24px; top: 108px; z-index: 5; }
+  .head .eyebrow { color: #e3b47a; }
+  .head h1 { font: 400 36px/1 var(--f-serif); letter-spacing: -.5px; margin-top: 8px; color: #f6eee2; }
+  .head h1 em { color: #f0c98f; }
+
+  .shelf { position: absolute; left: 16px; right: 16px; top: 196px; height: 262px; }
+  .back { position: absolute; left: -16px; right: -16px; top: 0; height: 236px;
+    background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,0) 20%, rgba(0,0,0,.2)),
+                repeating-linear-gradient(90deg, rgba(255,220,180,.025) 0 1px, transparent 1px 7px), #2a1d14; }
+  .plank { position: absolute; left: -16px; right: -16px; top: 236px; height: 18px;
+    background: linear-gradient(180deg, #8a6440 0, #6d4c2f 3px, #5a3e27 100%); box-shadow: 0 14px 26px rgba(0,0,0,.6); }
+  .plank::after { content: ""; position: absolute; inset: 0; opacity: .5; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='18'><filter id='w'><feTurbulence type='fractalNoise' baseFrequency='.006 .5' numOctaves='3' seed='2'/><feColorMatrix values='0 0 0 0 .4  0 0 0 0 .28  0 0 0 0 .18  0 0 0 1 -.1'/></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>"); }
+  .books { position: absolute; left: 4px; right: 4px; bottom: 26px; height: 236px; display: flex; align-items: flex-end; justify-content: center; }
+  .sp { position: relative; height: 204px; overflow: hidden; border-radius: 2px 2px 1px 1px; flex: none; color: #f2d58e;
+    box-shadow: -1px 0 0 rgba(0,0,0,.5); }
+  .sp::before { content: ""; position: absolute; inset: 0; z-index: 2; background: linear-gradient(90deg, rgba(0,0,0,.45) 0%, rgba(255,255,255,.10) 32%, rgba(255,255,255,.03) 55%, rgba(0,0,0,.40) 100%); }
+  .sp::after { content: ""; position: absolute; inset: 0; z-index: 1; opacity: .55; mix-blend-mode: overlay;
+    background: repeating-linear-gradient(0deg, rgba(255,255,255,.18) 0 .5px, transparent .5px 1.5px), repeating-linear-gradient(90deg, rgba(0,0,0,.25) 0 .5px, transparent .5px 1.5px); }
+  .sp .bd { position: absolute; left: 0; right: 0; height: 0; border-top: 1px solid currentColor; opacity: .55; z-index: 3; }
+  .sp .tt { position: absolute; left: 50%; top: 22px; transform-origin: 0 0; transform: rotate(90deg) translateY(-50%); white-space: nowrap; z-index: 3;
+    font: 600 7px/1 var(--f-ui); letter-spacing: 1.8px; }
+  .sp .yr { position: absolute; left: 0; right: 0; bottom: 12px; text-align: center; z-index: 3; font: 600 9.5px/1 var(--f-fraunces); letter-spacing: -.2px; }
+  .sp.light { color: #6b4a1e; }
+  .sp.sel { height: 204px; transform: translateY(-34px); box-shadow: 0 0 0 1px rgba(242,213,142,.6), 0 18px 30px rgba(0,0,0,.7), 0 0 40px rgba(255,190,110,.35); z-index: 5; }
+  .sp.ghost { background: transparent !important; box-shadow: none; border: 1px dashed rgba(242,213,142,.4); color: rgba(242,213,142,.6); }
+  .sp.ghost::before, .sp.ghost::after { display: none; }
+  .pullshadow { position: absolute; z-index: 1; height: 34px; bottom: 26px; background: linear-gradient(180deg, #050403, #1a120c); }
+  .tag { position: absolute; z-index: 6; top: -4px; height: 22px; padding: 0 9px; border-radius: 11px; background: #f0c98f; color: #2a1a0a; font: 700 9.5px/22px var(--f-ui); letter-spacing: 1.2px; white-space: nowrap; transform: translateX(-50%);
+    box-shadow: 0 6px 14px rgba(0,0,0,.4); }
+  .tag::after { content: ""; position: absolute; left: 50%; bottom: -4px; margin-left: -4px; border: 4px solid transparent; border-bottom: 0; border-top-color: #f0c98f; }
+  .labels { position: absolute; left: 4px; right: 4px; top: 240px; height: 12px; display: flex; justify-content: center; z-index: 4; }
+  .labels span { flex: none; display: grid; place-items: center; }
+  .labels i { width: 5px; height: 5px; border-radius: 3px; background: #f0c98f; box-shadow: 0 0 6px rgba(240,201,143,.8); }
+
+  .panel { position: absolute; left: 16px; right: 16px; top: 494px; padding: 18px; border-radius: 26px; background: #19130e;
+    box-shadow: inset 0 0 0 .5px rgba(255,220,180,.12), 0 20px 40px rgba(0,0,0,.5); display: flex; gap: 16px; }
+  .mini { width: 84px; height: 106px; flex: none; border-radius: 2px 4px 4px 2px; background: #1c2944; position: relative; overflow: hidden;
+    box-shadow: -4px 0 0 -1px #121b30, 0 10px 18px rgba(0,0,0,.6); }
+  .mini .ph { position: absolute; left: 12px; right: 9px; top: 10px; height: 46px; width: auto; }
+  .mini .y { position: absolute; left: 12px; top: 62px; font: 500 21px/1 var(--f-fraunces); }
+  .mini .h { position: absolute; left: 5px; top: 0; bottom: 0; width: 3px; background: linear-gradient(90deg, rgba(0,0,0,.4), rgba(255,255,255,.08)); }
+  .foil { background: linear-gradient(115deg, #7d5d22, #e9c878 30%, #fff1c4 42%, #c79a46 58%, #f4d996 74%, #8b6a2c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .info { flex: 1; min-width: 0; }
+  .info .k { font: 700 9.5px/1 var(--f-ui); letter-spacing: 1.6px; color: #e3b47a; }
+  .info h2 { font: 400 25px/1.02 var(--f-serif); color: #f6eee2; margin-top: 6px; letter-spacing: -.3px; }
+  .info .s { font: 500 12px/1.35 var(--f-ui); color: var(--text-2); margin-top: 6px; }
+  .buy { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+  .buy b { font: 700 20px/1 var(--f-tight); color: #f6eee2; letter-spacing: -.3px; }
+  .buy span { height: 36px; padding: 0 16px; border-radius: 18px; background: #f0c98f; color: #2a1a0a; font: 600 13.5px/36px var(--f-ui); }
+
+  .set { position: absolute; left: 16px; right: 16px; top: 668px; padding: 16px 18px; border-radius: 22px; background: rgba(255,220,180,.05); box-shadow: inset 0 0 0 .5px rgba(255,220,180,.1); }
+  .set .r { display: flex; justify-content: space-between; align-items: baseline; }
+  .set .r b { font: 600 15px/1.2 var(--f-ui); color: #f6eee2; }
+  .set .r span { font: 600 13px/1 var(--f-ui); color: #f0c98f; }
+  .set .s { font: 400 12px/1.3 var(--f-ui); color: var(--text-3); margin-top: 4px; }
+  .seg { display: flex; gap: 3px; margin-top: 12px; }
+  .seg i { flex: 1; height: 5px; border-radius: 3px; background: rgba(255,255,255,.1); }
+  .seg i.on { background: #f0c98f; }
+  .seg i.cur { background: repeating-linear-gradient(90deg, #f0c98f 0 3px, transparent 3px 5px); }
+</style></head>
+<body class="phone">
+  <div class="room"></div><div class="lamp"></div>
+  <div class="topbar">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7z M9 7a3 3 0 0 1 6 0"/></svg></div>
+  </div>
+  <div class="head"><div class="eyebrow">Your library · 2014 – 2026</div><h1>One book, <em>every season.</em></h1></div>
+
+  <div class="shelf">
+    <div class="back"></div>
+    <div class="books" id="books"></div>
+    <div class="plank"></div>
+    <div class="labels" id="labels"></div>
+  </div>
+
+  <div class="panel">
+    <div class="mini"><img class="ph" src="../../photos/wrigley-night.jpg"><div class="h"></div><div class="y foil">2016</div></div>
+    <div class="info">
+      <div class="k">PULLED FROM THE SHELF</div>
+      <h2>The Year It Happened</h2>
+      <div class="s">8 games · 96 pages · navy linen<br>Pennant Oct 22, title Oct 30</div>
+      <div class="buy"><b>$89</b><span>Print 2016</span></div>
+    </div>
+  </div>
+
+  <div class="set">
+    <div class="r"><b>Complete the set</b><span>13 seasons · $899</span></div>
+    <div class="s">4 already on your shelf · 2026 prints when the season ends</div>
+    <div class="seg" id="seg"></div>
+  </div>
+
+<script>
+(function(){
+  const S = [
+    [2014, 3, '#2c4a3a', 'FIRST ONES'], [2015, 6, '#6e2229', 'THE CUP ON HOME ICE'], [2016, 8, '#1c2944', 'THE YEAR IT HAPPENED'],
+    [2017, 5, '#2a2a2c', 'FOUR–FOUR IN DORTMUND'], [2018, 4, '#d9cfbd', 'A QUIET YEAR', 1], [2019, 5, '#b8862b', 'THE DOUBLE DOINK'],
+    [2020, 3, '#3d4f5c', 'SPAIN, THEN SILENCE'], [2021, 4, '#a4492d', 'LIGHTS OUT, AUSTIN'], [2022, 4, '#5a5a2e', 'BACK IN THE BLEACHERS'],
+    [2023, 5, '#4b2a45', 'HE DIDN’T PLAY'], [2024, 2, '#e8e0cf', 'ROAD TRIPS', 1], [2025, 9, '#1f5c5a', 'THE KICK IN THE SNOW'], [2026, 2, '', 'IN PROGRESS']];
+  const owned = new Set([2015, 2019, 2020, 2025]);
+  const w = g => Math.round(15 + g * 2.5);
+  let html = '', lab = '', seg = '';
+  S.forEach(([y, g, c, t, light]) => {
+    const cls = ['sp', y === 2016 ? 'sel' : '', y === 2026 ? 'ghost' : '', light ? 'light' : ''].join(' ');
+    html += `<div class="${cls}" style="width:${w(g)}px;background:${c}">
+      <div class="bd" style="top:8px"></div><div class="bd" style="top:11px"></div>
+      <div class="tt">${t}</div><div class="yr">${String(y).slice(2)}</div>
+      <div class="bd" style="bottom:6px"></div></div>`;
+    lab += `<span style="width:${w(g)}px">${owned.has(y) ? '<i></i>' : ''}</span>`;
+    seg += `<i class="${owned.has(y) ? 'on' : y === 2016 ? 'cur' : ''}"></i>`;
+  });
+  document.getElementById('books').innerHTML = html;
+  document.getElementById('labels').innerHTML = lab;
+  document.getElementById('seg').innerHTML = seg;
+  // tag above the pulled book
+  const books = document.getElementById('books');
+  const sel = books.querySelector('.sel');
+  window.afterPaint = async () => {
+    const r = sel.getBoundingClientRect(), sh = document.querySelector('.shelf').getBoundingClientRect();
+    const t = document.createElement('div'); t.className = 'tag'; t.textContent = 'PREVIEW';
+    t.style.left = (r.left - sh.left + r.width / 2) + 'px'; t.style.top = (r.top - sh.top - 30) + 'px';
+    document.querySelector('.shelf').appendChild(t);
+    const gap = document.createElement('div'); gap.className = 'pullshadow';
+    gap.style.left = (r.left - sh.left) + 'px'; gap.style.width = r.width + 'px';
+    books.parentNode.insertBefore(gap, books);
+  };
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>
