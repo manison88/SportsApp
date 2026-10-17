@@ -1,4 +1,56 @@
 {
+ "league": {
+  "key": "racing/f1",
+  "name": "Formula 1",
+  "sport": "motorsport",
+  "country": "International",
+  "countryCode": null,
+  "tier": 1,
+  "teamCount": 11,
+  "season": "Mar-Dec",
+  "espnPath": "racing/f1",
+  "teamIds": [
+   "f1-mer",
+   "f1-fer",
+   "f1-mcl",
+   "f1-rbr",
+   "f1-haa",
+   "f1-wil",
+   "f1-alp",
+   "f1-ast",
+   "f1-rb",
+   "f1-aud",
+   "f1-cad"
+  ],
+  "passport": {
+   "label": "Formula 1 circuits",
+   "venueIds": [
+    "albert-park",
+    "shanghai",
+    "suzuka",
+    "miami",
+    "gilles-villeneuve",
+    "monaco",
+    "catalunya",
+    "red-bull-ring",
+    "silverstone",
+    "spa",
+    "hungaroring",
+    "zandvoort",
+    "monza",
+    "madring",
+    "baku",
+    "sepang",
+    "marina-bay",
+    "cota",
+    "hermanos-rodriguez",
+    "interlagos",
+    "las-vegas",
+    "losail",
+    "yas-marina"
+   ]
+  }
+ },
  "teams": [
   {
    "id": "f1-mer",
@@ -373,7 +425,10 @@
    "raceStarts2018to2026": 152,
    "dateOfBirth": "1981-07-29",
    "currentSeason": true,
-   "jolpicaId": "alonso"
+   "jolpicaId": "alonso",
+   "externalIds": {
+    "espnAthleteId": "348"
+   }
   },
   {
    "id": "drv-bot",
@@ -432,7 +487,10 @@
    "raceStarts2018to2026": 166,
    "dateOfBirth": "1989-08-28",
    "currentSeason": true,
-   "jolpicaId": "bottas"
+   "jolpicaId": "bottas",
+   "externalIds": {
+    "espnAthleteId": "4520"
+   }
   },
   {
    "id": "drv-har",
@@ -456,7 +514,10 @@
    "raceStarts2018to2026": 21,
    "dateOfBirth": "1989-11-10",
    "currentSeason": false,
-   "jolpicaId": "brendon_hartley"
+   "jolpicaId": "brendon_hartley",
+   "externalIds": {
+    "espnAthleteId": "5500"
+   }
   },
   {
    "id": "drv-eri",
@@ -480,7 +541,10 @@
    "raceStarts2018to2026": 21,
    "dateOfBirth": "1990-09-02",
    "currentSeason": false,
-   "jolpicaId": "ericsson"
+   "jolpicaId": "ericsson",
+   "externalIds": {
+    "espnAthleteId": "4622"
+   }
   },
   {
    "id": "drv-gas",
@@ -545,7 +609,10 @@
    "raceStarts2018to2026": 190,
    "dateOfBirth": "1996-02-07",
    "currentSeason": true,
-   "jolpicaId": "gasly"
+   "jolpicaId": "gasly",
+   "externalIds": {
+    "espnAthleteId": "5501"
+   }
   },
   {
    "id": "drv-gro",
@@ -579,7 +646,10 @@
    "raceStarts2018to2026": 57,
    "dateOfBirth": "1986-04-17",
    "currentSeason": false,
-   "jolpicaId": "grosjean"
+   "jolpicaId": "grosjean",
+   "externalIds": {
+    "espnAthleteId": "4374"
+   }
   },
   {
    "id": "drv-ham",
@@ -643,7 +713,10 @@
    "raceStarts2018to2026": 189,
    "dateOfBirth": "1985-01-07",
    "currentSeason": true,
-   "jolpicaId": "hamilton"
+   "jolpicaId": "hamilton",
+   "externalIds": {
+    "espnAthleteId": "868"
+   }
   },
   {
    "id": "drv-hul",
@@ -702,7 +775,10 @@
    "raceStarts2018to2026": 134,
    "dateOfBirth": "1987-08-19",
    "currentSeason": true,
-   "jolpicaId": "hulkenberg"
+   "jolpicaId": "hulkenberg",
+   "externalIds": {
+    "espnAthleteId": "4396"
+   }
   },
   {
    "id": "drv-mag",
@@ -751,7 +827,10 @@
    "raceStarts2018to2026": 125,
    "dateOfBirth": "1992-10-05",
    "currentSeason": false,
-   "jolpicaId": "kevin_magnussen"
+   "jolpicaId": "kevin_magnussen",
+   "externalIds": {
+    "espnAthleteId": "4623"
+   }
   },
   {
    "id": "drv-lec",
@@ -815,7 +894,10 @@
    "raceStarts2018to2026": 190,
    "dateOfBirth": "1997-10-16",
    "currentSeason": true,
-   "jolpicaId": "leclerc"
+   "jolpicaId": "leclerc",
+   "externalIds": {
+    "espnAthleteId": "5498"
+   }
   },
   {
    "id": "drv-ver",
@@ -879,7 +961,10 @@
    "raceStarts2018to2026": 190,
    "dateOfBirth": "1997-09-30",
    "currentSeason": true,
-   "jolpicaId": "max_verstappen"
+   "jolpicaId": "max_verstappen",
+   "externalIds": {
+    "espnAthleteId": "4665"
+   }
   },
   {
    "id": "drv-oco",
@@ -938,7 +1023,10 @@
    "raceStarts2018to2026": 168,
    "dateOfBirth": "1996-09-17",
    "currentSeason": true,
-   "jolpicaId": "ocon"
+   "jolpicaId": "ocon",
+   "externalIds": {
+    "espnAthleteId": "4678"
+   }
   },
   {
    "id": "drv-per",
@@ -997,7 +1085,10 @@
    "raceStarts2018to2026": 164,
    "dateOfBirth": "1990-01-26",
    "currentSeason": true,
-   "jolpicaId": "perez"
+   "jolpicaId": "perez",
+   "externalIds": {
+    "espnAthleteId": "4472"
+   }
   },
   {
    "id": "drv-rai",
@@ -1036,7 +1127,10 @@
    "raceStarts2018to2026": 79,
    "dateOfBirth": "1979-10-17",
    "currentSeason": false,
-   "jolpicaId": "raikkonen"
+   "jolpicaId": "raikkonen",
+   "externalIds": {
+    "espnAthleteId": "337"
+   }
   },
   {
    "id": "drv-ric",
@@ -1090,7 +1184,10 @@
    "raceStarts2018to2026": 128,
    "dateOfBirth": "1989-07-01",
    "currentSeason": false,
-   "jolpicaId": "ricciardo"
+   "jolpicaId": "ricciardo",
+   "externalIds": {
+    "espnAthleteId": "4510"
+   }
   },
   {
    "id": "drv-sai",
@@ -1154,7 +1251,10 @@
    "raceStarts2018to2026": 189,
    "dateOfBirth": "1994-09-01",
    "currentSeason": true,
-   "jolpicaId": "sainz"
+   "jolpicaId": "sainz",
+   "externalIds": {
+    "espnAthleteId": "4686"
+   }
   },
   {
    "id": "drv-sir",
@@ -1178,7 +1278,10 @@
    "raceStarts2018to2026": 21,
    "dateOfBirth": "1995-08-27",
    "currentSeason": false,
-   "jolpicaId": "sirotkin"
+   "jolpicaId": "sirotkin",
+   "externalIds": {
+    "espnAthleteId": "4630"
+   }
   },
   {
    "id": "drv-str",
@@ -1242,7 +1345,10 @@
    "raceStarts2018to2026": 188,
    "dateOfBirth": "1998-10-29",
    "currentSeason": true,
-   "jolpicaId": "stroll"
+   "jolpicaId": "stroll",
+   "externalIds": {
+    "espnAthleteId": "4775"
+   }
   },
   {
    "id": "drv-van",
@@ -1266,7 +1372,10 @@
    "raceStarts2018to2026": 21,
    "dateOfBirth": "1992-03-26",
    "currentSeason": false,
-   "jolpicaId": "vandoorne"
+   "jolpicaId": "vandoorne",
+   "externalIds": {
+    "espnAthleteId": "4626"
+   }
   },
   {
    "id": "drv-vet",
@@ -1310,7 +1419,10 @@
    "raceStarts2018to2026": 101,
    "dateOfBirth": "1987-07-03",
    "currentSeason": false,
-   "jolpicaId": "vettel"
+   "jolpicaId": "vettel",
+   "externalIds": {
+    "espnAthleteId": "864"
+   }
   },
   {
    "id": "drv-alb",
@@ -1365,7 +1477,10 @@
    "raceStarts2018to2026": 146,
    "dateOfBirth": "1996-03-23",
    "currentSeason": true,
-   "jolpicaId": "albon"
+   "jolpicaId": "albon",
+   "externalIds": {
+    "espnAthleteId": "5592"
+   }
   },
   {
    "id": "drv-gio",
@@ -1399,7 +1514,10 @@
    "raceStarts2018to2026": 60,
    "dateOfBirth": "1993-12-14",
    "currentSeason": false,
-   "jolpicaId": "giovinazzi"
+   "jolpicaId": "giovinazzi",
+   "externalIds": {
+    "espnAthleteId": "5499"
+   }
   },
   {
    "id": "drv-kub",
@@ -1428,7 +1546,10 @@
    "raceStarts2018to2026": 23,
    "dateOfBirth": "1984-12-07",
    "currentSeason": false,
-   "jolpicaId": "kubica"
+   "jolpicaId": "kubica",
+   "externalIds": {
+    "espnAthleteId": "836"
+   }
   },
   {
    "id": "drv-kvy",
@@ -1457,7 +1578,10 @@
    "raceStarts2018to2026": 38,
    "dateOfBirth": "1994-04-26",
    "currentSeason": false,
-   "jolpicaId": "kvyat"
+   "jolpicaId": "kvyat",
+   "externalIds": {
+    "espnAthleteId": "4624"
+   }
   },
   {
    "id": "drv-nor",
@@ -1516,7 +1640,10 @@
    "raceStarts2018to2026": 169,
    "dateOfBirth": "1999-11-13",
    "currentSeason": true,
-   "jolpicaId": "norris"
+   "jolpicaId": "norris",
+   "externalIds": {
+    "espnAthleteId": "5579"
+   }
   },
   {
    "id": "drv-rus",
@@ -1576,7 +1703,10 @@
    "raceStarts2018to2026": 169,
    "dateOfBirth": "1998-02-15",
    "currentSeason": true,
-   "jolpicaId": "russell"
+   "jolpicaId": "russell",
+   "externalIds": {
+    "espnAthleteId": "5503"
+   }
   },
   {
    "id": "drv-ait",
@@ -1600,7 +1730,10 @@
    "raceStarts2018to2026": 1,
    "dateOfBirth": "1995-09-23",
    "currentSeason": false,
-   "jolpicaId": "aitken"
+   "jolpicaId": "aitken",
+   "externalIds": {
+    "espnAthleteId": "5637"
+   }
   },
   {
    "id": "drv-lat",
@@ -1634,7 +1767,10 @@
    "raceStarts2018to2026": 61,
    "dateOfBirth": "1995-06-29",
    "currentSeason": false,
-   "jolpicaId": "latifi"
+   "jolpicaId": "latifi",
+   "externalIds": {
+    "espnAthleteId": "4733"
+   }
   },
   {
    "id": "drv-fit",
@@ -1658,7 +1794,10 @@
    "raceStarts2018to2026": 2,
    "dateOfBirth": "1996-06-25",
    "currentSeason": false,
-   "jolpicaId": "pietro_fittipaldi"
+   "jolpicaId": "pietro_fittipaldi",
+   "externalIds": {
+    "espnAthleteId": "5549"
+   }
   },
   {
    "id": "drv-maz",
@@ -1682,7 +1821,10 @@
    "raceStarts2018to2026": 22,
    "dateOfBirth": "1999-03-02",
    "currentSeason": false,
-   "jolpicaId": "mazepin"
+   "jolpicaId": "mazepin",
+   "externalIds": {
+    "espnAthleteId": "5653"
+   }
   },
   {
    "id": "drv-msc",
@@ -1711,7 +1853,10 @@
    "raceStarts2018to2026": 44,
    "dateOfBirth": "1999-03-22",
    "currentSeason": false,
-   "jolpicaId": "mick_schumacher"
+   "jolpicaId": "mick_schumacher",
+   "externalIds": {
+    "espnAthleteId": "5654"
+   }
   },
   {
    "id": "drv-tsu",
@@ -1761,7 +1906,10 @@
    "raceStarts2018to2026": 117,
    "dateOfBirth": "2000-05-11",
    "currentSeason": true,
-   "jolpicaId": "tsunoda"
+   "jolpicaId": "tsunoda",
+   "externalIds": {
+    "espnAthleteId": "5652"
+   }
   },
   {
    "id": "drv-dev",
@@ -1790,7 +1938,10 @@
    "raceStarts2018to2026": 11,
    "dateOfBirth": "1995-02-06",
    "currentSeason": false,
-   "jolpicaId": "de_vries"
+   "jolpicaId": "de_vries",
+   "externalIds": {
+    "espnAthleteId": "5718"
+   }
   },
   {
    "id": "drv-zho",
@@ -1824,7 +1975,10 @@
    "raceStarts2018to2026": 68,
    "dateOfBirth": "1999-05-30",
    "currentSeason": false,
-   "jolpicaId": "zhou"
+   "jolpicaId": "zhou",
+   "externalIds": {
+    "espnAthleteId": "5682"
+   }
   },
   {
    "id": "drv-law",
@@ -1865,7 +2019,10 @@
    "raceStarts2018to2026": 52,
    "dateOfBirth": "2002-02-11",
    "currentSeason": true,
-   "jolpicaId": "lawson"
+   "jolpicaId": "lawson",
+   "externalIds": {
+    "espnAthleteId": "5741"
+   }
   },
   {
    "id": "drv-pia",
@@ -1904,7 +2061,10 @@
    "raceStarts2018to2026": 87,
    "dateOfBirth": "2001-04-06",
    "currentSeason": true,
-   "jolpicaId": "piastri"
+   "jolpicaId": "piastri",
+   "externalIds": {
+    "espnAthleteId": "5752"
+   }
   },
   {
    "id": "drv-sar",
@@ -1933,7 +2093,10 @@
    "raceStarts2018to2026": 36,
    "dateOfBirth": "2000-12-31",
    "currentSeason": false,
-   "jolpicaId": "sargeant"
+   "jolpicaId": "sargeant",
+   "externalIds": {
+    "espnAthleteId": "5745"
+   }
   },
   {
    "id": "drv-bea",
@@ -1968,7 +2131,10 @@
    "raceStarts2018to2026": 44,
    "dateOfBirth": "2005-05-08",
    "currentSeason": true,
-   "jolpicaId": "bearman"
+   "jolpicaId": "bearman",
+   "externalIds": {
+    "espnAthleteId": "5789"
+   }
   },
   {
    "id": "drv-col",
@@ -2002,7 +2168,10 @@
    "raceStarts2018to2026": 44,
    "dateOfBirth": "2003-05-27",
    "currentSeason": true,
-   "jolpicaId": "colapinto"
+   "jolpicaId": "colapinto",
+   "externalIds": {
+    "espnAthleteId": "5823"
+   }
   },
   {
    "id": "drv-doo",
@@ -2031,7 +2200,10 @@
    "raceStarts2018to2026": 7,
    "dateOfBirth": "2003-01-20",
    "currentSeason": false,
-   "jolpicaId": "doohan"
+   "jolpicaId": "doohan",
+   "externalIds": {
+    "espnAthleteId": "5746"
+   }
   },
   {
    "id": "drv-ant",
@@ -2060,7 +2232,10 @@
    "raceStarts2018to2026": 41,
    "dateOfBirth": "2006-08-25",
    "currentSeason": true,
-   "jolpicaId": "antonelli"
+   "jolpicaId": "antonelli",
+   "externalIds": {
+    "espnAthleteId": "5829"
+   }
   },
   {
    "id": "drv-bor",
@@ -2089,7 +2264,10 @@
    "raceStarts2018to2026": 41,
    "dateOfBirth": "2004-10-14",
    "currentSeason": true,
-   "jolpicaId": "bortoleto"
+   "jolpicaId": "bortoleto",
+   "externalIds": {
+    "espnAthleteId": "5835"
+   }
   },
   {
    "id": "drv-had",
@@ -2118,7 +2296,10 @@
    "raceStarts2018to2026": 38,
    "dateOfBirth": "2004-09-28",
    "currentSeason": true,
-   "jolpicaId": "hadjar"
+   "jolpicaId": "hadjar",
+   "externalIds": {
+    "espnAthleteId": "5790"
+   }
   },
   {
    "id": "drv-lin",
@@ -2142,7 +2323,10 @@
    "raceStarts2018to2026": 17,
    "dateOfBirth": "2007-08-08",
    "currentSeason": true,
-   "jolpicaId": "arvid_lindblad"
+   "jolpicaId": "arvid_lindblad",
+   "externalIds": {
+    "espnAthleteId": "5855"
+   }
   }
  ],
  "constructorLineage": {
