@@ -1,0 +1,66 @@
+<!doctype html><html><head><meta charset="utf-8"><title>A3b iOS alert</title>
+<link rel="stylesheet" href="../../../../kit/kit.css"><link rel="stylesheet" href="../../../../round2/system/broadcast.css">
+<style>
+:root{--amber:#ffb547;--ink2:#07080a;--cond:"Barlow Condensed","Oswald",sans-serif}
+body.phone{background:#07080a;color:#fff;font-family:Inter,sans-serif}
+.ph{position:absolute;inset:0;background-repeat:no-repeat;background-color:#15171c}
+.tile{position:relative;overflow:hidden;background:#15171c}
+.tile i{position:absolute;inset:0;background-repeat:no-repeat;background-color:#15171c}
+.abs{position:absolute}.fill{position:absolute;inset:0}
+.skip{position:absolute;top:56px;right:16px;z-index:40;height:40px;padding:0 16px;border-radius:12px;display:flex;align-items:center;font:800 15px/1 var(--cond);letter-spacing:1.4px;text-transform:uppercase;background:rgba(23,26,33,.86);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);backdrop-filter:blur(12px)}
+.bottom{position:absolute;left:20px;right:20px;bottom:34px;z-index:40;display:flex;flex-direction:column;gap:8px}
+.dots{display:flex;gap:7px;justify-content:center;height:12px;align-items:center;margin-bottom:6px}
+.dots i{width:7px;height:7px;border-radius:4px;background:rgba(255,255,255,.28)}.dots i.on{width:22px;background:#fff}
+.btn{height:54px;border-radius:12px;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;gap:8px;font:800 17px/1 var(--cond);letter-spacing:1.5px;text-transform:uppercase;box-shadow:inset 0 1px 0 rgba(255,255,255,.7),inset 0 -1px 0 rgba(0,0,0,.25)}
+.btn.sec{height:48px;background:#171a21;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);font-size:16px}
+.link{height:44px;display:flex;align-items:center;justify-content:center;font:700 15px/1 var(--cond);letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,.86)}
+.lock{display:flex;align-items:center;justify-content:center;gap:8px;color:rgba(255,255,255,.62);font:500 13px/1.3 Inter}
+.ico{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.H{font:800 56px/.9 var(--cond);letter-spacing:-.5px;text-transform:uppercase}
+.H1{font:800 40px/.93 var(--cond);letter-spacing:-.2px;text-transform:uppercase}
+.P{font:400 16px/1.4 Inter;color:rgba(255,255,255,.74)}
+.amber{color:var(--amber)}
+.lbl{font:700 12px/1.1 var(--cond);letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.chip{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 11px;border-radius:8px;background:rgba(7,8,10,.86);box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);font:700 14px/1 var(--cond);letter-spacing:1.1px;text-transform:uppercase;white-space:nowrap}
+.chip .ico{width:14px;height:14px;color:var(--amber)}
+.tm{display:inline-grid;place-items:center;min-width:38px;height:28px;padding:0 6px;border-radius:7px;font:800 15px/1 var(--cond);letter-spacing:.8px;color:#fff}
+.two{display:flex}.two>div{flex:1}.two>div+div{padding-left:16px;box-shadow:inset 1px 0 0 rgba(255,255,255,.1)}
+.two .lbl{display:block;margin-bottom:9px}.two p{font:600 15px/1.35 Inter;color:#fff;padding:2px 0}.two .no p{color:rgba(255,255,255,.7)}
+.card{position:relative;border-radius:16px;overflow:hidden;background:#101217;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 18px 40px rgba(0,0,0,.55)}
+.lower{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 13px;background:linear-gradient(180deg,rgba(7,8,10,0),rgba(7,8,10,.92) 55%)}
+.lower .v{font:800 26px/1 var(--cond);letter-spacing:.4px;text-transform:uppercase;margin-bottom:8px}
+.lower .r{display:flex;align-items:center;gap:8px;font:800 20px/1 var(--cond)}
+.lower .d{font:500 13px/1.3 Inter;color:rgba(255,255,255,.72);margin-top:7px}
+.sb{display:inline-flex;gap:0;border-radius:7px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.sb b{display:grid;place-items:center;padding:0 8px;height:28px;font:800 16px/1 var(--cond);letter-spacing:.8px}.sb b.s{background:#0d0f13;min-width:26px}
+.mask{position:absolute;inset:0;background:rgba(0,0,0,.58);z-index:50}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:60;background:#101217;border-radius:26px 26px 0 0;padding:10px 20px 38px;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 -20px 60px rgba(0,0,0,.6)}
+.sheet .grab{width:38px;height:5px;border-radius:3px;background:rgba(255,255,255,.28);margin:0 auto 18px}
+.sheet .ic{width:48px;height:48px;border-radius:14px;background:#171a21;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14);display:grid;place-items:center;margin-bottom:14px}
+.sheet .ic svg{width:24px;height:24px}
+.sheet h2{font:800 34px/.95 var(--cond);text-transform:uppercase;letter-spacing:-.1px;margin-bottom:10px}
+.sheet p{font:400 15px/1.45 Inter;color:rgba(255,255,255,.72);margin-bottom:18px}
+.row{display:flex;align-items:center;justify-content:space-between;height:52px;box-shadow:inset 0 1px 0 rgba(255,255,255,.1);font:800 16px/1 var(--cond);letter-spacing:1.4px;text-transform:uppercase}
+.row svg{width:16px;height:16px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.alertwrap{position:absolute;inset:0;z-index:60;display:grid;place-items:center}
+.alert{width:270px;border-radius:14px;background:rgba(38,38,42,.94);backdrop-filter:blur(30px);box-shadow:0 0 0 .5px rgba(255,255,255,.12),0 20px 60px rgba(0,0,0,.5);text-align:center;font-family:Inter,-apple-system,sans-serif;overflow:hidden}
+.alert .t{padding:20px 16px 4px;font:600 17px/1.25 Inter}.alert .m{padding:0 16px 18px;font:400 13px/1.3 Inter;color:rgba(255,255,255,.92)}
+.alert .b{height:44px;display:grid;place-items:center;font:400 17px/1 Inter;color:#0a84ff;border-top:.5px solid rgba(255,255,255,.2)}.alert .b.bold{font-weight:600}
+.ledrow{display:flex;align-items:center;gap:12px;height:52px;box-shadow:inset 0 1px 0 rgba(255,255,255,.1);font:800 20px/1 var(--cond);letter-spacing:.8px;text-transform:uppercase}
+.ledrow .k{width:74px;font:700 12px/1 var(--cond);letter-spacing:2px;color:rgba(255,255,255,.5)}
+.vrow{display:flex;align-items:center;gap:12px;height:54px;position:relative;box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.vrow .bar{width:4px;height:30px;border-radius:2px}
+.vrow .n{font:800 19px/1 var(--cond);letter-spacing:.8px;text-transform:uppercase;flex:1}.vrow .n small{display:block;font:500 12px/1 Inter;letter-spacing:0;text-transform:none;color:rgba(255,255,255,.5);margin-top:5px}
+.vrow .c{font:800 24px/1 var(--cond)}
+.vrow.new{background:linear-gradient(90deg,rgba(255,181,71,.16),rgba(255,181,71,0))}
+.newtag{font:800 11px/1 var(--cond);letter-spacing:1.4px;color:#000;background:var(--amber);padding:3px 6px;border-radius:4px;margin-left:8px;vertical-align:2px}
+.stats{display:flex}.stats>div{flex:1}.stats>div+div{padding-left:14px;box-shadow:inset 1px 0 0 rgba(255,255,255,.1)}
+.stats b{display:block;font:800 34px/1 var(--cond);font-variant-numeric:tabular-nums}.stats span{display:block;margin-top:5px;font:700 11px/1.15 var(--cond);letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.prog{height:6px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden}.prog i{display:block;height:100%;background:var(--amber);border-radius:3px}
+.note{display:flex;gap:10px;padding:13px 14px;border-radius:14px;background:#101217;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);font:400 14px/1.4 Inter;color:rgba(255,255,255,.8)}
+.fade{-webkit-mask-image:linear-gradient(180deg,#000 60%,transparent);mask-image:linear-gradient(180deg,#000 60%,transparent)}
+.eyebrow2{display:flex;align-items:center;gap:8px;font:800 13px/1 var(--cond);letter-spacing:2px;text-transform:uppercase}.eyebrow2 i{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
+.pause{height:36px;padding:0 14px;border-radius:10px;display:flex;align-items:center;font:800 13px/1 var(--cond);letter-spacing:1.4px;background:#171a21;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+</style></head><body class="phone"><div class="fill"><div class="abs" style="left:20px;right:20px;top:104px"><div class="lbl" style="margin-bottom:10px">Step 3 of 3</div><div class="H" style="font-size:58px">Dates and places.<br><span class="amber">Nothing else.</span></div>
+<div style="margin-top:22px"><div class="ledrow"><span class="k">Date</span><span>Jul 4, 2026 · 7:02 PM</span></div><div class="ledrow"><span class="k">Place</span><span>Near a stadium</span></div><div class="ledrow" style="color:rgba(255,255,255,.45)"><span class="k">Content</span><span>Not read</span></div></div>
+<div class="lock" style="justify-content:flex-start;margin-top:18px;font-size:15px;color:rgba(255,255,255,.8)"><svg class="ico" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Photos and results stay on this iPhone. Nothing is uploaded.</div></div><div class="bottom"><div class="dots"><i class=""></i><i class=""></i><i class="on"></i></div><div class="btn">Allow photo access</div><div class="btn sec">Choose photos instead</div><div class="link">Not now</div></div></div><div class="mask"></div><div class="alertwrap"><div class="alert"><div class="t">“Witness” Would Like to Access Your Photo Library</div><div class="m">Witness reads the date and location of your photos on this iPhone to find the games you attended. Photos are never uploaded.</div><div class="b">Limit Access…</div><div class="b bold">Allow Full Access</div><div class="b">Don’t Allow</div></div></div><script src="../../../../kit/kit.js"></script></body></html>
