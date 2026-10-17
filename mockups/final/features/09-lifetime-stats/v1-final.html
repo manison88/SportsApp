@@ -1,0 +1,80 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Lifetime stats</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../system/final.css">
+<style>
+  .f-stats span { font-size: 12px; color: var(--b-text-2); }
+  .f-stats b { white-space: nowrap; font-size: 32px; }
+  .f-stats > div:first-child { flex: .8; }
+  .f-stats b small { font-size: 20px; color: var(--b-text-2); letter-spacing: 0; }
+
+  .body { top: 124px; gap: 36px; }
+  .hero { --c: var(--chc); padding: 26px 22px 28px; }
+  .hero .pct { display: flex; align-items: flex-start; font: 800 168px/.8 var(--b-cond); letter-spacing: -4px; margin-left: -6px; }
+  .hero .pct sup { font-size: 76px; line-height: .9; letter-spacing: 0; margin-left: 4px; }
+  .hero .line { margin-top: 20px; font: 800 26px/1.02 var(--b-cond); text-transform: uppercase; letter-spacing: .2px; max-width: 270px; }
+
+  .dots { display: grid; grid-template-columns: repeat(15, 1fr); row-gap: 10px; justify-items: center; }
+  .dots i { width: 15px; height: 15px; border-radius: 50%; display: block; }
+  .dots i.w { background: #fff; }
+  .dots i.l { box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); }
+  .dots i.d { background: linear-gradient(90deg, #fff 50%, transparent 50%); box-shadow: inset 0 0 0 2px #fff; }
+  .dots i.r { width: 12px; height: 12px; margin-top: 1.5px; border-radius: 2px; transform: rotate(45deg); background: var(--chc); }
+  .key { display: flex; gap: 18px; margin-top: 16px; font: 700 13px/1 var(--b-cond); letter-spacing: 1.4px; text-transform: uppercase; color: var(--b-text-2); }
+  .key span { display: inline-flex; align-items: center; gap: 7px; }
+  .key i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+</style></head>
+<body class="phone b">
+
+<div class="b-nav">
+  <div class="f-title">You</div>
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+
+<div class="f-col body">
+  <div class="b-field hero">
+    <div class="pct">61<sup>%</sup></div>
+    <div class="line">Chicago wins more when you show up.</div>
+  </div>
+
+  <div>
+    <div class="dots" id="dots"></div>
+    <div class="key">
+      <span><i style="background:#fff"></i>35 won</span>
+      <span><i style="box-shadow:inset 0 0 0 2px rgba(255,255,255,.55)"></i>22 lost</span>
+      <span><i style="background:linear-gradient(90deg,#fff 50%,transparent 50%);box-shadow:inset 0 0 0 2px #fff"></i>2 drawn</span>
+      <span><i style="border-radius:2px;transform:rotate(45deg);width:9px;height:9px;background:var(--chc)"></i>1 race</span>
+    </div>
+  </div>
+
+  <div class="f-stack" style="gap:26px">
+    <div class="f-stats">
+      <div><b>60</b><span>Games</span></div>
+      <div><b>42,900</b><span>Miles</span></div>
+      <div><b>21</b><span>Venues</span></div>
+    </div>
+    <div class="f-stats">
+      <div><b>487</b><span>Runs</span></div>
+      <div><b>19°F</b><span>Coldest</span></div>
+      <div><b>14<small>/30</small></b><span>MLB parks</span></div>
+    </div>
+  </div>
+</div>
+
+<nav class="b-tabs">
+  <span><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="9" rx="2"/><path d="M4 17h16M4 21h10"/></svg>Timeline</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.4 3.2 14.6 0 18M12 3c-3.2 3.4-3.2 14.6 0 18"/></svg>Map</span>
+  <span><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="11" r="3.5"/><path d="M9 17.5h6"/></svg>Passport</span>
+  <span class="on"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>You</span>
+</nav>
+
+<script>
+  // 60 games in order, Jun 2014 → Jul 2026: 35 won, 22 lost, 2 drawn, 1 race
+  const seq = 'WLWWLWWLWLWWWLLWLWWWLWRWLWWLWLWLWWDWLWWLWLLWWWLDWLWWLWLWWLLW';
+  const el = document.getElementById('dots');
+  const cls = { W: 'w', L: 'l', D: 'd', R: 'r' };
+  el.innerHTML = seq.slice(0, 60).split('').map(c => `<i class="${cls[c]}"></i>`).join('');
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

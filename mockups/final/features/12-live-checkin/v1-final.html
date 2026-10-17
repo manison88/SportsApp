@@ -1,0 +1,84 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Live check-in</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../system/final.css">
+<style>
+  .glow { position: absolute; left: -120px; right: -120px; top: -40px; height: 640px; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(47,107,255,.42), rgba(47,107,255,.14) 55%, rgba(47,107,255,0)); }
+  .b-nav .b-pill.live { position: absolute; left: 50%; transform: translateX(-50%); height: 30px; padding: 0 12px; font-size: 13px; }
+  .b-nav .b-pill .b-dot { background: #fff; box-shadow: none; }
+
+  .board { position: absolute; left: 20px; right: 20px; top: 150px; display: grid; grid-template-columns: 1fr 96px 1fr; align-items: start; }
+  .team { display: grid; justify-items: center; gap: 14px; }
+  .team .f-mono { width: 52px; height: 36px; font-size: 18px; letter-spacing: 1px; }
+  .team .n { font: 800 176px/.8 var(--b-cond); letter-spacing: -4px; font-variant-numeric: tabular-nums; }
+  .team.dim .n { color: rgba(255,255,255,.38); }
+  .state { display: grid; justify-items: center; gap: 16px; padding-top: 74px; }
+  .inn { display: flex; align-items: center; gap: 5px; font: 800 24px/1 var(--b-cond); text-transform: uppercase; }
+  .inn svg { width: 12px; height: 12px; fill: #fff; }
+  .bases { position: relative; width: 52px; height: 36px; }
+  .bases i { position: absolute; width: 15px; height: 15px; transform: rotate(45deg); border-radius: 2px; box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); }
+  .bases i.on { background: #fff; box-shadow: none; width: 17px; height: 17px; }
+  .outs { display: flex; gap: 6px; }
+  .outs i { width: 10px; height: 10px; border-radius: 50%; box-shadow: inset 0 0 0 2px rgba(255,255,255,.55); }
+  .outs i.on { background: #fff; box-shadow: none; }
+
+  .note { position: absolute; left: 0; right: 0; top: 440px; display: flex; justify-content: center; }
+  .note > div { display: inline-flex; align-items: center; gap: 12px; height: 44px; padding: 0 18px 0 8px; border-radius: 22px; background: rgba(255,255,255,.08); font: 700 16px/1 var(--b-cond); letter-spacing: .6px; text-transform: uppercase; }
+  .note .f-av { box-shadow: none; }
+
+  .la { position: absolute; left: 20px; right: 20px; top: 552px; }
+  .la .b-label { color: var(--b-text-2); font-size: 12px; margin-bottom: 12px; padding-left: 4px; }
+  .la .card { height: 80px; border-radius: 24px; background: rgba(22,24,30,.92); box-shadow: inset 0 0 0 1px var(--b-line); display: flex; align-items: center; gap: 12px; padding: 0 16px 0 18px; }
+  .la .sc { display: flex; align-items: center; gap: 10px; font: 800 34px/1 var(--b-cond); font-variant-numeric: tabular-nums; }
+  .la .sc .f-mono { width: 30px; height: 26px; font-size: 13px; border-radius: 6px; }
+  .la .sc .d { color: rgba(255,255,255,.55); font-size: 22px; }
+  .la .meta { margin-left: auto; text-align: right; font: 600 15px/1.3 var(--b-ui); color: var(--b-text-2); }
+  .la .meta b { color: #fff; font-weight: 600; }
+  .la .cam { width: 44px; height: 44px; border-radius: 22px; background: #fff; display: grid; place-items: center; flex: none; }
+  .la .cam svg, .save svg { width: 20px; height: 20px; stroke: #000; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .save { position: absolute; left: 20px; right: 20px; bottom: 50px; height: 76px; border-radius: 18px; font-size: 22px; letter-spacing: 1.8px; gap: 12px; box-shadow: 0 10px 40px rgba(47,107,255,.35); }
+  .save svg { width: 26px; height: 26px; }
+</style></head>
+<body class="phone b">
+
+<div class="glow"></div>
+
+<div class="b-nav">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+  <div class="b-pill live"><span class="b-dot"></span>Live</div>
+</div>
+
+<div class="board">
+  <div class="team">
+    <div class="f-mono" style="--c:var(--chc)">CHC</div>
+    <div class="n">4</div>
+  </div>
+  <div class="state">
+    <div class="inn"><svg viewBox="0 0 12 12"><path d="M1 3h10L6 10z"/></svg>7th</div>
+    <div class="bases"><i style="left:4px;top:13px"></i><i class="on" style="left:17.5px;top:0"></i><i style="left:33px;top:13px"></i></div>
+    <div class="outs"><i class="on"></i><i></i></div>
+  </div>
+  <div class="team dim">
+    <div class="f-mono" style="--c:var(--mil);color:#0b0b0b">MIL</div>
+    <div class="n">3</div>
+  </div>
+</div>
+
+<div class="note"><div><span class="f-av" style="--c:var(--maya)">M</span>17th Wrigley visit · 17th game with Maya</div></div>
+
+<div class="la">
+  <div class="b-label">On your Lock Screen</div>
+  <div class="card">
+    <div class="sc"><span class="f-mono" style="--c:var(--chc)">C</span>4<span class="d">–</span>3<span class="f-mono" style="--c:var(--mil);color:#0b0b0b">M</span></div>
+    <div class="meta"><b>Bot 7th · 1 out</b><br>Sec 209</div>
+    <div class="cam"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></div>
+  </div>
+</div>
+
+<div class="b-btn save"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Save this moment</div>
+
+<script src="../../../kit/kit.js"></script>
+</body></html>

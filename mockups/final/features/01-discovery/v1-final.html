@@ -1,0 +1,98 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Auto-discovery</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../system/final.css">
+<style>
+  /* UX checklist: dim text >= .55, labels >= 12pt, body >= 15pt */
+  body.b { --b-text-3: rgba(255,255,255,.6); }
+  .b-label, .f-stats span { font-size: 12px; }
+  .b-body { font-size: 15px; }
+
+  .crop { position: relative; overflow: hidden; }
+  .crop img { filter: contrast(1.06) saturate(.88) brightness(.92); }
+
+  .hero { top: 124px; }
+  .count { display: flex; align-items: flex-end; gap: 16px; }
+  .count .b-mega { font-size: 150px; letter-spacing: -4px; margin-left: -5px; }
+  .count .b-h1 { font-size: 36px; padding-bottom: 4px; }
+
+  .prog .b-bar { --c: #fff; height: 4px; }
+  .prog .b-label { margin-top: 10px; display: block; }
+
+  .game .head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .game .b-h2 { font-size: 26px; }
+
+  .sheet { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .sheet .crop { height: 132px; border-radius: 10px; }
+  .sheet .crop::after { content: ""; position: absolute; inset: 0; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); background: linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,.6)); }
+  .sheet .t { position: absolute; z-index: 2; left: 10px; bottom: 9px; font: 700 14px/1 var(--b-cond); letter-spacing: 1.2px; color: #fff; }
+
+  .acts { display: flex; gap: 10px; }
+  .acts .b-btn { padding: 0; height: 52px; }
+  .acts .skip { flex: 1; }
+  .acts .go { flex: 2; }
+  .acts svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+
+  .foot { position: absolute; left: 20px; right: 20px; bottom: 44px; display: flex; justify-content: center; align-items: center; gap: 8px; }
+  .foot svg { width: 16px; height: 16px; stroke: var(--b-text-2); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+  .foot .b-body { color: var(--b-text-2); }
+</style></head>
+<body class="phone b">
+
+<div class="b-nav">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+</div>
+
+<div class="f-col hero">
+  <div class="f-stack">
+    <div class="count">
+      <div class="b-mega">47</div>
+      <div class="b-h1">Games in<br>your photos</div>
+    </div>
+  </div>
+
+  <div class="prog">
+    <div class="b-bar"><i style="width:25.5%"></i></div>
+    <span class="b-label">12 of 47 confirmed</span>
+  </div>
+
+  <div class="f-stack game">
+    <div class="head">
+      <div class="b-h2">World Series G5</div>
+      <div class="b-bug"><span class="team" style="--c:var(--chc)">CHC</span><span class="score">3</span><span class="team" style="--c:var(--cle)">CLE</span><span class="score">2</span></div>
+    </div>
+    <div class="sheet">
+      <div class="crop" data-crop="wrigley-night-2.jpg 860 860 1000 660"><span class="t">7:02 PM</span></div>
+      <div class="crop" data-crop="wrigley-night.jpg 980 940 520 360"><span class="t">8:34 PM</span></div>
+      <div class="crop" data-crop="wrigley-night.jpg 0 560 1240 860"><span class="t">10:42 PM</span></div>
+      <div class="crop" data-crop="wrigley-night-2.jpg 0 1230 1000 700"><span class="t">10:43 PM</span></div>
+    </div>
+  </div>
+
+  <div class="acts">
+    <div class="b-btn ghost skip">Skip</div>
+    <div class="b-btn go"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Confirm</div>
+  </div>
+</div>
+
+<div class="foot">
+  <svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+  <span class="b-body">Matched privately on this iPhone</span>
+</div>
+
+<script>
+(function () {
+  const N = { 'wrigley-night.jpg': [1920, 2560], 'wrigley-night-2.jpg': [1920, 2560], 'lambeau-concourse.jpg': [1920, 1288], 'wrigley-bleachers.jpg': [1280, 853] };
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

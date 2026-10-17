@@ -1,0 +1,102 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Trip · Spain 2020</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../system/final.css">
+<style>
+  #map { position: absolute; left: 0; top: 96px; width: 393px; height: 318px; }
+  .word { top: 114px; gap: 14px; }
+  .word .b-mega { font-size: 128px; margin-left: -3px; }
+  .word .meta { display: flex; align-items: center; gap: 12px; font: 700 17px/1 var(--b-cond); letter-spacing: .6px; text-transform: uppercase; color: var(--b-text-2); }
+
+  .legs { top: 416px; }
+  .f-item .ic { width: 28px; display: grid; place-items: center; flex: none; }
+  .f-item .ic svg { width: 22px; height: 22px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .f-item .t { font-size: 22px; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+  .f-item .t svg { width: 16px; height: 16px; stroke: rgba(255,255,255,.55); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .f-item .end { font: 700 16px/1 var(--b-cond); letter-spacing: 1px; text-transform: uppercase; color: var(--b-text-2); }
+  .f-item .b-bug { height: 30px; font-size: 16px; }
+  .f-item .venue { font: 700 17px/1 var(--b-cond); letter-spacing: .4px; text-transform: uppercase; }
+  .f-item.game .end { color: #fff; }
+
+  .quote { position: absolute; left: 20px; right: 20px; top: 768px; text-align: center; font: 600 23px/1 var(--f-hand); color: rgba(255,255,255,.82); white-space: nowrap; }
+</style></head>
+<body class="phone b">
+
+<svg id="map" viewBox="0 0 393 318"></svg>
+
+<div class="b-nav">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+
+<div class="f-col word">
+  <div class="b-mega">Spain</div>
+  <div class="meta">Feb 20 – Mar 2, 2020
+    <span style="display:flex"><span class="f-av" style="--c:#b79cff">D</span><span class="f-av" style="--c:var(--maya)">M</span><span class="f-av" style="--c:var(--leo)">L</span></span>
+  </div>
+</div>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="plane" viewBox="0 0 24 24"><path d="M10.5 21l2-7.5 5.5-.5c1.4-.1 2.5-1 2.5-1.5S19.4 10.6 18 10.5l-5.5-.5-2-7.5H8.7l1.3 7.5-4.5.4L4 8.5H2.5l.9 3.5-.9 3.5H4l1.5-1.9 4.5.4L8.7 21z"/></symbol>
+  <symbol id="train" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="14" rx="3"/><path d="M6 11h12M9 21l1.5-4M15 21l-1.5-4"/><circle cx="9.5" cy="14" r=".6"/><circle cx="14.5" cy="14" r=".6"/></symbol>
+  <symbol id="ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5l4 3-1.5 4.5h-5L8 10.5z"/></symbol>
+  <symbol id="to" viewBox="0 0 16 16"><path d="M2 8h12M9 3l5 5-5 5"/></symbol>
+</svg>
+
+<div class="f-col legs">
+  <div class="f-list">
+    <div class="f-item"><div class="ic"><svg><use href="#plane"/></svg></div><div class="t">ORD<svg><use href="#to"/></svg>BCN</div><div class="end">Feb 20</div></div>
+    <div class="f-item game"><div class="ic"><svg><use href="#ball"/></svg></div>
+      <div class="b-bug"><span class="team" style="--c:#004d98">BAR</span><span class="score">5</span><span class="team" style="--c:#8a1538">EIB</span><span class="score">0</span></div>
+      <div class="venue">Camp Nou</div><div class="end">Feb 22</div></div>
+    <div class="f-item"><div class="ic"><svg><use href="#train"/></svg></div><div class="t">BCN<svg><use href="#to"/></svg>VLC</div><div class="end">Feb 25</div></div>
+    <div class="f-item"><div class="ic"><svg><use href="#train"/></svg></div><div class="t">VLC<svg><use href="#to"/></svg>MAD</div><div class="end">Feb 28</div></div>
+    <div class="f-item game"><div class="ic"><svg><use href="#ball"/></svg></div>
+      <div class="b-bug"><span class="team" style="--c:#fff;color:#000">RMA</span><span class="score">2</span><span class="team" style="--c:#004d98">BAR</span><span class="score">0</span></div>
+      <div class="venue">Bernabéu</div><div class="end">Mar 1</div></div>
+    <div class="f-item"><div class="ic"><svg><use href="#plane"/></svg></div><div class="t">MAD<svg><use href="#to"/></svg>ORD</div><div class="end">Mar 2</div></div>
+  </div>
+</div>
+
+<div class="quote">“the last game before the world went quiet.”</div>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script src="../../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../../kit/vendor/countries-110m.js"></script>
+<script>
+  (function () {
+    const topo = window.__atlas['countries-110m'];
+    const all = topojson.feature(topo, topo.objects.countries).features;
+    const spain = all.find(f => f.properties && f.properties.name === 'Spain');
+    const proj = d3.geoMercator().center([-3.0, 40.0]).scale(980).translate([240, 228]);
+    const path = d3.geoPath(proj);
+    const svg = d3.select('#map');
+    const defs = svg.append('defs');
+    const fade = defs.append('linearGradient').attr('id', 'fade').attr('x1', 0).attr('y1', 0).attr('x2', 0).attr('y2', 1);
+    fade.append('stop').attr('offset', 0).attr('stop-color', '#000');
+    fade.append('stop').attr('offset', .32).attr('stop-color', '#fff');
+    fade.append('stop').attr('offset', .82).attr('stop-color', '#fff');
+    fade.append('stop').attr('offset', 1).attr('stop-color', '#000');
+    defs.append('mask').attr('id', 'm').append('rect').attr('width', 393).attr('height', 318).attr('fill', 'url(#fade)');
+    const g = svg.append('g').attr('mask', 'url(#m)');
+    g.selectAll('path').data(all).join('path').attr('d', path)
+      .attr('fill', d => d === spain ? '#1f2430' : '#12151b').attr('stroke', '#07080a').attr('stroke-width', 1.2);
+    const C = { BCN: [2.17, 41.39], VLC: [-0.38, 39.47], MAD: [-3.70, 40.42] };
+    const P = k => proj(C[k]);
+    const [bx, by] = P('BCN'), [vx, vy] = P('VLC'), [mx, my] = P('MAD');
+    // flights in and out, faint
+    g.append('path').attr('d', `M393 ${by - 70} Q ${bx + 30} ${by - 50} ${bx} ${by}`).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.35)').attr('stroke-width', 1.6).attr('stroke-dasharray', '4 5');
+    g.append('path').attr('d', `M${mx} ${my} Q ${mx - 90} ${my + 10} ${mx - 240} ${my + 50}`).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.35)').attr('stroke-width', 1.6).attr('stroke-dasharray', '4 5');
+    // rail legs
+    g.append('path').attr('d', d3.line().curve(d3.curveCatmullRom)([[bx, by], [vx, vy], [mx, my]])).attr('fill', 'none').attr('stroke', '#fff').attr('stroke-width', 2.4).attr('stroke-linecap', 'round');
+    g.append('circle').attr('cx', vx).attr('cy', vy).attr('r', 4).attr('fill', '#fff').attr('stroke', '#07080a').attr('stroke-width', 2);
+    // game stops in the home side's color
+    [[bx, by, '#004d98'], [mx, my, '#ffffff']].forEach(([x, y, c]) => {
+      g.append('circle').attr('cx', x).attr('cy', y).attr('r', 13).attr('fill', c).attr('opacity', .22);
+      g.append('circle').attr('cx', x).attr('cy', y).attr('r', 7).attr('fill', c).attr('stroke', '#fff').attr('stroke-width', c === '#ffffff' ? 0 : 2);
+    });
+  })();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

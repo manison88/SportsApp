@@ -1,0 +1,83 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Lucky charm</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../system/final.css">
+<style>
+  .f-item .s { font-size: 15px; color: var(--b-text-2); }
+  .title { top: 120px; }
+  #dial { position: absolute; left: 20px; top: 168px; width: 353px; height: 250px; }
+  .num { position: absolute; left: 0; right: 0; top: 262px; text-align: center; }
+  .num .v { font: 800 128px/.82 var(--b-cond); letter-spacing: -3px; font-variant-numeric: tabular-nums; }
+  .num .u { margin-top: 14px; font: 700 13px/1 var(--b-cond); letter-spacing: 2.2px; text-transform: uppercase; color: var(--b-text-2); }
+
+  .pair { top: 460px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pair > div { padding: 18px 18px 18px; border-radius: 14px; }
+  .pair b { display: block; font: 800 64px/.86 var(--b-cond); letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+  .pair span { display: block; margin-top: 12px; font: 700 13px/1 var(--b-cond); letter-spacing: 2px; text-transform: uppercase; }
+  .pair .you { background: var(--chc); }
+  .pair .them { background: var(--b-panel-2); color: rgba(255,255,255,.62); }
+
+  .maya { top: 600px; }
+  .maya .f-av { width: 36px; height: 36px; font-size: 16px; }
+  .maya .end { font: 800 30px/1 var(--b-cond); color: var(--maya); }
+  .share { position: absolute; left: 20px; right: 20px; bottom: 50px; height: 54px; }
+  .share svg { width: 18px; height: 18px; stroke: #000; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+</style></head>
+<body class="phone b">
+
+<div class="b-nav">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+</div>
+
+<div class="f-col title"><div class="b-h1">You vs. the odds</div></div>
+
+<svg id="dial"></svg>
+<div class="num"><div class="v">+13</div><div class="u">Points above the odds</div></div>
+
+<div class="f-col pair">
+  <div class="you"><b>61%</b><span>With you</span></div>
+  <div class="them"><b>48%</b><span>Without you</span></div>
+</div>
+
+<div class="f-col maya">
+  <div class="f-list">
+    <div class="f-item">
+      <div class="f-av" style="--c:var(--maya)">M</div>
+      <div><div class="t">With Maya</div><div class="s">11–6 in 17 games</div></div>
+      <div class="end">65%</div>
+    </div>
+  </div>
+</div>
+
+<div class="b-btn share"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share</div>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script>
+(function () {
+  const W = 353, H = 250, cx = W / 2, cy = 172, R = 150, SPAN = 112, MAX = 25;
+  const svg = d3.select('#dial').attr('viewBox', `0 0 ${W} ${H}`);
+  const g = svg.append('g').attr('transform', `translate(${cx},${cy})`);
+  const rad = d => d * Math.PI / 180;
+  const ang = v => v / MAX * SPAN;
+  const arc = d3.arc().cornerRadius(2);
+  // track
+  g.append('path').attr('d', arc({ innerRadius: R - 1.5, outerRadius: R + 1.5, startAngle: rad(-SPAN), endAngle: rad(SPAN) })).attr('fill', 'rgba(255,255,255,.16)');
+  // value from even to +13
+  g.append('path').attr('d', arc({ innerRadius: R - 2.5, outerRadius: R + 2.5, startAngle: rad(0), endAngle: rad(ang(13)) })).attr('fill', '#fff');
+  // ticks every 5 pts, the even mark longer
+  for (let v = -MAX; v <= MAX; v += 5) {
+    const a = rad(ang(v)), r0 = R + 10, r1 = R + (v === 0 ? 24 : 16);
+    g.append('line').attr('x1', Math.sin(a) * r0).attr('y1', -Math.cos(a) * r0).attr('x2', Math.sin(a) * r1).attr('y2', -Math.cos(a) * r1)
+      .attr('stroke', v === 0 ? 'rgba(255,255,255,.7)' : 'rgba(255,255,255,.3)').attr('stroke-width', v === 0 ? 2 : 1.5).attr('stroke-linecap', 'round');
+  }
+  // needle: a thin line through the arc and the knob
+  const a = rad(ang(13));
+  g.append('line').attr('x1', Math.sin(a) * (R - 18)).attr("y1", -Math.cos(a) * (R - 18)).attr('x2', Math.sin(a) * (R + 22)).attr("y2", -Math.cos(a) * (R + 22))
+    .attr('stroke', '#ffb547').attr('stroke-width', 2.5).attr('stroke-linecap', 'round');
+  g.append('circle').attr('cx', Math.sin(a) * R).attr('cy', -Math.cos(a) * R).attr('r', 7.5).attr('fill', '#ffb547').attr('stroke', '#07080a').attr('stroke-width', 3)
+    .attr('style', 'filter: drop-shadow(0 0 8px rgba(255,181,71,.7))');
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

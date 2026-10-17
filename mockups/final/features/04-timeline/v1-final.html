@@ -1,0 +1,83 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Timeline</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.6); }
+  .b-label, .f-stats span { font-size: 12px; }
+  .b-body { font-size: 15px; }
+
+  .crop { position: absolute; inset: 0; overflow: hidden; }
+  .crop img { filter: contrast(1.06) saturate(.9) brightness(.9); }
+
+  .card { position: absolute; left: 20px; right: 20px; }
+  .card .b-frame { height: 440px; border-radius: 16px 16px 0 0; }
+  .card .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,8,10,0) 0%, rgba(7,8,10,0) 40%, rgba(7,8,10,.55) 66%, rgba(7,8,10,.94) 100%); }
+  .card .copy { position: absolute; left: 20px; right: 20px; bottom: 22px; }
+  .card .copy .b-display { font-size: 60px; }
+
+  /* ticket-stub strip, notched where it tears from the photo */
+  .stub { position: relative; height: 76px; background: var(--b-panel-2); border-radius: 0 0 16px 16px; display: flex; align-items: center; padding: 0 18px; gap: 20px;
+    -webkit-mask: radial-gradient(circle 10px at 0 0, transparent 9.5px, #000 10px) top left / 51% 100% no-repeat, radial-gradient(circle 10px at 100% 0, transparent 9.5px, #000 10px) top right / 51% 100% no-repeat; }
+  .stub::before { content: ""; position: absolute; left: 14px; right: 14px; top: 0; border-top: 1.5px dashed rgba(255,255,255,.18); }
+  .stub b { font: 700 18px/1 var(--b-cond); letter-spacing: .4px; text-transform: uppercase; white-space: nowrap; }
+  .stub .sep { width: 1px; align-self: stretch; margin: 22px 0; background: var(--b-line); }
+  .stub .b-bug { margin-left: auto; height: 32px; font-size: 16px; flex: none; }
+  .stub .b-bug .team { padding: 0 8px; }
+  .stub .b-bug .score { padding: 0 9px; }
+
+  .c1 { top: 116px; }
+  .c2 { top: 664px; }
+  .c2 .b-frame { height: 300px; }
+</style></head>
+<body class="phone b">
+
+<div class="b-nav">
+  <div class="f-title">Timeline</div>
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></div>
+</div>
+
+<div class="card c1">
+  <div class="b-frame">
+    <div class="crop" data-crop="wrigley-night.jpg 0 640 860 1024"></div>
+    <div class="scrim"></div>
+    <div class="copy">
+      <div class="b-display">Down 3–1.<br>Not tonight.</div>
+    </div>
+  </div>
+  <div class="stub">
+    <b>Oct 30, 2016</b>
+    <b>Sec 314</b>
+    <div class="b-bug"><span class="team" style="--c:var(--chc)">CHC</span><span class="score">3</span><span class="team" style="--c:var(--cle)">CLE</span><span class="score">2</span></div>
+  </div>
+</div>
+
+<div class="card c2">
+  <div class="b-frame">
+    <div class="crop" data-crop="wrigley-night-2.jpg 760 900 1160 986"></div>
+  </div>
+</div>
+
+<nav class="b-tabs">
+  <span class="on"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="9" rx="2"/><path d="M4 17h16M4 21h10"/></svg>Timeline</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.4 3.2 14.6 0 18M12 3c-3.2 3.4-3.2 14.6 0 18"/></svg>Map</span>
+  <span><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="11" r="3.5"/><path d="M9 17.5h6"/></svg>Passport</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>You</span>
+</nav>
+
+<script>
+(function () {
+  const N = { 'wrigley-night.jpg': [1920, 2560], 'wrigley-night-2.jpg': [1920, 2560], 'lambeau-concourse.jpg': [1920, 1288], 'wrigley-bleachers.jpg': [1280, 853] };
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>
