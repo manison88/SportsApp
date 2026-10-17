@@ -1,0 +1,3846 @@
+[
+ {
+  "id": "wrigley",
+  "name": "Wrigley Field",
+  "aliases": [
+   "Wrigley",
+   "The Friendly Confines"
+  ],
+  "city": "Chicago",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.94806,
+  "longitude": -87.65556,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Chicago Cubs"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 41649,
+  "opened": 1914
+ },
+ {
+  "id": "rate-field",
+  "name": "Rate Field",
+  "aliases": [
+   "Guaranteed Rate Field",
+   "U.S. Cellular Field",
+   "Comiskey Park",
+   "New Comiskey Park",
+   "The Rate"
+  ],
+  "city": "Chicago",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.82969,
+  "longitude": -87.63379,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Chicago White Sox"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 40615,
+  "opened": 1991
+ },
+ {
+  "id": "fenway",
+  "name": "Fenway Park",
+  "aliases": [
+   "Fenway"
+  ],
+  "city": "Boston",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.34639,
+  "longitude": -71.0975,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Boston Red Sox"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 37499,
+  "opened": 1912
+ },
+ {
+  "id": "amfam",
+  "name": "American Family Field",
+  "aliases": [
+   "Miller Park",
+   "AmFam Field"
+  ],
+  "city": "Milwaukee",
+  "region": "Wisconsin",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.02833,
+  "longitude": -87.97111,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Milwaukee Brewers"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 41900,
+  "opened": 2001
+ },
+ {
+  "id": "busch",
+  "name": "Busch Stadium",
+  "aliases": [
+   "New Busch Stadium",
+   "Busch Stadium III"
+  ],
+  "city": "St. Louis",
+  "region": "Missouri",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.6225,
+  "longitude": -90.19306,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "St. Louis Cardinals"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 43975,
+  "opened": 2006
+ },
+ {
+  "id": "target-field",
+  "name": "Target Field",
+  "aliases": [],
+  "city": "Minneapolis",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.98167,
+  "longitude": -93.27833,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Minnesota Twins"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 39504,
+  "opened": 2010
+ },
+ {
+  "id": "comerica",
+  "name": "Comerica Park",
+  "aliases": [],
+  "city": "Detroit",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.33917,
+  "longitude": -83.04861,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Detroit Tigers"
+  ],
+  "timeZone": "America/Detroit",
+  "capacity": 40120,
+  "opened": 2000
+ },
+ {
+  "id": "progressive",
+  "name": "Progressive Field",
+  "aliases": [
+   "Jacobs Field",
+   "The Jake"
+  ],
+  "city": "Cleveland",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.49583,
+  "longitude": -81.68528,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Cleveland Guardians"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 42865,
+  "opened": 1994
+ },
+ {
+  "id": "pnc",
+  "name": "PNC Park",
+  "aliases": [],
+  "city": "Pittsburgh",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.44694,
+  "longitude": -80.00583,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Pittsburgh Pirates"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 37898,
+  "opened": 2001
+ },
+ {
+  "id": "kauffman",
+  "name": "Kauffman Stadium",
+  "aliases": [
+   "Royals Stadium",
+   "The K"
+  ],
+  "city": "Kansas City",
+  "region": "Missouri",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.05139,
+  "longitude": -94.48056,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Kansas City Royals"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 37903,
+  "opened": 1973
+ },
+ {
+  "id": "gabp",
+  "name": "Great American Ball Park",
+  "aliases": [
+   "GABP"
+  ],
+  "city": "Cincinnati",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.09722,
+  "longitude": -84.50694,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Cincinnati Reds"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 42319,
+  "opened": 2003
+ },
+ {
+  "id": "yankee",
+  "name": "Yankee Stadium",
+  "aliases": [
+   "New Yankee Stadium"
+  ],
+  "city": "New York",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.82957,
+  "longitude": -73.92639,
+  "sports": [
+   "baseball",
+   "soccer"
+  ],
+  "leagues": [
+   "baseball/mlb",
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "New York Yankees",
+   "New York City FC"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 49642,
+  "opened": 2009
+ },
+ {
+  "id": "dodger",
+  "name": "Dodger Stadium",
+  "aliases": [
+   "Chavez Ravine"
+  ],
+  "city": "Los Angeles",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.07363,
+  "longitude": -118.23985,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Los Angeles Dodgers"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 56000,
+  "opened": 1962
+ },
+ {
+  "id": "oracle",
+  "name": "Oracle Park",
+  "aliases": [
+   "AT&T Park",
+   "SBC Park",
+   "Pacific Bell Park"
+  ],
+  "city": "San Francisco",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.77833,
+  "longitude": -122.38944,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "San Francisco Giants"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 41915,
+  "opened": 2000
+ },
+ {
+  "id": "mlb-ari",
+  "name": "Chase Field",
+  "aliases": [
+   "Bank One Ballpark",
+   "BOB"
+  ],
+  "city": "Phoenix",
+  "region": "Arizona",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.44528,
+  "longitude": -112.06694,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Arizona Diamondbacks"
+  ],
+  "timeZone": "America/Phoenix",
+  "capacity": 48519,
+  "opened": 1998
+ },
+ {
+  "id": "mlb-atl",
+  "name": "Truist Park",
+  "aliases": [
+   "SunTrust Park"
+  ],
+  "city": "Cumberland",
+  "region": "Georgia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.8912,
+  "longitude": -84.4683,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Atlanta Braves"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 41084,
+  "opened": 2017
+ },
+ {
+  "id": "mlb-bal",
+  "name": "Oriole Park at Camden Yards",
+  "aliases": [
+   "Camden Yards"
+  ],
+  "city": "Baltimore",
+  "region": "Maryland",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.28389,
+  "longitude": -76.62167,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Baltimore Orioles"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 48876,
+  "opened": 1992
+ },
+ {
+  "id": "mlb-col",
+  "name": "Coors Field",
+  "aliases": [],
+  "city": "Denver",
+  "region": "Colorado",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.75611,
+  "longitude": -104.99417,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Colorado Rockies"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": 50480,
+  "opened": 1995
+ },
+ {
+  "id": "mlb-hou",
+  "name": "Daikin Park",
+  "aliases": [
+   "Minute Maid Park",
+   "Enron Field",
+   "Astros Field"
+  ],
+  "city": "Houston",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.75694,
+  "longitude": -95.35556,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Houston Astros"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 42060,
+  "opened": 2000
+ },
+ {
+  "id": "mlb-laa",
+  "name": "Angel Stadium",
+  "aliases": [
+   "Angel Stadium of Anaheim",
+   "Edison International Field",
+   "Anaheim Stadium",
+   "The Big A"
+  ],
+  "city": "Anaheim",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.80028,
+  "longitude": -117.88278,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Los Angeles Angels"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 43250,
+  "opened": 1966
+ },
+ {
+  "id": "mlb-mia",
+  "name": "loanDepot park",
+  "aliases": [
+   "Marlins Park",
+   "LoanDepot Park"
+  ],
+  "city": "Miami",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 25.77806,
+  "longitude": -80.21972,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Miami Marlins"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 36742,
+  "opened": 2012
+ },
+ {
+  "id": "mlb-nym",
+  "name": "Citi Field",
+  "aliases": [],
+  "city": "New York",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.75699,
+  "longitude": -73.84578,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "New York Mets"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 41922,
+  "opened": 2009
+ },
+ {
+  "id": "mlb-ath",
+  "name": "Sutter Health Park",
+  "aliases": [
+   "Raley Field"
+  ],
+  "city": "West Sacramento",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.58037,
+  "longitude": -121.5138,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Athletics"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 11093,
+  "opened": 2000
+ },
+ {
+  "id": "mlb-phi",
+  "name": "Citizens Bank Park",
+  "aliases": [
+   "CBP",
+   "The Bank"
+  ],
+  "city": "Philadelphia",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.90583,
+  "longitude": -75.16667,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Philadelphia Phillies"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 43651,
+  "opened": 2004
+ },
+ {
+  "id": "mlb-sd",
+  "name": "Petco Park",
+  "aliases": [],
+  "city": "San Diego",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.70733,
+  "longitude": -117.15694,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "San Diego Padres"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 42302,
+  "opened": 2004
+ },
+ {
+  "id": "mlb-sea",
+  "name": "T-Mobile Park",
+  "aliases": [
+   "Safeco Field"
+  ],
+  "city": "Seattle",
+  "region": "Washington",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 47.59139,
+  "longitude": -122.3325,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Seattle Mariners"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 47476,
+  "opened": 1999
+ },
+ {
+  "id": "mlb-tb",
+  "name": "Tropicana Field",
+  "aliases": [
+   "The Trop",
+   "Florida Suncoast Dome",
+   "ThunderDome"
+  ],
+  "city": "St. Petersburg",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 27.76833,
+  "longitude": -82.65333,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Tampa Bay Rays"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 45369,
+  "opened": 1990
+ },
+ {
+  "id": "mlb-tex",
+  "name": "Globe Life Field",
+  "aliases": [],
+  "city": "Arlington",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.74736,
+  "longitude": -97.08417,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Texas Rangers"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 40300,
+  "opened": 2020
+ },
+ {
+  "id": "mlb-tor",
+  "name": "Rogers Centre",
+  "aliases": [
+   "SkyDome"
+  ],
+  "city": "Toronto",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 43.64139,
+  "longitude": -79.38917,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Toronto Blue Jays"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 39150,
+  "opened": 1989
+ },
+ {
+  "id": "mlb-wsh",
+  "name": "Nationals Park",
+  "aliases": [],
+  "city": "Washington",
+  "region": "District of Columbia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.8725,
+  "longitude": -77.00778,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/mlb"
+  ],
+  "homeTeams": [
+   "Washington Nationals"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 41888,
+  "opened": 2008
+ },
+ {
+  "id": "soldier",
+  "name": "Soldier Field",
+  "aliases": [],
+  "city": "Chicago",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.8625,
+  "longitude": -87.61667,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [
+   "football/nfl",
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Chicago Bears",
+   "Chicago Fire FC"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 61500,
+  "opened": 1924
+ },
+ {
+  "id": "lambeau",
+  "name": "Lambeau Field",
+  "aliases": [
+   "Lambeau",
+   "City Stadium"
+  ],
+  "city": "Green Bay",
+  "region": "Wisconsin",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.50139,
+  "longitude": -88.06222,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Green Bay Packers"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 81441,
+  "opened": 1957
+ },
+ {
+  "id": "arrowhead",
+  "name": "GEHA Field at Arrowhead Stadium",
+  "aliases": [
+   "Arrowhead Stadium",
+   "Arrowhead"
+  ],
+  "city": "Kansas City",
+  "region": "Missouri",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.04889,
+  "longitude": -94.48389,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Kansas City Chiefs"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 76416,
+  "opened": 1972
+ },
+ {
+  "id": "ford-field",
+  "name": "Ford Field",
+  "aliases": [],
+  "city": "Detroit",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.33996,
+  "longitude": -83.04562,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Detroit Lions"
+  ],
+  "timeZone": "America/Detroit",
+  "capacity": 65000,
+  "opened": 2002
+ },
+ {
+  "id": "us-bank",
+  "name": "U.S. Bank Stadium",
+  "aliases": [
+   "US Bank Stadium"
+  ],
+  "city": "Minneapolis",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.97389,
+  "longitude": -93.25806,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Minnesota Vikings"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 70000,
+  "opened": 2016
+ },
+ {
+  "id": "metlife",
+  "name": "MetLife Stadium",
+  "aliases": [
+   "New Meadowlands Stadium",
+   "New York New Jersey Stadium"
+  ],
+  "city": "East Rutherford",
+  "region": "New Jersey",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.81361,
+  "longitude": -74.07444,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "New York Giants",
+   "New York Jets"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 82500,
+  "opened": 2010
+ },
+ {
+  "id": "sofi",
+  "name": "SoFi Stadium",
+  "aliases": [
+   "Los Angeles Stadium",
+   "Hollywood Park"
+  ],
+  "city": "Inglewood",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.95341,
+  "longitude": -118.33901,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Los Angeles Rams",
+   "Los Angeles Chargers"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 70240,
+  "opened": 2020
+ },
+ {
+  "id": "state-farm-stadium",
+  "name": "State Farm Stadium",
+  "aliases": [
+   "University of Phoenix Stadium",
+   "Cardinals Stadium"
+  ],
+  "city": "Glendale",
+  "region": "Arizona",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.5275,
+  "longitude": -112.2625,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Arizona Cardinals"
+  ],
+  "timeZone": "America/Phoenix",
+  "capacity": 63400,
+  "opened": 2006
+ },
+ {
+  "id": "mercedes-benz-stadium",
+  "name": "Mercedes-Benz Stadium",
+  "aliases": [
+   "MBS"
+  ],
+  "city": "Atlanta",
+  "region": "Georgia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.75528,
+  "longitude": -84.40083,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [
+   "football/nfl",
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Atlanta Falcons",
+   "Atlanta United FC"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 71000,
+  "opened": 2017
+ },
+ {
+  "id": "mt-bank-stadium",
+  "name": "M&T Bank Stadium",
+  "aliases": [
+   "PSINet Stadium",
+   "Ravens Stadium"
+  ],
+  "city": "Baltimore",
+  "region": "Maryland",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.27806,
+  "longitude": -76.62278,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Baltimore Ravens"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 71008,
+  "opened": 1998
+ },
+ {
+  "id": "highmark-stadium",
+  "name": "Highmark Stadium",
+  "aliases": [
+   "New Highmark Stadium",
+   "New Bills Stadium"
+  ],
+  "city": "Orchard Park",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.77297,
+  "longitude": -78.79219,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Buffalo Bills"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 62000,
+  "opened": 2026
+ },
+ {
+  "id": "bank-of-america-stadium",
+  "name": "Bank of America Stadium",
+  "aliases": [
+   "Ericsson Stadium",
+   "Carolinas Stadium"
+  ],
+  "city": "Charlotte",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.22583,
+  "longitude": -80.85278,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [
+   "football/nfl",
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Carolina Panthers",
+   "Charlotte FC"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 73778,
+  "opened": 1996
+ },
+ {
+  "id": "paycor-stadium",
+  "name": "Paycor Stadium",
+  "aliases": [
+   "Paul Brown Stadium"
+  ],
+  "city": "Cincinnati",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.09544,
+  "longitude": -84.51604,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Cincinnati Bengals"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 65515,
+  "opened": 2000
+ },
+ {
+  "id": "huntington-bank-field",
+  "name": "Huntington Bank Field",
+  "aliases": [
+   "Cleveland Browns Stadium",
+   "FirstEnergy Stadium"
+  ],
+  "city": "Cleveland",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.50611,
+  "longitude": -81.69944,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Cleveland Browns"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 71516,
+  "opened": 1999
+ },
+ {
+  "id": "att-stadium",
+  "name": "AT&T Stadium",
+  "aliases": [
+   "Cowboys Stadium",
+   "Jerry World"
+  ],
+  "city": "Arlington",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.74769,
+  "longitude": -97.09288,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Dallas Cowboys"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 80000,
+  "opened": 2009
+ },
+ {
+  "id": "empower-field",
+  "name": "Empower Field at Mile High",
+  "aliases": [
+   "Mile High",
+   "Broncos Stadium at Mile High",
+   "Sports Authority Field at Mile High",
+   "Invesco Field at Mile High"
+  ],
+  "city": "Denver",
+  "region": "Colorado",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.74395,
+  "longitude": -105.01922,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Denver Broncos"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": 76125,
+  "opened": 2001
+ },
+ {
+  "id": "nrg-stadium",
+  "name": "NRG Stadium",
+  "aliases": [
+   "Reliant Stadium"
+  ],
+  "city": "Houston",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.68472,
+  "longitude": -95.41083,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Houston Texans"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 71054,
+  "opened": 2002
+ },
+ {
+  "id": "lucas-oil-stadium",
+  "name": "Lucas Oil Stadium",
+  "aliases": [],
+  "city": "Indianapolis",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.76006,
+  "longitude": -86.16381,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Indianapolis Colts"
+  ],
+  "timeZone": "America/Indiana/Indianapolis",
+  "capacity": 62421,
+  "opened": 2008
+ },
+ {
+  "id": "everbank-stadium",
+  "name": "EverBank Stadium",
+  "aliases": [
+   "TIAA Bank Field",
+   "EverBank Field",
+   "Jacksonville Municipal Stadium",
+   "Alltel Stadium"
+  ],
+  "city": "Jacksonville",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 30.32389,
+  "longitude": -81.6375,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Jacksonville Jaguars"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 67246,
+  "opened": 1995
+ },
+ {
+  "id": "allegiant-stadium",
+  "name": "Allegiant Stadium",
+  "aliases": [
+   "Las Vegas Stadium",
+   "The Death Star"
+  ],
+  "city": "Paradise",
+  "region": "Nevada",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.09074,
+  "longitude": -115.18333,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Las Vegas Raiders"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 65000,
+  "opened": 2020
+ },
+ {
+  "id": "hard-rock-stadium",
+  "name": "Hard Rock Stadium",
+  "aliases": [
+   "Sun Life Stadium",
+   "Dolphin Stadium",
+   "Joe Robbie Stadium",
+   "Pro Player Stadium"
+  ],
+  "city": "Miami Gardens",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 25.95806,
+  "longitude": -80.23889,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Miami Dolphins"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 64767,
+  "opened": 1987
+ },
+ {
+  "id": "gillette-stadium",
+  "name": "Gillette Stadium",
+  "aliases": [
+   "CMGI Field"
+  ],
+  "city": "Foxborough",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.09094,
+  "longitude": -71.26434,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [
+   "football/nfl",
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "New England Patriots",
+   "New England Revolution"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 68756,
+  "opened": 2002
+ },
+ {
+  "id": "caesars-superdome",
+  "name": "Caesars Superdome",
+  "aliases": [
+   "Louisiana Superdome",
+   "Mercedes-Benz Superdome",
+   "The Superdome"
+  ],
+  "city": "New Orleans",
+  "region": "Louisiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.95083,
+  "longitude": -90.08111,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "New Orleans Saints"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 75167,
+  "opened": 1975
+ },
+ {
+  "id": "lincoln-financial-field",
+  "name": "Lincoln Financial Field",
+  "aliases": [
+   "The Linc"
+  ],
+  "city": "Philadelphia",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.90089,
+  "longitude": -75.16776,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Philadelphia Eagles"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 68532,
+  "opened": 2003
+ },
+ {
+  "id": "acrisure-stadium",
+  "name": "Acrisure Stadium",
+  "aliases": [
+   "Heinz Field"
+  ],
+  "city": "Pittsburgh",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.44667,
+  "longitude": -80.01583,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Pittsburgh Steelers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 65500,
+  "opened": 2001
+ },
+ {
+  "id": "levis-stadium",
+  "name": "Levi's Stadium",
+  "aliases": [
+   "Levis Stadium"
+  ],
+  "city": "Santa Clara",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.40299,
+  "longitude": -121.96965,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "San Francisco 49ers"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 68500,
+  "opened": 2014
+ },
+ {
+  "id": "lumen-field",
+  "name": "Lumen Field",
+  "aliases": [
+   "CenturyLink Field",
+   "Qwest Field",
+   "Seahawks Stadium"
+  ],
+  "city": "Seattle",
+  "region": "Washington",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 47.59528,
+  "longitude": -122.33167,
+  "sports": [
+   "football",
+   "soccer"
+  ],
+  "leagues": [
+   "football/nfl",
+   "soccer/usa.1",
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Seattle Seahawks",
+   "Seattle Sounders FC",
+   "Seattle Reign FC"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 67000,
+  "opened": 2002
+ },
+ {
+  "id": "raymond-james-stadium",
+  "name": "Raymond James Stadium",
+  "aliases": [
+   "Ray Jay",
+   "The Ray Jay"
+  ],
+  "city": "Tampa",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 27.97583,
+  "longitude": -82.50333,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Tampa Bay Buccaneers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 65890,
+  "opened": 1998
+ },
+ {
+  "id": "nissan-stadium",
+  "name": "Nissan Stadium",
+  "aliases": [
+   "LP Field",
+   "LP Stadium",
+   "Adelphia Coliseum",
+   "The Coliseum"
+  ],
+  "city": "Nashville",
+  "region": "Tennessee",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.16639,
+  "longitude": -86.77139,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Tennessee Titans"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 67700,
+  "opened": 1999
+ },
+ {
+  "id": "northwest-stadium",
+  "name": "Northwest Stadium",
+  "aliases": [
+   "FedExField",
+   "FedEx Field",
+   "Jack Kent Cooke Stadium"
+  ],
+  "city": "Landover",
+  "region": "Maryland",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.90778,
+  "longitude": -76.86444,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/nfl"
+  ],
+  "homeTeams": [
+   "Washington Commanders"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 64000,
+  "opened": 1997
+ },
+ {
+  "id": "united-center",
+  "name": "United Center",
+  "aliases": [
+   "The UC",
+   "The Madhouse on Madison"
+  ],
+  "city": "Chicago",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.88056,
+  "longitude": -87.67417,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Chicago Bulls",
+   "Chicago Blackhawks"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 20917,
+  "opened": 1994
+ },
+ {
+  "id": "msg",
+  "name": "Madison Square Garden",
+  "aliases": [
+   "MSG",
+   "The Garden"
+  ],
+  "city": "New York",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.7505,
+  "longitude": -73.99345,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "New York Knicks",
+   "New York Rangers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 19812,
+  "opened": 1968
+ },
+ {
+  "id": "td-garden",
+  "name": "TD Garden",
+  "aliases": [
+   "Boston Garden",
+   "FleetCenter",
+   "TD Banknorth Garden",
+   "The Garden"
+  ],
+  "city": "Boston",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.36639,
+  "longitude": -71.06222,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Boston Celtics",
+   "Boston Bruins"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 18624,
+  "opened": 1995
+ },
+ {
+  "id": "crypto-arena",
+  "name": "Crypto.com Arena",
+  "aliases": [
+   "Staples Center"
+  ],
+  "city": "Los Angeles",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.04306,
+  "longitude": -118.26722,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl",
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Los Angeles Lakers",
+   "Los Angeles Kings",
+   "Los Angeles Sparks"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 19060,
+  "opened": 1999
+ },
+ {
+  "id": "state-farm-arena",
+  "name": "State Farm Arena",
+  "aliases": [
+   "Philips Arena"
+  ],
+  "city": "Atlanta",
+  "region": "Georgia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.75722,
+  "longitude": -84.39639,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Atlanta Hawks"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 19445,
+  "opened": 1999
+ },
+ {
+  "id": "barclays-center",
+  "name": "Barclays Center",
+  "aliases": [
+   "Barclays"
+  ],
+  "city": "Brooklyn",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.68265,
+  "longitude": -73.97469,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Brooklyn Nets",
+   "New York Liberty"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 17732,
+  "opened": 2012
+ },
+ {
+  "id": "spectrum-center",
+  "name": "Spectrum Center",
+  "aliases": [
+   "Time Warner Cable Arena",
+   "Charlotte Bobcats Arena"
+  ],
+  "city": "Charlotte",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.2251,
+  "longitude": -80.83915,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Charlotte Hornets"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 19077,
+  "opened": 2005
+ },
+ {
+  "id": "rocket-arena",
+  "name": "Rocket Arena",
+  "aliases": [
+   "Rocket Mortgage FieldHouse",
+   "Quicken Loans Arena",
+   "Gund Arena",
+   "The Q"
+  ],
+  "city": "Cleveland",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.49639,
+  "longitude": -81.68806,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Cleveland Cavaliers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 20562,
+  "opened": 1994
+ },
+ {
+  "id": "american-airlines-center",
+  "name": "American Airlines Center",
+  "aliases": [
+   "AAC"
+  ],
+  "city": "Dallas",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.79056,
+  "longitude": -96.81028,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl",
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Dallas Mavericks",
+   "Dallas Stars",
+   "Dallas Wings"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 19200,
+  "opened": 2001
+ },
+ {
+  "id": "ball-arena",
+  "name": "Ball Arena",
+  "aliases": [
+   "Pepsi Center"
+  ],
+  "city": "Denver",
+  "region": "Colorado",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.74861,
+  "longitude": -105.0075,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Denver Nuggets",
+   "Colorado Avalanche"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": 19155,
+  "opened": 1999
+ },
+ {
+  "id": "little-caesars-arena",
+  "name": "Little Caesars Arena",
+  "aliases": [
+   "LCA"
+  ],
+  "city": "Detroit",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.3412,
+  "longitude": -83.0549,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Detroit Pistons",
+   "Detroit Red Wings"
+  ],
+  "timeZone": "America/Detroit",
+  "capacity": 19515,
+  "opened": 2017
+ },
+ {
+  "id": "chase-center",
+  "name": "Chase Center",
+  "aliases": [],
+  "city": "San Francisco",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.76783,
+  "longitude": -122.38739,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Golden State Warriors",
+   "Golden State Valkyries"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 18000,
+  "opened": 2019
+ },
+ {
+  "id": "toyota-center",
+  "name": "Toyota Center",
+  "aliases": [],
+  "city": "Houston",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.75083,
+  "longitude": -95.36222,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Houston Rockets"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 18023,
+  "opened": 2003
+ },
+ {
+  "id": "gainbridge-fieldhouse",
+  "name": "Gainbridge Fieldhouse",
+  "aliases": [
+   "Bankers Life Fieldhouse",
+   "Conseco Fieldhouse"
+  ],
+  "city": "Indianapolis",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.76389,
+  "longitude": -86.15556,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Indiana Pacers",
+   "Indiana Fever"
+  ],
+  "timeZone": "America/Indiana/Indianapolis",
+  "capacity": 18165,
+  "opened": 1999
+ },
+ {
+  "id": "intuit-dome",
+  "name": "Intuit Dome",
+  "aliases": [],
+  "city": "Inglewood",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.94513,
+  "longitude": -118.3431,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Los Angeles Clippers"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 18000,
+  "opened": 2024
+ },
+ {
+  "id": "fedexforum",
+  "name": "FedExForum",
+  "aliases": [
+   "FedEx Forum",
+   "The Grindhouse"
+  ],
+  "city": "Memphis",
+  "region": "Tennessee",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.13833,
+  "longitude": -90.05056,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Memphis Grizzlies"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 18119,
+  "opened": 2004
+ },
+ {
+  "id": "kaseya-center",
+  "name": "Kaseya Center",
+  "aliases": [
+   "FTX Arena",
+   "American Airlines Arena",
+   "Miami-Dade Arena"
+  ],
+  "city": "Miami",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 25.78139,
+  "longitude": -80.18806,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Miami Heat"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 16500,
+  "opened": 1999
+ },
+ {
+  "id": "fiserv-forum",
+  "name": "Fiserv Forum",
+  "aliases": [],
+  "city": "Milwaukee",
+  "region": "Wisconsin",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.0451,
+  "longitude": -87.9182,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Milwaukee Bucks"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 17341,
+  "opened": 2018
+ },
+ {
+  "id": "target-center",
+  "name": "Target Center",
+  "aliases": [],
+  "city": "Minneapolis",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.97944,
+  "longitude": -93.27611,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Minnesota Timberwolves",
+   "Minnesota Lynx"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 19356,
+  "opened": 1990
+ },
+ {
+  "id": "smoothie-king-center",
+  "name": "Smoothie King Center",
+  "aliases": [
+   "New Orleans Arena"
+  ],
+  "city": "New Orleans",
+  "region": "Louisiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.94889,
+  "longitude": -90.08194,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "New Orleans Pelicans"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 16867,
+  "opened": 1999
+ },
+ {
+  "id": "paycom-center",
+  "name": "Paycom Center",
+  "aliases": [
+   "Chesapeake Energy Arena",
+   "Ford Center",
+   "Oklahoma City Arena"
+  ],
+  "city": "Oklahoma City",
+  "region": "Oklahoma",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.4634,
+  "longitude": -97.51508,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Oklahoma City Thunder"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 18203,
+  "opened": 2002
+ },
+ {
+  "id": "kia-center",
+  "name": "Kia Center",
+  "aliases": [
+   "Amway Center"
+  ],
+  "city": "Orlando",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 28.53917,
+  "longitude": -81.38361,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Orlando Magic"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 18846,
+  "opened": 2010
+ },
+ {
+  "id": "xfinity-mobile-arena",
+  "name": "Xfinity Mobile Arena",
+  "aliases": [
+   "Wells Fargo Center",
+   "Wachovia Center",
+   "First Union Center",
+   "CoreStates Center"
+  ],
+  "city": "Philadelphia",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.90115,
+  "longitude": -75.17197,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Philadelphia 76ers",
+   "Philadelphia Flyers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 20328,
+  "opened": 1996
+ },
+ {
+  "id": "mortgage-matchup-center",
+  "name": "Mortgage Matchup Center",
+  "aliases": [
+   "Footprint Center",
+   "PHX Arena",
+   "Talking Stick Resort Arena",
+   "US Airways Center",
+   "America West Arena"
+  ],
+  "city": "Phoenix",
+  "region": "Arizona",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.44583,
+  "longitude": -112.07139,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Phoenix Suns",
+   "Phoenix Mercury"
+  ],
+  "timeZone": "America/Phoenix",
+  "capacity": 19023,
+  "opened": 1992
+ },
+ {
+  "id": "moda-center",
+  "name": "Moda Center",
+  "aliases": [
+   "Rose Garden"
+  ],
+  "city": "Portland",
+  "region": "Oregon",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 45.53167,
+  "longitude": -122.66667,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Portland Trail Blazers",
+   "Portland Fire"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 19393,
+  "opened": 1995
+ },
+ {
+  "id": "golden-1-center",
+  "name": "Golden 1 Center",
+  "aliases": [
+   "G1C"
+  ],
+  "city": "Sacramento",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.58014,
+  "longitude": -121.4995,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "Sacramento Kings"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 18500,
+  "opened": 2016
+ },
+ {
+  "id": "frost-bank-center",
+  "name": "Frost Bank Center",
+  "aliases": [
+   "AT&T Center",
+   "SBC Center"
+  ],
+  "city": "San Antonio",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.42694,
+  "longitude": -98.4375,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba"
+  ],
+  "homeTeams": [
+   "San Antonio Spurs"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 18581,
+  "opened": 2002
+ },
+ {
+  "id": "scotiabank-arena",
+  "name": "Scotiabank Arena",
+  "aliases": [
+   "Air Canada Centre",
+   "ACC"
+  ],
+  "city": "Toronto",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 43.64333,
+  "longitude": -79.37917,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Toronto Raptors",
+   "Toronto Maple Leafs"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 19800,
+  "opened": 1999
+ },
+ {
+  "id": "delta-center",
+  "name": "Delta Center",
+  "aliases": [
+   "Vivint Arena",
+   "Vivint Smart Home Arena",
+   "EnergySolutions Arena"
+  ],
+  "city": "Salt Lake City",
+  "region": "Utah",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.76833,
+  "longitude": -111.90111,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Utah Jazz",
+   "Utah Mammoth"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": 19911,
+  "opened": 1991
+ },
+ {
+  "id": "capital-one-arena",
+  "name": "Capital One Arena",
+  "aliases": [
+   "Verizon Center",
+   "MCI Center"
+  ],
+  "city": "Washington",
+  "region": "District of Columbia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.89806,
+  "longitude": -77.02083,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Washington Wizards",
+   "Washington Capitals"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 20674,
+  "opened": 1997
+ },
+ {
+  "id": "honda-center",
+  "name": "Honda Center",
+  "aliases": [
+   "Arrowhead Pond of Anaheim",
+   "The Pond"
+  ],
+  "city": "Anaheim",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.80778,
+  "longitude": -117.87667,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Anaheim Ducks"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 17174,
+  "opened": 1993
+ },
+ {
+  "id": "keybank-center",
+  "name": "KeyBank Center",
+  "aliases": [
+   "First Niagara Center",
+   "HSBC Arena",
+   "Marine Midland Arena"
+  ],
+  "city": "Buffalo",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.87515,
+  "longitude": -78.87664,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Buffalo Sabres"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 19070,
+  "opened": 1996
+ },
+ {
+  "id": "scotiabank-saddledome",
+  "name": "Scotiabank Saddledome",
+  "aliases": [
+   "Saddledome",
+   "Pengrowth Saddledome",
+   "Olympic Saddledome"
+  ],
+  "city": "Calgary",
+  "region": "Alberta",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 51.0375,
+  "longitude": -114.05194,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Calgary Flames"
+  ],
+  "timeZone": "America/Edmonton",
+  "capacity": 16605,
+  "opened": 1983
+ },
+ {
+  "id": "lenovo-center",
+  "name": "Lenovo Center",
+  "aliases": [
+   "PNC Arena",
+   "RBC Center",
+   "Raleigh Entertainment & Sports Arena"
+  ],
+  "city": "Raleigh",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.80333,
+  "longitude": -78.72194,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Carolina Hurricanes"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 19722,
+  "opened": 1999
+ },
+ {
+  "id": "nationwide-arena",
+  "name": "Nationwide Arena",
+  "aliases": [],
+  "city": "Columbus",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.96928,
+  "longitude": -83.00611,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Columbus Blue Jackets"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 18144,
+  "opened": 2000
+ },
+ {
+  "id": "rogers-place",
+  "name": "Rogers Place",
+  "aliases": [],
+  "city": "Edmonton",
+  "region": "Alberta",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 53.54694,
+  "longitude": -113.49778,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Edmonton Oilers"
+  ],
+  "timeZone": "America/Edmonton",
+  "capacity": 18347,
+  "opened": 2016
+ },
+ {
+  "id": "amerant-bank-arena",
+  "name": "Amerant Bank Arena",
+  "aliases": [
+   "FLA Live Arena",
+   "BB&T Center",
+   "BankAtlantic Center",
+   "National Car Rental Center"
+  ],
+  "city": "Sunrise",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 26.15833,
+  "longitude": -80.32556,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Florida Panthers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 20737,
+  "opened": 1998
+ },
+ {
+  "id": "grand-casino-arena",
+  "name": "Grand Casino Arena",
+  "aliases": [
+   "Xcel Energy Center",
+   "The X"
+  ],
+  "city": "Saint Paul",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.94472,
+  "longitude": -93.10111,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Minnesota Wild"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 17954,
+  "opened": 2000
+ },
+ {
+  "id": "bell-centre",
+  "name": "Bell Centre",
+  "aliases": [
+   "Centre Bell",
+   "Molson Centre",
+   "Centre Molson"
+  ],
+  "city": "Montreal",
+  "region": "Quebec",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 45.49611,
+  "longitude": -73.56944,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Montreal Canadiens"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 21273,
+  "opened": 1996
+ },
+ {
+  "id": "bridgestone-arena",
+  "name": "Bridgestone Arena",
+  "aliases": [
+   "Sommet Center",
+   "Gaylord Entertainment Center",
+   "Nashville Arena"
+  ],
+  "city": "Nashville",
+  "region": "Tennessee",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.15917,
+  "longitude": -86.77861,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Nashville Predators"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 17159,
+  "opened": 1996
+ },
+ {
+  "id": "prudential-center",
+  "name": "Prudential Center",
+  "aliases": [
+   "The Rock",
+   "The Pru"
+  ],
+  "city": "Newark",
+  "region": "New Jersey",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.73361,
+  "longitude": -74.17111,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "New Jersey Devils"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 17625,
+  "opened": 2007
+ },
+ {
+  "id": "ubs-arena",
+  "name": "UBS Arena",
+  "aliases": [
+   "Belmont Park Arena"
+  ],
+  "city": "Elmont",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.71209,
+  "longitude": -73.72716,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "New York Islanders"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 17113,
+  "opened": 2021
+ },
+ {
+  "id": "canadian-tire-centre",
+  "name": "Canadian Tire Centre",
+  "aliases": [
+   "Scotiabank Place",
+   "Corel Centre",
+   "The Palladium"
+  ],
+  "city": "Ottawa",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 45.29694,
+  "longitude": -75.92722,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Ottawa Senators"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 19153,
+  "opened": 1996
+ },
+ {
+  "id": "ppg-paints-arena",
+  "name": "PPG Paints Arena",
+  "aliases": [
+   "Consol Energy Center"
+  ],
+  "city": "Pittsburgh",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.4394,
+  "longitude": -79.9892,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Pittsburgh Penguins"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 18387,
+  "opened": 2010
+ },
+ {
+  "id": "sap-center",
+  "name": "SAP Center",
+  "aliases": [
+   "SAP Center at San Jose",
+   "HP Pavilion",
+   "San Jose Arena",
+   "The Shark Tank"
+  ],
+  "city": "San Jose",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.33278,
+  "longitude": -121.90111,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "San Jose Sharks"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 19190,
+  "opened": 1993
+ },
+ {
+  "id": "climate-pledge-arena",
+  "name": "Climate Pledge Arena",
+  "aliases": [
+   "KeyArena",
+   "Seattle Center Coliseum"
+  ],
+  "city": "Seattle",
+  "region": "Washington",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 47.62222,
+  "longitude": -122.35417,
+  "sports": [
+   "basketball",
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl",
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Seattle Kraken",
+   "Seattle Storm"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 17151,
+  "opened": 2021
+ },
+ {
+  "id": "enterprise-center",
+  "name": "Enterprise Center",
+  "aliases": [
+   "Scottrade Center",
+   "Savvis Center",
+   "Kiel Center"
+  ],
+  "city": "St. Louis",
+  "region": "Missouri",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.62667,
+  "longitude": -90.2025,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "St. Louis Blues"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 18400,
+  "opened": 1994
+ },
+ {
+  "id": "benchmark-international-arena",
+  "name": "Benchmark International Arena",
+  "aliases": [
+   "Amalie Arena",
+   "Tampa Bay Times Forum",
+   "St. Pete Times Forum",
+   "Ice Palace"
+  ],
+  "city": "Tampa",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 27.94278,
+  "longitude": -82.45194,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Tampa Bay Lightning"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 19204,
+  "opened": 1996
+ },
+ {
+  "id": "rogers-arena",
+  "name": "Rogers Arena",
+  "aliases": [
+   "General Motors Place",
+   "GM Place"
+  ],
+  "city": "Vancouver",
+  "region": "British Columbia",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 49.27778,
+  "longitude": -123.10889,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Vancouver Canucks"
+  ],
+  "timeZone": "America/Vancouver",
+  "capacity": 18422,
+  "opened": 1995
+ },
+ {
+  "id": "t-mobile-arena",
+  "name": "T-Mobile Arena",
+  "aliases": [
+   "The Fortress"
+  ],
+  "city": "Paradise",
+  "region": "Nevada",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.10292,
+  "longitude": -115.17836,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Vegas Golden Knights"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 20000,
+  "opened": 2016
+ },
+ {
+  "id": "canada-life-centre",
+  "name": "Canada Life Centre",
+  "aliases": [
+   "Bell MTS Place",
+   "MTS Centre"
+  ],
+  "city": "Winnipeg",
+  "region": "Manitoba",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 49.89278,
+  "longitude": -97.14361,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/nhl"
+  ],
+  "homeTeams": [
+   "Winnipeg Jets"
+  ],
+  "timeZone": "America/Winnipeg",
+  "capacity": 15004,
+  "opened": 2004
+ },
+ {
+  "id": "gateway-center-arena",
+  "name": "Gateway Center Arena",
+  "aliases": [
+   "Gateway Center Arena at College Park"
+  ],
+  "city": "College Park",
+  "region": "Georgia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.6468,
+  "longitude": -84.45962,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Atlanta Dream"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 3500,
+  "opened": 2019
+ },
+ {
+  "id": "wintrust-arena",
+  "name": "Wintrust Arena",
+  "aliases": [],
+  "city": "Chicago",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.85361,
+  "longitude": -87.62139,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Chicago Sky"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 10387,
+  "opened": 2017
+ },
+ {
+  "id": "mohegan-sun-arena",
+  "name": "Mohegan Sun Arena",
+  "aliases": [],
+  "city": "Uncasville",
+  "region": "Connecticut",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.4911,
+  "longitude": -72.0897,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Connecticut Sun"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 9518,
+  "opened": 2001
+ },
+ {
+  "id": "michelob-ultra-arena",
+  "name": "Michelob Ultra Arena",
+  "aliases": [
+   "Mandalay Bay Events Center"
+  ],
+  "city": "Paradise",
+  "region": "Nevada",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.09065,
+  "longitude": -115.17902,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Las Vegas Aces"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 12000,
+  "opened": 1999
+ },
+ {
+  "id": "coca-cola-coliseum",
+  "name": "Coca-Cola Coliseum",
+  "aliases": [
+   "Ricoh Coliseum",
+   "Coliseum"
+  ],
+  "city": "Toronto",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 43.63565,
+  "longitude": -79.41484,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Toronto Tempo"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 8140,
+  "opened": 1921
+ },
+ {
+  "id": "carefirst-arena",
+  "name": "CareFirst Arena",
+  "aliases": [
+   "Entertainment and Sports Arena",
+   "St. Elizabeths East Entertainment and Sports Arena"
+  ],
+  "city": "Washington",
+  "region": "District of Columbia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.84684,
+  "longitude": -76.9913,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/wnba"
+  ],
+  "homeTeams": [
+   "Washington Mystics"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 4200,
+  "opened": 2018
+ },
+ {
+  "id": "q2-stadium",
+  "name": "Q2 Stadium",
+  "aliases": [],
+  "city": "Austin",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 30.38821,
+  "longitude": -97.71984,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Austin FC"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 20738,
+  "opened": 2021
+ },
+ {
+  "id": "tql-stadium",
+  "name": "TQL Stadium",
+  "aliases": [
+   "West End Stadium"
+  ],
+  "city": "Cincinnati",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.11139,
+  "longitude": -84.52222,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "FC Cincinnati"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 26000,
+  "opened": 2021
+ },
+ {
+  "id": "dicks-sporting-goods-park",
+  "name": "Dick's Sporting Goods Park",
+  "aliases": [
+   "DSGP"
+  ],
+  "city": "Commerce City",
+  "region": "Colorado",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.80556,
+  "longitude": -104.89194,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Colorado Rapids"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": 17424,
+  "opened": 2007
+ },
+ {
+  "id": "scottsmiracle-gro-field",
+  "name": "ScottsMiracle-Gro Field",
+  "aliases": [
+   "Lower.com Field",
+   "New Crew Stadium"
+  ],
+  "city": "Columbus",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.96846,
+  "longitude": -83.01709,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Columbus Crew"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 20139,
+  "opened": 2021
+ },
+ {
+  "id": "audi-field",
+  "name": "Audi Field",
+  "aliases": [],
+  "city": "Washington",
+  "region": "District of Columbia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.8685,
+  "longitude": -77.01293,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "D.C. United",
+   "Washington Spirit"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 24000,
+  "opened": 2018
+ },
+ {
+  "id": "toyota-stadium",
+  "name": "Toyota Stadium",
+  "aliases": [
+   "Pizza Hut Park",
+   "FC Dallas Stadium"
+  ],
+  "city": "Frisco",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.15446,
+  "longitude": -96.83516,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "FC Dallas"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 20500,
+  "opened": 2005
+ },
+ {
+  "id": "shell-energy-stadium",
+  "name": "Shell Energy Stadium",
+  "aliases": [
+   "BBVA Stadium",
+   "BBVA Compass Stadium"
+  ],
+  "city": "Houston",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.7522,
+  "longitude": -95.3524,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Houston Dynamo FC",
+   "Houston Dash"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 22039,
+  "opened": 2012
+ },
+ {
+  "id": "nu-stadium",
+  "name": "Nu Stadium",
+  "aliases": [
+   "Miami Freedom Park"
+  ],
+  "city": "Miami",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 25.79245,
+  "longitude": -80.26029,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Inter Miami CF"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 26700,
+  "opened": 2026
+ },
+ {
+  "id": "dignity-health-sports-park",
+  "name": "Dignity Health Sports Park",
+  "aliases": [
+   "StubHub Center",
+   "Home Depot Center"
+  ],
+  "city": "Carson",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.86444,
+  "longitude": -118.26111,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "LA Galaxy"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 30510,
+  "opened": 2003
+ },
+ {
+  "id": "bmo-stadium",
+  "name": "BMO Stadium",
+  "aliases": [
+   "Banc of California Stadium"
+  ],
+  "city": "Los Angeles",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.01277,
+  "longitude": -118.28334,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Los Angeles FC",
+   "Angel City FC"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 22000,
+  "opened": 2018
+ },
+ {
+  "id": "allianz-field",
+  "name": "Allianz Field",
+  "aliases": [],
+  "city": "Saint Paul",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.9528,
+  "longitude": -93.1651,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Minnesota United FC"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 19400,
+  "opened": 2019
+ },
+ {
+  "id": "stade-saputo",
+  "name": "Stade Saputo",
+  "aliases": [
+   "Saputo Stadium"
+  ],
+  "city": "Montreal",
+  "region": "Quebec",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 45.56306,
+  "longitude": -73.5525,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "CF Montréal"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 19619,
+  "opened": 2008
+ },
+ {
+  "id": "geodis-park",
+  "name": "Geodis Park",
+  "aliases": [
+   "GEODIS Park"
+  ],
+  "city": "Nashville",
+  "region": "Tennessee",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.13096,
+  "longitude": -86.76769,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Nashville SC"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 30109,
+  "opened": 2022
+ },
+ {
+  "id": "sports-illustrated-stadium",
+  "name": "Sports Illustrated Stadium",
+  "aliases": [
+   "Red Bull Arena"
+  ],
+  "city": "Harrison",
+  "region": "New Jersey",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.73667,
+  "longitude": -74.15028,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "New York Red Bulls",
+   "Gotham FC"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 25189,
+  "opened": 2010
+ },
+ {
+  "id": "interco-stadium",
+  "name": "Inter&Co Stadium",
+  "aliases": [
+   "Exploria Stadium",
+   "Orlando City Stadium"
+  ],
+  "city": "Orlando",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 28.54106,
+  "longitude": -81.38904,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Orlando City SC",
+   "Orlando Pride"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 25500,
+  "opened": 2017
+ },
+ {
+  "id": "subaru-park",
+  "name": "Subaru Park",
+  "aliases": [
+   "Talen Energy Stadium",
+   "PPL Park"
+  ],
+  "city": "Chester",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.83222,
+  "longitude": -75.37889,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Philadelphia Union"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 18500,
+  "opened": 2010
+ },
+ {
+  "id": "providence-park",
+  "name": "Providence Park",
+  "aliases": [
+   "Jeld-Wen Field",
+   "PGE Park",
+   "Civic Stadium"
+  ],
+  "city": "Portland",
+  "region": "Oregon",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 45.52139,
+  "longitude": -122.69167,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Portland Timbers",
+   "Portland Thorns FC"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 25218,
+  "opened": 1926
+ },
+ {
+  "id": "america-first-field",
+  "name": "America First Field",
+  "aliases": [
+   "Rio Tinto Stadium"
+  ],
+  "city": "Sandy",
+  "region": "Utah",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.58296,
+  "longitude": -111.89329,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Real Salt Lake",
+   "Utah Royals"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": 20213,
+  "opened": 2008
+ },
+ {
+  "id": "snapdragon-stadium",
+  "name": "Snapdragon Stadium",
+  "aliases": [],
+  "city": "San Diego",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.78444,
+  "longitude": -117.12283,
+  "sports": [
+   "soccer",
+   "football"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "soccer/usa.nwsl",
+   "football/college-football"
+  ],
+  "homeTeams": [
+   "San Diego FC",
+   "San Diego Wave FC",
+   "San Diego State Aztecs"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 35000,
+  "opened": 2022
+ },
+ {
+  "id": "paypal-park",
+  "name": "PayPal Park",
+  "aliases": [
+   "Earthquakes Stadium",
+   "Avaya Stadium"
+  ],
+  "city": "San Jose",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.35131,
+  "longitude": -121.92467,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "San Jose Earthquakes",
+   "Bay FC"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 18000,
+  "opened": 2015
+ },
+ {
+  "id": "childrens-mercy-park",
+  "name": "Children's Mercy Park",
+  "aliases": [
+   "Sporting Park",
+   "Livestrong Sporting Park"
+  ],
+  "city": "Kansas City",
+  "region": "Kansas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.1218,
+  "longitude": -94.8237,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "Sporting Kansas City"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 18467,
+  "opened": 2011
+ },
+ {
+  "id": "energizer-park",
+  "name": "Energizer Park",
+  "aliases": [
+   "CityPark"
+  ],
+  "city": "St. Louis",
+  "region": "Missouri",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.63105,
+  "longitude": -90.21092,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.1"
+  ],
+  "homeTeams": [
+   "St. Louis City SC"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 22423,
+  "opened": 2023
+ },
+ {
+  "id": "bmo-field",
+  "name": "BMO Field",
+  "aliases": [],
+  "city": "Toronto",
+  "region": "Ontario",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 43.63278,
+  "longitude": -79.41861,
+  "sports": [
+   "soccer",
+   "football"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "football/cfl"
+  ],
+  "homeTeams": [
+   "Toronto FC",
+   "Toronto Argonauts"
+  ],
+  "timeZone": "America/Toronto",
+  "capacity": 21566,
+  "opened": 2007
+ },
+ {
+  "id": "bc-place",
+  "name": "BC Place",
+  "aliases": [
+   "BC Place Stadium"
+  ],
+  "city": "Vancouver",
+  "region": "British Columbia",
+  "country": "Canada",
+  "countryCode": "CA",
+  "latitude": 49.27667,
+  "longitude": -123.11194,
+  "sports": [
+   "soccer",
+   "football"
+  ],
+  "leagues": [
+   "soccer/usa.1",
+   "football/cfl"
+  ],
+  "homeTeams": [
+   "Vancouver Whitecaps FC",
+   "BC Lions"
+  ],
+  "timeZone": "America/Vancouver",
+  "capacity": 54500,
+  "opened": 1983
+ },
+ {
+  "id": "cpkc-stadium",
+  "name": "CPKC Stadium",
+  "aliases": [],
+  "city": "Kansas City",
+  "region": "Missouri",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.12033,
+  "longitude": -94.56625,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Kansas City Current"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 11500,
+  "opened": 2024
+ },
+ {
+  "id": "wakemed-soccer-park",
+  "name": "First Horizon Stadium at WakeMed Soccer Park",
+  "aliases": [
+   "WakeMed Soccer Park",
+   "Sahlen's Stadium",
+   "WakeMed Stadium"
+  ],
+  "city": "Cary",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.7862,
+  "longitude": -78.7551,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "North Carolina Courage"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 10000,
+  "opened": 2002
+ },
+ {
+  "id": "lynn-family-stadium",
+  "name": "Lynn Family Stadium",
+  "aliases": [],
+  "city": "Louisville",
+  "region": "Kentucky",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.25959,
+  "longitude": -85.73326,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Racing Louisville FC"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 15304,
+  "opened": 2020
+ },
+ {
+  "id": "martin-stadium-evanston",
+  "name": "Northwestern Medicine Field at Martin Stadium",
+  "aliases": [
+   "Martin Stadium",
+   "Lanny and Sharon Martin Stadium"
+  ],
+  "city": "Evanston",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.05825,
+  "longitude": -87.67088,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Chicago Stars FC"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 12023,
+  "opened": 2016
+ },
+ {
+  "id": "white-stadium",
+  "name": "White Stadium",
+  "aliases": [
+   "George Robert White Stadium"
+  ],
+  "city": "Boston",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.3097,
+  "longitude": -71.0959,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Boston Legacy FC"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 11000,
+  "opened": 1949
+ },
+ {
+  "id": "centennial-stadium-colorado",
+  "name": "Centennial Stadium",
+  "aliases": [],
+  "city": "Centennial",
+  "region": "Colorado",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.58228,
+  "longitude": -104.82649,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.nwsl"
+  ],
+  "homeTeams": [
+   "Denver Summit FC"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": null,
+  "opened": 2026
+ }
+]
