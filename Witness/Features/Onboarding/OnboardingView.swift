@@ -138,7 +138,7 @@ private struct PageDots: View {
 // MARK: - Page 1: the problem
 
 private struct ProblemPage: View {
-    private static let names = ["wrigley-night", "fenway-day", "lambeau-exterior", "united-center-court", "soldier-skyline",
+    fileprivate static let names = ["wrigley-night", "fenway-day", "lambeau-exterior", "united-center-court", "soldier-skyline",
                                 "wrigley-bleachers", "fenway-night", "camp-nou-aerial", "soldier-aerial", "lambeau-concourse",
                                 "wrigley-scoreboard", "soldier-soccer", "fenway-postcard", "wrigley-night-2"]
 
@@ -210,46 +210,88 @@ private struct ProblemPage: View {
 
 private struct SolutionPage: View {
     @Environment(Library.self) private var library
+    @State private var tile: CGFloat = 46
+
+    private let cols = 7
+    private let rows = 3
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                HStack(alignment: .top, spacing: 10) {
-                    PhotoView(ref: .bundled("wrigley-night-2"))
-                        .frame(width: 56, height: 56)
-                        .clipShape(.rect(cornerRadius: 10))
-                        .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(Color.signal, lineWidth: 2))
-                    VStack(alignment: .leading, spacing: 6) {
-                        chip("calendar", "Jul 4, 2026 · 7:02 PM")
-                        chip("mappin.and.ellipse", "Near Wrigley Field")
+                VStack(alignment: .leading, spacing: 0) {
+                    pile
+                        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { w in
+                            tile = max(24, (w - CGFloat(cols - 1) * 4) / CGFloat(cols))
+                        }
+                    Rectangle().fill(Color.signal).frame(width: 2, height: 18).padding(.leading, tile / 2 - 1)
+                    gameCard
+                }
+                .padding(.top, 60)
+
+                Spacer(minLength: 16)
+
+                VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .leading, spacing: -4) {
+                        Text("One photo.").foregroundStyle(.white)
+                        Text("One game.").foregroundStyle(Color.signal)
                     }
+                    .displayFont(58)
+                    .textCase(.uppercase)
+                    .accessibilityElement(children: .combine)
+                    .accessibilityAddTraits(.isHeader)
+                    Text("Witness reads each photo's date and place, matches it to the real schedule, and you confirm.")
+                        .font(.body)
+                        .foregroundStyle(Color.textSecondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                Rectangle().fill(Color.signal).frame(width: 2, height: 24).padding(.leading, 27)
-                gameCard
+                .padding(.bottom, 170)
             }
-            .padding(.top, 70)
-
-            Spacer(minLength: 16)
-
-            VStack(alignment: .leading, spacing: 12) {
-                VStack(alignment: .leading, spacing: -4) {
-                    Text("One photo.").foregroundStyle(.white)
-                    Text("One game.").foregroundStyle(Color.signal)
-                }
-                .displayFont(58)
-                .textCase(.uppercase)
-                .accessibilityElement(children: .combine)
-                .accessibilityAddTraits(.isHeader)
-                Text("Witness reads each photo's date and place, matches it to the real schedule, and you confirm.")
-                    .font(.body)
-                    .foregroundStyle(Color.textSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .padding(.bottom, 170)
+            .gutter()
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .gutter()
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .scrollBounceBehavior(.basedOnSize)
+        .scrollIndicators(.hidden)
         .accessibilityIdentifier("onboarding-solution")
+    }
+
+    /// A few rows of the camera roll, dimmed and gray, with one photo in color and ringed: one among many.
+    private var pile: some View {
+        VStack(spacing: 4) {
+            ForEach(0..<rows, id: \.self) { r in
+                HStack(spacing: 4) {
+                    ForEach(0..<cols, id: \.self) { c in cell(r, c) }
+                }
+            }
+        }
+        .overlay(alignment: .bottomLeading) {
+            VStack(alignment: .leading, spacing: 6) {
+                chip("calendar", "Jul 4, 2026 \u{00B7} 7:02 PM")
+                chip("mappin.and.ellipse", "Near Wrigley Field")
+            }
+            .padding(.leading, tile + 10)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel("One photo picked out of many, taken Jul 4, 2026 near Wrigley Field")
+    }
+
+    private func cell(_ r: Int, _ c: Int) -> some View {
+        let picked = r == rows - 1 && c == 0
+        let names = ProblemPage.names
+        return Color.panel
+            .aspectRatio(1, contentMode: .fit)
+            .overlay {
+                Image(picked ? "wrigley-night-2" : names[(r * cols + c) * 3 % names.count])
+                    .resizable()
+                    .scaledToFill()
+                    .saturation(picked ? 1 : 0)
+                    .opacity(picked ? 1 : 0.3)
+            }
+            .clipShape(.rect(cornerRadius: 6))
+            .overlay {
+                if picked { RoundedRectangle(cornerRadius: 6).strokeBorder(Color.signal, lineWidth: 2) }
+            }
+            .shadow(color: picked ? Color.signal.opacity(0.55) : .clear, radius: 8)
+            .zIndex(picked ? 1 : 0)
     }
 
     private func chip(_ symbol: String, _ text: String) -> some View {
@@ -284,7 +326,7 @@ private struct SolutionPage: View {
             }
             .padding(14)
         }
-        .frame(height: 210)
+        .frame(height: 176)
         .clipShape(.rect(cornerRadius: 18))
         .overlay(alignment: .topLeading) {
             Text("Example").font(.condensed(.caption, weight: .heavy)).textCase(.uppercase).tracking(1.2)
