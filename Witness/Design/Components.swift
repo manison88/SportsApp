@@ -95,7 +95,7 @@ struct TeamTile: View {
         Text(team?.abbreviation ?? "—")
             .font(.condensed(compact ? .caption : .subheadline, weight: .heavy))
             .tracking(0.6)
-            .foregroundStyle(.white)
+            .foregroundStyle((team?.accent ?? .gray).readableInk)
             .padding(.horizontal, compact ? 6 : 8)
             .frame(minHeight: compact ? 22 : 28)
             .background(team?.accent ?? .gray, in: .rect(cornerRadius: compact ? 5 : 7))
@@ -304,7 +304,7 @@ struct CircleButton: View {
     var body: some View {
         Button(action: action) {
             Image(systemName: systemName)
-                .font(.system(size: 15, weight: .bold))
+                .font(.body.weight(.bold))
                 .foregroundStyle(.white)
                 .frame(width: 36, height: 36)
                 .background(.ultraThinMaterial, in: .circle)

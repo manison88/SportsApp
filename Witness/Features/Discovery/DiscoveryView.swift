@@ -74,6 +74,7 @@ struct DiscoveryView: View {
                             .textCase(.uppercase)
                     }
                     .accessibilityElement(children: .combine)
+                    .accessibilityAddTraits(.isHeader)
                     .accessibilityIdentifier("discovery-count")
                     ProgressView(value: Double(confirmed), total: Double(max(clusters.count, 1)))
                         .tint(.white)

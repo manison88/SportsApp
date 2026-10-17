@@ -46,7 +46,7 @@ struct YouView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 ShareLink(item: shareText(stats)) {
-                    Image(systemName: "square.and.arrow.up").font(.system(size: 16, weight: .bold))
+                    Image(systemName: "square.and.arrow.up").fontWeight(.bold)
                 }
                 .accessibilityLabel("Share your numbers")
             }
@@ -66,11 +66,11 @@ struct YouView: View {
             ForEach(stats.companions.prefix(3)) { c in
                 NavigationLink(value: Route.person(c.person.id)) {
                     HStack(spacing: 12) {
-                        Avatar(person: c.person, size: 32)
+                        Avatar(person: c.person, size: 32).accessibilityHidden(true)
                         Text(c.person.name).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
                         Spacer()
                         Text("\(c.games) games").font(.subheadline).foregroundStyle(Color.textSecondary)
-                        Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
+                        Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary).accessibilityHidden(true)
                     }
                     .frame(minHeight: 56)
                     .contentShape(.rect)
@@ -121,10 +121,10 @@ private struct HeroCard: View {
                 Text("%").displayFont(80).padding(.top, 14)
             }
             Text(line(rate).uppercased())
-                .font(.display(34, relativeTo: .title2))
+                .displayFont(34, relativeTo: .title2)
                 .fixedSize(horizontal: false, vertical: true)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(color.readableInk)
         .padding(24)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(color, in: .rect(cornerRadius: 22))
@@ -218,7 +218,7 @@ private struct LinkRow: View {
                 Text(title).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
                 Spacer()
                 if let value { Text(value).foregroundStyle(Color.textSecondary) }
-                Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
+                Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary).accessibilityHidden(true)
             }
             .frame(minHeight: 56)
             .contentShape(.rect)

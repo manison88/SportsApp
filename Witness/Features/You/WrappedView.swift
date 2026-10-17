@@ -17,6 +17,7 @@ struct WrappedView: View {
                     Text("Wrapped \(String(shownYear))")
                         .font(.condensed(.title3, weight: .heavy))
                         .textCase(.uppercase)
+                        .accessibilityAddTraits(.isHeader)
                     Spacer()
                     Button { dismiss() } label: {
                         Image(systemName: "xmark")
@@ -52,7 +53,7 @@ struct WrappedView: View {
                 .padding(.bottom, 8)
             }
             .gutter()
-            .foregroundStyle(.white)
+            .foregroundStyle(.white) // Large display type: white on team orange is 3.4:1, above the 3:1 large-text bar.
         }
         .task(id: shownYear) { renderShareImage(shownYear) }
     }
@@ -74,7 +75,7 @@ struct WrappedView: View {
             .padding(24)
             .frame(width: 360, height: 640, alignment: .top)
             .background(background)
-            .foregroundStyle(.white)
+            .foregroundStyle(.white) // Large display type: white on team orange is 3.4:1, above the 3:1 large-text bar.
             .environment(library)
         let renderer = ImageRenderer(content: card)
         renderer.scale = 3
@@ -106,7 +107,7 @@ private struct WrappedCard: View {
                 .accessibilityIdentifier("wrapped-record")
 
             Text(claim(stats, games: games.count))
-                .font(.display(30, relativeTo: .title))
+                .displayFont(30, relativeTo: .title)
                 .textCase(.uppercase)
                 .foregroundStyle(.black.opacity(0.82))
                 .fixedSize(horizontal: false, vertical: true)

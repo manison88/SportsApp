@@ -291,7 +291,23 @@ private struct ProbabilityCurve: View {
         .chartXSelection(value: $selection)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Win probability through the game")
-        .accessibilityValue("Final \(Int((points.last?.value ?? 0.5) * 100)) percent")
+        .accessibilityValue(selectedValueText)
+        .accessibilityAdjustableAction { direction in
+            let times = game.plays.map(\.time)
+            guard !times.isEmpty else { return }
+            let current = selection.flatMap { s in times.lastIndex { $0 <= s } } ?? times.count - 1
+            switch direction {
+            case .increment: selection = times[min(current + 1, times.count - 1)]
+            case .decrement: selection = times[max(current - 1, 0)]
+            @unknown default: break
+            }
+        }
+    }
+
+    private var selectedValueText: String {
+        let t = selection ?? game.plays.last?.time ?? domain.upperBound
+        let play = game.plays.min { abs($0.time.timeIntervalSince(t)) < abs($1.time.timeIntervalSince(t)) }
+        return (play.map { "\($0.period), \($0.text), " } ?? "") + "\(Int((value(at: t) * 100).rounded())) percent"
     }
 }
 

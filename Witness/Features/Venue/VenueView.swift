@@ -52,10 +52,12 @@ struct VenueView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 ShareLink(item: shareText(venue, games: games)) {
                     Image(systemName: "square.and.arrow.up")
-                        .font(.system(size: 15, weight: .bold))
+                        .font(.body.weight(.bold))
                         .foregroundStyle(.white)
                         .frame(width: 36, height: 36)
                         .background(.ultraThinMaterial, in: .circle)
+                        .frame(width: 44, height: 44)
+                        .contentShape(.circle)
                 }
                 .accessibilityLabel("Share")
             }
@@ -138,6 +140,7 @@ struct VenueView: View {
                         Image(systemName: "chevron.right")
                             .font(.footnote.weight(.bold))
                             .foregroundStyle(Color.textTertiary)
+                            .accessibilityHidden(true)
                     }
                     .frame(minHeight: 56)
                     .contentShape(.rect)

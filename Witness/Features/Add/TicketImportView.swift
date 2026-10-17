@@ -104,8 +104,9 @@ struct TicketImportView: View {
     private func bigRow(_ title: String, systemImage: String, chevron: Bool = true) -> some View {
         HStack(spacing: 14) {
             Image(systemName: systemImage)
-                .font(.system(size: 20, weight: .semibold))
+                .font(.title3.weight(.semibold))
                 .frame(width: 28)
+                .accessibilityHidden(true)
             Text(title)
                 .font(.condensed(.title3, weight: .heavy))
                 .textCase(.uppercase)
@@ -114,6 +115,7 @@ struct TicketImportView: View {
                 Image(systemName: "chevron.right")
                     .font(.footnote.weight(.bold))
                     .foregroundStyle(Color.textTertiary)
+                    .accessibilityHidden(true)
             }
         }
         .foregroundStyle(.white)

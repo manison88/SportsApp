@@ -32,7 +32,7 @@ struct LuckyCharmView: View {
                 if let best = bestCompanion(stats) {
                     NavigationLink(value: Route.person(best.person.id)) {
                         HStack(spacing: Spacing.inner) {
-                            Avatar(person: best.person, size: 32)
+                            Avatar(person: best.person, size: 32).accessibilityHidden(true)
                             VStack(alignment: .leading, spacing: 3) {
                                 Text("With \(best.person.name)")
                                     .font(.condensed(.headline, weight: .heavy))
@@ -48,6 +48,7 @@ struct LuckyCharmView: View {
                             Image(systemName: "chevron.right")
                                 .font(.footnote.weight(.bold))
                                 .foregroundStyle(Color.textTertiary)
+                                .accessibilityHidden(true)
                         }
                         .frame(minHeight: 56)
                         .contentShape(.rect)
@@ -81,8 +82,8 @@ struct LuckyCharmView: View {
                 .font(.condensed(.caption, weight: .bold))
                 .textCase(.uppercase)
                 .tracking(1.6)
-                .foregroundStyle(.white.opacity(0.8))
         }
+        .foregroundStyle(background.readableInk)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(14)
         .background(background, in: .rect(cornerRadius: 14))

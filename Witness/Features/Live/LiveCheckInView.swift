@@ -220,6 +220,15 @@ struct LiveCheckInView: View {
                 .foregroundStyle(dimmed ? Color(hex: "6B7690") : .white)
                 .contentTransition(.numericText())
                 .accessibilityIdentifier("live-score-\(id)")
+                .accessibilityLabel("\(team?.locationName ?? id) score")
+                .accessibilityValue("\(score.wrappedValue)")
+                .accessibilityAdjustableAction { direction in
+                    switch direction {
+                    case .increment: score.wrappedValue += 1
+                    case .decrement: score.wrappedValue = max(0, score.wrappedValue - 1)
+                    @unknown default: break
+                    }
+                }
             HStack(spacing: 4) {
                 stepButton("minus", label: "\(team?.abbreviation ?? id) minus one") {
                     score.wrappedValue = max(0, score.wrappedValue - 1)
@@ -239,7 +248,7 @@ struct LiveCheckInView: View {
             HStack(spacing: 2) {
                 stepButton("chevron.left", label: "Previous period") { period = max(0, period - 1) }
                 Text(shortPeriod)
-                    .font(.display(34, relativeTo: .title))
+                    .displayFont(34, relativeTo: .title)
                     .lineLimit(1)
                     .minimumScaleFactor(0.6)
                     .frame(minWidth: 54)
@@ -263,16 +272,16 @@ struct LiveCheckInView: View {
                 .accessibilityAddTraits(.isButton)
             }
         }
-        .frame(width: 112)
+        .frame(width: 146)
     }
 
     private var diamond: some View {
         ZStack {
-            base(1).offset(x: 0, y: -16)
-            base(2).offset(x: -18, y: 2)
-            base(0).offset(x: 18, y: 2)
+            base(1).offset(x: 0, y: -11)
+            base(2).offset(x: -44, y: 11)
+            base(0).offset(x: 44, y: 11)
         }
-        .frame(width: 70, height: 50)
+        .frame(width: 132, height: 66)
     }
 
     private func base(_ i: Int) -> some View {
@@ -284,7 +293,7 @@ struct LiveCheckInView: View {
                 .background(RoundedRectangle(cornerRadius: 3).fill(bases[i] ? Color.white : .clear))
                 .frame(width: 18, height: 18)
                 .rotationEffect(.degrees(45))
-                .frame(width: 30, height: 30)
+                .frame(width: 44, height: 44)
                 .contentShape(.rect)
         }
         .buttonStyle(.plain)
@@ -307,8 +316,7 @@ struct LiveCheckInView: View {
         HStack(spacing: 10) {
             TeamTile(team: home, compact: true)
             Text("\(homeScore) – \(awayScore)")
-                .font(.display(30, relativeTo: .title2))
-                .monospacedDigit()
+                .displayFont(30, relativeTo: .title2)
             TeamTile(team: away, compact: true)
             Spacer(minLength: 8)
             VStack(alignment: .trailing, spacing: 2) {
@@ -420,7 +428,7 @@ struct LiveCheckInView: View {
 private struct LivePillStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
         HStack(spacing: 6) {
-            configuration.icon.font(.system(size: 8))
+            configuration.icon.imageScale(.small)
             configuration.title
         }
         .font(.condensed(.subheadline, weight: .heavy))
@@ -428,7 +436,7 @@ private struct LivePillStyle: LabelStyle {
         .tracking(1.4)
         .foregroundStyle(.white)
         .padding(.horizontal, 12)
-        .frame(height: 30)
+        .frame(minHeight: 30)
         .background(Color.live, in: .rect(cornerRadius: 7))
     }
 }

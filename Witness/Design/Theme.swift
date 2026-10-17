@@ -26,6 +26,15 @@ extension Color {
                   green: Double((v >> 8) & 0xFF) / 255,
                   blue: Double(v & 0xFF) / 255)
     }
+
+    /// White when it reaches 4.5:1 on this fill, otherwise black.
+    var readableInk: Color {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        UIColor(self).getRed(&r, green: &g, blue: &b, alpha: &a)
+        func lin(_ c: CGFloat) -> CGFloat { c <= 0.04045 ? c / 12.92 : pow((c + 0.055) / 1.055, 2.4) }
+        let lum = 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+        return 1.05 / (lum + 0.05) >= 4.5 ? .white : .black
+    }
 }
 
 enum Spacing {
@@ -35,9 +44,8 @@ enum Spacing {
 }
 
 extension Font {
-    /// Broadcast display face: SF Pro Compressed, heavy. `relativeTo` keeps it
-    /// scaling with Dynamic Type.
-    static func display(_ size: CGFloat, relativeTo style: Font.TextStyle = .largeTitle) -> Font {
+    /// Fixed-size display face. On screen, use `.displayFont(_:relativeTo:)`, which scales.
+    static func display(_ size: CGFloat) -> Font {
         Font.system(size: size, weight: .heavy, design: .default).width(.compressed)
     }
 

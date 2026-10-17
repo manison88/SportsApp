@@ -4,6 +4,7 @@ import MapKit
 /// 02 · Map. Every venue on a globe, arcs from home, and the miles it took.
 struct LifeMapView: View {
     @Environment(Library.self) private var library
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var sport: Sport?
     @State private var position: MapCameraPosition = .automatic
 
@@ -29,7 +30,7 @@ struct LifeMapView: View {
                         Annotation(labeled.contains(v.id) ? v.city.uppercased() : "", coordinate: v.coordinate, anchor: .center) {
                             NavigationLink(value: Route.venue(v.id)) {
                                 Circle().fill(.white).frame(width: 7, height: 7)
-                                    .frame(width: 24, height: 24)
+                                    .frame(width: 44, height: 44)
                                     .contentShape(.circle)
                             }
                             .accessibilityLabel(v.name)
@@ -91,14 +92,14 @@ struct LifeMapView: View {
                     }
                 } label: {
                     Image(systemName: "line.3.horizontal.decrease")
-                        .font(.system(size: 16, weight: .bold))
+                        .fontWeight(.bold)
                 }
                 .accessibilityLabel("Filter by sport")
             }
         }
         .onAppear { position = .camera(camera(home: home, venues: venues)) }
         .onChange(of: sport) {
-            withAnimation(.smooth(duration: 0.8)) {
+            withAnimation(reduceMotion ? nil : .smooth(duration: 0.8)) {
                 position = .camera(camera(home: home, venues: venues))
             }
         }

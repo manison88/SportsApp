@@ -33,6 +33,7 @@ struct VenuePickerView: View {
                         row(name: v.name, detail: v.cityLine, selected: v.id == venueId)
                     }
                     .accessibilityIdentifier("venue-row-\(v.id)")
+                    .accessibilityAddTraits(v.id == venueId ? .isSelected : [])
                 }
             }
             .listRowBackground(Color.panel)
@@ -81,7 +82,7 @@ struct VenuePickerView: View {
             }
             Spacer()
             if selected {
-                Image(systemName: "checkmark").foregroundStyle(.white)
+                Image(systemName: "checkmark").foregroundStyle(.white).accessibilityHidden(true)
             }
         }
         .contentShape(.rect)

@@ -34,7 +34,7 @@ struct PassportView: View {
                             .displayFont(150)
                             .accessibilityIdentifier("passport-count")
                         Text(heroLabel(earned: earned.count))
-                            .font(.display(40, relativeTo: .title))
+                            .displayFont(40, relativeTo: .title)
                             .textCase(.uppercase)
                             .lineLimit(2)
                             .minimumScaleFactor(0.6)
@@ -68,7 +68,7 @@ struct PassportView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 ShareLink(item: "\(earned.count) \(heroLabel(earned: earned.count).lowercased()), witnessed in person.") {
-                    Image(systemName: "square.and.arrow.up").font(.system(size: 16, weight: .bold))
+                    Image(systemName: "square.and.arrow.up").fontWeight(.bold)
                 }
                 .accessibilityLabel("Share passport")
             }
@@ -174,19 +174,11 @@ private struct StampTile: View {
     let stamp: PassportView.Stamp
     let isLatest: Bool
 
-    private var darkText: Bool {
-        // Gold and yellow team colors need dark ink for contrast.
-        let ui = UIColor(stamp.color)
-        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
-        ui.getRed(&r, green: &g, blue: &b, alpha: &a)
-        return (0.299 * r + 0.587 * g + 0.114 * b) > 0.62
-    }
-
     var body: some View {
-        let ink: Color = darkText ? .black : .white
+        let ink = stamp.color.readableInk
         VStack(alignment: .leading, spacing: 10) {
             Text(stamp.code)
-                .font(.display(34, relativeTo: .title))
+                .displayFont(34, relativeTo: .title)
                 .foregroundStyle(ink)
             Text(stamp.date.map { Fmt.day($0) } ?? "")
                 .font(.condensed(.caption, weight: .heavy))
@@ -212,7 +204,7 @@ private struct GhostTile: View {
     let code: String
     var body: some View {
         Text(code)
-            .font(.display(34, relativeTo: .title))
+            .displayFont(34, relativeTo: .title)
             .foregroundStyle(Color.textTertiary)
             .frame(maxWidth: .infinity, minHeight: 92, alignment: .topLeading)
             .padding(12)

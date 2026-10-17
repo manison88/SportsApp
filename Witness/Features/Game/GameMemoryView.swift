@@ -191,6 +191,7 @@ struct GameMemoryView: View {
                 Image(systemName: symbol)
                     .foregroundStyle(Color.textSecondary)
                     .frame(width: 22)
+                    .accessibilityHidden(true)
                 Text(title)
                     .font(.condensed(.headline, weight: .bold))
                     .textCase(.uppercase)
@@ -199,6 +200,7 @@ struct GameMemoryView: View {
                 Image(systemName: "chevron.right")
                     .font(.footnote.weight(.bold))
                     .foregroundStyle(Color.textTertiary)
+                    .accessibilityHidden(true)
             }
             .frame(minHeight: 52)
             .contentShape(.rect)
@@ -219,10 +221,12 @@ struct GameMemoryView: View {
                 .accessibilityIdentifier("game-delete")
         } label: {
             Image(systemName: "ellipsis")
-                .font(.system(size: 15, weight: .bold))
+                .font(.body.weight(.bold))
                 .foregroundStyle(.white)
                 .frame(width: 36, height: 36)
                 .background(.ultraThinMaterial, in: .circle)
+                .frame(width: 44, height: 44)
+                .contentShape(.circle)
         }
         .accessibilityLabel("More")
         .accessibilityIdentifier("game-menu")

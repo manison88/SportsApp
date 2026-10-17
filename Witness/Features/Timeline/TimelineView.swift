@@ -60,7 +60,7 @@ struct AddMenu: View {
             Button("Check in live", systemImage: "dot.radiowaves.left.and.right") { presenter.modal = .live }
         } label: {
             Image(systemName: "plus")
-                .font(.system(size: 16, weight: .bold))
+                .fontWeight(.bold)
         }
         .accessibilityLabel("Add")
         .accessibilityIdentifier("add-menu")
