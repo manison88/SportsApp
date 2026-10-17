@@ -14,6 +14,10 @@ struct SceneVerdict: Hashable {
     /// Clearly not a game: no sign of sport, and a clear sign of somewhere else.
     var doubtful: Bool { sports < 0.15 && elsewhere >= 0.3 }
     var looksLikeGame: Bool { sports >= 0.25 }
+
+    /// Positively somewhere else: a clear sign of a bedroom, a restaurant, a bar and no sign of sport. An unsure result
+    /// is never grounds for dropping a game, because the classifier's confidence on real stadium photos can be low.
+    var clearlyElsewhere: Bool { elsewhere >= 0.25 && sports < 0.2 && event < 0.25 }
 }
 
 /// Tells a game from a party near the stadium by looking at the photos themselves. Runs on the phone.
@@ -23,7 +27,8 @@ enum SceneCheck {
                               "tennis", "rugby", "cricket", "jersey", "team", "goal", "pitch", "audience"]
     static let eventWords = ["concert", "stage", "stadium", "arena", "crowd", "audience", "festival", "fireworks", "spotlight"]
     static let elsewhereWords = ["bar", "pub", "nightclub", "party", "cocktail", "wine", "restaurant", "dining", "dinner",
-                                 "concert", "stage", "dancing", "wedding", "kitchen", "living_room", "bedroom", "office"]
+                                 "concert", "stage", "dancing", "wedding", "kitchen", "living_room", "bedroom", "office",
+                                 "bathroom", "nursery", "playroom", "toy", "document", "bed", "desk", "furniture"]
 
     /// Scores a visit from a sample of its photos. Nil when the classifier isn't available (some simulators),
     /// so callers treat the visit as unknown rather than doubtful.

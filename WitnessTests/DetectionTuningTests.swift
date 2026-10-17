@@ -61,4 +61,22 @@ final class DetectionTuningTests: XCTestCase {
         XCTAssertNil(TicketAnchors.anchor(from: "Dinner at Gino's, Aug 9 2025", assetId: "y",
                                           teams: library.allTeams, venues: library.venues), "Not a ticket")
     }
+
+    /// Records what the classifier says about real stadium photos, so the word lists and thresholds can be tuned on facts.
+    func testRecordsSceneLabelsForStadiumPhotos() async throws {
+        for name in ["wrigley-night", "fenway-night", "soldier-aerial", "united-center-court", "lambeau-exterior", "camp-nou-aerial"] {
+            guard let image = UIImage(named: name) else { continue }
+            let labels = await SceneCheck.labels(for: image) ?? []
+            let top = labels.sorted { $0.1 > $1.1 }.prefix(14).map { "\($0.0)=\(String(format: "%.2f", $0.1))" }.joined(separator: ", ")
+            let score = SceneCheck.score(labels)
+            let text = "\(name): sports \(String(format: "%.2f", score.sports)), event \(String(format: "%.2f", score.event)), elsewhere \(String(format: "%.2f", score.elsewhere))\n\(top)"
+            let a = XCTAttachment(string: text)
+            a.name = "scene-\(name)"
+            a.lifetime = .keepAlways
+            add(a)
+            print("SCENE-PHOTO", text)
+            // A stadium must never read as clearly somewhere else.
+            XCTAssertFalse(SceneVerdict(sports: score.sports, elsewhere: score.elsewhere, event: score.event).clearlyElsewhere, name)
+        }
+    }
 }

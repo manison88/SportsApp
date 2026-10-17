@@ -140,8 +140,9 @@ final class ScanModel {
         var skipped = 0
         for cluster in candidates {
             let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 8)
-            // Without the classifier (some simulators) there is nothing to go on, so the schedule match stands.
-            if look == nil || look!.sports >= 0.2 {
+            // Only a clear sign of somewhere else (a bedroom, a restaurant) overrides the schedule match. Without the
+            // classifier, or when it is unsure, the match stands.
+            if look == nil || !look!.clearlyElsewhere {
                 confirmed.append(cluster)
             } else {
                 inOther.append(cluster)
@@ -153,7 +154,7 @@ final class ScanModel {
         }
         for cluster in unmatched {
             let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 8)
-            if look == nil || look!.sports >= 0.15 || look!.event >= 0.25 { inOther.append(cluster) } else { skipped += 1 }
+            if look == nil || !look!.clearlyElsewhere { inOther.append(cluster) } else { skipped += 1 }
             verifiedVisits += 1
         }
         skippedVisits = skipped
