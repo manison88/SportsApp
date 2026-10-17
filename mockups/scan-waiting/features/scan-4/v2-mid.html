@@ -1,0 +1,51 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Scan radar</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../final/system/final.css">
+<style>
+body.b{--b-text-3:rgba(255,255,255,.62)}
+.cnt .n{display:flex;align-items:baseline;gap:10px}
+.cnt .n b{font:800 40px/1 var(--b-cond);font-variant-numeric:tabular-nums;letter-spacing:.2px}
+.cnt .n span{font:500 15px/1 var(--b-ui);color:rgba(255,255,255,.68)}
+.cnt .n em{margin-left:auto;font:700 17px/1 var(--b-cond);letter-spacing:1px;text-transform:uppercase;color:#fff;font-style:normal}
+.cnt .b-bar{margin-top:12px;height:4px}
+.cnt .sub{margin-top:10px;font:500 13px/1.2 var(--b-ui);color:rgba(255,255,255,.68)}
+.cnt .sub b{color:#fff;font-weight:700}
+.priv{position:absolute;left:20px;right:20px;bottom:44px;display:flex;gap:8px;align-items:center;justify-content:center;font:500 13px/1.2 var(--b-ui);color:rgba(255,255,255,.62)}
+.priv svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.empty{font:500 15px/1.4 var(--b-ui);color:rgba(255,255,255,.62)}
+.num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:#fff;font:800 15px/1 var(--b-cond);flex:none}
+.num.dk{color:#111}
+.num.pend{background:none;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5);color:#fff}
+.f-item .end.sc{font:800 20px/1 var(--b-cond);letter-spacing:.4px;font-variant-numeric:tabular-nums}
+.f-item .end.mu{font:500 13px/1.2 var(--b-ui);color:rgba(255,255,255,.62)}
+
+.mid{position:absolute;left:0;right:0;top:152px;text-align:center}
+.mid b{display:block;font:800 40px/1 var(--b-cond);font-variant-numeric:tabular-nums}
+.mid span{display:block;margin-top:4px;font:500 13px/1 var(--b-ui);color:rgba(255,255,255,.68)}
+.big{position:absolute;left:20px;right:20px;top:438px;text-align:center}
+.big b{display:block;font:800 76px/.9 var(--b-cond);font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.big span{display:block;margin-top:8px;font:500 16px/1 var(--b-ui);color:rgba(255,255,255,.68)}
+.big .b-bar{margin:18px auto 0;width:220px;height:4px}
+.fact{position:absolute;left:20px;right:20px;top:640px;display:flex;gap:10px;justify-content:center;align-items:center;font:500 16px/1.3 var(--b-ui);color:#fff;text-align:center}
+.fact svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;opacity:.8}
+.last{position:absolute;left:20px;right:20px;top:690px;text-align:center;font:500 13px/1.3 var(--b-ui);color:rgba(255,255,255,.62)}
+.last b{color:#fff;font-weight:700}
+.mid{top:238px}</style></head>
+<body class="phone b">
+<div class="b-nav"><div class="f-title">Scanning</div><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg></div></div>
+<svg style="position:absolute;left:0;top:96px" width="393" height="330" viewBox="0 0 393 330">
+<g transform="translate(0,-96)" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="1.5">
+<ellipse cx="196.5" cy="262" rx="168" ry="130"/>
+<ellipse cx="196.5" cy="262" rx="132" ry="100" stroke="rgba(255,255,255,.14)"/>
+<ellipse cx="196.5" cy="262" rx="96" ry="70" stroke="rgba(255,255,255,.28)"/>
+<path d="M196.5 304 L248.5 262 L196.5 220 L144.5 262 Z" stroke="rgba(255,255,255,.34)"/>
+<path d="M28.5 262H364.5M196.5 132V392" stroke="rgba(255,255,255,.07)"/>
+</g>
+<g transform="translate(0,-96)"><circle cx="104.5" cy="204" r="15" fill="#2f6bff" opacity=".22"/><circle cx="104.5" cy="204" r="6" fill="#2f6bff" stroke="#fff" stroke-width="2"/><circle cx="266.5" cy="180" r="15" fill="#ffb612" opacity=".22"/><circle cx="266.5" cy="180" r="6" fill="#ffb612" stroke="#fff" stroke-width="2"/><circle cx="308.5" cy="292" r="15" fill="#e31937" opacity=".22"/><circle cx="308.5" cy="292" r="6" fill="#e31937" stroke="#fff" stroke-width="2"/></g></svg>
+<div style="position:absolute;left:28.5px;top:132px;width:336px;height:260px;border-radius:50%;background:conic-gradient(from 20deg,rgba(255,255,255,0) 0deg,rgba(255,255,255,0) 250deg,rgba(255,255,255,.04) 300deg,rgba(255,255,255,.22) 360deg);-webkit-mask:radial-gradient(ellipse at center,#000 69%,transparent 71%);transform-origin:50% 50%"></div>
+<div style="position:absolute;left:195.5px;top:132px;width:2px;height:0"></div><div class="mid"><b>212</b><span>near a stadium</span></div>
+<div class="big"><b>18,930</b><span>of 41,280 photos · Mar 2019</span><div class="b-bar"><i style="width:45.9%;background:#fff"></i></div></div>
+<div class="fact"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Checking dates against real schedules</div><div class="last">Latest find: <b>Progressive Field</b>, Cleveland</div>
+<div class="priv"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Checked on this iPhone. Nothing leaves it.</div>
+<script src="../../../kit/kit.js"></script></body></html>

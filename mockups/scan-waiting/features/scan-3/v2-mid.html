@@ -1,0 +1,50 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Scan tickets</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../final/system/final.css">
+<style>
+body.b{--b-text-3:rgba(255,255,255,.62)}
+.cnt .n{display:flex;align-items:baseline;gap:10px}
+.cnt .n b{font:800 40px/1 var(--b-cond);font-variant-numeric:tabular-nums;letter-spacing:.2px}
+.cnt .n span{font:500 15px/1 var(--b-ui);color:rgba(255,255,255,.68)}
+.cnt .n em{margin-left:auto;font:700 17px/1 var(--b-cond);letter-spacing:1px;text-transform:uppercase;color:#fff;font-style:normal}
+.cnt .b-bar{margin-top:12px;height:4px}
+.cnt .sub{margin-top:10px;font:500 13px/1.2 var(--b-ui);color:rgba(255,255,255,.68)}
+.cnt .sub b{color:#fff;font-weight:700}
+.priv{position:absolute;left:20px;right:20px;bottom:44px;display:flex;gap:8px;align-items:center;justify-content:center;font:500 13px/1.2 var(--b-ui);color:rgba(255,255,255,.62)}
+.priv svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.empty{font:500 15px/1.4 var(--b-ui);color:rgba(255,255,255,.62)}
+.num{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--c);color:#fff;font:800 15px/1 var(--b-cond);flex:none}
+.num.dk{color:#111}
+.num.pend{background:none;box-shadow:inset 0 0 0 2px rgba(255,255,255,.5);color:#fff}
+.f-item .end.sc{font:800 20px/1 var(--b-cond);letter-spacing:.4px;font-variant-numeric:tabular-nums}
+.f-item .end.mu{font:500 13px/1.2 var(--b-ui);color:rgba(255,255,255,.62)}
+
+.stack{position:absolute;left:20px;right:20px;top:112px;height:330px}
+.tk{position:absolute;left:0;right:0;height:150px;display:flex;border-radius:14px;background:#14171d;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 10px 24px rgba(0,0,0,.55);
+ -webkit-mask-image:radial-gradient(circle 10px at 277px 0,#0000 9.5px,#000 10px),radial-gradient(circle 10px at 277px 100%,#0000 9.5px,#000 10px);-webkit-mask-composite:source-in;mask-composite:intersect}
+.tk .main{flex:1;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between}
+.tk .hd{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tk .dt{white-space:nowrap;font:700 13px/1 var(--b-cond);letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.tk .t{font:800 28px/.95 var(--b-cond);text-transform:uppercase;letter-spacing:.2px}
+.tk .p{font:500 13px/1.2 var(--b-ui);color:rgba(255,255,255,.62);margin-top:6px}
+.tk .stub{width:76px;border-left:2px dashed rgba(255,255,255,.18);display:flex;justify-content:center;align-items:flex-start;padding-top:6px}
+.stamp{width:50px;height:50px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--c),inset 0 0 0 4px #14171d,inset 0 0 0 5px var(--c);display:grid;align-content:center;justify-items:center;gap:2px;color:var(--c)}
+.stamp b{font:800 15px/1 var(--b-cond);letter-spacing:.8px}
+.stamp span{font:700 12px/1 var(--b-cond);letter-spacing:.5px}
+.tk.ghost{background:rgba(255,255,255,.03);box-shadow:none;border:2px dashed rgba(255,255,255,.3);display:grid;place-items:center;text-align:center}
+.tk.ghost .g{font:500 15px/1.4 var(--b-ui);color:rgba(255,255,255,.68)}
+.tk.ghost .g b{display:block;font:800 22px/1 var(--b-cond);text-transform:uppercase;color:#fff;margin-bottom:6px;letter-spacing:.4px}
+</style></head>
+<body class="phone b">
+<div class="b-nav"><div class="f-title">Scanning</div><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></svg></div></div>
+<div class="stack"><div class="tk" style="top:0px;z-index:1;transform:rotate(-1.2deg)"><div class="main">
+<div class="hd"><div class="b-bug"><span class="team" style="--c:#2f6bff;">CHC</span><span class="score">3</span><span class="score" style="background:rgba(255,255,255,.05)">2</span><span class="team" style="--c:#e31937">CLE</span></div><div class="dt">Oct 30, 2016</div></div>
+<div class="bd"><div class="t">World Series Game 5</div><div class="p">Wrigley Field, Chicago</div></div></div>
+<div class="stub"><div class="stamp" style="--c:#2f6bff;transform:rotate(0.0deg)"><b>CHC</b><span>'16</span></div></div></div><div class="tk" style="top:70px;z-index:2;transform:rotate(0.9deg)"><div class="main">
+<div class="hd"><div class="b-bug"><span class="team" style="--c:#ffb612;color:#111">GB</span><span class="score">24</span><span class="score" style="background:rgba(255,255,255,.05)">23</span><span class="team" style="--c:#f05a1a">CHI</span></div><div class="dt">Sep 9, 2018</div></div>
+<div class="bd"><div class="t">Week 1</div><div class="p">Lambeau Field, Green Bay</div></div></div>
+<div class="stub"><div class="stamp" style="--c:#ffb612;transform:rotate(-10.5deg)"><b>GB</b><span>'18</span></div></div></div><div class="tk ghost" style="top:230px;height:86px;z-index:3;-webkit-mask-image:none"><div class="g"><b>Progressive Field</b>Cleveland. Matching the game.</div></div></div><div class="f-col" style="top:486px;gap:26px"><div class="cnt"><div class="n"><b>18,930</b><span>of 41,280 photos</span><em>Mar 2019</em></div>
+<div class="b-bar"><i style="width:45.9%;background:#fff"></i></div></div><div class="f-stats"><div><b>212</b><span>Near a stadium</span></div><div><b>3</b><span>Venues</span></div><div><b>2</b><span>Games</span></div></div></div>
+<div class="priv"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Checked on this iPhone. Nothing leaves it.</div>
+<script src="../../../kit/kit.js"></script></body></html>
