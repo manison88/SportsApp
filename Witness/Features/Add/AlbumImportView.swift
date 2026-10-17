@@ -122,17 +122,27 @@ struct AlbumImportView: View {
 
     private var review: some View {
         let chosen = items.filter(\.included).count
+        let asks = unplaced.count + (undated.isEmpty ? 0 : 1)
+        // Photos with no location aren't "no games": lead with the question that gets them placed.
+        let needsPlacing = items.isEmpty && asks > 0
         return ScrollView {
             VStack(alignment: .leading, spacing: Spacing.block) {
                 HStack(alignment: .center, spacing: 14) {
-                    Text("\(items.count)").displayFont(110)
-                    Text(items.count == 1 ? "Game in\nthis album" : "Games in\nthis album")
+                    Text("\(needsPlacing ? asks : items.count)").displayFont(110)
+                    Text(needsPlacing ? (asks == 1 ? "Day to\nplace" : "Days to\nplace")
+                                      : (items.count == 1 ? "Game in\nthis album" : "Games in\nthis album"))
                         .displayFont(30, relativeTo: .title)
                         .textCase(.uppercase)
                 }
                 .foregroundStyle(.white)
                 .accessibilityElement(children: .combine)
                 .accessibilityIdentifier("album-found")
+
+                if needsPlacing {
+                    Text("These photos have no location. Pick the stadium and we'll find the game from the date and time.")
+                        .font(.subheadline).foregroundStyle(Color.textSecondary)
+                        .accessibilityIdentifier("album-needs-placing")
+                }
 
                 if !items.isEmpty {
                     VStack(spacing: 0) {
@@ -171,7 +181,8 @@ struct AlbumImportView: View {
                 Button {
                     addGames()
                 } label: {
-                    Text(chosen == 1 ? "Add 1 game" : "Add \(chosen) games")
+                    Text(chosen == 0 && asks > 0 ? "Choose a stadium first"
+                         : chosen == 1 ? "Add 1 game" : "Add \(chosen) games")
                 }
                 .buttonStyle(.primary)
                 .disabled(chosen == 0)
@@ -400,10 +411,15 @@ struct AlbumImportView: View {
                                    start: day.times.first ?? day.day, end: day.times.last ?? day.day,
                                    assetIds: day.assetIds, times: day.times)
         unplaced.removeAll { $0.id == day.id }
-        let start = Calendar.current.startOfDay(for: day.day)
+        // The venue's own calendar day, not the phone's: a game in Seattle is still that Seattle evening.
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = venue.tz
+        let start = cal.startOfDay(for: day.times.first ?? day.day)
         var item = Item(cluster: cluster)
-        item.game = await GameLookup.games(at: venue, from: start.addingTimeInterval(5 * 3600),
-                                           to: start.addingTimeInterval(24 * 3600)).first
+        let games = await GameLookup.games(at: venue, from: start.addingTimeInterval(5 * 3600),
+                                           to: start.addingTimeInterval(24 * 3600))
+        let middle = day.times.sorted().dropFirst(day.times.count / 2).first ?? day.day
+        item.game = games.min { abs($0.start.timeIntervalSince(middle)) < abs($1.start.timeIntervalSince(middle)) }
         items.append(item)
         items.sort { $0.cluster.start < $1.cluster.start }
     }
