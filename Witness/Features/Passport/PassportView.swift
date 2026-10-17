@@ -71,9 +71,17 @@ struct PassportView: View {
         .tabTitle("Passport")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ShareLink(item: "\(earned.count) \(heroLabel(earned: earned.count).lowercased()), witnessed in person.") {
+                ShareCardLink(title: "My \(Self.league(sport)) passport", format: .story, key: "\(sport.rawValue)-\(earned.count)", card: {
+                    let tiles = earned.map { PassportShareTile(code: $0.code, color: $0.color) }
+                    let card = PassportShareCard(
+                        count: earned.count,
+                        label: heroLabel(earned: earned.count),
+                        league: Self.league(sport),
+                        tiles: tiles)
+                    return ShareCardFrame(format: .story) { card }
+                }, label: {
                     Image(systemName: "square.and.arrow.up").fontWeight(.bold)
-                }
+                })
                 .accessibilityLabel("Share passport")
             }
         }
@@ -255,5 +263,106 @@ private struct GhostTile: View {
         .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.hairline, lineWidth: 1.5))
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(stamp.code), \(name ?? ""), not visited yet")
+    }
+}
+
+// MARK: - Share card
+
+private struct PassportShareTile {
+    let code: String
+    let color: Color
+}
+
+/// 1080x1920 story card: the earned count as hero, a tidy grid of the latest stamps, league as context.
+private struct PassportShareCard: View {
+    let count: Int
+    let label: String
+    let league: String
+    let tiles: [PassportShareTile]
+
+    private let columns = 5
+    private let maxTiles = 20
+    private let gap: CGFloat = 16
+
+    var body: some View {
+        let overflow = tiles.count > maxTiles
+        let shown: [PassportShareTile] = overflow ? Array(tiles.suffix(maxTiles - 1)) : tiles
+        let extra = tiles.count - shown.count
+        let slots = shown.count + (overflow ? 1 : 0)
+        let rowCount = (slots + columns - 1) / columns
+        let side = (912 - gap * CGFloat(columns - 1)) / CGFloat(columns)
+
+        VStack(alignment: .leading, spacing: 0) {
+            Text("\(league) PASSPORT")
+                .font(.system(size: 40, weight: .bold).width(.condensed))
+                .tracking(8)
+                .foregroundStyle(Color.signal)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+
+            Text("\(count)")
+                .font(.display(420))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.4)
+                .padding(.top, 8)
+
+            Text(label.uppercased())
+                .font(.system(size: 64, weight: .heavy).width(.compressed))
+                .foregroundStyle(.white.opacity(0.9))
+                .lineLimit(2)
+                .minimumScaleFactor(0.5)
+
+            Text("WITNESSED IN PERSON")
+                .font(.system(size: 36, weight: .bold).width(.condensed))
+                .tracking(6)
+                .foregroundStyle(.white.opacity(0.6))
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .padding(.top, 24)
+
+            Spacer(minLength: 40)
+
+            VStack(alignment: .leading, spacing: gap) {
+                ForEach(0..<rowCount, id: \.self) { row in
+                    HStack(spacing: gap) {
+                        ForEach(0..<columns, id: \.self) { col in
+                            let i = row * columns + col
+                            if i < shown.count {
+                                stamp(shown[i], side: side)
+                            } else if i == shown.count && overflow {
+                                more(extra, side: side)
+                            } else {
+                                Color.clear.frame(width: side, height: side)
+                            }
+                        }
+                    }
+                }
+            }
+            .padding(.bottom, 60)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+    }
+
+    private func stamp(_ t: PassportShareTile, side: CGFloat) -> some View {
+        Text(t.code)
+            .font(.display(64))
+            .foregroundStyle(t.color.readableInk)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+            .padding(.horizontal, 8)
+            .frame(width: side, height: side)
+            .background(t.color, in: .rect(cornerRadius: 22))
+    }
+
+    private func more(_ n: Int, side: CGFloat) -> some View {
+        Text("+\(n)")
+            .font(.display(64))
+            .foregroundStyle(.white)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+            .padding(.horizontal, 8)
+            .frame(width: side, height: side)
+            .background(Color.panelRaised, in: .rect(cornerRadius: 22))
     }
 }

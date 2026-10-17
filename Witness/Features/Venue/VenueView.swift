@@ -50,7 +50,12 @@ struct VenueView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ShareLink(item: shareText(venue, games: games)) {
+                ShareCardLink(
+                    title: venue.name,
+                    format: .story,
+                    key: "\(venue.id)-\(games.count)",
+                    card: { await shareCard(venue, games: games) }
+                ) {
                     Image(systemName: "square.and.arrow.up")
                         .font(.body.weight(.bold))
                         .foregroundStyle(.white)
@@ -151,9 +156,25 @@ struct VenueView: View {
         }
     }
 
-    private func shareText(_ venue: Venue, games: [GameEntry]) -> String {
+    private func shareCard(_ venue: Venue, games: [GameEntry]) async -> VenueShareCard {
         let r = games.reduce(into: Stats.Record()) { $0.add(library.outcome($1)) }
-        return "\(venue.name): \(games.count) games, \(r.text). · Witness"
+        var photo: UIImage?
+        if let ref = games.reversed().compactMap({ $0.photos.first }).first {
+            photo = await PhotoLoader.load(ref)
+        }
+        var place = venue.cityLine
+        if let capacity = venue.capacity, capacity > 0 {
+            place += (place.isEmpty ? "" : " · ") + capacity.formatted() + " seats"
+        }
+        return VenueShareCard(
+            name: venue.name,
+            place: place,
+            visits: games.count,
+            record: r.decided > 0 ? r.text : nil,
+            first: games.first.map { Fmt.day($0.date, in: venue.tz) },
+            last: games.last.map { Fmt.day($0.date, in: venue.tz) },
+            photo: photo
+        )
     }
 
     /// Section numbers from seat strings ("Bleachers · Section 314"), most frequent first.

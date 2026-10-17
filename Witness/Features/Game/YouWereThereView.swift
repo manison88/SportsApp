@@ -59,7 +59,10 @@ struct YouWereThereView: View {
             }
             .withoutGlass()
             ToolbarItem(placement: .topBarTrailing) {
-                ShareLink(item: shareText(game)) {
+                ShareCardLink(title: "You were there",
+                              format: .story,
+                              key: shareKey(game, moments: moments),
+                              card: { await shareCard(shareInfo(game, moments: moments)) }) {
                     Image(systemName: "square.and.arrow.up")
                 }
                 .accessibilityLabel("Share")
@@ -253,9 +256,153 @@ struct YouWereThereView: View {
         return rootingHome ? "\(play.homeScore)–\(play.awayScore)" : "\(play.awayScore)–\(play.homeScore)"
     }
 
-    private func shareText(_ game: GameEntry) -> String {
+    // MARK: Share card
+
+    /// Everything the share card shows, as plain values.
+    private struct ShareInfo {
+        var ref: PhotoRef?
+        var accent: Color
+        var score: String
+        var headline: String
+        var footer: String
+        var period: String
+        var playText: String
+    }
+
+    private func shareKey(_ game: GameEntry, moments: [PhotoMoment]) -> String {
+        let ref = shown(moments)?.ref
+        return "\(game.id)|\(ref.map { "\($0)" } ?? "none")|\(game.plays.count)"
+    }
+
+    private func shareInfo(_ game: GameEntry, moments: [PhotoMoment]) -> ShareInfo {
+        let on = shown(moments)
+        // The play closest to the photo on show, else the last key play, else the last play.
+        var play: Play?
+        if let t = on?.time {
+            play = game.plays.min { abs($0.time.timeIntervalSince(t)) < abs($1.time.timeIntervalSince(t)) }
+        }
+        if play == nil { play = game.plays.last(where: { $0.isKey }) ?? game.plays.last }
+
+        let rootingHome = library.rootingTeam(game) == game.homeTeamId
+        var scoreText = ""
+        if let hs = game.homeScore, let aw = game.awayScore {
+            scoreText = rootingHome ? "\(hs)\u{2013}\(aw)" : "\(aw)\u{2013}\(hs)"
+        }
+
         let venue = library.venue(game.venueId)
-        return "\(headlineText(game, library))\n\(venue?.name ?? "") · I was there."
+        let tz = venue?.tz ?? .current
+        let footer = [venue?.name, Fmt.dayTitle(game.date, in: tz)]
+            .compactMap { $0 }.joined(separator: " \u{00B7} ")
+
+        return ShareInfo(ref: on?.ref,
+                         accent: library.team(library.rootingTeam(game))?.accent ?? Color.signal,
+                         score: scoreText,
+                         headline: headlineText(game, library),
+                         footer: footer,
+                         period: play?.period ?? "",
+                         playText: play?.text ?? "")
+    }
+
+    @MainActor
+    private func shareCard(_ info: ShareInfo) async -> some View {
+        var photo: UIImage?
+        if let ref = info.ref { photo = await PhotoLoader.load(ref) }
+        return YouWereThereShareCard(photo: photo,
+                                     accent: info.accent,
+                                     score: info.score,
+                                     headline: info.headline,
+                                     footer: info.footer,
+                                     period: info.period,
+                                     playText: info.playText)
+    }
+}
+
+/// The 1080x1920 story card: the final score as the hero, the photo from the moment, and the play you saw.
+private struct YouWereThereShareCard: View {
+    let photo: UIImage?
+    let accent: Color
+    let score: String
+    let headline: String
+    let footer: String
+    let period: String
+    let playText: String
+
+    var body: some View {
+        ShareCardFrame(format: .story, accent: accent) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("YOU WERE THERE")
+                    .font(.system(size: 44, weight: .heavy).width(.condensed))
+                    .tracking(8)
+                    .foregroundStyle(Color.signal)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+
+                if score.isEmpty {
+                    Text(headline)
+                        .font(.display(200))
+                        .foregroundStyle(.white)
+                        .lineLimit(3)
+                        .minimumScaleFactor(0.4)
+                        .padding(.top, 28)
+                } else {
+                    Text(score)
+                        .font(.display(380))
+                        .monospacedDigit()
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.4)
+                        .padding(.top, 12)
+                    Text(headline)
+                        .font(.system(size: 52, weight: .bold).width(.condensed))
+                        .foregroundStyle(.white.opacity(0.9))
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.6)
+                        .padding(.top, 8)
+                }
+
+                if !footer.isEmpty {
+                    Text(footer.uppercased())
+                        .font(.system(size: 34, weight: .bold).width(.condensed))
+                        .tracking(4)
+                        .foregroundStyle(.white.opacity(0.6))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                        .padding(.top, 20)
+                }
+
+                if let photo {
+                    Image(uiImage: photo)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 912, height: 470)
+                        .clipped()
+                        .clipShape(.rect(cornerRadius: 28))
+                        .padding(.top, 44)
+                }
+
+                if !playText.isEmpty {
+                    HStack(alignment: .top, spacing: 20) {
+                        if !period.isEmpty {
+                            Text(period)
+                                .font(.system(size: 36, weight: .heavy).width(.condensed))
+                                .foregroundStyle(Color.black)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                                .padding(.horizontal, 14)
+                                .frame(minWidth: 64, minHeight: 56)
+                                .background(Color.white, in: .rect(cornerRadius: 10))
+                        }
+                        Text(playText)
+                            .font(.system(size: 48, weight: .semibold))
+                            .foregroundStyle(.white)
+                            .lineLimit(photo == nil ? 5 : 3)
+                            .minimumScaleFactor(0.6)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding(.top, 36)
+                }
+            }
+        }
     }
 }
 

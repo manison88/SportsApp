@@ -57,10 +57,7 @@ struct LuckyCharmView: View {
                     .accessibilityIdentifier("lucky-companion")
                 }
 
-                ShareLink(item: shareText(rate: rate, odds: odds, delta: delta, usesOdds: usesOdds)) {
-                    Label("Share", systemImage: "square.and.arrow.up")
-                }
-                .buttonStyle(.primary)
+                shareLink(rate: rate, odds: odds, delta: delta, usesOdds: usesOdds, accent: accent)
                 .accessibilityIdentifier("lucky-share")
             }
             .gutter()
@@ -95,10 +92,115 @@ struct LuckyCharmView: View {
         return qualified.max { ($0.record.rate ?? 0) < ($1.record.rate ?? 0) } ?? stats.companions.first
     }
 
-    private func shareText(rate: Double?, odds: Double, delta: Int?, usesOdds: Bool) -> String {
-        guard let rate, let delta else { return "My games on Witness." }
-        let sign = delta >= 0 ? "+" : ""
-        return "My teams win \(rate.percentText) of the games I'm at, against \(odds.percentText) \(usesOdds ? "expected" : "for a coin flip"). That's \(sign)\(delta) points. Witness."
+    private func shareLink(rate: Double?, odds: Double, delta: Int?, usesOdds: Bool, accent: Color) -> some View {
+        let heroText: String
+        let verdict: String
+        if let delta {
+            heroText = delta > 0 ? "+\(delta)" : (delta < 0 ? "\u{2212}\(abs(delta))" : "0")
+            if delta > 0 { verdict = "My teams win more when I show up." }
+            else if delta == 0 { verdict = "Dead even when I show up." }
+            else { verdict = "Not the lucky charm. Still showing up." }
+        } else {
+            heroText = "\u{2013}"
+            verdict = "My games on Witness."
+        }
+        let card = LuckyShareCard(
+            heroText: heroText,
+            heroLabel: usesOdds ? "Points above the odds" : "Points above a coin flip",
+            withMe: rate,
+            withMeText: rate?.percentText ?? "\u{2013}",
+            baseline: odds,
+            baselineText: odds.percentText,
+            baselineLabel: usesOdds ? "The odds" : "Coin flip",
+            verdict: verdict,
+            accent: accent
+        )
+        let key = "\(heroText)|\(rate?.percentText ?? "-")|\(odds.percentText)|\(usesOdds)"
+        return ShareCardLink(title: "Lucky charm", format: .story, key: key, card: { card }) {
+            Label("Share", systemImage: "square.and.arrow.up")
+        }
+        .buttonStyle(.primary)
+    }
+}
+
+/// 1080x1920 story card: the points-above-the-odds number, then two bars (with me, the odds) and one line.
+/// Story format: giant hero plus stacked bars use the full height.
+private struct LuckyShareCard: View {
+    let heroText: String
+    let heroLabel: String
+    let withMe: Double?
+    let withMeText: String
+    let baseline: Double
+    let baselineText: String
+    let baselineLabel: String
+    let verdict: String
+    let accent: Color
+
+    private let barWidth: CGFloat = 912
+
+    var body: some View {
+        ShareCardFrame(format: .story, accent: accent) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text("LUCKY CHARM")
+                    .font(.system(size: 44, weight: .bold).width(.condensed))
+                    .tracking(8)
+                    .foregroundStyle(.white.opacity(0.7))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                Text(heroText)
+                    .font(.display(420))
+                    .monospacedDigit()
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.3)
+                    .padding(.top, 40)
+                Text(heroLabel.uppercased())
+                    .font(.system(size: 56, weight: .bold).width(.condensed))
+                    .tracking(2)
+                    .foregroundStyle(.white.opacity(0.85))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.5)
+                    .padding(.top, 8)
+                VStack(alignment: .leading, spacing: 44) {
+                    bar(label: "With me", valueText: withMeText, value: withMe ?? 0, fill: Color.signal)
+                    bar(label: baselineLabel, valueText: baselineText, value: baseline, fill: Color.white.opacity(0.5))
+                }
+                .padding(.top, 90)
+                Text(verdict)
+                    .font(.system(size: 52, weight: .bold).width(.condensed))
+                    .textCase(.uppercase)
+                    .foregroundStyle(.white.opacity(0.85))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.5)
+                    .padding(.top, 70)
+            }
+        }
+    }
+
+    private func bar(label: String, valueText: String, value: Double, fill: Color) -> some View {
+        let clamped = CGFloat(min(max(value, 0), 1))
+        return VStack(alignment: .leading, spacing: 16) {
+            HStack(alignment: .firstTextBaseline, spacing: 24) {
+                Text(label.uppercased())
+                    .font(.system(size: 44, weight: .bold).width(.condensed))
+                    .tracking(6)
+                    .foregroundStyle(.white.opacity(0.6))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                Spacer(minLength: 24)
+                Text(valueText)
+                    .font(.display(110))
+                    .monospacedDigit()
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
+            }
+            ZStack(alignment: .leading) {
+                Rectangle().fill(Color.white.opacity(0.12))
+                Rectangle().fill(fill).frame(width: barWidth * clamped)
+            }
+            .frame(width: barWidth, height: 24)
+        }
     }
 }
 

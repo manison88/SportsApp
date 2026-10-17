@@ -45,10 +45,7 @@ struct YouView: View {
         .tabTitle("You")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ShareLink(item: shareText(stats)) {
-                    Image(systemName: "square.and.arrow.up").fontWeight(.bold)
-                }
-                .accessibilityLabel("Share your numbers")
+                shareLink(stats)
             }
         }
         .confirmationDialog("Remove the sample games?", isPresented: $confirmRemove, titleVisibility: .visible) {
@@ -115,10 +112,97 @@ struct YouView: View {
     private var favoriteCity: String { favoriteTeam?.locationName ?? library.profile.homeCity }
     private var favoriteColor: Color { favoriteTeam?.accent ?? Color(hex: "2F6BFF") }
 
-    private func shareText(_ s: Stats) -> String {
-        var t = "\(s.games) games, \(s.venues) venues, \(Fmt.number(s.miles)) miles."
-        if let r = s.record.rate { t += " \(r.percentText) wins when I'm there." }
-        return t
+    /// Hero is the win-loss record when any game has a result, otherwise the games count.
+    /// Three supporting numbers sit under it, never repeating the hero.
+    private func shareLink(_ s: Stats) -> some View {
+        let hasRecord = s.record.decided > 0
+        let rows: [YouShareStat] = hasRecord
+            ? [YouShareStat(label: "Games", value: "\(s.games)"),
+               YouShareStat(label: "Venues", value: "\(s.venues)"),
+               YouShareStat(label: "Miles", value: Fmt.number(s.miles))]
+            : [YouShareStat(label: "Venues", value: "\(s.venues)"),
+               YouShareStat(label: "Miles", value: Fmt.number(s.miles)),
+               YouShareStat(label: "Countries", value: "\(s.countries)")]
+        let card = YouShareCard(
+            heroValue: hasRecord ? s.record.text : "\(s.games)",
+            heroLabel: hasRecord ? "My record when I'm there" : "Games I've witnessed",
+            rows: rows,
+            accent: favoriteColor
+        )
+        let key = "\(s.games)|\(s.record.text)|\(s.venues)|\(s.miles)|\(s.countries)|\(favoriteCity)"
+        return ShareCardLink(title: "My numbers", format: .story, key: key, card: { card }) {
+            Image(systemName: "square.and.arrow.up").fontWeight(.bold)
+        }
+        .accessibilityLabel("Share your numbers")
+    }
+}
+
+private struct YouShareStat: Identifiable {
+    let label: String
+    let value: String
+    var id: String { label }
+}
+
+/// 1080x1920 story card: the record as a giant number, then three ruled rows. Story format because the hero
+/// needs the height and the rows stack vertically.
+private struct YouShareCard: View {
+    let heroValue: String
+    let heroLabel: String
+    let rows: [YouShareStat]
+    let accent: Color
+
+    var body: some View {
+        ShareCardFrame(format: .story, accent: accent) {
+            VStack(alignment: .leading, spacing: 0) {
+                HStack(spacing: 20) {
+                    Rectangle().fill(Color.signal).frame(width: 56, height: 8)
+                    Text("MY NUMBERS")
+                        .font(.system(size: 44, weight: .bold).width(.condensed))
+                        .tracking(8)
+                        .foregroundStyle(.white.opacity(0.7))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                }
+                Text(heroValue)
+                    .font(.display(400))
+                    .monospacedDigit()
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.3)
+                    .padding(.top, 40)
+                Text(heroLabel.uppercased())
+                    .font(.system(size: 56, weight: .bold).width(.condensed))
+                    .tracking(2)
+                    .foregroundStyle(.white.opacity(0.85))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.5)
+                    .padding(.top, 8)
+                VStack(spacing: 0) {
+                    ForEach(rows) { row in
+                        HStack(alignment: .firstTextBaseline, spacing: 24) {
+                            Text(row.label.uppercased())
+                                .font(.system(size: 44, weight: .bold).width(.condensed))
+                                .tracking(6)
+                                .foregroundStyle(.white.opacity(0.6))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                            Spacer(minLength: 24)
+                            Text(row.value)
+                                .font(.display(130))
+                                .monospacedDigit()
+                                .foregroundStyle(.white)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.4)
+                        }
+                        .padding(.vertical, 28)
+                        .overlay(alignment: .top) {
+                            Rectangle().fill(Color.white.opacity(0.2)).frame(height: 2)
+                        }
+                    }
+                }
+                .padding(.top, 90)
+            }
+        }
     }
 }
 

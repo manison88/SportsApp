@@ -22,6 +22,17 @@ struct SharedPassportView: View {
         let me = Person(id: "me", name: library.profile.displayName, relation: "You",
                         initials: String(library.profile.displayName.prefix(1)), colorHex: "FFFFFF")
 
+        let firstName = person.name.split(separator: " ").first.map(String.init) ?? person.name
+        let recordText: String = theirs.record.decided > 0 ? theirs.record.text : ""
+        let sortedGames = together.sorted { $0.date > $1.date }
+        let photoRefs: [PhotoRef] = Array(sortedGames.compactMap { $0.photos.first }.prefix(3))
+        let recentLine: String = {
+            guard let latest = sortedGames.first else { return "" }
+            let venueName = library.venue(latest.venueId)?.name ?? ""
+            let when = latest.date.formatted(.dateTime.month(.abbreviated).year())
+            return venueName.isEmpty ? when : "\(venueName) · \(when)"
+        }()
+
         return ScrollView {
             VStack(alignment: .leading, spacing: Spacing.block) {
                 Rings(total: mine.games, shared: together.count, person: person)
@@ -61,7 +72,21 @@ struct SharedPassportView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ShareLink(item: "\(together.count) games with \(person.name), \(theirs.record.text). Witness.") {
+                ShareCardLink(
+                    title: "\(together.count) games with \(person.name)",
+                    format: .story,
+                    key: "\(person.id)-\(together.count)-\(theirs.record.text)-\(recentLine)-\(photoRefs.count)"
+                ) {
+                    var photos: [UIImage] = []
+                    for ref in photoRefs {
+                        if let image = await PhotoLoader.load(ref) { photos.append(image) }
+                    }
+                    return ShareCardFrame(format: .story, accent: person.color) {
+                        PassportShareCard(count: together.count, name: firstName,
+                                          record: recordText, recent: recentLine,
+                                          color: person.color, photos: photos)
+                    }
+                } label: {
                     Image(systemName: "square.and.arrow.up")
                 }
                 .accessibilityLabel("Share")
@@ -170,5 +195,76 @@ private struct RouteStrip: View {
         }
         .mapStyle(.standard(elevation: .flat, emphasis: .muted, pointsOfInterest: .excludingAll))
         .environment(\.colorScheme, .dark)
+    }
+}
+
+/// 1080x1920 story card: the count of games with one friend, the record together, and up to three photos.
+private struct PassportShareCard: View {
+    let count: Int
+    let name: String
+    let record: String
+    let recent: String
+    let color: Color
+    let photos: [UIImage]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("GAMES TOGETHER")
+                .font(.system(size: 40, weight: .bold).width(.condensed))
+                .tracking(8)
+                .foregroundStyle(.white.opacity(0.6))
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+            Text("\(count)")
+                .font(.display(560))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.4)
+                .padding(.top, 8)
+            Text("WITH \(name.uppercased())")
+                .font(.display(170))
+                .foregroundStyle(color)
+                .lineLimit(1)
+                .minimumScaleFactor(0.3)
+            if !record.isEmpty {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("RECORD TOGETHER")
+                        .font(.system(size: 36, weight: .bold).width(.condensed))
+                        .tracking(6)
+                        .foregroundStyle(.white.opacity(0.6))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                    Text(record)
+                        .font(.display(150))
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.4)
+                }
+                .padding(.top, 64)
+            }
+            Spacer(minLength: 32)
+            if !photos.isEmpty {
+                HStack(spacing: 16) {
+                    ForEach(photos.indices, id: \.self) { i in
+                        Image(uiImage: photos[i])
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: (912 - 16 * CGFloat(photos.count - 1)) / CGFloat(photos.count), height: 300)
+                            .clipShape(.rect(cornerRadius: 14))
+                    }
+                }
+                .frame(height: 300)
+                .padding(.bottom, 28)
+            }
+            if !recent.isEmpty {
+                Text(recent.uppercased())
+                    .font(.system(size: 40, weight: .bold).width(.condensed))
+                    .tracking(4)
+                    .foregroundStyle(.white.opacity(0.6))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

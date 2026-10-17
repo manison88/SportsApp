@@ -274,9 +274,7 @@ struct GameMemoryView: View {
 
     private func menu(_ game: GameEntry) -> some View {
         Menu {
-            ShareLink(item: summary(game)) {
-                Label("Share", systemImage: "square.and.arrow.up")
-            }
+            shareLink(game)
             Button { editing = true } label: { Label("Edit", systemImage: "pencil") }
             Button(role: .destructive) { confirmDelete = true } label: { Label("Delete", systemImage: "trash") }
                 .accessibilityIdentifier("game-delete")
@@ -293,12 +291,153 @@ struct GameMemoryView: View {
         .accessibilityIdentifier("game-menu")
     }
 
-    private func summary(_ game: GameEntry) -> String {
+    private func shareLink(_ game: GameEntry) -> some View {
         let venue = library.venue(game.venueId)
-        var parts = [headlineText(game, library)]
-        parts.append([venue?.name, Fmt.dayTitle(game.date, in: venue?.tz ?? .current)].compactMap { $0 }.joined(separator: ", "))
-        parts.append("I was there. · Witness")
-        return parts.joined(separator: "\n")
+        let headline = headlineText(game, library)
+        let matchup = matchupText(game, library)
+        let when = Fmt.dayTitle(game.date, in: venue?.tz ?? .current)
+        let place = [venue?.name, when].compactMap { $0 }.joined(separator: " · ")
+        var score = ""
+        var result = ""
+        if let hs = game.homeScore, let aw = game.awayScore {
+            let outcome = library.outcome(game)
+            let awayFirst = library.rootingTeam(game) != nil && library.rootingTeam(game) == game.awayTeamId
+            if outcome != .none {
+                score = awayFirst ? "\(aw)–\(hs)" : "\(hs)–\(aw)"
+            } else {
+                score = "\(aw)–\(hs)"
+            }
+            switch outcome {
+            case .win: result = "Win"
+            case .loss: result = "Loss"
+            case .draw: result = "Draw"
+            case .none: result = ""
+            }
+        }
+        let accent = library.team(library.rootingTeam(game))?.accent ?? Color.signal
+        let ref = game.heroPhoto
+        let stage = game.bigGame
+        return ShareCardLink(title: headline, format: .story, key: game.id) {
+            var photo: UIImage?
+            if let ref { photo = await PhotoLoader.load(ref) }
+            return GameShareCard(
+                photo: photo,
+                accent: accent,
+                headline: headline,
+                matchup: matchup,
+                score: score,
+                result: result,
+                place: place,
+                stageLabel: stage?.label,
+                stageSymbol: stage?.kind.symbol,
+                stageTint: stage?.kind.tint ?? Color.white
+            )
+        } label: {
+            Label("Share", systemImage: "square.and.arrow.up")
+        }
+    }
+}
+
+/// The 1080x1920 story card for one game. Hero is the best photo, or the score when there is no photo.
+/// Story format: a full-height portrait photo and a stacked headline read best on a phone screen.
+private struct GameShareCard: View {
+    let photo: UIImage?
+    let accent: Color
+    let headline: String
+    let matchup: String
+    let score: String
+    let result: String
+    let place: String
+    let stageLabel: String?
+    let stageSymbol: String?
+    let stageTint: Color
+
+    private var headlineLines: String {
+        headline.uppercased().replacingOccurrences(of: ". ", with: ".\n")
+    }
+
+    var body: some View {
+        ShareCardFrame(format: .story, accent: accent) {
+            VStack(alignment: .leading, spacing: 36) {
+                if let stageLabel, let stageSymbol {
+                    HStack(spacing: 18) {
+                        Image(systemName: stageSymbol)
+                            .font(.system(size: 40, weight: .bold))
+                            .foregroundStyle(stageTint)
+                        Text(stageLabel.uppercased())
+                            .font(.system(size: 40, weight: .heavy).width(.condensed))
+                            .tracking(4)
+                            .foregroundStyle(.white)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
+                    }
+                }
+                if let photo {
+                    Color.clear
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 560)
+                        .overlay {
+                            Image(uiImage: photo)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }
+                        .clipShape(.rect(cornerRadius: 28))
+                    Text(headlineLines)
+                        .font(.display(150))
+                        .foregroundStyle(.white)
+                        .lineLimit(3)
+                        .minimumScaleFactor(0.3)
+                        .frame(maxWidth: .infinity, maxHeight: 400, alignment: .topLeading)
+                } else if !score.isEmpty {
+                    Text(score)
+                        .font(.display(380))
+                        .monospacedDigit()
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.3)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text(matchup.uppercased())
+                        .font(.display(120))
+                        .foregroundStyle(.white.opacity(0.9))
+                        .lineLimit(3)
+                        .minimumScaleFactor(0.3)
+                        .frame(maxWidth: .infinity, maxHeight: 400, alignment: .topLeading)
+                } else {
+                    Text(headlineLines)
+                        .font(.display(240))
+                        .foregroundStyle(.white)
+                        .lineLimit(5)
+                        .minimumScaleFactor(0.3)
+                        .frame(maxWidth: .infinity, maxHeight: 900, alignment: .topLeading)
+                }
+                if photo != nil, !score.isEmpty {
+                    Text([result, score].filter { !$0.isEmpty }.joined(separator: " ").uppercased())
+                        .font(.system(size: 64, weight: .heavy).width(.condensed))
+                        .tracking(3)
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                } else if photo == nil, !result.isEmpty {
+                    Text(result.uppercased())
+                        .font(.system(size: 64, weight: .heavy).width(.condensed))
+                        .tracking(3)
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                }
+                if !place.isEmpty {
+                    Text(place.uppercased())
+                        .font(.system(size: 40, weight: .bold).width(.condensed))
+                        .tracking(4)
+                        .foregroundStyle(.white.opacity(0.6))
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.5)
+                }
+                Text("I WAS THERE.")
+                    .font(.system(size: 48, weight: .heavy).width(.condensed))
+                    .tracking(4)
+                    .foregroundStyle(Color.signal)
+            }
+        }
     }
 }
 

@@ -55,7 +55,7 @@ struct WrappedView: View {
             .gutter()
             .foregroundStyle(.white)
         }
-        .task(id: shownYear) { renderShareImage(shownYear) }
+        .task(id: shownYear) { await prepareShare(shownYear) }
     }
 
     private var background: Color {
@@ -70,18 +70,130 @@ struct WrappedView: View {
         return years.max() ?? year
     }
 
-    private func renderShareImage(_ y: Int) {
-        let card = WrappedCard(year: y, compact: true)
-            .padding(24)
-            .frame(width: 360, height: 640, alignment: .top)
-            .background(background)
-            .foregroundStyle(.white)
-            .environment(library)
-        let renderer = ImageRenderer(content: card)
-        renderer.scale = 3
-        if let ui = renderer.uiImage {
-            shareImage = Image(uiImage: ui)
+    @MainActor
+    private func prepareShare(_ y: Int) async {
+        let games = library.games.filter { Fmt.year($0.date) == y }
+        let stats = Stats(library: library, games: games)
+        var photo: UIImage?
+        if let ref = WrappedCopy.bestPhoto(games, library) { photo = await PhotoLoader.load(ref) }
+        let card = WrappedShareCard(
+            year: String(y),
+            record: WrappedCopy.record(stats, games: games.count),
+            claim: WrappedCopy.claim(stats, games: games.count, library: library),
+            credit: WrappedCopy.credit(stats, library: library),
+            photo: photo,
+            tint: background
+        )
+        shareImage = renderShareImage(card, format: .story)
+    }
+}
+
+/// The wording behind Wrapped, shared by the screen card and the story image.
+private enum WrappedCopy {
+    static func record(_ stats: Stats, games: Int) -> String {
+        stats.record.decided > 0 ? stats.record.text : "\(games)"
+    }
+
+    static func city(_ library: Library) -> String {
+        library.profile.favoriteTeamIds.compactMap { library.team($0) }.first?.locationName ?? "Your teams"
+    }
+
+    static func claim(_ stats: Stats, games: Int, library: Library) -> String {
+        let r = stats.record
+        guard r.decided > 0 else { return "\(games) games. Every one of them yours." }
+        let won = r.wins
+        let n = r.decided
+        let frac = Double(won) / Double(n)
+        let phrase: String
+        if won == n { phrase = "every game" }
+        else if won == 0 { phrase = "none of the \(n) games" }
+        else if abs(frac - 2.0 / 3.0) < 0.04 { phrase = "two of every three games" }
+        else if abs(frac - 0.5) < 0.02 { phrase = "half the games" }
+        else if abs(frac - 0.75) < 0.03 { phrase = "three of every four games" }
+        else if abs(frac - 1.0 / 3.0) < 0.03 { phrase = "one of every three games" }
+        else { phrase = "\(won) of the \(n) games" }
+        return "\(city(library)) won \(phrase) you walked into."
+    }
+
+    static func bestPhoto(_ games: [GameEntry], _ library: Library) -> PhotoRef? {
+        let wins = games.filter { library.outcome($0) == .win }.sorted { $0.date < $1.date }
+        return (wins + games).first { !$0.photos.isEmpty }?.photos.first
+    }
+
+    static func credit(_ stats: Stats, library: Library) -> String {
+        let name = library.isSample ? "Sam Okafor" : library.profile.displayName
+        if let top = stats.companions.first {
+            return "Starring \(name) · with \(top.person.name)"
         }
+        return "Starring \(name)"
+    }
+}
+
+/// The 1080x1920 image shared to stories: team-colored, one big record, one claim, one photo.
+private struct WrappedShareCard: View {
+    let year: String
+    let record: String
+    let claim: String
+    let credit: String
+    let photo: UIImage?
+    let tint: Color
+
+    var body: some View {
+        ZStack(alignment: .topLeading) {
+            tint
+            LinearGradient(colors: [.clear, .black.opacity(0.35)], startPoint: .center, endPoint: .bottom)
+            VStack(alignment: .leading, spacing: 0) {
+                Text("WRAPPED \(year)")
+                    .font(.system(size: 44, weight: .heavy).width(.condensed))
+                    .tracking(8)
+                    .foregroundStyle(.white.opacity(0.85))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                Text(record)
+                    .font(.display(360))
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, 24)
+                Text(claim.uppercased())
+                    .font(.system(size: 64, weight: .heavy).width(.condensed))
+                    .foregroundStyle(.white)
+                    .lineLimit(4)
+                    .minimumScaleFactor(0.5)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, 36)
+                Spacer(minLength: 40)
+                if let photo {
+                    Color.black.opacity(0.2)
+                        .frame(height: 480)
+                        .overlay {
+                            Image(uiImage: photo)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }
+                        .clipShape(.rect(cornerRadius: 28))
+                        .padding(.bottom, 36)
+                }
+                Text(credit.uppercased())
+                    .font(.system(size: 36, weight: .bold).width(.condensed))
+                    .tracking(4)
+                    .foregroundStyle(.white.opacity(0.8))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                Text("WITNESS")
+                    .font(.system(size: 40, weight: .heavy).width(.compressed))
+                    .tracking(10)
+                    .foregroundStyle(.white.opacity(0.9))
+                    .padding(.top, 40)
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(width: 1080, height: 1920, alignment: .topLeading)
+        }
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .dark)
     }
 }
 
@@ -128,37 +240,15 @@ private struct WrappedCard: View {
         }
     }
 
-    private var city: String {
-        library.profile.favoriteTeamIds.compactMap { library.team($0) }.first?.locationName ?? "Your teams"
-    }
-
     private func claim(_ stats: Stats, games: Int) -> String {
-        let r = stats.record
-        guard r.decided > 0 else { return "\(games) games. Every one of them yours." }
-        let won = r.wins
-        let n = r.decided
-        let frac = Double(won) / Double(n)
-        let phrase: String
-        if won == n { phrase = "every game" }
-        else if won == 0 { phrase = "none of the \(n) games" }
-        else if abs(frac - 2.0 / 3.0) < 0.04 { phrase = "two of every three games" }
-        else if abs(frac - 0.5) < 0.02 { phrase = "half the games" }
-        else if abs(frac - 0.75) < 0.03 { phrase = "three of every four games" }
-        else if abs(frac - 1.0 / 3.0) < 0.03 { phrase = "one of every three games" }
-        else { phrase = "\(won) of the \(n) games" }
-        return "\(city) won \(phrase) you walked into."
+        WrappedCopy.claim(stats, games: games, library: library)
     }
 
     private func bestPhoto(_ games: [GameEntry]) -> PhotoRef? {
-        let wins = games.filter { library.outcome($0) == .win }.sorted { $0.date < $1.date }
-        return (wins + games).first { !$0.photos.isEmpty }?.photos.first
+        WrappedCopy.bestPhoto(games, library)
     }
 
     private func credit(_ stats: Stats) -> String {
-        let name = library.isSample ? "Sam Okafor" : library.profile.displayName
-        if let top = stats.companions.first {
-            return "Starring \(name) · with \(top.person.name)"
-        }
-        return "Starring \(name)"
+        WrappedCopy.credit(stats, library: library)
     }
 }

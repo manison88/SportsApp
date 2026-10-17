@@ -273,11 +273,7 @@ struct RecapFilmView: View {
             footer: [library.venue(game.venueId)?.name, Fmt.dayTitle(game.date, in: library.venue(game.venueId)?.tz ?? .current)]
                 .compactMap { $0 }.joined(separator: " · ")
         )
-        let renderer = ImageRenderer(content: card)
-        renderer.scale = 1
-        if let ui = renderer.uiImage {
-            story = Image(uiImage: ui)
-        }
+        story = renderShareImage(card, format: .story)
     }
 }
 
@@ -305,26 +301,43 @@ private struct RecapStoryCard: View {
                 .init(color: .black.opacity(0.9), location: 0.72),
                 .init(color: .black, location: 1),
             ], startPoint: .top, endPoint: .bottom)
-            VStack(alignment: .leading, spacing: 36) {
+            VStack(alignment: .leading, spacing: 0) {
+                Spacer(minLength: 0)
+                Rectangle()
+                    .fill(accent)
+                    .frame(width: 140, height: 12)
+                    .padding(.bottom, 44)
                 Text(title)
-                    .font(.display(220))
+                    .font(.display(240))
                     .foregroundStyle(.white)
                     .lineLimit(4)
                     .minimumScaleFactor(0.4)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 Text(quote.uppercased())
-                    .font(.system(size: 52, weight: .bold).width(.condensed))
-                    .foregroundStyle(.white.opacity(0.85))
+                    .font(.system(size: 56, weight: .bold).width(.condensed))
+                    .foregroundStyle(.white.opacity(0.9))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.5)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, 40)
                 Text(footer.uppercased())
                     .font(.system(size: 36, weight: .bold).width(.condensed))
                     .tracking(4)
                     .foregroundStyle(.white.opacity(0.6))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, 28)
                 Text("WITNESS")
                     .font(.system(size: 40, weight: .heavy).width(.compressed))
-                    .tracking(8)
-                    .foregroundStyle(.white)
-                    .padding(.top, 24)
+                    .tracking(10)
+                    .foregroundStyle(.white.opacity(0.9))
+                    .padding(.top, 56)
             }
-            .padding(90)
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(width: 1080, height: 1920, alignment: .bottomLeading)
         }
         .frame(width: 1080, height: 1920)
         .environment(\.colorScheme, .dark)

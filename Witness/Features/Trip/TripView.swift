@@ -64,12 +64,42 @@ struct TripView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ShareLink(item: "\(trip.title) · \(dates(trip)) · Witness") {
+                ShareCardLink(title: trip.title, format: .story, key: "\(trip.id)-\(games.count)",
+                              card: { shareCard(trip, games: games) }) {
                     Image(systemName: "square.and.arrow.up")
                 }
                 .accessibilityLabel("Share")
             }
         }
+    }
+
+    // MARK: Share card
+
+    private func shareCard(_ trip: Trip, games: [GameEntry]) -> some View {
+        let sorted = games.sorted { $0.date < $1.date }
+        // Route between the game cities only; depart/return are the fan's home.
+        var cities: [String] = []
+        for stop in trip.stops where stop.kind == .game || stop.kind == .city {
+            if cities.last != stop.city { cities.append(stop.city) }
+        }
+        if cities.isEmpty {
+            for g in sorted {
+                if let c = library.venue(g.venueId)?.city, cities.last != c { cities.append(c) }
+            }
+        }
+        let rows: [TripShareCard.GameRow] = sorted.enumerated().map { index, g in
+            let home = library.team(g.homeTeamId)?.abbreviation
+            let away = library.team(g.awayTeamId)?.abbreviation
+            let matchup: String
+            if let home, let away {
+                matchup = "\(home) VS \(away)"
+            } else {
+                matchup = RecapFilmView.shortName(library.venue(g.venueId)?.name ?? "").uppercased()
+            }
+            return TripShareCard.GameRow(id: index, matchup: matchup, date: Fmt.short(g.date))
+        }
+        return TripShareCard(title: title(trip, games: games), dates: dates(trip),
+                             gameCount: sorted.count, cities: cities, games: rows)
     }
 
     // MARK: Text
@@ -252,5 +282,133 @@ private struct TripMap: View {
         }
         .mapStyle(.standard(elevation: .flat, emphasis: .muted, pointsOfInterest: .excludingAll))
         .allowsHitTesting(false)
+    }
+}
+
+/// 1080x1920 story card: the place in giant type, the route between game cities, and the games in order.
+/// Plain values only, no environment.
+private struct TripShareCard: View {
+    struct GameRow: Identifiable {
+        let id: Int
+        let matchup: String
+        let date: String
+    }
+
+    struct CityRow: Identifiable {
+        let id: Int
+        let name: String
+    }
+
+    let title: String
+    let dates: String
+    let gameCount: Int
+    let cities: [String]
+    let games: [GameRow]
+
+    private let maxCities = 5
+    private let maxGames = 5
+
+    private var cityRows: [CityRow] {
+        Array(cities.prefix(maxCities)).enumerated().map { CityRow(id: $0.offset, name: $0.element) }
+    }
+
+    var body: some View {
+        ShareCardFrame(format: .story) {
+            VStack(alignment: .leading, spacing: 0) {
+                Text(title)
+                    .font(.display(300))
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.3)
+                Text(gameCount == 1 ? "1 GAME" : "\(gameCount) GAMES")
+                    .font(.system(size: 52, weight: .heavy).width(.condensed))
+                    .tracking(6)
+                    .foregroundStyle(Color.signal)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    .padding(.top, 8)
+                Text(dates)
+                    .font(.system(size: 40, weight: .bold).width(.condensed))
+                    .tracking(4)
+                    .foregroundStyle(.white.opacity(0.6))
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+                    .padding(.top, 10)
+
+                if cities.count > 1 {
+                    route.padding(.top, 70)
+                }
+                if !games.isEmpty {
+                    gameList.padding(.top, 70)
+                }
+            }
+        }
+    }
+
+    private var route: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(cityRows) { row in
+                HStack(spacing: 28) {
+                    VStack(spacing: 0) {
+                        Rectangle()
+                            .fill(.white.opacity(row.id == 0 ? 0 : 0.3))
+                            .frame(width: 3, height: 22)
+                        Circle()
+                            .fill(.white)
+                            .frame(width: 20, height: 20)
+                        Rectangle()
+                            .fill(.white.opacity(row.id == cityRows.count - 1 && cities.count <= maxCities ? 0 : 0.3))
+                            .frame(width: 3, height: 22)
+                    }
+                    .frame(width: 20)
+                    Text(row.name.uppercased())
+                        .font(.system(size: 54, weight: .heavy).width(.condensed))
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                }
+                .frame(height: 64)
+            }
+            if cities.count > maxCities {
+                Text("+\(cities.count - maxCities) MORE")
+                    .font(.system(size: 36, weight: .bold).width(.condensed))
+                    .tracking(4)
+                    .foregroundStyle(.white.opacity(0.6))
+                    .padding(.leading, 48)
+                    .padding(.top, 6)
+            }
+        }
+    }
+
+    private var gameList: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(Array(games.prefix(maxGames))) { game in
+                HStack(spacing: 24) {
+                    Text(game.matchup)
+                        .font(.system(size: 46, weight: .heavy).width(.condensed))
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                    Spacer(minLength: 16)
+                    Text(game.date)
+                        .font(.system(size: 40, weight: .bold).width(.condensed))
+                        .tracking(3)
+                        .foregroundStyle(.white.opacity(0.6))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                }
+                .frame(height: 86)
+                .overlay(alignment: .bottom) {
+                    Rectangle().fill(.white.opacity(0.18)).frame(height: 2)
+                }
+            }
+            if games.count > maxGames {
+                Text("+\(games.count - maxGames) MORE")
+                    .font(.system(size: 36, weight: .bold).width(.condensed))
+                    .tracking(4)
+                    .foregroundStyle(.white.opacity(0.6))
+                    .padding(.top, 20)
+            }
+        }
     }
 }
