@@ -13,11 +13,21 @@ def load(name):
 teams, leagues, missing = load("teams"), load("leagues"), load("missing-venues")
 venues = json.load(open(os.path.join(ROOT, "Witness/Resources/Catalog/venues.json")))
 venues = venues if isinstance(venues, list) else venues["venues"]
-venue_ids = {v["id"] for v in venues} | {v.get("id") for v in missing}
+import glob
+other_venue_ids, other_team_ids = set(), set()
+for _f in glob.glob(os.path.join(HERE, "*-missing-venues.json")):
+    if os.path.basename(_f) != f"{scope}-missing-venues.json":
+        try: other_venue_ids |= {v.get("id") for v in json.load(open(_f))}
+        except Exception: pass
+for _f in glob.glob(os.path.join(HERE, "*-teams.json")):
+    if os.path.basename(_f) != f"{scope}-teams.json":
+        try: other_team_ids |= {t.get("id") for t in json.load(open(_f))}
+        except Exception: pass
+venue_ids = {v["id"] for v in venues} | {v.get("id") for v in missing} | other_venue_ids
 existing = json.load(open(os.path.join(ROOT, "Witness/Resources/Catalog/teams.json")))
 existing = existing if isinstance(existing, list) else existing.get("teams", existing)
 existing_ids = {t["id"] for t in existing}
-SPORTS = {"baseball", "football", "basketball", "hockey", "soccer", "motorsport", "handball"}
+SPORTS = {"baseball", "football", "basketball", "hockey", "soccer", "motorsport", "handball", "volleyball"}
 hexre = re.compile(r"^[0-9A-Fa-f]{6}$")
 def lum(h):
     c = [int(h[i:i+2], 16) / 255 for i in (0, 2, 4)]
@@ -47,7 +57,11 @@ for t in teams:
         errors.append(f"{tid}: accent {cols['accent']} too dark on the app background (contrast {contrast_on_ink(cols['accent']):.1f})")
     if t.get("homeVenueId") not in venue_ids: errors.append(f"{tid}: homeVenueId {t.get('homeVenueId')} not in venues.json or missing-venues")
     if tid in existing_ids: pass
-team_ids = seen
+import glob as _g
+team_ids = set(seen) | existing_ids
+for _f in _g.glob(os.path.join(HERE, "*-teams.json")):
+    try: team_ids |= {x["id"] for x in json.load(open(_f))}
+    except Exception: pass
 for L in leagues:
     key = L.get("key", "?")
     for f in ("key", "name", "sport", "country", "countryCode", "tier", "teamCount", "teamIds", "passport"):
