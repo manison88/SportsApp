@@ -88,6 +88,11 @@ private struct TimelineCard: View {
                     .padding(.bottom, 22)
             }
             .frame(height: 420)
+            .overlay(alignment: .topLeading) {
+                if let stage = game.bigGame {
+                    BigGameBadge(stage: stage, onPhoto: true).padding(16)
+                }
+            }
             .clipShape(UnevenRoundedRectangle(topLeadingRadius: 22, topTrailingRadius: 22))
 
             TicketStub {
@@ -103,8 +108,16 @@ private struct TimelineCard: View {
                 .minimumScaleFactor(0.7)
             }
         }
+        .overlay {
+            // Title games get a champagne keyline around the whole ticket.
+            if game.bigGame?.kind == .championship {
+                RoundedRectangle(cornerRadius: 22).strokeBorder(Color.trophy.opacity(0.7), lineWidth: 1.5)
+                    .allowsHitTesting(false)
+            }
+        }
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(headlineText(game, library)) \(matchupText(game, library)), \(Fmt.dayTitle(game.date))")
+        .accessibilityLabel([game.bigGame?.label, headlineText(game, library), matchupText(game, library), Fmt.dayTitle(game.date)]
+            .compactMap { $0 }.joined(separator: ", "))
     }
 
     /// "Bleachers · Section 314" -> "SEC 314"

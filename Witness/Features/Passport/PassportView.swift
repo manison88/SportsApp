@@ -10,6 +10,8 @@ struct PassportView: View {
         let code: String
         let color: Color
         let date: Date?
+        /// Title games seen here; earns the stamp a gold star.
+        var titles = 0
         var id: String { venueId }
     }
 
@@ -20,7 +22,9 @@ struct PassportView: View {
 
     var body: some View {
         let all = stamps()
-        let earned = all.0
+        let titleVenues = Dictionary(grouping: library.games.filter { $0.sport == sport && $0.bigGame?.kind == .championship },
+                                     by: \.venueId).mapValues(\.count)
+        let earned = all.0.map { s -> Stamp in var s = s; s.titles = titleVenues[s.venueId] ?? 0; return s }
         let missing = all.1
         let latest = earned.max { ($0.date ?? .distantPast) < ($1.date ?? .distantPast) }
 
@@ -193,6 +197,17 @@ private struct StampTile: View {
         .padding(12)
         .background(stamp.color, in: .rect(cornerRadius: 16))
         .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(ink.opacity(0.22), lineWidth: 1.5).padding(5))
+        .overlay(alignment: .topTrailing) {
+            if stamp.titles > 0 {
+                Image(systemName: "star.fill")
+                    .font(.caption.weight(.heavy))
+                    .foregroundStyle(Color.trophy)
+                    .padding(6)
+                    .background(Color.ink.opacity(0.85), in: .circle)
+                    .padding(8)
+                    .accessibilityLabel(stamp.titles == 1 ? "Title game seen here" : "\(stamp.titles) title games seen here")
+            }
+        }
         .overlay {
             if isLatest {
                 RoundedRectangle(cornerRadius: 19).strokeBorder(.white, lineWidth: 2.5).padding(-4)

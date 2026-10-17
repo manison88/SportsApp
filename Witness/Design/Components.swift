@@ -52,6 +52,7 @@ enum Route: Hashable {
     case trip(String)
     case person(String)
     case lucky
+    case bigGames
 }
 
 /// Full-screen and sheet presentations reachable from anywhere.
@@ -390,5 +391,62 @@ extension View {
                     Color.clear.frame(width: 1, height: 1).accessibilityHidden(true)
                 }
             }
+    }
+}
+
+// MARK: - Big games
+
+extension GameEntry.Stage.Kind {
+    var symbol: String {
+        switch self {
+        case .championship: "trophy.fill"
+        case .playoff: "medal.fill"
+        case .tournament: "globe.europe.africa.fill"
+        case .rivalry: "flame.fill"
+        case .allStar: "star.fill"
+        }
+    }
+
+    var tint: Color { self == .championship ? .trophy : .white }
+
+    var name: String {
+        switch self {
+        case .championship: "Title game"
+        case .playoff: "Playoffs"
+        case .tournament: "Tournament"
+        case .rivalry: "Rivalry"
+        case .allStar: "All-Star"
+        }
+    }
+}
+
+/// Broadcast-style chip for a big game: symbol and the event's own name, no marks.
+struct BigGameBadge: View {
+    let stage: GameEntry.Stage
+    var onPhoto = false
+
+    var body: some View {
+        Label {
+            Text(stage.label)
+                .lineLimit(1)
+                .minimumScaleFactor(0.75)
+        } icon: {
+            Image(systemName: stage.kind.symbol)
+        }
+        .font(.condensed(.caption, weight: .heavy))
+        .textCase(.uppercase)
+        .tracking(1.2)
+        .foregroundStyle(stage.kind.tint)
+        .padding(.horizontal, 10)
+        .frame(minHeight: 28)
+        .background(onPhoto ? AnyShapeStyle(.black.opacity(0.55)) : AnyShapeStyle(Color.panelRaised), in: .capsule)
+        .overlay {
+            if stage.kind == .championship {
+                Capsule().strokeBorder(Color.trophy.opacity(0.6), lineWidth: 1)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(stage.kind.name): \(stage.label)")
+        .accessibilityIdentifier("big-game-badge")
     }
 }

@@ -223,6 +223,28 @@ struct GameEntry: Codable, Hashable, Identifiable {
     var podium: [String] = []
     /// The real event this game was matched to, when it was verified against a schedule.
     var source: Source?
+    /// Set for big games: finals, playoffs, tournaments, rivalries.
+    var stage: Stage?
+
+    struct Stage: Codable, Hashable {
+        enum Kind: String, Codable, Comparable {
+            case championship, playoff, tournament, rivalry, allStar
+
+            static func < (a: Kind, b: Kind) -> Bool { a.rank < b.rank }
+            private var rank: Int {
+                switch self {
+                case .championship: 0
+                case .playoff: 1
+                case .tournament: 2
+                case .rivalry: 3
+                case .allStar: 4
+                }
+            }
+        }
+        var kind: Kind
+        /// What the fan reads, e.g. "Super Bowl LIX", "Champions League · Semifinal".
+        var label: String
+    }
 
     struct Source: Codable, Hashable {
         var provider: String      // "espn"

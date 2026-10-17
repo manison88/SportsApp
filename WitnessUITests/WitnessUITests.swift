@@ -113,6 +113,11 @@ final class WitnessUITests: XCTestCase {
         snap("10-lucky")
         back()
 
+        tap("you-big-games")
+        XCTAssertTrue(el("big-games-count").waitForExistence(timeout: 5))
+        snap("15-big-games")
+        back()
+
         tap("person-row-maya")
         XCTAssertTrue(el("shared-count").waitForExistence(timeout: 5))
         snap("13-shared-passport")
@@ -128,6 +133,7 @@ final class WitnessUITests: XCTestCase {
         launch(["-demo"])
         openGame("mlb-2016-ws5", query: "World Series")
         XCTAssertTrue(el("game-title").waitForExistence(timeout: 5))
+        XCTAssertTrue(el("big-game-badge").exists, "World Series games wear the title-game badge")
         snap("05-game-memory-ws5")
 
         tap("open-you-were-there")

@@ -84,7 +84,10 @@ final class GameLookupTests: XCTestCase {
         var camp = lambeau
         camp.sports = [.soccer]
         camp.countryCode = "ES"
-        XCTAssertEqual(GameLookup.leagues(for: camp), ["soccer/esp.1"])
+        let leagues = GameLookup.leagues(for: camp)
+        XCTAssertEqual(leagues.first, "soccer/esp.1")
+        XCTAssertTrue(leagues.contains("soccer/fifa.world"), "Any soccer ground can host a World Cup")
+        XCTAssertTrue(leagues.contains("soccer/uefa.champions"))
     }
 
     func testDaysFollowTheVenueTimeZone() {

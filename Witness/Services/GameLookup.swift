@@ -26,6 +26,14 @@ struct FoundGame: Identifiable, Hashable {
     let completed: Bool
     /// e.g. "World Series - Game 5", when the league gives one.
     let note: String?
+    /// Season phase: "post-season", "final", "semifinals", "group-stage"...
+    var seasonSlug: String? = nil
+    var seasonType: Int? = nil
+
+    /// Finals, playoffs, tournaments: what makes this one a big game.
+    var stage: GameEntry.Stage? {
+        BigGame.classify(league: league, seasonSlug: seasonSlug, seasonType: seasonType, notes: note.map { [$0] } ?? [])
+    }
 }
 
 /// Box-score detail for a found game.
@@ -81,6 +89,17 @@ enum GameLookup {
 
     /// Leagues to check for a venue: what the catalog says, else a best guess from sport and country.
     static func leagues(for venue: Venue) -> [String] {
+        var base = clubLeagues(for: venue)
+        // Any soccer ground can host a World Cup, Euro, Copa América or continental final.
+        if venue.sports.contains(.soccer) {
+            for l in ["soccer/fifa.world", "soccer/uefa.euro", "soccer/conmebol.america", "soccer/concacaf.gold",
+                      "soccer/fifa.cwc", "soccer/uefa.champions", "soccer/uefa.europa", "soccer/conmebol.libertadores"]
+            where !base.contains(l) { base.append(l) }
+        }
+        return base
+    }
+
+    private static func clubLeagues(for venue: Venue) -> [String] {
         if let l = venue.leagues, !l.isEmpty { return l }
         var out: [String] = []
         let us = venue.countryCode == "US" || venue.countryCode == "CA"
@@ -124,7 +143,12 @@ enum GameLookup {
         }
         entry.lineHome = game.home.line
         entry.lineAway = game.away.line
-        if entry.competition == nil, let note = game.note { entry.competition = note }
+        if let stage = game.stage {
+            entry.stage = stage
+            if entry.competition == nil { entry.competition = stage.label }
+        } else if entry.competition == nil, let note = game.note {
+            entry.competition = note
+        }
         if entry.rootingForTeamId == nil {
             let favorites = Set(library.profile.favoriteTeamIds)
             entry.rootingForTeamId = favorites.contains(away.id) ? away.id : nil
@@ -167,10 +191,12 @@ enum GameLookup {
             let status = (comp["status"] as? [String: Any]) ?? (event["status"] as? [String: Any])
             let completed = ((status?["type"] as? [String: Any])?["completed"] as? Bool) ?? false
             let note = ((comp["notes"] as? [[String: Any]])?.first?["headline"] as? String)
+            let season = event["season"] as? [String: Any]
             return FoundGame(league: league, leagueName: leagueName, eventId: id, sport: sport(of: league),
                              start: start, venueName: venue?["fullName"] as? String ?? "",
                              venueCity: address?["city"] as? String, home: home, away: away,
-                             completed: completed, note: note)
+                             completed: completed, note: note,
+                             seasonSlug: season?["slug"] as? String, seasonType: int(season?["type"]))
         }
     }
 

@@ -155,6 +155,9 @@ struct RecapFilmView: View {
             .id("people")
         } else {
             VStack(alignment: .leading, spacing: 14) {
+                if let stage = game.bigGame {
+                    BigGameBadge(stage: stage, onPhoto: true)
+                }
                 Text(Self.title(headlineText(game, library)))
                     .displayFont(96)
                     .lineLimit(4)

@@ -14,6 +14,8 @@ extension Color {
     static let hairline = Color("Hairline")
     static let signal = Color("Signal")
     static let live = Color("Live")
+    /// Champagne gold, only for title games. Amber stays "you".
+    static let trophy = Color("Trophy")
     static let textSecondary = Color("TextSecondary")
     static let textTertiary = Color("TextTertiary")
 

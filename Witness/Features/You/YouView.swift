@@ -59,6 +59,23 @@ struct YouView: View {
     @ViewBuilder
     private func links(stats: Stats) -> some View {
         VStack(spacing: 0) {
+            let big = library.games.filter { $0.bigGame != nil }.count
+            if big > 0 {
+                NavigationLink(value: Route.bigGames) {
+                    HStack {
+                        Text("Big games").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+                        Spacer()
+                        Text("\(big)").foregroundStyle(Color.textSecondary)
+                        Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
+                            .accessibilityHidden(true)
+                    }
+                    .frame(minHeight: 56)
+                    .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.white)
+                .accessibilityIdentifier("you-big-games")
+            }
             if let year = stats.years.last {
                 LinkRow(title: "Wrapped \(String(year))", value: nil) { presenter.modal = .wrapped(year) }
                     .accessibilityIdentifier("you-wrapped")

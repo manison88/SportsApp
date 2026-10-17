@@ -88,7 +88,15 @@ struct GameMemoryView: View {
                 .frame(height: heroHeight)
                 .clipped()
             Scrim()
+            if game.bigGame?.kind == .championship {
+                // A warm floor of light under title-game headlines.
+                LinearGradient(colors: [Color.trophy.opacity(0.22), .clear], startPoint: .bottom, endPoint: .center)
+                    .allowsHitTesting(false)
+            }
             VStack(alignment: .leading, spacing: 10) {
+                if let stage = game.bigGame {
+                    BigGameBadge(stage: stage, onPhoto: true)
+                }
                 Text(headlineText(game, library).uppercased().replacingOccurrences(of: ". ", with: ".\n"))
                     .displayFont(52)
                     .lineLimit(4)
