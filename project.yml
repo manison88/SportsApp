@@ -1,10 +1,17 @@
-# Fallback for regenerating Witness.xcodeproj with XcodeGen:  brew install xcodegen && xcodegen
+# Source of truth for the Xcode project. CI runs `xcodegen generate`.
+# Locally: brew install xcodegen && xcodegen generate && open Witness.xcodeproj
 name: Witness
 options:
   bundleIdPrefix: app.witness
   deploymentTarget:
     iOS: "18.0"
   createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: ""
 targets:
   Witness:
     type: application
@@ -13,12 +20,9 @@ targets:
       - path: Witness
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: app.witness.mockups
-        SWIFT_VERSION: "5.0"
+        PRODUCT_BUNDLE_IDENTIFIER: app.witness.ios
         TARGETED_DEVICE_FAMILY: "1"
         GENERATE_INFOPLIST_FILE: YES
-        MARKETING_VERSION: "0.1"
-        CURRENT_PROJECT_VERSION: "1"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         INFOPLIST_KEY_CFBundleDisplayName: Witness
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
@@ -26,5 +30,39 @@ targets:
         INFOPLIST_KEY_UIUserInterfaceStyle: Dark
         INFOPLIST_KEY_UIStatusBarStyle: UIStatusBarStyleLightContent
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
-        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Witness finds the games you've been to from your photos' dates and locations, entirely on this iPhone."
-        INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "Witness checks you in when you arrive at a stadium."
+        INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Witness finds the games you've been to from your photos' dates and places, entirely on this iPhone."
+        INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "Witness uses your location to check you in when you're at a stadium."
+        INFOPLIST_KEY_NSCameraUsageDescription: "Witness lets you capture a moment at the game."
+  WitnessTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [WitnessTests]
+    dependencies:
+      - target: Witness
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        BUNDLE_LOADER: "$(TEST_HOST)"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Witness.app/Witness"
+  WitnessUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [WitnessUITests]
+    dependencies:
+      - target: Witness
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: Witness
+schemes:
+  Witness:
+    build:
+      targets:
+        Witness: all
+        WitnessTests: [test]
+        WitnessUITests: [test]
+    test:
+      gatherCoverageData: false
+      targets:
+        - WitnessTests
+        - WitnessUITests

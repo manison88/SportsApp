@@ -1,0 +1,63 @@
+name: iOS build & test
+
+on:
+  push:
+    branches: [claude/witness-mockups-phase1]
+    paths: ['Witness/**', 'WitnessTests/**', 'WitnessUITests/**', 'project.yml', 'ci/**', '.github/workflows/ios.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: macos-15
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: |
+          ls /Applications | grep Xcode || true
+          LATEST=$(ls -d /Applications/Xcode_16*.app | sort -V | tail -1)
+          sudo xcode-select -s "$LATEST"
+          xcodebuild -version
+          xcrun simctl list devices available | grep -E "iPhone 16 Pro \(" | head -3
+
+      - name: Generate project
+        run: |
+          brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+          xcodegen generate
+
+      - name: Build and test
+        id: test
+        run: |
+          mkdir -p build
+          set -o pipefail
+          xcodebuild test \
+            -project Witness.xcodeproj -scheme Witness \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+            -resultBundlePath build/Results.xcresult \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee build/xcodebuild.log | grep -E "error:|warning: unre|Test Case|Executed|BUILD|\*\*" || true
+          exit ${PIPESTATUS[0]}
+
+      - name: Collect results
+        if: always()
+        run: bash ci/collect.sh
+
+      - name: Publish results to ci-results branch
+        if: always()
+        run: bash ci/publish.sh
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_OUTCOME: ${{ steps.test.outcome }}
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: results
+          path: out
