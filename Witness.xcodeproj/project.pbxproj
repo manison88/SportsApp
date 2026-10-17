@@ -11,6 +11,7 @@
 		00FBD37F25C6CD2BE47DD619 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67381837ED335A8DC3A8AB2 /* OnboardingView.swift */; };
 		039B28D15BD758C29D374F98 /* ScanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E49321B29793341AF81A22B /* ScanModel.swift */; };
 		0AC1CAEB1D96B24448CA97F9 /* PackStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302F3BA2809104AA07A544F3 /* PackStore.swift */; };
+		0AE7B6A5CB64192CD96DA62B /* WeatherLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3C02570844ED9B793E2B02 /* WeatherLookup.swift */; };
 		0E12D046A277661BA11D667B /* AddVenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B224F7426AC04A827ABB7E /* AddVenueView.swift */; };
 		1063DE931F2D0F81A6578E96 /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5108FC517334D9D1A1F635 /* DiscoveryView.swift */; };
 		10A7E1C349037AD2CA7BE55A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4FEF32607AF617D75F825 /* RootView.swift */; };
@@ -130,6 +131,7 @@
 		903443890581343B7B39B754 /* TicketOCRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketOCRTests.swift; sourceTree = "<group>"; };
 		94EF1E486EA6D3C38019482C /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		99BE7A67E02B803D6070CA3E /* AlbumImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImportView.swift; sourceTree = "<group>"; };
+		9A3C02570844ED9B793E2B02 /* WeatherLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLookup.swift; sourceTree = "<group>"; };
 		9AA0327CBD34799EB421705D /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		9F4F48A3DC2D47231C6E56B7 /* EventTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTheme.swift; sourceTree = "<group>"; };
 		A051A1837F2F1411136520EB /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 				C2CF0E40DE18A5B2FEAC521A /* TicketAnchors.swift */,
 				B9CACC809ADEA9A1629BD744 /* TicketParser.swift */,
 				464F11516C93F27989521E89 /* VisitGrouping.swift */,
+				9A3C02570844ED9B793E2B02 /* WeatherLookup.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				37B16E29C9D27A66D480E00D /* VenuePickerView.swift in Sources */,
 				7C6E91ACD12F0F59F05E9A15 /* VenueView.swift in Sources */,
 				F9727740E7129812AB9CE2F3 /* VisitGrouping.swift in Sources */,
+				0AE7B6A5CB64192CD96DA62B /* WeatherLookup.swift in Sources */,
 				24825EBA9F0FC0B1BF80D2ED /* WelcomeView.swift in Sources */,
 				7DA367C7B6D9B013F8B8D6C3 /* WitnessApp.swift in Sources */,
 				685AAF44BE4BFFBD61949D73 /* WrappedView.swift in Sources */,
