@@ -64,4 +64,20 @@ final class BigGameTests: XCTestCase {
         XCTAssertEqual(ws5?.bigGame?.kind, .championship)
         XCTAssertGreaterThanOrEqual(library.games.filter { $0.bigGame != nil }.count, 6)
     }
+
+    @MainActor
+    func testBundledThemesDressTheRightEvents() {
+        XCTAssertGreaterThan(EventThemes.all.count, 40, "event-themes.json should be bundled")
+        let library = Library(storeURL: FileManager.default.temporaryDirectory.appending(path: "theme-\(UUID().uuidString).json"))
+        var superBowl = GameEntry(sport: .football, date: ISO8601DateFormatter().date(from: "2025-02-10T00:30:00Z")!,
+                                  venueId: "x", origin: .manual)
+        superBowl.source = .init(provider: "espn", league: "football/nfl", eventId: "1")
+        superBowl.stage = .init(kind: .championship, label: "Super Bowl LIX")
+        let theme = EventThemes.theme(for: superBowl, library: library)
+        XCTAssertEqual(theme?.id.hasPrefix("super-bowl"), true, "Got \(theme?.id ?? "nil")")
+        var ordinary = superBowl
+        ordinary.stage = nil
+        ordinary.competition = nil
+        XCTAssertNil(EventThemes.theme(for: ordinary, library: library))
+    }
 }

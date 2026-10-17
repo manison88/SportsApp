@@ -424,28 +424,42 @@ extension GameEntry.Stage.Kind {
 }
 
 /// Broadcast-style chip for a big game: symbol and the event's own name, no marks.
-struct BigGameBadge: View {
+/// The subtle big-game mark: a small pin in the event's colors, the event name and a short palette ribbon.
+/// The photo stays clean; nothing here is a logo, only our own shapes and the event's name as text.
+struct EventMark: View {
+    @Environment(Library.self) private var library
+    let game: GameEntry
     let stage: GameEntry.Stage
-    var onPhoto = false
 
     var body: some View {
-        Label {
-            Text(stage.label)
-                .lineLimit(1)
-                .minimumScaleFactor(0.75)
-        } icon: {
+        let theme = EventThemes.theme(for: game, library: library)
+        let field = theme?.field ?? Color.panelRaised
+        let ink = theme?.ink ?? stage.kind.tint
+        let accent = theme?.accent ?? stage.kind.tint
+        HStack(spacing: 10) {
             Image(systemName: stage.kind.symbol)
-        }
-        .font(.condensed(.caption, weight: .heavy))
-        .textCase(.uppercase)
-        .tracking(1.2)
-        .foregroundStyle(stage.kind.tint)
-        .padding(.horizontal, 10)
-        .frame(minHeight: 28)
-        .background(onPhoto ? AnyShapeStyle(.black.opacity(0.55)) : AnyShapeStyle(Color.panelRaised), in: .capsule)
-        .overlay {
-            if stage.kind == .championship {
-                Capsule().strokeBorder(Color.trophy.opacity(0.6), lineWidth: 1)
+                .font(.system(size: 17, weight: .bold))
+                .foregroundStyle(ink)
+                .frame(width: 44, height: 44)
+                .background(field, in: .circle)
+                .overlay(Circle().strokeBorder(accent, lineWidth: 2))
+                .shadow(color: .black.opacity(0.35), radius: 4, y: 1)
+            VStack(alignment: .leading, spacing: 5) {
+                Text(stage.label)
+                    .font(.condensed(.caption, weight: .heavy))
+                    .textCase(.uppercase)
+                    .tracking(1.2)
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
+                    .shadow(color: .black.opacity(0.5), radius: 2)
+                HStack(spacing: 0) {
+                    Rectangle().fill(field)
+                    Rectangle().fill(accent)
+                    Rectangle().fill(theme?.secondary ?? accent)
+                }
+                .frame(width: 64, height: 3)
+                .clipShape(.capsule)
             }
         }
         .accessibilityElement(children: .combine)

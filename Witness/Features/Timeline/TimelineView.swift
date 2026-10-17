@@ -91,7 +91,7 @@ private struct TimelineCard: View {
             .frame(height: 420)
             .overlay(alignment: .topLeading) {
                 if let stage = game.bigGame {
-                    BigGameBadge(stage: stage, onPhoto: true).padding(16)
+                    EventMark(game: game, stage: stage).padding(16)
                 }
             }
             .clipShape(UnevenRoundedRectangle(topLeadingRadius: 22, topTrailingRadius: 22))

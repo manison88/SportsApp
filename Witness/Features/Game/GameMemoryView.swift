@@ -95,7 +95,7 @@ struct GameMemoryView: View {
             }
             VStack(alignment: .leading, spacing: 10) {
                 if let stage = game.bigGame {
-                    BigGameBadge(stage: stage, onPhoto: true)
+                    EventMark(game: game, stage: stage)
                 }
                 Text(headlineText(game, library).uppercased().replacingOccurrences(of: ". ", with: ".\n"))
                     .displayFont(52)

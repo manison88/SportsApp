@@ -156,7 +156,7 @@ struct RecapFilmView: View {
         } else {
             VStack(alignment: .leading, spacing: 14) {
                 if let stage = game.bigGame {
-                    BigGameBadge(stage: stage, onPhoto: true)
+                    EventMark(game: game, stage: stage)
                 }
                 Text(Self.title(headlineText(game, library)))
                     .displayFont(96)
