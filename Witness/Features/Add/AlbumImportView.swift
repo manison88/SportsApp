@@ -294,7 +294,7 @@ struct AlbumImportView: View {
         if ProcessInfo.processInfo.arguments.contains("-seedAlbum") {
             await AlbumImporter.makeAlbumOfEverything(named: "Chicago weekend")
         }
-        albums = AlbumImporter.albums()
+        albums = await Task.detached { AlbumImporter.albums() }.value
         phase = .choose
     }
 
@@ -303,8 +303,7 @@ struct AlbumImportView: View {
         phase = .scanning
         progress = "Reading \(photoCount(a.count))"
         let venues = library.venues
-        let points = AlbumImporter.points(in: a.id)
-        let found = VisitGrouping.group(points, venues: venues)
+        let found = await Task.detached { VisitGrouping.group(AlbumImporter.points(in: a.id), venues: venues) }.value
         undated = found.undated
         items = found.visits.map { Item(cluster: $0) }
         var days = found.unplacedDays
@@ -330,43 +329,92 @@ struct AlbumImportView: View {
                               ticket: anchor.draft))
         }
 
-        for index in items.indices {
-            let c = items[index].cluster
-            progress = "Checking \(c.venue.name)"
-            items[index].game = await bestGame(for: c)
-            if let game = items[index].game {
-                let readings = await ScoreboardReader.read(c.assetIds.map { PhotoRef.library($0) })
-                items[index].onScoreboard = readings.contains { ScoreboardReader.confirms($0, game) }
+        // Each visit and each unplaced day is independent (schedule lookups, text recognition, scene check), so
+        // they run three at a time instead of one after another.
+        let width = 3
+        for start in stride(from: 0, to: items.count, by: width) {
+            let slice = Array(items.enumerated())[start..<min(start + width, items.count)]
+            progress = "Checking \(slice.first!.element.cluster.venue.name)"
+            let results = await withTaskGroup(of: (Int, FoundGame?, Bool, Bool).self,
+                                              returning: [(Int, FoundGame?, Bool, Bool)].self) { group in
+                for (i, item) in slice {
+                    group.addTask {
+                        let r = await Self.analyze(item.cluster, hasTicket: item.ticket != nil, venues: venues)
+                        return (i, r.game, r.onBoard, r.doubtful)
+                    }
+                }
+                var out: [(Int, FoundGame?, Bool, Bool)] = []
+                for await r in group { out.append(r) }
+                return out
             }
-            // Party near a downtown stadium? Look at the photos before pre-selecting.
-            if items[index].ticket == nil && !items[index].onScoreboard,
-               let scene = await SceneCheck.verdict(for: c.assetIds.map { PhotoRef.library($0) }), scene.doubtful {
-                items[index].doubtful = true
-                items[index].included = false
+            for (i, game, onBoard, doubtful) in results {
+                items[i].game = game
+                items[i].onScoreboard = onBoard
+                if doubtful {
+                    items[i].doubtful = true
+                    items[i].included = false
+                }
             }
         }
 
-        // Days without a stadium: try the scoreboard before asking.
+        // Days without a stadium: try the scoreboard before asking, and drop days that don't look like a game.
         var stillUnplaced: [DayPile] = []
-        for day in days {
-            progress = "Reading scoreboards from \(Fmt.dayTitle(day.day))"
-            let readings = await ScoreboardReader.read(day.assetIds.map { PhotoRef.library($0) })
-            if let game = await ScoreboardReader.findGame(around: day.times, boards: readings),
-               let venue = GameLookup.venue(of: game, in: venues) {
-                let cluster = PhotoCluster(id: VisitGrouping.key(venueId: venue.id, date: game.start, tz: venue.tz),
-                                           venue: venue, start: day.times.first ?? day.day, end: day.times.last ?? day.day,
-                                           assetIds: day.assetIds, times: day.times)
-                items.append(Item(cluster: cluster, game: game, onScoreboard: true, foundByScoreboard: true))
-            } else if let scene = await SceneCheck.verdict(for: day.assetIds.map { PhotoRef.library($0) }), scene.sports < 0.15 {
-                // Sightseeing, dinner, a street: nothing here looks like a game, so don't ask where it was.
-                skippedDays += 1
-            } else {
-                stillUnplaced.append(day)
+        for start in stride(from: 0, to: days.count, by: width) {
+            let slice = Array(days[start..<min(start + width, days.count)])
+            progress = "Reading photos from \(Fmt.dayTitle(slice[0].day))"
+            let results = await withTaskGroup(of: (DayPile, Item?, Bool).self,
+                                              returning: [(DayPile, Item?, Bool)].self) { group in
+                for day in slice {
+                    group.addTask {
+                        let r = await Self.analyze(day, venues: venues)
+                        return (day, r.item, r.skipped)
+                    }
+                }
+                var out: [(DayPile, Item?, Bool)] = []
+                for await r in group { out.append(r) }
+                return out
+            }
+            for (day, item, skipped) in results.sorted(by: { $0.0.day < $1.0.day }) {
+                if let item { items.append(item) } else if skipped { skippedDays += 1 } else { stillUnplaced.append(day) }
             }
         }
         unplaced = stillUnplaced
         items.sort { $0.cluster.start < $1.cluster.start }
         phase = .review
+    }
+
+    /// A stadium visit's game, whether a scoreboard backs it, and whether the photos look like a party instead.
+    private static func analyze(_ c: PhotoCluster, hasTicket: Bool, venues: [Venue]) async
+        -> (game: FoundGame?, onBoard: Bool, doubtful: Bool) {
+        var game: FoundGame?
+        for venue in [c.venue] + PhotoMatcher.neighbors(of: c.venue, in: venues) {
+            if let g = await GameLookup.games(at: venue, from: c.start, to: c.end).first { game = g; break }
+        }
+        let refs = c.assetIds.map { PhotoRef.library($0) }
+        var onBoard = false
+        if let game {
+            let readings = await ScoreboardReader.read(refs)
+            onBoard = readings.contains { ScoreboardReader.confirms($0, game) }
+        }
+        // Party near a downtown stadium? Look at the photos before pre-selecting.
+        var doubtful = false
+        if !hasTicket && !onBoard, let scene = await SceneCheck.verdict(for: refs), scene.doubtful { doubtful = true }
+        return (game, onBoard, doubtful)
+    }
+
+    /// A day with no stadium fix: a scoreboard in the photos can still name the game; otherwise sightseeing is skipped.
+    private static func analyze(_ day: DayPile, venues: [Venue]) async -> (item: Item?, skipped: Bool) {
+        let refs = day.assetIds.map { PhotoRef.library($0) }
+        let readings = await ScoreboardReader.read(refs)
+        if let game = await ScoreboardReader.findGame(around: day.times, boards: readings),
+           let venue = GameLookup.venue(of: game, in: venues) {
+            let cluster = PhotoCluster(id: VisitGrouping.key(venueId: venue.id, date: game.start, tz: venue.tz),
+                                       venue: venue, start: day.times.first ?? day.day, end: day.times.last ?? day.day,
+                                       assetIds: day.assetIds, times: day.times)
+            return (Item(cluster: cluster, game: game, onScoreboard: true, foundByScoreboard: true), false)
+        }
+        if let scene = await SceneCheck.verdict(for: refs), scene.sports < 0.15 { return (nil, true) }
+        return (nil, false)
     }
 
     private func bestGame(for cluster: PhotoCluster) async -> FoundGame? {

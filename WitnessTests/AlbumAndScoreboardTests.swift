@@ -95,6 +95,44 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertFalse(ScoreboardReader.confirms(ScoreboardReader.reading(from: "GALP PORTUGAL STORE"), fire))
     }
 
+    func testIndexFindsTheSameVenueAsTheLinearSearch() {
+        let index = VenueIndex(library.venues)
+        // Every venue's own coordinates and points 150 / 450 m north of it.
+        for v in library.venues {
+            for meters in [0.0, 150, 450] {
+                let lat = v.latitude + meters / 111_000
+                XCTAssertEqual(index.nearest(lat: lat, lon: v.longitude)?.id,
+                               VisitGrouping.nearestVenue(lat: lat, lon: v.longitude, in: library.venues)?.id, v.id)
+                XCTAssertEqual(index.nearest(lat: lat, lon: v.longitude, radius: 500)?.id,
+                               VisitGrouping.nearestVenue(lat: lat, lon: v.longitude, in: library.venues, radius: 500)?.id, v.id)
+            }
+        }
+    }
+
+    func testGroupingAFiftyThousandPhotoLibraryIsFast() {
+        let wrigley = library.venue("wrigley")!
+        let base = date("2019-01-01T12:00:00Z")
+        var points: [PhotoPoint] = []
+        for i in 0..<50_000 {
+            let located = i % 3 != 0
+            points.append(PhotoPoint(id: "p\(i)", date: base.addingTimeInterval(Double(i) * 3_000),
+                                     latitude: located ? 40.0 + Double(i % 500) * 0.01 : nil,
+                                     longitude: located ? -100.0 + Double(i % 700) * 0.01 : nil))
+        }
+        // Three real game nights hidden in it.
+        for day in 0..<3 {
+            for n in 0..<4 {
+                points.append(PhotoPoint(id: "g\(day)-\(n)", date: base.addingTimeInterval(Double(day) * 86_400 * 40 + Double(n) * 1_800),
+                                         latitude: wrigley.latitude, longitude: wrigley.longitude))
+            }
+        }
+        let start = Date()
+        let scan = VisitGrouping.group(points, venues: library.venues, minimumStay: 15 * 60)
+        let elapsed = Date().timeIntervalSince(start)
+        XCTAssertEqual(scan.visits.count, 3)
+        XCTAssertLessThan(elapsed, 5, "Grouping 50k photos took \(elapsed)s")
+    }
+
     // MARK: Scoreboards
 
     func testCrestBoardConfirmsByScoreAlone() {

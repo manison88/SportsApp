@@ -60,29 +60,58 @@ enum PhotoMatcher {
             .sorted { $0.location.distance(from: venue.location) < $1.location.distance(from: venue.location) }
     }
 
-    static func discover(venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil) async -> [PhotoCluster] {
+    /// How far a library scan has got, for the waiting screen. Every number is real.
+    struct ScanProgress: Sendable, Equatable {
+        var scanned = 0
+        var total = 0
+        /// Photos that carry a location.
+        var located = 0
+        /// Photos inside a stadium's fence so far.
+        var atStadiums = 0
+        /// The stadium of the most recent such photo.
+        var latestVenue: String?
+        /// The date of the photo being read (the scan runs newest to oldest).
+        var date: Date?
+    }
+
+    /// Finds visits in the whole library, newest first. Photos near a stadium on a visit's day count toward it
+    /// (see `VisitGrouping.matchdayReach`), and a visit needs a 15-minute stay inside the fence.
+    /// `progress` is called about every thousand photos, from a background thread.
+    static func discover(venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil,
+                         progress: (@Sendable (ScanProgress) -> Void)? = nil) async -> [PhotoCluster] {
         let existingKeys: Set<String> = Set(existing.compactMap { g -> String? in
             guard let v = venues.first(where: { $0.id == g.venueId }) else { return nil }
-            return key(venueId: v.id, date: g.date, tz: v.tz)
+            return VisitGrouping.key(venueId: v.id, date: g.date, tz: v.tz)
         })
         return await Task.detached(priority: .userInitiated) { () -> [PhotoCluster] in
-            let assets = locatedAssets()
-            var groups: [String: (Venue, [Located])] = [:]
-            for a in assets {
-                guard let v = venue(for: a, in: venues, radius: radius) else { continue }
-                let k = key(venueId: v.id, date: a.date, tz: v.tz)
-                if existingKeys.contains(k) { continue }
-                var entry = groups[k] ?? (v, [])
-                entry.1.append(a)
-                groups[k] = entry
+            let options = PHFetchOptions()
+            options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+            let result = PHAsset.fetchAssets(with: .image, options: options)
+            let index = VenueIndex(venues)
+            var state = ScanProgress(total: result.count)
+            var points: [PhotoPoint] = []
+            points.reserveCapacity(result.count)
+            result.enumerateObjects { asset, i, _ in
+                let loc = asset.location
+                points.append(PhotoPoint(id: asset.localIdentifier, date: asset.creationDate,
+                                         latitude: loc?.coordinate.latitude, longitude: loc?.coordinate.longitude))
+                if let loc {
+                    state.located += 1
+                    if let v = index.nearest(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude, radius: radius) {
+                        state.atStadiums += 1
+                        state.latestVenue = v.name
+                    }
+                }
+                if i % 1000 == 999 {
+                    state.scanned = i + 1
+                    state.date = asset.creationDate
+                    progress?(state)
+                }
             }
-            return groups.compactMap { k, value -> PhotoCluster? in
-                let sorted = value.1.sorted { $0.date < $1.date }
-                guard looksLikeAGame(sorted.map(\.date)) else { return nil }
-                return PhotoCluster(id: k, venue: value.0, start: sorted.first!.date, end: sorted.last!.date,
-                                    assetIds: sorted.map(\.id), times: sorted.map(\.date))
-            }
-            .sorted { $0.start > $1.start }
+            state.scanned = result.count
+            progress?(state)
+            return VisitGrouping.group(points, venues: venues, radius: radius, minimumStay: 15 * 60, skipping: existingKeys)
+                .visits.sorted { $0.start > $1.start }
         }.value
     }
 

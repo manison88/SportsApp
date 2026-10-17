@@ -24,6 +24,62 @@ struct PhotoScan: Hashable {
     var undated: [String] = []
 }
 
+/// Local calendar day strings with one cached Calendar per time zone (building a Calendar per photo is the slow part
+/// of grouping a large library).
+struct DayKeyer {
+    private var calendars: [String: Calendar] = [:]
+
+    mutating func day(_ date: Date, tz: TimeZone) -> String {
+        let cal: Calendar
+        if let cached = calendars[tz.identifier] {
+            cal = cached
+        } else {
+            var c = Calendar(identifier: .gregorian)
+            c.timeZone = tz
+            calendars[tz.identifier] = c
+            cal = c
+        }
+        let c = cal.dateComponents([.year, .month, .day], from: date)
+        return String(format: "%04d-%02d-%02d", c.year ?? 0, c.month ?? 0, c.day ?? 0)
+    }
+}
+
+/// Venues bucketed into ~2 km cells, so a photo checks a handful of venues instead of all of them.
+struct VenueIndex {
+    private static let cell = 0.02
+    private let cells: [Int: [Venue]]
+
+    init(_ venues: [Venue]) {
+        var cells: [Int: [Venue]] = [:]
+        for v in venues { cells[Self.key(Self.index(v.latitude), Self.index(v.longitude)), default: []].append(v) }
+        self.cells = cells
+    }
+
+    private static func index(_ degrees: Double) -> Int { Int((degrees / cell).rounded(.down)) }
+    private static func key(_ i: Int, _ j: Int) -> Int { i * 20_000 + j }
+
+    /// Same rule as `VisitGrouping.nearestVenue`: the nearest venue whose geofence (or `radius`) holds the point.
+    func nearest(lat: Double, lon: Double, radius: CLLocationDistance? = nil) -> Venue? {
+        let box = radius ?? 320
+        let dLat = box / 111_000
+        let here = CLLocation(latitude: lat, longitude: lon)
+        let ci = Self.index(lat), cj = Self.index(lon)
+        var best: (Venue, CLLocationDistance)?
+        for di in -1...1 {
+            for dj in -1...1 {
+                for v in cells[Self.key(ci + di, cj + dj)] ?? [] {
+                    guard abs(v.latitude - lat) <= dLat else { continue }
+                    let dLon = dLat / max(0.1, cos(v.latitude * .pi / 180))
+                    guard abs(v.longitude - lon) <= dLon else { continue }
+                    let d = here.distance(from: v.location)
+                    if d <= (radius ?? v.geofence), d < (best?.1 ?? .infinity) { best = (v, d) }
+                }
+            }
+        }
+        return best?.0
+    }
+}
+
 /// Groups photos into stadium visits. Pure, so it's shared by library discovery and album import and unit tested.
 enum VisitGrouping {
     /// Photos this close to a stadium on a visit's day belong to the visit (the pub, the tailgate, the walk in).
@@ -40,17 +96,19 @@ enum VisitGrouping {
         var loose: [(String, Date)] = []
         var around: [(String, Date, Venue)] = []
         var joined: [String: [(String, Date)]] = [:]
+        let index = VenueIndex(venues)
+        var days = DayKeyer()
 
         for p in points {
             guard let date = p.date else { scan.undated.append(p.id); continue }
-            if let lat = p.latitude, let lon = p.longitude, let v = nearestVenue(lat: lat, lon: lon, in: venues, radius: radius) {
-                let k = key(venueId: v.id, date: date, tz: v.tz)
+            guard let lat = p.latitude, let lon = p.longitude else { loose.append((p.id, date)); continue }
+            if let v = index.nearest(lat: lat, lon: lon, radius: radius) {
+                let k = "\(v.id)|\(days.day(date, tz: v.tz))"
                 if skipping.contains(k) { continue }
                 var entry = visits[k] ?? (v, [])
                 entry.1.append((p.id, date))
                 visits[k] = entry
-            } else if let lat = p.latitude, let lon = p.longitude,
-                      let v = nearestVenue(lat: lat, lon: lon, in: venues, radius: matchdayReach) {
+            } else if let v = index.nearest(lat: lat, lon: lon, radius: matchdayReach) {
                 around.append((p.id, date, v))
             } else {
                 loose.append((p.id, date))
@@ -59,21 +117,31 @@ enum VisitGrouping {
 
         // Within 500 m on a visit's day: part of the visit. With no visit that day, they wait like any other photo.
         for (id, date, v) in around {
-            let k = key(venueId: v.id, date: date, tz: v.tz)
+            let k = "\(v.id)|\(days.day(date, tz: v.tz))"
             if visits[k] != nil { joined[k, default: []].append((id, date)) } else { loose.append((id, date)) }
         }
 
         // Photos without a stadium fix that were taken on a visit's day belong to that visit (edited copies,
         // a friend's shared photos, location switched off). The rest wait for the fan to tell us where.
+        // Visits are indexed by time zone and local day so each loose photo is one lookup per zone, not per visit.
+        var visitByDay: [String: String] = [:]
+        var zones: [String: TimeZone] = [:]
+        for (k, value) in visits.sorted(by: { $0.key < $1.key }) {
+            let tz = value.0.tz
+            zones[tz.identifier] = tz
+            let dayKey = "\(tz.identifier)|\(k.split(separator: "|").last ?? "")"
+            if visitByDay[dayKey] == nil { visitByDay[dayKey] = k }
+        }
         var byDay: [String: [(String, Date)]] = [:]
         for (id, date) in loose {
-            if let k = visits.keys.first(where: { k in
-                let v = visits[k]!.0
-                return k == key(venueId: v.id, date: date, tz: v.tz)
-            }) {
-                visits[k]!.1.append((id, date))
+            var home: String?
+            for (zoneId, tz) in zones {
+                if let k = visitByDay["\(zoneId)|\(days.day(date, tz: tz))"] { home = k; break }
+            }
+            if let home {
+                visits[home]!.1.append((id, date))
             } else {
-                byDay[dayString(date, tz: .current), default: []].append((id, date))
+                byDay[days.day(date, tz: .current), default: []].append((id, date))
             }
         }
 

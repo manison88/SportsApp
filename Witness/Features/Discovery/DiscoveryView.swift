@@ -11,6 +11,7 @@ struct DiscoveryView: View {
     enum Phase: Equatable { case requesting, scanning, denied, results }
 
     @State private var phase: Phase = .requesting
+    @State private var scanProgress: PhotoMatcher.ScanProgress?
     @State private var clusters: [PhotoCluster] = []
     @State private var index = 0
     @State private var confirmed = 0
@@ -42,15 +43,8 @@ struct DiscoveryView: View {
     private var content: some View {
         switch phase {
         case .requesting, .scanning:
-            VStack(spacing: Spacing.inner) {
-                Spacer()
-                ProgressView().controlSize(.large).tint(.white)
-                Text("Looking for stadiums in your photos")
-                    .font(.condensed(.headline))
-                    .foregroundStyle(Color.textSecondary)
-                Spacer()
-            }
-            .frame(maxWidth: .infinity)
+            scanning
+                .frame(maxWidth: .infinity)
         case .denied:
             message(title: "Witness can't see your photos.",
                     body: "Allow photo access in Settings and Witness will match them to stadiums on this iPhone.",
@@ -186,6 +180,42 @@ struct DiscoveryView: View {
         }
     }
 
+    private var scanning: some View {
+        VStack(spacing: Spacing.inner) {
+            Spacer()
+            if let p = scanProgress, p.total > 0 {
+                Text(p.date.map { $0.formatted(.dateTime.month(.wide).year()) } ?? "Starting")
+                    .displayFont(48)
+                    .textCase(.uppercase)
+                    .contentTransition(.numericText())
+                ProgressView(value: Double(p.scanned), total: Double(p.total))
+                    .tint(Color.signal)
+                    .padding(.horizontal, 48)
+                Text("\(p.scanned.formatted()) of \(p.total.formatted()) photos")
+                    .font(.condensed(.headline))
+                    .foregroundStyle(Color.textSecondary)
+                if p.atStadiums > 0 {
+                    Label("\(p.atStadiums) near a stadium" + (p.latestVenue.map { " · \($0)" } ?? ""), systemImage: "building.columns")
+                        .font(.footnote)
+                        .foregroundStyle(Color.textSecondary)
+                        .accessibilityIdentifier("discovery-progress-found")
+                }
+            } else {
+                ProgressView().controlSize(.large).tint(.white)
+            }
+            Text("Looking for stadiums in your photos")
+                .font(.condensed(.headline))
+                .foregroundStyle(Color.textTertiary)
+            Label("Matched privately on this iPhone", systemImage: "lock.fill")
+                .font(.footnote)
+                .foregroundStyle(Color.textTertiary)
+            Spacer()
+        }
+        .animation(.default, value: scanProgress?.atStadiums)
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("discovery-scanning")
+    }
+
     private var done: some View {
         VStack(alignment: .leading, spacing: Spacing.block) {
             Spacer()
@@ -250,7 +280,9 @@ struct DiscoveryView: View {
         let granted = await PhotoMatcher.requestAccess()
         guard granted else { phase = .denied; return }
         phase = .scanning
-        var found = await PhotoMatcher.discover(venues: library.venues, existing: library.games)
+        var found = await PhotoMatcher.discover(venues: library.venues, existing: library.games) { p in
+            Task { @MainActor in scanProgress = p }
+        }
         // Ticket screenshots pin games on their own, even when none of the night's photos have GPS.
         let have = Set(library.games.compactMap { g in library.venue(g.venueId).map { VisitGrouping.key(venueId: $0.id, date: g.date, tz: $0.tz) } })
         let anchors = await TicketAnchors.find(in: TicketAnchors.screenshots(limit: 200), teams: library.allTeams, venues: library.venues)
