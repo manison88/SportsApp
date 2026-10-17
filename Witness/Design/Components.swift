@@ -373,7 +373,8 @@ func headlineText(_ game: GameEntry, _ library: Library) -> String {
         let venue = library.venue(game.venueId)?.name ?? "the game"
         return "\(max(hs, as_))–\(min(hs, as_)) at \(venue)."
     }
-    return hs >= as_ ? "\(home) \(hs), \(away) \(as_)." : "\(away) \(as_), \(home) \(hs)."
+    // One team per line, the winner first.
+    return hs >= as_ ? "\(home) \(hs)\n\(away) \(as_)" : "\(away) \(as_)\n\(home) \(hs)"
 }
 
 extension View {
@@ -465,5 +466,138 @@ struct EventMark: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(stage.kind.name): \(stage.label)")
         .accessibilityIdentifier("big-game-badge")
+    }
+}
+
+
+// MARK: - Sport colors
+
+extension Sport {
+    /// The sport's line and dot color on the map. Chosen to stay apart from each other on a dark map.
+    var lineColor: Color {
+        switch self {
+        case .baseball: Color(hex: "FF5A4F")
+        case .football: Color(hex: "3DDC84")
+        case .basketball: Color(hex: "FFA42E")
+        case .hockey: Color(hex: "5AC8FA")
+        case .soccer: Color(hex: "E6F05A")
+        case .motorsport: Color(hex: "BF7BFF")
+        case .handball: Color(hex: "FF7AD1")
+        }
+    }
+}
+
+// MARK: - Score as two lines
+
+/// The final score, one team per line: tile, city, score.
+struct ScoreStack: View {
+    @Environment(Library.self) private var library
+    let game: GameEntry
+
+    var body: some View {
+        VStack(spacing: 0) {
+            row(game.awayTeamId, game.awayScore, other: game.homeScore)
+            Rectangle().fill(Color.hairline).frame(height: 1)
+            row(game.homeTeamId, game.homeScore, other: game.awayScore)
+            Text("Final").unitLabel()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 8)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("score-stack")
+    }
+
+    private func row(_ teamId: String?, _ score: Int?, other: Int?) -> some View {
+        let team = library.team(teamId)
+        let won = (score ?? 0) > (other ?? 0)
+        return HStack(spacing: 12) {
+            TeamTile(team: team, compact: true)
+            Text(team?.displayName ?? "")
+                .font(.condensed(.title3, weight: .heavy))
+                .textCase(.uppercase)
+                .lineLimit(1)
+                .minimumScaleFactor(0.6)
+                .foregroundStyle(won ? Color.white : Color.textSecondary)
+            Spacer(minLength: 8)
+            Text(score.map(String.init) ?? "")
+                .font(.condensed(.title2, weight: .heavy))
+                .monospacedDigit()
+                .foregroundStyle(won ? Color.white : Color.textSecondary)
+        }
+        .frame(minHeight: 48)
+    }
+}
+
+// MARK: - Photos
+
+struct PhotoViewerItem: Identifiable { let id: Int }
+
+/// Full-screen photos for a game: swipe between them, pinch or double-tap to zoom.
+struct PhotoPager: View {
+    let photos: [PhotoRef]
+    @State var index: Int
+    @Environment(\.dismiss) private var dismiss
+
+    init(photos: [PhotoRef], start: Int) {
+        self.photos = photos
+        _index = State(initialValue: start)
+    }
+
+    var body: some View {
+        ZStack(alignment: .top) {
+            Color.black.ignoresSafeArea()
+            TabView(selection: $index) {
+                ForEach(Array(photos.enumerated()), id: \.offset) { i, ref in
+                    ZoomablePhoto(ref: ref).tag(i)
+                }
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .ignoresSafeArea()
+            HStack {
+                CircleButton(systemName: "xmark", label: "Close") { dismiss() }
+                    .accessibilityIdentifier("photo-viewer-close")
+                Spacer()
+                Text("\(index + 1) / \(photos.count)")
+                    .font(.condensed(.subheadline, weight: .heavy))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 12).frame(minHeight: 32)
+                    .background(.black.opacity(0.55), in: .capsule)
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
+        }
+        .accessibilityIdentifier("photo-viewer")
+    }
+}
+
+private struct ZoomablePhoto: View {
+    let ref: PhotoRef
+    @State private var scale: CGFloat = 1
+    @State private var base: CGFloat = 1
+    @State private var offset: CGSize = .zero
+    @State private var dragStart: CGSize = .zero
+
+    var body: some View {
+        PhotoView(ref: ref, contentMode: .fit)
+            .scaleEffect(scale)
+            .offset(offset)
+            .gesture(MagnifyGesture()
+                .onChanged { scale = min(max(base * $0.magnification, 1), 6) }
+                .onEnded { _ in
+                    base = scale
+                    if scale <= 1.01 { reset() }
+                })
+            .simultaneousGesture(DragGesture()
+                .onChanged { if scale > 1 { offset = CGSize(width: dragStart.width + $0.translation.width, height: dragStart.height + $0.translation.height) } }
+                .onEnded { _ in dragStart = offset })
+            .onTapGesture(count: 2) {
+                withAnimation(.smooth(duration: 0.25)) {
+                    if scale > 1 { reset() } else { scale = 2.5; base = 2.5 }
+                }
+            }
+    }
+
+    private func reset() {
+        scale = 1; base = 1; offset = .zero; dragStart = .zero
     }
 }

@@ -178,7 +178,8 @@ struct RecapFilmView: View {
 
     /// "Down 3–1. Still alive." -> "DOWN\n3–1." style line breaks on sentences.
     static func title(_ headline: String) -> String {
-        headline.uppercased()
+        if headline.contains("\n") { return headline.uppercased() }
+        return headline.uppercased()
             .split(separator: ".", omittingEmptySubsequences: true)
             .map { $0.trimmingCharacters(in: .whitespaces) + "." }
             .prefix(2)

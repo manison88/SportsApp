@@ -94,6 +94,12 @@ final class WitnessUITests: XCTestCase {
 
         tab("Map")
         XCTAssertTrue(el("map-miles").waitForExistence(timeout: 5))
+        XCTAssertTrue(el("map-legend").exists, "The map names each sport's line color")
+        tap("map-expand")
+        XCTAssertTrue(el("life-map-expanded").waitForExistence(timeout: 5))
+        tap("map-zoom-in")
+        snap("02b-map-expanded")
+        tap("map-close")
         sleep(3) // let map tiles load for the screenshot
         snap("02-map")
 
@@ -135,6 +141,14 @@ final class WitnessUITests: XCTestCase {
         XCTAssertTrue(el("game-title").waitForExistence(timeout: 5))
         XCTAssertTrue(el("big-game-badge").exists, "World Series games wear the title-game badge")
         snap("05-game-memory-ws5")
+
+        // The fan's photos are one tap from the game: a strip under the score opens a full-screen viewer.
+        if el("game-photos").exists {
+            tap("game-photo-0")
+            XCTAssertTrue(el("photo-viewer").waitForExistence(timeout: 5), "A photo should open full screen")
+            snap("05b-photo-viewer")
+            tap("photo-viewer-close")
+        }
 
         tap("open-you-were-there")
         XCTAssertTrue(el("ywt-plays").waitForExistence(timeout: 5))

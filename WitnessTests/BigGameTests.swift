@@ -80,4 +80,19 @@ final class BigGameTests: XCTestCase {
         ordinary.competition = nil
         XCTAssertNil(EventThemes.theme(for: ordinary, library: library))
     }
+
+    @MainActor
+    func testScoreHeadlineIsOneTeamPerLine() {
+        let library = Library(storeURL: FileManager.default.temporaryDirectory.appending(path: "headline-\(UUID().uuidString).json"))
+        var entry = GameEntry(sport: .soccer, date: .now, venueId: "x", origin: .manual)
+        entry.homeTeamId = library.addTeam(Team(id: "t-can", sport: .soccer, league: "FIFA", abbreviation: "CAN", locationName: "Canada",
+                                                teamName: "Canada", monogram: "C", colors: .init(primary: "D52B1E", secondary: "FFFFFF", accent: "D52B1E"))).id
+        entry.awayTeamId = library.addTeam(Team(id: "t-bih", sport: .soccer, league: "FIFA", abbreviation: "BIH", locationName: "Bosnia-Herzegovina",
+                                                teamName: "Bosnia-Herzegovina", monogram: "B", colors: .init(primary: "002F6C", secondary: "FFFFFF", accent: "002F6C"))).id
+        entry.homeScore = 2
+        entry.awayScore = 1
+        XCTAssertEqual(headlineText(entry, library), "Canada 2\nBosnia-Herzegovina 1")
+        entry.homeScore = 0
+        XCTAssertEqual(headlineText(entry, library), "Bosnia-Herzegovina 1\nCanada 0", "The winner leads")
+    }
 }

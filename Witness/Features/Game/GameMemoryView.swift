@@ -10,6 +10,7 @@ struct GameMemoryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var editing = false
     @State private var confirmDelete = false
+    @State private var viewer: PhotoViewerItem?
 
     private let heroHeight: CGFloat = 470
 
@@ -27,6 +28,7 @@ struct GameMemoryView: View {
             VStack(alignment: .leading, spacing: Spacing.block) {
                 heroLink(game)
                 scoreBlock(game).gutter()
+                photosBlock(game)
                 peopleBlock(game)
                 links(game)
                 Button {
@@ -47,6 +49,9 @@ struct GameMemoryView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) { menu(game) }
+        }
+        .fullScreenCover(item: $viewer) { item in
+            PhotoPager(photos: game.photos, start: item.id)
         }
         .sheet(isPresented: $editing) {
             AddGameView(editing: game)
@@ -136,7 +141,46 @@ struct GameMemoryView: View {
         } else if !game.lineHome.isEmpty || !game.lineAway.isEmpty {
             LineScoreTable(game: game)
         } else if game.hasScore {
-            HStack { ScoreBug(game: game, showFinal: true); Spacer() }
+            ScoreStack(game: game)
+        }
+    }
+
+    // MARK: Photos
+
+    /// The fan's photos from this game: a strip under the score, each opens full screen.
+    @ViewBuilder
+    private func photosBlock(_ game: GameEntry) -> some View {
+        if !game.photos.isEmpty {
+            VStack(alignment: .leading, spacing: Spacing.inner) {
+                HStack {
+                    Text("Photos").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+                    Text("\(game.photos.count)").unitLabel()
+                    Spacer()
+                    Button("See all") { viewer = PhotoViewerItem(id: 0) }
+                        .font(.condensed(.subheadline, weight: .bold))
+                        .foregroundStyle(Color.signal)
+                        .accessibilityIdentifier("game-photos-all")
+                }
+                .gutter()
+                ScrollView(.horizontal) {
+                    LazyHStack(spacing: 8) {
+                        ForEach(Array(game.photos.enumerated()), id: \.offset) { i, ref in
+                            Button { viewer = PhotoViewerItem(id: i) } label: {
+                                Color.panel
+                                    .frame(width: 128, height: 96)
+                                    .overlay { PhotoView(ref: ref) }
+                                    .clipShape(.rect(cornerRadius: 10))
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel("Photo \(i + 1) of \(game.photos.count)")
+                            .accessibilityIdentifier("game-photo-\(i)")
+                        }
+                    }
+                    .padding(.horizontal, Spacing.gutter)
+                }
+                .scrollIndicators(.hidden)
+            }
+            .accessibilityIdentifier("game-photos")
         }
     }
 
