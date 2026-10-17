@@ -384,7 +384,7 @@ private struct TripShareCard: View {
         ShareCardFrame(format: .story) {
             VStack(alignment: .leading, spacing: 0) {
                 Text("\(gameCount)")
-                    .font(.display(820))
+                    .font(.display(640))
                     .foregroundStyle(.white)
                     .lineLimit(1)
                     .minimumScaleFactor(0.3)
