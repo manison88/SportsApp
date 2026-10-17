@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 2,
-      "passedTests" : 59,
+      "failedTests" : 1,
+      "passedTests" : 60,
       "skippedTests" : 0,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,26 +22,18 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 2,
-  "finishTime" : 1792260672.22,
-  "passedTests" : 59,
+  "failedTests" : 1,
+  "finishTime" : 1792262016.153,
+  "passedTests" : 60,
   "result" : "Failed",
   "skippedTests" : 0,
-  "startTime" : 1792260052.223,
+  "startTime" : 1792261049.627,
   "statistics" : [
 
   ],
   "testFailures" : [
     {
-      "failureText" : "XCTAssertTrue failed - Missing photo-viewer-close",
-      "targetName" : "WitnessUITests",
-      "testIdentifier" : 54,
-      "testIdentifierString" : "WitnessUITests/testGameMemoryRecapAndYouWereThere()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testGameMemoryRecapAndYouWereThere",
-      "testName" : "testGameMemoryRecapAndYouWereThere()"
-    },
-    {
-      "failureText" : "XCTAssertTrue failed - Missing map-expand",
+      "failureText" : "Failed to failed to scroll to visible (by AX action) Button, {{352.0, 10.0}, {40.0, 40.0}}, identifier: 'map-zoom-in', label: 'Zoom in', error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 46450, elementOrHash.elementID: 4934939600.253. (Underlying Error: Error kAXErrorCannotComplete performing AXAction kAXScrollToVisibleAction on element AX element pid: 46450, elementOrHash.elementID: 4934939600.253)",
       "targetName" : "WitnessUITests",
       "testIdentifier" : 60,
       "testIdentifierString" : "WitnessUITests/testTabsTour()",
@@ -53,8 +45,8 @@
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "23% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 2.76s (three standard deviations)"
+      "impact" : "24% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 2.86s (three standard deviations)"
     }
   ],
   "totalTestCount" : 61
