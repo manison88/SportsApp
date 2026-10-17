@@ -442,10 +442,24 @@ extension View {
                         .fixedSize()
                         .accessibilityAddTraits(.isHeader)
                 }
+                .withoutGlass()
                 ToolbarItem(placement: .principal) {
                     Color.clear.frame(width: 1, height: 1).accessibilityHidden(true)
                 }
+                .withoutGlass()
             }
+    }
+}
+
+extension ToolbarContent {
+    /// iOS 26 wraps every toolbar item in a glass capsule; a screen title should sit on the page, not in a button.
+    @ToolbarContentBuilder
+    func withoutGlass() -> some ToolbarContent {
+        if #available(iOS 26.0, *) {
+            self.sharedBackgroundVisibility(.hidden)
+        } else {
+            self
+        }
     }
 }
 
