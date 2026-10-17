@@ -2090,7 +2090,7 @@
   "country": "Estonia",
   "countryCode": "EE",
   "tier": 1,
-  "teamCount": 9,
+  "teamCount": 10,
   "season": "Mar-Nov",
   "espnPath": null,
   "teamIds": [
@@ -2099,6 +2099,7 @@
    "est1-kur",
    "est1-ntr",
    "est1-nka",
+   "est1-nun",
    "est1-pli",
    "est1-tam",
    "est1-vap",
@@ -2112,6 +2113,7 @@
     "kuressaare-linnastaadion",
     "narva-kalev-fama-stadium",
     "hiiu-stadium",
+    "manniku-stadium",
     "paide-artificial-turf-ground",
     "tamme-stadium",
     "parnu-rannastaadion"
@@ -2536,6 +2538,134 @@
     "kostanay-central-stadium",
     "metallurg-stadium",
     "zhetysu-stadium"
+   ]
+  }
+ },
+ {
+  "key": "soccer/srb.2",
+  "name": "Serbian First League",
+  "sport": "soccer",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "tier": 2,
+  "teamCount": 14,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "srb2-b19",
+   "srb2-bor",
+   "srb2-dub",
+   "srb2-rgr",
+   "srb2-jma",
+   "srb2-loz",
+   "srb2-met",
+   "srb2-nap",
+   "srb2-p02",
+   "srb2-sme",
+   "srb2-szk",
+   "srb2-tel",
+   "srb2-tsc",
+   "srb2-voz"
+  ],
+  "passport": {
+   "label": "Serbian First League grounds",
+   "venueIds": [
+    "zajecar-city-stadium",
+    "cacak-stadium",
+    "dubocica-stadium",
+    "rajko-mitic",
+    "javor-stadium",
+    "lagator-stadium",
+    "metalac-stadium",
+    "stadion-mladost",
+    "stadion-karadordev-park",
+    "smederevo-city-stadium",
+    "subotica-city-stadium",
+    "sc-partizan-teleoptik",
+    "tsc-arena",
+    "vozdovac-stadium"
+   ]
+  }
+ },
+ {
+  "key": "soccer/cro.2",
+  "name": "Prva NL",
+  "sport": "soccer",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "tier": 2,
+  "teamCount": 13,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "cro2-bbb",
+   "cro2-cib",
+   "cro2-dub",
+   "cro2-dug",
+   "cro2-dii",
+   "cro2-k19",
+   "cro2-opa",
+   "cro2-ori",
+   "cro2-kus",
+   "cro2-ses",
+   "cro2-vuk",
+   "cro2-seg",
+   "cro2-mla"
+  ],
+  "passport": {
+   "label": "Prva NL grounds",
+   "venueIds": [
+    "stadion-bsk",
+    "stadion-hnk-cibalia",
+    "stadion-nsc-stjepan-spajic",
+    "stadion-hrvatski-vitezovi",
+    "stadion-src-zapresic",
+    "stadion-branko-cavlovic-cavlek",
+    "stadion-kantrida",
+    "stadion-krimeja",
+    "stadion-kustosija",
+    "stadion-sveti-josip-radnik",
+    "stadion-borovo-naselje",
+    "gradski-stadion-sisak",
+    "stadion-brdo"
+   ]
+  }
+ },
+ {
+  "key": "soccer/bih.2",
+  "name": "First League of the Federation of BiH",
+  "sport": "soccer",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "tier": 2,
+  "teamCount": 10,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "bih2-bra",
+   "bih2-bud",
+   "bih2-gos",
+   "bih2-igm",
+   "bih2-pos",
+   "bih2-slo",
+   "bih2-stu",
+   "bih2-tra",
+   "bih2-vit",
+   "bih2-zvi"
+  ],
+  "passport": {
+   "label": "First League of the Federation of BiH grounds",
+   "venueIds": [
+    "stadion-luke",
+    "stadion-fk-buducnost",
+    "stadium-perica-pero-pavlovic",
+    "city-stadium-konjic",
+    "mokri-dolac-stadium",
+    "tusanj-city-stadium",
+    "danac-stadium",
+    "stadion-pirota",
+    "gradski-stadion-vitez",
+    "banja-ilidza"
    ]
   }
  },

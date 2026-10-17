@@ -17955,6 +17955,33 @@
   "tier": 1
  },
  {
+  "id": "est1-nun",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Meistriliiga",
+  "leagueKey": "soccer/est.1",
+  "country": "Estonia",
+  "countryCode": "EE",
+  "abbreviation": "NUN",
+  "locationName": "Nõmme United",
+  "teamName": "FC Nõmme United",
+  "monogram": "N",
+  "colors": {
+   "primary": "FF0000",
+   "secondary": "000000",
+   "accent": "FF0000"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": "Q5425073",
+   "theSportsDb": null
+  },
+  "homeVenueId": "manniku-stadium",
+  "founded": 2000,
+  "tier": 1
+ },
+ {
   "id": "est1-pli",
   "kind": "club",
   "sport": "soccer",
@@ -21409,6 +21436,1005 @@
   "homeVenueId": "zhetysu-stadium",
   "founded": 1981,
   "tier": 1
+ },
+ {
+  "id": "srb2-b19",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "B19",
+  "locationName": "Bor 1919",
+  "teamName": "FK Bor 1919",
+  "monogram": "B",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "zajecar-city-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-bor",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "BOR",
+  "locationName": "Borac 1926",
+  "teamName": "FK Borac 1926",
+  "monogram": "B",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "cacak-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-dub",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "DUB",
+  "locationName": "Dubočica",
+  "teamName": "GFK Dubočica",
+  "monogram": "D",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "dubocica-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-rgr",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "RGR",
+  "locationName": "RFK Grafičar",
+  "teamName": "RFK Grafičar Beograd",
+  "monogram": "R",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "rajko-mitic",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-jma",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "JMA",
+  "locationName": "Javor-Matis",
+  "teamName": "FK Javor Ivanjica",
+  "monogram": "J",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "javor-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-loz",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "LOZ",
+  "locationName": "Loznica",
+  "teamName": "FK Loznica",
+  "monogram": "L",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lagator-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-met",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "MET",
+  "locationName": "Metalac",
+  "teamName": "FK Metalac Gornji Milanovac",
+  "monogram": "M",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "metalac-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-nap",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "NAP",
+  "locationName": "Napredak",
+  "teamName": "FK Napredak Kruševac",
+  "monogram": "N",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-mladost",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-p02",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "P02",
+  "locationName": "Proleter 023",
+  "teamName": "FK Proleter 023",
+  "monogram": "P",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-karadordev-park",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-sme",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "SME",
+  "locationName": "FK Smederevo",
+  "teamName": "FK Smederevo 1924",
+  "monogram": "S",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "smederevo-city-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-szk",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "SZK",
+  "locationName": "Spartak ŽK",
+  "teamName": "FK Spartak Subotica",
+  "monogram": "S",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "subotica-city-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-tel",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "TEL",
+  "locationName": "Teleoptik",
+  "teamName": "FK Teleoptik",
+  "monogram": "T",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "sc-partizan-teleoptik",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-tsc",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "TSC",
+  "locationName": "TSC",
+  "teamName": "FK TSC",
+  "monogram": "T",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "tsc-arena",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "srb2-voz",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Serbian First League",
+  "leagueKey": "soccer/srb.2",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "abbreviation": "VOZ",
+  "locationName": "Voždovac",
+  "teamName": "FK Voždovac",
+  "monogram": "V",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "vozdovac-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-bbb",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "BBB",
+  "locationName": "BSK Bijelo Brdo",
+  "teamName": "NK BSK Bijelo Brdo",
+  "monogram": "B",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-bsk",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-cib",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "CIB",
+  "locationName": "Cibalia",
+  "teamName": "HNK Cibalia",
+  "monogram": "C",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-hnk-cibalia",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-dub",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "DUB",
+  "locationName": "Dubrava",
+  "teamName": "NK Dubrava",
+  "monogram": "D",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-nsc-stjepan-spajic",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-dug",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "DUG",
+  "locationName": "Dugopolje",
+  "teamName": "NK Dugopolje",
+  "monogram": "D",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-hrvatski-vitezovi",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-dii",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "DII",
+  "locationName": "Dinamo II",
+  "teamName": "Dinamo Zagreb II",
+  "monogram": "D",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-src-zapresic",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-k19",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "K19",
+  "locationName": "Karlovac 1919",
+  "teamName": "NK Karlovac 1919",
+  "monogram": "K",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-branko-cavlovic-cavlek",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-opa",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "OPA",
+  "locationName": "Opatija",
+  "teamName": "NK Opatija",
+  "monogram": "O",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-kantrida",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-ori",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "ORI",
+  "locationName": "Orijent",
+  "teamName": "HNK Orijent",
+  "monogram": "O",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-krimeja",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-kus",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "KUS",
+  "locationName": "Kustošija",
+  "teamName": "NK Kustošija",
+  "monogram": "K",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-kustosija",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-ses",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "SES",
+  "locationName": "Sesvete",
+  "teamName": "NK Sesvete",
+  "monogram": "S",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-sveti-josip-radnik",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-vuk",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "VUK",
+  "locationName": "Vukovar",
+  "teamName": "HNK Vukovar 1991",
+  "monogram": "V",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-borovo-naselje",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-seg",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "SEG",
+  "locationName": "Segesta",
+  "teamName": "HNK Segesta",
+  "monogram": "S",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gradski-stadion-sisak",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "cro2-mla",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Prva NL",
+  "leagueKey": "soccer/cro.2",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "abbreviation": "MLA",
+  "locationName": "Mladost",
+  "teamName": "NK Mladost Ždralovi",
+  "monogram": "M",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-brdo",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "bih2-bra",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "First League of the Federation of BiH",
+  "leagueKey": "soccer/bih.2",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "abbreviation": "BRA",
+  "locationName": "Bratstvo",
+  "teamName": "NK Bratstvo Gračanica",
+  "monogram": "B",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-luke",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "bih2-bud",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "First League of the Federation of BiH",
+  "leagueKey": "soccer/bih.2",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "abbreviation": "BUD",
+  "locationName": "Budućnost",
+  "teamName": "FK Budućnost Banovići",
+  "monogram": "B",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-fk-buducnost",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "bih2-gos",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "First League of the Federation of BiH",
+  "leagueKey": "soccer/bih.2",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "abbreviation": "GOS",
+  "locationName": "GOŠK",
+  "teamName": "NK GOŠK Gabela",
+  "monogram": "G",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadium-perica-pero-pavlovic",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "bih2-igm",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "First League of the Federation of BiH",
+  "leagueKey": "soccer/bih.2",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "abbreviation": "IGM",
+  "locationName": "Igman",
+  "teamName": "FK Igman Konjic",
+  "monogram": "I",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "city-stadium-konjic",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "bih2-pos",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "First League of the Federation of BiH",
+  "leagueKey": "soccer/bih.2",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "abbreviation": "POS",
+  "locationName": "Posušje",
+  "teamName": "HŠK Posušje",
+  "monogram": "P",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mokri-dolac-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "bih2-slo",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "First League of the Federation of BiH",
+  "leagueKey": "soccer/bih.2",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "abbreviation": "SLO",
+  "locationName": "Sloboda",
+  "teamName": "FK Sloboda Tuzla",
+  "monogram": "S",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "tusanj-city-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "bih2-stu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "First League of the Federation of BiH",
+  "leagueKey": "soccer/bih.2",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "abbreviation": "STU",
+  "locationName": "Stupčanica",
+  "teamName": "NK Stupčanica Olovo",
+  "monogram": "S",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "danac-stadium",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "bih2-tra",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "First League of the Federation of BiH",
+  "leagueKey": "soccer/bih.2",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "abbreviation": "TRA",
+  "locationName": "Travnik",
+  "teamName": "NK Travnik",
+  "monogram": "T",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "stadion-pirota",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "bih2-vit",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "First League of the Federation of BiH",
+  "leagueKey": "soccer/bih.2",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "abbreviation": "VIT",
+  "locationName": "Vitez",
+  "teamName": "NK Vitez",
+  "monogram": "V",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gradski-stadion-vitez",
+  "founded": null,
+  "tier": 2
+ },
+ {
+  "id": "bih2-zvi",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "First League of the Federation of BiH",
+  "leagueKey": "soccer/bih.2",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "abbreviation": "ZVI",
+  "locationName": "Zvijezda",
+  "teamName": "NK Zvijezda Gradačac",
+  "monogram": "Z",
+  "colors": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": null,
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "banja-ilidza",
+  "founded": null,
+  "tier": 2
  },
  {
   "id": "uefa-alb",
