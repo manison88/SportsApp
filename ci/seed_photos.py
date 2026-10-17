@@ -16,9 +16,9 @@ def asset(name):
 # (photo, local time, utc offset, lat, lon)
 SHOTS = [
     # Fenway, an evening game not in a fresh library
-    ("fenway-night", "2017-06-03 19:12", "-04:00", 42.3467, -71.0972),
-    ("fenway-day", "2017-06-03 20:40", "-04:00", 42.3465, -71.0975),
-    ("fenway-postcard", "2017-06-03 21:55", "-04:00", 42.3469, -71.0969),
+    ("fenway-night", "2017-06-09 19:22", "-04:00", 42.3467, -71.0972),
+    ("fenway-day", "2017-06-09 20:40", "-04:00", 42.3465, -71.0975),
+    ("fenway-postcard", "2017-06-09 21:55", "-04:00", 42.3469, -71.0969),
     # Wrigley, World Series Game 5 night
     ("wrigley-night", "2016-10-30 19:02", "-05:00", 41.9484, -87.6553),
     ("wrigley-scoreboard", "2016-10-30 20:34", "-05:00", 41.9486, -87.6556),

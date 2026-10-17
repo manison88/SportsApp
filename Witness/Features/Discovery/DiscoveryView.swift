@@ -136,7 +136,7 @@ struct DiscoveryView: View {
             }
             let ids = Array(cluster.assetIds.prefix(4))
             LazyVGrid(columns: [GridItem(.flexible(), spacing: 6), GridItem(.flexible(), spacing: 6)], spacing: 6) {
-                ForEach(ids.indices, id: \.self) { i in
+                ForEach(Array(ids.enumerated()), id: \.element) { i, _ in
                     let id = ids[i]
                     let time = cluster.times.indices.contains(i) ? cluster.times[i] : cluster.start
                     Color.panel

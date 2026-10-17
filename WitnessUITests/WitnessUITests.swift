@@ -265,8 +265,10 @@ final class WitnessUITests: XCTestCase {
             allowPhotoAccessIfAsked()
             sleep(1)
         }
-        snap("01-discovery")
         XCTAssertTrue(found.exists, "Expected the seeded stadium photos to be discovered")
+        // Newest first: the Fenway photos are from Tigers at Red Sox, June 9 2017, so the schedule check must match it.
+        XCTAssertTrue(el("discovery-verified").waitForExistence(timeout: 25), "Expected the real game on the schedule")
+        snap("01-discovery")
         tap("discovery-confirm")
         snap("01-discovery-after-confirm")
         tap("discovery-close")

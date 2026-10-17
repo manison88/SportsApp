@@ -229,7 +229,11 @@ struct PhotoView: View {
                 }
             }
             .clipped()
-            .task(id: ref) { image = await PhotoLoader.load(ref) }
+            .task(id: ref) {
+                // Clear first so a reused cell never shows the previous photo.
+                image = nil
+                image = await PhotoLoader.load(ref)
+            }
         .accessibilityHidden(true)
     }
 }
