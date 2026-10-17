@@ -15,6 +15,8 @@ struct AlbumImportView: View {
         var game: FoundGame?
         var onScoreboard = false
         var foundByScoreboard = false
+        var ticket: TicketDraft?
+        var doubtful = false
         var included = true
         var id: String { cluster.id }
     }
@@ -207,6 +209,13 @@ struct AlbumImportView: View {
                 } else {
                     Text("No game on the schedule").font(.footnote).foregroundStyle(Color.textTertiary)
                 }
+                if i.ticket != nil {
+                    Label("From your ticket", systemImage: "ticket.fill").font(.footnote).foregroundStyle(Color.textSecondary)
+                } else if i.doubtful {
+                    Label("Doesn't look like inside. Include?", systemImage: "questionmark.circle")
+                        .font(.footnote).foregroundStyle(Color.textSecondary)
+                        .accessibilityIdentifier("album-doubtful")
+                }
             }
             Spacer(minLength: 8)
             Toggle("Include", isOn: item.included).labelsHidden().tint(.white)
@@ -289,6 +298,28 @@ struct AlbumImportView: View {
         let found = VisitGrouping.group(points, venues: venues)
         undated = found.undated
         items = found.visits.map { Item(cluster: $0) }
+        var days = found.unplacedDays
+
+        // Ticket screenshots in the album pin their game even when the night's photos have no GPS.
+        progress = "Looking for tickets"
+        let anchors = await TicketAnchors.find(in: TicketAnchors.screenshots(limit: 500, inAlbum: a.id),
+                                               teams: library.allTeams, venues: venues)
+        for anchor in anchors {
+            let key = VisitGrouping.key(venueId: anchor.venue.id, date: anchor.date, tz: anchor.venue.tz)
+            if let i = items.firstIndex(where: { $0.id == key }) {
+                items[i].ticket = anchor.draft
+                continue
+            }
+            // That day's unplaced photos belong to the ticket's game.
+            let day = VisitGrouping.dayString(anchor.date, tz: .current)
+            let pile = days.first { $0.id == day }
+            days.removeAll { $0.id == day }
+            let ids = (pile?.assetIds ?? []) + (pile?.assetIds.contains(anchor.id) == true ? [] : [anchor.id])
+            let times = (pile?.times ?? []) + (pile?.assetIds.contains(anchor.id) == true ? [] : [anchor.date])
+            items.append(Item(cluster: PhotoCluster(id: key, venue: anchor.venue, start: times.min() ?? anchor.date,
+                                                    end: times.max() ?? anchor.date, assetIds: ids, times: times),
+                              ticket: anchor.draft))
+        }
 
         for index in items.indices {
             let c = items[index].cluster
@@ -298,11 +329,17 @@ struct AlbumImportView: View {
                 let readings = await ScoreboardReader.read(c.assetIds.map { PhotoRef.library($0) })
                 items[index].onScoreboard = readings.contains { ScoreboardReader.support($0, for: game) > 0 }
             }
+            // Party near a downtown stadium? Look at the photos before pre-selecting.
+            if items[index].ticket == nil && !items[index].onScoreboard,
+               let scene = await SceneCheck.verdict(for: c.assetIds.map { PhotoRef.library($0) }), scene.doubtful {
+                items[index].doubtful = true
+                items[index].included = false
+            }
         }
 
         // Days without a stadium: try the scoreboard before asking.
         var stillUnplaced: [DayPile] = []
-        for day in found.unplacedDays {
+        for day in days {
             progress = "Reading scoreboards from \(Fmt.dayTitle(day.day))"
             let readings = await ScoreboardReader.read(day.assetIds.map { PhotoRef.library($0) })
             if let game = await ScoreboardReader.findGame(around: day.times, boards: readings),
@@ -361,7 +398,8 @@ struct AlbumImportView: View {
             let c = item.cluster
             var entry = GameEntry(sport: c.venue.sports.first ?? .baseball, date: item.game?.start ?? c.start,
                                   venueId: c.venue.id, photos: c.assetIds.suffix(24).map { PhotoRef.library($0) },
-                                  origin: .photos)
+                                  origin: item.ticket == nil ? .photos : .ticket)
+            entry.seat = item.ticket?.seatLine
             if let game = item.game {
                 GameLookup.apply(game, detail: nil, to: &entry, library: library)
                 let id = entry.id

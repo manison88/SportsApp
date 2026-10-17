@@ -50,29 +50,17 @@ enum PhotoMatcher {
         return out
     }
 
-    /// The nearest venue whose geofence holds the point. A cheap lat/lon box runs before the true distance,
-    /// and nearest wins because stadiums often have an arena next door (Michigan Stadium and Crisler, 180 m).
-    private static func venue(for p: Located, in venues: [Venue], radius: CLLocationDistance) -> Venue? {
-        let dLat = radius / 111_000
-        let here = CLLocation(latitude: p.lat, longitude: p.lon)
-        var best: (Venue, CLLocationDistance)?
-        for v in venues {
-            guard abs(v.latitude - p.lat) <= dLat else { continue }
-            let dLon = dLat / max(0.1, cos(v.latitude * .pi / 180))
-            guard abs(v.longitude - p.lon) <= dLon else { continue }
-            let d = here.distance(from: v.location)
-            if d <= radius, d < (best?.1 ?? .infinity) { best = (v, d) }
-        }
-        return best?.0
+    private static func venue(for p: Located, in venues: [Venue], radius: CLLocationDistance?) -> Venue? {
+        VisitGrouping.nearestVenue(lat: p.lat, lon: p.lon, in: venues, radius: radius)
     }
 
     /// Other venues close enough that the same photos could belong to them.
-    static func neighbors(of venue: Venue, in venues: [Venue], within radius: CLLocationDistance = 600) -> [Venue] {
+    static func neighbors(of venue: Venue, in venues: [Venue], within radius: CLLocationDistance = 400) -> [Venue] {
         venues.filter { $0.id != venue.id && $0.location.distance(from: venue.location) <= radius }
             .sorted { $0.location.distance(from: venue.location) < $1.location.distance(from: venue.location) }
     }
 
-    static func discover(venues: [Venue], existing: [GameEntry], radius: CLLocationDistance = 600) async -> [PhotoCluster] {
+    static func discover(venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil) async -> [PhotoCluster] {
         let existingKeys: Set<String> = Set(existing.compactMap { g -> String? in
             guard let v = venues.first(where: { $0.id == g.venueId }) else { return nil }
             return key(venueId: v.id, date: g.date, tz: v.tz)
@@ -98,7 +86,7 @@ enum PhotoMatcher {
         }.value
     }
 
-    static func photos(at venue: Venue, around date: Date, hours: Double = 6, radius: CLLocationDistance = 800) async -> [String] {
+    static func photos(at venue: Venue, around date: Date, hours: Double = 6, radius: CLLocationDistance? = nil) async -> [String] {
         let from = date.addingTimeInterval(-hours * 3600 / 2)
         let to = date.addingTimeInterval(hours * 3600)
         return await Task.detached(priority: .userInitiated) { () -> [String] in

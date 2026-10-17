@@ -102,6 +102,17 @@ struct Venue: Codable, Hashable, Identifiable {
     var homeTeams: [String]?
 
     var coordinate: CLLocationCoordinate2D { .init(latitude: latitude, longitude: longitude) }
+
+    /// How far from the venue's center a photo can be and still count as inside: 200 m, a little more for the
+    /// biggest bowls so their upper decks count (Michigan Stadium is ~300 m across). Tight enough to leave out
+    /// the bar across the street.
+    var geofence: Double {
+        switch capacity ?? 0 {
+        case 90_000...: 300
+        case 65_000..<90_000: 260
+        default: 200
+        }
+    }
     var location: CLLocation { CLLocation(latitude: latitude, longitude: longitude) }
     var tz: TimeZone { TimeZone(identifier: timeZone) ?? .current }
     var cityLine: String { [city, region ?? country].filter { !$0.isEmpty }.joined(separator: ", ") }

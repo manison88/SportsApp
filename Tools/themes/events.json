@@ -1,0 +1,1852 @@
+[
+  {
+    "id": "super-bowl",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "Super Bowl",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#013369",
+      "ink": "#FFFFFF",
+      "accent": "#D50A0A",
+      "secondary": "#A5ACAF",
+      "metal": "silver"
+    },
+    "motif": "confetti",
+    "motifNote": "Generic look built on the NFL shield navy/red with the sterling-silver tone of the standardized (since Super Bowl XLV/L) trophy-centric mark; confetti fall is the universal post-game visual and is not a protected mark.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/nfl-national-football-league",
+      "https://en.wikipedia.org/wiki/File:Super_Bowl_logo.svg",
+      "https://www.nbcwashington.com/super-bowl/super-bowl-logo-design-changes-history/3835182/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "super-bowl-xx",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl XX"
+      ],
+      "year": 1986,
+      "stage": "final"
+    },
+    "name": "Super Bowl XX",
+    "edition": "XX",
+    "year": 1986,
+    "palette": {
+      "field": "#003D68",
+      "ink": "#FFFFFF",
+      "accent": "#C40452",
+      "secondary": "#C4CED4",
+      "metal": "silver"
+    },
+    "motif": "stripes",
+    "motifNote": "Super Bowl XX (Bears 46, Patriots 10, New Orleans) logo is navy with a magenta/berry accent and pale silver; thin speed-stripe treatment echoes 1980s NFL graphics. Hexes are the literal fills in the vector logo file.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Super_Bowl_XX_Logo.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "super-bowl-li",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl LI"
+      ],
+      "year": 2017,
+      "stage": "final"
+    },
+    "name": "Super Bowl LI",
+    "edition": "LI",
+    "year": 2017,
+    "palette": {
+      "field": "#2B2A2E",
+      "ink": "#FFFFFF",
+      "accent": "#BB1D23",
+      "secondary": "#B2B2B3",
+      "metal": "silver"
+    },
+    "motif": "stars",
+    "motifNote": "Houston edition of the templated silver mark with a red reflection and dark maroon shadow (sportslogos notes LI started the red/blue reflection era); a lone star nods to Texas without using the logo.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Super_Bowl_LI_logo.svg",
+      "https://news.sportslogos.net/tag/super-bowl-liv/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "super-bowl-lii",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl LII"
+      ],
+      "year": 2018,
+      "stage": "final"
+    },
+    "name": "Super Bowl LII",
+    "edition": "LII",
+    "year": 2018,
+    "palette": {
+      "field": "#001830",
+      "ink": "#FFFFFF",
+      "accent": "#00A0DD",
+      "secondary": "#B9BBBD",
+      "metal": "silver"
+    },
+    "motif": "stripes",
+    "motifNote": "Minneapolis edition: midnight navy with an icy cyan reflection on silver numerals (winter-city cue). Hexes are literal fills in the vector logo file.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Super_Bowl_LII_logo.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "super-bowl-liii",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl LIII"
+      ],
+      "year": 2019,
+      "stage": "final"
+    },
+    "name": "Super Bowl LIII",
+    "edition": "LIII",
+    "year": 2019,
+    "palette": {
+      "field": "#063162",
+      "ink": "#FFFFFF",
+      "accent": "#0072BC",
+      "secondary": "#C9CBCC",
+      "metal": "silver"
+    },
+    "motif": "stripes",
+    "motifNote": "Atlanta edition: deep navy and royal blue reflection on silver numerals. Hexes are fills in the vector logo file.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Super_Bowl_LIII_Logo.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "super-bowl-liv",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl LIV"
+      ],
+      "year": 2020,
+      "stage": "final"
+    },
+    "name": "Super Bowl LIV",
+    "edition": "LIV",
+    "year": 2020,
+    "palette": {
+      "field": "#0B2A3C",
+      "ink": "#FFFFFF",
+      "accent": "#00A3AD",
+      "secondary": "#D4AF37",
+      "metal": "gold"
+    },
+    "motif": "stripes",
+    "motifNote": "Miami edition: 'Super Bowl' wordmark sat on a teal/aqua bar (Dolphins nod) and the trophy reflection turned gold for the first time since LI. Exact hexes not published; teal and gold are approximations of the described colors.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://news.sportslogos.net/tag/super-bowl-liv/"
+    ],
+    "confidence": "low"
+  },
+  {
+    "id": "super-bowl-lv",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl LV"
+      ],
+      "year": 2021,
+      "stage": "final"
+    },
+    "name": "Super Bowl LV",
+    "edition": "LV",
+    "year": 2021,
+    "palette": {
+      "field": "#0F2F3A",
+      "ink": "#FFFFFF",
+      "accent": "#CE8949",
+      "secondary": "#527783",
+      "metal": "silver"
+    },
+    "motif": "stripes",
+    "motifNote": "Tampa edition: silver numerals with aqua/teal shading and an orange ('creamsicle') bar, plus a dark maroon shadow (#5D0024) in the file. Values sampled from the vector logo.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Super_Bowl_LV_Logo.svg",
+      "https://www.sportslogos.net/logos/view/59391042020"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "super-bowl-lvi",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl LVI"
+      ],
+      "year": 2022,
+      "stage": "final"
+    },
+    "name": "Super Bowl LVI",
+    "edition": "LVI",
+    "year": 2022,
+    "palette": {
+      "field": "#4D303E",
+      "ink": "#FFFFFF",
+      "accent": "#EE3440",
+      "secondary": "#F7996A",
+      "metal": "silver"
+    },
+    "motif": "stripes",
+    "motifNote": "Los Angeles edition: red Roman numerals (#EE3440 / deep #A01C31) over a cream-to-peach sunset gradient (#F6DFA4 -> #F7996A) with slate palms. Use horizontal sunset bands, never palms+numerals together (that is the logo). Hexes are fills in the vector logo.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Super_Bowl_LVI_Logo.svg",
+      "https://news.sportslogos.net/2025/01/29/do-colors-in-super-bowl-logo-predict-participants/football/",
+      "https://www.nbcwashington.com/super-bowl/super-bowl-logo-design-changes-history/3835182/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "super-bowl-lvii",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl LVII"
+      ],
+      "year": 2023,
+      "stage": "final"
+    },
+    "name": "Super Bowl LVII",
+    "edition": "LVII",
+    "year": 2023,
+    "palette": {
+      "field": "#2C1A4D",
+      "ink": "#FFFFFF",
+      "accent": "#1FB5B0",
+      "secondary": "#E2483D",
+      "metal": "silver"
+    },
+    "motif": "chevrons",
+    "motifNote": "Glendale/Arizona edition: canyon window in purple and red with turquoise light beams referencing the Arizona flag starburst; radiating chevrons evoke the beams without the mark.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://www.azfamily.com/2022/12/13/find-out-backstory-super-bowl-lvii-logo/",
+      "https://news.sportslogos.net/2022/02/14/first-look-at-the-super-bowl-lvii-logo-held-in-arizona-in-2023/football/",
+      "https://www.nbcwashington.com/super-bowl/super-bowl-logo-design-changes-history/3835182/"
+    ],
+    "confidence": "low"
+  },
+  {
+    "id": "super-bowl-lviii",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl LVIII"
+      ],
+      "year": 2024,
+      "stage": "final"
+    },
+    "name": "Super Bowl LVIII",
+    "edition": "LVIII",
+    "year": 2024,
+    "palette": {
+      "field": "#11034C",
+      "ink": "#FFFFFF",
+      "accent": "#EF404A",
+      "secondary": "#7256A4",
+      "metal": "silver"
+    },
+    "motif": "stars",
+    "motifNote": "Las Vegas edition: purple-to-red sunset behind the Strip and the 'Welcome to Fabulous Las Vegas' sign; small marquee stars nod to the sign without reproducing it. Hexes are literal fills in the vector logo.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Super_Bowl_LVIII_logo.svg",
+      "https://www.nbcwashington.com/super-bowl/super-bowl-logo-design-changes-history/3835182/"
+    ],
+    "confidence": "high"
+  },
+  {
+    "id": "super-bowl-lix",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl LIX"
+      ],
+      "year": 2025,
+      "stage": "final"
+    },
+    "name": "Super Bowl LIX",
+    "edition": "LIX",
+    "year": 2025,
+    "palette": {
+      "field": "#1E0B12",
+      "ink": "#FFFFFF",
+      "accent": "#A4103F",
+      "secondary": "#95C38B",
+      "metal": "silver"
+    },
+    "motif": "harlequin",
+    "motifNote": "New Orleans edition: logo hand-beaded by Black Masking Indian artist Tahj Williams in burgundy, red, light green and cream. A diamond/harlequin bead grid echoes Mardi Gras beadwork without the mark. Values sampled from the raster layer of the logo file.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Super_Bowl_LIX_Logo.svg",
+      "https://www.cbssports.com/nfl/news/nfl-unveils-logo-for-super-bowl-lix-in-new-orleans-and-here-are-the-colors-for-you-conspiracy-theorists",
+      "https://news.sportslogos.net/2025/01/29/do-colors-in-super-bowl-logo-predict-participants/football/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "super-bowl-lx",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Super Bowl LX"
+      ],
+      "year": 2026,
+      "stage": "final"
+    },
+    "name": "Super Bowl LX",
+    "edition": "LX",
+    "year": 2026,
+    "palette": {
+      "field": "#5A2A61",
+      "ink": "#FFFFFF",
+      "accent": "#F6149B",
+      "secondary": "#28CFF1",
+      "metal": "silver"
+    },
+    "motif": "confetti",
+    "motifNote": "Bay Area (Santa Clara) edition: rainbow logo with red, yellow, green, blue, pink and white; Golden Gate Bridge, trees and skyline drawn into the 'LX'. Sampled from the vector logo: hot pink, cyan, plum, sage-teal (#5FA096) and pale yellow. Multicolor confetti carries the palette without bridge/skyline imagery.",
+    "avoid": [
+      "Vince Lombardi Trophy image",
+      "official Super Bowl logo lockup",
+      "NFL shield",
+      "team logos/helmets"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Super_Bowl_LX_Logo.svg",
+      "https://www.nbcwashington.com/super-bowl/super-bowl-logo-design-changes-history/3835182/",
+      "https://weartv.com/news/entertainment/super-bowl-lx-stage-to-be-set-will-the-logo-colors-match-final-teams"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "fifa-world-cup-1994",
+    "match": {
+      "league": "soccer/fifa.world",
+      "noteContains": [
+        "World Cup"
+      ],
+      "year": 1994,
+      "stage": null
+    },
+    "name": "FIFA World Cup USA 1994",
+    "edition": "USA 1994",
+    "year": 1994,
+    "palette": {
+      "field": "#2A2D93",
+      "ink": "#FFFFFF",
+      "accent": "#EF2F1E",
+      "secondary": "#000000",
+      "metal": "gold"
+    },
+    "motif": "stripes",
+    "motifNote": "Pentagram's emblem: blue ball flying over the red stripes of a waving US flag; red/white waving stripes are the transferable cue.",
+    "avoid": [
+      "FIFA World Cup Trophy image",
+      "official tournament emblem",
+      "mascot",
+      "FIFA wordmark"
+    ],
+    "sources": [
+      "https://brandpalettes.com/1994-fifa-world-cup-logo-usa-colors/",
+      "https://www.shillingtoneducation.com/blog/1994-world-cup-logo-pentagram"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "fifa-world-cup-1998",
+    "match": {
+      "league": "soccer/fifa.world",
+      "noteContains": [
+        "World Cup"
+      ],
+      "year": 1998,
+      "stage": null
+    },
+    "name": "FIFA World Cup France 1998",
+    "edition": "France 1998",
+    "year": 1998,
+    "palette": {
+      "field": "#052789",
+      "ink": "#FFFFFF",
+      "accent": "#FF0800",
+      "secondary": "#F9A41A",
+      "metal": "gold"
+    },
+    "motif": "stripes",
+    "motifNote": "Ball rising like a sun over the pitch in French tricolore blue/red with a warm yellow; tricolore bands are a safe cue.",
+    "avoid": [
+      "FIFA World Cup Trophy image",
+      "official tournament emblem",
+      "mascot",
+      "FIFA wordmark"
+    ],
+    "sources": [
+      "https://brandpalettes.com/1998-fifa-world-cup-logo-france-colors/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "fifa-world-cup-2002",
+    "match": {
+      "league": "soccer/fifa.world",
+      "noteContains": [
+        "World Cup"
+      ],
+      "year": 2002,
+      "stage": null
+    },
+    "name": "FIFA World Cup Korea/Japan 2002",
+    "edition": "Korea/Japan 2002",
+    "year": 2002,
+    "palette": {
+      "field": "#00519D",
+      "ink": "#FFFFFF",
+      "accent": "#EE162A",
+      "secondary": "#F9D001",
+      "metal": "gold"
+    },
+    "motif": "confetti",
+    "motifNote": "Swirling multicolor emblem (red, blue, green, yellow, cafe-au-lait gold) for the first co-hosted, first Asian World Cup; loose color flecks rather than the swirl.",
+    "avoid": [
+      "FIFA World Cup Trophy image",
+      "official tournament emblem",
+      "mascot",
+      "FIFA wordmark"
+    ],
+    "sources": [
+      "https://brandpalettes.com/2002-fifa-world-cup-logo-korea-japa-colors/",
+      "https://en.wikipedia.org/wiki/File:2002_FIFA_World_Cup_logo.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "fifa-world-cup-2006",
+    "match": {
+      "league": "soccer/fifa.world",
+      "noteContains": [
+        "World Cup"
+      ],
+      "year": 2006,
+      "stage": null
+    },
+    "name": "FIFA World Cup Germany 2006",
+    "edition": "Germany 2006",
+    "year": 2006,
+    "palette": {
+      "field": "#006EAC",
+      "ink": "#FFFFFF",
+      "accent": "#FDD11F",
+      "secondary": "#E04548",
+      "metal": "gold"
+    },
+    "motif": "confetti",
+    "motifNote": "The 'smiling faces' emblem built from bright dots of yellow, red, orange, blue and green on white; dot/confetti scatter mirrors its playful identity.",
+    "avoid": [
+      "FIFA World Cup Trophy image",
+      "official tournament emblem",
+      "mascot",
+      "FIFA wordmark"
+    ],
+    "sources": [
+      "https://brandpalettes.com/2006-fifa-world-cup-logo-germany-colors/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "fifa-world-cup-2010",
+    "match": {
+      "league": "soccer/fifa.world",
+      "noteContains": [
+        "World Cup"
+      ],
+      "year": 2010,
+      "stage": null
+    },
+    "name": "FIFA World Cup South Africa 2010",
+    "edition": "South Africa 2010",
+    "year": 2010,
+    "palette": {
+      "field": "#004A98",
+      "ink": "#FFFFFF",
+      "accent": "#F8A20C",
+      "secondary": "#75C040",
+      "metal": "gold"
+    },
+    "motif": "chevrons",
+    "motifNote": "Rock-art-inspired figure in blue, green, red and tangerine; African geometric/chevron patterning is a common non-logo cue of the look.",
+    "avoid": [
+      "FIFA World Cup Trophy image",
+      "official tournament emblem",
+      "mascot",
+      "FIFA wordmark"
+    ],
+    "sources": [
+      "https://brandpalettes.com/2010-fifa-world-cup-south-africa-colors/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "fifa-world-cup-2014",
+    "match": {
+      "league": "soccer/fifa.world",
+      "noteContains": [
+        "World Cup"
+      ],
+      "year": 2014,
+      "stage": null
+    },
+    "name": "FIFA World Cup Brazil 2014",
+    "edition": "Brazil 2014",
+    "year": 2014,
+    "palette": {
+      "field": "#003469",
+      "ink": "#FFFFFF",
+      "accent": "#FDD301",
+      "secondary": "#336F1B",
+      "metal": "gold"
+    },
+    "motif": "confetti",
+    "motifNote": "'Inspiration' emblem of three hands forming the trophy in Brazilian green, yellow and midnight blue with orange/red accents; tropical color flecks, not hands.",
+    "avoid": [
+      "FIFA World Cup Trophy image",
+      "official tournament emblem",
+      "mascot",
+      "FIFA wordmark"
+    ],
+    "sources": [
+      "https://brandpalettes.com/2014-fifa-world-cup-brazil-colors/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "fifa-world-cup-2018",
+    "match": {
+      "league": "soccer/fifa.world",
+      "noteContains": [
+        "World Cup"
+      ],
+      "year": 2018,
+      "stage": null
+    },
+    "name": "FIFA World Cup Russia 2018",
+    "edition": "Russia 2018",
+    "year": 2018,
+    "palette": {
+      "field": "#D30208",
+      "ink": "#FFFFFF",
+      "accent": "#E5C685",
+      "secondary": "#015386",
+      "metal": "gold"
+    },
+    "motif": "engraving",
+    "motifNote": "Red/gold/blue identity drawing on Russian icon painting, folk ornament and space-age heritage; fine ornamental engraving-style linework fits the look.",
+    "avoid": [
+      "FIFA World Cup Trophy image",
+      "official tournament emblem",
+      "mascot",
+      "FIFA wordmark"
+    ],
+    "sources": [
+      "https://brandpalettes.com/2018-fifa-world-cup-russia-colors/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "fifa-world-cup-2022",
+    "match": {
+      "league": "soccer/fifa.world",
+      "noteContains": [
+        "World Cup"
+      ],
+      "year": 2022,
+      "stage": null
+    },
+    "name": "FIFA World Cup Qatar 2022",
+    "edition": "Qatar 2022",
+    "year": 2022,
+    "palette": {
+      "field": "#56042C",
+      "ink": "#FFFFFF",
+      "accent": "#FEC310",
+      "secondary": "#49BCE3",
+      "metal": "gold"
+    },
+    "motif": "chevrons",
+    "motifNote": "Maroon (Qatari flag) with blue and yellow; the emblem echoes a woolen shawl and the flag's nine-point serrated edge, so a zig-zag chevron band is on-brand.",
+    "avoid": [
+      "FIFA World Cup Trophy image",
+      "official tournament emblem",
+      "mascot",
+      "FIFA wordmark"
+    ],
+    "sources": [
+      "https://brandpalettes.com/2022-fifa-world-cup-logo-qatar-colors/",
+      "https://www.nbcsports.com/soccer/news/fifa-unveils-logo-for-2022-world-cup-in-qatar"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "fifa-world-cup-2026",
+    "match": {
+      "league": "soccer/fifa.world",
+      "noteContains": [
+        "World Cup"
+      ],
+      "year": 2026,
+      "stage": null
+    },
+    "name": "FIFA World Cup Canada/Mexico/USA 2026",
+    "edition": "Canada/Mexico/USA 2026",
+    "year": 2026,
+    "palette": {
+      "field": "#000000",
+      "ink": "#FFFFFF",
+      "accent": "#C9A54C",
+      "secondary": "#6E6E6E",
+      "metal": "gold"
+    },
+    "motif": "none",
+    "motifNote": "Core identity is deliberately black/white with the gold trophy, while each host city adds its own palette; keep it monochrome+gold and let host-city colors be data-driven. Gold hex is approximate (no public spec).",
+    "avoid": [
+      "FIFA World Cup Trophy image",
+      "official tournament emblem",
+      "mascot",
+      "FIFA wordmark"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:2026_FIFA_World_Cup_emblem.svg",
+      "https://www.designweek.co.uk/issues/22-may-26-may-2023/2026-fifa-world-cup-identity/",
+      "https://news.sportslogos.net/2023/05/19/fifa-host-cities-roll-out-specific-branding-for-2026-world-cup/soccer"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "uefa-euro-2016",
+    "match": {
+      "league": "soccer/uefa.euro",
+      "noteContains": [
+        "Euro 2016",
+        "EURO 2016"
+      ],
+      "year": 2016,
+      "stage": null
+    },
+    "name": "UEFA Euro 2016",
+    "edition": "France 2016",
+    "year": 2016,
+    "palette": {
+      "field": "#002862",
+      "ink": "#FFFFFF",
+      "accent": "#ED1C24",
+      "secondary": "#00B8EC",
+      "metal": "silver"
+    },
+    "motif": "stripes",
+    "motifNote": "Brandia Central's logo blends French tricolore red, white and blue in flowing lines around the trophy; tricolore ribbons are the cue. Hexes are fills in the vector logo.",
+    "avoid": [
+      "Henri Delaunay Trophy image",
+      "official tournament logo",
+      "mascot",
+      "UEFA wordmark"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:UEFA_Euro_2016_Logo.svg",
+      "https://www.uefa.com/news/newsid=1966170.html"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "uefa-euro-2020",
+    "match": {
+      "league": "soccer/uefa.euro",
+      "noteContains": [
+        "Euro 2020",
+        "EURO 2020"
+      ],
+      "year": 2021,
+      "stage": null
+    },
+    "name": "UEFA Euro 2020 (played 2021)",
+    "edition": "2020",
+    "year": 2021,
+    "palette": {
+      "field": "#0084A4",
+      "ink": "#FFFFFF",
+      "accent": "#BE9E5A",
+      "secondary": "#39BDDA",
+      "metal": "silver"
+    },
+    "motif": "rings",
+    "motifNote": "Pan-European 'Building Bridges' identity in teal/cyan with a gold-sand accent; overlapping arcs (bridges) suit it. Played June-July 2021 but branded 2020.",
+    "avoid": [
+      "Henri Delaunay Trophy image",
+      "official tournament logo",
+      "mascot",
+      "UEFA wordmark"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:UEFA_Euro_2020_Logo.svg",
+      "https://logotyp.us/logo/uefa-euro-2020/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "uefa-euro-2024",
+    "match": {
+      "league": "soccer/uefa.euro",
+      "noteContains": [
+        "Euro 2024",
+        "EURO 2024"
+      ],
+      "year": 2024,
+      "stage": null
+    },
+    "name": "UEFA Euro 2024",
+    "edition": "Germany 2024",
+    "year": 2024,
+    "palette": {
+      "field": "#004F9F",
+      "ink": "#FFFFFF",
+      "accent": "#FEC23D",
+      "secondary": "#F05549",
+      "metal": "silver"
+    },
+    "motif": "stripes",
+    "motifNote": "24 multicolor stripes radiating from behind the trophy, grouped by the colors of UEFA's 55 member flags; radiating flag-color stripes are the signature non-logo cue. Other stripe colors in the file: #00AB54 green, #0D4D8E, #6098C1, #C6D8E3.",
+    "avoid": [
+      "Henri Delaunay Trophy image",
+      "official tournament logo",
+      "mascot",
+      "UEFA wordmark"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:UEFA_Euro_2024_Logo.svg",
+      "https://logotyp.us/logo/uefa-euro-2024/",
+      "https://news.sportslogos.net/2024/06/20/heres-a-visual-guide-to-the-colors-on-the-euro-2024-logo/soccer/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "copa-america-2016",
+    "match": {
+      "league": "soccer/conmebol.america",
+      "noteContains": [
+        "Copa America",
+        "Copa América",
+        "Centenario"
+      ],
+      "year": 2016,
+      "stage": null
+    },
+    "name": "Copa America Centenario",
+    "edition": "Centenario (USA 2016)",
+    "year": 2016,
+    "palette": {
+      "field": "#0A1F44",
+      "ink": "#FFFFFF",
+      "accent": "#C9A143",
+      "secondary": "#D32F2F",
+      "metal": "gold"
+    },
+    "motif": "stripes",
+    "motifNote": "100th-anniversary badge: gradient-gold trophy and lettering with blue, red and green sweeping curves. Hexes approximate; no published spec.",
+    "avoid": [
+      "Copa America trophy image",
+      "official tournament logo",
+      "CONMEBOL logo"
+    ],
+    "sources": [
+      "https://logotyp.us/logo/copa-america",
+      "https://www.footyheadlines.com/2016/06/nike-2016-copa-america-centenario-final-ball.html"
+    ],
+    "confidence": "low"
+  },
+  {
+    "id": "copa-america-2019",
+    "match": {
+      "league": "soccer/conmebol.america",
+      "noteContains": [
+        "Copa America",
+        "Copa América"
+      ],
+      "year": 2019,
+      "stage": null
+    },
+    "name": "Copa America 2019",
+    "edition": "Brazil 2019",
+    "year": 2019,
+    "palette": {
+      "field": "#002B82",
+      "ink": "#FFFFFF",
+      "accent": "#FFC600",
+      "secondary": "#5E8D0E",
+      "metal": "gold"
+    },
+    "motif": "confetti",
+    "motifNote": "Built from the Brazilian flag colors with fans celebrating around the trophy; green/yellow/blue celebration flecks. Hexes from the vector logo and logotyp.us.",
+    "avoid": [
+      "Copa America trophy image",
+      "official tournament logo",
+      "CONMEBOL logo"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:2019_Copa_Am%C3%A9rica_logo.svg",
+      "https://logotyp.us/logo/copa-america"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "copa-america-2021",
+    "match": {
+      "league": "soccer/conmebol.america",
+      "noteContains": [
+        "Copa America",
+        "Copa América"
+      ],
+      "year": 2021,
+      "stage": null
+    },
+    "name": "Copa America 2021",
+    "edition": "Brazil 2021",
+    "year": 2021,
+    "palette": {
+      "field": "#003282",
+      "ink": "#FFFFFF",
+      "accent": "#FDCE3D",
+      "secondary": "#95C6E6",
+      "metal": "gold"
+    },
+    "motif": "confetti",
+    "motifNote": "Navy-led logo with yellow, sky blue, red and green accents (originally Argentina/Colombia, moved to Brazil). Hexes are literal fills in the vector logo.",
+    "avoid": [
+      "Copa America trophy image",
+      "official tournament logo",
+      "CONMEBOL logo"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:2021_Copa_Am%C3%A9rica_logo.svg",
+      "https://whatthelogo.com/logo/conmebol-copa-america-2021/245142"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "copa-america-2024",
+    "match": {
+      "league": "soccer/conmebol.america",
+      "noteContains": [
+        "Copa America",
+        "Copa América"
+      ],
+      "year": 2024,
+      "stage": null
+    },
+    "name": "Copa America 2024",
+    "edition": "USA 2024",
+    "year": 2024,
+    "palette": {
+      "field": "#002D82",
+      "ink": "#FFFFFF",
+      "accent": "#FF2626",
+      "secondary": "#0063E1",
+      "metal": "gold"
+    },
+    "motif": "stars",
+    "motifNote": "CONMEBOL said the identity draws on host-nation symbols: blue, red and white with stars and stripes behind the trophy; stars are the cleanest cue.",
+    "avoid": [
+      "Copa America trophy image",
+      "official tournament logo",
+      "CONMEBOL logo"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:2024_Copa_Am%C3%A9rica_logo.svg",
+      "https://www.nbcdfw.com/news/sports/soccer/us-hosted-copa-america-2024-logo-unveiled-by-conmebol/3297799/?amp=1"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "world-series",
+    "match": {
+      "league": "baseball/mlb",
+      "noteContains": [
+        "World Series"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "World Series",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#002D72",
+      "ink": "#FFFFFF",
+      "accent": "#D50032",
+      "secondary": "#C5A253",
+      "metal": "gold"
+    },
+    "motif": "bunting",
+    "motifNote": "MLB navy/red with the gold of the Commissioner's Trophy flags; red-white-blue fan bunting on the rails is the classic Fall Classic cue and is not a mark.",
+    "avoid": [
+      "Commissioner's Trophy image",
+      "World Series logo",
+      "MLB silhouette logo",
+      "team logos"
+    ],
+    "sources": [
+      "https://teamcolorcodes.com/major-league-baseball-logo-colors/",
+      "https://en.wikipedia.org/wiki/World_Series"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "nba-finals",
+    "match": {
+      "league": "basketball/nba",
+      "noteContains": [
+        "NBA Finals"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "NBA Finals",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#000000",
+      "ink": "#FFFFFF",
+      "accent": "#BC9E51",
+      "secondary": "#1D428A",
+      "metal": "gold"
+    },
+    "motif": "confetti",
+    "motifNote": "Since 2022 the Finals script returned in black and gold to complement the Larry O'Brien Trophy; NBA blue as secondary. Gold sampled from the 2022 Finals vector logo.",
+    "avoid": [
+      "Larry O'Brien Trophy image",
+      "NBA Finals script logo",
+      "NBA logoman",
+      "team logos"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:NBA_Finals_logo_(2022).svg",
+      "https://www.nba.com/news/nba-finals-script-logo",
+      "https://www.brandcolorcode.com/nba-national-basketball-association"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "wnba-finals",
+    "match": {
+      "league": "basketball/wnba",
+      "noteContains": [
+        "WNBA Finals"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "WNBA Finals",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#0B0B0B",
+      "ink": "#FFFFFF",
+      "accent": "#F05422",
+      "secondary": "#EFE3C6",
+      "metal": "silver"
+    },
+    "motif": "none",
+    "motifNote": "WNBA identity is built on its 'happy orange' with an oatmeal/cream neutral; orange sampled from the WNBA Finals logo file.",
+    "avoid": [
+      "WNBA championship trophy image",
+      "WNBA Finals logo",
+      "WNBA logowoman",
+      "team logos"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:WNBA_Finals_logo.png",
+      "https://brandpalettes.com/wnba-on-espn-logo-colors/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "stanley-cup-final",
+    "match": {
+      "league": "hockey/nhl",
+      "noteContains": [
+        "Stanley Cup Final"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "Stanley Cup Final",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#000000",
+      "ink": "#FFFFFF",
+      "accent": "#A2AAAD",
+      "secondary": "#E4E5E6",
+      "metal": "silver"
+    },
+    "motif": "engraving",
+    "motifNote": "Black/silver NHL palette; the Cup's engraved bands of champions' names are the iconic, non-logo texture.",
+    "avoid": [
+      "Stanley Cup image",
+      "Stanley Cup Final logo",
+      "NHL shield",
+      "team logos"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/nhl-national-hockey-league"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "mls-cup",
+    "match": {
+      "league": "soccer/usa.1",
+      "noteContains": [
+        "MLS Cup"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "MLS Cup",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#000000",
+      "ink": "#FFFFFF",
+      "accent": "#CFAD67",
+      "secondary": "#DCE3E9",
+      "metal": "gold"
+    },
+    "motif": "stars",
+    "motifNote": "MLS Cup mark is black with an icy silver and a gold trophy tone; hexes are fills in the vector logo file.",
+    "avoid": [
+      "MLS Cup trophy image",
+      "MLS Cup logo",
+      "MLS crest",
+      "club crests"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:MLS_Cup_logo.svg",
+      "https://www.brandcolorcode.com/mls-major-league-soccer"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "grey-cup",
+    "match": {
+      "league": "football/cfl",
+      "noteContains": [
+        "Grey Cup"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "Grey Cup",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#1A1A1A",
+      "ink": "#FFFFFF",
+      "accent": "#EE3224",
+      "secondary": "#B1B3B6",
+      "metal": "silver"
+    },
+    "motif": "engraving",
+    "motifNote": "Templated (since 2023) Grey Cup mark: silver trophy, CFL red/black, with a host-city scene that changes yearly; red/black plus silver is the stable core. Hexes approximate (CFL red from logotyp).",
+    "avoid": [
+      "Grey Cup trophy image",
+      "Grey Cup logo",
+      "CFL logo",
+      "team logos"
+    ],
+    "sources": [
+      "https://logotyp.us/logo/cfl/",
+      "https://www.sportslogos.net/logos/view/111767822024/Grey-Cup-Logo/2024/Primary-Logo",
+      "https://news.sportslogos.net/2013/11/27/move-over-super-bowl-cfl-standardizes-grey-cup-logo/football/"
+    ],
+    "confidence": "low"
+  },
+  {
+    "id": "cfp",
+    "match": {
+      "league": "football/college-football",
+      "noteContains": [
+        "College Football Playoff",
+        "CFP"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "College Football Playoff",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#130C0E",
+      "ink": "#FFFFFF",
+      "accent": "#C28C19",
+      "secondary": "#8A8D8F",
+      "metal": "gold"
+    },
+    "motif": "stripes",
+    "motifNote": "Near-black and gold CFP identity; the mark's football-shaped stripes suggest simple diagonal stripes. Hexes match the CFP vector logo fills.",
+    "avoid": [
+      "CFP National Championship Trophy image",
+      "CFP logo",
+      "conference/school logos"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/college-football-playoff",
+      "https://en.wikipedia.org/wiki/File:Logo_of_college_football_playoff.svg"
+    ],
+    "confidence": "high"
+  },
+  {
+    "id": "cfp-national-championship",
+    "match": {
+      "league": "football/college-football",
+      "noteContains": [
+        "National Championship",
+        "CFP National Championship"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "College Football Playoff National Championship",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#130C0E",
+      "ink": "#FFFFFF",
+      "accent": "#C28C19",
+      "secondary": "#B87333",
+      "metal": "gold"
+    },
+    "motif": "stripes",
+    "motifNote": "Same black/gold system as the CFP; the trophy is gold, bronze and stainless steel, so a bronze secondary is apt.",
+    "avoid": [
+      "CFP National Championship Trophy image",
+      "CFP logo",
+      "conference/school logos"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/college-football-playoff",
+      "https://en.wikipedia.org/wiki/File:College_Football_National_Championship_logo.svg"
+    ],
+    "confidence": "high"
+  },
+  {
+    "id": "ncaa-mens-final-four",
+    "match": {
+      "league": "basketball/mens-college-basketball",
+      "noteContains": [
+        "Final Four",
+        "National Championship"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "NCAA Men's Final Four",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#231F20",
+      "ink": "#FFFFFF",
+      "accent": "#009CDE",
+      "secondary": "#185896",
+      "metal": "gold"
+    },
+    "motif": "none",
+    "motifNote": "March Madness identity is black with NCAA blue (PMS 2925); host-city Final Four logos change yearly but always keep the NCAA blue disc.",
+    "avoid": [
+      "NCAA trophy image",
+      "Final Four logo",
+      "March Madness logo",
+      "NCAA disc logo"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/national-collegiate-athletic-association-ncaa",
+      "https://en.wikipedia.org/wiki/File:March_Madness_logo.svg",
+      "https://news.sportslogos.net/2019/03/21/studio-stories-the-2019-final-four-logo"
+    ],
+    "confidence": "high"
+  },
+  {
+    "id": "ncaa-womens-final-four",
+    "match": {
+      "league": "basketball/womens-college-basketball",
+      "noteContains": [
+        "Final Four",
+        "National Championship"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "NCAA Women's Final Four",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#231F20",
+      "ink": "#FFFFFF",
+      "accent": "#009CDE",
+      "secondary": "#185896",
+      "metal": "gold"
+    },
+    "motif": "none",
+    "motifNote": "Since 2022 the women's tournament shares the March Madness brand (black + NCAA blue).",
+    "avoid": [
+      "NCAA trophy image",
+      "Women's Final Four logo",
+      "March Madness logo",
+      "NCAA disc logo"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/national-collegiate-athletic-association-ncaa",
+      "https://en.wikipedia.org/wiki/File:March_Madness_logo.svg"
+    ],
+    "confidence": "high"
+  },
+  {
+    "id": "rose-bowl",
+    "match": {
+      "league": "football/college-football",
+      "noteContains": [
+        "Rose Bowl"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "Rose Bowl Game",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#036534",
+      "ink": "#FFFFFF",
+      "accent": "#ED1C2E",
+      "secondary": "#007AC2",
+      "metal": "gold"
+    },
+    "motif": "laurel",
+    "motifNote": "Rose red and green (brandcolorcode lists #E2231A rose red / #007934 stem green; the logo file uses #ED1C2E, #008348/#036534 and a #007AC2 blue); a rose-garland/laurel wreath evokes the Tournament of Roses floral tradition.",
+    "avoid": [
+      "bowl trophy image",
+      "bowl logo",
+      "sponsor marks",
+      "school logos"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/rose-bowl-game",
+      "https://en.wikipedia.org/wiki/File:Rose_Bowl_Game_logo.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "sugar-bowl",
+    "match": {
+      "league": "football/college-football",
+      "noteContains": [
+        "Sugar Bowl"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "Sugar Bowl",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#001446",
+      "ink": "#FFFFFF",
+      "accent": "#FFB000",
+      "secondary": "#BF0C26",
+      "metal": "silver"
+    },
+    "motif": "none",
+    "motifNote": "Navy with gold and red; hexes are fills in the vector logo.",
+    "avoid": [
+      "bowl trophy image",
+      "bowl logo",
+      "sponsor marks",
+      "school logos"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Sugar_Bowl_Logo.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "orange-bowl",
+    "match": {
+      "league": "football/college-football",
+      "noteContains": [
+        "Orange Bowl"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "Orange Bowl",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#1B385E",
+      "ink": "#FFFFFF",
+      "accent": "#F3681F",
+      "secondary": "#FAB10B",
+      "metal": "silver"
+    },
+    "motif": "none",
+    "motifNote": "Navy field with orange, golden yellow and leaf green (#4DBD38) citrus accents; hexes are fills in the vector logo.",
+    "avoid": [
+      "bowl trophy image",
+      "bowl logo",
+      "sponsor marks",
+      "school logos"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Orange_Bowl_logo.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "cotton-bowl",
+    "match": {
+      "league": "football/college-football",
+      "noteContains": [
+        "Cotton Bowl"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "Cotton Bowl Classic",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#013669",
+      "ink": "#FFFFFF",
+      "accent": "#FFCD00",
+      "secondary": "#2B6BBD",
+      "metal": "silver"
+    },
+    "motif": "stars",
+    "motifNote": "Navy, royal blue and gold; a Texas lone-star cue. Hexes are fills in the vector logo.",
+    "avoid": [
+      "bowl trophy image",
+      "bowl logo",
+      "sponsor marks",
+      "school logos"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Cotton_Bowl_logo.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "peach-bowl",
+    "match": {
+      "league": "football/college-football",
+      "noteContains": [
+        "Peach Bowl"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "Peach Bowl",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#182752",
+      "ink": "#FFFFFF",
+      "accent": "#CF202E",
+      "secondary": "#233F8C",
+      "metal": "silver"
+    },
+    "motif": "none",
+    "motifNote": "Navy and blue with red accent; hexes are fills in the vector logo.",
+    "avoid": [
+      "bowl trophy image",
+      "bowl logo",
+      "sponsor marks",
+      "school logos"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Peach_Bowl_logo.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "fiesta-bowl",
+    "match": {
+      "league": "football/college-football",
+      "noteContains": [
+        "Fiesta Bowl"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "Fiesta Bowl",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#0D1D43",
+      "ink": "#FFFFFF",
+      "accent": "#EA0029",
+      "secondary": "#FF671D",
+      "metal": "silver"
+    },
+    "motif": "confetti",
+    "motifNote": "Fiesta red, orange and yellow (#FFD100) celebration palette on navy; hexes are fills in the vector logos.",
+    "avoid": [
+      "bowl trophy image",
+      "bowl logo",
+      "sponsor marks",
+      "school logos"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:Fiesta_Bowl_unsponsored_logo.svg",
+      "https://en.wikipedia.org/wiki/File:Fiesta_Bowl_Logo.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "uefa-champions-league-final",
+    "match": {
+      "league": "soccer/uefa.champions",
+      "noteContains": [
+        "Final",
+        "Champions League Final"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "UEFA Champions League Final",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#0E2050",
+      "ink": "#FFFFFF",
+      "accent": "#C0C0C0",
+      "secondary": "#00AEEF",
+      "metal": "silver"
+    },
+    "motif": "stars",
+    "motifNote": "Deep navy with silver; the starball's star pattern is the competition's signature texture (a plain scattered star field is fine, the eight-star ball itself is the logo).",
+    "avoid": [
+      "Starball logo",
+      "Champions League trophy image",
+      "anthem/brand lockup",
+      "club crests"
+    ],
+    "sources": [
+      "https://logotyp.us/logo/ucl/",
+      "https://fcbusiness.co.uk/news/uefa-unveils-refreshed-champions-league-brand-identity/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "uefa-europa-league-final",
+    "match": {
+      "league": "soccer/uefa.europa",
+      "noteContains": [
+        "Final",
+        "Europa League Final"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "UEFA Europa League Final",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#000000",
+      "ink": "#FFFFFF",
+      "accent": "#FF6900",
+      "secondary": "#4A260D",
+      "metal": "silver"
+    },
+    "motif": "stripes",
+    "motifNote": "Black and orange identity (kept through the 2024 refresh) with an orange 'energy wave'; flowing orange stripes are on-brand.",
+    "avoid": [
+      "UEL logo",
+      "Europa League trophy image",
+      "club crests"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:UEFA_Europa_League_logo_(2024_version).svg",
+      "https://www.transformmagazine.net/articles/2018/edgier-identity-unveiled-for-european-football-competition/",
+      "https://www.footyheadlines.com/2023/11/new-europa-league-logo.html"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "copa-libertadores-final",
+    "match": {
+      "league": "soccer/conmebol.libertadores",
+      "noteContains": [
+        "Final",
+        "Libertadores"
+      ],
+      "year": null,
+      "stage": "final"
+    },
+    "name": "CONMEBOL Libertadores Final",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#000000",
+      "ink": "#FFFFFF",
+      "accent": "#8B6F4E",
+      "secondary": "#E30613",
+      "metal": "gold"
+    },
+    "motif": "stripes",
+    "motifNote": "Brand manual: official backgrounds are black and white; gold (Pantone 873 C) is the symbol color for 'Gloria Eterna'; a red full-stop accent appears in campaign type. Vertical gold arcs/stripes echo the symbol's rising form.",
+    "avoid": [
+      "Libertadores symbol/logo",
+      "Copa Libertadores trophy image",
+      "club crests"
+    ],
+    "sources": [
+      "https://www.conmebol.com/wp-content/uploads/documents/manual-de-marca-conmebol-libertadores-espanol.pdf",
+      "https://en.wikipedia.org/wiki/File:Copa_Libertadores_logo.svg"
+    ],
+    "confidence": "high"
+  },
+  {
+    "id": "mlb-all-star-game",
+    "match": {
+      "league": "baseball/mlb",
+      "noteContains": [
+        "All-Star Game",
+        "All-Star"
+      ],
+      "year": null,
+      "stage": null
+    },
+    "name": "MLB All-Star Game",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#002D72",
+      "ink": "#FFFFFF",
+      "accent": "#D50032",
+      "secondary": "#F2C75C",
+      "metal": "none"
+    },
+    "motif": "stars",
+    "motifNote": "Logo changes every year with the host club; generic MLB navy/red with a star field. Override per host if desired.",
+    "avoid": [
+      "All-Star Game logo",
+      "MLB silhouette logo",
+      "team logos"
+    ],
+    "sources": [
+      "https://teamcolorcodes.com/major-league-baseball-logo-colors/"
+    ],
+    "confidence": "low"
+  },
+  {
+    "id": "nba-all-star-game",
+    "match": {
+      "league": "basketball/nba",
+      "noteContains": [
+        "All-Star Game",
+        "All-Star"
+      ],
+      "year": null,
+      "stage": null
+    },
+    "name": "NBA All-Star Game",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#1D428A",
+      "ink": "#FFFFFF",
+      "accent": "#C8102E",
+      "secondary": "#F2C75C",
+      "metal": "none"
+    },
+    "motif": "stars",
+    "motifNote": "Host-specific logo every year; generic NBA blue/red with stars.",
+    "avoid": [
+      "All-Star logo",
+      "NBA logoman",
+      "team logos"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/nba-national-basketball-association"
+    ],
+    "confidence": "low"
+  },
+  {
+    "id": "nhl-all-star-game",
+    "match": {
+      "league": "hockey/nhl",
+      "noteContains": [
+        "All-Star Game",
+        "All-Star"
+      ],
+      "year": null,
+      "stage": null
+    },
+    "name": "NHL All-Star Game",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#000000",
+      "ink": "#FFFFFF",
+      "accent": "#A2AAAD",
+      "secondary": "#C8102E",
+      "metal": "none"
+    },
+    "motif": "stars",
+    "motifNote": "Host-specific logo every year; generic NHL black/silver with stars.",
+    "avoid": [
+      "All-Star logo",
+      "NHL shield",
+      "team logos"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/nhl-national-hockey-league"
+    ],
+    "confidence": "low"
+  },
+  {
+    "id": "mlb-postseason",
+    "match": {
+      "league": "baseball/mlb",
+      "noteContains": [
+        "Wild Card",
+        "Division Series",
+        "ALDS",
+        "NLDS",
+        "ALCS",
+        "NLCS",
+        "Championship Series"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "MLB Postseason",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#002D72",
+      "ink": "#FFFFFF",
+      "accent": "#D50032",
+      "secondary": "#C5A253",
+      "metal": "gold"
+    },
+    "motif": "bunting",
+    "motifNote": "October baseball = bunting on the rails plus MLB navy/red.",
+    "avoid": [
+      "Postseason logo",
+      "MLB silhouette logo",
+      "team logos"
+    ],
+    "sources": [
+      "https://teamcolorcodes.com/major-league-baseball-logo-colors/"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "nfl-playoffs",
+    "match": {
+      "league": "football/nfl",
+      "noteContains": [
+        "Wild Card",
+        "Divisional",
+        "Conference Championship",
+        "AFC Championship",
+        "NFC Championship"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "NFL Playoffs",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#013369",
+      "ink": "#FFFFFF",
+      "accent": "#CF142B",
+      "secondary": "#C4C4C4",
+      "metal": "silver"
+    },
+    "motif": "chevrons",
+    "motifNote": "NFL navy with the playoff mark's red and silver; forward-pointing chevrons suggest advancement.",
+    "avoid": [
+      "NFL Playoffs logo",
+      "NFL shield",
+      "team logos"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/nfl-national-football-league",
+      "https://en.wikipedia.org/wiki/File:NFL_playoffs_logo_new.svg"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "nba-playoffs",
+    "match": {
+      "league": "basketball/nba",
+      "noteContains": [
+        "NBA Playoffs",
+        "First Round",
+        "Conference Semifinals",
+        "Conference Finals",
+        "East Finals",
+        "West Finals"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "NBA Playoffs",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#1A428A",
+      "ink": "#FFFFFF",
+      "accent": "#C8102E",
+      "secondary": "#BC9E51",
+      "metal": "gold"
+    },
+    "motif": "none",
+    "motifNote": "NBA Playoffs mark is NBA blue (2018 playoffs logo fill #1A428A) with red; gold hints toward the Finals trophy.",
+    "avoid": [
+      "NBA Playoffs logo",
+      "NBA logoman",
+      "team logos"
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/File:NBA_Playoffs_logo_(2018).svg",
+      "https://www.brandcolorcode.com/nba-national-basketball-association"
+    ],
+    "confidence": "medium"
+  },
+  {
+    "id": "stanley-cup-playoffs",
+    "match": {
+      "league": "hockey/nhl",
+      "noteContains": [
+        "Stanley Cup Playoffs",
+        "First Round",
+        "Second Round",
+        "Conference Final"
+      ],
+      "year": null,
+      "stage": "post-season"
+    },
+    "name": "Stanley Cup Playoffs",
+    "edition": null,
+    "year": null,
+    "palette": {
+      "field": "#000000",
+      "ink": "#FFFFFF",
+      "accent": "#A2AAAD",
+      "secondary": "#E4E5E6",
+      "metal": "silver"
+    },
+    "motif": "engraving",
+    "motifNote": "Black/silver NHL playoff look; engraved-band texture referencing the Cup.",
+    "avoid": [
+      "Stanley Cup image",
+      "Stanley Cup Playoffs logo",
+      "NHL shield",
+      "team logos"
+    ],
+    "sources": [
+      "https://www.brandcolorcode.com/nhl-national-hockey-league"
+    ],
+    "confidence": "medium"
+  }
+]

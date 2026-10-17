@@ -19,6 +19,9 @@ struct DiscoveryView: View {
     @State private var checkedFor: String?
     @State private var lookupVenue: Venue?
     @State private var onScoreboard = false
+    @State private var scene: SceneVerdict?
+    /// Visits backed by a ticket screenshot, by visit key.
+    @State private var tickets: [String: TicketDraft] = [:]
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -163,6 +166,17 @@ struct DiscoveryView: View {
             .accessibilityElement()
             .accessibilityLabel("\(cluster.assetIds.count) photos at \(cluster.venue.name)")
 
+            if tickets[cluster.id] != nil {
+                Label("From your ticket", systemImage: "ticket.fill")
+                    .font(.footnote)
+                    .foregroundStyle(Color.textSecondary)
+                    .accessibilityIdentifier("discovery-ticket")
+            } else if checkedFor == cluster.id, scene?.doubtful == true {
+                Label("These don't look like they were taken inside. Keep it?", systemImage: "questionmark.circle")
+                    .font(.footnote)
+                    .foregroundStyle(Color.textSecondary)
+                    .accessibilityIdentifier("discovery-doubtful")
+            }
             if checkedFor == cluster.id && lookupFor != cluster.id && !GameLookup.leagues(for: cluster.venue).isEmpty {
                 Label("No game on the schedule that day", systemImage: "calendar.badge.exclamationmark")
                     .font(.footnote)
@@ -236,7 +250,20 @@ struct DiscoveryView: View {
         let granted = await PhotoMatcher.requestAccess()
         guard granted else { phase = .denied; return }
         phase = .scanning
-        clusters = await PhotoMatcher.discover(venues: library.venues, existing: library.games)
+        var found = await PhotoMatcher.discover(venues: library.venues, existing: library.games)
+        // Ticket screenshots pin games on their own, even when none of the night's photos have GPS.
+        let have = Set(library.games.compactMap { g in library.venue(g.venueId).map { VisitGrouping.key(venueId: $0.id, date: g.date, tz: $0.tz) } })
+        let anchors = await TicketAnchors.find(in: TicketAnchors.screenshots(limit: 200), teams: library.allTeams, venues: library.venues)
+        for anchor in anchors {
+            let key = VisitGrouping.key(venueId: anchor.venue.id, date: anchor.date, tz: anchor.venue.tz)
+            guard !have.contains(key) else { continue }
+            tickets[key] = anchor.draft
+            if found.contains(where: { $0.id == key }) { continue }
+            let ids = await PhotoMatcher.photos(at: anchor.venue, around: anchor.date) + [anchor.id]
+            found.append(PhotoCluster(id: key, venue: anchor.venue, start: anchor.date, end: anchor.date,
+                                      assetIds: ids, times: ids.map { _ in anchor.date }))
+        }
+        clusters = found.sorted { $0.start > $1.start }
         phase = .results
     }
 
@@ -255,10 +282,15 @@ struct DiscoveryView: View {
         }
         checkedFor = cluster.id
         onScoreboard = false
+        scene = nil
         if let game = lookup, lookupFor == cluster.id {
             // A scoreboard in the photos that shows these teams confirms it.
             let readings = await ScoreboardReader.read(cluster.assetIds.map { PhotoRef.library($0) })
             onScoreboard = readings.contains { ScoreboardReader.support($0, for: game) > 0 }
+        }
+        // A downtown stadium on game night can still be a party across the street: look at the photos.
+        if tickets[cluster.id] == nil && !onScoreboard {
+            scene = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) })
         }
     }
 
@@ -269,6 +301,10 @@ struct DiscoveryView: View {
                               venueId: venue.id,
                               photos: cluster.assetIds.prefix(12).map { PhotoRef.library($0) },
                               origin: .photos)
+        if let draft = tickets[cluster.id] {
+            entry.seat = draft.seatLine
+            entry.origin = .ticket
+        }
         if let lookup, lookupFor == cluster.id {
             entry.date = lookup.start
             if let lookupVenue { entry.venueId = lookupVenue.id }

@@ -29,7 +29,7 @@ enum VisitGrouping {
     /// - minimumStay: required spread of a visit's photos (library discovery uses 15 min to skip drive-bys;
     ///   an album the fan chose is trusted, so it passes nil).
     /// - skipping: "venueId|yyyy-MM-dd" keys of games already in the library.
-    static func group(_ points: [PhotoPoint], venues: [Venue], radius: CLLocationDistance = 600,
+    static func group(_ points: [PhotoPoint], venues: [Venue], radius: CLLocationDistance? = nil,
                       minimumStay: TimeInterval? = nil, skipping: Set<String> = []) -> PhotoScan {
         var scan = PhotoScan()
         var visits: [String: (Venue, [(String, Date)])] = [:]
@@ -80,10 +80,12 @@ enum VisitGrouping {
         return scan
     }
 
-    /// The nearest venue whose geofence holds the point. A cheap lat/lon box runs before the true distance,
-    /// and nearest wins because stadiums often have an arena next door (Michigan Stadium and Crisler, 180 m).
-    static func nearestVenue(lat: Double, lon: Double, in venues: [Venue], radius: CLLocationDistance) -> Venue? {
-        let dLat = radius / 111_000
+    /// The nearest venue whose geofence holds the point (each venue's own `geofence`, unless `radius` overrides it).
+    /// A cheap lat/lon box runs before the true distance, and nearest wins because stadiums often have an arena
+    /// next door (Michigan Stadium and Crisler, 180 m).
+    static func nearestVenue(lat: Double, lon: Double, in venues: [Venue], radius: CLLocationDistance? = nil) -> Venue? {
+        let box = radius ?? 320
+        let dLat = box / 111_000
         let here = CLLocation(latitude: lat, longitude: lon)
         var best: (Venue, CLLocationDistance)?
         for v in venues {
@@ -91,7 +93,7 @@ enum VisitGrouping {
             let dLon = dLat / max(0.1, cos(v.latitude * .pi / 180))
             guard abs(v.longitude - lon) <= dLon else { continue }
             let d = here.distance(from: v.location)
-            if d <= radius, d < (best?.1 ?? .infinity) { best = (v, d) }
+            if d <= (radius ?? v.geofence), d < (best?.1 ?? .infinity) { best = (v, d) }
         }
         return best?.0
     }
