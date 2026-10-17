@@ -768,3 +768,130 @@ struct ShareCardLink<Card: View, Label: View>: View {
         .task(id: key) { image = renderShareImage(await card(), format: format) }
     }
 }
+
+// MARK: - Share card variations
+
+/// One look for a share card: a name and the full-size card (drawn at `ShareCardFormat.size`).
+struct ShareCardVariant: Identifiable {
+    let id: String
+    let name: String
+    let card: AnyView
+
+    init<V: View>(_ name: String, @ViewBuilder card: () -> V) {
+        self.id = name
+        self.name = name
+        self.card = AnyView(card())
+    }
+}
+
+/// The sheet behind every Share button: swipe through the variations, then share the one you like as an image.
+struct ShareCardSheet: View {
+    let title: String
+    let format: ShareCardFormat
+    var key: String = ""
+    let variants: () async -> [ShareCardVariant]
+
+    @Environment(\.dismiss) private var dismiss
+    @State private var rendered: [(name: String, image: Image)] = []
+    @State private var selection = 0
+
+    var body: some View {
+        VStack(spacing: 16) {
+            HStack {
+                Text(title)
+                    .font(.condensed(.title3, weight: .heavy))
+                    .textCase(.uppercase)
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                Spacer()
+                Button { dismiss() } label: {
+                    Image(systemName: "xmark")
+                        .font(.body.weight(.bold))
+                        .foregroundStyle(.white)
+                        .frame(width: 40, height: 40)
+                        .background(Color.panelRaised, in: .circle)
+                }
+                .accessibilityLabel("Close")
+            }
+            .padding(.horizontal, Spacing.gutter)
+            .padding(.top, 20)
+
+            if rendered.isEmpty {
+                ProgressView().tint(.white).frame(maxHeight: .infinity)
+            } else {
+                TabView(selection: $selection) {
+                    ForEach(rendered.indices, id: \.self) { i in
+                        rendered[i].image
+                            .resizable()
+                            .aspectRatio(format.size.width / format.size.height, contentMode: .fit)
+                            .clipShape(.rect(cornerRadius: 18))
+                            .overlay(RoundedRectangle(cornerRadius: 18).strokeBorder(Color.hairline))
+                            .padding(.horizontal, 36)
+                            .tag(i)
+                    }
+                }
+                .tabViewStyle(.page(indexDisplayMode: .never))
+
+                VStack(spacing: 10) {
+                    Text(rendered[min(selection, rendered.count - 1)].name)
+                        .unitLabel()
+                    HStack(spacing: 8) {
+                        ForEach(rendered.indices, id: \.self) { i in
+                            Circle()
+                                .fill(i == selection ? Color.white : Color.textTertiary)
+                                .frame(width: 7, height: 7)
+                        }
+                    }
+                    .accessibilityHidden(true)
+                }
+
+                let current = rendered[min(selection, rendered.count - 1)]
+                ShareLink(item: current.image, preview: SharePreview(title, image: current.image)) {
+                    Label("Share", systemImage: "square.and.arrow.up")
+                }
+                .buttonStyle(.primary)
+                .padding(.horizontal, Spacing.gutter)
+                .padding(.bottom, 12)
+                .accessibilityIdentifier("share-card-share")
+            }
+        }
+        .background(Color.ink.ignoresSafeArea())
+        .presentationDetents([.large])
+        .task(id: key) {
+            var out: [(name: String, image: Image)] = []
+            for v in await variants() {
+                if let image = renderShareImage(v.card, format: format) { out.append((v.name, image)) }
+                await Task.yield()
+            }
+            rendered = out
+            selection = 0
+        }
+    }
+}
+
+extension View {
+    /// Presents the share sheet (a swipeable set of variations) when `isPresented` is true.
+    /// Use this when the Share button lives inside a Menu: set a @State flag from the button, attach this to the screen.
+    func shareCardSheet(isPresented: Binding<Bool>, title: String, format: ShareCardFormat, key: String = "",
+                        variants: @escaping () async -> [ShareCardVariant]) -> some View {
+        sheet(isPresented: isPresented) {
+            ShareCardSheet(title: title, format: format, key: key, variants: variants)
+        }
+    }
+}
+
+/// A Share button that opens the variations sheet. For a toolbar or any place that is not inside a Menu.
+struct ShareCardSheetLink<Label: View>: View {
+    let title: String
+    let format: ShareCardFormat
+    var key: String = ""
+    let variants: () async -> [ShareCardVariant]
+    @ViewBuilder var label: Label
+
+    @State private var showing = false
+
+    var body: some View {
+        Button { showing = true } label: { label }
+            .shareCardSheet(isPresented: $showing, title: title, format: format, key: key, variants: variants)
+    }
+}
