@@ -455,11 +455,16 @@ extension ToolbarContent {
     /// iOS 26 wraps every toolbar item in a glass capsule; a screen title should sit on the page, not in a button.
     @ToolbarContentBuilder
     func withoutGlass() -> some ToolbarContent {
+        // The iOS 26 SDK ships with Swift 6.2; older toolchains (CI on Xcode 16) do not know this API.
+        #if compiler(>=6.2)
         if #available(iOS 26.0, *) {
             self.sharedBackgroundVisibility(.hidden)
         } else {
             self
         }
+        #else
+        self
+        #endif
     }
 }
 

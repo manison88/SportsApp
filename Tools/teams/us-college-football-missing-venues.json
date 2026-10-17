@@ -22,7 +22,7 @@
    "Cal Poly Mustangs"
   ],
   "timeZone": "America/Los_Angeles",
-  "capacity": null,
+  "capacity": 11075,
   "opened": null
  },
  {
@@ -45,7 +45,7 @@
    "Georgetown Hoyas"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 4418,
   "opened": null
  },
  {
@@ -93,7 +93,7 @@
    "Stetson Hatters"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 6000,
   "opened": null
  },
  {
@@ -139,8 +139,8 @@
    "Southern Illinois Salukis"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 15000,
+  "opened": 2010
  },
  {
   "id": "roy-stewart-stadium",
@@ -162,8 +162,8 @@
    "Murray State Racers"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 16800,
+  "opened": 1973
  },
  {
   "id": "fitton-field",
@@ -185,7 +185,7 @@
    "Holy Cross Crusaders"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 23500,
   "opened": null
  },
  {
@@ -208,8 +208,8 @@
    "Towson Tigers"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 11198,
+  "opened": 1978
  },
  {
   "id": "alerus-center",
@@ -231,7 +231,7 @@
    "North Dakota Fighting Hawks"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
+  "capacity": 21000,
   "opened": null
  },
  {
@@ -256,8 +256,8 @@
    "Dartmouth Big Green"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 11000,
+  "opened": 1893
  },
  {
   "id": "wildcat-stadium-nh",
@@ -306,7 +306,7 @@
    "Princeton Tigers"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 27800,
   "opened": null
  },
  {
@@ -332,7 +332,7 @@
   ],
   "timeZone": "America/New_York",
   "capacity": null,
-  "opened": null
+  "opened": 1923
  },
  {
   "id": "schoellkopf-field",
@@ -354,7 +354,7 @@
    "Cornell Big Red"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 21500,
   "opened": null
  },
  {
@@ -377,7 +377,7 @@
    "Pennsylvania Quakers"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 52958,
   "opened": null
  },
  {
@@ -425,8 +425,8 @@
    "Brown Bears"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 20000,
+  "opened": 1925
  },
  {
   "id": "meade-stadium",
@@ -448,7 +448,7 @@
    "Rhode Island Rams"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 2500,
   "opened": null
  },
  {
@@ -471,7 +471,7 @@
    "Furman Paladins"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 16000,
   "opened": null
  },
  {
@@ -496,6 +496,29 @@
    "South Dakota Coyotes"
   ],
   "timeZone": "America/Chicago",
+  "capacity": 9100,
+  "opened": null
+ },
+ {
+  "id": "finley-stadium-chattanooga",
+  "name": "Finley Stadium",
+  "aliases": [],
+  "city": "Chattanooga",
+  "region": "Tennessee",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.03631,
+  "longitude": -85.31571,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/college-football"
+  ],
+  "homeTeams": [
+   "Chattanooga Mocs"
+  ],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  },
@@ -519,7 +542,7 @@
    "Southern Utah Thunderbirds"
   ],
   "timeZone": "America/Denver",
-  "capacity": null,
+  "capacity": 8500,
   "opened": null
  },
  {
@@ -542,7 +565,7 @@
    "Richmond Spiders"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 8217,
   "opened": null
  },
  {
@@ -590,6 +613,29 @@
    "UT Rio Grande Valley Vaqueros"
   ],
   "timeZone": "America/Chicago",
+  "capacity": 13500,
+  "opened": 2017
+ },
+ {
+  "id": "torero-stadium-san-diego",
+  "name": "Torero Stadium",
+  "aliases": [],
+  "city": "San Diego",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.77306,
+  "longitude": -117.18369,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/college-football"
+  ],
+  "homeTeams": [
+   "San Diego Toreros"
+  ],
+  "timeZone": "America/Los_Angeles",
   "capacity": null,
   "opened": null
  },
@@ -636,7 +682,7 @@
    "Idaho State Bengals"
   ],
   "timeZone": "America/Denver",
-  "capacity": null,
+  "capacity": 12000,
   "opened": null
  },
  {
@@ -684,8 +730,8 @@
    "Lafayette Leopards"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 13132,
+  "opened": 1926
  },
  {
   "id": "roos-field",
@@ -707,8 +753,8 @@
    "Eastern Washington Eagles"
   ],
   "timeZone": "America/Los_Angeles",
-  "capacity": null,
-  "opened": null
+  "capacity": 8600,
+  "opened": 1967
  },
  {
   "id": "tom-mary-casey-stadium",
@@ -733,8 +779,8 @@
    "UAlbany Great Danes"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 8500,
+  "opened": 2013
  },
  {
   "id": "wildcat-stadium-tx",
@@ -781,8 +827,8 @@
    "Alabama A&M Bulldogs"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 21000,
+  "opened": 1996
  },
  {
   "id": "casem-spinks-stadium",
@@ -806,7 +852,7 @@
    "Alcorn State Braves"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
+  "capacity": 22500,
   "opened": null
  },
  {
@@ -831,8 +877,8 @@
    "Arkansas-Pine Bluff Golden Lions"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 16000,
+  "opened": 2000
  },
  {
   "id": "fortera-stadium",
@@ -854,8 +900,8 @@
    "Austin Peay Governors"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 10000,
+  "opened": 1946
  },
  {
   "id": "daytona-stadium",
@@ -877,8 +923,8 @@
    "Bethune-Cookman Wildcats"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 10000,
+  "opened": 1988
  },
  {
   "id": "christy-mathewson-memorial-stadium",
@@ -900,7 +946,7 @@
    "Bucknell Bison"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 13100,
   "opened": null
  },
  {
@@ -926,7 +972,7 @@
    "Butler Bulldogs"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 5647,
   "opened": null
  },
  {
@@ -949,7 +995,7 @@
    "Campbell Fighting Camels"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 5500,
   "opened": null
  },
  {
@@ -972,8 +1018,8 @@
    "Central Arkansas Bears"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 10000,
+  "opened": 1939
  },
  {
   "id": "arute-field",
@@ -995,8 +1041,8 @@
    "Central Connecticut Blue Devils"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 5500,
+  "opened": 2000
  },
  {
   "id": "buccaneer-field",
@@ -1018,6 +1064,29 @@
    "Charleston Southern Buccaneers"
   ],
   "timeZone": "America/New_York",
+  "capacity": 4000,
+  "opened": 1970
+ },
+ {
+  "id": "seatgeek-stadium-bridgeview",
+  "name": "SeatGeek Stadium",
+  "aliases": [],
+  "city": "Bridgeview",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.76481,
+  "longitude": -87.80619,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/college-football"
+  ],
+  "homeTeams": [
+   "Chicago State Cougars"
+  ],
+  "timeZone": "America/Chicago",
   "capacity": null,
   "opened": null
  },
@@ -1041,7 +1110,7 @@
    "Colgate Raiders"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 10221,
   "opened": null
  },
  {
@@ -1164,7 +1233,7 @@
    "Duquesne Dukes"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 2200,
   "opened": null
  },
  {
@@ -1187,7 +1256,7 @@
    "East Tennessee State Buccaneers"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 7694,
   "opened": null
  },
  {
@@ -1233,8 +1302,8 @@
    "Eastern Kentucky Colonels"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 20000,
+  "opened": 1969
  },
  {
   "id": "rhodes-stadium",
@@ -1256,7 +1325,7 @@
    "Elon Phoenix"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 14000,
   "opened": null
  },
  {
@@ -1282,7 +1351,7 @@
    "Fordham Rams"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 7000,
   "opened": null
  },
  {
@@ -1305,8 +1374,8 @@
    "Gardner-Webb Runnin' Bulldogs"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 9000,
+  "opened": 1969
  },
  {
   "id": "armstrong-stadium",
@@ -1328,8 +1397,33 @@
    "Hampton Pirates"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 12000,
+  "opened": 1928
+ },
+ {
+  "id": "husky-stadium-tx",
+  "name": "Husky Stadium",
+  "aliases": [
+   "Husky Stadium (Houston)"
+  ],
+  "city": "Houston",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.6925,
+  "longitude": -95.51139,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/college-football"
+  ],
+  "homeTeams": [
+   "Houston Christian Huskies"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 5000,
+  "opened": 2014
  },
  {
   "id": "hancock-stadium",
@@ -1422,8 +1516,8 @@
    "Long Island University Sharks"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 6000,
+  "opened": 1966
  },
  {
   "id": "leonidoff-field",
@@ -1448,8 +1542,8 @@
    "Marist Red Foxes"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 5000,
+  "opened": 1968
  },
  {
   "id": "cowboy-stadium",
@@ -1474,8 +1568,8 @@
    "McNeese Cowboys"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 12226,
+  "opened": 1965
  },
  {
   "id": "five-star-stadium",
@@ -1497,8 +1591,8 @@
    "Mercer Bears"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 10200,
+  "opened": 2013
  },
  {
   "id": "saxon-stadium",
@@ -1520,7 +1614,7 @@
    "Mercyhurst Lakers"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 2300,
   "opened": null
  },
  {
@@ -1543,8 +1637,8 @@
    "Mississippi Valley State Delta Devils"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 10000,
+  "opened": 1958
  },
  {
   "id": "kessler-stadium",
@@ -1568,7 +1662,7 @@
    "Monmouth Hawks"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 4600,
   "opened": null
  },
  {
@@ -1593,8 +1687,8 @@
    "Morehead State Eagles"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 10000,
+  "opened": 1964
  },
  {
   "id": "hughes-stadium-md",
@@ -1641,8 +1735,8 @@
    "North Carolina Central Eagles"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 10000,
+  "opened": 1975
  },
  {
   "id": "ralph-f-dellacamera-stadium",
@@ -1666,8 +1760,8 @@
    "New Haven Chargers"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 5000,
+  "opened": 2009
  },
  {
   "id": "john-l-guidry-stadium",
@@ -1691,8 +1785,8 @@
    "Nicholls Colonels"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 10500,
+  "opened": 1972
  },
  {
   "id": "william-dick-price-stadium",
@@ -1714,8 +1808,8 @@
    "Norfolk State Spartans"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 30000,
+  "opened": 1997
  },
  {
   "id": "braly-stadium",
@@ -1737,7 +1831,7 @@
    "North Alabama Lions"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
+  "capacity": 14215,
   "opened": null
  },
  {
@@ -1760,7 +1854,7 @@
    "Northern Colorado Bears"
   ],
   "timeZone": "America/Denver",
-  "capacity": null,
+  "capacity": 8533,
   "opened": null
  },
  {
@@ -1808,7 +1902,7 @@
    "Northern Arizona Lumberjacks"
   ],
   "timeZone": "America/Phoenix",
-  "capacity": null,
+  "capacity": 11230,
   "opened": null
  },
  {
@@ -1879,8 +1973,8 @@
    "Prairie View A&M Panthers"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 15000,
+  "opened": 2016
  },
  {
   "id": "bailey-memorial-stadium",
@@ -1904,7 +1998,7 @@
    "Presbyterian Blue Hose"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 6500,
   "opened": null
  },
  {
@@ -1927,8 +2021,8 @@
    "Robert Morris Colonials"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 3000,
+  "opened": 2005
  },
  {
   "id": "campus-field",
@@ -1950,8 +2044,8 @@
    "Sacred Heart Pioneers"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 10500,
+  "opened": 1993
  },
  {
   "id": "seibert-stadium",
@@ -1975,8 +2069,8 @@
    "Samford Bulldogs"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 6700,
+  "opened": 1958
  },
  {
   "id": "strawberry-stadium",
@@ -1998,7 +2092,7 @@
    "SE Louisiana Lions"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
+  "capacity": 7408,
   "opened": null
  },
  {
@@ -2021,7 +2115,7 @@
    "Southeast Missouri State Redhawks"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
+  "capacity": 10000,
   "opened": null
  },
  {
@@ -2044,8 +2138,8 @@
    "South Carolina State Bulldogs"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 22000,
+  "opened": 1955
  },
  {
   "id": "homer-bryce-stadium",
@@ -2067,8 +2161,8 @@
    "Stephen F. Austin Lumberjacks"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 14575,
+  "opened": 1973
  },
  {
   "id": "kenneth-p-lavalle-stadium",
@@ -2090,8 +2184,8 @@
    "Stony Brook Seawolves"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 10300,
+  "opened": 2002
  },
  {
   "id": "tarleton-memorial-stadium",
@@ -2161,6 +2255,29 @@
    "Tennessee Tech Golden Eagles"
   ],
   "timeZone": "America/Chicago",
+  "capacity": 16500,
+  "opened": 1966
+ },
+ {
+  "id": "shell-energy-stadium-houston",
+  "name": "Shell Energy Stadium",
+  "aliases": [],
+  "city": "Houston",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.75203,
+  "longitude": -95.35234,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/college-football"
+  ],
+  "homeTeams": [
+   "Texas Southern Tigers"
+  ],
+  "timeZone": "America/Chicago",
   "capacity": null,
   "opened": null
  },
@@ -2184,7 +2301,7 @@
    "The Citadel Bulldogs"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 12500,
   "opened": null
  },
  {
@@ -2230,8 +2347,8 @@
    "VMI Keydets"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 10000,
+  "opened": 1962
  },
  {
   "id": "wagner-college-stadium",
@@ -2279,8 +2396,8 @@
    "Weber State Wildcats"
   ],
   "timeZone": "America/Denver",
-  "capacity": null,
-  "opened": null
+  "capacity": 13441,
+  "opened": 1950
  },
  {
   "id": "university-stadium-ga",
@@ -2350,8 +2467,8 @@
    "Western Carolina Catamounts"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 13742,
+  "opened": 1974
  },
  {
   "id": "walter-j-zable-stadium",
@@ -2376,7 +2493,7 @@
   ],
   "timeZone": "America/New_York",
   "capacity": null,
-  "opened": null
+  "opened": 1935
  },
  {
   "id": "gibbs-stadium",
@@ -2398,8 +2515,8 @@
    "Wofford Terriers"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 13000,
+  "opened": 1996
  },
  {
   "id": "stambaugh-stadium",
@@ -2421,7 +2538,7 @@
    "Youngstown State Penguins"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
+  "capacity": 20630,
   "opened": null
  },
  {
@@ -2444,8 +2561,8 @@
    "Merrimack Warriors"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 4000,
+  "opened": 2017
  },
  {
   "id": "beirne-stadium",
@@ -2467,8 +2584,8 @@
    "Bryant Bulldogs"
   ],
   "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
+  "capacity": 4400,
+  "opened": 1998
  },
  {
   "id": "hunter-stadium",
@@ -2538,8 +2655,8 @@
    "St. Thomas Tommies"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 5025,
+  "opened": 1948
  },
  {
   "id": "gayle-and-tom-benson-stadium",
@@ -2561,8 +2678,8 @@
    "Incarnate Word Cardinals"
   ],
   "timeZone": "America/Chicago",
-  "capacity": null,
-  "opened": null
+  "capacity": 3000,
+  "opened": 2008
  },
  {
   "id": "greater-zion-stadium",
@@ -2588,25 +2705,105 @@
   "opened": null
  },
  {
-  "id": "finley-stadium",
-  "name": "Finley Stadium",
-  "aliases": [],
-  "city": "Chattanooga",
+  "id": "alumni-stadium-bc",
+  "name": "Alumni Stadium",
+  "aliases": [
+   "BC Alumni Stadium"
+  ],
+  "city": "Chestnut Hill",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.335,
+  "longitude": -71.16639,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/college-football"
+  ],
+  "homeTeams": [
+   "Boston College Eagles"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 44500,
+  "opened": 1957
+ },
+ {
+  "id": "boone-pickens-stadium",
+  "name": "Boone Pickens Stadium",
+  "aliases": [
+   "Lewis Field"
+  ],
+  "city": "Stillwater",
+  "region": "Oklahoma",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.12583,
+  "longitude": -97.06639,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/college-football"
+  ],
+  "homeTeams": [
+   "Oklahoma State Cowboys"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": 55509,
+  "opened": 1920
+ },
+ {
+  "id": "firstbank-stadium",
+  "name": "FirstBank Stadium",
+  "aliases": [
+   "Vanderbilt Stadium",
+   "Dudley Field"
+  ],
+  "city": "Nashville",
   "region": "Tennessee",
   "country": "United States",
   "countryCode": "US",
-  "latitude": 35.03637,
-  "longitude": -85.31576,
+  "latitude": 36.14417,
+  "longitude": -86.80889,
   "sports": [
-   "soccer"
+   "football"
   ],
-  "leagues": [],
+  "leagues": [
+   "football/college-football"
+  ],
   "homeTeams": [
-   "Chattanooga FC"
+   "Vanderbilt Commodores"
   ],
-  "timeZone": "America/New_York",
-  "capacity": 20412,
-  "opened": 1997
+  "timeZone": "America/Chicago",
+  "capacity": 40550,
+  "opened": 1922
+ },
+ {
+  "id": "husky-stadium",
+  "name": "Husky Stadium",
+  "aliases": [
+   "Alaska Airlines Field at Husky Stadium"
+  ],
+  "city": "Seattle",
+  "region": "Washington",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 47.65028,
+  "longitude": -122.30167,
+  "sports": [
+   "football"
+  ],
+  "leagues": [
+   "football/college-football"
+  ],
+  "homeTeams": [
+   "Washington Huskies"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 70083,
+  "opened": 1920
  },
  {
   "id": "memorial-stadium-indiana",
@@ -2659,62 +2856,5 @@
   "timeZone": "America/Chicago",
   "capacity": 35000,
   "opened": 2026
- },
- {
-  "id": "seatgeek-stadium",
-  "name": "SeatGeek Stadium",
-  "aliases": [
-   "Toyota Park",
-   "Bridgeview Stadium"
-  ],
-  "city": "Bridgeview",
-  "region": "Illinois",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 41.76472,
-  "longitude": -87.80611,
-  "sports": [
-   "soccer"
-  ],
-  "leagues": [
-   "soccer/usa.1",
-   "soccer/usa.nwsl"
-  ],
-  "homeTeams": [
-   "Chicago Fire",
-   "Chicago Red Stars"
-  ],
-  "timeZone": "America/Chicago",
-  "capacity": 20000,
-  "opened": 2006,
-  "closed": 2019,
-  "demolished": null,
-  "note": "Chicago Fire home through 2019; Red Stars used it for several seasons afterwards (exact last year unverified)."
- },
- {
-  "id": "torero-stadium",
-  "name": "Torero Stadium",
-  "aliases": [],
-  "city": "San Diego",
-  "region": "California",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 32.7731,
-  "longitude": -117.1837,
-  "sports": [
-   "soccer"
-  ],
-  "leagues": [
-   "soccer/usa.nwsl"
-  ],
-  "homeTeams": [
-   "San Diego Wave FC"
-  ],
-  "timeZone": "America/Los_Angeles",
-  "capacity": 6000,
-  "opened": 1961,
-  "closed": 2022,
-  "demolished": null,
-  "note": "San Diego Wave FC first 2022 home games before Snapdragon Stadium opened."
  }
 ]

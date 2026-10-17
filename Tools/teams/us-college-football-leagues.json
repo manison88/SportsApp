@@ -77,7 +77,7 @@
   "passport": {
    "label": "ACC stadiums",
    "venueIds": [
-    "conte-forum",
+    "alumni-stadium-bc",
     "california-memorial-stadium",
     "memorial-stadium-clemson",
     "wallace-wade-stadium",
@@ -138,7 +138,7 @@
     "jack-trice-stadium",
     "kansas-memorial-stadium",
     "bill-snyder-family-stadium",
-    "gallagher-iba-arena",
+    "boone-pickens-stadium",
     "amon-g-carter-stadium",
     "jones-att-stadium",
     "fbc-mortgage-stadium",
@@ -196,7 +196,7 @@
     "shi-stadium",
     "rose-bowl",
     "la-coliseum",
-    "hec-edmundson-pavilion",
+    "husky-stadium",
     "camp-randall-stadium"
    ]
   }
@@ -423,7 +423,7 @@
     "neyland-stadium",
     "kyle-field",
     "dkr-texas-memorial-stadium",
-    "memorial-gymnasium-vanderbilt"
+    "firstbank-stadium"
    ]
   }
  },
@@ -578,7 +578,7 @@
   "passport": {
    "label": "FCS Independent stadiums",
    "venueIds": [
-    "seatgeek-stadium",
+    "seatgeek-stadium-bridgeview",
     "duane-stadium"
    ]
   }
@@ -672,7 +672,7 @@
    "label": "MVFC stadiums",
    "venueIds": [
     "hancock-stadium",
-    "assembly-hall-indiana",
+    "memorial-stadium-indiana",
     "roy-stewart-stadium",
     "alerus-center",
     "uni-dome",
@@ -822,7 +822,7 @@
     "leonidoff-field",
     "jayne-stadium",
     "bailey-memorial-stadium",
-    "torero-stadium",
+    "torero-stadium-san-diego",
     "o-shaughnessy-stadium",
     "spec-martin-stadium",
     "brown-field"
@@ -854,7 +854,7 @@
   "passport": {
    "label": "SoCon stadiums",
    "venueIds": [
-    "finley-stadium",
+    "finley-stadium-chattanooga",
     "william-b-greene-jr-stadium",
     "paladin-stadium",
     "five-star-stadium",
@@ -874,11 +874,12 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 2,
-  "teamCount": 9,
+  "teamCount": 10,
   "season": "Aug-Jan",
   "espnPath": null,
   "teamIds": [
    "cfb-etam",
+   "cfb-hcu",
    "cfb-uiw",
    "cfb-lam",
    "cfb-mcn",
@@ -892,6 +893,7 @@
    "label": "Southland stadiums",
    "venueIds": [
     "memorial-stadium-tx",
+    "husky-stadium-tx",
     "gayle-and-tom-benson-stadium",
     "provost-umphrey-stadium",
     "cowboy-stadium",
@@ -941,7 +943,7 @@
     "rice-totten-stadium",
     "panther-stadium-at-blackshear-field",
     "mumford-stadium",
-    "shell-energy-stadium"
+    "shell-energy-stadium-houston"
    ]
   }
  },

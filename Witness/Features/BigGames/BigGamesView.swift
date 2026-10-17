@@ -12,18 +12,24 @@ struct BigGamesView: View {
             }
     }
 
-    var body: some View {
-        let list = games
+    /// Title games, playoffs and tournament games, plus "Other" (rivalries, all-stars) when there are any.
+    private static func statItems(_ list: [GameEntry]) -> [StatRow.Item] {
         let titles = list.filter { $0.bigGame?.kind == .championship }.count
         let playoffs = list.filter { $0.bigGame?.kind == .playoff }.count
         let tournaments = list.filter { $0.bigGame?.kind == .tournament }.count
         let other = list.count - titles - playoffs - tournaments
-        var stats: [StatRow.Item] = [
+        var items: [StatRow.Item] = [
             .init(value: "\(titles)", label: titles == 1 ? "Title game" : "Title games"),
             .init(value: "\(playoffs)", label: "Playoffs"),
             .init(value: "\(tournaments)", label: "Tournament"),
         ]
-        if other > 0 { stats.append(.init(value: "\(other)", label: "Other")) }
+        if other > 0 { items.append(.init(value: "\(other)", label: "Other")) }
+        return items
+    }
+
+    var body: some View {
+        let list = games
+        let stats = Self.statItems(list)
 
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.block) {

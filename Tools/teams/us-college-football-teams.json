@@ -400,7 +400,7 @@
    "wikidata": "Q49118",
    "theSportsDb": null
   },
-  "homeVenueId": "conte-forum",
+  "homeVenueId": "alumni-stadium-bc",
   "founded": 1863,
   "tier": 1
  },
@@ -1129,7 +1129,7 @@
    "wikidata": "Q749718",
    "theSportsDb": null
   },
-  "homeVenueId": "gallagher-iba-arena",
+  "homeVenueId": "boone-pickens-stadium",
   "founded": 1890,
   "tier": 1
  },
@@ -1723,7 +1723,7 @@
    "wikidata": null,
    "theSportsDb": null
   },
-  "homeVenueId": "hec-edmundson-pavilion",
+  "homeVenueId": "husky-stadium",
   "founded": 1861,
   "tier": 1
  },
@@ -3343,7 +3343,7 @@
    "wikidata": "Q29052",
    "theSportsDb": null
   },
-  "homeVenueId": "memorial-gymnasium-vanderbilt",
+  "homeVenueId": "firstbank-stadium",
   "founded": 1873,
   "tier": 1
  },
@@ -4037,7 +4037,7 @@
   "colors": {
    "primary": "000000",
    "secondary": "BA0C2F",
-   "accent": "666666"
+   "accent": "C12444"
   },
   "externalIds": {
    "espn": "3101",
@@ -4450,7 +4450,7 @@
    "wikidata": "Q915866",
    "theSportsDb": null
   },
-  "homeVenueId": "seatgeek-stadium",
+  "homeVenueId": "seatgeek-stadium-bridgeview",
   "founded": 1867,
   "tier": 2
  },
@@ -4909,7 +4909,7 @@
    "wikidata": "Q666128",
    "theSportsDb": null
   },
-  "homeVenueId": "assembly-hall-indiana",
+  "homeVenueId": "memorial-stadium-indiana",
   "founded": 1865,
   "tier": 2
  },
@@ -6007,7 +6007,7 @@
   "monogram": "S",
   "colors": {
    "primary": "2F99D4",
-   "secondary": "2F99D4",
+   "secondary": "002855",
    "accent": "2F99D4"
   },
   "externalIds": {
@@ -6016,7 +6016,7 @@
    "wikidata": "Q262663",
    "theSportsDb": null
   },
-  "homeVenueId": "torero-stadium",
+  "homeVenueId": "torero-stadium-san-diego",
   "founded": 1949,
   "tier": 2
  },
@@ -6124,7 +6124,7 @@
    "wikidata": "Q1781384",
    "theSportsDb": null
   },
-  "homeVenueId": "finley-stadium",
+  "homeVenueId": "finley-stadium-chattanooga",
   "founded": 1886,
   "tier": 2
  },
@@ -6399,6 +6399,33 @@
   "tier": 2
  },
  {
+  "id": "cfb-hcu",
+  "kind": "club",
+  "sport": "football",
+  "league": "Southland Conference",
+  "leagueKey": "football/college-football/southland",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "HCU",
+  "locationName": "Houston Christian",
+  "teamName": "Huskies",
+  "monogram": "H",
+  "colors": {
+   "primary": "00539C",
+   "secondary": "F58025",
+   "accent": "F58025"
+  },
+  "externalIds": {
+   "espn": "2277",
+   "espnLeague": "football/college-football",
+   "wikidata": "Q5916417",
+   "theSportsDb": null
+  },
+  "homeVenueId": "husky-stadium-tx",
+  "founded": 1960,
+  "tier": 2
+ },
+ {
   "id": "cfb-uiw",
   "kind": "club",
   "sport": "football",
@@ -6411,9 +6438,9 @@
   "teamName": "Cardinals",
   "monogram": "I",
   "colors": {
-   "primary": "000000",
-   "secondary": "080808",
-   "accent": "666666"
+   "primary": "C8102E",
+   "secondary": "000000",
+   "accent": "C8102E"
   },
   "externalIds": {
    "espn": "2916",
@@ -6934,7 +6961,7 @@
    "wikidata": "Q626591",
    "theSportsDb": null
   },
-  "homeVenueId": "shell-energy-stadium",
+  "homeVenueId": "shell-energy-stadium-houston",
   "founded": 1947,
   "tier": 2
  },
