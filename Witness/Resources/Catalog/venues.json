@@ -2337,7 +2337,8 @@
   ],
   "leagues": [
    "soccer/bra.1",
-   "soccer/conmebol.libertadores"
+   "soccer/conmebol.libertadores",
+   "football/nfl"
   ],
   "homeTeams": [
    "CR Flamengo",
@@ -2584,7 +2585,8 @@
   "aliases": [
    "Arena Corinthians",
    "Itaquerão",
-   "Arena de São Paulo"
+   "Arena de São Paulo",
+   "Corinthians Arena"
   ],
   "city": "São Paulo",
   "region": "São Paulo",
@@ -2597,7 +2599,8 @@
   ],
   "leagues": [
    "soccer/bra.1",
-   "soccer/conmebol.libertadores"
+   "soccer/conmebol.libertadores",
+   "football/nfl"
   ],
   "homeTeams": [
    "SC Corinthians Paulista"
@@ -3375,10 +3378,7 @@
   "id": "bc-place",
   "name": "BC Place",
   "aliases": [
-   "BC Place Stadium",
-   "General Motors Place",
-   "GM Place",
-   "Rogers Arena"
+   "BC Place Stadium"
   ],
   "city": "Vancouver",
   "region": "British Columbia",
@@ -3388,18 +3388,15 @@
   "longitude": -123.11194,
   "sports": [
    "football",
-   "soccer",
-   "hockey"
+   "soccer"
   ],
   "leagues": [
    "football/cfl",
-   "soccer/usa.1",
-   "hockey/nhl"
+   "soccer/usa.1"
   ],
   "homeTeams": [
    "BC Lions",
-   "Vancouver Whitecaps FC",
-   "Vancouver Canucks"
+   "Vancouver Whitecaps FC"
   ],
   "timeZone": "America/Vancouver",
   "capacity": 54500,
@@ -4224,7 +4221,8 @@
   "id": "o2-arena-prague",
   "name": "O2 Arena",
   "aliases": [
-   "Sazka Arena"
+   "Sazka Arena",
+   "O2 Arena (Prague)"
   ],
   "city": "Prague",
   "region": null,
@@ -4235,7 +4233,9 @@
   "sports": [
    "hockey"
   ],
-  "leagues": [],
+  "leagues": [
+   "hockey/nhl"
+  ],
   "homeTeams": [
    "HC Sparta Praha"
   ],
@@ -4354,7 +4354,9 @@
   "sports": [
    "soccer"
   ],
-  "leagues": [],
+  "leagues": [
+   "football/nfl"
+  ],
   "homeTeams": [
    "Hertha BSC",
    "Germany national football team"
@@ -4405,7 +4407,10 @@
    "basketball",
    "hockey"
   ],
-  "leagues": [],
+  "leagues": [
+   "basketball/nba",
+   "hockey/nhl"
+  ],
   "homeTeams": [
    "Alba Berlin",
    "Eisbären Berlin"
@@ -4586,7 +4591,8 @@
   "name": "Deutsche Bank Park",
   "aliases": [
    "Waldstadion",
-   "Commerzbank-Arena"
+   "Commerzbank-Arena",
+   "Frankfurt Stadium"
   ],
   "city": "Frankfurt",
   "region": "Hesse",
@@ -4598,7 +4604,8 @@
    "soccer"
   ],
   "leagues": [
-   "soccer/ger.1"
+   "soccer/ger.1",
+   "football/nfl"
   ],
   "homeTeams": [
    "Eintracht Frankfurt"
@@ -4990,7 +4997,8 @@
   "name": "Allianz Arena",
   "aliases": [
    "Fußball Arena München",
-   "Munich Football Arena"
+   "Munich Football Arena",
+   "FC Bayern Munich Stadium"
   ],
   "city": "Munich",
   "region": "Bavaria",
@@ -5003,7 +5011,8 @@
    "football"
   ],
   "leagues": [
-   "soccer/ger.1"
+   "soccer/ger.1",
+   "football/nfl"
   ],
   "homeTeams": [
    "Bayern Munich"
@@ -6240,7 +6249,8 @@
    "soccer"
   ],
   "leagues": [
-   "soccer/esp.1"
+   "soccer/esp.1",
+   "football/nfl"
   ],
   "homeTeams": [
    "Real Madrid"
@@ -6768,7 +6778,9 @@
   "sports": [
    "hockey"
   ],
-  "leagues": [],
+  "leagues": [
+   "hockey/nhl"
+  ],
   "homeTeams": [
    "Tappara",
    "Ilves"
@@ -7456,7 +7468,9 @@
   "sports": [
    "soccer"
   ],
-  "leagues": [],
+  "leagues": [
+   "football/nfl"
+  ],
   "homeTeams": [
    "France national football team"
   ],
@@ -8346,7 +8360,9 @@
   "sports": [
    "soccer"
   ],
-  "leagues": [],
+  "leagues": [
+   "baseball/mlb"
+  ],
   "homeTeams": [
    "West Ham United"
   ],
@@ -8417,7 +8433,8 @@
    "football"
   ],
   "leagues": [
-   "soccer/eng.1"
+   "soccer/eng.1",
+   "football/nfl"
   ],
   "homeTeams": [
    "Tottenham Hotspur"
@@ -8442,7 +8459,9 @@
    "soccer",
    "football"
   ],
-  "leagues": [],
+  "leagues": [
+   "football/nfl"
+  ],
   "homeTeams": [
    "England national football team"
   ],
@@ -12557,7 +12576,9 @@
    "hockey",
    "handball"
   ],
-  "leagues": [],
+  "leagues": [
+   "hockey/nhl"
+  ],
   "homeTeams": [
    "Frölunda HC"
   ],
@@ -12725,7 +12746,9 @@
    "hockey",
    "handball"
   ],
-  "leagues": [],
+  "leagues": [
+   "hockey/nhl"
+  ],
   "homeTeams": [],
   "timeZone": "Europe/Stockholm",
   "capacity": 13850,
@@ -13800,13 +13823,16 @@
   "latitude": 33.73528,
   "longitude": -84.38944,
   "sports": [
-   "football"
+   "football",
+   "baseball"
   ],
   "leagues": [
-   "football/college-football"
+   "football/college-football",
+   "baseball/mlb"
   ],
   "homeTeams": [
-   "Georgia State Panthers"
+   "Georgia State Panthers",
+   "Atlanta Braves (through 2016)"
   ],
   "timeZone": "America/New_York",
   "capacity": 24333,
@@ -13831,10 +13857,12 @@
   ],
   "leagues": [
    "basketball/mens-college-basketball",
-   "basketball/womens-college-basketball"
+   "basketball/womens-college-basketball",
+   "basketball/wnba"
   ],
   "homeTeams": [
-   "Georgia Tech Yellow Jackets"
+   "Georgia Tech Yellow Jackets",
+   "Atlanta Dream (2018)"
   ],
   "timeZone": "America/New_York",
   "capacity": 8600,
@@ -15282,7 +15310,7 @@
  },
  {
   "id": "rate-field",
-  "name": "Guaranteed Rate Field",
+  "name": "Rate Field",
   "aliases": [
    "Guaranteed Rate Field",
    "U.S. Cellular Field",
@@ -15538,13 +15566,16 @@
   "latitude": 39.13111,
   "longitude": -84.51611,
   "sports": [
-   "football"
+   "football",
+   "soccer"
   ],
   "leagues": [
-   "football/college-football"
+   "football/college-football",
+   "soccer/usa.1"
   ],
   "homeTeams": [
-   "Cincinnati Bearcats"
+   "Cincinnati Bearcats",
+   "FC Cincinnati (2019-2020)"
   ],
   "timeZone": "America/New_York",
   "capacity": 38088,
@@ -17600,7 +17631,7 @@
  },
  {
   "id": "nrg-stadium",
-  "name": "Reliant Stadium",
+  "name": "NRG Stadium",
   "aliases": [
    "NRG Stadium",
    "Reliant Stadium"
@@ -22084,7 +22115,8 @@
    "football/college-football"
   ],
   "homeTeams": [
-   "Washington Huskies"
+   "Washington Huskies",
+   "Seattle Storm (2019-2020)"
   ],
   "timeZone": "America/Los_Angeles",
   "capacity": 10000,
@@ -22992,10 +23024,12 @@
   ],
   "leagues": [
    "basketball/mens-college-basketball",
-   "basketball/womens-college-basketball"
+   "basketball/womens-college-basketball",
+   "basketball/wnba"
   ],
   "homeTeams": [
-   "Tulsa Oilers"
+   "Tulsa Oilers",
+   "Tulsa Shock (2010-2015)"
   ],
   "timeZone": "America/Chicago",
   "capacity": 19199,
