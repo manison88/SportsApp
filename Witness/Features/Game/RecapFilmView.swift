@@ -11,7 +11,6 @@ struct RecapFilmView: View {
 
     @State private var elapsed: Double = 0
     @State private var playing = true
-    @State private var story: Image?
 
     private let chapterLength: Double = 4
 
@@ -68,7 +67,7 @@ struct RecapFilmView: View {
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.top, 8)
                     .accessibilityLabel("\(Int(elapsed)) of \(Int(total)) seconds")
-                controls(total: total)
+                controls(total: total, game: game)
                     .padding(.top, 14)
             }
             .gutter()
@@ -87,7 +86,6 @@ struct RecapFilmView: View {
                 if elapsed >= total { playing = false }
             }
         }
-        .task { await prepareStory(game) }
     }
 
     // MARK: Layers
@@ -222,7 +220,7 @@ struct RecapFilmView: View {
         .accessibilityLabel("Chapter \(index + 1) of \(count)")
     }
 
-    private func controls(total: Double) -> some View {
+    private func controls(total: Double, game: GameEntry) -> some View {
         HStack(spacing: 12) {
             Button {
                 if !playing, elapsed >= total { elapsed = 0 }
@@ -238,19 +236,11 @@ struct RecapFilmView: View {
             .accessibilityLabel(playing ? "Pause" : "Play")
             .accessibilityIdentifier("recap-pause")
 
-            if let story {
-                ShareLink(item: story, preview: SharePreview("Witness recap", image: story)) {
-                    Label("Share story", systemImage: "square.and.arrow.up")
-                }
-                .buttonStyle(.primary)
-                .accessibilityIdentifier("recap-share")
-            } else {
-                Button {} label: { Label("Share story", systemImage: "square.and.arrow.up") }
-                    .buttonStyle(.primary)
-                    .disabled(true)
-                    .opacity(0.6)
-                    .accessibilityIdentifier("recap-share")
+            ShareCardSheetLink(title: "Recap", format: .story, key: gameId, variants: { await storyVariants(game) }) {
+                Label("Share story", systemImage: "square.and.arrow.up")
             }
+            .buttonStyle(.primary)
+            .accessibilityIdentifier("recap-share")
         }
     }
 
@@ -262,30 +252,104 @@ struct RecapFilmView: View {
     // MARK: Story card
 
     @MainActor
-    private func prepareStory(_ game: GameEntry) async {
-        var background: UIImage?
-        if let ref = game.photos.first { background = await PhotoLoader.load(ref) }
-        let card = RecapStoryCard(
-            background: background,
-            accent: library.team(library.rootingTeam(game))?.accent ?? Color.signal,
-            title: Self.title(headlineText(game, library)),
-            quote: quote(game),
-            footer: [library.venue(game.venueId)?.name, Fmt.dayTitle(game.date, in: library.venue(game.venueId)?.tz ?? .current)]
-                .compactMap { $0 }.joined(separator: " · ")
-        )
-        story = renderShareImage(card, format: .story)
+    private func storyVariants(_ game: GameEntry) async -> [ShareCardVariant] {
+        var photo: UIImage?
+        if let ref = game.photos.first { photo = await PhotoLoader.load(ref) }
+        let venue = library.venue(game.venueId)?.name ?? ""
+        let day = Fmt.dayTitle(game.date, in: library.venue(game.venueId)?.tz ?? .current)
+        var score = ""
+        if game.hasScore, let hs = game.homeScore, let aw = game.awayScore { score = "\(aw)–\(hs)" }
+        let accent = library.team(library.rootingTeam(game))?.accent ?? Color.signal
+        let title = Self.title(headlineText(game, library))
+        let q = quote(game)
+        func card(_ style: RecapStoryCard.Style) -> RecapStoryCard {
+            RecapStoryCard(style: style, background: photo, accent: accent, title: title, quote: q,
+                           venue: venue, day: day, score: score)
+        }
+        return [
+            ShareCardVariant("Photo") { card(.photo) },
+            ShareCardVariant("Type") { card(.type) },
+            ShareCardVariant("Color") { card(.color) },
+            ShareCardVariant("Paper") { card(.paper) },
+            ShareCardVariant("Stub") { card(.stub) },
+        ]
     }
 }
 
-/// The 1080×1920 image shared to stories.
+/// The 1080×1920 image shared to stories, in five looks.
 private struct RecapStoryCard: View {
+    enum Style { case photo, type, color, paper, stub }
+
+    let style: Style
     let background: UIImage?
     let accent: Color
     let title: String
     let quote: String
-    let footer: String
+    let venue: String
+    let day: String
+    let score: String
+
+    private var footer: String { [venue, day].filter { !$0.isEmpty }.joined(separator: " · ") }
 
     var body: some View {
+        ZStack(alignment: .topLeading) {
+            switch style {
+            case .photo: photoLook
+            case .type: typeLook
+            case .color: colorLook
+            case .paper: paperLook
+            case .stub: stubLook
+            }
+        }
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .dark)
+    }
+
+    private func titleText(_ size: CGFloat, _ color: Color, lines: Int = 4) -> some View {
+        Text(title)
+            .font(.display(size))
+            .foregroundStyle(color)
+            .lineLimit(lines)
+            .minimumScaleFactor(0.4)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func quoteText(_ color: Color) -> some View {
+        Text(quote.uppercased())
+            .font(.system(size: 56, weight: .bold).width(.condensed))
+            .foregroundStyle(color)
+            .lineLimit(2)
+            .minimumScaleFactor(0.5)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func footerText(_ color: Color) -> some View {
+        Text(footer.uppercased())
+            .font(.system(size: 36, weight: .bold).width(.condensed))
+            .tracking(4)
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func wordmark(_ color: Color) -> some View {
+        Text("WITNESS")
+            .font(.system(size: 40, weight: .heavy).width(.compressed))
+            .tracking(10)
+            .foregroundStyle(color)
+    }
+
+    private func safe<C: View>(alignment: Alignment = .topLeading, @ViewBuilder _ content: () -> C) -> some View {
+        VStack(alignment: .leading, spacing: 0) { content() }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(width: 1080, height: 1920, alignment: alignment)
+    }
+
+    // 1 Full-bleed photo with big type.
+    private var photoLook: some View {
         ZStack(alignment: .bottomLeading) {
             LinearGradient(colors: [accent.opacity(0.6), .black], startPoint: .top, endPoint: .bottom)
             if let background {
@@ -301,45 +365,101 @@ private struct RecapStoryCard: View {
                 .init(color: .black.opacity(0.9), location: 0.72),
                 .init(color: .black, location: 1),
             ], startPoint: .top, endPoint: .bottom)
-            VStack(alignment: .leading, spacing: 0) {
+            safe(alignment: .bottomLeading) {
                 Spacer(minLength: 0)
-                Rectangle()
-                    .fill(accent)
-                    .frame(width: 140, height: 12)
-                    .padding(.bottom, 44)
-                Text(title)
-                    .font(.display(240))
-                    .foregroundStyle(.white)
-                    .lineLimit(4)
-                    .minimumScaleFactor(0.4)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text(quote.uppercased())
-                    .font(.system(size: 56, weight: .bold).width(.condensed))
-                    .foregroundStyle(.white.opacity(0.9))
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.5)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 40)
-                Text(footer.uppercased())
-                    .font(.system(size: 36, weight: .bold).width(.condensed))
-                    .tracking(4)
-                    .foregroundStyle(.white.opacity(0.6))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 28)
-                Text("WITNESS")
-                    .font(.system(size: 40, weight: .heavy).width(.compressed))
-                    .tracking(10)
-                    .foregroundStyle(.white.opacity(0.9))
-                    .padding(.top, 56)
+                Rectangle().fill(accent).frame(width: 140, height: 12).padding(.bottom, 44)
+                titleText(240, .white)
+                quoteText(.white.opacity(0.9)).padding(.top, 40)
+                footerText(.white.opacity(0.6)).padding(.top, 28)
+                wordmark(.white.opacity(0.9)).padding(.top, 56)
             }
-            .padding(.horizontal, 84)
-            .padding(.top, 230)
-            .padding(.bottom, 250)
-            .frame(width: 1080, height: 1920, alignment: .bottomLeading)
         }
-        .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+    }
+
+    // 2 Pure type on ink.
+    private var typeLook: some View {
+        ZStack(alignment: .topLeading) {
+            Color.ink
+            LinearGradient(colors: [accent.opacity(0.4), .clear], startPoint: .top, endPoint: .center)
+            safe {
+                titleText(330, .white, lines: 5)
+                Spacer(minLength: 40)
+                quoteText(.white.opacity(0.85))
+                footerText(.white.opacity(0.55)).padding(.top, 28)
+                wordmark(.white.opacity(0.9)).padding(.top, 56)
+            }
+        }
+    }
+
+    // 3 Solid team color field.
+    private var colorLook: some View {
+        ZStack(alignment: .topLeading) {
+            accent.deepenedForWhiteText
+            safe {
+                footerText(.white.opacity(0.8))
+                Spacer(minLength: 40)
+                titleText(260, .white)
+                quoteText(.white).padding(.top, 40)
+                wordmark(.white).padding(.top, 56)
+            }
+        }
+    }
+
+    // 4 Light paper, black type, photo as a framed print.
+    private var paperLook: some View {
+        ZStack(alignment: .topLeading) {
+            Color(hex: "F4F1EA")
+            safe {
+                footerText(.black.opacity(0.55))
+                if let background {
+                    Color.black.opacity(0.1)
+                        .frame(height: 620)
+                        .overlay {
+                            Image(uiImage: background)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }
+                        .clipShape(.rect(cornerRadius: 8))
+                        .padding(.top, 36)
+                }
+                Spacer(minLength: 36)
+                titleText(190, .black, lines: 3)
+                quoteText(.black.opacity(0.7)).padding(.top, 32)
+                wordmark(.black).padding(.top, 48)
+            }
+        }
+    }
+
+    // 5 Data-forward ticket stub.
+    private var stubLook: some View {
+        ZStack(alignment: .topLeading) {
+            Color.ink
+            safe {
+                wordmark(.white.opacity(0.9))
+                titleText(150, .white, lines: 3).padding(.top, 48)
+                Spacer(minLength: 40)
+                stubRow("Score", score.isEmpty ? "FINAL" : score, big: true)
+                stubRow("Venue", venue, big: false)
+                stubRow("Date", day, big: false)
+                Rectangle().fill(accent).frame(height: 8).padding(.top, 36)
+            }
+        }
+    }
+
+    private func stubRow(_ label: String, _ value: String, big: Bool) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Rectangle().fill(.white.opacity(0.25)).frame(height: 2)
+            Text(label.uppercased())
+                .font(.system(size: 32, weight: .bold).width(.condensed))
+                .tracking(6)
+                .foregroundStyle(.white.opacity(0.55))
+            Text(value.uppercased())
+                .font(.display(big ? 200 : 84))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.4)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(.top, 24)
     }
 }

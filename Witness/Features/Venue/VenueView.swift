@@ -50,11 +50,11 @@ struct VenueView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ShareCardLink(
+                ShareCardSheetLink(
                     title: venue.name,
                     format: .story,
                     key: "\(venue.id)-\(games.count)",
-                    card: { await shareCard(venue, games: games) }
+                    variants: { await shareVariants(venue, games: games) }
                 ) {
                     Image(systemName: "square.and.arrow.up")
                         .font(.body.weight(.bold))
@@ -156,7 +156,7 @@ struct VenueView: View {
         }
     }
 
-    private func shareCard(_ venue: Venue, games: [GameEntry]) async -> VenueShareCard {
+    private func shareVariants(_ venue: Venue, games: [GameEntry]) async -> [ShareCardVariant] {
         let r = games.reduce(into: Stats.Record()) { $0.add(library.outcome($1)) }
         var photo: UIImage?
         if let ref = games.reversed().compactMap({ $0.photos.first }).first {
@@ -166,15 +166,23 @@ struct VenueView: View {
         if let capacity = venue.capacity, capacity > 0 {
             place += (place.isEmpty ? "" : " · ") + capacity.formatted() + " seats"
         }
-        return VenueShareCard(
-            name: venue.name,
-            place: place,
-            visits: games.count,
-            record: r.decided > 0 ? r.text : nil,
-            first: games.first.map { Fmt.day($0.date, in: venue.tz) },
-            last: games.last.map { Fmt.day($0.date, in: venue.tz) },
-            photo: photo
-        )
+        let record: String? = r.decided > 0 ? r.text : nil
+        let first: String? = games.first.map { Fmt.day($0.date, in: venue.tz) }
+        let last: String? = games.last.map { Fmt.day($0.date, in: venue.tz) }
+        let count = games.count
+        let name = venue.name
+        let image = photo
+        func card(_ style: VenueShareCard.Style) -> VenueShareCard {
+            VenueShareCard(style: style, name: name, place: place, visits: count, record: record,
+                           first: first, last: last, photo: image)
+        }
+        return [
+            ShareCardVariant("Photo") { card(.photo) },
+            ShareCardVariant("Number") { card(.type) },
+            ShareCardVariant("Amber") { card(.color) },
+            ShareCardVariant("Paper") { card(.paper) },
+            ShareCardVariant("Stats") { card(.grid) },
+        ]
     }
 
     /// Section numbers from seat strings ("Bleachers · Section 314"), most frequent first.
@@ -199,6 +207,232 @@ struct VenueView: View {
             }
         }
         return order.sorted { (counts[$0] ?? 0) > (counts[$1] ?? 0) }
+    }
+}
+
+/// 1080x1920 story card in five looks. Plain values only, so it renders the same anywhere.
+private struct VenueShareCard: View {
+    enum Style { case photo, type, color, paper, grid }
+
+    let style: Style
+    let name: String
+    let place: String
+    let visits: Int
+    let record: String?
+    let first: String?
+    let last: String?
+    let photo: UIImage?
+
+    private static let paperColor = Color(red: 0.96, green: 0.95, blue: 0.92)
+
+    private var visitsWord: String { visits == 1 ? "VISIT" : "VISITS" }
+
+    private func label(_ text: String, _ color: Color, size: CGFloat = 40) -> some View {
+        Text(text.uppercased())
+            .font(.system(size: size, weight: .bold).width(.condensed))
+            .tracking(5)
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+    }
+
+    private func mark(_ color: Color) -> some View {
+        Text("WITNESS")
+            .font(.system(size: 40, weight: .heavy).width(.compressed))
+            .tracking(10)
+            .foregroundStyle(color)
+    }
+
+    private func stat(_ value: String, _ title: String, value valueColor: Color, title titleColor: Color) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(value)
+                .font(.display(64))
+                .foregroundStyle(valueColor)
+                .lineLimit(1)
+                .minimumScaleFactor(0.4)
+            label(title, titleColor, size: 34)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    var body: some View {
+        switch style {
+        case .photo: photoCard
+        case .type: typeCard
+        case .color: colorCard
+        case .paper: paperCard
+        case .grid: gridCard
+        }
+    }
+
+    // 1. Full-bleed photo with big type at the bottom.
+    private var photoCard: some View {
+        ZStack(alignment: .bottomLeading) {
+            LinearGradient(colors: [Color.signal.opacity(0.5), Color.ink], startPoint: .top, endPoint: .bottom)
+            if let photo {
+                Image(uiImage: photo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 1080, height: 1920)
+                    .clipped()
+            }
+            LinearGradient(stops: [
+                .init(color: .black.opacity(0.55), location: 0),
+                .init(color: .black.opacity(0.1), location: 0.3),
+                .init(color: .black.opacity(0.85), location: 0.65),
+                .init(color: .black, location: 1),
+            ], startPoint: .top, endPoint: .bottom)
+            VStack(alignment: .leading, spacing: 28) {
+                label(place, .white.opacity(0.8))
+                Spacer(minLength: 40)
+                Text(name.uppercased())
+                    .font(.display(210))
+                    .foregroundStyle(.white)
+                    .lineLimit(3)
+                    .minimumScaleFactor(0.4)
+                label("\(visits) \(visitsWord)" + (record.map { " · " + $0 } ?? ""), Color.signal, size: 52)
+                mark(.white.opacity(0.9)).padding(.top, 24)
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(width: 1080, height: 1920, alignment: .topLeading)
+        }
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .dark)
+    }
+
+    // 2. Pure typographic: giant visit count on ink.
+    private var typeCard: some View {
+        ShareCardFrame(format: .story) {
+            VStack(alignment: .leading, spacing: 24) {
+                label(visitsWord, .white.opacity(0.6), size: 48)
+                Text("\(visits)")
+                    .font(.display(720))
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.3)
+                    .frame(height: 620, alignment: .topLeading)
+                Text(name.uppercased())
+                    .font(.display(110))
+                    .foregroundStyle(.white)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.4)
+                if !place.isEmpty { label(place, .white.opacity(0.6)) }
+                if let record {
+                    Text(record)
+                        .font(.display(120))
+                        .foregroundStyle(Color.signal)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.4)
+                        .padding(.top, 30)
+                }
+            }
+        }
+    }
+
+    // 3. Solid accent field, black type, name as the hero.
+    private var colorCard: some View {
+        ZStack(alignment: .topLeading) {
+            Color.signal
+            VStack(alignment: .leading, spacing: 28) {
+                label(place, .black.opacity(0.7))
+                Text(name.uppercased())
+                    .font(.display(190))
+                    .foregroundStyle(.black)
+                    .lineLimit(4)
+                    .minimumScaleFactor(0.4)
+                Spacer(minLength: 40)
+                Text("\(visits)")
+                    .font(.display(460))
+                    .foregroundStyle(.black)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.3)
+                label(visitsWord + (record.map { " · " + $0 } ?? ""), .black.opacity(0.75), size: 52)
+                mark(.black).padding(.top, 24)
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(width: 1080, height: 1920, alignment: .topLeading)
+        }
+        .frame(width: 1080, height: 1920)
+    }
+
+    // 4. Light paper inverse.
+    private var paperCard: some View {
+        ZStack(alignment: .topLeading) {
+            Self.paperColor
+            VStack(alignment: .leading, spacing: 28) {
+                label("Venue", .black.opacity(0.5))
+                Text(name.uppercased())
+                    .font(.display(150))
+                    .foregroundStyle(.black)
+                    .lineLimit(3)
+                    .minimumScaleFactor(0.4)
+                if !place.isEmpty { label(place, .black.opacity(0.55)) }
+                Rectangle().fill(Color.black.opacity(0.85)).frame(height: 4).padding(.vertical, 24)
+                HStack(alignment: .lastTextBaseline, spacing: 24) {
+                    Text("\(visits)")
+                        .font(.display(380))
+                        .foregroundStyle(.black)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.3)
+                    label(visitsWord, .black.opacity(0.55), size: 52)
+                }
+                HStack(alignment: .top, spacing: 32) {
+                    if let record { stat(record, "Record", value: .black, title: .black.opacity(0.55)) }
+                    if let first { stat(first, "First", value: .black, title: .black.opacity(0.55)) }
+                    if let last, last != first { stat(last, "Last", value: .black, title: .black.opacity(0.55)) }
+                }
+                Spacer(minLength: 40)
+                mark(.black)
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(width: 1080, height: 1920, alignment: .topLeading)
+        }
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .light)
+    }
+
+    // 5. Data-forward ruled rows.
+    private var gridCard: some View {
+        let rows: [(String, String)] = [
+            ("Visits", "\(visits)"),
+            ("Record", record ?? "-"),
+            ("First visit", first ?? "-"),
+            ("Last visit", last ?? "-"),
+        ]
+        return ShareCardFrame(format: .story) {
+            VStack(alignment: .leading, spacing: 20) {
+                Text(name.uppercased())
+                    .font(.display(120))
+                    .foregroundStyle(.white)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.4)
+                if !place.isEmpty { label(place, .white.opacity(0.6)) }
+                VStack(spacing: 0) {
+                    ForEach(rows.indices, id: \.self) { i in
+                        HStack(alignment: .center, spacing: 24) {
+                            label(rows[i].0, .white.opacity(0.6), size: 44)
+                            Spacer(minLength: 16)
+                            Text(rows[i].1)
+                                .font(.display(110))
+                                .foregroundStyle(i == 1 ? Color.signal : Color.white)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.4)
+                        }
+                        .frame(height: 190)
+                        .overlay(alignment: .top) {
+                            Rectangle().fill(Color.white.opacity(0.25)).frame(height: 2)
+                        }
+                    }
+                }
+                .padding(.top, 50)
+            }
+        }
     }
 }
 

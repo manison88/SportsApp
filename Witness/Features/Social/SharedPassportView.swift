@@ -72,7 +72,7 @@ struct SharedPassportView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ShareCardLink(
+                ShareCardSheetLink(
                     title: "\(together.count) games with \(person.name)",
                     format: .story,
                     key: "\(person.id)-\(together.count)-\(theirs.record.text)-\(recentLine)-\(photoRefs.count)"
@@ -81,10 +81,13 @@ struct SharedPassportView: View {
                     for ref in photoRefs {
                         if let image = await PhotoLoader.load(ref) { photos.append(image) }
                     }
-                    return ShareCardFrame(format: .story, accent: person.color) {
-                        PassportShareCard(count: together.count, name: firstName,
-                                          record: recordText, recent: recentLine,
-                                          color: person.color, photos: photos)
+                    let styles: [PassportShareCard.Style] = [.photo, .number, .field, .paper, .stub]
+                    return styles.map { style in
+                        ShareCardVariant(style.title) {
+                            PassportShareCard(style: style, count: together.count, name: firstName,
+                                              record: recordText, recent: recentLine,
+                                              color: person.color, photos: photos)
+                        }
                     }
                 } label: {
                     Image(systemName: "square.and.arrow.up")
@@ -198,8 +201,22 @@ private struct RouteStrip: View {
     }
 }
 
-/// 1080x1920 story card: the count of games with one friend, the record together, and up to three photos.
+/// 1080x1920 story cards: five looks for the games you have seen with one friend.
 private struct PassportShareCard: View {
+    enum Style {
+        case photo, number, field, paper, stub
+        var title: String {
+            switch self {
+            case .photo: "Photo"
+            case .number: "Number"
+            case .field: "Color"
+            case .paper: "Paper"
+            case .stub: "Stub"
+            }
+        }
+    }
+
+    let style: Style
     let count: Int
     let name: String
     let record: String
@@ -208,63 +225,222 @@ private struct PassportShareCard: View {
     let photos: [UIImage]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("GAMES TOGETHER")
-                .font(.system(size: 40, weight: .bold).width(.condensed))
-                .tracking(8)
-                .foregroundStyle(.white.opacity(0.6))
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
-            Text("\(count)")
-                .font(.display(560))
-                .foregroundStyle(.white)
-                .lineLimit(1)
-                .minimumScaleFactor(0.4)
-                .padding(.top, 8)
-            Text("WITH \(name.uppercased())")
-                .font(.display(170))
-                .foregroundStyle(color)
-                .lineLimit(1)
-                .minimumScaleFactor(0.3)
-            if !record.isEmpty {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("RECORD TOGETHER")
-                        .font(.system(size: 36, weight: .bold).width(.condensed))
-                        .tracking(6)
-                        .foregroundStyle(.white.opacity(0.6))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
+        switch style {
+        case .photo: photoCard
+        case .number: numberCard
+        case .field: fieldCard
+        case .paper: paperCard
+        case .stub: stubCard
+        }
+    }
+
+    private func label(_ text: String, _ tint: Color, size: CGFloat = 40) -> some View {
+        Text(text.uppercased())
+            .font(.system(size: size, weight: .bold).width(.condensed))
+            .tracking(6)
+            .foregroundStyle(tint)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+    }
+
+    private var withName: String { "With \(name)" }
+
+    // 1. Full-bleed photo, big type at the bottom.
+    private var photoCard: some View {
+        ZStack(alignment: .bottomLeading) {
+            LinearGradient(colors: [color.opacity(0.6), .black], startPoint: .top, endPoint: .bottom)
+            if let first = photos.first {
+                Image(uiImage: first)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 1080, height: 1920)
+                    .clipped()
+            }
+            LinearGradient(stops: [
+                .init(color: .black.opacity(0.45), location: 0),
+                .init(color: .black.opacity(0), location: 0.25),
+                .init(color: .black.opacity(0.9), location: 0.7),
+                .init(color: .black, location: 1),
+            ], startPoint: .top, endPoint: .bottom)
+            VStack(alignment: .leading, spacing: 8) {
+                Text("\(count)")
+                    .font(.display(520))
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
+                Text("GAMES WITH \(name.uppercased())")
+                    .font(.display(120))
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.3)
+                if !record.isEmpty {
+                    label("Record \(record)", .white.opacity(0.75), size: 48).padding(.top, 20)
+                }
+                Text("WITNESS")
+                    .font(.system(size: 40, weight: .heavy).width(.compressed))
+                    .tracking(10)
+                    .foregroundStyle(.white)
+                    .padding(.top, 40)
+            }
+            .padding(.horizontal, 84)
+            .padding(.bottom, 200)
+        }
+        .frame(width: 1080, height: 1920)
+        .clipped()
+        .environment(\.colorScheme, .dark)
+    }
+
+    // 2. Pure typographic number on ink.
+    private var numberCard: some View {
+        ShareCardFrame(format: .story, accent: color) {
+            VStack(alignment: .leading, spacing: 0) {
+                label("Games together", .white.opacity(0.6))
+                Text("\(count)")
+                    .font(.display(720))
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
+                    .padding(.top, 20)
+                Text("WITH \(name.uppercased())")
+                    .font(.display(170))
+                    .foregroundStyle(color)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.3)
+                if !record.isEmpty {
+                    label("Record \(record)", .white.opacity(0.6), size: 48).padding(.top, 48)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    // 3. Solid field of the friend's color, black type.
+    private var fieldCard: some View {
+        ZStack(alignment: .topLeading) {
+            color
+            VStack(alignment: .leading, spacing: 0) {
+                label("Games together", .black.opacity(0.7))
+                Spacer(minLength: 20)
+                Text("\(count)")
+                    .font(.display(680))
+                    .foregroundStyle(.black)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
+                Text("\(name.uppercased())")
+                    .font(.display(220))
+                    .foregroundStyle(.black)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.3)
+                if !record.isEmpty {
+                    label("Record \(record)", .black.opacity(0.7), size: 48).padding(.top, 36)
+                }
+                Spacer(minLength: 40)
+                Text("WITNESS")
+                    .font(.system(size: 40, weight: .heavy).width(.compressed))
+                    .tracking(10)
+                    .foregroundStyle(.black)
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .dark)
+    }
+
+    // 4. Light paper, black type, photo strip.
+    private var paperCard: some View {
+        ZStack(alignment: .topLeading) {
+            Color(red: 0.96, green: 0.95, blue: 0.92)
+            VStack(alignment: .leading, spacing: 0) {
+                label(withName, .black.opacity(0.55))
+                Text("\(count)")
+                    .font(.display(560))
+                    .foregroundStyle(.black)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
+                    .padding(.top, 16)
+                Text("GAMES TOGETHER")
+                    .font(.display(120))
+                    .foregroundStyle(.black)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.3)
+                Rectangle().fill(Color.black).frame(height: 4).padding(.vertical, 48)
+                if !record.isEmpty {
+                    label("Record together", .black.opacity(0.55))
                     Text(record)
-                        .font(.display(150))
-                        .foregroundStyle(.white)
+                        .font(.display(200))
+                        .foregroundStyle(.black)
                         .lineLimit(1)
                         .minimumScaleFactor(0.4)
                 }
-                .padding(.top, 64)
-            }
-            Spacer(minLength: 32)
-            if !photos.isEmpty {
-                HStack(spacing: 16) {
-                    ForEach(photos.indices, id: \.self) { i in
-                        Image(uiImage: photos[i])
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: (912 - 16 * CGFloat(photos.count - 1)) / CGFloat(photos.count), height: 300)
-                            .clipShape(.rect(cornerRadius: 14))
+                Spacer(minLength: 30)
+                if !photos.isEmpty {
+                    HStack(spacing: 16) {
+                        ForEach(photos.indices, id: \.self) { i in
+                            Image(uiImage: photos[i])
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: (912 - 16 * CGFloat(photos.count - 1)) / CGFloat(photos.count), height: 260)
+                                .clipShape(.rect(cornerRadius: 10))
+                        }
                     }
+                    .frame(height: 260)
+                    .padding(.bottom, 32)
                 }
-                .frame(height: 300)
-                .padding(.bottom, 28)
+                Text("WITNESS")
+                    .font(.system(size: 40, weight: .heavy).width(.compressed))
+                    .tracking(10)
+                    .foregroundStyle(.black)
             }
-            if !recent.isEmpty {
-                Text(recent.uppercased())
-                    .font(.system(size: 40, weight: .bold).width(.condensed))
-                    .tracking(4)
-                    .foregroundStyle(.white.opacity(0.6))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .light)
+    }
+
+    // 5. Data-forward stub: ruled rows of figures.
+    private var stubCard: some View {
+        ShareCardFrame(format: .story, accent: color) {
+            VStack(alignment: .leading, spacing: 0) {
+                label("Shared passport", .white.opacity(0.6))
+                Text(name.uppercased())
+                    .font(.display(260))
+                    .foregroundStyle(color)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.3)
+                    .padding(.top, 16)
+                    .padding(.bottom, 48)
+                stubRow("Games together", "\(count)")
+                if !record.isEmpty { stubRow("Record", record) }
+                if !recent.isEmpty { stubRow("Latest", recent, small: true) }
+                if let first = photos.first {
+                    Image(uiImage: first)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 912, height: 300)
+                        .clipShape(.rect(cornerRadius: 14))
+                        .padding(.top, 40)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
+    private func stubRow(_ title: String, _ value: String, small: Bool = false) -> some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Rectangle().fill(Color.white.opacity(0.25)).frame(height: 2)
+            label(title, .white.opacity(0.6), size: 34).padding(.top, 20)
+            Text(small ? value.uppercased() : value)
+                .font(small ? .system(size: 64, weight: .bold).width(.condensed) : .display(190))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.3)
+                .padding(.bottom, 24)
+        }
     }
 }

@@ -304,21 +304,43 @@ struct YouWereThereView: View {
     }
 
     @MainActor
-    private func shareCard(_ info: ShareInfo) async -> some View {
+    private func shareVariants(_ info: ShareInfo) async -> [ShareCardVariant] {
         var photo: UIImage?
         if let ref = info.ref { photo = await PhotoLoader.load(ref) }
-        return YouWereThereShareCard(photo: photo,
-                                     accent: info.accent,
-                                     score: info.score,
-                                     headline: info.headline,
-                                     footer: info.footer,
-                                     period: info.period,
-                                     playText: info.playText)
+        var out: [ShareCardVariant] = []
+        for style in YouWereThereShareCard.Style.allCases {
+            out.append(ShareCardVariant(style.name) {
+                YouWereThereShareCard(style: style,
+                                      photo: photo,
+                                      accent: info.accent,
+                                      score: info.score,
+                                      headline: info.headline,
+                                      footer: info.footer,
+                                      period: info.period,
+                                      playText: info.playText)
+            })
+        }
+        return out
     }
 }
 
-/// The 1080x1920 story card: the final score as the hero, the photo from the moment, and the play you saw.
+/// The 1080x1920 story cards: five looks of the same moment (score, headline, photo, the play you saw).
 private struct YouWereThereShareCard: View {
+    enum Style: CaseIterable {
+        case photo, numeral, field, paper, stub
+
+        var name: String {
+            switch self {
+            case .photo: "Moment"
+            case .numeral: "Numeral"
+            case .field: "Color"
+            case .paper: "Paper"
+            case .stub: "Stub"
+            }
+        }
+    }
+
+    let style: Style
     let photo: UIImage?
     let accent: Color
     let score: String
@@ -327,82 +349,268 @@ private struct YouWereThereShareCard: View {
     let period: String
     let playText: String
 
+    private var paperInk: Color { Color(red: 0.07, green: 0.07, blue: 0.08) }
+    private var paperBg: Color { Color(red: 0.96, green: 0.95, blue: 0.92) }
+
+    /// The big line: the score, else the headline.
+    private var heroText: String { score.isEmpty ? headline : score }
+
     var body: some View {
-        ShareCardFrame(format: .story, accent: accent) {
+        ZStack(alignment: .topLeading) {
+            background
             VStack(alignment: .leading, spacing: 0) {
-                Text("YOU WERE THERE")
-                    .font(.system(size: 44, weight: .heavy).width(.condensed))
-                    .tracking(8)
-                    .foregroundStyle(Color.signal)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
+                content
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                Text("WITNESS")
+                    .font(.system(size: 40, weight: .heavy).width(.compressed))
+                    .tracking(10)
+                    .foregroundStyle(style == .paper ? paperInk : Color.white.opacity(0.9))
+                    .padding(.top, 40)
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .dark)
+    }
 
-                if score.isEmpty {
-                    Text(headline)
-                        .font(.display(200))
-                        .foregroundStyle(.white)
-                        .lineLimit(3)
-                        .minimumScaleFactor(0.4)
-                        .padding(.top, 28)
-                } else {
-                    Text(score)
-                        .font(.display(380))
-                        .monospacedDigit()
-                        .foregroundStyle(.white)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.4)
-                        .padding(.top, 12)
-                    Text(headline)
-                        .font(.system(size: 52, weight: .bold).width(.condensed))
-                        .foregroundStyle(.white.opacity(0.9))
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.6)
-                        .padding(.top, 8)
-                }
+    // MARK: Backgrounds
 
-                if !footer.isEmpty {
-                    Text(footer.uppercased())
-                        .font(.system(size: 34, weight: .bold).width(.condensed))
-                        .tracking(4)
-                        .foregroundStyle(.white.opacity(0.6))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
-                        .padding(.top, 20)
-                }
-
+    @ViewBuilder
+    private var background: some View {
+        switch style {
+        case .photo:
+            ZStack {
+                LinearGradient(colors: [accent.opacity(0.6), .black], startPoint: .top, endPoint: .bottom)
                 if let photo {
                     Image(uiImage: photo)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 912, height: 470)
+                        .frame(width: 1080, height: 1920)
                         .clipped()
-                        .clipShape(.rect(cornerRadius: 28))
-                        .padding(.top, 44)
                 }
-
-                if !playText.isEmpty {
-                    HStack(alignment: .top, spacing: 20) {
-                        if !period.isEmpty {
-                            Text(period)
-                                .font(.system(size: 36, weight: .heavy).width(.condensed))
-                                .foregroundStyle(Color.black)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
-                                .padding(.horizontal, 14)
-                                .frame(minWidth: 64, minHeight: 56)
-                                .background(Color.white, in: .rect(cornerRadius: 10))
-                        }
-                        Text(playText)
-                            .font(.system(size: 48, weight: .semibold))
-                            .foregroundStyle(.white)
-                            .lineLimit(photo == nil ? 5 : 3)
-                            .minimumScaleFactor(0.6)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    .padding(.top, 36)
-                }
+                LinearGradient(stops: [
+                    .init(color: .black.opacity(0.55), location: 0),
+                    .init(color: .black.opacity(0), location: 0.25),
+                    .init(color: .black.opacity(0.88), location: 0.65),
+                    .init(color: .black, location: 1),
+                ], startPoint: .top, endPoint: .bottom)
             }
+            .frame(width: 1080, height: 1920)
+        case .numeral:
+            ZStack(alignment: .top) {
+                Color.ink
+                LinearGradient(colors: [accent.opacity(0.4), .clear], startPoint: .top, endPoint: .center)
+            }
+            .frame(width: 1080, height: 1920)
+        case .field:
+            ZStack {
+                accent
+                Color.black.opacity(0.22)
+            }
+            .frame(width: 1080, height: 1920)
+        case .paper:
+            paperBg.frame(width: 1080, height: 1920)
+        case .stub:
+            Color.ink.frame(width: 1080, height: 1920)
         }
+    }
+
+    // MARK: Content
+
+    @ViewBuilder
+    private var content: some View {
+        switch style {
+        case .photo: photoContent
+        case .numeral: numeralContent
+        case .field: fieldContent
+        case .paper: paperContent
+        case .stub: stubContent
+        }
+    }
+
+    private var label: some View {
+        Text("YOU WERE THERE")
+            .font(.system(size: 44, weight: .heavy).width(.condensed))
+            .tracking(8)
+            .foregroundStyle(Color.signal)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+    }
+
+    private func playLine(_ color: Color, size: CGFloat, lines: Int) -> some View {
+        Text(period.isEmpty ? playText : "\(period)  \u{00B7}  \(playText)")
+            .font(.system(size: size, weight: .semibold))
+            .foregroundStyle(color)
+            .lineLimit(lines)
+            .minimumScaleFactor(0.6)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func footerLine(_ color: Color) -> some View {
+        Text(footer.uppercased())
+            .font(.system(size: 34, weight: .bold).width(.condensed))
+            .tracking(4)
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+    }
+
+    /// 1. Full-bleed photo, type at the bottom.
+    private var photoContent: some View {
+        VStack(alignment: .leading, spacing: 24) {
+            label
+            Spacer(minLength: 0)
+            Text(heroText)
+                .font(.display(score.isEmpty ? 190 : 320))
+                .foregroundStyle(.white)
+                .lineLimit(score.isEmpty ? 3 : 1)
+                .minimumScaleFactor(0.4)
+            if !score.isEmpty {
+                Text(headline)
+                    .font(.system(size: 52, weight: .bold).width(.condensed))
+                    .foregroundStyle(.white.opacity(0.9))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.6)
+            }
+            if !playText.isEmpty { playLine(.white.opacity(0.85), size: 44, lines: 3) }
+            if !footer.isEmpty { footerLine(.white.opacity(0.6)) }
+        }
+    }
+
+    /// 2. Pure type: the score at the largest size the width allows, on ink.
+    private var numeralContent: some View {
+        VStack(alignment: .leading, spacing: 28) {
+            label
+            Spacer(minLength: 0)
+            Text(heroText)
+                .font(.display(score.isEmpty ? 260 : 560))
+                .monospacedDigit()
+                .foregroundStyle(.white)
+                .lineLimit(score.isEmpty ? 4 : 1)
+                .minimumScaleFactor(0.3)
+            if !score.isEmpty {
+                Text(headline)
+                    .font(.system(size: 56, weight: .bold).width(.condensed))
+                    .foregroundStyle(.white.opacity(0.9))
+                    .lineLimit(3)
+                    .minimumScaleFactor(0.6)
+            }
+            if !footer.isEmpty { footerLine(.white.opacity(0.6)) }
+            Spacer(minLength: 0)
+        }
+    }
+
+    /// 3. A solid field of the team color; the play is the voice.
+    private var fieldContent: some View {
+        VStack(alignment: .leading, spacing: 32) {
+            Text("YOU WERE THERE")
+                .font(.system(size: 44, weight: .heavy).width(.condensed))
+                .tracking(8)
+                .foregroundStyle(.white.opacity(0.8))
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+            if !playText.isEmpty {
+                Text(playText)
+                    .font(.display(150))
+                    .foregroundStyle(.white)
+                    .lineLimit(5)
+                    .minimumScaleFactor(0.4)
+            }
+            Spacer(minLength: 0)
+            if !score.isEmpty {
+                Text(score)
+                    .font(.display(240))
+                    .monospacedDigit()
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
+            }
+            Text(headline)
+                .font(.system(size: 48, weight: .bold).width(.condensed))
+                .foregroundStyle(.white.opacity(0.9))
+                .lineLimit(2)
+                .minimumScaleFactor(0.6)
+            if !footer.isEmpty { footerLine(.white.opacity(0.75)) }
+        }
+    }
+
+    /// 4. Paper: off-white, black type, the photo as a print.
+    private var paperContent: some View {
+        VStack(alignment: .leading, spacing: 28) {
+            Text("YOU WERE THERE")
+                .font(.system(size: 44, weight: .heavy).width(.condensed))
+                .tracking(8)
+                .foregroundStyle(paperInk)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+            if let photo {
+                Image(uiImage: photo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 912, height: 620)
+                    .clipped()
+                    .clipShape(.rect(cornerRadius: 8))
+            }
+            Text(heroText)
+                .font(.display(score.isEmpty ? 190 : 300))
+                .monospacedDigit()
+                .foregroundStyle(paperInk)
+                .lineLimit(score.isEmpty ? 3 : 1)
+                .minimumScaleFactor(0.4)
+            if !score.isEmpty {
+                Text(headline)
+                    .font(.system(size: 50, weight: .bold).width(.condensed))
+                    .foregroundStyle(paperInk.opacity(0.85))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.6)
+            }
+            if !footer.isEmpty { footerLine(paperInk.opacity(0.55)) }
+            Spacer(minLength: 0)
+        }
+    }
+
+    /// 5. Data-forward: a ticket stub of ruled rows.
+    private var stubContent: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            label
+                .padding(.bottom, 36)
+            if !score.isEmpty {
+                Text(score)
+                    .font(.display(300))
+                    .monospacedDigit()
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.4)
+                    .padding(.bottom, 24)
+            }
+            Rectangle().fill(Color.white.opacity(0.3)).frame(height: 2)
+            if !headline.isEmpty { stubRow("GAME", headline, lines: 2) }
+            if !footer.isEmpty { stubRow("WHERE", footer, lines: 2) }
+            if !period.isEmpty { stubRow("WHEN", period, lines: 1) }
+            if !playText.isEmpty { stubRow("PLAY", playText, lines: 4) }
+            Spacer(minLength: 0)
+        }
+    }
+
+    private func stubRow(_ name: String, _ value: String, lines: Int) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(name)
+                .font(.system(size: 30, weight: .bold).width(.condensed))
+                .tracking(6)
+                .foregroundStyle(.white.opacity(0.55))
+                .lineLimit(1)
+            Text(value)
+                .font(.system(size: 52, weight: .bold).width(.condensed))
+                .foregroundStyle(.white)
+                .lineLimit(lines)
+                .minimumScaleFactor(0.6)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(.vertical, 26)
+        .overlay(alignment: .bottom) { Rectangle().fill(Color.white.opacity(0.3)).frame(height: 2) }
     }
 }
 

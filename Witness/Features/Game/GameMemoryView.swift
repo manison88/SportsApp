@@ -10,6 +10,7 @@ struct GameMemoryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var editing = false
     @State private var confirmDelete = false
+    @State private var sharing = false
     @State private var viewer: PhotoViewerItem?
 
     private let heroHeight: CGFloat = 470
@@ -60,6 +61,9 @@ struct GameMemoryView: View {
         }
         .sheet(isPresented: $editing) {
             AddGameView(editing: game)
+        }
+        .shareCardSheet(isPresented: $sharing, title: headlineText(game, library).replacingOccurrences(of: "\n", with: " "), format: .story, key: game.id) {
+            await shareVariants(game)
         }
         .confirmationDialog("Delete this game?", isPresented: $confirmDelete, titleVisibility: .visible) {
             Button("Delete", role: .destructive) {
@@ -274,7 +278,10 @@ struct GameMemoryView: View {
 
     private func menu(_ game: GameEntry) -> some View {
         Menu {
-            shareLink(game)
+            Button { sharing = true } label: {
+                Label("Share", systemImage: "square.and.arrow.up")
+            }
+            .accessibilityIdentifier("game-share")
             Button { editing = true } label: { Label("Edit", systemImage: "pencil") }
             Button(role: .destructive) { confirmDelete = true } label: { Label("Delete", systemImage: "trash") }
                 .accessibilityIdentifier("game-delete")
@@ -291,12 +298,11 @@ struct GameMemoryView: View {
         .accessibilityIdentifier("game-menu")
     }
 
-    private func shareLink(_ game: GameEntry) -> some View {
+    private func shareVariants(_ game: GameEntry) async -> [ShareCardVariant] {
         let venue = library.venue(game.venueId)
         let headline = headlineText(game, library)
         let matchup = matchupText(game, library)
         let when = Fmt.dayTitle(game.date, in: venue?.tz ?? .current)
-        let place = [venue?.name, when].compactMap { $0 }.joined(separator: " · ")
         var score = ""
         var result = ""
         if let hs = game.homeScore, let aw = game.awayScore {
@@ -315,127 +321,273 @@ struct GameMemoryView: View {
             }
         }
         let accent = library.team(library.rootingTeam(game))?.accent ?? Color.signal
-        let ref = game.heroPhoto
         let stage = game.bigGame
-        return ShareCardLink(title: headline, format: .story, key: game.id) {
-            var photo: UIImage?
-            if let ref { photo = await PhotoLoader.load(ref) }
-            return GameShareCard(
+        var photo: UIImage?
+        if let ref = game.heroPhoto { photo = await PhotoLoader.load(ref) }
+        func card(_ style: GameShareCard.Style) -> GameShareCard {
+            GameShareCard(
+                style: style,
                 photo: photo,
                 accent: accent,
                 headline: headline,
                 matchup: matchup,
                 score: score,
                 result: result,
-                place: place,
+                venue: venue?.name ?? "",
+                date: when,
                 stageLabel: stage?.label,
                 stageSymbol: stage?.kind.symbol,
                 stageTint: stage?.kind.tint ?? Color.white
             )
-        } label: {
-            Label("Share", systemImage: "square.and.arrow.up")
         }
+        return [
+            ShareCardVariant("Photo") { card(.photo) },
+            ShareCardVariant("Number") { card(.number) },
+            ShareCardVariant("Color") { card(.color) },
+            ShareCardVariant("Paper") { card(.paper) },
+            ShareCardVariant("Stub") { card(.stub) },
+        ]
     }
 }
 
-/// The 1080x1920 story card for one game. Hero is the best photo, or the score when there is no photo.
-/// Story format: a full-height portrait photo and a stacked headline read best on a phone screen.
+/// The 1080x1920 story card for one game, in five looks. Story suits all of them: tall photo, giant type, full-height stub.
 private struct GameShareCard: View {
+    enum Style { case photo, number, color, paper, stub }
+
+    let style: Style
     let photo: UIImage?
     let accent: Color
     let headline: String
     let matchup: String
     let score: String
     let result: String
-    let place: String
+    let venue: String
+    let date: String
     let stageLabel: String?
     let stageSymbol: String?
     let stageTint: Color
+
+    private let paperColor = Color(hex: "F4F1EA")
 
     private var headlineLines: String {
         headline.uppercased().replacingOccurrences(of: ". ", with: ".\n")
     }
 
+    private var place: String {
+        [venue, date].filter { !$0.isEmpty }.joined(separator: " · ")
+    }
+
+    private var resultLine: String {
+        [result, score].filter { !$0.isEmpty }.joined(separator: " ").uppercased()
+    }
+
     var body: some View {
+        switch style {
+        case .photo: photoCard
+        case .number: numberCard
+        case .color: colorCard
+        case .paper: paperCard
+        case .stub: stubCard
+        }
+    }
+
+    // MARK: Pieces
+
+    private func label(_ text: String, size: CGFloat, color: Color, lines: Int = 1) -> some View {
+        Text(text)
+            .font(.system(size: size, weight: .heavy).width(.condensed))
+            .tracking(4)
+            .foregroundStyle(color)
+            .lineLimit(lines)
+            .minimumScaleFactor(0.5)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    @ViewBuilder
+    private func stageRow(_ color: Color, tint: Color) -> some View {
+        if let stageLabel, let stageSymbol {
+            HStack(spacing: 18) {
+                Image(systemName: stageSymbol)
+                    .font(.system(size: 40, weight: .bold))
+                    .foregroundStyle(tint)
+                label(stageLabel.uppercased(), size: 40, color: color)
+            }
+        }
+    }
+
+    private func mark(_ color: Color) -> some View {
+        Text("WITNESS")
+            .font(.system(size: 40, weight: .heavy).width(.compressed))
+            .tracking(10)
+            .foregroundStyle(color)
+    }
+
+    private func heroText(size: CGFloat, color: Color, lines: Int, maxHeight: CGFloat) -> some View {
+        Text(headlineLines)
+            .font(.display(size))
+            .foregroundStyle(color)
+            .lineLimit(lines)
+            .minimumScaleFactor(0.3)
+            .frame(maxWidth: .infinity, maxHeight: maxHeight, alignment: .topLeading)
+    }
+
+    // MARK: 1 Photo: full-bleed photo, type at the bottom
+
+    private var photoCard: some View {
+        ZStack(alignment: .bottomLeading) {
+            LinearGradient(colors: [accent.opacity(0.7), .black], startPoint: .top, endPoint: .bottom)
+            if let photo {
+                Image(uiImage: photo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 1080, height: 1920)
+                    .clipped()
+            }
+            LinearGradient(stops: [
+                .init(color: .black.opacity(0.45), location: 0),
+                .init(color: .black.opacity(0), location: 0.25),
+                .init(color: .black.opacity(0.9), location: 0.7),
+                .init(color: .black, location: 1),
+            ], startPoint: .top, endPoint: .bottom)
+            VStack(alignment: .leading, spacing: 28) {
+                stageRow(.white, tint: stageTint)
+                heroText(size: 200, color: .white, lines: 4, maxHeight: 640)
+                if !resultLine.isEmpty { label(resultLine, size: 64, color: .white) }
+                if !place.isEmpty { label(place.uppercased(), size: 38, color: .white.opacity(0.65), lines: 2) }
+                label("I WAS THERE.", size: 48, color: Color.signal)
+                mark(.white.opacity(0.9)).padding(.top, 16)
+            }
+            .padding(.horizontal, 84)
+            .padding(.bottom, 250)
+        }
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .dark)
+    }
+
+    // MARK: 2 Number: giant type on ink
+
+    private var numberCard: some View {
         ShareCardFrame(format: .story, accent: accent) {
             VStack(alignment: .leading, spacing: 36) {
-                if let stageLabel, let stageSymbol {
-                    HStack(spacing: 18) {
-                        Image(systemName: stageSymbol)
-                            .font(.system(size: 40, weight: .bold))
-                            .foregroundStyle(stageTint)
-                        Text(stageLabel.uppercased())
-                            .font(.system(size: 40, weight: .heavy).width(.condensed))
-                            .tracking(4)
-                            .foregroundStyle(.white)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                    }
-                }
-                if let photo {
-                    Color.clear
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 560)
-                        .overlay {
-                            Image(uiImage: photo)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                        }
-                        .clipShape(.rect(cornerRadius: 28))
-                    Text(headlineLines)
-                        .font(.display(150))
-                        .foregroundStyle(.white)
-                        .lineLimit(3)
-                        .minimumScaleFactor(0.3)
-                        .frame(maxWidth: .infinity, maxHeight: 400, alignment: .topLeading)
-                } else if !score.isEmpty {
+                stageRow(.white, tint: stageTint)
+                Spacer(minLength: 0)
+                if !score.isEmpty {
                     Text(score)
-                        .font(.display(380))
+                        .font(.display(430))
                         .monospacedDigit()
                         .foregroundStyle(.white)
                         .lineLimit(1)
                         .minimumScaleFactor(0.3)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(matchup.uppercased())
-                        .font(.display(120))
-                        .foregroundStyle(.white.opacity(0.9))
-                        .lineLimit(3)
-                        .minimumScaleFactor(0.3)
-                        .frame(maxWidth: .infinity, maxHeight: 400, alignment: .topLeading)
+                    label(matchup.uppercased(), size: 56, color: .white.opacity(0.85), lines: 2)
                 } else {
-                    Text(headlineLines)
-                        .font(.display(240))
-                        .foregroundStyle(.white)
-                        .lineLimit(5)
+                    heroText(size: 300, color: .white, lines: 5, maxHeight: 900)
+                }
+                if !result.isEmpty { label(result.uppercased(), size: 56, color: .white.opacity(0.6)) }
+                label("I WAS THERE.", size: 48, color: Color.signal)
+                Spacer(minLength: 0)
+            }
+        }
+    }
+
+    // MARK: 3 Color: solid team color field
+
+    private var colorCard: some View {
+        let ink = accent.readableInk
+        return ZStack(alignment: .topLeading) {
+            accent
+            VStack(alignment: .leading, spacing: 36) {
+                stageRow(ink, tint: ink)
+                Spacer(minLength: 0)
+                if !score.isEmpty {
+                    Text(score)
+                        .font(.display(360))
+                        .monospacedDigit()
+                        .foregroundStyle(ink)
+                        .lineLimit(1)
                         .minimumScaleFactor(0.3)
-                        .frame(maxWidth: .infinity, maxHeight: 900, alignment: .topLeading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                if photo != nil, !score.isEmpty {
-                    Text([result, score].filter { !$0.isEmpty }.joined(separator: " ").uppercased())
-                        .font(.system(size: 64, weight: .heavy).width(.condensed))
-                        .tracking(3)
-                        .foregroundStyle(.white)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
-                } else if photo == nil, !result.isEmpty {
-                    Text(result.uppercased())
-                        .font(.system(size: 64, weight: .heavy).width(.condensed))
-                        .tracking(3)
-                        .foregroundStyle(.white)
-                        .lineLimit(1)
+                heroText(size: 130, color: ink, lines: 3, maxHeight: 420)
+                if !place.isEmpty { label(place.uppercased(), size: 38, color: ink.opacity(0.75), lines: 2) }
+                label("I WAS THERE.", size: 48, color: ink)
+                mark(ink)
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .frame(width: 1080, height: 1920)
+    }
+
+    // MARK: 4 Paper: light inverse, black type
+
+    private var paperCard: some View {
+        ZStack(alignment: .topLeading) {
+            paperColor
+            VStack(alignment: .leading, spacing: 36) {
+                stageRow(.black, tint: .black)
+                if let photo {
+                    Color.clear
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 620)
+                        .overlay {
+                            Image(uiImage: photo)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }
+                        .clipShape(.rect(cornerRadius: 8))
                 }
-                if !place.isEmpty {
-                    Text(place.uppercased())
-                        .font(.system(size: 40, weight: .bold).width(.condensed))
-                        .tracking(4)
-                        .foregroundStyle(.white.opacity(0.6))
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.5)
+                heroText(size: 170, color: .black, lines: 4, maxHeight: 560)
+                Rectangle().fill(Color.signal).frame(width: 140, height: 12)
+                if !resultLine.isEmpty { label(resultLine, size: 60, color: .black) }
+                if !place.isEmpty { label(place.uppercased(), size: 38, color: .black.opacity(0.6), lines: 2) }
+                Spacer(minLength: 0)
+                label("I WAS THERE.", size: 48, color: .black)
+                mark(.black)
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .light)
+    }
+
+    // MARK: 5 Stub: a ticket-stub grid of facts
+
+    private var stubRows: [(String, String)] {
+        var rows: [(String, String)] = []
+        if let stageLabel { rows.append(("Event", stageLabel)) }
+        rows.append(("Game", matchup))
+        if !score.isEmpty { rows.append(("Final", resultLine)) }
+        if !venue.isEmpty { rows.append(("Venue", venue)) }
+        if !date.isEmpty { rows.append(("Date", date)) }
+        return rows
+    }
+
+    private var stubCard: some View {
+        ShareCardFrame(format: .story, accent: accent) {
+            VStack(alignment: .leading, spacing: 0) {
+                label("ADMIT ONE", size: 56, color: .white.opacity(0.6))
+                    .padding(.bottom, 40)
+                ForEach(Array(stubRows.enumerated()), id: \.offset) { _, row in
+                    VStack(alignment: .leading, spacing: 10) {
+                        label(row.0.uppercased(), size: 34, color: .white.opacity(0.5))
+                        Text(row.1.uppercased())
+                            .font(.display(92))
+                            .foregroundStyle(.white)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.4)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding(.vertical, 28)
+                    .overlay(alignment: .top) { Rectangle().fill(Color.white.opacity(0.2)).frame(height: 2) }
                 }
-                Text("I WAS THERE.")
-                    .font(.system(size: 48, weight: .heavy).width(.condensed))
-                    .tracking(4)
-                    .foregroundStyle(Color.signal)
+                Spacer(minLength: 0)
+                label("I WAS THERE.", size: 56, color: Color.signal)
             }
         }
     }
