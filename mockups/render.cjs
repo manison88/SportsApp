@@ -43,10 +43,11 @@ const OUT = path.join(ROOT, 'png');
     // contact sheet
     const meta = fs.existsSync(path.join(dir, 'feature.json')) ? JSON.parse(fs.readFileSync(path.join(dir, 'feature.json'))) : { title: folder };
     const sheet = await ctx.newPage();
-    await sheet.setViewportSize({ width: 2400, height: 1200 });
+    await sheet.setViewportSize({ width: 144 + shots.length * 393 + (shots.length - 1) * 36, height: 1200 });
     const cards = shots.map((s, i) => `
       <figure><img src="file://${s.out}"><figcaption><b>${String(i + 1).padStart(2, '0')}</b> ${s.title}</figcaption></figure>`).join('');
-    await sheet.setContent(`<html><head><link rel="stylesheet" href="file://${ROOT}/kit/kit.css"><style>
+    const sheetHtml = path.join(OUT, folder, '_sheet.html');
+    fs.writeFileSync(sheetHtml, `<html><head><link rel="stylesheet" href="file://${ROOT}/kit/kit.css"><style>
       html,body{width:auto;height:auto;overflow:visible;background:#0b0b0d;color:#f5f1ea;font-family:Inter,sans-serif}
       body{padding:64px 72px 72px}
       h1{font:400 64px/1 'Instrument Serif',serif;letter-spacing:-1px;margin-bottom:10px}
@@ -56,7 +57,8 @@ const OUT = path.join(ROOT, 'png');
       img{width:393px;height:852px;border-radius:44px;display:block;box-shadow:0 0 0 1px rgba(255,255,255,.1),0 30px 60px rgba(0,0,0,.6)}
       figcaption{margin-top:18px;font:500 17px/1.3 Inter;color:rgba(245,241,234,.8)}
       figcaption b{color:#ffb547;margin-right:6px}
-    </style></head><body><h1>${meta.title}</h1><p>${meta.summary || ''}</p><div class="row">${cards}</div></body></html>`, { waitUntil: 'load' });
+    </style></head><body><h1>${meta.title}</h1><p>${meta.summary || ''}</p><div class="row">${cards}</div></body></html>`);
+    await sheet.goto('file://' + sheetHtml, { waitUntil: 'load' });
     await sheet.evaluate(() => document.fonts.ready);
     await sheet.screenshot({ path: path.join(OUT, folder + '.png'), fullPage: true });
     await sheet.close();
