@@ -556,7 +556,7 @@
     "gas-south-arena",
     "hertz-arena",
     "bon-secours-wellness-arena",
-    "vystar-ballpark",
+    "vystar-veterans-memorial-arena",
     "kia-center",
     "enmarket-arena",
     "north-charleston-coliseum",
@@ -724,7 +724,7 @@
     "greensboro-coliseum",
     "pontchartrain-center",
     "nassau-coliseum",
-    "delta-dental-park",
+    "portland-exposition-building",
     "wayne-state-fieldhouse",
     "riverview-health-arena-at-innovation-mile",
     "silver-spurs-arena",
@@ -786,7 +786,7 @@
    "mlsnp-rsl2",
    "mlsnp-sj2",
    "mlsnp-sea2",
-   "mlsnp-la22"
+   "mlsnp-ven"
   ],
   "passport": {
    "label": "MLS NEXT Pro venues",
@@ -795,7 +795,7 @@
     "historic-crew-stadium",
     "nku-soccer-stadium",
     "gillette-stadium",
-    "carnesecca-arena",
+    "belson-stadium",
     "msu-soccer-park-at-pittser-field",
     "subaru-park",
     "fifth-third-stadium-kennesaw",
@@ -816,7 +816,7 @@
     "titan-stadium",
     "providence-park",
     "zions-bank-stadium",
-    "uccu-pavilion",
+    "saint-marys-stadium",
     "starfire-stadium",
     "william-rolland-stadium"
    ]
@@ -890,7 +890,7 @@
     "fishers-event-center",
     "resch-center",
     "caseys-center",
-    "vystar-ballpark",
+    "vystar-veterans-memorial-arena",
     "kia-center",
     "vibrant-arena-at-the-mark",
     "enmarket-arena",
@@ -943,40 +943,6 @@
   }
  },
  {
-  "key": "football/cif",
-  "name": "Champions Indoor Football",
-  "sport": "football",
-  "country": "United States",
-  "countryCode": "US",
-  "tier": 3,
-  "teamCount": 8,
-  "season": "Feb-Jun",
-  "espnPath": null,
-  "teamIds": [
-   "cif-bil",
-   "cif-gil",
-   "cif-oma",
-   "cif-rc",
-   "cif-sal",
-   "cif-sc",
-   "cif-sk",
-   "cif-top"
-  ],
-  "passport": {
-   "label": "Champions Indoor Football venues",
-   "venueIds": [
-    "metrapark-first-interstate-arena",
-    "wyoming-center-at-the-cam-plex",
-    "liberty-first-credit-union-arena",
-    "the-monument",
-    "tonys-pizza-events-center",
-    "tyson-events-center",
-    "united-wireless-arena",
-    "stormont-vail-events-center"
-   ]
-  }
- },
- {
   "key": "soccer/masl",
   "name": "Major Arena Soccer League",
   "sport": "soccer",
@@ -987,16 +953,16 @@
   "season": "Nov-Mar",
   "espnPath": null,
   "teamIds": [
-   "masl-tow",
-   "masl-ont",
-   "masl-her",
-   "masl-ind",
-   "masl-all",
+   "masl-bal",
+   "masl-emp",
+   "masl-har",
+   "masl-kc",
+   "masl-lv",
    "masl-mil",
-   "masl-oce",
-   "masl-sc",
-   "masl-ken",
-   "masl-uti"
+   "masl-sd",
+   "masl-sl",
+   "masl-tac",
+   "masl-uc"
   ],
   "passport": {
    "label": "Major Arena Soccer League venues",
@@ -1025,7 +991,7 @@
   "season": "Aug-Jun",
   "espnPath": null,
   "teamIds": [
-   "uslsl-nyc",
+   "uslsl-bro",
    "uslsl-cha",
    "uslsl-dal",
    "uslsl-was",
@@ -1324,7 +1290,7 @@
     "fitzpatrick-stadium",
     "city-stadium-richmond",
     "premier-sports-campus",
-    "spokane-arena",
+    "one-spokane-stadium",
     "morrison-stadium",
     "the-stadium-at-memorial-field"
    ]

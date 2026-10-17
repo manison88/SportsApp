@@ -277,7 +277,7 @@
   "id": "american-legion-memorial-stadium",
   "name": "American Legion Memorial Stadium",
   "aliases": [],
-  "city": "| Charlotte",
+  "city": "Charlotte",
   "region": "North Carolina",
   "country": "United States",
   "countryCode": "US",
@@ -515,6 +515,27 @@
   "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
+ },
+ {
+  "id": "belson-stadium",
+  "name": "Belson Stadium",
+  "aliases": [],
+  "city": "New York City",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.72431,
+  "longitude": -73.79284,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "New York City FC II"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 2168,
+  "opened": 2002
  },
  {
   "id": "berglund-center",
@@ -1686,18 +1707,14 @@
   "latitude": 43.65624,
   "longitude": -70.27873,
   "sports": [
-   "baseball",
-   "basketball"
+   "baseball"
   ],
-  "leagues": [
-   "basketball/nba-development"
-  ],
+  "leagues": [],
   "homeTeams": [
-   "Portland Sea Dogs",
-   "Maine Celtics"
+   "Portland Sea Dogs"
   ],
   "timeZone": "America/New_York",
-  "capacity": 3100,
+  "capacity": null,
   "opened": null
  },
  {
@@ -3833,27 +3850,6 @@
   "opened": 2024
  },
  {
-  "id": "liberty-first-credit-union-arena",
-  "name": "Liberty First Credit Union Arena",
-  "aliases": [],
-  "city": "Ralston",
-  "region": "Nebraska",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 41.20694,
-  "longitude": -96.02694,
-  "sports": [
-   "football"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Omaha Beef"
-  ],
-  "timeZone": "America/Chicago",
-  "capacity": 4600,
-  "opened": 2012
- },
- {
   "id": "lindquist-field",
   "name": "Lindquist Field",
   "aliases": [],
@@ -4089,29 +4085,6 @@
   "timeZone": "America/New_York",
   "capacity": 5500,
   "opened": 2024
- },
- {
-  "id": "metrapark-first-interstate-arena",
-  "name": "MetraPark First Interstate Arena",
-  "aliases": [
-   "MetraPark Arena"
-  ],
-  "city": "Billings",
-  "region": "Montana",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 45.8001,
-  "longitude": -108.4772,
-  "sports": [
-   "football"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Billings Outlaws"
-  ],
-  "timeZone": "America/Denver",
-  "capacity": 7000,
-  "opened": null
  },
  {
   "id": "mirabito-stadium",
@@ -4676,6 +4649,31 @@
   "opened": 2004
  },
  {
+  "id": "one-spokane-stadium",
+  "name": "ONE Spokane Stadium",
+  "aliases": [
+   "One Spokane Stadium"
+  ],
+  "city": "Spokane",
+  "region": "Washington",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 47.6675,
+  "longitude": -117.41917,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.usl.l1"
+  ],
+  "homeTeams": [
+   "Spokane Velocity FC"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 5100,
+  "opened": 2023
+ },
+ {
   "id": "oneok-field",
   "name": "ONEOK Field",
   "aliases": [],
@@ -5097,6 +5095,29 @@
   "opened": 1991
  },
  {
+  "id": "portland-exposition-building",
+  "name": "Portland Exposition Building",
+  "aliases": [],
+  "city": "Portland",
+  "region": "Maine",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.6564,
+  "longitude": -70.2773,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [
+   "basketball/nba-development"
+  ],
+  "homeTeams": [
+   "Maine Celtics"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": 3100,
+  "opened": 1915
+ },
+ {
   "id": "ppl-center",
   "name": "PPL Center",
   "aliases": [],
@@ -5515,6 +5536,27 @@
   "closed": 2021,
   "demolished": null,
   "note": "Blue Jays temporary home in 2021 (and 2020 games moved from Toronto); AAA Bisons park otherwise."
+ },
+ {
+  "id": "saint-marys-stadium",
+  "name": "Saint Mary's Stadium",
+  "aliases": [],
+  "city": "Moraga",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.8417,
+  "longitude": -122.10552,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "San Jose Earthquakes II"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": 5500,
+  "opened": null
  },
  {
   "id": "san-manuel-stadium",
@@ -5987,13 +6029,11 @@
   "latitude": 39.03414,
   "longitude": -95.68585,
   "sports": [
-   "hockey",
-   "football"
+   "hockey"
   ],
   "leagues": [],
   "homeTeams": [
-   "Topeka Scarecrows",
-   "Topeka Tropics"
+   "Topeka Scarecrows"
   ],
   "timeZone": "America/Chicago",
   "capacity": 7773,
@@ -6235,13 +6275,11 @@
   "latitude": 44.08854,
   "longitude": -103.22582,
   "sports": [
-   "hockey",
-   "football"
+   "hockey"
   ],
   "leagues": [],
   "homeTeams": [
-   "Rapid City Rush",
-   "Rapid City Marshals"
+   "Rapid City Rush"
   ],
   "timeZone": "America/Denver",
   "capacity": 7500,
@@ -6332,27 +6370,6 @@
   "timeZone": "America/Los_Angeles",
   "capacity": 10000,
   "opened": 1992
- },
- {
-  "id": "tonys-pizza-events-center",
-  "name": "Tony's Pizza Events Center",
-  "aliases": [],
-  "city": "Salina",
-  "region": "Kansas",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 38.83463,
-  "longitude": -97.59949,
-  "sports": [
-   "football"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Salina Liberty"
-  ],
-  "timeZone": "America/Chicago",
-  "capacity": 7583,
-  "opened": 1979
  },
  {
   "id": "toyota-arena",
@@ -6598,27 +6615,6 @@
   "opened": 1971
  },
  {
-  "id": "tyson-events-center",
-  "name": "Tyson Events Center",
-  "aliases": [],
-  "city": "Sioux City",
-  "region": "Iowa",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 42.49146,
-  "longitude": -96.40723,
-  "sports": [
-   "football"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Sioux City Bandits"
-  ],
-  "timeZone": "America/Chicago",
-  "capacity": 6941,
-  "opened": 2003
- },
- {
   "id": "u-s-steel-yard",
   "name": "U.S. Steel Yard",
   "aliases": [],
@@ -6638,27 +6634,6 @@
   "timeZone": "America/Chicago",
   "capacity": 6139,
   "opened": 2002
- },
- {
-  "id": "united-wireless-arena",
-  "name": "United Wireless Arena",
-  "aliases": [],
-  "city": "Dodge City",
-  "region": "Kansas",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 37.76642,
-  "longitude": -100.06268,
-  "sports": [
-   "football"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Southwest Kansas Storm"
-  ],
-  "timeZone": "America/Chicago",
-  "capacity": 5300,
-  "opened": 2011
  },
  {
   "id": "upmc-park",
@@ -6910,19 +6885,38 @@
   "latitude": 30.32533,
   "longitude": -81.64256,
   "sports": [
-   "baseball",
+   "baseball"
+  ],
+  "leagues": [],
+  "homeTeams": [
+   "Jacksonville Jumbo Shrimp"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "vystar-veterans-memorial-arena",
+  "name": "VyStar Veterans Memorial Arena",
+  "aliases": [],
+  "city": "Jacksonville",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 30.32577,
+  "longitude": -81.64507,
+  "sports": [
    "hockey",
    "football"
   ],
   "leagues": [],
   "homeTeams": [
-   "Jacksonville Jumbo Shrimp",
    "Jacksonville Icemen",
    "Jacksonville Sharks"
   ],
   "timeZone": "America/New_York",
   "capacity": 13141,
-  "opened": null
+  "opened": 2003
  },
  {
   "id": "wayne-state-fieldhouse",
@@ -7184,27 +7178,6 @@
   "timeZone": "America/Chicago",
   "capacity": 3641,
   "opened": 2022
- },
- {
-  "id": "wyoming-center-at-the-cam-plex",
-  "name": "Wyoming Center at the CAM-PLEX",
-  "aliases": [],
-  "city": "Gillette",
-  "region": "Wyoming",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 44.2811,
-  "longitude": -105.4417,
-  "sports": [
-   "football"
-  ],
-  "leagues": [],
-  "homeTeams": [
-   "Gillette Mustangs"
-  ],
-  "timeZone": "America/Denver",
-  "capacity": 4500,
-  "opened": null
  },
  {
   "id": "yack-arena",
