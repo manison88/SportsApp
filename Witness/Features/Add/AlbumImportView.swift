@@ -27,6 +27,8 @@ struct AlbumImportView: View {
     @State private var items: [Item] = []
     @State private var unplaced: [DayPile] = []
     @State private var skippedDays = 0
+    /// Pairs of visits the fan said are not the same game.
+    @State private var declinedJoins: Set<String> = []
     @State private var undated: [String] = []
     @State private var progress = ""
     @State private var pickingDay: DayPile?
@@ -140,6 +142,10 @@ struct AlbumImportView: View {
                         .accessibilityIdentifier("album-needs-placing")
                 }
 
+                if let pair = joinCandidate {
+                    joinPrompt(pair.0, pair.1)
+                }
+
                 if !items.isEmpty {
                     VStack(spacing: 0) {
                         ForEach($items) { $item in visitRow($item) }
@@ -194,6 +200,55 @@ struct AlbumImportView: View {
             .padding(.top, 8)
             .padding(.bottom, Spacing.block)
         }
+    }
+
+    /// Two visits at one stadium a few hours apart on consecutive days: probably one game, so ask.
+    private var joinCandidate: (Item, Item)? {
+        for a in items {
+            let pool = items.map(\.cluster).filter { !declinedJoins.contains(VisitGrouping.pairKey(a.cluster.id, $0.id)) }
+            if let other = VisitGrouping.possibleSameGame(as: a.cluster, in: pool),
+               let b = items.first(where: { $0.id == other.id }) {
+                return (a, b)
+            }
+        }
+        return nil
+    }
+
+    private func joinPrompt(_ a: Item, _ b: Item) -> some View {
+        let first = a.cluster.start <= b.cluster.start ? a : b
+        let second = a.cluster.start <= b.cluster.start ? b : a
+        let tz = first.cluster.venue.tz
+        return VStack(alignment: .leading, spacing: Spacing.inner) {
+            Label("Same game? \(Fmt.dayTitle(first.cluster.start, in: tz)) and \(Fmt.dayTitle(second.cluster.start, in: tz)) at \(first.cluster.venue.name), a few hours apart.",
+                  systemImage: "square.on.square")
+                .font(.footnote)
+                .foregroundStyle(Color.textSecondary)
+            HStack(spacing: Spacing.inner) {
+                Button("Keep separate") { declinedJoins.insert(VisitGrouping.pairKey(a.cluster.id, b.cluster.id)) }
+                    .buttonStyle(.secondary)
+                    .accessibilityIdentifier("album-join-no")
+                Button("Combine") { combine(first, second) }
+                    .buttonStyle(.primary)
+                    .accessibilityIdentifier("album-join-yes")
+            }
+        }
+        .padding(14)
+        .background(Color.panel, in: .rect(cornerRadius: 14))
+    }
+
+    /// One game from two visits: the earlier visit's entry takes the later one's photos.
+    private func combine(_ first: Item, _ second: Item) {
+        guard let at = items.firstIndex(where: { $0.id == first.id }) else { return }
+        var merged = first
+        merged.cluster = first.cluster.combined(with: second.cluster)
+        merged.game = first.game ?? second.game
+        merged.ticket = first.ticket ?? second.ticket
+        merged.onScoreboard = first.onScoreboard || second.onScoreboard
+        merged.foundByScoreboard = first.foundByScoreboard || second.foundByScoreboard
+        merged.doubtful = first.doubtful && second.doubtful
+        merged.included = first.included || second.included
+        items[at] = merged
+        items.removeAll { $0.id == second.id }
     }
 
     private func visitRow(_ item: Binding<Item>) -> some View {

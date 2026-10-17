@@ -49,6 +49,26 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(scan.visits[1].assetIds, ["next"])
     }
 
+    /// Photos 6 to 12 hours apart across midnight are not joined on their own, but they are worth asking about.
+    func testNineHourGapAsksInsteadOfJoining() {
+        let wrigley = library.venue("wrigley")!
+        func at(_ id: String, _ time: String) -> PhotoPoint {
+            PhotoPoint(id: id, date: date(time), latitude: wrigley.latitude, longitude: wrigley.longitude)
+        }
+        // 22:00 local Oct 30, then 07:00 local Oct 31: nine hours apart.
+        let scan = VisitGrouping.group([at("night", "2016-10-31T03:00:00Z"), at("morning", "2016-10-31T12:00:00Z")],
+                                       venues: library.venues)
+        XCTAssertEqual(scan.visits.count, 2, "Nine hours is too long to join without asking")
+        let night = scan.visits[0], morning = scan.visits[1]
+        XCTAssertEqual(VisitGrouping.possibleSameGame(as: night, in: [morning])?.id, morning.id)
+        XCTAssertEqual(VisitGrouping.possibleSameGame(as: morning, in: [night])?.id, night.id)
+
+        let one = night.combined(with: morning)
+        XCTAssertEqual(one.id, night.id)
+        XCTAssertEqual(one.assetIds, ["night", "morning"])
+        XCTAssertNil(VisitGrouping.possibleSameGame(as: night, in: [night]), "A visit is never its own twin")
+    }
+
     func testDuplicateGamesAreSpottedAndCombined() {
         let when = date("2026-06-24T19:00:00Z")
         let source = GameEntry.Source(provider: "espn", league: "soccer/fifa.world", eventId: "401")

@@ -17,6 +17,25 @@ struct DayPile: Identifiable, Hashable {
     let times: [Date]
 }
 
+extension PhotoCluster {
+    /// This visit and `other` as one: the earlier visit's id, every photo once, in time order.
+    func combined(with other: PhotoCluster) -> PhotoCluster {
+        let first = start <= other.start ? self : other
+        let second = start <= other.start ? other : self
+        let pairs: [(String, Date)] = (Array(zip(first.assetIds, first.times)) + Array(zip(second.assetIds, second.times)))
+            .sorted { $0.1 < $1.1 }
+        var seen = Set<String>()
+        var ids: [String] = []
+        var times: [Date] = []
+        for (id, time) in pairs where seen.insert(id).inserted {
+            ids.append(id)
+            times.append(time)
+        }
+        return PhotoCluster(id: first.id, venue: first.venue, start: min(first.start, second.start),
+                            end: max(first.end, second.end), assetIds: ids, times: times)
+    }
+}
+
 /// What a set of photos says: stadium visits, days we need a stadium for, and photos with no date at all.
 struct PhotoScan: Hashable {
     var visits: [PhotoCluster] = []
@@ -210,6 +229,28 @@ enum VisitGrouping {
             if d <= (radius ?? v.geofence), d < (best?.1 ?? .infinity) { best = (v, d) }
         }
         return best?.0
+    }
+
+    /// Visits at one stadium on consecutive days whose photos are more than `overnightGap` but no more than this apart
+    /// are probably one game, but we ask.
+    static let askGap: TimeInterval = 12 * 3600
+
+    /// A visit in `pool` just before or after `cluster` at the same stadium, in the ask window (more than six, up to
+    /// twelve hours between the last photo of the earlier and the first of the later).
+    static func possibleSameGame(as cluster: PhotoCluster, in pool: [PhotoCluster]) -> PhotoCluster? {
+        pool.first { other in
+            guard other.id != cluster.id, other.venue.id == cluster.venue.id else { return false }
+            let first = cluster.start <= other.start ? cluster : other
+            let second = cluster.start <= other.start ? other : cluster
+            guard let lastOfFirst = first.times.max(), let firstOfSecond = second.times.min() else { return false }
+            let gap = firstOfSecond.timeIntervalSince(lastOfFirst)
+            return gap > overnightGap && gap <= askGap
+        }
+    }
+
+    /// A stable key for a pair of visits, so "keep separate" is remembered whichever way round they are asked.
+    static func pairKey(_ a: String, _ b: String) -> String {
+        [a, b].sorted().joined(separator: "+")
     }
 
     /// The day after "venue|2016-10-30" (or "2016-10-30"), as "2016-10-31".

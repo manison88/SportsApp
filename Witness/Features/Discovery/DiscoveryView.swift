@@ -28,6 +28,8 @@ struct DiscoveryView: View {
     @State private var scene: SceneVerdict?
     /// Visits backed by a ticket screenshot, by visit key.
     @State private var tickets: [String: TicketDraft] = [:]
+    /// Pairs of visits the fan said are not the same game.
+    @State private var declinedJoins: Set<String> = []
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -91,6 +93,8 @@ struct DiscoveryView: View {
 
                 card(cluster)
 
+                joinPrompt(cluster)
+
                 HStack(spacing: Spacing.inner) {
                     Button("Skip") { advance() }
                         .buttonStyle(.secondary)
@@ -116,6 +120,40 @@ struct DiscoveryView: View {
         }
         .scrollIndicators(.hidden)
         .task(id: cluster.id) { await lookUp(cluster) }
+    }
+
+    /// Photos from the next (or previous) day at this stadium may be the same game: ask before joining them.
+    @ViewBuilder
+    private func joinPrompt(_ cluster: PhotoCluster) -> some View {
+        let pool = clusters.filter { !declinedJoins.contains(VisitGrouping.pairKey(cluster.id, $0.id)) }
+        if let other = VisitGrouping.possibleSameGame(as: cluster, in: pool) {
+            VStack(alignment: .leading, spacing: Spacing.inner) {
+                Label("Same game? \(Fmt.dayTitle(other.start, in: other.venue.tz)) has \(other.assetIds.count) \(other.assetIds.count == 1 ? "photo" : "photos") at this stadium, a few hours \(other.start < cluster.start ? "before" : "after").",
+                      systemImage: "square.on.square")
+                    .font(.footnote)
+                    .foregroundStyle(Color.textSecondary)
+                HStack(spacing: Spacing.inner) {
+                    Button("Keep separate") { declinedJoins.insert(VisitGrouping.pairKey(cluster.id, other.id)) }
+                        .buttonStyle(.secondary)
+                        .accessibilityIdentifier("discovery-join-no")
+                    Button("Combine") { combine(cluster, other) }
+                        .buttonStyle(.primary)
+                        .accessibilityIdentifier("discovery-join-yes")
+                }
+            }
+            .padding(14)
+            .background(Color.panel, in: .rect(cornerRadius: 14))
+        }
+    }
+
+    /// Folds two visits into one card, at the earlier one's place in the list.
+    private func combine(_ cluster: PhotoCluster, _ other: PhotoCluster) {
+        let merged = cluster.combined(with: other)
+        let at = min(clusters.firstIndex { $0.id == cluster.id } ?? index, clusters.firstIndex { $0.id == other.id } ?? index)
+        if tickets[merged.id] == nil { tickets[merged.id] = tickets[cluster.id] ?? tickets[other.id] }
+        clusters.removeAll { $0.id == cluster.id || $0.id == other.id }
+        clusters.insert(merged, at: min(at, clusters.count))
+        index = min(at, clusters.count - 1)
     }
 
     private func card(_ cluster: PhotoCluster) -> some View {
