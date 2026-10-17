@@ -45,6 +45,7 @@
 		8EC6CD5C2070A2D63F1F89EC /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF19D597AB4306240030ECA /* Theme.swift */; };
 		9863B0DFED2996CA94B9B1B2 /* BigGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635372BC75571E082E042DED /* BigGamesView.swift */; };
 		9B4532F2E8F9A71114DAE408 /* YouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D759FA400F64646D4F0E01 /* YouView.swift */; };
+		9E944FAAA2B99623DAC8A56B /* TeamPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3389D60FD9A2CDD994777AC /* TeamPickerView.swift */; };
 		A40E4A393EC511572F23D872 /* nfl-scoreboard-20250105.json in Resources */ = {isa = PBXBuildFile; fileRef = 08C11AF682C23D055AB16995 /* nfl-scoreboard-20250105.json */; };
 		A4991501BDDEFF74F3C2711D /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080F09ACBEB9945779CC3D9E /* AddGameView.swift */; };
 		B36A1EF368677A89AD58E91D /* CoverPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0A2D620B0AF02229035D47 /* CoverPicker.swift */; };
@@ -143,6 +144,7 @@
 		E1D759FA400F64646D4F0E01 /* YouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView.swift; sourceTree = "<group>"; };
 		EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuckyCharmView.swift; sourceTree = "<group>"; };
 		F0886E427272EE4FBED88DB5 /* TicketImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketImportView.swift; sourceTree = "<group>"; };
+		F3389D60FD9A2CDD994777AC /* TeamPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPickerView.swift; sourceTree = "<group>"; };
 		F4C48F08394BC610EA16614E /* VenuePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuePickerView.swift; sourceTree = "<group>"; };
 		FA9A73F86BCDBA2E422921DE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		FEF398484DD3487B795AB540 /* TicketParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketParserTests.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				080F09ACBEB9945779CC3D9E /* AddGameView.swift */,
 				D8B224F7426AC04A827ABB7E /* AddVenueView.swift */,
 				99BE7A67E02B803D6070CA3E /* AlbumImportView.swift */,
+				F3389D60FD9A2CDD994777AC /* TeamPickerView.swift */,
 				F0886E427272EE4FBED88DB5 /* TicketImportView.swift */,
 				F4C48F08394BC610EA16614E /* VenuePickerView.swift */,
 			);
@@ -591,6 +594,7 @@
 				5B7AF8406D59899769065BD7 /* ScoreboardReader.swift in Sources */,
 				CFBFBA9DB68338AEE808C225 /* SharedPassportView.swift in Sources */,
 				E669D62EF7D7D9DD19FCDFAB /* Stats.swift in Sources */,
+				9E944FAAA2B99623DAC8A56B /* TeamPickerView.swift in Sources */,
 				C81F6A142E090EADB2D8F432 /* TextRecognizer.swift in Sources */,
 				8EC6CD5C2070A2D63F1F89EC /* Theme.swift in Sources */,
 				BCA5382F18D2E1996030DA1E /* TicketAnchors.swift in Sources */,
