@@ -149,6 +149,29 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertTrue(LiveGames.status(soon, now: now).hasPrefix("Starts"))
     }
 
+    func testCoverScoringPrefersGoodGamePhotosOverScreenshots() {
+        let stadium = CoverPicker.score(aesthetics: 0.4, utility: false, sports: 0.8)
+        let plainer = CoverPicker.score(aesthetics: 0.4, utility: false, sports: 0.1)
+        let ticket = CoverPicker.score(aesthetics: 0.6, utility: true, sports: 0.0)
+        let noModel = CoverPicker.score(aesthetics: nil, utility: false, sports: 0.8)
+        XCTAssertGreaterThan(stadium, plainer)
+        XCTAssertGreaterThan(plainer, ticket, "A screenshot never heads a game")
+        XCTAssertGreaterThan(noModel, plainer, "Without the aesthetics model the scene signal still ranks")
+    }
+
+    func testFansCoverChoiceIsNeverReplaced() async {
+        var game = GameEntry(sport: .baseball, date: .now, venueId: "wrigley", origin: .manual)
+        game.photos = [.bundled("a"), .bundled("b"), .bundled("c")]
+        library.add(game)
+        XCTAssertEqual(library.game(game.id)?.heroPhoto, .bundled("a"), "No cover yet: the first photo")
+        library.setCover(game.id, to: .bundled("c"), byFan: true)
+        await library.autoCover(game.id, force: true)
+        XCTAssertEqual(library.game(game.id)?.heroPhoto, .bundled("c"))
+        XCTAssertEqual(library.game(game.id)?.coverChosenByFan, true)
+        library.setCover(game.id, to: nil, byFan: true)
+        XCTAssertEqual(library.game(game.id)?.heroPhoto, .bundled("a"), "Clearing goes back to the first photo")
+    }
+
     // MARK: Scoreboards
 
     func testCrestBoardConfirmsByScoreAlone() {

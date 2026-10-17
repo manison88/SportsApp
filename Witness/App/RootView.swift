@@ -81,6 +81,7 @@ extension View {
             case .person(let id): SharedPassportView(personId: id)
             case .lucky: LuckyCharmView()
             case .bigGames: BigGamesView()
+            case .photos(let id): GamePhotosView(gameId: id)
             }
         }
     }

@@ -53,6 +53,7 @@ enum Route: Hashable {
     case person(String)
     case lucky
     case bigGames
+    case photos(String)
 }
 
 /// Full-screen and sheet presentations reachable from anywhere.
@@ -271,7 +272,9 @@ struct GameBackdrop: View {
     var index = 0
 
     var body: some View {
-        if game.photos.indices.contains(index) {
+        if index == 0, let hero = game.heroPhoto {
+            PhotoView(ref: hero)
+        } else if game.photos.indices.contains(index) {
             PhotoView(ref: game.photos[index])
         } else {
             let team = library.team(library.rootingTeam(game))
@@ -535,11 +538,15 @@ struct PhotoViewerItem: Identifiable { let id: Int }
 /// Full-screen photos for a game: swipe between them, pinch or double-tap to zoom.
 struct PhotoPager: View {
     let photos: [PhotoRef]
+    var cover: PhotoRef?
+    var onSetCover: ((PhotoRef) -> Void)?
     @State var index: Int
     @Environment(\.dismiss) private var dismiss
 
-    init(photos: [PhotoRef], start: Int) {
+    init(photos: [PhotoRef], start: Int, cover: PhotoRef? = nil, onSetCover: ((PhotoRef) -> Void)? = nil) {
         self.photos = photos
+        self.cover = cover
+        self.onSetCover = onSetCover
         _index = State(initialValue: start)
     }
 
@@ -566,7 +573,28 @@ struct PhotoPager: View {
             .padding(.horizontal, 16)
             .padding(.top, 8)
         }
+        .overlay(alignment: .bottom) {
+            if let onSetCover, photos.indices.contains(index) {
+                let isCover = (coverSet ?? cover) == photos[index]
+                Button {
+                    coverSet = photos[index]
+                    onSetCover(photos[index])
+                } label: {
+                    Label(isCover ? "Cover photo" : "Use as cover", systemImage: isCover ? "checkmark.circle.fill" : "photo.badge.checkmark")
+                        .font(.condensed(.headline, weight: .heavy))
+                        .foregroundStyle(isCover ? Color.signal : .white)
+                        .padding(.horizontal, 18)
+                        .frame(minHeight: 44)
+                        .background(.black.opacity(0.6), in: .capsule)
+                }
+                .disabled(isCover)
+                .padding(.bottom, 24)
+                .accessibilityIdentifier("photo-viewer-cover")
+            }
+        }
     }
+
+    @State private var coverSet: PhotoRef?
 }
 
 private struct ZoomablePhoto: View {

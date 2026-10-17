@@ -116,6 +116,10 @@ private struct TimelineCard: View {
                     .allowsHitTesting(false)
             }
         }
+        .task(id: game.id) {
+            // Pick a cover for games with several photos, as their cards scroll into view.
+            if !ProcessInfo.processInfo.arguments.contains("-uitest") { await library.autoCover(game.id) }
+        }
         .accessibilityElement(children: .combine)
         .accessibilityLabel([game.bigGame?.label, headlineText(game, library), matchupText(game, library), Fmt.dayTitle(game.date)]
             .compactMap { $0 }.joined(separator: ", "))

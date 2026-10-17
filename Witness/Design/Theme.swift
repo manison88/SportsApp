@@ -157,5 +157,12 @@ enum Appearance {
         UINavigationBar.appearance().compactScrollEdgeAppearance = nav
         UINavigationBar.appearance().largeTitleTextAttributes = nav.largeTitleTextAttributes
         UINavigationBar.appearance().titleTextAttributes = nav.titleTextAttributes
+
+        // Tab labels stay one small, fixed size. They sit under an icon, and at large Dynamic Type sizes
+        // scaled labels grew past the button and overlapped it.
+        let tabFont = UIFont.systemFont(ofSize: 10, weight: .semibold)
+        for state in [UIControl.State.normal, .selected, .highlighted] {
+            UITabBarItem.appearance().setTitleTextAttributes([.font: tabFont], for: state)
+        }
     }
 }

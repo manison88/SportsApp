@@ -236,11 +236,18 @@ struct GameEntry: Codable, Hashable, Identifiable {
     var source: Source?
     /// Set for big games: finals, playoffs, tournaments, rivalries.
     var stage: Stage?
+    /// The photo that heads this game on the Timeline and its own screen. The fan's pick, else chosen automatically.
+    var coverPhoto: PhotoRef?
+    /// True when the fan chose the cover, so automatic picking never replaces it.
+    var coverChosenByFan: Bool?
     /// `.visit` for a stadium tour or a walk past the ground: photos at the venue, no game that day.
     var kind: Kind?
 
     enum Kind: String, Codable { case visit }
     var isVisit: Bool { kind == .visit }
+
+    /// The photo that heads the game: the cover, else the first photo.
+    var heroPhoto: PhotoRef? { coverPhoto ?? photos.first }
 
     struct Stage: Codable, Hashable {
         enum Kind: String, Codable, Comparable {

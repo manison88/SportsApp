@@ -108,6 +108,8 @@ final class WitnessUITests: XCTestCase {
         tab("Passport")
         XCTAssertTrue(el("passport-count").waitForExistence(timeout: 5))
         snap("03-passport")
+        XCTAssertTrue(el("stamp-wrigley").label.localizedCaseInsensitiveContains("Wrigley"),
+                      "A stamp names the stadium, not just the team's initials: \(el("stamp-wrigley").label)")
         tap("stamp-wrigley")
         XCTAssertTrue(el("venue-title").waitForExistence(timeout: 5))
         snap("08-venue")
@@ -146,6 +148,12 @@ final class WitnessUITests: XCTestCase {
 
         // The fan's photos are one tap from the game: a strip under the score opens a full-screen viewer.
         if el("game-photos").exists {
+            // "See all" opens a grid of every photo, not a single picture.
+            tap("game-photos-all")
+            XCTAssertTrue(el("photos-grid").waitForExistence(timeout: 5), "See all should show a grid")
+            XCTAssertTrue(el("photos-tile-1").exists, "The grid shows more than one photo")
+            snap("05a-photo-grid")
+            back()
             tap("game-photo-0")
             XCTAssertTrue(el("photo-viewer").waitForExistence(timeout: 5), "A photo should open full screen")
             snap("05b-photo-viewer")

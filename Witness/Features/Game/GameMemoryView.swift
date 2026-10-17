@@ -51,7 +51,12 @@ struct GameMemoryView: View {
             ToolbarItem(placement: .topBarTrailing) { menu(game) }
         }
         .fullScreenCover(item: $viewer) { item in
-            PhotoPager(photos: game.photos, start: item.id)
+            PhotoPager(photos: game.photos, start: item.id, cover: game.heroPhoto) { ref in
+                library.setCover(game.id, to: ref, byFan: true)
+            }
+        }
+        .task(id: game.id) {
+            if !ProcessInfo.processInfo.arguments.contains("-uitest") { await library.autoCover(game.id) }
         }
         .sheet(isPresented: $editing) {
             AddGameView(editing: game)
@@ -156,10 +161,14 @@ struct GameMemoryView: View {
                     Text("Photos").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
                     Text("\(game.photos.count)").unitLabel()
                     Spacer()
-                    Button("See all") { viewer = PhotoViewerItem(id: 0) }
-                        .font(.condensed(.subheadline, weight: .bold))
-                        .foregroundStyle(Color.signal)
-                        .accessibilityIdentifier("game-photos-all")
+                    NavigationLink(value: Route.photos(game.id)) {
+                        Text("See all")
+                            .font(.condensed(.subheadline, weight: .bold))
+                            .foregroundStyle(Color.signal)
+                            .frame(minHeight: 44)
+                            .contentShape(.rect)
+                    }
+                    .accessibilityIdentifier("game-photos-all")
                 }
                 .gutter()
                 ScrollView(.horizontal) {

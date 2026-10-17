@@ -60,7 +60,7 @@ struct PassportView: View {
                         .accessibilityIdentifier("stamp-\(stamp.venueId)")
                     }
                     ForEach(missing.prefix(earned.count % 3 == 0 ? 3 : 3 + (3 - earned.count % 3))) { stamp in
-                        GhostTile(code: stamp.code)
+                        GhostTile(stamp: stamp)
                     }
                 }
             }
@@ -177,23 +177,35 @@ private struct SegmentBar: View {
 }
 
 private struct StampTile: View {
+    @Environment(Library.self) private var library
     let stamp: PassportView.Stamp
     let isLatest: Bool
 
     var body: some View {
         let ink = stamp.color.readableInk
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 6) {
             Text(stamp.code)
                 .displayFont(34, relativeTo: .title)
                 .foregroundStyle(ink)
+            // The code is the team's; the stadium is the stamp's real name.
+            if let name = library.venue(stamp.venueId)?.name {
+                Text(name)
+                    .font(.condensed(.caption, weight: .heavy))
+                    .textCase(.uppercase)
+                    .foregroundStyle(ink)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Spacer(minLength: 0)
             Text(stamp.date.map { Fmt.day($0) } ?? "")
-                .font(.condensed(.caption, weight: .heavy))
+                .font(.condensed(.caption2, weight: .heavy))
                 .tracking(1.2)
                 .foregroundStyle(ink.opacity(0.85))
                 .lineLimit(1)
                 .minimumScaleFactor(0.7)
         }
-        .frame(maxWidth: .infinity, minHeight: 92, alignment: .topLeading)
+        .frame(maxWidth: .infinity, minHeight: 124, alignment: .topLeading)
         .padding(12)
         .background(stamp.color, in: .rect(cornerRadius: 16))
         .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(ink.opacity(0.22), lineWidth: 1.5).padding(5))
@@ -218,14 +230,30 @@ private struct StampTile: View {
 }
 
 private struct GhostTile: View {
-    let code: String
+    @Environment(Library.self) private var library
+    let stamp: PassportView.Stamp
+
     var body: some View {
-        Text(code)
-            .displayFont(34, relativeTo: .title)
-            .foregroundStyle(Color.textTertiary)
-            .frame(maxWidth: .infinity, minHeight: 92, alignment: .topLeading)
-            .padding(12)
-            .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.hairline, lineWidth: 1.5))
-            .accessibilityLabel("\(code), not visited yet")
+        let name = library.venue(stamp.venueId)?.name
+        VStack(alignment: .leading, spacing: 6) {
+            Text(stamp.code)
+                .displayFont(34, relativeTo: .title)
+                .foregroundStyle(Color.textTertiary)
+            if let name {
+                Text(name)
+                    .font(.condensed(.caption, weight: .heavy))
+                    .textCase(.uppercase)
+                    .foregroundStyle(Color.textTertiary)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            Spacer(minLength: 0)
+        }
+        .frame(maxWidth: .infinity, minHeight: 124, alignment: .topLeading)
+        .padding(12)
+        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.hairline, lineWidth: 1.5))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(stamp.code), \(name ?? ""), not visited yet")
     }
 }

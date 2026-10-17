@@ -126,6 +126,26 @@ final class Library {
         sortAndSave()
     }
 
+    /// Sets a game's cover photo (nil clears it so it can be picked again).
+    func setCover(_ id: String, to ref: PhotoRef?, byFan: Bool) {
+        guard var g = game(id) else { return }
+        g.coverPhoto = ref
+        g.coverChosenByFan = ref == nil ? nil : byFan
+        update(g)
+    }
+
+    @ObservationIgnored private var coverWork = Set<String>()
+
+    /// Picks a cover for a game that has several photos and none chosen yet. Never touches the fan's own pick.
+    func autoCover(_ id: String, force: Bool = false) async {
+        guard let g = game(id), g.photos.count > 1, !coverWork.contains(id) else { return }
+        guard force ? g.coverChosenByFan != true : (g.coverPhoto == nil && g.coverChosenByFan != true) else { return }
+        coverWork.insert(id)
+        defer { coverWork.remove(id) }
+        guard let best = await CoverPicker.best(g.photos), let again = game(id), again.coverChosenByFan != true else { return }
+        setCover(id, to: best, byFan: false)
+    }
+
     func delete(_ id: String) {
         games.removeAll { $0.id == id }
         save()
