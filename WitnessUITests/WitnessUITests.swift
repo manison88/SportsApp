@@ -149,7 +149,9 @@ final class WitnessUITests: XCTestCase {
         // The fan's photos are one tap from the game: a strip under the score opens a full-screen viewer.
         if el("game-photos").exists {
             // "See all" opens a grid of every photo, not a single picture.
-            tap("game-photos-all")
+            let seeAll = app.buttons["See all"].firstMatch
+            XCTAssertTrue(seeAll.waitForExistence(timeout: 8), "Missing the See all button")
+            seeAll.tap()
             XCTAssertTrue(el("photos-grid").waitForExistence(timeout: 5), "See all should show a grid")
             XCTAssertTrue(el("photos-tile-1").exists, "The grid shows more than one photo")
             snap("05a-photo-grid")
