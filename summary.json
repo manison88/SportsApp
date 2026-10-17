@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 0,
-      "passedTests" : 27,
+      "failedTests" : 1,
+      "passedTests" : 26,
       "skippedTests" : 0,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,24 +22,31 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 0,
-  "finishTime" : 1792221993.366,
-  "passedTests" : 27,
-  "result" : "Passed",
+  "failedTests" : 1,
+  "finishTime" : 1792222829.129,
+  "passedTests" : 26,
+  "result" : "Failed",
   "skippedTests" : 0,
-  "startTime" : 1792221617.319,
+  "startTime" : 1792222311.463,
   "statistics" : [
 
   ],
   "testFailures" : [
-
+    {
+      "failureText" : "XCTAssertTrue failed - Expected the seeded stadium photos to be discovered",
+      "targetName" : "WitnessUITests",
+      "testIdentifier" : 20,
+      "testIdentifierString" : "WitnessUITests/testDiscoveryFromPhotos()",
+      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testDiscoveryFromPhotos",
+      "testName" : "testDiscoveryFromPhotos()"
+    }
   ],
   "title" : "Test - Witness",
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "44% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 2.62s (three standard deviations)"
+      "impact" : "43% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 2.65s (three standard deviations)"
     }
   ],
   "totalTestCount" : 27
