@@ -436,7 +436,7 @@ private struct PassportShareCard: View {
             Rectangle().fill(Color.white.opacity(0.25)).frame(height: 2)
             label(title, .white.opacity(0.6), size: 34).padding(.top, 20)
             Text(small ? value.uppercased() : value)
-                .font(small ? .system(size: 64, weight: .bold).width(.condensed) : .display(190))
+                .font(small ? Font.system(size: 64, weight: .bold).width(.condensed) : Font.display(190))
                 .foregroundStyle(.white)
                 .lineLimit(1)
                 .minimumScaleFactor(0.3)
