@@ -17,6 +17,8 @@ final class ScanModel {
     private(set) var others: [PhotoCluster] = []
     /// The schedule match for each game, by visit id.
     private(set) var matches: [String: FoundGame] = [:]
+    /// Ticket screenshots that pinned a game, by visit id. A ticket makes its visit a game even without a schedule match.
+    private(set) var tickets: [String: TicketDraft] = [:]
     /// Visits checked against the schedule so far, and how many there are in all.
     private(set) var checkedVisits = 0
     private(set) var totalVisits = 0
@@ -48,6 +50,7 @@ final class ScanModel {
         games = []
         others = []
         matches = [:]
+        tickets = [:]
         checkedVisits = 0
         totalVisits = 0
         reviewed = false
@@ -57,7 +60,7 @@ final class ScanModel {
     private func run(library: Library) async {
         guard await PhotoMatcher.requestAccess() else { state = .denied; return }
         progress = .init()
-        games = []; others = []; matches = [:]
+        games = []; others = []; matches = [:]; tickets = [:]
         checkedVisits = 0; totalVisits = 0
         reviewed = false
         shown = false
@@ -73,7 +76,6 @@ final class ScanModel {
             }
         }
         progress.scanned = progress.total
-        guard !found.isEmpty else { state = .empty; return }
 
         state = .matching
         totalVisits = found.count
@@ -94,9 +96,31 @@ final class ScanModel {
             matches = matched
             checkedVisits = min(start + chunk.count, found.count)
         }
-        games = found.filter { matched[$0.id] != nil }
-        others = found.filter { matched[$0.id] == nil }
-        state = .done
+
+        // Ticket screenshots pin games on their own, even when none of the night's photos have GPS. Read them here, so
+        // the review that follows has nothing left to wait for.
+        var visits = found
+        var ticketed: [String: TicketDraft] = [:]
+        let have = Set(library.games.compactMap { g in library.venue(g.venueId).map { VisitGrouping.key(venueId: $0.id, date: g.date, tz: $0.tz) } })
+        let anchors = await TicketAnchors.find(in: TicketAnchors.screenshots(limit: 200), teams: library.allTeams, venues: venues)
+        for anchor in anchors {
+            let key = VisitGrouping.key(venueId: anchor.venue.id, date: anchor.date, tz: anchor.venue.tz)
+            guard !have.contains(key) else { continue }
+            ticketed[key] = anchor.draft
+            if visits.contains(where: { $0.id == key }) { continue }
+            let ids = await PhotoMatcher.photos(at: anchor.venue, around: anchor.date) + [anchor.id]
+            let cluster = PhotoCluster(id: key, venue: anchor.venue, start: anchor.date, end: anchor.date,
+                                       assetIds: ids, times: ids.map { _ in anchor.date })
+            visits.append(cluster)
+            if let game = await Self.match(cluster, venues: venues) { matched[key] = game }
+        }
+        matches = matched
+        tickets = ticketed
+        let isGame: (PhotoCluster) -> Bool = { matched[$0.id] != nil || ticketed[$0.id] != nil }
+        let ordered = visits.sorted { $0.start > $1.start }
+        games = ordered.filter(isGame)
+        others = ordered.filter { !isGame($0) }
+        state = games.isEmpty && others.isEmpty ? .empty : .done
     }
 
     /// The game on the schedule at this visit's stadium (or the arena next door) around the photos' times.

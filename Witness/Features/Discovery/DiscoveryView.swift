@@ -47,7 +47,9 @@ struct DiscoveryView: View {
     @ViewBuilder
     private var content: some View {
         switch phase {
-        case .requesting, .scanning:
+        case .requesting:
+            Color.clear
+        case .scanning:
             ScanProgressView(scan: presenter.scan)
                 .frame(maxWidth: .infinity)
         case .denied:
@@ -344,34 +346,22 @@ struct DiscoveryView: View {
 
     private func run() async {
         guard phase == .requesting else { return }
-        phase = .scanning
         let scan = presenter.scan
-        // Onboarding may already have scanned and matched everything: review that. Otherwise run the same scan here.
+        // Onboarding already scanned, matched and read the tickets: go straight to the first game.
         if !(scan.state == .done && !scan.reviewed) {
+            phase = .scanning
             scan.reset()
             scan.start(library: library)
+            while scan.state == .idle || scan.inProgress || (scan.state == .done && !scan.shown) {
+                try? await Task.sleep(for: .milliseconds(300))
+                if Task.isCancelled { return }
+            }
+            if scan.state == .denied { phase = .denied; return }
         }
-        while scan.state == .idle || scan.inProgress || (scan.state == .done && !scan.shown) {
-            try? await Task.sleep(for: .milliseconds(300))
-            if Task.isCancelled { return }
-        }
-        if scan.state == .denied { phase = .denied; return }
         scan.markReviewed()
-        var found = scan.games
+        tickets = scan.tickets
+        clusters = scan.games
         others = scan.others
-        // Ticket screenshots pin games on their own, even when none of the night's photos have GPS.
-        let have = Set(library.games.compactMap { g in library.venue(g.venueId).map { VisitGrouping.key(venueId: $0.id, date: g.date, tz: $0.tz) } })
-        let anchors = await TicketAnchors.find(in: TicketAnchors.screenshots(limit: 200), teams: library.allTeams, venues: library.venues)
-        for anchor in anchors {
-            let key = VisitGrouping.key(venueId: anchor.venue.id, date: anchor.date, tz: anchor.venue.tz)
-            guard !have.contains(key) else { continue }
-            tickets[key] = anchor.draft
-            if found.contains(where: { $0.id == key }) { continue }
-            let ids = await PhotoMatcher.photos(at: anchor.venue, around: anchor.date) + [anchor.id]
-            found.append(PhotoCluster(id: key, venue: anchor.venue, start: anchor.date, end: anchor.date,
-                                      assetIds: ids, times: ids.map { _ in anchor.date }))
-        }
-        clusters = found.sorted { $0.start > $1.start }
         phase = .results
     }
 
