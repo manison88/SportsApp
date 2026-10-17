@@ -32,7 +32,7 @@ final class Library {
         var customPeople: [Person]
     }
 
-    static var defaultStoreURL: URL {
+    nonisolated static var defaultStoreURL: URL {
         URL.documentsDirectory.appending(path: "library.json")
     }
 
@@ -224,7 +224,7 @@ final class Library {
         }
     }
 
-    static let decoder: JSONDecoder = {
+    nonisolated(unsafe) static let decoder: JSONDecoder = {
         let d = JSONDecoder()
         d.dateDecodingStrategy = .custom { decoder in
             let c = try decoder.singleValueContainer()
@@ -238,7 +238,7 @@ final class Library {
         return d
     }()
 
-    static let encoder: JSONEncoder = {
+    nonisolated(unsafe) static let encoder: JSONEncoder = {
         let e = JSONEncoder()
         e.dateEncodingStrategy = .iso8601
         return e
