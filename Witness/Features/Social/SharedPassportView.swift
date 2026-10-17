@@ -114,7 +114,7 @@ private struct Rings: View {
         GeometryReader { geo in
             let outer = min(geo.size.width, geo.size.height)
             let ratio = total > 0 ? Double(shared) / Double(total) : 0
-            let inner = max(outer * 0.42, outer * 0.88 * sqrt(ratio))
+            let inner = max(outer * 0.42, outer * 0.88 * CGFloat(sqrt(ratio)))
             ZStack {
                 Circle()
                     .strokeBorder(Color.hairline, lineWidth: 1.5)

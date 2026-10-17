@@ -135,8 +135,8 @@ private struct Dial: View {
                     for i in 0...10 {
                         let a = Angle.degrees(start + sweep * Double(i) / 10).radians
                         let inner = radius - (i % 5 == 0 ? 14 : 8)
-                        p.move(to: CGPoint(x: center.x + cos(a) * (radius - 4), y: center.y + sin(a) * (radius - 4)))
-                        p.addLine(to: CGPoint(x: center.x + cos(a) * inner, y: center.y + sin(a) * inner))
+                        p.move(to: CGPoint(x: center.x + CGFloat(cos(a)) * (radius - 4), y: center.y + CGFloat(sin(a)) * (radius - 4)))
+                        p.addLine(to: CGPoint(x: center.x + CGFloat(cos(a)) * inner, y: center.y + CGFloat(sin(a)) * inner))
                     }
                 }
                 .stroke(Color.textTertiary, lineWidth: 1.5)
@@ -145,7 +145,7 @@ private struct Dial: View {
                     .fill(Color.signal)
                     .frame(width: 14, height: 14)
                     .shadow(color: Color.signal.opacity(0.8), radius: 8)
-                    .position(x: center.x + cos(angle.radians) * radius, y: center.y + sin(angle.radians) * radius)
+                    .position(x: center.x + CGFloat(cos(angle.radians)) * radius, y: center.y + CGFloat(sin(angle.radians)) * radius)
 
                 VStack(spacing: 4) {
                     Text(deltaText)

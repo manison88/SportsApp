@@ -225,7 +225,7 @@ private struct SeatMap: View {
                 let band = Self.tiers[sl.tier]
                 let mid = Angle(degrees: start + (Double(sl.index) + 0.5) * step)
                 let r = radius * (band.0 + band.1) / 2
-                let point = CGPoint(x: center.x + r * cos(mid.radians), y: center.y + r * sin(mid.radians))
+                let point = CGPoint(x: center.x + r * CGFloat(cos(mid.radians)), y: center.y + r * CGFloat(sin(mid.radians)))
                 let label = Text("\(s)")
                     .font(.system(size: rank == 0 ? 15 : 13, weight: .heavy).width(.condensed))
                     .foregroundStyle(rank == 0 ? Color.black : Color.white)
