@@ -18,6 +18,16 @@ targets:
     platform: iOS
     sources:
       - path: Witness
+        excludes:
+          - "Resources/SeedData/**"
+          - "Resources/Catalog/**"
+          - "Resources/Sample/**"
+      - path: Witness/Resources/Catalog
+        type: folder
+        buildPhase: resources
+      - path: Witness/Resources/Sample
+        type: folder
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: app.witness.ios

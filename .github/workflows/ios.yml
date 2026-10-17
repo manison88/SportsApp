@@ -33,17 +33,22 @@ jobs:
           brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
           xcodegen generate
 
+      - name: Prepare simulator (photos, permissions, location)
+        run: bash ci/sim_setup.sh
+
       - name: Build and test
         id: test
         run: |
           mkdir -p build
-          set -o pipefail
+          set +e
           xcodebuild test \
             -project Witness.xcodeproj -scheme Witness \
-            -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+            -destination "platform=iOS Simulator,id=$SIM_UDID" \
             -resultBundlePath build/Results.xcresult \
-            CODE_SIGNING_ALLOWED=NO 2>&1 | tee build/xcodebuild.log | grep -E "error:|warning: unre|Test Case|Executed|BUILD|\*\*" || true
-          exit ${PIPESTATUS[0]}
+            CODE_SIGNING_ALLOWED=NO > build/xcodebuild.log 2>&1
+          STATUS=$?
+          grep -E "error:|Test Case .*(passed|failed)|Executed|\*\* " build/xcodebuild.log | tail -150
+          exit $STATUS
 
       - name: Collect results
         if: always()

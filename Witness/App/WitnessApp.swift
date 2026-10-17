@@ -1,0 +1,28 @@
+import SwiftUI
+
+@main
+struct WitnessApp: App {
+    @State private var library: Library
+    @State private var presenter = Presenter()
+
+    init() {
+        Appearance.apply()
+        let args = ProcessInfo.processInfo.arguments
+        let library = Library()
+        if args.contains("-reset") { library.reset() }
+        if args.contains("-demo") { library.loadSample() }
+        if args.contains("-empty") { library.startEmpty() }
+        if args.contains("-uitest") { UIView.setAnimationsEnabled(false) }
+        _library = State(initialValue: library)
+    }
+
+    var body: some Scene {
+        WindowGroup {
+            RootView()
+                .environment(library)
+                .environment(presenter)
+                .preferredColorScheme(.dark)
+                .tint(.white)
+        }
+    }
+}
