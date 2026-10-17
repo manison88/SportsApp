@@ -28,7 +28,7 @@ struct VenueView: View {
                         .frame(height: 250)
                         .gutter()
                         .accessibilityElement()
-                        .accessibilityLabel("Sections you sat in: " + sections.prefix(3).map(String.init).joined(separator: ", "))
+                        .accessibilityLabel("Sections you sat in: " + sections.prefix(3).map { "\($0)" }.joined(separator: ", "))
                 }
                 if let first = games.first, let last = games.last {
                     StatRow(items: [
@@ -38,7 +38,7 @@ struct VenueView: View {
                     .gutter()
                 }
                 if !games.isEmpty {
-                    gameList(games.reversed(), venue: venue).gutter()
+                    gameList(Array(games.reversed()), venue: venue).gutter()
                 }
             }
             .padding(.bottom, 40)
