@@ -23,4 +23,7 @@ if os.path.exists(m):
             if os.path.exists(src): os.rename(src, os.path.join(d, f"{test}__{name}"))
 PY
 fi
+# Ship the generated Xcode project so it can be committed: opening the repo then needs no Terminal.
+rm -rf out/Witness.xcodeproj && cp -R Witness.xcodeproj out/ 2>/dev/null || true
+rm -rf out/Witness.xcodeproj/xcuserdata out/Witness.xcodeproj/project.xcworkspace/xcuserdata
 ls -la out out/shots | head -80
