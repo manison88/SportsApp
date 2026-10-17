@@ -276,10 +276,11 @@ struct ExpandedMap: View {
         ZStack(alignment: .topLeading) {
             WorldMapCanvas(legs: legs, venues: venues, home: home, homeCity: homeCity, labeled: labeled,
                            initialCamera: initialCamera, resetToken: "expanded", mapIdentifier: "life-map-expanded")
-                .ignoresSafeArea()
+                // The map runs to the edges, but its buttons stay clear of the status bar and home indicator.
+                .ignoresSafeArea(edges: [.horizontal, .bottom])
             CircleButton(systemName: "xmark", label: "Close map") { dismiss() }
                 .padding(.leading, 12)
-                .padding(.top, 4)
+                .padding(.top, 10)
                 .accessibilityIdentifier("map-close")
         }
         .background(Color.ink)
