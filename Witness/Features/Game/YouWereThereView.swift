@@ -59,10 +59,10 @@ struct YouWereThereView: View {
             }
             .withoutGlass()
             ToolbarItem(placement: .topBarTrailing) {
-                ShareCardLink(title: "You were there",
-                              format: .story,
-                              key: shareKey(game, moments: moments),
-                              card: { await shareCard(shareInfo(game, moments: moments)) }) {
+                ShareCardSheetLink(title: "You were there",
+                                   format: .story,
+                                   key: shareKey(game, moments: moments),
+                                   variants: { await shareVariants(shareInfo(game, moments: moments)) }) {
                     Image(systemName: "square.and.arrow.up")
                 }
                 .accessibilityLabel("Share")

@@ -6,8 +6,6 @@ struct WrappedView: View {
     @Environment(\.dismiss) private var dismiss
     let year: Int
 
-    @State private var shareImage: Image?
-
     var body: some View {
         let shownYear = resolvedYear
         ZStack(alignment: .top) {
@@ -37,16 +35,8 @@ struct WrappedView: View {
 
                 Spacer(minLength: Spacing.inner)
 
-                Group {
-                    if let shareImage {
-                        ShareLink(item: shareImage, preview: SharePreview("Wrapped \(String(shownYear))", image: shareImage)) {
-                            Label("Share to story", systemImage: "square.and.arrow.up")
-                        }
-                    } else {
-                        ShareLink(item: "My \(String(shownYear)) on Witness.") {
-                            Label("Share to story", systemImage: "square.and.arrow.up")
-                        }
-                    }
+                ShareCardSheetLink(title: "Wrapped \(String(shownYear))", format: .story, key: String(shownYear), variants: { await shareVariants(shownYear) }) {
+                    Label("Share to story", systemImage: "square.and.arrow.up")
                 }
                 .buttonStyle(.primary)
                 .accessibilityIdentifier("wrapped-share")
@@ -55,7 +45,6 @@ struct WrappedView: View {
             .gutter()
             .foregroundStyle(.white)
         }
-        .task(id: shownYear) { await prepareShare(shownYear) }
     }
 
     private var background: Color {
@@ -71,20 +60,26 @@ struct WrappedView: View {
     }
 
     @MainActor
-    private func prepareShare(_ y: Int) async {
+    private func shareVariants(_ y: Int) async -> [ShareCardVariant] {
         let games = library.games.filter { Fmt.year($0.date) == y }
         let stats = Stats(library: library, games: games)
         var photo: UIImage?
         if let ref = WrappedCopy.bestPhoto(games, library) { photo = await PhotoLoader.load(ref) }
-        let card = WrappedShareCard(
-            year: String(y),
-            record: WrappedCopy.record(stats, games: games.count),
-            claim: WrappedCopy.claim(stats, games: games.count, library: library),
-            credit: WrappedCopy.credit(stats, library: library),
-            photo: photo,
-            tint: background
-        )
-        shareImage = renderShareImage(card, format: .story)
+        let year = String(y)
+        let record = WrappedCopy.record(stats, games: games.count)
+        let claim = WrappedCopy.claim(stats, games: games.count, library: library)
+        let credit = WrappedCopy.credit(stats, library: library)
+        let tint = background
+        func card(_ style: WrappedShareCard.Style) -> WrappedShareCard {
+            WrappedShareCard(style: style, year: year, record: record, claim: claim, credit: credit, photo: photo, tint: tint)
+        }
+        return [
+            ShareCardVariant("Color") { card(.color) },
+            ShareCardVariant("Photo") { card(.photo) },
+            ShareCardVariant("Type") { card(.type) },
+            ShareCardVariant("Paper") { card(.paper) },
+            ShareCardVariant("Stub") { card(.stub) },
+        ]
     }
 }
 
@@ -129,8 +124,11 @@ private enum WrappedCopy {
     }
 }
 
-/// The 1080x1920 image shared to stories: team-colored, one big record, one claim, one photo.
+/// The 1080x1920 image shared to stories, in five looks.
 private struct WrappedShareCard: View {
+    enum Style { case color, photo, type, paper, stub }
+
+    let style: Style
     let year: String
     let record: String
     let claim: String
@@ -140,29 +138,79 @@ private struct WrappedShareCard: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
+            switch style {
+            case .color: colorLook
+            case .photo: photoLook
+            case .type: typeLook
+            case .paper: paperLook
+            case .stub: stubLook
+            }
+        }
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .dark)
+    }
+
+    private func safe<C: View>(alignment: Alignment = .topLeading, @ViewBuilder _ content: () -> C) -> some View {
+        VStack(alignment: .leading, spacing: 0) { content() }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(width: 1080, height: 1920, alignment: alignment)
+    }
+
+    private func label(_ color: Color) -> some View {
+        Text("WRAPPED \(year)")
+            .font(.system(size: 44, weight: .heavy).width(.condensed))
+            .tracking(8)
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+    }
+
+    private func recordText(_ size: CGFloat, _ color: Color) -> some View {
+        Text(record)
+            .font(.display(size))
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.3)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func claimText(_ size: CGFloat, _ color: Color) -> some View {
+        Text(claim.uppercased())
+            .font(.system(size: size, weight: .heavy).width(.condensed))
+            .foregroundStyle(color)
+            .lineLimit(4)
+            .minimumScaleFactor(0.5)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func creditText(_ color: Color) -> some View {
+        Text(credit.uppercased())
+            .font(.system(size: 36, weight: .bold).width(.condensed))
+            .tracking(4)
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private func wordmark(_ color: Color) -> some View {
+        Text("WITNESS")
+            .font(.system(size: 40, weight: .heavy).width(.compressed))
+            .tracking(10)
+            .foregroundStyle(color)
+    }
+
+    // 1 Team color field: record, claim, a framed photo.
+    private var colorLook: some View {
+        ZStack(alignment: .topLeading) {
             tint
             LinearGradient(colors: [.clear, .black.opacity(0.35)], startPoint: .center, endPoint: .bottom)
-            VStack(alignment: .leading, spacing: 0) {
-                Text("WRAPPED \(year)")
-                    .font(.system(size: 44, weight: .heavy).width(.condensed))
-                    .tracking(8)
-                    .foregroundStyle(.white.opacity(0.85))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                Text(record)
-                    .font(.display(360))
-                    .foregroundStyle(.white)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.4)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 24)
-                Text(claim.uppercased())
-                    .font(.system(size: 64, weight: .heavy).width(.condensed))
-                    .foregroundStyle(.white)
-                    .lineLimit(4)
-                    .minimumScaleFactor(0.5)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 36)
+            safe {
+                label(.white.opacity(0.85))
+                recordText(360, .white).padding(.top, 24)
+                claimText(64, .white).padding(.top, 36)
                 Spacer(minLength: 40)
                 if let photo {
                     Color.black.opacity(0.2)
@@ -175,25 +223,107 @@ private struct WrappedShareCard: View {
                         .clipShape(.rect(cornerRadius: 28))
                         .padding(.bottom, 36)
                 }
-                Text(credit.uppercased())
-                    .font(.system(size: 36, weight: .bold).width(.condensed))
-                    .tracking(4)
-                    .foregroundStyle(.white.opacity(0.8))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                Text("WITNESS")
-                    .font(.system(size: 40, weight: .heavy).width(.compressed))
-                    .tracking(10)
-                    .foregroundStyle(.white.opacity(0.9))
-                    .padding(.top, 40)
+                creditText(.white.opacity(0.8))
+                wordmark(.white.opacity(0.9)).padding(.top, 40)
             }
-            .padding(.horizontal, 84)
-            .padding(.top, 230)
-            .padding(.bottom, 250)
-            .frame(width: 1080, height: 1920, alignment: .topLeading)
         }
-        .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+    }
+
+    // 2 Full-bleed photo with the record over it.
+    private var photoLook: some View {
+        ZStack(alignment: .bottomLeading) {
+            tint
+            if let photo {
+                Image(uiImage: photo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 1080, height: 1920)
+                    .clipped()
+            }
+            LinearGradient(stops: [
+                .init(color: .black.opacity(0.5), location: 0),
+                .init(color: .black.opacity(0), location: 0.25),
+                .init(color: .black.opacity(0.9), location: 0.72),
+                .init(color: .black, location: 1),
+            ], startPoint: .top, endPoint: .bottom)
+            safe(alignment: .bottomLeading) {
+                label(.white.opacity(0.85))
+                Spacer(minLength: 0)
+                recordText(420, .white)
+                claimText(60, .white.opacity(0.9)).padding(.top, 28)
+                creditText(.white.opacity(0.6)).padding(.top, 28)
+                wordmark(.white.opacity(0.9)).padding(.top, 48)
+            }
+        }
+    }
+
+    // 3 Giant record on ink.
+    private var typeLook: some View {
+        ZStack(alignment: .topLeading) {
+            Color.ink
+            LinearGradient(colors: [tint.opacity(0.5), .clear], startPoint: .top, endPoint: .center)
+            safe {
+                label(.white.opacity(0.85))
+                Spacer(minLength: 40)
+                recordText(560, .white)
+                Spacer(minLength: 40)
+                creditText(.white.opacity(0.6))
+                wordmark(.white.opacity(0.9)).padding(.top, 40)
+            }
+        }
+    }
+
+    // 4 Light paper, black type, team color rule.
+    private var paperLook: some View {
+        ZStack(alignment: .topLeading) {
+            Color(hex: "F4F1EA")
+            safe {
+                label(.black.opacity(0.6))
+                Rectangle().fill(tint).frame(width: 140, height: 12).padding(.top, 36)
+                recordText(380, .black).padding(.top, 36)
+                claimText(64, .black.opacity(0.85)).padding(.top, 36)
+                Spacer(minLength: 40)
+                creditText(.black.opacity(0.55))
+                wordmark(.black).padding(.top, 40)
+            }
+        }
+    }
+
+    // 5 Data grid: ruled rows.
+    private var stubLook: some View {
+        ZStack(alignment: .topLeading) {
+            Color.ink
+            safe {
+                wordmark(.white.opacity(0.9))
+                Spacer(minLength: 40)
+                row("Season", year, size: 160)
+                row("Record", record, size: 260)
+                VStack(alignment: .leading, spacing: 8) {
+                    Rectangle().fill(.white.opacity(0.25)).frame(height: 2)
+                    claimText(52, .white)
+                }
+                .padding(.top, 24)
+                creditText(.white.opacity(0.6)).padding(.top, 32)
+                Rectangle().fill(tint).frame(height: 8).padding(.top, 36)
+            }
+        }
+    }
+
+    private func row(_ name: String, _ value: String, size: CGFloat) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Rectangle().fill(.white.opacity(0.25)).frame(height: 2)
+            Text(name.uppercased())
+                .font(.system(size: 32, weight: .bold).width(.condensed))
+                .tracking(6)
+                .foregroundStyle(.white.opacity(0.55))
+            Text(value)
+                .font(.display(size))
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.3)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(.top, 24)
     }
 }
 

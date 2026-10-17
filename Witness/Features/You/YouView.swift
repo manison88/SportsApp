@@ -123,14 +123,16 @@ struct YouView: View {
             : [YouShareStat(label: "Venues", value: "\(s.venues)"),
                YouShareStat(label: "Miles", value: Fmt.number(s.miles)),
                YouShareStat(label: "Countries", value: "\(s.countries)")]
-        let card = YouShareCard(
-            heroValue: hasRecord ? s.record.text : "\(s.games)",
-            heroLabel: hasRecord ? "My record when I'm there" : "Games I've witnessed",
-            rows: rows,
-            accent: favoriteColor
-        )
+        let heroValue = hasRecord ? s.record.text : "\(s.games)"
+        let heroLabel = hasRecord ? "My record when I'm there" : "Games I've witnessed"
+        let accent = favoriteColor
+        let variants: [ShareCardVariant] = YouShareCard.Style.allCases.map { st in
+            ShareCardVariant(st.name) {
+                YouShareCard(heroValue: heroValue, heroLabel: heroLabel, rows: rows, accent: accent, style: st)
+            }
+        }
         let key = "\(s.games)|\(s.record.text)|\(s.venues)|\(s.miles)|\(s.countries)|\(favoriteCity)"
-        return ShareCardLink(title: "My numbers", format: .story, key: key, card: { card }) {
+        return ShareCardSheetLink(title: "My numbers", format: .story, key: key, variants: { variants }) {
             Image(systemName: "square.and.arrow.up").fontWeight(.bold)
         }
         .accessibilityLabel("Share your numbers")
@@ -143,65 +145,282 @@ private struct YouShareStat: Identifiable {
     var id: String { label }
 }
 
-/// 1080x1920 story card: the record as a giant number, then three ruled rows. Story format because the hero
-/// needs the height and the rows stack vertically.
+/// 1080x1920 story cards, five looks. Story because the hero wants the height.
 private struct YouShareCard: View {
+    enum Style: CaseIterable {
+        case number, color, paper, stub, split
+
+        var name: String {
+            switch self {
+            case .number: return "Number"
+            case .color: return "Color"
+            case .paper: return "Paper"
+            case .stub: return "Stub"
+            case .split: return "Split"
+            }
+        }
+    }
+
     let heroValue: String
     let heroLabel: String
     let rows: [YouShareStat]
     let accent: Color
+    let style: Style
+
+    private var fg: Color {
+        switch style {
+        case .paper: return Color.black
+        case .color: return accent.readableInk
+        default: return Color.white
+        }
+    }
 
     var body: some View {
-        ShareCardFrame(format: .story, accent: accent) {
+        Group {
+            if style == .split {
+                splitBody
+            } else {
+                standardBody
+            }
+        }
+        .frame(width: 1080, height: 1920)
+        .environment(\.colorScheme, .dark)
+    }
+
+    // MARK: Pieces
+
+    private func eyebrow(_ text: String, color: Color) -> some View {
+        Text(text)
+            .font(.system(size: 44, weight: .bold).width(.condensed))
+            .tracking(8)
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+    }
+
+    private func hero(size: CGFloat, color: Color) -> some View {
+        Text(heroValue)
+            .font(.display(size))
+            .monospacedDigit()
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.3)
+    }
+
+    private func caption(_ color: Color) -> some View {
+        Text(heroLabel.uppercased())
+            .font(.system(size: 56, weight: .bold).width(.condensed))
+            .tracking(2)
+            .foregroundStyle(color)
+            .lineLimit(2)
+            .minimumScaleFactor(0.5)
+    }
+
+    private func label(_ text: String, color: Color) -> some View {
+        Text(text.uppercased())
+            .font(.system(size: 44, weight: .bold).width(.condensed))
+            .tracking(6)
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
+    }
+
+    private func value(_ text: String, size: CGFloat, color: Color) -> some View {
+        Text(text)
+            .font(.display(size))
+            .monospacedDigit()
+            .foregroundStyle(color)
+            .lineLimit(1)
+            .minimumScaleFactor(0.4)
+    }
+
+    private func footer(_ color: Color) -> some View {
+        Text("WITNESS")
+            .font(.system(size: 40, weight: .heavy).width(.compressed))
+            .tracking(10)
+            .foregroundStyle(color)
+    }
+
+    // MARK: Standard layouts
+
+    @ViewBuilder
+    private var background: some View {
+        switch style {
+        case .color:
+            accent
+        case .paper:
+            Color(hex: "F4F1EA")
+        default:
+            ZStack {
+                Color.ink
+                LinearGradient(colors: [accent.opacity(0.4), .clear], startPoint: .top, endPoint: .center)
+            }
+        }
+    }
+
+    private var standardBody: some View {
+        ZStack(alignment: .topLeading) {
+            background
             VStack(alignment: .leading, spacing: 0) {
-                HStack(spacing: 20) {
-                    Rectangle().fill(Color.signal).frame(width: 56, height: 8)
-                    Text("MY NUMBERS")
-                        .font(.system(size: 44, weight: .bold).width(.condensed))
-                        .tracking(8)
-                        .foregroundStyle(.white.opacity(0.7))
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
+                layout
+                Spacer(minLength: 40)
+                footer(fg.opacity(0.9))
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 250)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        }
+    }
+
+    @ViewBuilder
+    private var layout: some View {
+        switch style {
+        case .number:
+            numberLayout
+        case .color:
+            colorLayout
+        case .paper:
+            paperLayout
+        default:
+            stubLayout
+        }
+    }
+
+    /// Giant number on ink, three ruled rows. Amber marks "you" once.
+    private var numberLayout: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            HStack(spacing: 20) {
+                Rectangle().fill(Color.signal).frame(width: 56, height: 8)
+                eyebrow("MY NUMBERS", color: fg.opacity(0.7))
+            }
+            hero(size: 400, color: fg).padding(.top, 40)
+            caption(fg.opacity(0.85)).padding(.top, 8)
+            VStack(spacing: 0) {
+                ForEach(rows) { row in
+                    HStack(alignment: .firstTextBaseline, spacing: 24) {
+                        label(row.label, color: fg.opacity(0.6))
+                        Spacer(minLength: 24)
+                        value(row.value, size: 130, color: fg)
+                    }
+                    .padding(.vertical, 28)
+                    .overlay(alignment: .top) {
+                        Rectangle().fill(Color.white.opacity(0.2)).frame(height: 2)
+                    }
                 }
-                Text(heroValue)
-                    .font(.display(400))
-                    .monospacedDigit()
-                    .foregroundStyle(.white)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.3)
-                    .padding(.top, 40)
-                Text(heroLabel.uppercased())
-                    .font(.system(size: 56, weight: .bold).width(.condensed))
-                    .tracking(2)
-                    .foregroundStyle(.white.opacity(0.85))
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.5)
-                    .padding(.top, 8)
-                VStack(spacing: 0) {
+            }
+            .padding(.top, 90)
+        }
+    }
+
+    /// Solid team color, caption on top, hero low, stats in three columns.
+    private var colorLayout: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            eyebrow("MY NUMBERS", color: fg.opacity(0.7))
+            caption(fg).padding(.top, 30)
+            hero(size: 440, color: fg).padding(.top, 150)
+            Rectangle().fill(fg).frame(height: 8).padding(.top, 60)
+            HStack(alignment: .top, spacing: 24) {
+                ForEach(rows) { row in
+                    VStack(alignment: .leading, spacing: 6) {
+                        value(row.value, size: 120, color: fg)
+                        label(row.label, color: fg.opacity(0.75))
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+            .padding(.top, 50)
+        }
+    }
+
+    /// Off-white paper, black type, values on the left and labels on the right.
+    private var paperLayout: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            eyebrow("MY NUMBERS", color: fg.opacity(0.6))
+            caption(fg).padding(.top, 40)
+            hero(size: 340, color: fg).padding(.top, 20)
+            Rectangle().fill(fg).frame(height: 10).padding(.top, 60)
+            VStack(spacing: 0) {
+                ForEach(rows) { row in
+                    HStack(alignment: .firstTextBaseline, spacing: 24) {
+                        value(row.value, size: 130, color: fg)
+                        Spacer(minLength: 24)
+                        label(row.label, color: fg.opacity(0.6))
+                    }
+                    .padding(.vertical, 26)
+                    .overlay(alignment: .bottom) {
+                        Rectangle().fill(fg.opacity(0.2)).frame(height: 2)
+                    }
+                }
+            }
+        }
+    }
+
+    /// A ticket stub: hero above a dashed tear line, stats below.
+    private var stubLayout: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            eyebrow("MY NUMBERS", color: fg.opacity(0.7))
+            VStack(alignment: .leading, spacing: 0) {
+                hero(size: 320, color: fg)
+                caption(fg.opacity(0.85)).padding(.top, 8)
+                Rectangle()
+                    .stroke(Color.white.opacity(0.4), style: StrokeStyle(lineWidth: 3, dash: [16, 12]))
+                    .frame(height: 3)
+                    .padding(.vertical, 50)
+                VStack(spacing: 30) {
                     ForEach(rows) { row in
                         HStack(alignment: .firstTextBaseline, spacing: 24) {
-                            Text(row.label.uppercased())
-                                .font(.system(size: 44, weight: .bold).width(.condensed))
-                                .tracking(6)
-                                .foregroundStyle(.white.opacity(0.6))
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
+                            label(row.label, color: fg.opacity(0.6))
                             Spacer(minLength: 24)
-                            Text(row.value)
-                                .font(.display(130))
-                                .monospacedDigit()
-                                .foregroundStyle(.white)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.4)
-                        }
-                        .padding(.vertical, 28)
-                        .overlay(alignment: .top) {
-                            Rectangle().fill(Color.white.opacity(0.2)).frame(height: 2)
+                            value(row.value, size: 100, color: fg)
                         }
                     }
                 }
-                .padding(.top, 90)
             }
+            .padding(56)
+            .background(Color.white.opacity(0.08), in: .rect(cornerRadius: 40))
+            .overlay(RoundedRectangle(cornerRadius: 40).strokeBorder(Color.white.opacity(0.25), lineWidth: 2))
+            .padding(.top, 50)
+        }
+    }
+
+    // MARK: Split
+
+    /// Top block in team color holds the hero, bottom block on ink holds the stats.
+    private var splitBody: some View {
+        let top = accent.readableInk
+        return VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 0) {
+                eyebrow("MY NUMBERS", color: top.opacity(0.7))
+                Spacer(minLength: 20)
+                hero(size: 400, color: top)
+                caption(top).padding(.top, 8)
+            }
+            .padding(.horizontal, 84)
+            .padding(.top, 230)
+            .padding(.bottom, 60)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .frame(height: 1000)
+            .background(accent)
+
+            VStack(alignment: .leading, spacing: 0) {
+                VStack(spacing: 28) {
+                    ForEach(rows) { row in
+                        HStack(alignment: .firstTextBaseline, spacing: 24) {
+                            label(row.label, color: Color.white.opacity(0.6))
+                            Spacer(minLength: 24)
+                            value(row.value, size: 110, color: Color.white)
+                        }
+                    }
+                }
+                .padding(.top, 50)
+                Spacer(minLength: 20)
+                footer(Color.white.opacity(0.9))
+            }
+            .padding(.horizontal, 84)
+            .padding(.bottom, 250)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .background(Color.ink)
         }
     }
 }
