@@ -109,7 +109,7 @@ private struct WrappedCard: View {
             Text(claim(stats, games: games.count))
                 .displayFont(30, relativeTo: .title)
                 .textCase(.uppercase)
-                .foregroundStyle(.black.opacity(0.82))
+                .foregroundStyle(.black)
                 .fixedSize(horizontal: false, vertical: true)
 
             if let photo = bestPhoto(games) {
@@ -123,7 +123,7 @@ private struct WrappedCard: View {
                 .font(.condensed(.footnote, weight: .heavy))
                 .tracking(1.6)
                 .textCase(.uppercase)
-                .foregroundStyle(.black.opacity(0.75))
+                .foregroundStyle(.black)
                 .frame(maxWidth: .infinity)
         }
     }
