@@ -1,0 +1,77 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Recap film</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.6); }
+  .b-body { font-size: 15px; }
+
+  .film { position: absolute; inset: 0; overflow: hidden; }
+  .film img { filter: sepia(.32) saturate(1.1) contrast(1.06) brightness(.8); }
+  .film .warm { position: absolute; inset: 0; background: radial-gradient(110% 60% at 62% 32%, rgba(255,170,80,.2), rgba(255,120,40,0) 62%); mix-blend-mode: screen; }
+  .film .scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,8,10,.8) 0%, rgba(7,8,10,0) 15%, rgba(7,8,10,0) 34%, rgba(7,8,10,.7) 52%, rgba(7,8,10,.9) 70%, #07080a 92%); }
+
+  .card { top: 424px; gap: 0; }
+  .card .b-mega { font-size: 128px; margin-left: -4px; }
+  .card .b-h2 { margin-top: 20px; font-size: 26px; color: rgba(255,255,255,.82); }
+
+  .chap { top: 712px; }
+  .chap .segs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+  .chap .segs .b-bar { height: 4px; --c: #fff; background: rgba(255,255,255,.2); }
+  .chap .b-label { margin-top: 12px; display: block; text-align: right; color: rgba(255,255,255,.72); font-variant-numeric: tabular-nums; }
+
+  .ctl { position: absolute; left: 20px; right: 20px; bottom: 40px; display: flex; gap: 10px; }
+  .ctl .play { width: 54px; height: 54px; border-radius: 12px; background: rgba(255,255,255,.14); display: grid; place-items: center; flex: none; }
+  .ctl .play svg { width: 20px; height: 20px; fill: #fff; }
+  .ctl .b-btn { flex: 1; height: 54px; font-size: 17px; }
+  .ctl .b-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+</style></head>
+<body class="phone b">
+
+<div class="film">
+  <div class="crop fill" data-crop="wrigley-night-2.jpg 800 583 900 1952"></div>
+  <div class="warm"></div>
+  <div class="scrim"></div>
+</div>
+
+<div class="b-nav">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+</div>
+
+<div class="f-col card">
+  <div class="b-mega">Down<br>3–1.</div>
+  <div class="b-h2">One more night at Wrigley.</div>
+</div>
+
+<div class="f-col chap" style="gap:0">
+  <div class="segs">
+    <div class="b-bar"><i style="width:100%"></i></div>
+    <div class="b-bar"><i style="width:46%"></i></div>
+    <div class="b-bar"></div>
+    <div class="b-bar"></div>
+    <div class="b-bar"></div>
+  </div>
+  <span class="b-label">0:31 / 1:52</span>
+</div>
+
+<div class="ctl">
+  <div class="play"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></div>
+  <div class="b-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share story</div>
+</div>
+
+<script>
+(function () {
+  const N = { 'wrigley-night.jpg': [1920, 2560], 'wrigley-night-2.jpg': [1920, 2560], 'lambeau-concourse.jpg': [1920, 1288], 'wrigley-bleachers.jpg': [1280, 853] };
+  document.querySelectorAll('[data-crop]').forEach(b => {
+    const [src, sx, sy, sw, sh] = b.dataset.crop.split(/\s+/).map((v, i) => i ? +v : v);
+    const [nw, nh] = N[src], bw = b.clientWidth, bh = b.clientHeight, s = Math.max(bw / sw, bh / sh);
+    const i = document.createElement('img');
+    i.src = '../../../photos/' + src;
+    i.style.cssText = `position:absolute;max-width:none;width:${nw * s}px;height:${nh * s}px;left:${bw / 2 - (sx + sw / 2) * s}px;top:${bh / 2 - (sy + sh / 2) * s}px`;
+    b.prepend(i);
+  });
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>
