@@ -59,20 +59,17 @@ final class WitnessUITests: XCTestCase {
         app.typeText(text)
     }
 
-    /// The system photo prompt is drawn by SpringBoard on iOS 18.
-    func allowPhotoAccess() {
+    /// Taps "Allow" on the system photo prompt if it's showing. SpringBoard draws it on iOS 18.
+    @discardableResult
+    func allowPhotoAccessIfAsked() -> Bool {
         let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-        let labels = ["Allow Full Access", "Allow Access to All Photos", "Allow"]
-        let deadline = Date().addingTimeInterval(10)
-        while Date() < deadline {
-            for source in [springboard, app!] {
-                for label in labels where source.buttons[label].exists {
-                    source.buttons[label].tap()
-                    return
-                }
+        for source in [springboard, app!] {
+            for label in ["Allow Full Access", "Allow Access to All Photos", "Allow"] where source.buttons[label].exists {
+                source.buttons[label].tap()
+                return true
             }
-            sleep(1)
         }
+        return false
     }
 
     func openGame(_ id: String, query: String) {
@@ -259,12 +256,15 @@ final class WitnessUITests: XCTestCase {
     func testDiscoveryFromPhotos() {
         launch([])
         tap("welcome-photos")
-        allowPhotoAccess()
         let found = el("discovery-count")
         let empty = el("discovery-empty")
         let denied = el("discovery-denied")
-        let deadline = Date().addingTimeInterval(30)
-        while Date() < deadline && !found.exists && !empty.exists && !denied.exists { sleep(1) }
+        // The prompt can appear at any point while the scan starts, so keep answering it.
+        let deadline = Date().addingTimeInterval(45)
+        while Date() < deadline && !found.exists && !empty.exists && !denied.exists {
+            allowPhotoAccessIfAsked()
+            sleep(1)
+        }
         snap("01-discovery")
         XCTAssertTrue(found.exists, "Expected the seeded stadium photos to be discovered")
         tap("discovery-confirm")
