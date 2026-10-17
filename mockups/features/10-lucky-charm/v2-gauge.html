@@ -32,8 +32,8 @@
   .pair .you b { color: #e8541c; }
   .pair span { display: block; margin-top: 6px; font: 500 12.5px/1.2 var(--f-ui); color: rgba(23,21,15,.6); }
 
-  .list { position: absolute; top: 604px; left: 16px; right: 16px; background: #f6f3ec; border-radius: 20px; padding: 6px 16px; }
-  .row { display: flex; align-items: center; height: 39px; }
+  .list { position: absolute; top: 616px; left: 16px; right: 16px; background: #f6f3ec; border-radius: 20px; padding: 6px 16px; }
+  .row { display: flex; align-items: center; height: 37px; }
   .row + .row { border-top: 1px solid rgba(23,21,15,.07); }
   .row .mono-badge { width: 26px; height: 26px; font-size: 13px; margin-right: 10px; border-radius: 8px; box-shadow: none; }
   .row .n { width: 76px; font: 600 14px/1 var(--f-ui); }
@@ -91,8 +91,7 @@
   h += `<text x="40" y="34" font-family="Inter Tight" font-weight="800" font-size="13" letter-spacing="1.6" fill="#c7342a">JINX</text>`;
   h += `<text x="293" y="34" text-anchor="end" font-family="Inter Tight" font-weight="800" font-size="13" letter-spacing="1.6" fill="#e8541c">LUCKY CHARM</text>`;
   h += `<text x="${cx}" y="112" text-anchor="middle" font-family="Inter" font-weight="600" font-size="8.5" letter-spacing="2" fill="rgba(23,21,15,.45)">NEUTRAL</text>`;
-  h += `<text x="${cx}" y="150" text-anchor="middle" font-family="Instrument Serif" font-style="italic" font-size="17" fill="#17150f">Witness</text>`;
-  h += `<text x="${cx}" y="164" text-anchor="middle" font-family="JetBrains Mono" font-size="7.5" letter-spacing="1.5" fill="rgba(23,21,15,.5)">PTS · HOME WIN %</text>`;
+  h += `<text x="${cx}" y="152" text-anchor="middle" font-family="Instrument Serif" font-style="italic" font-size="17" fill="#17150f">Witness</text>`;
   // needle at +13 with shadow
   const a = ang(13);
   const [nx,ny] = pt(a, R - 8), [bx,by] = pt(a + 180, 22);

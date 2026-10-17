@@ -1,0 +1,106 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Broadcast replay</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  .bg { position: absolute; inset: 0; }
+  .bg img { transform: scale(1.5); transform-origin: 38% 78%; }
+  .bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 22%, rgba(0,0,0,0) 40%, rgba(0,0,0,.55) 62%, rgba(0,0,0,.92) 80%, #000 100%); }
+  .scan { position: absolute; inset: 0; z-index: 2; background: repeating-linear-gradient(0deg, rgba(0,0,0,.12) 0 1px, transparent 1px 3px); mix-blend-mode: multiply; opacity: .6; }
+
+  .bug { position: absolute; top: 62px; left: 16px; z-index: 6; display: flex; height: 34px; border-radius: 6px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,.5); font-family: var(--f-cond); }
+  .bug .t { display: flex; align-items: center; gap: 7px; padding: 0 9px; color: #fff; font: 700 15px/1 var(--f-cond); letter-spacing: .4px; }
+  .bug .t b { font: 800 19px/1 var(--f-cond); }
+  .bug .cle { background: linear-gradient(180deg, #13305a, #0c2340); }
+  .bug .cle i { width: 3px; height: 18px; background: #e8344a; border-radius: 2px; }
+  .bug .chc { background: linear-gradient(180deg, #1d4bd8, #0e3386); }
+  .bug .chc i { width: 3px; height: 18px; background: #cc3433; border-radius: 2px; }
+  .bug .inn { background: rgba(10,10,12,.92); display: flex; align-items: center; gap: 8px; padding: 0 10px; color: #fff; font: 700 14px/1 var(--f-cond); }
+  .bug .outs { display: flex; gap: 3px; } .bug .outs i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); } .bug .outs i.on { background: var(--signal); }
+  .bug .base { width: 22px; height: 16px; position: relative; }
+  .bug .base i { position: absolute; width: 7px; height: 7px; transform: rotate(45deg); border: 1.2px solid rgba(255,255,255,.6); }
+  .ws { position: absolute; top: 100px; left: 16px; z-index: 6; font: 700 10px/1 var(--f-ui); letter-spacing: 1.6px; color: rgba(255,255,255,.82); background: rgba(0,0,0,.45); padding: 5px 7px; border-radius: 4px; }
+  .rp { position: absolute; top: 62px; right: 16px; z-index: 6; height: 34px; display: flex; align-items: center; gap: 7px; padding: 0 12px; border-radius: 6px; background: #fff; color: #050506; font: 800 15px/1 var(--f-cond); letter-spacing: 2px; }
+  .rp i { width: 8px; height: 8px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 3px rgba(255,77,61,.25); }
+
+  .lt { position: absolute; left: 16px; right: 16px; top: 460px; z-index: 6; }
+  .lt .k { display: inline-flex; align-items: center; gap: 8px; height: 26px; padding: 0 10px; background: var(--signal); color: #1d1405; font: 800 11px/1 var(--f-ui); letter-spacing: 1.6px; transform: skewX(-10deg); }
+  .lt .k span { transform: skewX(10deg); display: inline-flex; gap: 8px; align-items: center; }
+  .lt h1 { margin-top: 10px; font: 400 54px/.9 var(--f-anton); letter-spacing: .2px; text-transform: uppercase; color: #fff; text-shadow: 0 4px 30px rgba(0,0,0,.5); }
+  .lt h1 em { font-style: normal; color: #9db6ff; }
+  .lt .bar { margin-top: 12px; display: flex; align-items: stretch; height: 34px; }
+  .lt .bar .a { background: rgba(255,255,255,.95); color: #050506; padding: 0 12px; display: flex; align-items: center; font: 700 12.5px/1 var(--f-ui); }
+  .lt .bar .b { background: rgba(10,10,14,.85); color: rgba(255,255,255,.85); padding: 0 12px; display: flex; align-items: center; font: 600 11.5px/1 var(--f-mono); }
+
+  .panel { position: absolute; left: 0; right: 0; top: 628px; bottom: 0; z-index: 7; }
+  .thumbs { position: absolute; left: 0; right: 0; top: 0; height: 76px; }
+  .th { position: absolute; bottom: 0; width: 36px; height: 48px; border-radius: 7px; overflow: hidden; box-shadow: 0 0 0 1.5px rgba(255,255,255,.75), 0 6px 14px rgba(0,0,0,.6); transform: translateX(-50%); }
+  .th.sel { width: 54px; height: 72px; border-radius: 10px; box-shadow: 0 0 0 2.5px var(--signal), 0 10px 24px rgba(0,0,0,.7); z-index: 2; }
+  svg.track { position: absolute; left: 0; top: 82px; width: 393px; height: 48px; overflow: visible; }
+  .tc { position: absolute; top: 132px; left: 20px; right: 20px; display: flex; justify-content: space-between; font: 600 10.5px/1 var(--f-mono); color: rgba(255,255,255,.5); }
+  .tc b { color: var(--signal); font-weight: 800; }
+  .ctr { position: absolute; top: 152px; left: 24px; right: 24px; height: 44px; display: flex; align-items: center; justify-content: space-between; }
+  .ctr svg { width: 26px; height: 26px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .ctr .pp { width: 44px; height: 44px; border-radius: 22px; background: #fff; display: grid; place-items: center; }
+  .ctr .pp svg { fill: #050506; stroke: none; width: 18px; height: 18px; }
+  .ctr .sp { font: 700 13px/1 var(--f-ui); color: #fff; width: 34px; text-align: center; padding: 6px 0; border-radius: 8px; background: rgba(255,255,255,.14); }
+</style></head>
+<body class="phone">
+  <div class="bg"><img class="ph graded" src="../../photos/wrigley-night.jpg" style="object-position:58% 30%"></div>
+  <div class="scan"></div>
+
+  <div class="bug">
+    <div class="t cle"><i></i>CLE <b class="tnum">1</b></div>
+    <div class="t chc"><i></i>CHC <b class="tnum">1</b></div>
+    <div class="inn">▼4
+      <span class="base"><i style="left:7.5px;top:0"></i><i style="left:0;top:7px"></i><i style="left:15px;top:7px"></i></span>
+      <span class="outs"><i></i><i></i></span></div>
+  </div>
+  <div class="ws">WORLD SERIES · GAME 5 · CLE LEADS 3–1</div>
+  <div class="rp"><i></i>REPLAY</div>
+
+  <div class="lt">
+    <span class="k"><span>◆ YOUR ANGLE · BLEACHERS, SEC 314</span></span>
+    <h1>Bryant goes<br><em>deep.</em> Tie game.</h1>
+    <div class="bar"><span class="a">Your photo · 14s after contact</span><span class="b">8:34:26 PM</span></div>
+  </div>
+
+  <div class="panel">
+    <div class="thumbs" id="thumbs"></div>
+    <svg class="track" id="track"></svg>
+    <div class="tc"><span>7:08 PM</span><b>8:34:26 PM</b><span>10:42 PM</span></div>
+    <div class="ctr">
+      <span class="sp">½×</span>
+      <svg viewBox="0 0 24 24"><path d="M11 6l-6 6 6 6M19 6l-6 6 6 6"/></svg>
+      <span class="pp"><svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></span>
+      <svg viewBox="0 0 24 24"><path d="M13 6l6 6-6 6M5 6l6 6-6 6"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M5 17H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-1"/><path d="M12 15l5 6H7z"/></svg>
+    </div>
+  </div>
+<script>
+  const X0 = 20, X1 = 373, T = 214, x = m => X0 + (X1 - X0) * m / T, PH = 86.4;
+  const starts = [0,24,48,72,96,120,146,170,194];
+  let s = `<rect x="${X0}" y="20" width="${X1 - X0}" height="4" rx="2" fill="rgba(255,255,255,.22)"/>`;
+  s += `<rect x="${X0}" y="20" width="${x(PH) - X0}" height="4" rx="2" fill="#fff"/>`;
+  starts.forEach((m, i) => { if (i) s += `<rect x="${x(m) - 1}" y="19" width="2" height="6" fill="#000"/>`;
+    s += `<text x="${x(m) + 4}" y="40" fill="rgba(255,255,255,.4)" font-family="Inter" font-weight="600" font-size="9">${i + 1}</text>`; });
+  // run markers
+  [[27,'#e8344a'],[86,'#2f6bff'],[92,'#2f6bff'],[95,'#2f6bff'],[129,'#e8344a']].forEach(([m, c]) => s += `<rect x="${x(m) - 3.5}" y="6" width="7" height="7" transform="rotate(45 ${x(m)} 9.5)" fill="${c}" stroke="#000" stroke-width="1"/>`);
+  // playhead
+  s += `<line x1="${x(PH)}" x2="${x(PH)}" y1="-6" y2="30" stroke="#ffb547" stroke-width="2"/><circle cx="${x(PH)}" cy="22" r="7" fill="#fff" stroke="#ffb547" stroke-width="2.5"/>`;
+  document.getElementById('track').innerHTML = s;
+  const P = [
+    { m: -6, src: 'wrigley-bleachers.jpg', pos: '30% 50%' },
+    { m: 4, canvas: 'diamond', seed: 11 },
+    { m: PH, src: 'wrigley-night.jpg', pos: '58% 30%', sel: 1 },
+    { m: 150.5, canvas: 'lightTower', seed: 4 },
+    { m: 194, canvas: 'scoreboard', seed: 6, board: 'CLE 2|CHC 3' },
+    { m: 214.6, src: 'wrigley-night-2.jpg', pos: '35% 60%' },
+  ];
+  document.getElementById('thumbs').innerHTML = P.map(p => {
+    let px = Math.max(x(p.m), 40); if (p.m === 4) px = 82; if (p.m === 214.6) px = 355; if (p.m === 194) px = 311;
+    const inner = p.src ? `<img class="ph graded" src="../../photos/${p.src}" style="object-position:${p.pos}">` : `<canvas class="photo" data-style="${p.canvas}" data-seed="${p.seed}" data-accent="#2f6bff" data-secondary="#cc3433" ${p.board ? `data-board="${p.board}"` : ''}></canvas>`;
+    return `<div class="th${p.sel ? ' sel' : ''}" style="left:${px}px">${inner}</div>`;
+  }).join('');
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

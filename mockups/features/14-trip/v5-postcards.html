@@ -1,0 +1,93 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Postcards</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: radial-gradient(90% 60% at 40% 35%, #3a2a1e 0%, #1a120c 55%, #0d0906 100%); }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 20; }
+  .head { position: absolute; left: 24px; right: 24px; top: 108px; z-index: 5; }
+  .head .eyebrow { color: #e9b98a; }
+  .head h1 { font: 400 36px/1 var(--f-serif); letter-spacing: -.5px; margin-top: 8px; }
+  .head h1 em { color: #ffd9b8; }
+
+  .card { position: absolute; width: 345px; height: 228px; left: 24px; border-radius: 3px; }
+  .card.back1 { top: 192px; transform: rotate(7deg) translate(14px, -4px); background: #e9e0cd; box-shadow: 0 10px 24px rgba(0,0,0,.5); overflow: hidden; }
+  .card.back2 { top: 196px; transform: rotate(-6deg) translate(-8px, 2px); background: #efe7d6; box-shadow: 0 10px 24px rgba(0,0,0,.5); overflow: hidden; }
+  .card .peek { position: absolute; inset: 8px; overflow: hidden; }
+
+  .front { top: 206px; transform: rotate(-1.5deg); padding: 8px; background: #f7f2e7; z-index: 6;
+    box-shadow: 0 2px 2px rgba(0,0,0,.25), 0 24px 44px rgba(0,0,0,.6); }
+  .front .face { position: relative; height: 100%; overflow: hidden;
+    background: linear-gradient(180deg, #1e5f86 0%, #4f97b0 42%, #f2b56b 78%, #f08c4a 100%); }
+  .front .sun { position: absolute; right: -40px; bottom: -70px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(255,226,150,.8), rgba(255,180,90,0) 70%); }
+  .front .greet { position: absolute; left: 18px; top: 16px; font: italic 400 28px/1 var(--f-dm); color: #fff8e8; text-shadow: 0 2px 0 #a7432a, 0 4px 10px rgba(0,0,0,.25); transform: rotate(-4deg); }
+  .front .big { position: absolute; left: 0; right: 0; top: 54px; text-align: center; font: 400 74px/1 var(--f-anton); letter-spacing: 1px; white-space: nowrap;
+    background: url(../../photos/camp-nou-aerial.jpg) 50% 55%/150% auto; -webkit-background-clip: text; background-clip: text; color: transparent;
+    -webkit-text-stroke: 1.6px #2a160c; filter: drop-shadow(2px 2px 0 #fff3dc) drop-shadow(3px 4px 0 #b8432a) drop-shadow(0 8px 10px rgba(0,0,0,.35)); }
+  .front .foot { position: absolute; left: 16px; right: 16px; bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .front .foot .k { font: 700 9px/1 var(--f-ui); letter-spacing: 2px; color: #fff8e8; text-transform: uppercase; }
+  .front .foot .sc { display: flex; align-items: center; gap: 6px; background: rgba(20,12,8,.55); border-radius: 10px; padding: 5px 8px; font: 800 15px/1 var(--f-cond); color: #fff; letter-spacing: .4px; }
+  .front .foot .sc i { font-style: normal; font: 600 9px/1 var(--f-ui); letter-spacing: 1.2px; color: #ffd9b8; }
+
+  .rev { position: absolute; left: 22px; width: 349px; top: 468px; height: 230px; transform: rotate(1.4deg); background: #f4eddc; border-radius: 3px; z-index: 7;
+    box-shadow: 0 2px 2px rgba(0,0,0,.25), 0 24px 44px rgba(0,0,0,.55); overflow: hidden; color: #2b2a4a; }
+  .rev .div { position: absolute; left: 196px; top: 34px; bottom: 22px; width: 1px; background: #b9ad95; }
+  .rev .hd { position: absolute; left: 16px; top: 14px; font: 700 8px/1 var(--f-ui); letter-spacing: 3px; color: #8e8169; }
+  .rev .msg { position: absolute; left: 16px; top: 32px; width: 172px; font: 500 18px/1.12 var(--f-hand); color: #23306b; transform: rotate(-1deg); }
+  .rev .msg b { color: #b42a3c; font-weight: 700; }
+  .rev .stampbox { position: absolute; right: 16px; top: 16px; width: 58px; height: 70px; padding: 4px; background: #fff;
+    -webkit-mask: radial-gradient(circle at 0 0, transparent 2.4px, #000 2.6px) -3px -3px/6px 6px; mask: radial-gradient(circle at 0 0, transparent 2.4px, #000 2.6px) -3px -3px/6px 6px; }
+  .rev .stampbox .in { width: 100%; height: 100%; position: relative; overflow: hidden; background: #c33b2c; }
+  .rev .stampbox .v { position: absolute; left: 4px; bottom: 3px; font: 800 11px/1 var(--f-cond); color: #fff; z-index: 2; }
+  .rev .stampbox .c { position: absolute; left: 4px; top: 4px; font: 700 6.5px/1 var(--f-ui); letter-spacing: 1px; color: #fff; z-index: 2; }
+  .rev .pm { position: absolute; right: 44px; top: 30px; mix-blend-mode: multiply; opacity: .78; z-index: 3; }
+  .rev .addr { position: absolute; left: 210px; right: 14px; top: 104px; }
+  .rev .addr div { height: 26px; border-bottom: 1px solid #c5b9a2; font: 600 18px/26px var(--f-hand); color: #23306b; white-space: nowrap; }
+
+  .pager { position: absolute; left: 24px; right: 24px; top: 734px; display: flex; align-items: center; justify-content: space-between; z-index: 10; }
+  .dots { display: flex; gap: 6px; align-items: center; }
+  .dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.28); }
+  .dots i.on { width: 20px; background: #ffd9b8; }
+  .dots span { font: 500 13px/1 var(--f-ui); color: var(--text-2); margin-left: 8px; }
+  .send { height: 44px; padding: 0 18px; border-radius: 22px; background: #f7f2e7; color: #1d1a16; display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1 var(--f-ui); box-shadow: 0 8px 20px rgba(0,0,0,.35); }
+  .send small { font: 500 12px/1 var(--f-ui); color: #7a6f5e; }
+</style></head>
+<body class="phone">
+  <div class="topbar">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+  <div class="head">
+    <div class="eyebrow">Spain · Feb 20 – Mar 3, 2020</div>
+    <h1>Wish you were <em>here.</em></h1>
+  </div>
+
+  <div class="card back1"><div class="peek"><canvas class="photo" data-style="nightField" data-seed="11" data-accent="#febe10" data-secondary="#ffffff"></canvas></div></div>
+  <div class="card back2"><div class="peek"><canvas class="photo" data-style="skyline" data-seed="5" data-accent="#ff8a3d" data-secondary="#ffd36e"></canvas></div></div>
+
+  <div class="card front"><div class="face">
+    <div class="sun"></div>
+    <div class="greet">Greetings from</div>
+    <div class="big">BARCELONA</div>
+    <div class="foot"><span class="k">Camp Nou · Sat 22 Feb 2020</span><span class="sc"><i>FT</i>BAR 5 · 0 EIB</span></div>
+  </div></div>
+
+  <div class="rev">
+    <div class="hd">POSTAL · POSTCARD</div>
+    <div class="msg">Grandpa Ray — <br>he scored <b>FOUR.</b> Leo cried (happy). Dad bought me a scarf. Our seats were SO high up, you could see the sea. Come next time!!<br>— Maya, 9¾</div>
+    <div class="div"></div>
+    <div class="stampbox"><div class="in"><canvas class="photo" data-style="pitch" data-seed="3" data-accent="#c33b2c" data-secondary="#f2c14e" data-vignette=".2" style="opacity:.55"></canvas><span class="c">ESPAÑA</span><span class="v">1,50 €</span></div></div>
+    <svg class="pm" width="120" height="64" viewBox="0 0 120 64">
+      <circle cx="30" cy="32" r="25" fill="none" stroke="#2a2a3a" stroke-width="1.6"/><circle cx="30" cy="32" r="18" fill="none" stroke="#2a2a3a" stroke-width=".8"/>
+      <text x="30" y="30" text-anchor="middle" font-family="JetBrains Mono" font-weight="800" font-size="6.5" fill="#2a2a3a">BARCELONA</text>
+      <text x="30" y="40" text-anchor="middle" font-family="JetBrains Mono" font-weight="600" font-size="7" fill="#2a2a3a">22·II·20</text>
+      <path d="M60 18 q8 -5 16 0 t16 0 t16 0 M60 28 q8 -5 16 0 t16 0 t16 0 M60 38 q8 -5 16 0 t16 0 t16 0 M60 48 q8 -5 16 0 t16 0 t16 0" fill="none" stroke="#2a2a3a" stroke-width="1.4"/>
+    </svg>
+    <div class="addr"><div>Ray Okafor</div><div>N. Kedzie Blvd</div><div>Chicago, IL 60647</div><div>U.S.A. ✈</div></div>
+  </div>
+
+  <div class="pager">
+    <div class="dots"><i class="on"></i><i></i><i></i><span>Barcelona · 1 of 3</span></div>
+    <div class="send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d1a16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg>Mail it <small>$2.50</small></div>
+  </div>
+<script src="../../kit/kit.js"></script>
+</body></html>

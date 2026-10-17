@@ -1,0 +1,96 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Play-by-play</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #f6f3ee; color: #17150f; }
+  .nav { position: absolute; top: 54px; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; z-index: 6; }
+  .nav .back { display: flex; align-items: center; gap: 2px; color: #17150f; font: 500 17px/1 var(--f-ui); }
+  .nav .back svg { width: 24px; height: 24px; stroke: #17150f; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+  .nav .t { font: 600 17px/1 var(--f-ui); letter-spacing: -.3px; }
+  .nav .tog { height: 30px; padding: 0 11px; border-radius: 15px; background: #17150f; color: #fff; display: flex; align-items: center; gap: 6px; font: 600 12px/1 var(--f-ui); }
+  .nav .tog i { width: 7px; height: 7px; border-radius: 50%; background: var(--signal); box-shadow: 0 0 0 3px rgba(255,181,71,.3); }
+
+  .sb { position: absolute; top: 112px; left: 16px; right: 16px; height: 74px; border-radius: 20px; background: #fff; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 8px 24px rgba(40,30,10,.07); display: flex; align-items: center; padding: 0 18px; z-index: 6; }
+  .tm { display: flex; align-items: center; gap: 10px; }
+  .tm .mono-badge { width: 36px; height: 36px; font-size: 14px; }
+  .tm .n { font: 700 11px/1 var(--f-ui); letter-spacing: 1.2px; color: #8b857a; }
+  .tm .s { font: 800 34px/1 var(--f-cond); letter-spacing: -1px; }
+  .tm.lose .s { color: #b6afa3; }
+  .sb .mid { flex: 1; text-align: center; }
+  .sb .mid b { display: block; font: 700 10px/1 var(--f-ui); letter-spacing: 1.6px; color: #17150f; }
+  .sb .mid span { display: block; margin-top: 5px; font: 500 11px/1 var(--f-ui); color: #8b857a; }
+
+  .seg { position: absolute; top: 200px; left: 16px; right: 16px; height: 32px; border-radius: 10px; background: #ebe6dc; display: flex; padding: 2px; z-index: 6; }
+  .seg div { flex: 1; display: grid; place-items: center; font: 600 12.5px/1 var(--f-ui); color: #6f695e; border-radius: 8px; }
+  .seg div.on { background: #fff; color: #17150f; box-shadow: 0 2px 6px rgba(0,0,0,.08); }
+
+  .feed { position: absolute; top: 248px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+  .rail { position: absolute; left: 70px; top: 0; bottom: 0; width: 1.5px; background: #dcd5c8; }
+  .inn { position: relative; height: 34px; display: flex; align-items: center; padding-left: 16px; gap: 10px; }
+  .inn b { font: 700 11px/1 var(--f-ui); letter-spacing: 1.6px; color: #17150f; background: #f6f3ee; padding-right: 8px; }
+  .inn span { font: 600 11px/1 var(--f-mono); color: #8b857a; }
+  .play { position: relative; display: flex; align-items: flex-start; padding: 9px 20px 9px 16px; }
+  .play .time { width: 42px; font: 500 11px/18px var(--f-mono); color: #8b857a; }
+  .play .dot { position: absolute; left: 66.5px; top: 14px; width: 9px; height: 9px; border-radius: 50%; background: #f6f3ee; border: 1.5px solid #b6afa3; }
+  .play .txt { margin-left: 30px; flex: 1; font: 400 14px/18px var(--f-ui); color: #3d3830; }
+  .play .txt b { font-weight: 600; color: #17150f; }
+  .play .sc { margin-left: 10px; font: 800 15px/18px var(--f-cond); letter-spacing: .2px; color: #17150f; white-space: nowrap; }
+  .play.run .dot { background: var(--chc); border-color: var(--chc); box-shadow: 0 0 0 3px rgba(47,107,255,.18); }
+  .play.run .sc { background: var(--chc); color: #fff; padding: 0 7px; border-radius: 6px; }
+  .play.big .txt { font-size: 16px; line-height: 20px; }
+
+  .you { position: relative; margin: 6px 16px 10px 58px; }
+  .you .ph { position: relative; height: 196px; border-radius: 20px; overflow: hidden; box-shadow: 0 14px 30px rgba(40,30,10,.22); }
+  .you .ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.25) 55%, rgba(0,0,0,.82)); }
+  .you .badge { position: absolute; left: 12px; top: 12px; z-index: 2; height: 26px; padding: 0 10px; border-radius: 13px; background: var(--signal); color: #1d1405; display: flex; align-items: center; gap: 6px; font: 800 10px/1 var(--f-ui); letter-spacing: 1.2px; }
+  .you .cap { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 2; color: #fff; display: flex; justify-content: space-between; align-items: flex-end; }
+  .you .cap b { font: 400 21px/1.05 var(--f-serif); }
+  .you .cap span { font: 600 10.5px/1 var(--f-mono); color: rgba(255,255,255,.85); }
+  .you .marker { position: absolute; left: -16px; top: 0; bottom: 0; width: 3px; border-radius: 2px; background: var(--signal); }
+  .you .cam { position: absolute; left: -24px; top: 82px; width: 19px; height: 19px; border-radius: 50%; background: var(--signal); display: grid; place-items: center; box-shadow: 0 0 0 4px #f6f3ee; }
+  .you .cam svg { width: 11px; height: 11px; stroke: #1d1405; fill: none; stroke-width: 2.4; }
+  .you .note { margin-top: 8px; font: 500 22px/1.05 var(--f-hand); color: #7a5a1e; padding-left: 4px; }
+  .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 120px; background: linear-gradient(rgba(246,243,238,0), #f6f3ee 75%); z-index: 4; }
+  .fab { position: absolute; left: 50%; transform: translateX(-50%); bottom: 42px; z-index: 5; height: 44px; padding: 0 18px; border-radius: 22px; background: #17150f; color: #fff; display: flex; align-items: center; gap: 10px; font: 600 14px/1 var(--f-ui); box-shadow: 0 12px 30px rgba(0,0,0,.25); white-space: nowrap; }
+  .fab .th { display: flex; }
+  .fab .th span { width: 24px; height: 24px; border-radius: 7px; overflow: hidden; box-shadow: 0 0 0 2px #17150f; }
+  .fab .th span + span { margin-left: -8px; }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="nav">
+    <div class="back"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>Game 5</div>
+    <div class="tog"><i></i>Your photos</div>
+  </div>
+
+  <div class="sb">
+    <div class="tm lose"><span class="mono-badge" style="background:linear-gradient(135deg,#0c2340,#1b3560);box-shadow:inset 0 0 0 2px #e8344a">CLE</span><div><div class="n">CLE</div><div class="s tnum">2</div></div></div>
+    <div class="mid"><b>FINAL</b><span>World Series · Gm 5</span></div>
+    <div class="tm" style="flex-direction:row-reverse;text-align:right"><span class="mono-badge" style="background:linear-gradient(135deg,#0e3386,#2f6bff);box-shadow:inset 0 0 0 2px #cc3433">CHC</span><div><div class="n">CHC</div><div class="s tnum">3</div></div></div>
+  </div>
+
+  <div class="seg"><div>All plays</div><div>Scoring</div><div class="on">With your photos</div></div>
+
+  <div class="feed">
+    <div class="rail"></div>
+    <div class="inn"><b>BOTTOM 4TH</b><span>CLE 1 · CHC 0</span></div>
+    <div class="play run big"><span class="time">8:34</span><i class="dot"></i><div class="txt"><b>Kris Bryant homers</b> on a 1–0 fastball, deep to left field.</div><span class="sc tnum">1–1</span></div>
+
+    <div class="you">
+      <i class="marker"></i>
+      <span class="cam"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+      <div class="ph"><img class="ph graded" src="../../photos/wrigley-night.jpg" style="object-position:55% 34%"></div>
+      <span class="badge">◆ YOU · +14s</span>
+      <div class="cap"><b>The whole park<br>on its feet.</b><span>8:34:26 PM · SEC 314</span></div>
+    </div>
+
+    <div class="play"><span class="time">8:36</span><i class="dot"></i><div class="txt"><b>Rizzo</b> doubles to right.</div></div>
+    <div class="play"><span class="time">8:38</span><i class="dot"></i><div class="txt"><b>Zobrist</b> singles. Rizzo to third.</div></div>
+    <div class="play run"><span class="time">8:40</span><i class="dot"></i><div class="txt"><b>Russell</b> infield single; Rizzo scores.</div><span class="sc tnum">2–1</span></div>
+    <div class="play"><span class="time">8:44</span><i class="dot"></i><div class="txt"><b>Báez</b> bunts for a hit. Bases loaded.</div></div>
+    <div class="play run"><span class="time">8:47</span><i class="dot"></i><div class="txt"><b>Ross</b> sac fly. Zobrist scores.</div><span class="sc tnum">3–1</span></div>
+    <div class="inn"><b>BOTTOM 4TH</b><span>END · CHC 3, CLE 1</span></div>
+  </div>
+  <div class="fade"></div>
+  <div class="fab"><span class="th"><span><img class="ph" src="../../photos/wrigley-bleachers.jpg"></span><span><img class="ph" src="../../photos/wrigley-night-2.jpg"></span><span><canvas class="photo" data-style="celebration" data-seed="3" data-accent="#2f6bff" data-secondary="#cc3433"></canvas></span></span>Jump to your 6 photos</div>
+<script src="../../kit/kit.js"></script>
+</body></html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Clock face</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: radial-gradient(90% 50% at 50% 50%, #121a2e 0%, #07090f 60%, #040508 100%); }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 5; }
+  .head { position: absolute; top: 112px; left: 0; right: 0; text-align: center; }
+  .head .eyebrow { color: var(--signal); }
+  h1 { margin-top: 10px; font: 400 34px/1 var(--f-fraunces); font-variation-settings: "opsz" 72; letter-spacing: -.8px; }
+  h1 em { font-style: italic; color: #ffd9a0; }
+  .head .sub { margin-top: 8px; font: 400 13px/1.3 var(--f-ui); color: var(--text-2); }
+  svg#dial { position: absolute; left: 0; top: 0; width: 393px; height: 852px; }
+  .ph-pin { position: absolute; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 2px rgba(255,255,255,.92), 0 8px 18px rgba(0,0,0,.6); }
+  .ph-pin.sel { box-shadow: 0 0 0 2.5px var(--signal), 0 0 0 8px rgba(255,181,71,.16), 0 14px 30px rgba(0,0,0,.7); }
+  .center { position: absolute; left: 96px; width: 201px; top: 352px; text-align: center; }
+  .center .e { font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.8px; color: var(--text-3); }
+  .center .sc { margin-top: 8px; display: flex; justify-content: center; align-items: baseline; gap: 10px; font: 300 46px/1 var(--f-fraunces); font-variation-settings: "opsz" 144; letter-spacing: -2px; }
+  .center .sc span { font: 700 11px/1 var(--f-ui); letter-spacing: 1.4px; color: var(--text-3); }
+  .center .sc .w { color: #fff; } .center .sc .l { color: var(--text-3); }
+  .center .sc .sep { width: 1px; height: 34px; background: rgba(255,255,255,.25); align-self: center; }
+  .center .d { margin-top: 8px; font: 500 11px/1 var(--f-mono); color: var(--text-2); }
+  .cap { position: absolute; left: 24px; right: 24px; top: 648px; display: flex; gap: 14px; align-items: flex-start; }
+  .cap .tm { flex: none; width: 70px; font: 400 30px/1 var(--f-fraunces); letter-spacing: -1px; color: var(--signal); }
+  .cap .tm small { display: block; margin-top: 6px; font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.6px; color: var(--text-3); }
+  .cap h2 { font: 400 20px/1.15 var(--f-fraunces); letter-spacing: -.3px; }
+  .cap p { margin-top: 6px; font: 400 13px/1.35 var(--f-ui); color: var(--text-2); }
+  .legend { position: absolute; left: 24px; right: 24px; top: 764px; display: flex; gap: 16px; font: 600 11px/1 var(--f-ui); color: var(--text-2); padding-top: 14px; border-top: .5px solid var(--line-2); }
+  .legend span { display: flex; align-items: center; gap: 6px; }
+  .legend i { width: 14px; height: 4px; border-radius: 2px; }
+  .legend .r { margin-left: auto; color: var(--text-3); }
+</style></head>
+<body class="phone">
+  <div class="topbar">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+  <div class="head">
+    <div class="eyebrow">◆ You were there</div>
+    <h1>Three hours, <em>thirty-four</em><br>minutes, six photos.</h1><div class="sub">World Series Game 5 · Wrigley · Oct 30, 2016</div>
+  </div>
+
+  <svg id="dial"></svg>
+  <div id="pins"></div>
+  <div class="center">
+    <div class="e">FINAL</div>
+    <div class="sc tnum"><span>CLE</span><b class="l">2</b><i class="sep"></i><b class="w">3</b><span>CHC</span></div>
+    
+  </div>
+
+  <div class="cap">
+    <div class="tm">8:34<small>BOT 4TH</small></div>
+    <div><h2>Bryant’s homer ties it, and the next 13 minutes turn the whole series.</h2></div>
+  </div>
+  <div class="legend"><span><i style="background:#2f6bff"></i>CHC led</span><span><i style="background:#e8344a"></i>CLE led</span><span><i style="background:rgba(255,255,255,.35)"></i>Tied</span><span class="r">7:08 – 10:42 PM</span></div>
+
+<script>
+  const CX = 196.5, CY = 432, R = 128;
+  // minutes after 7:00 PM; 240 minutes per revolution, 7 at top
+  const ang = t => (t / 240) * Math.PI * 2 - Math.PI / 2;
+  const pt = (t, r) => [CX + Math.cos(ang(t)) * r, CY + Math.sin(ang(t)) * r];
+  const arc = (t0, t1, r) => { const [a, b] = pt(t0, r), [c, d] = pt(t1, r); const large = (t1 - t0) > 120 ? 1 : 0; return `M${a.toFixed(2)} ${b.toFixed(2)} A${r} ${r} 0 ${large} 1 ${c.toFixed(2)} ${d.toFixed(2)}`; };
+  let s = `<defs><filter id="gl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5"/></filter>
+    <radialGradient id="face" cx="50%" cy="45%"><stop offset="0" stop-color="#1a2238"/><stop offset="1" stop-color="#0b0e18"/></radialGradient></defs>`;
+  s += `<circle cx="${CX}" cy="${CY}" r="${R + 22}" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>`;
+  s += `<circle cx="${CX}" cy="${CY}" r="${R - 12}" fill="url(#face)" stroke="rgba(255,255,255,.08)"/>`;
+  // minute ticks
+  for (let t = 0; t < 240; t += 5) {
+    const major = t % 60 === 0, [a, b] = pt(t, R - 16), [c, d] = pt(t, R - 16 - (major ? 10 : t % 15 === 0 ? 6 : 3));
+    s += `<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="rgba(255,255,255,${major ? .7 : .22})" stroke-width="${major ? 2 : 1}" stroke-linecap="round"/>`;
+  }
+  ['', '8', '9', '10'].forEach((h, i) => { if (!h) return; const [a, b] = pt(i * 60, R - 42); s += `<text x="${a}" y="${b + 6}" text-anchor="middle" fill="rgba(245,241,234,.82)" font-family="Fraunces" font-size="17" font-weight="400">${h}</text>`; });
+  // track
+  s += `<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="10"/>`;
+  // leader segments (minutes after 7:00): tied 8→35, CLE 35→94, tied 94→100 (1–1), CHC 100→222
+  const seg = [[8, 35, 'rgba(255,255,255,.4)'], [35, 94, '#e8344a'], [94, 99, 'rgba(255,255,255,.4)'], [99, 222.5, '#2f6bff']];
+  seg.forEach(([a, b, c]) => { if (c[0] === '#') s += `<path d="${arc(a, b, R)}" fill="none" stroke="${c}" stroke-width="10" opacity=".55" filter="url(#gl)"/>`; s += `<path d="${arc(a, b, R)}" fill="none" stroke="${c}" stroke-width="10" stroke-linecap="butt"/>`; });
+  // inning dividers + numbers
+  const inn = [8, 32, 56, 80, 104, 128, 154, 178, 202];
+  inn.forEach((t, i) => { const [a, b] = pt(t, R - 6), [c, d] = pt(t, R + 6); s += `<line x1="${a}" y1="${b}" x2="${c}" y2="${d}" stroke="#07090f" stroke-width="2"/>`; });
+  // runs
+  [[35, '#ff8a98'], [94, '#fff'], [100, '#fff'], [103, '#fff'], [137, '#ff8a98']].forEach(([t, c]) => { const [a, b] = pt(t, R); s += `<circle cx="${a}" cy="${b}" r="3.2" fill="${c}" stroke="#07090f" stroke-width="1.5"/>`; });
+  // start & end caps
+  { const [a, b] = pt(8, R); s += `<circle cx="${a}" cy="${b}" r="4" fill="#fff"/>`; }
+  { const [a, b] = pt(222.5, R); s += `<circle cx="${a}" cy="${b}" r="9" fill="#ffb547" opacity=".35" filter="url(#gl)"/><circle cx="${a}" cy="${b}" r="4.5" fill="#ffb547"/>`; }
+  // hand to selected photo (8:34:26 -> 94.4)
+  const SEL = 94.4;
+  { const [a, b] = pt(SEL, R - 24), [c, d] = [CX, CY];
+    s += `<line x1="${c}" y1="${d}" x2="${a}" y2="${b}" stroke="#ffb547" stroke-width="2.5" stroke-linecap="round"/>`;
+    s += `<circle cx="${CX}" cy="${CY}" r="5" fill="#ffb547"/><circle cx="${CX}" cy="${CY}" r="2" fill="#07090f"/>`; }
+  document.getElementById('dial').innerHTML = s;
+  const P = [
+    { t: 6, r: 19, src: 'wrigley-night-2.jpg', pos: '50% 40%' },
+    { t: SEL, r: 28, src: 'wrigley-night.jpg', pos: '58% 30%', sel: 1 },
+    { t: 158, r: 19, canvas: 'lightTower', seed: 4 },
+    { t: 204, r: 19, canvas: 'scoreboard', seed: 6, board: 'CLE 2|CHC 3' },
+    { t: 222.7, r: 22, src: 'wrigley-night-2.jpg', pos: '30% 70%' },
+    { t: -68 + 240, r: 0 },
+  ];
+  document.getElementById('pins').innerHTML = P.filter(p => p.r).map(p => {
+    const [a, b] = pt(p.t, R + 30 + (p.sel ? 14 : 0));
+    const inner = p.src ? `<img class="ph graded" src="../../photos/${p.src}" style="object-position:${p.pos}">` : `<canvas class="photo" data-style="${p.canvas}" data-seed="${p.seed}" data-accent="#2f6bff" data-secondary="#cc3433" ${p.board ? `data-board="${p.board}"` : ''}></canvas>`;
+    return `<div class="ph-pin${p.sel ? ' sel' : ''}" style="left:${a - p.r}px;top:${b - p.r}px;width:${p.r * 2}px;height:${p.r * 2}px">${inner}</div>`;
+  }).join('');
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

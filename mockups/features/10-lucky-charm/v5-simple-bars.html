@@ -1,0 +1,100 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Simple Bars</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #000; }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; }
+  .btn-circle.s { background: #1c1c1f; }
+  .lt { position: absolute; top: 108px; left: 20px; right: 20px; }
+  .lt h1 { font: 700 34px/1.1 var(--f-ui); letter-spacing: -.8px; }
+  .lt p { margin-top: 4px; font: 400 15px/1.3 var(--f-ui); color: var(--text-2); }
+
+  .seg { position: absolute; top: 186px; left: 20px; right: 20px; height: 34px; border-radius: 10px; background: #1c1c1f; display: flex; padding: 2px; }
+  .seg span { flex: 1; display: grid; place-items: center; font: 500 13px/1 var(--f-ui); color: var(--text-2); border-radius: 8px; }
+  .seg span.on { background: #3a3a3e; color: #fff; font-weight: 600; box-shadow: 0 2px 6px rgba(0,0,0,.4); }
+
+  .chart { position: absolute; top: 240px; left: 16px; right: 16px; height: 330px; border-radius: 24px; background: #121214; }
+  .bars { position: absolute; left: 0; right: 0; bottom: 64px; height: 232px; }
+  .base { position: absolute; left: 22px; right: 22px; bottom: 64px; height: 1px; background: rgba(255,255,255,.14); }
+  .grid i { position: absolute; left: 22px; right: 22px; height: 1px; background: rgba(255,255,255,.05); }
+  .grid em { position: absolute; right: 22px; font: 500 10px/1 var(--f-ui); color: var(--text-4); font-style: normal; transform: translateY(-14px); }
+  .bar { position: absolute; bottom: 0; width: 104px; border-radius: 14px 14px 4px 4px; }
+  .bar.you { left: 58px; background: linear-gradient(180deg, #ffc56a, #ff9a2e); box-shadow: 0 0 40px rgba(255,170,60,.25); }
+  .bar.not { right: 58px; background: #3a3a3f; }
+  .val { position: absolute; width: 104px; text-align: center; }
+  .val b { display: block; font: 700 40px/1 var(--f-tight); letter-spacing: -1.4px; font-variant-numeric: tabular-nums; }
+  .val.you { left: 58px; } .val.you b { color: var(--signal); }
+  .val.not { right: 58px; } .val.not b { color: #d8d4cd; }
+  .labs { position: absolute; left: 0; right: 0; bottom: 18px; height: 34px; }
+  .labs div { position: absolute; width: 140px; text-align: center; }
+  .labs b { display: block; font: 600 14px/1.1 var(--f-ui); }
+  .labs span { display: block; margin-top: 3px; font: 400 12px/1.2 var(--f-ui); color: var(--text-3); font-variant-numeric: tabular-nums; }
+  .delta { position: absolute; left: 50%; transform: translateX(-50%); height: 28px; padding: 0 11px; border-radius: 14px; display: inline-flex; align-items: center;
+    background: rgba(255,181,71,.14); color: var(--signal); font: 700 13px/1 var(--f-ui); white-space: nowrap; box-shadow: inset 0 0 0 .5px rgba(255,181,71,.35); }
+  .bracket { position: absolute; border: 1.5px dashed rgba(255,181,71,.45); border-bottom: 0; border-radius: 6px 6px 0 0; }
+
+  .sec { position: absolute; top: 594px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: baseline; }
+  .sec b { font: 600 20px/1 var(--f-ui); letter-spacing: -.4px; }
+  .sec span { font: 400 13px/1 var(--f-ui); color: var(--text-3); }
+  .teams { position: absolute; top: 626px; left: 16px; right: 16px; border-radius: 20px; background: #121214; padding: 4px 16px; }
+  .t { display: grid; grid-template-columns: 60px 1fr 64px; align-items: center; height: 35px; }
+  .t + .t { border-top: .5px solid rgba(255,255,255,.07); }
+  .t .n { font: 500 14px/1 var(--f-ui); }
+  .t .pb { position: relative; height: 18px; }
+  .t .pb i { position: absolute; left: 0; height: 6px; border-radius: 3px; }
+  .t .pb i.y { top: 2px; background: var(--signal); }
+  .t .pb i.o { top: 10px; background: #48484e; }
+  .t .d { text-align: right; font: 600 14px/1 var(--f-ui); color: var(--signal); font-variant-numeric: tabular-nums; }
+  .t .d small { font: 400 12px/1 var(--f-ui); color: var(--text-3); margin-right: 6px; }
+</style></head>
+<body class="phone">
+  <div class="topbar">
+    <div class="btn-circle s"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="btn-circle s"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+  <div class="lt"><h1>Lucky Charm</h1><p>Chicago home wins, with you and without</p></div>
+  <div class="seg"><span class="on">All</span><span>Cubs</span><span>Bears</span><span>Hawks</span><span>Bulls</span><span>Fire</span></div>
+
+  <div class="chart" id="chart">
+    <div class="grid" id="grid"></div>
+    <div class="base"></div>
+    <div class="bars" id="bars">
+      <div class="bar you" id="by"></div><div class="bar not" id="bn"></div>
+    </div>
+    <div class="labs">
+      <div style="left:40px"><b>With you</b><span>30–19 · 49 games</span></div>
+      <div style="right:40px"><b>Without you</b><span>1,412–1,530</span></div>
+    </div>
+  </div>
+
+  <div class="sec"><b>By team</b><span>you vs. without</span></div>
+  <div class="teams" id="teams"></div>
+
+<script>
+(function(){
+  const H = 232, scale = v => v / 70 * H;  // 0–70% axis
+  const chart = document.getElementById('chart'), bars = document.getElementById('bars');
+  const by = document.getElementById('by'), bn = document.getElementById('bn');
+  by.style.height = scale(61) + 'px'; bn.style.height = scale(48) + 'px';
+  const top0 = 330 - 64; // y of base inside chart
+  const g = document.getElementById('grid'); let gh = '';
+  for (const v of [25, 50]) gh += `<i style="top:${top0 - scale(v)}px"></i><em style="top:${top0 - scale(v)}px">${v}%</em>`;
+  /* grid removed: the dashed 48% line is the only reference */
+  const add = (cls, pct, y) => { const d = document.createElement('div'); d.className = 'val ' + cls; d.style.top = (y - 52) + 'px'; d.innerHTML = `<b>${pct}%</b>`; chart.appendChild(d); };
+  add('you', 61, top0 - scale(61)); add('not', 48, top0 - scale(48));
+  // dashed 48% reference across both bars, "+13" sits in the orange overshoot
+  const y48 = top0 - scale(48), y61 = top0 - scale(61);
+  const ref = document.createElement('div'); ref.style.cssText = `position:absolute;left:46px;right:46px;top:${y48}px;border-top:1.5px dashed rgba(255,255,255,.55)`;
+  chart.appendChild(ref);
+  const pill = document.createElement('div'); pill.className = 'over'; pill.textContent = '+13 pts';
+  pill.style.cssText = `position:absolute;left:58px;width:104px;top:${y61}px;height:${y48-y61}px;display:grid;place-items:center;font:800 15px/1 Inter;color:#3a1d00;letter-spacing:-.2px`;
+  chart.appendChild(pill);
+  const teams = [['Cubs',14,8,52],['Bears',7,4,44],['Hawks',4,2,55],['Bulls',3,2,45],['Fire',2,3,38]];
+  const T = document.getElementById('teams'); let th = '';
+  for (const [n,w,l,o] of teams) { const y = Math.round(w/(w+l)*100), d = y - o;
+    th += `<div class="t"><span class="n">${n}</span><span class="pb"><i class="y" style="width:${y}%"></i><i class="o" style="width:${o}%"></i></span><span class="d"><small>${w}–${l}</small>+${d}</span></div>`; }
+  T.innerHTML = th;
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

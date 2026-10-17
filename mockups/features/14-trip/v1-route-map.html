@@ -124,7 +124,7 @@
   svg.append('path').datum(borders).attr('d', path).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.16)').attr('stroke-width', .7).attr('stroke-dasharray', '2 2.5');
 
   // context cities
-  const ctx = [['Bilbao', -2.93, 43.26], ['Zaragoza', -0.88, 41.65], ['Granada', -3.6, 37.18], ['Palma', 2.65, 39.57]];
+  const ctx = [['Bilbao', -2.93, 43.26], ['Zaragoza', -0.88, 41.65], ['Granada', -3.6, 37.18]];
   ctx.forEach(([n, lo, la]) => { const [x, y] = proj([lo, la]);
     svg.append('circle').attr('cx', x).attr('cy', y).attr('r', 1.6).attr('fill', 'rgba(255,255,255,.3)');
     svg.append('text').attr('x', x + 5).attr('y', y + 3).text(n).attr('fill', 'rgba(255,255,255,.3)').attr('font-family', 'Inter').attr('font-size', 8.5).attr('font-weight', 500); });
@@ -162,9 +162,9 @@
       <div class="ph" style="height:80px"><img class="ph graded" src="../../photos/camp-nou-aerial.jpg"></div><div class="cap">Feb 22 · 5–0</div></div>
     <div class="pin" style="left:${mx - 132}px;top:${my + 30}px;width:96px;transform:rotate(4deg)">
       <div class="ph" style="height:80px"><canvas class="photo" data-style="scoreboard" data-seed="4" data-accent="#febe10" data-secondary="#a50044" data-board="RMA 2|BAR 0"></canvas></div><div class="cap">Mar 1 · last one</div></div>
-    <div class="label" style="left:${bx - 16}px;top:${by + 2}px;transform:translateX(-100%);text-align:right">Barcelona<small>Feb 21 – 25</small></div>
+    <div class="label" style="left:${bx - 16}px;top:${by + 6}px;transform:translateX(-100%);text-align:right">Barcelona<small>Feb 21 – 25</small></div>
     <div class="label" style="left:${vx + 16}px;top:${vy - 5}px">Valencia<small>Feb 25 – 28</small></div>
-    <div class="label" style="left:${mx + 14}px;top:${my - 22}px">Madrid<small>Feb 28 – Mar 3</small></div>
+    <div class="label" style="left:${mx - 2}px;top:${my - 40}px;transform:translateX(-50%);text-align:center">Madrid<small>Feb 28 – Mar 3</small></div>
     <div class="flylabel glass" style="left:24px;top:206px"><svg width="12" height="12" viewBox="0 0 24 24" fill="#ffd9a0"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg><b>ORD</b> 4,580 mi · 8h 35m</div>`;
 })();
 </script>

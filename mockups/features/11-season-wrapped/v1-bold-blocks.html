@@ -1,0 +1,77 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Bold Blocks</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  :root { --blue: #2b20f5; --lime: #d6ff3c; --pink: #ff5cb6; --ink2: #0a0a12; }
+  body.phone { background: var(--blue); overflow: hidden; }
+  .ring { position: absolute; width: 360px; height: 360px; border-radius: 50%; border: 48px solid #1d14c9; right: -170px; top: 150px; }
+  .ring.b { width: 220px; height: 220px; border-width: 30px; left: -110px; right: auto; top: 560px; border-color: #3a30ff; }
+  /* story chrome */
+  .prog { position: absolute; top: 54px; left: 10px; right: 10px; display: flex; gap: 4px; z-index: 20; }
+  .prog i { flex: 1; height: 2.5px; border-radius: 2px; background: rgba(255,255,255,.32); overflow: hidden; position: relative; }
+  .prog i.done { background: #fff; }
+  .prog i.now::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 42%; background: #fff; }
+  .shead { position: absolute; top: 66px; left: 14px; right: 10px; height: 32px; display: flex; align-items: center; z-index: 20; }
+  .shead .av { width: 30px; height: 30px; border-radius: 50%; background: #fff; color: var(--blue); display: grid; place-items: center; font: 400 19px/1 var(--f-serif); margin-right: 9px; }
+  .shead b { font: 600 13.5px/1 var(--f-ui); color: #fff; }
+  .shead span { font: 500 13px/1 var(--f-ui); color: rgba(255,255,255,.62); margin-left: 6px; }
+  .shead .sp { flex: 1; }
+  .shead svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; margin-left: 12px; }
+
+  .tag { position: absolute; top: 128px; left: 20px; background: var(--lime); color: var(--ink2); padding: 10px 14px 9px; font: 400 21px/1 var(--f-black); letter-spacing: -.4px; transform: rotate(-3deg); transform-origin: left; text-transform: uppercase; }
+  .score { position: absolute; top: 176px; left: 12px; font: 400 196px/.8 var(--f-black); letter-spacing: -10px; color: var(--lime); white-space: nowrap; }
+  .score em { font-style: normal; color: #fff; }
+  .score small { position: absolute; left: 6px; top: 172px; font: 700 13px/1 var(--f-ui); letter-spacing: 2px; color: rgba(255,255,255,.8); text-transform: uppercase; }
+
+  .claim { position: absolute; top: 412px; left: -12px; right: -12px; padding: 22px 36px 24px; background: var(--pink); color: var(--ink2); transform: rotate(-2.5deg); }
+  .claim p { font: 400 33px/1.0 var(--f-black); letter-spacing: -1.2px; }
+  .claim p u { text-decoration: none; background: var(--ink2); color: var(--pink); padding: 0 6px; }
+
+  .games { position: absolute; top: 600px; left: 20px; right: 20px; display: flex; gap: 6px; }
+  .g { flex: 1; text-align: center; }
+  .g b { display: grid; place-items: center; height: 46px; border-radius: 6px; font: 400 19px/1 var(--f-black); }
+  .g.w b { background: var(--lime); color: var(--ink2); }
+  .g.l b { box-shadow: inset 0 0 0 2px rgba(255,255,255,.5); color: rgba(255,255,255,.7); }
+  .g span { display: block; margin-top: 6px; font: 700 9px/1 var(--f-ui); letter-spacing: 1px; color: rgba(255,255,255,.7); text-transform: uppercase; }
+  .g.star b { box-shadow: 0 0 0 3px var(--pink); }
+  .foot { position: absolute; top: 686px; left: 20px; right: 20px; font: 600 17px/1.3 var(--f-ui); color: #fff; letter-spacing: -.2px; }
+  .foot b { color: var(--lime); }
+
+  .share { position: absolute; top: 762px; left: 16px; right: 16px; height: 50px; display: flex; gap: 10px; z-index: 20; }
+  .share .main { flex: 1; border-radius: 25px; background: #fff; color: var(--ink2); display: flex; align-items: center; justify-content: center; gap: 8px; font: 700 16px/1 var(--f-ui); }
+  .share .main svg, .share .c svg { width: 19px; height: 19px; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .share .main svg { stroke: var(--ink2); }
+  .share .c { width: 50px; border-radius: 25px; background: rgba(0,0,0,.25); display: grid; place-items: center; }
+  .share .c svg { stroke: #fff; }
+</style></head>
+<body class="phone">
+  <div class="ring"></div><div class="ring b"></div>
+  <div class="prog"><i class="done"></i><i class="done"></i><i class="now"></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="shead"><span class="av">W</span><b>Wrapped 2025</b><span>3 of 8</span><span class="sp"></span>
+    <svg viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></svg><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+
+  <div class="tag">In 2025 you went</div>
+  <div class="score tnum">6<em>–</em>3<small>Wins · losses · 9 games</small></div>
+
+  <div class="claim"><p>Chicago won <u>2 of every 3</u> games you walked into.</p></div>
+
+  <div class="games">
+    <div class="g w star"><b>W</b><span>Jan</span></div>
+    <div class="g w"><b>W</b><span>Apr</span></div>
+    <div class="g l"><b>L</b><span>May</span></div>
+    <div class="g w"><b>W</b><span>Jun</span></div>
+    <div class="g w"><b>W</b><span>Jul</span></div>
+    <div class="g l"><b>L</b><span>Jul</span></div>
+    <div class="g w"><b>W</b><span>Aug</span></div>
+    <div class="g l"><b>L</b><span>Sep</span></div>
+    <div class="g w"><b>W</b><span>Oct</span></div>
+  </div>
+  <div class="foot">Your teams were <b>3–5</b> in the games you skipped this fall. Just saying.</div>
+
+  <div class="share">
+    <div class="main"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share to story</div>
+    <div class="c"><svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></div>
+    <div class="c"><svg viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg></div>
+  </div>
+<script src="../../kit/kit.js"></script>
+</body></html>

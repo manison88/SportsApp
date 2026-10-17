@@ -1,0 +1,97 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Versus Poster</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  :root { --red: #d7261e; --blk: #141210; --cream: #f1e6cd; }
+  body.phone { background: var(--cream); color: var(--blk); }
+  .halftone { position: absolute; inset: 0; opacity: .14;
+    background-image: radial-gradient(circle, #000 1px, transparent 1.3px); background-size: 5px 5px;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 35%, transparent 70%, #000 100%); mask-image: linear-gradient(180deg, #000 0%, transparent 35%, transparent 70%, #000 100%); }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 9; }
+  .btn-circle.d { background: var(--blk); }
+  .presents { position: absolute; top: 66px; left: 0; right: 0; text-align: center; font: 600 10px/1 var(--f-cond); letter-spacing: 3px; text-transform: uppercase; }
+  .presents span { color: var(--red); }
+
+  .title { position: absolute; top: 104px; left: 0; right: 0; text-align: center; font-family: var(--f-anton); text-transform: uppercase; }
+  .title .a { font-size: 104px; line-height: .86; letter-spacing: 1px; }
+  .title .vs { display: inline-block; margin: 2px 0 4px; font: 400 22px/1 var(--f-anton); letter-spacing: 6px; color: var(--cream); background: var(--red); padding: 6px 10px 6px 16px; transform: skewX(-8deg); }
+  .title .b { font-size: 76px; line-height: .86; letter-spacing: 1px; color: var(--red); }
+
+  .fighters { position: absolute; top: 330px; left: 16px; right: 16px; height: 186px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .f { position: relative; overflow: hidden; background: var(--blk); }
+  .f .ph, .f canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .f.l img { filter: grayscale(1) contrast(1.4) brightness(.95); mix-blend-mode: screen; opacity: .9; }
+  .f.l::before { content: ""; position: absolute; inset: 0; background: var(--red); z-index: 0; }
+  .f.l img { position: absolute; z-index: 1; mix-blend-mode: multiply; }
+  .f.r canvas { filter: grayscale(1) contrast(1.3) brightness(.7); }
+  .f .dots { position: absolute; inset: 0; z-index: 2; background-image: radial-gradient(circle, rgba(0,0,0,.45) 1px, transparent 1.4px); background-size: 4px 4px; mix-blend-mode: multiply; }
+  .f .plate { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; padding: 26px 12px 10px; background: linear-gradient(transparent, rgba(0,0,0,.82)); }
+  .f .plate b { display: block; font: 400 22px/1 var(--f-anton); letter-spacing: .5px; color: #fff; text-transform: uppercase; }
+  .f .plate span { display: block; margin-top: 4px; font: 600 10px/1 var(--f-cond); letter-spacing: 2px; color: rgba(255,255,255,.75); text-transform: uppercase; }
+  .f .corner { position: absolute; z-index: 3; top: 10px; left: 10px; font: 700 10px/1 var(--f-cond); letter-spacing: 2px; color: #fff; background: rgba(0,0,0,.55); padding: 4px 6px 3px; text-transform: uppercase; }
+  .f.r .corner { left: auto; right: 10px; }
+  .disc { position: absolute; z-index: 6; left: 50%; top: 392px; width: 62px; height: 62px; margin-left: -31px; border-radius: 50%; background: var(--cream);
+    display: grid; place-items: center; font: 400 24px/1 var(--f-anton); color: var(--red); box-shadow: 0 0 0 4px var(--blk); }
+
+  .pcts { position: absolute; top: 526px; left: 16px; right: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .pcts div { font: 400 74px/.9 var(--f-anton); letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+  .pcts .l { color: var(--red); }
+  .pcts .r { text-align: right; color: rgba(20,18,16,.38); }
+  .pcts small { display: block; font: 700 11px/1 var(--f-cond); letter-spacing: 2.2px; text-transform: uppercase; color: var(--blk); margin-top: 6px; }
+
+  .tape { position: absolute; top: 620px; left: 16px; right: 16px; border-top: 3px solid var(--blk); }
+  .tape .h { text-align: center; font: 700 11px/1 var(--f-cond); letter-spacing: 3px; text-transform: uppercase; padding: 8px 0 4px; }
+  .tape .row { display: grid; grid-template-columns: 1fr 120px 1fr; align-items: center; height: 26px; border-top: 1px solid rgba(20,18,16,.18); }
+  .tape .row div { font: 700 17px/1 var(--f-cond); letter-spacing: .3px; font-variant-numeric: tabular-nums; }
+  .tape .row .k { text-align: center; font: 600 10px/1 var(--f-cond); letter-spacing: 2px; text-transform: uppercase; color: rgba(20,18,16,.6); }
+  .tape .row .y { color: var(--red); }
+  .tape .row .o { text-align: right; color: rgba(20,18,16,.55); }
+
+  .bottom { position: absolute; top: 762px; left: 16px; right: 16px; height: 50px; display: flex; gap: 8px; }
+  .verdict { flex: 1; background: var(--blk); color: var(--cream); display: flex; align-items: center; justify-content: center; gap: 10px;
+    font: 400 17px/1 var(--f-anton); letter-spacing: 1.6px; text-transform: uppercase; }
+  .verdict i { font-style: normal; color: #ff5a4a; }
+  .share { width: 50px; background: var(--red); display: grid; place-items: center; }
+  .share svg { width: 20px; height: 20px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="halftone"></div>
+  <div class="topbar">
+    <div class="btn-circle d"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="btn-circle d"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="5" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></div>
+  </div>
+  <div class="presents">Witness <span>★</span> presents the main event</div>
+
+  <div class="title">
+    <div class="a">You</div>
+    <div class="vs">VS.</div>
+    <div class="b">The Odds</div>
+  </div>
+
+  <div class="fighters">
+    <div class="f l"><img class="ph" src="../../photos/wrigley-bleachers.jpg"><div class="dots"></div><span class="corner">Red corner</span>
+      <div class="plate"><b>Sam Okafor</b><span>Logan Square · 49 bouts</span></div></div>
+    <div class="f r"><canvas class="photo" data-style="crowd" data-seed="31" data-accent="#888888" data-secondary="#bbbbbb"></canvas><div class="dots"></div><span class="corner">Blue corner</span>
+      <div class="plate" style="text-align:right"><b>The Odds</b><span>Every other night · 2,942</span></div></div>
+  </div>
+  <div class="disc">VS</div>
+
+  <div class="pcts">
+    <div class="l">61%<small>Chicago wins with Sam</small></div>
+    <div class="r">48%<small style="text-align:right">Chicago wins without</small></div>
+  </div>
+
+  <div class="tape">
+    <div class="h">— Tale of the tape —</div>
+    <div class="row"><div class="y">30–19</div><div class="k">Record</div><div class="o">1,412–1,530</div></div>
+    <div class="row"><div class="y">3</div><div class="k">Title-night wins</div><div class="o">—</div></div>
+    <div class="row"><div class="y">Down 3–1</div><div class="k">Best comeback</div><div class="o">Bet against it</div></div>
+    <div class="row"><div class="y">19°F</div><div class="k">Coldest bout</div><div class="o">Stayed home</div></div>
+  </div>
+
+  <div class="bottom">
+    <div class="verdict">Winner by decision <i>·</i> Sam</div>
+    <div class="share"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+<script src="../../kit/kit.js"></script>
+</body></html>

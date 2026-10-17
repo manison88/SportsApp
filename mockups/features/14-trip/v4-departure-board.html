@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Departure board</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: radial-gradient(130% 80% at 50% 30%, #17181c 0%, #070708 70%); }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+  .clock { font: 600 11px/1 var(--f-mono); letter-spacing: 1.4px; color: var(--text-3); }
+  .eb { position: absolute; left: 24px; right: 24px; top: 112px; display: flex; justify-content: space-between; font: 700 10px/1 var(--f-ui); letter-spacing: 2.2px; color: #f2c14e; }
+  .eb span:last-child { color: var(--text-3); }
+  .hero { position: absolute; left: 24px; top: 134px; display: flex; gap: 5px; }
+  .sub { position: absolute; left: 24px; right: 24px; top: 216px; font: 500 13px/1.35 var(--f-ui); color: var(--text-2); }
+  .sub b { color: var(--text); font-weight: 600; }
+
+  .flap { position: relative; display: grid; place-items: center; border-radius: 3px; overflow: hidden; color: #f4ead2; font-family: var(--f-cond); font-weight: 700;
+    background: linear-gradient(180deg, #222327 0%, #1a1b1e 49.4%, #050505 49.6%, #050505 50.6%, #141517 50.8%, #1b1c20 100%);
+    box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 2px 3px rgba(0,0,0,.6); }
+  .flap::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 50%; background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0)); }
+  .flap::before { content: ""; position: absolute; left: -1px; top: calc(50% - 3px); width: 3px; height: 6px; background: #3a3b40; border-radius: 1px; z-index: 2; box-shadow: calc(var(--w) - 1px) 0 0 #3a3b40; }
+  .big { --w: 36px; width: 36px; height: 54px; font-size: 44px; letter-spacing: 0; }
+  .big.amb { color: #f2c14e; }
+  .sm { --w: 22px; width: 22px; height: 30px; font-size: 22px; }
+  .sm.g { color: #7fe08a; }
+  .sm.a { color: #f2c14e; }
+  .sm.dim { color: #5c5e66; }
+  .mid { position: absolute; left: 0; right: 0; top: 0; height: 50%; transform-origin: 50% 100%; transform: perspective(120px) rotateX(-58deg);
+    background: linear-gradient(180deg, #2b2c31, #1c1d21); border-radius: 3px 3px 0 0; display: grid; place-items: end center; overflow: hidden; box-shadow: 0 6px 10px rgba(0,0,0,.6); z-index: 3; }
+
+  .board { position: absolute; left: 12px; right: 12px; top: 262px; padding: 6px 12px 4px; border-radius: 18px; background: #0c0c0e; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 20px 40px rgba(0,0,0,.5); }
+  .cols { display: flex; justify-content: space-between; padding: 10px 0 8px; border-bottom: 1px solid rgba(255,255,255,.07); font: 700 8.5px/1 var(--f-ui); letter-spacing: 1.8px; color: var(--text-3); }
+  .row { padding: 10px 0 10px; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .row:last-child { border-bottom: 0; }
+  .row .meta { display: flex; justify-content: space-between; font: 600 9.5px/1 var(--f-mono); letter-spacing: .8px; color: #f2c14e; margin-bottom: 7px; }
+  .row .meta span:last-child { color: var(--text-3); }
+  .row .fl { display: flex; justify-content: space-between; align-items: center; }
+  .cells { display: flex; gap: 2px; }
+  .row .note { font: 500 11.5px/1 var(--f-ui); color: var(--text-2); margin-top: 7px; white-space: nowrap; }
+  .row.now { background: linear-gradient(90deg, rgba(242,193,78,.09), rgba(242,193,78,0)); margin: 0 -12px; padding-left: 12px; padding-right: 12px; }
+
+  .ticker { position: absolute; left: 12px; right: 12px; top: 712px; height: 40px; border-radius: 12px; background: #0a0703; overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(242,193,78,.18); display: flex; align-items: center; }
+  .ticker span { white-space: nowrap; font: 800 13px/1 var(--f-mono); letter-spacing: 2.4px; color: #ffb23e; text-shadow: 0 0 8px rgba(255,170,40,.75); padding-left: 16px;
+    -webkit-mask: radial-gradient(circle, #000 .9px, transparent 1.1px) 0 0/2.2px 2.2px; mask: radial-gradient(circle, #000 .9px, transparent 1.1px) 0 0/2.2px 2.2px; }
+  .ticker::after { content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 60px; background: linear-gradient(90deg, transparent, #0a0703); }
+  .foot { position: absolute; left: 24px; right: 24px; top: 772px; display: flex; justify-content: space-between; font: 500 11px/1 var(--f-ui); color: var(--text-3); }
+  .foot b { color: var(--text); font-weight: 600; }
+</style></head>
+<body class="phone">
+  <div class="topbar">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <span class="clock">GATE · B26</span>
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+  <div class="eb"><span>SALIDAS · DEPARTURES</span><span>TRIP 07 OF 11</span></div>
+  <div class="hero" id="hero"></div>
+  <div class="sub"><b>Feb 20 – Mar 3, 2020</b> · Sam, Dana, Maya &amp; Leo · 2 games, 3 cities, 9,150 miles</div>
+
+  <div class="board">
+    <div class="cols"><span>DESTINATION</span><span>RESULT</span></div>
+    <div id="rows"></div>
+  </div>
+
+  <div class="ticker"><span>+++ THE LAST GAME BEFORE THE WORLD WENT QUIET +++ MAR 01</span></div>
+  <div class="foot"><span><b>214</b> photos · <b>3</b> videos</span><span>Tap a stop to open</span></div>
+
+<script>
+(function(){
+  const cell = (ch, cls) => `<div class="flap ${cls}">${ch === ' ' ? '' : ch}</div>`;
+  const hero = document.getElementById('hero');
+  hero.innerHTML = [...'ESPAÑA'].map((c, i) => i === 3
+    ? `<div class="flap big"><span style="opacity:.0">Ñ</span><span style="position:absolute;inset:0;display:grid;place-items:center;clip-path:inset(50% 0 0 0)">Ñ</span><div class="mid"><span style="font:700 44px/54px var(--f-cond);color:#f4ead2;transform:translateY(27px)">R</span></div></div>`
+    : cell(c, 'big')).join('') + `<div style="width:6px"></div>` + [...'20'].map(c => cell(c, 'big amb')).join('');
+  const pad = (s, n) => (s + ' '.repeat(n)).slice(0, n);
+  const rows = [
+    {meta: ['THU 20 FEB · 17:35', 'ORD → BCN'], dest: 'BARCELONA', res: ' 5-0', rc: 'g', note: 'Camp Nou · Barcelona v Eibar · Sat Feb 22'},
+    {meta: ['TUE 25 FEB · 08:00', 'EUROMED'], dest: 'VALENCIA', res: 'REST', rc: 'dim', note: 'Mestalla tour · paella at Malvarrosa'},
+    {meta: ['FRI 28 FEB · 11:40', 'AVE · 300 KM/H'], dest: 'MADRID', res: ' 2-0', rc: 'g', note: 'Bernabéu · Madrid v Barcelona · Sun Mar 1', now: true},
+    {meta: ['TUE 03 MAR · 12:20', 'MAD → ORD'], dest: 'CHICAGO', res: 'HOME', rc: 'a', note: 'Landed 15:05 · nobody knew yet'},
+  ];
+  document.getElementById('rows').innerHTML = rows.map(r => `
+    <div class="row${r.now ? ' now' : ''}">
+      <div class="meta"><span>${r.meta[0]}</span><span>${r.meta[1]}</span></div>
+      <div class="fl"><div class="cells">${[...pad(r.dest, 9)].map(c => cell(c, 'sm')).join('')}</div>
+        <div class="cells">${[...r.res].map(c => cell(c, 'sm ' + r.rc)).join('')}</div></div>
+      <div class="note">${r.note}</div>
+    </div>`).join('');
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

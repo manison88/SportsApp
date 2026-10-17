@@ -15,6 +15,9 @@
   .sb .carrier { position: absolute; left: 44px; top: 21px; font: 600 15px/1 var(--f-ui); letter-spacing: -.1px; }
   .island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 126px; height: 37px; border-radius: 19px; background: #000; z-index: 11; }
 
+  .patch { position: absolute; left: 0; right: 0; top: 173px; height: 18px; z-index: 1;
+    background: linear-gradient(90deg, rgb(28,29,39), rgb(32,34,44) 50%, rgb(46,47,60));
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent); filter: blur(1px); }
   .lock { position: absolute; top: 62px; left: 50%; transform: translateX(-50%); width: 14px; height: 18px; z-index: 5; }
   .date { position: absolute; top: 88px; left: 0; right: 0; text-align: center; z-index: 5;
     font: 600 21px/1 var(--f-ui); letter-spacing: -.2px; color: rgba(255,255,255,.88); }
@@ -33,7 +36,7 @@
   .wd.wide .t2 { font: 600 10.5px/1.25 var(--f-ui); opacity: .78; margin-top: 2px; }
 
   /* Live Activity */
-  .la { position: absolute; left: 14px; right: 14px; top: 448px; height: 200px; border-radius: 24px; z-index: 6; overflow: hidden;
+  .la { position: absolute; left: 14px; right: 14px; top: 468px; height: 178px; border-radius: 24px; z-index: 6; overflow: hidden;
     background: rgba(14,16,24,.62); backdrop-filter: blur(30px) saturate(1.6); -webkit-backdrop-filter: blur(30px) saturate(1.6);
     box-shadow: inset 0 0 0 .5px rgba(255,255,255,.14); padding: 14px 16px 16px; }
   .la::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 90px;
@@ -60,7 +63,7 @@
   .outs i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.25); }
   .outs i.on { background: #fff; }
 
-  .la-foot { position: relative; display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+  .la-foot { position: relative; display: flex; align-items: center; gap: 12px; margin-top: 12px; }
   .la-foot .play { flex: 1; min-width: 0; }
   .la-foot .play b { display: block; font: 600 14px/1.2 var(--f-ui); color: #fff; letter-spacing: -.15px; }
   .la-foot .play span { display: block; font: 500 12px/1.3 var(--f-ui); color: rgba(255,255,255,.58); margin-top: 3px; }
@@ -89,6 +92,7 @@
 <body class="phone" data-chrome="none">
   <div class="wall"><img class="ph" src="../../photos/wrigley-night.jpg"></div>
 
+  <div class="patch"></div>
   <div class="island"></div>
   <div class="sb"><span class="icons">
     <svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="8" width="3.2" height="4" rx="1"/><rect x="5" y="5.5" width="3.2" height="6.5" rx="1"/><rect x="10" y="3" width="3.2" height="9" rx="1"/><rect x="15" y="0" width="3.2" height="12" rx="1"/></svg>
@@ -135,7 +139,7 @@
       </div>
     </div>
     <div class="la-foot">
-      <div class="play"><b>Go-ahead double off the ivy</b><span>6 moments saved tonight</span></div>
+      <div class="play"><b>Go-ahead double</b><span>Off the ivy · 6 saved tonight</span></div>
       <div class="save"><span class="dot"></span>Save moment</div>
     </div>
   </div>
@@ -144,7 +148,7 @@
     <div class="ic">W</div>
     <div class="tx">
       <div class="r1">Checked in at Wrigley<span>2h ago</span></div>
-      <div class="r2">Visit #17 · Sec 209 · your 17th game with Maya</div>
+      <div class="r2">Visit #17 · Sec 209 · with Maya</div>
     </div>
   </div>
 

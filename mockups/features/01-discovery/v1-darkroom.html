@@ -1,0 +1,118 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Darkroom</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background:
+    radial-gradient(120% 60% at 78% -6%, rgba(255,40,20,.34), rgba(120,10,6,.12) 45%, transparent 70%),
+    radial-gradient(90% 50% at 50% 62%, rgba(150,14,8,.30), transparent 70%),
+    #070101; }
+  :root { --red: #ff4a36; --red-2: rgba(255,120,100,.72); --red-3: rgba(255,120,100,.46); }
+
+  /* red monochrome photo */
+  .rm { position: relative; overflow: hidden; background: #1a0503; }
+  .rm img { filter: grayscale(1) contrast(1.15) brightness(.95); }
+  .rm::after { content: ""; position: absolute; inset: 0; background: #ff3a22; mix-blend-mode: multiply; }
+
+  .top { position: absolute; top: 58px; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .btn-circle.red { background: rgba(255,60,40,.12); box-shadow: inset 0 0 0 .5px rgba(255,90,70,.35); }
+  .btn-circle.red svg { stroke: var(--red-2); }
+  .count { height: 32px; padding: 0 12px; border-radius: 16px; display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,60,40,.12); box-shadow: inset 0 0 0 .5px rgba(255,90,70,.35); font: 600 13px/1 var(--f-mono); color: var(--red-2); }
+  .count i { width: 7px; height: 7px; border-radius: 50%; background: var(--red); box-shadow: 0 0 10px var(--red); }
+
+  .head { position: absolute; top: 112px; left: 24px; right: 24px; }
+  .head .eyebrow { color: var(--red-3); letter-spacing: 2.2px; }
+  .head h1 { margin-top: 10px; font: 400 36px/1.0 var(--f-serif); letter-spacing: -.5px; color: #ffd6cc; }
+  .head h1 em { color: var(--red); font-style: italic; }
+
+  /* clothesline */
+  .line { position: absolute; left: 0; top: 214px; width: 393px; height: 140px; }
+  .print { position: absolute; width: 74px; height: 92px; padding: 5px 5px 16px; background: #3a0c08;
+    box-shadow: 0 10px 20px rgba(0,0,0,.6), inset 0 0 0 .5px rgba(255,120,100,.25); transform-origin: 50% 0; }
+  .print .rm { width: 100%; height: 100%; }
+  .print .tag { position: absolute; left: 0; right: 0; bottom: 3px; text-align: center; font: 600 7px/1 var(--f-mono); letter-spacing: .6px; color: rgba(255,140,120,.7); }
+  .pin { position: absolute; top: -9px; left: 50%; width: 9px; height: 20px; margin-left: -4.5px; border-radius: 2px;
+    background: linear-gradient(90deg, #5a1a10, #8a2a1c 50%, #4a140c); box-shadow: 0 2px 4px rgba(0,0,0,.6); }
+  .drip { position: absolute; width: 2px; height: 7px; border-radius: 0 0 2px 2px; background: rgba(255,90,70,.5); }
+
+  /* tray */
+  .trayWrap { position: absolute; left: 0; top: 336px; width: 393px; height: 250px; perspective: 700px; }
+  .tray { position: absolute; left: 18px; right: 18px; top: 6px; height: 244px; border-radius: 22px;
+    transform: rotateX(26deg); transform-origin: 50% 100%;
+    background: linear-gradient(180deg, #2a0604, #140201); box-shadow: inset 0 0 0 3px #3a0a06, inset 0 0 0 4px rgba(255,90,60,.2), 0 30px 50px rgba(0,0,0,.7); }
+  .liquid { position: absolute; inset: 12px; border-radius: 14px; overflow: hidden;
+    background: radial-gradient(80% 70% at 30% 20%, rgba(255,80,50,.22), transparent 60%), linear-gradient(180deg, #2c0704, #1a0302); }
+  .sheet { position: absolute; left: 40px; top: 22px; width: 250px; height: 168px; padding: 7px; background: #e9c6bb; transform: rotate(-3deg);
+    box-shadow: 0 6px 14px rgba(0,0,0,.45); }
+  .sheet .rm { width: 100%; height: 100%; }
+  .sheet .rm img { filter: grayscale(1) contrast(1.25) brightness(1.05); }
+  .sheet .undev { position: absolute; inset: 7px; background: linear-gradient(118deg, rgba(240,200,190,0) 18%, rgba(240,205,195,.65) 48%, rgba(240,205,195,.97) 74%); }
+  .ripple { position: absolute; border-radius: 50%; border: 1px solid rgba(255,130,100,.22); }
+  .sheen { position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,200,180,.12), transparent 30%, transparent 70%, rgba(255,120,90,.08)); }
+  .tongs { position: absolute; right: 54px; top: -4px; width: 90px; height: 120px; }
+
+  /* developed card */
+  .card { position: absolute; left: 20px; right: 20px; top: 566px; border-radius: 24px; padding: 18px 18px 16px;
+    background: linear-gradient(180deg, #1b1210, #120b0a); box-shadow: inset 0 0 0 .5px rgba(255,200,170,.18), 0 -10px 40px rgba(255,60,30,.18), 0 24px 50px rgba(0,0,0,.6); }
+  .card .meta { display: flex; justify-content: space-between; align-items: center; }
+  .stamp { font: 700 9.5px/1 var(--f-ui); letter-spacing: 1.6px; color: var(--signal); padding: 6px 9px; border-radius: 10px; background: rgba(255,181,71,.12); box-shadow: inset 0 0 0 .5px rgba(255,181,71,.45); }
+  .card .eyebrow { color: var(--text-3); }
+  .card h2 { margin-top: 12px; font: 400 27px/1.05 var(--f-serif); letter-spacing: -.3px; color: var(--text); }
+  .score { margin-top: 12px; display: flex; align-items: center; gap: 10px; }
+  .score .mono-badge { width: 32px; height: 32px; font-size: 16px; }
+  .score b { font: 800 34px/1 var(--f-cond); letter-spacing: -.5px; }
+  .score .dash { color: var(--text-4); font: 500 22px/1 var(--f-cond); }
+  .score .l { color: var(--text-3); }
+  .score .where { margin-left: auto; text-align: right; font: 500 12px/1.35 var(--f-ui); color: var(--text-2); }
+  .score .where span { color: var(--text-3); }
+
+  .actions { position: absolute; left: 20px; right: 20px; top: 746px; display: flex; gap: 10px; }
+  .actions div { height: 54px; border-radius: 27px; display: grid; place-items: center; font: 600 16px/1 var(--f-ui); }
+  .skip { width: 120px; color: var(--red-2); background: rgba(255,60,40,.10); box-shadow: inset 0 0 0 .5px rgba(255,90,70,.35); }
+  .keep { flex: 1; color: #1a0703; background: linear-gradient(180deg, #ffc46a, #ff9a3c); box-shadow: 0 10px 30px rgba(255,140,60,.35); }
+  .foot { position: absolute; left: 0; right: 0; top: 810px; text-align: center; font: 500 11px/1 var(--f-mono); color: var(--red-3); letter-spacing: .4px; }
+</style></head>
+<body class="phone">
+  <div class="top">
+    <div class="btn-circle red"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+    <div class="count"><i></i>31 / 47 developed</div>
+  </div>
+
+  <div class="head">
+    <div class="eyebrow">Matched on this iPhone · 2,814 photos</div>
+    <h1>We found <em>47 games</em><br>in your photos.</h1>
+  </div>
+
+  <div class="line">
+    <svg width="393" height="40" style="position:absolute;left:0;top:0"><path d="M-10 12 Q196 34 403 10" stroke="rgba(255,120,100,.5)" stroke-width="1.2" fill="none"/></svg>
+    <div class="print" style="left:-26px;top:12px;transform:rotate(4deg)"><div class="pin"></div><div class="rm"><img class="ph" src="../../photos/fenway-night.jpg"></div><div class="tag">BOS · ’19</div></div>
+    <div class="print" style="left:62px;top:22px;transform:rotate(-3deg)"><div class="pin"></div><div class="rm"><img class="ph" src="../../photos/lambeau-concourse.jpg"></div><div class="tag">GB · ’25</div><div class="drip" style="left:30px;bottom:-8px"></div></div>
+    <div class="print" style="left:150px;top:28px;transform:rotate(2deg)"><div class="pin"></div><div class="rm"><img class="ph" src="../../photos/united-center-court.jpg"></div><div class="tag">CHI · ’15</div></div>
+    <div class="print" style="left:238px;top:24px;transform:rotate(-4deg)"><div class="pin"></div><div class="rm"><img class="ph" src="../../photos/camp-nou-aerial.jpg"></div><div class="tag">BCN · ’20</div><div class="drip" style="left:50px;bottom:-6px"></div></div>
+    <div class="print" style="left:326px;top:14px;transform:rotate(3deg)"><div class="pin"></div><div class="rm"><img class="ph" src="../../photos/soldier-soccer.jpg"></div><div class="tag">CHI · ’23</div></div>
+  </div>
+
+  <div class="trayWrap"><div class="tray"><div class="liquid">
+    <div class="ripple" style="left:150px;top:-30px;width:220px;height:110px"></div>
+    <div class="ripple" style="left:190px;top:-10px;width:140px;height:64px"></div>
+    <div class="sheet"><div class="rm"><img class="ph" src="../../photos/wrigley-night.jpg"></div><div class="undev"></div></div>
+    <div class="ripple" style="left:-40px;top:150px;width:200px;height:90px;opacity:.6"></div>
+    <div class="sheen"></div>
+  </div></div></div>
+
+  <div class="card">
+    <div class="meta"><span class="eyebrow">Sun · Oct 30 · 2016 · 11 photos</span><span class="stamp">MATCHED</span></div>
+    <h2>World Series, Game 5</h2>
+    <div class="score">
+      <span class="mono-badge" style="background:linear-gradient(135deg,#0e3386,#1a4bb8);box-shadow:inset 0 0 0 1.5px #cc3433;font-size:13px">CHC</span>
+      <b class="tnum">3</b><span class="dash">–</span><b class="tnum l">2</b>
+      <span class="mono-badge" style="background:linear-gradient(135deg,#0c2340,#1c3358);box-shadow:inset 0 0 0 1.5px #e8344a;opacity:.7;font-size:13px">CLE</span>
+      <div class="where">Wrigley Field<br><span>Bleachers · 7:58–11:41 PM</span></div>
+    </div>
+  </div>
+
+  <div class="actions"><div class="skip">Skip</div><div class="keep">Keep this game</div></div>
+  <div class="foot">16 prints still in the tray</div>
+  <div class="grain" style="opacity:.28"></div>
+<script src="../../kit/kit.js"></script>
+</body></html>

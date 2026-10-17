@@ -1,0 +1,82 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Split screen</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  .top { position: absolute; left: 0; right: 0; top: 0; height: 424px; overflow: hidden; }
+  .top::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 26%, rgba(0,0,0,0) 62%, rgba(0,0,0,.7) 100%); }
+  .topbar { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 5; }
+  .pager { display: flex; gap: 4px; }
+  .pager i { width: 18px; height: 3px; border-radius: 2px; background: rgba(255,255,255,.35); }
+  .pager i.on { background: #fff; }
+  .lbl { position: absolute; z-index: 4; left: 20px; right: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .lbl .k { font: 700 10px/1 var(--f-ui); letter-spacing: 1.6px; text-transform: uppercase; }
+  .lbl h2 { margin-top: 6px; font: 400 28px/1 var(--f-serif); letter-spacing: -.3px; }
+  .lbl .t { font: 700 12px/1 var(--f-mono); padding: 6px 8px; border-radius: 7px; }
+  .lbl.you { top: 352px; }
+  .lbl.you .k { color: var(--signal); }
+  .lbl.you .t { background: rgba(255,181,71,.18); color: var(--signal); box-shadow: inset 0 0 0 .5px rgba(255,181,71,.5); }
+
+  .seam { position: absolute; left: 0; right: 0; top: 424px; height: 2px; z-index: 6; background: linear-gradient(90deg, #2f6bff, #ffb547 50%, #cc3433); box-shadow: 0 0 18px rgba(255,181,71,.6); }
+  .sync { position: absolute; z-index: 7; top: 409px; left: 50%; transform: translateX(-50%); height: 32px; padding: 0 14px; border-radius: 16px; background: #050506; box-shadow: inset 0 0 0 1px rgba(255,181,71,.6), 0 8px 20px rgba(0,0,0,.6); display: flex; align-items: center; gap: 8px; font: 700 11px/1 var(--f-ui); letter-spacing: 1.4px; color: #fff; white-space: nowrap; }
+  .sync svg { width: 14px; height: 14px; stroke: var(--signal); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .bot { position: absolute; left: 0; right: 0; top: 426px; bottom: 0; background: linear-gradient(180deg, #0b1630 0%, #070a14 70%, #050506 100%); overflow: hidden; }
+  .bot::before { content: ""; position: absolute; inset: 0; background: radial-gradient(80% 60% at 50% 40%, rgba(47,107,255,.18), transparent 70%); }
+  .lbl.field { top: 466px; align-items: flex-start; }
+  .lbl.field .k { color: #8fb0ff; }
+  .lbl.field .t { background: rgba(47,107,255,.18); color: #b9ccff; box-shadow: inset 0 0 0 .5px rgba(143,176,255,.5); }
+  svg#zone { position: absolute; left: 0; top: 0; width: 393px; height: 852px; z-index: 3; }
+  .stats { position: absolute; left: 236px; top: 548px; z-index: 4; width: 136px; }
+  .stats .r { padding: 10px 0; border-bottom: .5px solid var(--line-2); }
+  .stats .r:last-child { border: none; }
+  .stats .v { font: 700 26px/1 var(--f-cond); letter-spacing: -.3px; }
+  .stats .v small { font: 600 13px/1 var(--f-cond); color: var(--text-2); margin-left: 2px; }
+  .stats .n { margin-top: 4px; font: 600 9.5px/1 var(--f-ui); letter-spacing: 1.4px; color: var(--text-3); }
+  .foot { position: absolute; left: 20px; right: 20px; top: 762px; z-index: 4; display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: .5px solid var(--line-2); }
+  .foot .av { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg,#8fe3a0,#2f6b43); display: grid; place-items: center; font: 400 16px/1 var(--f-serif); flex: none; }
+  .foot p { font: 400 13px/1.35 var(--f-ui); color: var(--text-2); }
+  .foot p b { color: var(--text); font-weight: 600; }
+</style></head>
+<body class="phone">
+  <div class="top"><img class="ph graded" src="../../photos/wrigley-night-2.jpg" style="object-position:50% 58%"></div>
+  <div class="topbar">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+    <div class="pager"><i></i><i></i><i></i><i></i><i></i><i class="on"></i></div>
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+  <div class="lbl you"><div><div class="k">◆ Your view · Bleachers, Sec 314</div><h2>The whole place shaking.</h2></div><span class="t tnum">10:42:40 PM</span></div>
+
+  <div class="seam"></div>
+  <div class="sync"><svg viewBox="0 0 24 24"><path d="M12 4v16M8 8l4-4 4 4M8 16l4 4 4-4"/></svg>40 SECONDS APART</div>
+
+  <div class="bot"></div>
+  <div class="lbl field"><div><div class="k">On the field · Top 9th, 2 out</div><h2>Chapman. Strike three.</h2></div><span class="t tnum">10:42:00 PM</span></div>
+  <svg id="zone"></svg>
+  <div class="stats">
+    <div class="r"><div class="v tnum">101.6<small>mph</small></div><div class="n">FINAL PITCH</div></div>
+    <div class="r"><div class="v tnum">8<small>outs</small></div><div class="n">CHAPMAN’S SAVE</div></div>
+    <div class="r"><div class="v tnum">3–2<small>series</small></div><div class="n">BACK TO CLEVELAND</div></div>
+  </div>
+  <div class="foot"><span class="av">R</span><p><b>Dad</b> stood next to you for all <b>8 outs</b>.<br>His 4th postseason game with you.</p></div>
+
+<script>
+  // strike zone (catcher's view)
+  const ZX = 52, ZY = 546, ZW = 136, ZH = 150;
+  let s = `<defs><filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter></defs>`;
+  s += `<rect x="${ZX - 18}" y="${ZY - 18}" width="${ZW + 36}" height="${ZH + 36}" rx="10" fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.06)"/>`;
+  s += `<rect x="${ZX}" y="${ZY}" width="${ZW}" height="${ZH}" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>`;
+  for (let i = 1; i < 3; i++) { s += `<line x1="${ZX + ZW * i / 3}" x2="${ZX + ZW * i / 3}" y1="${ZY}" y2="${ZY + ZH}" stroke="rgba(255,255,255,.14)"/>`; s += `<line y1="${ZY + ZH * i / 3}" y2="${ZY + ZH * i / 3}" x1="${ZX}" x2="${ZX + ZW}" stroke="rgba(255,255,255,.14)"/>`; }
+  // pitches: [x 0..1 across zone, y 0..1, label]
+  const P = [[.78, .22, 1], [1.12, .08, 2], [.3, .62, 3], [.9, -.06, 4], [.62, .3, 5]];
+  P.forEach(([px, py, n], i) => {
+    const cx = ZX + ZW * px, cy = ZY + ZH * py, last = i === P.length - 1;
+    if (last) { s += `<circle cx="${cx}" cy="${cy}" r="18" fill="#ffb547" opacity=".35" filter="url(#g)"/><circle cx="${cx}" cy="${cy}" r="12" fill="#ffb547"/><text x="${cx}" y="${cy + 4.5}" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="14" fill="#1d1405">K</text>`; }
+    else { s += `<circle cx="${cx}" cy="${cy}" r="10" fill="${py < 0 || px > 1 ? 'none' : 'rgba(143,176,255,.25)'}" stroke="#8fb0ff" stroke-width="1.5"/><text x="${cx}" y="${cy + 4}" text-anchor="middle" font-family="Inter" font-weight="700" font-size="10" fill="#cfdaff">${n}</text>`; }
+  });
+  // home plate
+  const hx = ZX + ZW / 2, hy = ZY + ZH + 26;
+  s += `<path d="M${hx - 22} ${hy} h44 v7 l-22 9 l-22 -9z" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.35)"/>`;
+  document.getElementById('zone').innerHTML = s;
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

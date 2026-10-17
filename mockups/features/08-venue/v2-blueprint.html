@@ -1,0 +1,158 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Blueprint</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #0d2f66; }
+  .paper { position: absolute; inset: 0;
+    background:
+      radial-gradient(120% 80% at 50% 35%, rgba(255,255,255,.07), rgba(0,0,0,.28) 100%),
+      linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px) 0 0/8px 8px,
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) 0 0/8px 8px,
+      #12387a; }
+  .top { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+  .top .ttl { font: 500 10.5px/1 var(--f-mono); letter-spacing: 2px; color: rgba(235,243,255,.75); }
+  .btn-circle.line { box-shadow: inset 0 0 0 1px rgba(235,243,255,.45); }
+  .seg { display: flex; height: 32px; border-radius: 16px; box-shadow: inset 0 0 0 1px rgba(235,243,255,.45); padding: 3px; }
+  .seg span { padding: 0 11px; display: grid; place-items: center; font: 600 10px/1 var(--f-mono); letter-spacing: 1px; color: rgba(235,243,255,.7); border-radius: 13px; }
+  .seg span.on { background: #ebf3ff; color: #12387a; }
+
+  .hdr { position: absolute; left: 20px; right: 20px; top: 112px; }
+  .hdr .k { font: 500 10px/1 var(--f-mono); letter-spacing: 1.8px; color: rgba(235,243,255,.6); }
+  .hdr h1 { font: 700 34px/1 var(--f-grot); letter-spacing: -.5px; color: #f2f7ff; margin-top: 8px; }
+  .hdr .sub { font: 400 11px/1.4 var(--f-mono); color: rgba(235,243,255,.7); margin-top: 6px; }
+
+  svg#plan { position: absolute; left: 0; top: 180px; width: 393px; height: 452px; }
+
+  .block { position: absolute; left: 16px; right: 16px; top: 638px; height: 166px; border: 1.5px solid rgba(235,243,255,.85);
+    display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: 64px 50px 1fr; background: rgba(10,40,95,.55); }
+  .block > div { border-right: 1px solid rgba(235,243,255,.45); border-bottom: 1px solid rgba(235,243,255,.45); padding: 8px 10px; position: relative; }
+  .block > div:nth-child(3n) { border-right: 0; }
+  .block .k { font: 500 8.5px/1 var(--f-mono); letter-spacing: 1.4px; color: rgba(235,243,255,.6); }
+  .block .v { white-space: nowrap; font: 600 14px/1.15 var(--f-grot); color: #f2f7ff; margin-top: 6px; }
+  .block .rec { grid-row: span 2; }
+  .block .rec .v { font: 700 50px/.9 var(--f-grot); letter-spacing: -2px; margin-top: 12px; white-space: nowrap; color: #ffcf6e; }
+  .block .rec .v small { font: 600 13px/1 var(--f-mono); letter-spacing: 0; color: rgba(235,243,255,.75); display: block; margin-top: 10px; }
+  .block .wide { grid-column: span 3; border-bottom: 0; display: flex; align-items: center; justify-content: space-between; }
+  .block .wide .v { margin: 0; font: 500 10.5px/1.3 var(--f-mono); color: rgba(235,243,255,.85); }
+  .block .stamp { font: 700 10px/1 var(--f-mono); letter-spacing: 1.5px; color: #ffcf6e; border: 1.5px solid #ffcf6e; padding: 5px 7px; transform: rotate(-4deg); }
+</style></head>
+<body class="phone">
+  <div class="paper"></div>
+  <div class="top">
+    <div class="btn-circle line"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="seg"><span class="on">PLAN</span><span>SECTION</span><span>3D</span></div>
+    <div class="btn-circle line"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  </div>
+
+  <div class="hdr">
+    <div class="k">DWG W-08 · PLAN VIEW · NORTH ↖</div>
+    <h1>WRIGLEY FIELD</h1>
+    <div class="sub">Every seat S. Okafor has sat in, redlined.</div>
+  </div>
+
+  <svg id="plan" viewBox="0 0 393 452"></svg>
+
+  <div class="block">
+    <div class="rec"><div class="k">YOUR RECORD</div><div class="v tnum">11–6<small>.647 · 17 VISITS</small></div></div>
+    <div><div class="k">FIRST VISIT</div><div class="v tnum">06.14.2014</div></div>
+    <div><div class="k">LAST VISIT</div><div class="v tnum">07.04.2026</div></div>
+    <div><div class="k">SEATS USED</div><div class="v">5 sections</div></div>
+    <div><div class="k">MOST USED</div><div class="v">Bleachers 314</div></div>
+    <div class="wide"><div class="v">1060 W ADDISON ST · OPENED 04.23.1914<br>DRAWN FOR SAM OKAFOR · SHEET 1 OF 21</div><div class="stamp">AS-BUILT</div></div>
+  </div>
+
+<script>
+(function(){
+  const NS = 'http://www.w3.org/2000/svg', svg = document.getElementById('plan');
+  const W = '#ebf3ff', AM = '#ffcf6e';
+  const el = (t, a, p = svg) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+  const txt = (x, y, s, a = {}) => { const e = el('text', Object.assign({ x, y, fill: W, 'font-family': 'JetBrains Mono', 'font-size': 7.5, 'text-anchor': 'middle', 'letter-spacing': .6 }, a)); e.textContent = s; return e; };
+  const g = el('g', { transform: 'translate(16 18)' });
+  const L = (pts, a = {}) => el('polyline', Object.assign({ points: pts.map(p => p.join(',')).join(' '), fill: 'none', stroke: W, 'stroke-width': 1, 'stroke-linejoin': 'round' }, a), g);
+  const H = [180, 352], s = .52;
+  const pol = (ft, deg) => [H[0] + Math.sin(deg * Math.PI / 180) * ft * s, H[1] - Math.cos(deg * Math.PI / 180) * ft * s];
+  const LF = pol(355, -45), LCF = pol(368, -22.5), CF = pol(400, 0), RCF = pol(368, 22.5), RF = pol(353, 45);
+  // park footprint (kite) and grandstand
+  const K = { t: [180, 66], l: [4, 232], r: [356, 232], b: [180, 400] };
+  el('polygon', { points: [K.t, K.r, [196, 400], [164, 400], K.l].map(p => p.join(',')).join(' '), fill: 'rgba(235,243,255,.05)', stroke: W, 'stroke-width': 1.6 }, g);
+  // hatch the grandstand roof band
+  const hatch = el('pattern', { id: 'h', width: 5, height: 5, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' }, el('defs', {}));
+  el('line', { x1: 0, y1: 0, x2: 0, y2: 5, stroke: 'rgba(235,243,255,.28)', 'stroke-width': 1 }, hatch);
+  // inner field edge (foul territory boundary)
+  const fi = [[LF[0] - 8, LF[1] + 4], [H[0], H[1] + 18], [RF[0] + 8, RF[1] + 4]];
+  el('polygon', { points: [K.l, fi[0], fi[1], fi[2], K.r, [196, 400], [164, 400]].map(p => p.join(',')).join(' '), fill: 'url(#h)' }, g);
+  // tier lines across the grandstand
+  [.36, .68].forEach((t, i) => {
+    const pts = [[K.l, fi[0]], [[172, 400], fi[1]], [[188, 400], fi[1]], [K.r, fi[2]]].map(([o, n]) => [n[0] + (o[0] - n[0]) * t, n[1] + (o[1] - n[1]) * t]);
+    L([pts[0], [180, pts[1][1]], pts[3]], { 'stroke-width': .7, 'stroke-dasharray': i ? '3 2' : '' });
+  });
+  // section ticks along the grandstand
+  for (let i = 0; i <= 20; i++) {
+    const t = i / 20;
+    const side = t < .5 ? 0 : 1, u = side ? (t - .5) * 2 : t * 2;
+    const a = side ? [fi[1], fi[2]] : [fi[0], fi[1]], b = side ? [[188, 400], K.r] : [K.l, [172, 400]];
+    const p1 = [a[0][0] + (a[1][0] - a[0][0]) * u, a[0][1] + (a[1][1] - a[0][1]) * u];
+    const p2 = [b[0][0] + (b[1][0] - b[0][0]) * u, b[0][1] + (b[1][1] - b[0][1]) * u];
+    L([p1, p2], { 'stroke-width': .45, opacity: .55 });
+  }
+  // field + wall (ivy)
+  const wall = `M ${LF[0]} ${LF[1]} L ${LF[0] + 16} ${LF[1] - 22} Q ${LCF[0] - 10} ${LCF[1] + 4} ${LCF[0]} ${LCF[1]} Q ${CF[0] - 40} ${CF[1] + 2} ${CF[0]} ${CF[1]} Q ${CF[0] + 40} ${CF[1] + 2} ${RCF[0]} ${RCF[1]} Q ${RCF[0] + 10} ${RCF[1] + 4} ${RF[0] - 16} ${RF[1] - 22} L ${RF[0]} ${RF[1]}`;
+  el('path', { d: wall, fill: 'none', stroke: W, 'stroke-width': 2.2 }, g);
+  el('path', { d: wall, fill: 'none', stroke: '#12387a', 'stroke-width': .8, 'stroke-dasharray': '1.5 2.5' }, g);
+  L([fi[0], fi[1], fi[2]], { 'stroke-width': 1.3 });
+  L([LF, H, RF], { 'stroke-width': .9 });
+  // infield
+  const b1 = pol(90, 45), b2 = pol(127.3, 0), b3 = pol(90, -45);
+  L([H, b1, b2, b3, H], { 'stroke-width': .9 });
+  el('path', { d: `M ${H[0] - 62} ${H[1] - 62} A 95 95 0 0 1 ${H[0] + 62} ${H[1] - 62}`, fill: 'none', stroke: W, 'stroke-width': .9, transform: 'translate(0 2)' }, g);
+  el('circle', { cx: H[0], cy: H[1] - 60.5 * s, r: 4.5, fill: 'none', stroke: W, 'stroke-width': .9 }, g);
+  el('circle', { cx: H[0], cy: H[1], r: 7, fill: 'none', stroke: W, 'stroke-width': .9 }, g);
+  [H, b1, b2, b3].forEach(([x, y]) => el('rect', { x: x - 1.8, y: y - 1.8, width: 3.6, height: 3.6, fill: W, transform: `rotate(45 ${x} ${y})` }, g));
+  // CF scoreboard
+  el('rect', { x: 150, y: 92, width: 60, height: 14, fill: 'none', stroke: W, 'stroke-width': 1 }, g);
+  txt(180, 101.5, 'SCOREBOARD · 1937', { 'font-size': 5.5 }).remove(); g.appendChild(txt(180, 101.6, 'SCOREBOARD 1937', { 'font-size': 5.4 }));
+  // distance dimensions
+  const dim = (P, label, off) => {
+    const [x, y] = P; const dx = x - H[0], dy = y - H[1]; const d = Math.hypot(dx, dy);
+    const nx = dx / d, ny = dy / d;
+    const tx = x + nx * off, ty = y + ny * off;
+    g.appendChild(Object.assign(txt(tx, ty + 3, label, { 'font-size': 8, 'font-weight': 600 })));
+  };
+  dim(LF, "355'", 14); dim(LCF, "368'", 13); dim([CF[0], CF[1] + 30], "400'", 0); dim(RCF, "368'", 13); dim(RF, "353'", 14);
+  // dimension line 90'
+
+
+  // street names
+  const st = (x, y, r, s) => g.appendChild(txt(x, y, s, { transform: `rotate(${r} ${x} ${y})`, 'font-size': 7, 'letter-spacing': 2.6, opacity: .75 }));
+  st(110, 116, -44, 'W WAVELAND AVE'); st(280, 136, 44, 'N SHEFFIELD AVE'); st(290, 330, -44, 'W ADDISON ST'); st(70, 330, 44, 'N CLARK ST');
+
+  // ---- amber redline: Sam's seats ----
+  const seats = [
+    { p: [226, 134], n: '6×', sec: 'SEC 314', note: 'WS Gm 5 · w/ Dad', lx: 300, ly: 56, anchor: 'end' },
+    { p: [96, 312], n: '4×', sec: 'SEC 209', note: 'first game, 2014', lx: 6, ly: 386, anchor: 'start' },
+    { p: [180, 382], n: '3×', sec: 'SEC 118', note: 'Opening Night ’15', lx: 180, ly: 432, anchor: 'middle' },
+    { p: [264, 312], n: '2×', sec: 'SEC 230', note: 'Jul 4, 2026', lx: 356, ly: 386, anchor: 'end' },
+    { p: [58, 268], n: '2×', sec: 'SEC 506', note: 'NLCS Gm 6', lx: 6, ly: 186, anchor: 'start' },
+  ];
+  seats.forEach(({ p, n, sec, note, lx, ly, anchor }, i) => {
+    const r = 5 + parseInt(n) * 1.4;
+    el('circle', { cx: p[0], cy: p[1], r: r + 5, fill: 'rgba(255,207,110,.14)' }, g);
+    el('circle', { cx: p[0], cy: p[1], r, fill: 'none', stroke: AM, 'stroke-width': 1.6 }, g);
+    el('circle', { cx: p[0], cy: p[1], r: 2.4, fill: AM }, g);
+    // leader
+    const ex = anchor === 'end' ? lx - 4 : anchor === 'start' ? lx + 4 : lx;
+    const ey = ly < p[1] ? ly + 10 : ly - 24;
+    el('path', { d: `M ${p[0]} ${p[1]} L ${ex} ${ey}`, stroke: AM, 'stroke-width': .9, fill: 'none', 'stroke-dasharray': '2 1.6' }, g);
+    const t1 = txt(lx, ly - 12, `${sec}  ${n}`, { fill: AM, 'font-size': 9, 'font-weight': 700, 'text-anchor': anchor, 'letter-spacing': .8 }); g.appendChild(t1);
+    const t2 = txt(lx, ly, note, { fill: AM, 'font-family': 'Caveat', 'font-size': 13.5, 'font-weight': 700, 'text-anchor': anchor, 'letter-spacing': 0 }); g.appendChild(t2);
+  });
+  // north arrow
+  const na = el('g', { transform: 'translate(334 24) rotate(-45)' }, g);
+  el('circle', { cx: 0, cy: 0, r: 11, fill: 'none', stroke: W, 'stroke-width': .8 }, na);
+  el('path', { d: 'M0 -9 L4 6 L0 3 L-4 6 Z', fill: W }, na);
+})();
+</script>
+<script src="../../kit/kit.js"></script>
+</body></html>

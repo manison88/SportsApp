@@ -1,0 +1,92 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Quiet list</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #f7f6f3; color: #121212; }
+  :root { --k1: #121212; --k2: rgba(18,18,18,.62); --k3: rgba(18,18,18,.42); --k4: rgba(18,18,18,.10); --ok: #1f9d55; }
+  .nav { position: absolute; top: 62px; left: 20px; right: 20px; display: flex; justify-content: space-between; font: 500 16px/1 var(--f-ui); }
+  .nav .l { color: var(--k2); }
+  .nav .r { color: var(--k3); font-variant-numeric: tabular-nums; }
+  .title { position: absolute; top: 104px; left: 20px; right: 20px; }
+  .title h1 { font: 800 34px/1.02 var(--f-tight); letter-spacing: -1.2px; }
+  .title p { margin-top: 8px; font: 400 14px/1.4 var(--f-ui); color: var(--k2); }
+  .bar { position: absolute; top: 196px; left: 20px; right: 20px; height: 4px; border-radius: 2px; background: var(--k4); overflow: hidden; }
+  .bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 25.5%; background: var(--k1); border-radius: 2px; }
+
+  .done { position: absolute; top: 218px; left: 20px; right: 20px; height: 40px; display: flex; align-items: center; gap: 10px; font: 500 14px/1 var(--f-ui); color: var(--k2); }
+  .done .ck { width: 22px; height: 22px; border-radius: 11px; background: var(--ok); display: grid; place-items: center; }
+  .done .ck svg { width: 12px; height: 12px; stroke: #fff; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .done .more { margin-left: auto; color: var(--k3); }
+
+  .active { position: absolute; top: 266px; left: 12px; right: 12px; background: #fff; border-radius: 26px; padding: 18px 18px 16px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 18px 40px rgba(20,20,20,.10), 0 2px 6px rgba(20,20,20,.05); }
+  .active .meta { display: flex; justify-content: space-between; font: 500 13px/1 var(--f-ui); color: var(--k3); }
+  .active .meta b { color: var(--k2); font-weight: 600; }
+  .active h2 { margin-top: 10px; font: 700 22px/1.1 var(--f-tight); letter-spacing: -.5px; }
+  .teams { margin-top: 14px; }
+  .tr { display: flex; align-items: center; height: 40px; }
+  .tr .mono-badge { width: 30px; height: 30px; font-size: 13px; margin-right: 12px; }
+  .tr .n { flex: 1; font: 600 17px/1 var(--f-ui); letter-spacing: -.2px; }
+  .tr .s { font: 700 26px/1 var(--f-tight); letter-spacing: -.5px; font-variant-numeric: tabular-nums; }
+  .tr.lo .n, .tr.lo .s { color: var(--k3); }
+  .pics { display: flex; gap: 6px; margin-top: 14px; }
+  .pics div { flex: 1; height: 62px; border-radius: 10px; overflow: hidden; position: relative; }
+  .pics .plus { display: grid; place-items: center; background: #efeeea; font: 600 13px/1 var(--f-ui); color: var(--k2); }
+  .why { margin-top: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .why span { height: 26px; padding: 0 10px; border-radius: 13px; background: #f1f0ec; display: inline-flex; align-items: center; gap: 6px; font: 500 12px/1 var(--f-ui); color: var(--k2); }
+  .why svg { width: 12px; height: 12px; stroke: var(--k2); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .confirm { margin-top: 16px; height: 52px; border-radius: 26px; background: var(--k1); color: #fff; display: grid; place-items: center; font: 600 16px/1 var(--f-ui); }
+  .skip { margin-top: 12px; text-align: center; font: 500 14px/1 var(--f-ui); color: var(--k3); }
+
+  .list { position: absolute; top: 640px; left: 20px; right: 20px; }
+  .li { display: flex; align-items: center; height: 54px; border-top: .5px solid rgba(0,0,0,.08); }
+  .li .d { width: 58px; font: 600 11px/1.25 var(--f-ui); color: var(--k3); letter-spacing: .3px; text-transform: uppercase; }
+  .li .d b { display: block; font: 700 17px/1 var(--f-tight); color: var(--k1); letter-spacing: -.3px; text-transform: none; }
+  .li .m { flex: 1; min-width: 0; }
+  .li .m b { display: block; font: 600 15px/1.2 var(--f-ui); letter-spacing: -.2px; }
+  .li .m span { font: 400 12.5px/1.3 var(--f-ui); color: var(--k3); }
+  .li .sc { font: 600 15px/1 var(--f-ui); font-variant-numeric: tabular-nums; color: var(--k2); }
+  .sk { height: 10px; border-radius: 5px; background: linear-gradient(90deg, #ebe9e4 0%, #f4f3ef 40%, #ebe9e4 80%); }
+  .spin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--k4); border-top-color: var(--k2); }
+  .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 110px; background: linear-gradient(rgba(247,246,243,0), #f7f6f3 70%); }
+</style></head>
+<body class="phone" data-chrome="dark">
+  <div class="nav"><span class="l">Later</span><span class="r">12 of 47</span></div>
+  <div class="title">
+    <h1>47 games found</h1>
+    <p>Matched on this iPhone from your photos’ dates and places.</p>
+  </div>
+  <div class="bar"><i></i></div>
+
+  <div class="done"><span class="ck"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span><b style="color:#121212;font-weight:600">11 confirmed</b> · Apr 2014 – Jun 2016</span><span class="more">Show</span></div>
+
+  <div class="active">
+    <div class="meta"><span><b>Sat, Oct 22, 2016</b> · Wrigley Field</span><span>NLCS · G6</span></div>
+    <h2>The night Chicago won the pennant</h2>
+    <div class="teams">
+      <div class="tr"><span class="mono-badge" style="background:#0e3386;box-shadow:inset 0 0 0 1.5px #cc3433">CHC</span><span class="n">Chicago</span><span class="s">5</span></div>
+      <div class="tr lo"><span class="mono-badge" style="background:#005a9c;opacity:.55">LA</span><span class="n">Los Angeles</span><span class="s">0</span></div>
+    </div>
+    <div class="pics">
+      <div><img class="ph" src="../../photos/wrigley-night-2.jpg"></div>
+      <div><img class="ph" src="../../photos/wrigley-scoreboard.jpg"></div>
+      <div><img class="ph" src="../../photos/wrigley-bleachers.jpg"></div>
+      <div class="plus">+6</div>
+    </div>
+    <div class="why">
+      <span><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Inside Wrigley</span>
+      <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>7:14 – 11:02 PM</span>
+      <span>9 photos</span>
+    </div>
+    <div class="confirm">Confirm</div>
+  </div>
+
+  <div class="list">
+    <div class="li"><div class="d"><b>30</b>Oct ’16</div><div class="m"><b>World Series · Game 5</b><span>Wrigley Field · 11 photos</span></div><div class="sc">CHC 3–2</div></div>
+    <div class="li" style="opacity:.7"><div class="d"><b>25</b>Nov ’17</div><div class="m"><b>Dortmund vs. Schalke</b><span>Signal Iduna Park · 23 photos</span></div><div class="sc">4–4</div></div>
+    <div class="li" style="opacity:.45"><div class="d"><b>06</b>Jan ’19</div><div class="m"><b>NFC Wild Card</b><span>Soldier Field · 7 photos</span></div><div class="sc">PHI 16–15</div></div>
+    <div class="li"><div class="d"><div class="sk" style="width:26px;height:14px;margin-bottom:5px"></div><div class="sk" style="width:38px;height:8px"></div></div><div class="m"><div class="sk" style="width:150px"></div><div class="sk" style="width:96px;height:8px;margin-top:7px"></div></div><div class="spin"></div></div>
+  </div>
+  <div class="fade"></div>
+<script src="../../kit/kit.js"></script>
+</body></html>

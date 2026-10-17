@@ -1,0 +1,123 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Postcard</title>
+<link rel="stylesheet" href="../../kit/kit.css">
+<style>
+  body.phone { background: #2b2420; }
+  .desk { position: absolute; inset: 0;
+    background: radial-gradient(90% 60% at 50% 35%, #4a3c33 0%, #2e2622 60%, #1c1714 100%); }
+  .desk::after { content: ""; position: absolute; inset: 0; opacity: .35; mix-blend-mode: overlay;
+    background: repeating-linear-gradient(92deg, rgba(255,255,255,.06) 0 2px, transparent 2px 7px, rgba(0,0,0,.08) 7px 9px, transparent 9px 15px); }
+
+  .top { position: absolute; top: 56px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 10; }
+  .top .ttl { text-align: center; }
+  .top .ttl b { display: block; font: 600 15px/1.1 var(--f-ui); color: #f5ede0; }
+  .top .ttl span { font: 500 11px/1.2 var(--f-ui); color: rgba(245,237,224,.55); }
+
+  /* ---- front ---- */
+  .front { position: absolute; left: 18px; top: 112px; width: 357px; height: 236px; transform: rotate(-3deg); z-index: 3;
+    background: #f4ead2; padding: 9px; box-shadow: 0 1px 1px rgba(0,0,0,.3), 0 18px 30px rgba(0,0,0,.45); }
+  .front .img { position: relative; width: 100%; height: 100%; overflow: hidden; background: #6aa7d8; }
+  .front .img img { filter: saturate(1.55) contrast(1.08) sepia(.28) hue-rotate(-6deg) brightness(1.04); object-position: 50% 30%; }
+  .linen { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: multiply; opacity: .5;
+    background: repeating-linear-gradient(0deg, rgba(120,90,50,.18) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(120,90,50,.16) 0 1px, transparent 1px 3px); }
+  .front .tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,190,90,.1), rgba(255,120,60,.18)); mix-blend-mode: multiply; }
+  .greet { position: absolute; left: 0; right: 0; top: 18px; text-align: center; font: italic 400 25px/1 var(--f-dm); color: #fff7e6;
+    text-shadow: 0 2px 0 #b2332a, 0 3px 6px rgba(0,0,0,.35); transform: rotate(-4deg); }
+  .letters { position: absolute; left: 0; right: 0; top: 58px; height: 110px; text-align: center; }
+  .letters .ex, .letters .fill { position: absolute; left: 0; right: 0; top: 0; font: 400 104px/1 var(--f-anton); letter-spacing: -1px; text-transform: uppercase; }
+  .letters .ex { color: #c3352b; -webkit-text-stroke: 4px #fff2d6; text-shadow: 3px 3px 0 #8f1e1a, 5px 5px 0 #8f1e1a, 7px 7px 0 #6a1513, 9px 9px 8px rgba(0,0,0,.35); }
+  .letters .fill { color: transparent; background: url(../../photos/wrigley-bleachers.jpg) 40% 55%/430px auto; -webkit-background-clip: text; background-clip: text;
+    filter: saturate(1.5) contrast(1.15) brightness(1.08); }
+  .front .cap { position: absolute; left: 10px; right: 10px; bottom: 9px; display: flex; justify-content: space-between; align-items: center;
+    font: 700 9px/1 var(--f-ui); letter-spacing: 1.2px; text-transform: uppercase; color: #fff7e6; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+
+  /* ---- back ---- */
+  .back { position: absolute; left: 14px; top: 366px; width: 365px; height: 424px; transform: rotate(1.6deg); z-index: 2;
+    background: #f6efdf; box-shadow: 0 1px 1px rgba(0,0,0,.3), 0 22px 40px rgba(0,0,0,.5); overflow: hidden; color: #2a2620; }
+  .back .paper-tex { opacity: .7; }
+  .back .hd { position: absolute; left: 18px; right: 18px; top: 16px; display: flex; justify-content: space-between; align-items: baseline; z-index: 2; }
+  .back .hd b { font: 400 22px/1 var(--f-dm); letter-spacing: 6px; color: #3b3328; }
+  .back .hd span { font: 500 7.5px/1.3 var(--f-ui); letter-spacing: 1px; color: #7a705f; text-transform: uppercase; text-align: right; }
+  .back .div { position: absolute; left: 196px; top: 54px; bottom: 74px; width: 1px; background: #8b8170; z-index: 2; }
+  .msg { position: absolute; left: 18px; top: 58px; width: 168px; z-index: 3; font: 600 19px/1.08 var(--f-hand); color: #23325e; transform: rotate(-1deg); }
+  .msg p + p { margin-top: 7px; }
+  .msg .big { font: 700 34px/1 var(--f-hand); color: #1d2a55; }
+  .msg u { text-decoration: none; background: linear-gradient(transparent 62%, rgba(255,181,71,.55) 62% 90%, transparent 90%); }
+  .msg .sig { text-align: right; margin-top: 8px; font-size: 21px; }
+
+  .stamp { position: absolute; right: 18px; top: 52px; width: 76px; height: 92px; z-index: 3; transform: rotate(3deg);
+    background: #fffaf0; padding: 6px;
+    -webkit-mask: radial-gradient(circle 3px at 3px 3px, transparent 98%, #000) -3px -3px/7px 7px;
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
+  .stamp .in { position: relative; width: 100%; height: 100%; overflow: hidden; background: #1f4d33; }
+  .stamp .in img { filter: saturate(1.3) contrast(1.1); object-position: 48% 10%; }
+  .stamp .val { position: absolute; left: 4px; top: 3px; font: 400 18px/1 var(--f-anton); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+  .stamp .usa { position: absolute; left: 0; right: 0; bottom: 3px; text-align: center; font: 700 6.5px/1 var(--f-ui); letter-spacing: 1.2px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.7); }
+  svg.pm { position: absolute; right: 52px; top: 62px; width: 150px; height: 90px; z-index: 4; transform: rotate(-8deg); }
+
+  .addr { position: absolute; left: 212px; right: 18px; top: 178px; z-index: 3; }
+  .addr .ln { height: 30px; border-bottom: 1px solid #a49a88; font: 600 19px/34px var(--f-hand); color: #23325e; white-space: nowrap; padding-left: 4px; }
+
+  .ledger { position: absolute; left: 0; right: 0; bottom: 0; height: 66px; border-top: 1.5px solid #3b3328; display: grid; grid-template-columns: repeat(4, 1fr); z-index: 3; background: rgba(240,230,208,.6); }
+  .ledger div { padding: 12px 0 0 14px; border-right: 1px solid rgba(59,51,40,.35); }
+  .ledger div:last-child { border-right: 0; }
+  .ledger .k { font: 600 7.5px/1 var(--f-ui); letter-spacing: 1.4px; color: #7a705f; text-transform: uppercase; }
+  .ledger .v { font: 400 22px/1 var(--f-dm); color: #2a2620; margin-top: 7px; }
+  .ledger .v.r { color: #b2332a; }
+</style></head>
+<body class="phone">
+  <div class="desk"></div>
+  <div class="top">
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+    <div class="ttl"><b>Wrigley Field</b><span>Your postcard · 17 visits</span></div>
+    <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M18 3v4h-4M6 21v-4h4"/></svg></div>
+  </div>
+
+  <div class="front">
+    <div class="img">
+      <img class="ph" src="../../photos/wrigley-scoreboard-wide.jpg">
+      <div class="tint"></div>
+      <div class="greet">Greetings from</div>
+      <div class="letters"><div class="ex">Wrigley</div><div class="fill">Wrigley</div></div>
+      <div class="cap"><span>Clark &amp; Addison · Chicago, Ill.</span><span>Est. 1914</span></div>
+      <div class="linen"></div>
+    </div>
+  </div>
+
+  <div class="back">
+    <div class="paper-tex"></div>
+    <div class="hd"><b>POST CARD</b><span>Witness · No. 08<br>Wrigley Field</span></div>
+    <div class="div"></div>
+    <div class="msg">
+      <p>Dear Sam,</p>
+      <p>Seventeen visits since that first one, <u>June 14, 2014</u>. You’re</p>
+      <p class="big">11–6 here.</p>
+      <p>Best night: Game 5, Oct 30 ’16, Sec 314 with your dad.</p>
+      <div class="sig">See you soon, W.F.</div>
+    </div>
+    <div class="stamp"><div class="in"><img class="ph" src="../../photos/wrigley-scoreboard-wide.jpg"><div class="val">17¢</div><div class="usa">WRIGLEY · 1914</div></div></div>
+    <svg class="pm" viewBox="0 0 150 90">
+      <defs><path id="arc" d="M 22 45 a 23 23 0 1 1 46 0 a 23 23 0 1 1 -46 0"/></defs>
+      <g fill="none" stroke="#3a3f6e" stroke-opacity=".72" stroke-width="1.4">
+        <circle cx="45" cy="45" r="30"/><circle cx="45" cy="45" r="19"/>
+        <path d="M78 30 q8 -6 16 0 t16 0 t16 0 t16 0"/><path d="M78 40 q8 -6 16 0 t16 0 t16 0 t16 0"/><path d="M78 50 q8 -6 16 0 t16 0 t16 0 t16 0"/><path d="M78 60 q8 -6 16 0 t16 0 t16 0 t16 0"/>
+      </g>
+      <text font-family="Inter" font-weight="700" font-size="6.6" letter-spacing="1.6" fill="#3a3f6e" fill-opacity=".8"><textPath href="#arc" startOffset="2">CHICAGO · ILL · CHICAGO · ILL ·</textPath></text>
+      <text x="45" y="43" text-anchor="middle" font-family="Inter" font-weight="800" font-size="8" fill="#3a3f6e" fill-opacity=".85">JUL 4</text>
+      <text x="45" y="53" text-anchor="middle" font-family="Inter" font-weight="800" font-size="8" fill="#3a3f6e" fill-opacity=".85">2026</text>
+    </svg>
+    <div class="addr">
+      <div class="ln">Sam Okafor</div>
+      <div class="ln">Logan Square</div>
+      <div class="ln">Chicago, Illinois</div>
+    </div>
+    <div class="ledger">
+      <div><div class="k">Visits</div><div class="v tnum">17</div></div>
+      <div><div class="k">Record</div><div class="v r tnum">11–6</div></div>
+      <div><div class="k">First</div><div class="v tnum">6·14·14</div></div>
+      <div><div class="k">Last</div><div class="v tnum">7·4·26</div></div>
+    </div>
+  </div>
+  <div class="grain" style="opacity:.22"></div>
+<script src="../../kit/kit.js"></script>
+</body></html>
