@@ -4,6 +4,7 @@ import EventKit
 
 // MARK: - Helpers
 
+@MainActor
 enum PlanText {
     /// "Yankees at Red Sox".
     static func title(_ plan: GameEntry, _ library: Library) -> String {
