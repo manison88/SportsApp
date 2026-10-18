@@ -1,4 +1,5 @@
 import SwiftUI
+import MapKit
 
 /// What the Map's Venues, Countries and Games numbers open, pushed (not a sheet, so the swipe back still works): every one of them as a compact tile. Tap a venue for its page,
 /// a game for its page, a country for the games played there.
@@ -48,7 +49,7 @@ struct MapListSheet: View {
         return ForEach(rows) { row in
             let venue = row.venue, list = row.games
             NavigationLink(value: Route.venue(venue.id)) {
-                tile(lead: AnyView(VenueGlyph(sport: Self.mainSport(of: venue, in: list), size: 40)),
+                tile(lead: AnyView(AerialVenueIcon(venue: venue, sport: Self.mainSport(of: venue, in: list), size: 42)),
                      title: venue.name,
                      detail: venue.cityLine + " \u{00B7} " + venue.country,
                      trailTop: "\(list.count) \(list.count == 1 ? "game" : "games")",
@@ -207,6 +208,62 @@ struct CountryGames: View {
     }
 }
 
+
+// MARK: - Aerial venue icon
+
+/// A satellite view of the venue in a circle, ringed in its sport's color with a small sport badge.
+/// Falls back to the drawn glyph until (or unless) the snapshot arrives.
+struct AerialVenueIcon: View {
+    let venue: Venue
+    let sport: Sport
+    var size: CGFloat = 44
+
+    @State private var image: UIImage?
+
+    var body: some View {
+        ZStack(alignment: .bottomTrailing) {
+            Group {
+                if let image {
+                    Image(uiImage: image).resizable().scaledToFill()
+                } else {
+                    Color.panelRaised
+                }
+            }
+            .frame(width: size, height: size)
+            .clipShape(Circle())
+            .overlay(Circle().stroke(sport.lineColor, lineWidth: 2))
+            Image(systemName: sport.symbol)
+                .font(.system(size: size * 0.2, weight: .bold))
+                .foregroundStyle(sport.lineColor)
+                .frame(width: size * 0.4, height: size * 0.4)
+                .background(Circle().fill(Color.panelRaised))
+                .overlay(Circle().stroke(Color.black.opacity(0.6), lineWidth: 1))
+                .offset(x: size * 0.1, y: size * 0.1)
+        }
+        .frame(width: size + 6, height: size + 6)
+        .task(id: venue.id) { image = await AerialCache.shared.image(for: venue, points: size) }
+        .accessibilityHidden(true)
+    }
+}
+
+/// Snapshots are rendered once per venue and kept in memory.
+@MainActor
+final class AerialCache {
+    static let shared = AerialCache()
+    private var images: [String: UIImage] = [:]
+
+    func image(for venue: Venue, points: CGFloat) async -> UIImage? {
+        if let hit = images[venue.id] { return hit }
+        let options = MKMapSnapshotter.Options()
+        options.region = MKCoordinateRegion(center: venue.coordinate, latitudinalMeters: 700, longitudinalMeters: 700)
+        options.size = CGSize(width: points * 2, height: points * 2)
+        options.mapType = .satellite
+        options.showsBuildings = false
+        guard let snap = try? await MKMapSnapshotter(options: options).start() else { return nil }
+        images[venue.id] = snap.image
+        return snap.image
+    }
+}
 
 // MARK: - Venue glyph
 
