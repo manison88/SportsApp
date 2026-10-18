@@ -346,6 +346,25 @@
   "opened": null
  },
  {
+  "id": "kaunas-sports-hall",
+  "name": "Kaunas Sports Hall",
+  "aliases": [],
+  "city": "Prienai",
+  "region": null,
+  "country": "Lithuania",
+  "countryCode": "LT",
+  "latitude": 54.89611,
+  "longitude": 23.93583,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Vilnius",
+  "capacity": 4500,
+  "opened": null
+ },
+ {
   "id": "dom-sportova-zagreb",
   "name": "Dom Sportova Zagreb",
   "aliases": [
@@ -953,25 +972,6 @@
   "opened": null
  },
  {
-  "id": "zalgiris-arena-kiev",
-  "name": "Zalgiris Arena",
-  "aliases": [],
-  "city": "Kiev",
-  "region": null,
-  "country": "Ukraine",
-  "countryCode": "UA",
-  "latitude": 54.89,
-  "longitude": 23.91444,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Vilnius",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "druzhba-multipurpose-arena",
   "name": "Druzhba Multipurpose Arena",
   "aliases": [],
@@ -1189,7 +1189,7 @@
   "opened": null
  },
  {
-  "id": "basket-hall-kazan-kazan",
+  "id": "basket-hall-kazan",
   "name": "Basket Hall Kazan",
   "aliases": [],
   "city": "Kazan",
@@ -1787,14 +1787,14 @@
   "region": null,
   "country": "Poland",
   "countryCode": "PL",
-  "latitude": 42.98915,
-  "longitude": -81.24666,
+  "latitude": 51.10694,
+  "longitude": 17.07722,
   "sports": [
    "basketball"
   ],
   "leagues": [],
   "homeTeams": [],
-  "timeZone": "America/Toronto",
+  "timeZone": "Europe/Warsaw",
   "capacity": null,
   "opened": null
  },
@@ -1912,6 +1912,27 @@
   "homeTeams": [],
   "timeZone": "Europe/Madrid",
   "capacity": 5000,
+  "opened": null
+ },
+ {
+  "id": "turkcell-basketball-development-centre",
+  "name": "Turkcell Basketball Development Centre",
+  "aliases": [
+   "Turkcell Basketball Development Center"
+  ],
+  "city": "Istanbul",
+  "region": null,
+  "country": "Türkiye",
+  "countryCode": "TR",
+  "latitude": 40.99699,
+  "longitude": 28.91941,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Istanbul",
+  "capacity": 10000,
   "opened": null
  },
  {
@@ -2090,13 +2111,13 @@
   "opened": null
  },
  {
-  "id": "stade-du-26-mars",
+  "id": "stade-26-mars-bamako",
   "name": "Stade 26 mars",
   "aliases": [],
   "city": "Bamako",
   "region": null,
-  "country": "Mozambique",
-  "countryCode": "MZ",
+  "country": "Mali",
+  "countryCode": "ML",
   "latitude": 12.60444,
   "longitude": -7.92167,
   "sports": [
@@ -2692,8 +2713,8 @@
   "aliases": [],
   "city": "Bahía Blanca",
   "region": null,
-  "country": "Colombia",
-  "countryCode": "CO",
+  "country": "Argentina",
+  "countryCode": "AR",
   "latitude": -38.72586,
   "longitude": -62.27452,
   "sports": [
@@ -2713,8 +2734,8 @@
   ],
   "city": "Montevideo",
   "region": null,
-  "country": "Colombia",
-  "countryCode": "CO",
+  "country": "Uruguay",
+  "countryCode": "UY",
   "latitude": -34.89893,
   "longitude": -56.18246,
   "sports": [
@@ -4329,25 +4350,6 @@
   "opened": null
  },
  {
-  "id": "stade-louis-ii-monaco",
-  "name": "Stade Louis II",
-  "aliases": [],
-  "city": "Monaco",
-  "region": null,
-  "country": "France",
-  "countryCode": "FR",
-  "latitude": 43.72761,
-  "longitude": 7.41561,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Paris",
-  "capacity": 3000,
-  "opened": null
- },
- {
   "id": "mosir",
   "name": "MOSIR",
   "aliases": [],
@@ -4939,7 +4941,7 @@
   "opened": null
  },
  {
-  "id": "paladozza-bologna",
+  "id": "paladozza",
   "name": "PalaDozza",
   "aliases": [],
   "city": "Bologna",
@@ -5769,19 +5771,16 @@
  },
  {
   "id": "sports-centre-cair",
-  "name": "Čair Sports Center",
-  "aliases": [
-   "Sports Centre Cair"
-  ],
-  "city": "Niš",
+  "name": "Sports Centre Cair",
+  "aliases": [],
+  "city": "Nis",
   "region": null,
   "country": "Serbia",
   "countryCode": "RS",
   "latitude": 43.31389,
   "longitude": 21.908,
   "sports": [
-   "basketball",
-   "handball"
+   "basketball"
   ],
   "leagues": [],
   "homeTeams": [],
@@ -6607,7 +6606,7 @@
   "opened": null
  },
  {
-  "id": "sports-hall-gradski-vrt",
+  "id": "gradski-vrt-osijek",
   "name": "Gradski vrt Hall",
   "aliases": [
    "Sports Hall \"Gradski Vrt\""
@@ -7150,6 +7149,25 @@
   "opened": null
  },
  {
+  "id": "bemax-arena",
+  "name": "Bemax Arena",
+  "aliases": [],
+  "city": "Podgorica",
+  "region": null,
+  "country": "Montenegro",
+  "countryCode": "ME",
+  "latitude": 42.43741,
+  "longitude": 19.25496,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Podgorica",
+  "capacity": 2400,
+  "opened": null
+ },
+ {
   "id": "swh-arena",
   "name": "SWH.arena",
   "aliases": [],
@@ -7549,7 +7567,7 @@
   "opened": null
  },
  {
-  "id": "arcelormittal-park",
+  "id": "arcelormittal-park-sosnowiec",
   "name": "ArcelorMittal Park",
   "aliases": [],
   "city": "Sosnowiec",
@@ -8286,7 +8304,7 @@
   "opened": null
  },
  {
-  "id": "mika-stadium",
+  "id": "mika-stadium-yerevan",
   "name": "Mika Sport Complex",
   "aliases": [],
   "city": "Yerevan",
@@ -8847,8 +8865,8 @@
   "region": null,
   "country": "Belgium",
   "countryCode": "BE",
-  "latitude": 51.8693,
-  "longitude": 5.7517,
+  "latitude": 50.93986,
+  "longitude": 4.05475,
   "sports": [
    "basketball"
   ],
@@ -11942,15 +11960,34 @@
   "opened": null
  },
  {
-  "id": "spc-vojvodina-ii",
+  "id": "cair-sports-center",
+  "name": "Čair Sports Center",
+  "aliases": [],
+  "city": "Niš",
+  "region": null,
+  "country": "Serbia",
+  "countryCode": "RS",
+  "latitude": 43.31694,
+  "longitude": 21.90778,
+  "sports": [
+   "handball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Belgrade",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "spc-vojvodina",
   "name": "SPC Vojvodina",
   "aliases": [],
   "city": "Novi Sad",
   "region": null,
   "country": "Serbia",
   "countryCode": "RS",
-  "latitude": 45.26444,
-  "longitude": 19.83167,
+  "latitude": 45.2475,
+  "longitude": 19.84556,
   "sports": [
    "handball"
   ],
@@ -12514,15 +12551,15 @@
   "opened": null
  },
  {
-  "id": "palacio-de-deportes-de-torrevieja",
+  "id": "palacio-de-los-deportes-de-torrevieja",
   "name": "Palacio de los Deportes de Torrevieja",
   "aliases": [],
   "city": "Torrevieja",
   "region": null,
   "country": "Spain",
   "countryCode": "ES",
-  "latitude": 37.97776,
-  "longitude": -0.68303,
+  "latitude": 37.99557,
+  "longitude": -0.6754,
   "sports": [
    "handball"
   ],
@@ -13276,25 +13313,6 @@
   "opened": null
  },
  {
-  "id": "olympic-sports-centre",
-  "name": "Olympic Sports Centre",
-  "aliases": [],
-  "city": "Riga",
-  "region": null,
-  "country": "Latvia",
-  "countryCode": "LV",
-  "latitude": 56.9475,
-  "longitude": 24.10694,
-  "sports": [
-   "hockey"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Riga",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "shayba-arena",
   "name": "Shayba Arena",
   "aliases": [],
@@ -13466,15 +13484,15 @@
   "opened": null
  },
  {
-  "id": "forsyth-barr-stadium",
+  "id": "forsyth-barr-stadium-dunedin",
   "name": "Forsyth Barr Stadium",
   "aliases": [],
   "city": "Dunedin",
   "region": null,
   "country": "New Zealand",
   "countryCode": "NZ",
-  "latitude": -45.86917,
-  "longitude": 170.52444,
+  "latitude": -45.869167,
+  "longitude": 170.524444,
   "sports": [
    "rugby"
   ],
@@ -13732,15 +13750,15 @@
   "opened": null
  },
  {
-  "id": "tokyo-stadium",
+  "id": "ajinomoto-stadium-tokyo",
   "name": "Ajinomoto Stadium",
   "aliases": [],
   "city": "Tokyo",
   "region": null,
   "country": "Japan",
   "countryCode": "JP",
-  "latitude": 35.66428,
-  "longitude": 139.52714,
+  "latitude": 35.664278,
+  "longitude": 139.527139,
   "sports": [
    "rugby"
   ],
@@ -13751,15 +13769,15 @@
   "opened": null
  },
  {
-  "id": "daiwa-house-premist-dome",
+  "id": "daiwa-house-premist-dome-sapporo",
   "name": "Daiwa House Premist Dome",
   "aliases": [],
   "city": "Sapporo",
   "region": null,
   "country": "Japan",
   "countryCode": "JP",
-  "latitude": 43.01516,
-  "longitude": 141.40969,
+  "latitude": 43.015134,
+  "longitude": 141.409753,
   "sports": [
    "rugby"
   ],
@@ -13770,15 +13788,15 @@
   "opened": null
  },
  {
-  "id": "nissan-stadium-yokohama",
+  "id": "nissan-stadium-yokohama-yokohama",
   "name": "International Stadium Yokohama",
   "aliases": [],
   "city": "Yokohama",
   "region": null,
   "country": "Japan",
   "countryCode": "JP",
-  "latitude": 35.51004,
-  "longitude": 139.60625,
+  "latitude": 35.510044,
+  "longitude": 139.606247,
   "sports": [
    "rugby"
   ],

@@ -115,14 +115,24 @@ struct AddGameView: View {
                             Task { await lookup() }
                         } label: {
                             HStack {
-                                Label(found == nil ? "Find this game" : "Found on the schedule",
-                                      systemImage: found == nil ? "sparkle.magnifyingglass" : "checkmark.seal.fill")
+                                Label(isMatched ? "Found on the schedule" : "Find this game",
+                                      systemImage: isMatched ? "checkmark.seal.fill" : "sparkle.magnifyingglass")
                                 Spacer()
                                 if lookingUp { ProgressView() }
                             }
                         }
                         .disabled(lookingUp)
                         .accessibilityIdentifier("add-lookup")
+                        if lookingUp {
+                            Text("Looking on the schedule\u{2026}")
+                                .font(.footnote)
+                                .foregroundStyle(Color.textSecondary)
+                        } else if let line = matchLine {
+                            Text(line)
+                                .font(.footnote)
+                                .foregroundStyle(Color.textSecondary)
+                                .accessibilityIdentifier("add-lookup-result")
+                        }
                         if lookupFailed {
                             Text("No game on the schedule at this venue that day.")
                                 .font(.footnote)
@@ -350,6 +360,42 @@ struct AddGameView: View {
         newPerson = ""
     }
 
+    /// True once this game is tied to a real schedule entry: found just now, or matched when it was saved.
+    private var isMatched: Bool { found != nil || editing?.source != nil }
+
+    /// What was matched, so it is plain whether the automatic lookup worked.
+    private var matchLine: String? {
+        let tz = venueId.flatMap { library.venue($0)?.tz } ?? .current
+        if let found {
+            return "\(found.away.abbreviation) at \(found.home.abbreviation) \u{00B7} \(found.leagueName) \u{00B7} "
+                + "\(Fmt.dayTitle(found.start, in: tz)), \(Fmt.time(found.start, in: tz))"
+        }
+        if let source = editing?.source { return "Matched to the schedule when it was saved \u{00B7} \(source.league)" }
+        return nil
+    }
+
+    /// The venue's own calendar day for the form's date: games start after 5 AM there, and the day ends at midnight there.
+    private func dayWindow(at venue: Venue) -> (Date, Date) {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = venue.tz
+        let dayStart = calendar.startOfDay(for: date)
+        return (dayStart.addingTimeInterval(5 * 3600), dayStart.addingTimeInterval(24 * 3600))
+    }
+
+    /// A saved game that has teams but no schedule match: find the same game and attach it, leaving what the fan entered alone.
+    private func verify() async {
+        defer { lookingUp = false }
+        guard let venue = venueId.flatMap({ library.venue($0) }),
+              let home = library.team(homeTeamId), let away = library.team(awayTeamId) else { return }
+        let window = dayWindow(at: venue)
+        let games = await GameLookup.games(at: venue, from: window.0, to: window.1)
+        guard let game = games.first(where: { $0.home.abbreviation == home.abbreviation && $0.away.abbreviation == away.abbreviation })
+        else { return }
+        found = game
+        foundTeams = [homeTeamId, awayTeamId]
+        foundDetail = await GameLookup.detail(game)
+    }
+
     /// Looks the game up as soon as a venue and day are set, but only on a new game with no teams picked yet, so
     /// nothing the fan typed is overwritten. "Find this game" stays for everything else.
     private func autoLookup() {
@@ -358,7 +404,14 @@ struct AddGameView: View {
         let noTeamsYet = homeTeamId == nil && awayTeamId == nil
         if let editing {
             // A saved stadium visit, or an entry with no teams and no schedule match: look for its game once.
-            guard !didAutoLookup, editing.source == nil, editing.isVisit || (editing.homeTeamId == nil && editing.awayTeamId == nil) else { return }
+            guard !didAutoLookup, editing.source == nil else { return }
+            if !(editing.isVisit || (editing.homeTeamId == nil && editing.awayTeamId == nil)) {
+                // It has teams: verify them against the schedule without touching what is there.
+                didAutoLookup = true
+                lookingUp = true
+                Task { await verify() }
+                return
+            }
         } else if !noTeamsYet {
             // A ticket brings its teams along: verify them against the schedule once, when the form opens.
             guard draft != nil, !didAutoLookup else { return }
@@ -374,9 +427,8 @@ struct AddGameView: View {
         lookingUp = true
         lookupFailed = false
         defer { lookingUp = false }
-        let dayStart = Calendar.current.startOfDay(for: date)
-        let games = await GameLookup.games(at: venue, from: dayStart.addingTimeInterval(5 * 3600),
-                                           to: dayStart.addingTimeInterval(24 * 3600))
+        let window = dayWindow(at: venue)
+        let games = await GameLookup.games(at: venue, from: window.0, to: window.1)
         // Closest start to the time on the form wins (doubleheaders).
         guard let game = games.min(by: { abs($0.start.timeIntervalSince(date)) < abs($1.start.timeIntervalSince(date)) }) else {
             lookupFailed = true
