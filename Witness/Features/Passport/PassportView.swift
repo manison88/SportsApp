@@ -520,16 +520,19 @@ private struct StampBackdrop: View {
     @State private var image: UIImage?
 
     var body: some View {
-        ZStack {
-            color
-            if let image {
-                Image(uiImage: image).resizable().scaledToFill()
-                    .saturation(0).opacity(0.55).blendMode(.luminosity)
+        // Overlays, so the photo's fill size can never grow the tile past its grid cell.
+        color
+            .overlay {
+                if let image {
+                    Image(uiImage: image).resizable().scaledToFill()
+                        .saturation(0).opacity(0.55).blendMode(.luminosity)
+                }
             }
-            LinearGradient(colors: [color, color.opacity(0)], startPoint: .leading, endPoint: .trailing)
-                .opacity(0.92)
-        }
-        .clipShape(.rect(cornerRadius: 16))
+            .overlay {
+                LinearGradient(colors: [color, color.opacity(0)], startPoint: .leading, endPoint: .trailing)
+                    .opacity(0.92)
+            }
+            .clipShape(.rect(cornerRadius: 16))
         .task(id: venue?.id) {
             if let venue { image = await AerialCache.shared.image(for: venue, points: 120) }
         }
