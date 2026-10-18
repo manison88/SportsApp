@@ -1,5 +1,6 @@
 import SwiftUI
 import Photos
+import AVKit
 
 // MARK: - Formatting
 
@@ -234,6 +235,8 @@ struct StatRow: View {
 struct PhotoView: View {
     let ref: PhotoRef
     var contentMode: ContentMode = .fill
+    /// Shows a play badge with the length on a video.
+    var showsMediaBadge = false
     @State private var image: UIImage?
     @State private var failed = false
 
@@ -258,6 +261,19 @@ struct PhotoView: View {
                 }
             }
             .clipped()
+            .overlay(alignment: .bottomLeading) {
+                if showsMediaBadge, MediaInfo.info(ref).isVideo {
+                    HStack(spacing: 4) {
+                        Image(systemName: "play.fill")
+                        Text(MediaInfo.clock(MediaInfo.info(ref).duration))
+                    }
+                    .font(.caption2.weight(.heavy))
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 7).frame(height: 22)
+                    .background(.black.opacity(0.6), in: .capsule)
+                    .padding(6)
+                }
+            }
             .task(id: ref) {
                 // Clear first so a reused cell never shows the previous photo.
                 image = nil
@@ -266,6 +282,31 @@ struct PhotoView: View {
                 failed = image == nil
             }
         .accessibilityHidden(true)
+    }
+}
+
+/// Whether a library item is a video, and how long. PhotoKit answers instantly, so it is looked up as needed and kept.
+@MainActor
+enum MediaInfo {
+    struct Info { let isVideo: Bool; let duration: TimeInterval }
+    private static var cache: [String: Info] = [:]
+
+    static func info(_ ref: PhotoRef) -> Info {
+        guard case .library(let id) = ref else { return Info(isVideo: false, duration: 0) }
+        if let hit = cache[id] { return hit }
+        let asset = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil).firstObject
+        let info = Info(isVideo: asset?.mediaType == .video, duration: asset?.duration ?? 0)
+        if asset != nil { cache[id] = info }
+        return info
+    }
+
+    /// The photos among a mix of photos and videos.
+    static func stills(_ refs: [PhotoRef]) -> [PhotoRef] { refs.filter { !info($0).isVideo } }
+
+    /// "0:42", "1:05".
+    static func clock(_ seconds: TimeInterval) -> String {
+        let total = Int(seconds.rounded())
+        return "\(total / 60):" + String(format: "%02d", total % 60)
     }
 }
 
@@ -806,6 +847,33 @@ struct PhotoPager: View {
     @State private var coverSet: PhotoRef?
 }
 
+/// A video from the library, played in the full-screen viewer with the system controls.
+private struct VideoAssetView: View {
+    let id: String
+    @State private var player: AVPlayer?
+
+    var body: some View {
+        Group {
+            if let player { VideoPlayer(player: player) } else { ProgressView().tint(.white) }
+        }
+        .task(id: id) { player = await Self.makePlayer(id) }
+        .onDisappear { player?.pause() }
+        .accessibilityIdentifier("photo-viewer-video")
+    }
+
+    private static func makePlayer(_ id: String) async -> AVPlayer? {
+        guard let asset = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil).firstObject else { return nil }
+        let options = PHVideoRequestOptions()
+        options.isNetworkAccessAllowed = true
+        options.deliveryMode = .highQualityFormat
+        return await withCheckedContinuation { continuation in
+            PHImageManager.default().requestPlayerItem(forVideo: asset, options: options) { item, _ in
+                continuation.resume(returning: item.map { AVPlayer(playerItem: $0) })
+            }
+        }
+    }
+}
+
 private struct ZoomablePhoto: View {
     let ref: PhotoRef
     @Binding var zoomed: Bool
@@ -815,6 +883,14 @@ private struct ZoomablePhoto: View {
     @State private var dragStart: CGSize = .zero
 
     var body: some View {
+        if MediaInfo.info(ref).isVideo, case .library(let id) = ref {
+            VideoAssetView(id: id)
+        } else {
+            still
+        }
+    }
+
+    private var still: some View {
         PhotoView(ref: ref, contentMode: .fit)
             .scaleEffect(scale)
             .offset(offset)

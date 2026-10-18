@@ -51,6 +51,8 @@ struct TimelineView: View {
         .task {
             await library.auditVenues()
             await library.sweepPlans()
+            await library.gameDayPhotoCheck()
+            await library.scanVideos()
         }
         .tabTitle("Timeline")
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Teams, places, years")
@@ -365,7 +367,7 @@ private struct TearOff: View {
                 Text((game.competition ?? "Visit").uppercased())
                     .font(.condensed(.caption2, weight: .heavy)).tracking(2).foregroundStyle(Color.textSecondary)
                     .lineLimit(2).multilineTextAlignment(.center).minimumScaleFactor(0.7)
-                if let team = library.team(game.homeTeamId) {
+                if let team = library.team(game.homeTeamId) ?? library.venue(game.venueId).flatMap({ library.homeTeam(at: $0, sport: game.sport) }) {
                     TeamTile(team: team, compact: true)
                     Text("\(team.locationName) home")
                         .font(.caption2).foregroundStyle(Color.textSecondary).lineLimit(1).minimumScaleFactor(0.6)

@@ -228,7 +228,7 @@ struct GameMemoryView: View {
                 Color.panel
                     .frame(maxWidth: .infinity)
                     .frame(height: height)
-                    .overlay { PhotoView(ref: shown[i]) }
+                    .overlay { PhotoView(ref: shown[i], showsMediaBadge: true) }
                     .overlay {
                         if i == shown.count - 1, extra > 0 {
                             ZStack {

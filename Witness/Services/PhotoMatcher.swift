@@ -39,13 +39,13 @@ enum PhotoMatcher {
     }
 
     /// Every image with both a capture date and a location, fetched once.
-    private static func locatedAssets(from: Date? = nil, to: Date? = nil) -> [Located] {
+    private static func locatedAssets(from: Date? = nil, to: Date? = nil, mediaType: PHAssetMediaType = .image) -> [Located] {
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         if let from, let to {
             options.predicate = NSPredicate(format: "creationDate >= %@ AND creationDate <= %@", from as NSDate, to as NSDate)
         }
-        let result = PHAsset.fetchAssets(with: .image, options: options)
+        let result = PHAsset.fetchAssets(with: mediaType, options: options)
         var out: [Located] = []
         out.reserveCapacity(result.count)
         result.enumerateObjects { asset, _, _ in
@@ -154,6 +154,17 @@ enum PhotoMatcher {
         return await Task.detached(priority: .userInitiated) { () -> [String] in
             locatedAssets(from: from, to: to)
                 .filter { self.venue(for: $0, in: [venue], radius: radius) != nil }
+                .map(\.id)
+        }.value
+    }
+
+    /// Videos shot at the venue around the game's start.
+    static func videos(at venue: Venue, around date: Date, hours: Double = 6) async -> [String] {
+        let from = date.addingTimeInterval(-hours * 3600 / 2)
+        let to = date.addingTimeInterval(hours * 3600)
+        return await Task.detached(priority: .utility) { () -> [String] in
+            locatedAssets(from: from, to: to, mediaType: .video)
+                .filter { self.venue(for: $0, in: [venue], radius: nil) != nil }
                 .map(\.id)
         }.value
     }

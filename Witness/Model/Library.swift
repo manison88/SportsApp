@@ -210,6 +210,7 @@ final class Library {
     func auditVenues() async {
         guard !venuesAudited else { return }
         venuesAudited = true
+        fillVisitHomeTeams()
         for g in games where g.origin != .sample && g.sport != .motorsport {
             guard let current = venue(g.venueId) else { continue }
             var target: Venue?
@@ -302,6 +303,7 @@ final class Library {
     func attend(plan id: String) -> String? {
         guard var entry = plan(id) else { return nil }
         plans.removeAll { $0.id == id }
+        if entry.planAutoPhotos != false { entry.autoPhotosUntil = entry.date.addingTimeInterval(14 * 3600) }
         entry.planReminder = nil
         entry.planAutoPhotos = nil
         entry.origin = .manual
@@ -311,6 +313,7 @@ final class Library {
         Task {
             await refreshFromSchedule(entry.id)
             await attachPhotos(entry.id)
+            await attachVideos(entry.id)
             await fillWeather(entry.id)
         }
         return entry.id
@@ -331,16 +334,83 @@ final class Library {
 
     /// Planned games that are over, with photos at their stadium, become games with those photos. Without access to photos
     /// or without a photo from the stadium, a plan stays a plan: a game is never invented.
-    func sweepPlans() async {
+    func sweepPlans(startedFor elapsed: TimeInterval = 4 * 3600) async {
         guard PhotoMatcher.hasAccess else { return }
         let now = Date()
-        let due = plans.filter { $0.planAutoPhotos != false && $0.date.addingTimeInterval(4 * 3600) < now
+        let due = plans.filter { $0.planAutoPhotos != false && $0.date.addingTimeInterval(elapsed) < now
                                  && $0.date > now.addingTimeInterval(-14 * 86_400) }
         for plan in due {
             guard let venue = venue(plan.venueId) else { continue }
             let ids = await PhotoMatcher.photos(at: venue, around: plan.date)
             if !ids.isEmpty { attend(plan: plan.id) }
         }
+    }
+
+    // MARK: Videos and game-day checks
+
+    /// Videos shot at the game's stadium around its start, added after the photos. Looked for once per game.
+    func attachVideos(_ id: String) async {
+        guard PhotoMatcher.hasAccess, let g = game(id), let venue = venue(g.venueId) else { return }
+        let ids = await PhotoMatcher.videos(at: venue, around: g.date)
+        guard var current = game(id) else { return }
+        let fresh = ids.map { PhotoRef.library($0) }.filter { !current.photos.contains($0) }
+        current.photos += fresh
+        current.videosChecked = true
+        update(current)
+    }
+
+    /// The quiet pass: games that already have photos from a stadium get that day's videos too. A few at a time, only
+    /// games not yet looked at, so a big library never makes this a long wait.
+    func scanVideos(limit: Int = 12) async {
+        guard PhotoMatcher.hasAccess else { return }
+        let todo = games.filter { g in
+            g.videosChecked != true && g.origin != .sample
+                && g.photos.contains { if case .library = $0 { return true } else { return false } }
+        }
+        for g in todo.prefix(limit) {
+            if Task.isCancelled { return }
+            await attachVideos(g.id)
+        }
+    }
+
+    /// Whether the background game-day check has anything to watch for.
+    var needsGameDayChecks: Bool {
+        let now = Date()
+        return plans.contains { $0.planAutoPhotos != false && $0.date < now.addingTimeInterval(36 * 3600) && $0.date > now.addingTimeInterval(-36 * 3600) }
+            || games.contains { ($0.autoPhotosUntil ?? .distantPast) > now }
+    }
+
+    /// What the hourly background check does on game day: a plan that has started and has photos at its stadium becomes a game,
+    /// and games still inside their window keep collecting that day's photos and videos.
+    func gameDayPhotoCheck() async {
+        guard PhotoMatcher.hasAccess else { return }
+        await sweepPlans(startedFor: -30 * 60)
+        for g in games where (g.autoPhotosUntil ?? .distantPast) > Date() {
+            if Task.isCancelled { return }
+            await attachPhotos(g.id)
+            await attachVideos(g.id)
+        }
+    }
+
+    // MARK: Home grounds
+
+    /// The team that calls a stadium home, for that sport: a catalog home venue, else a listed tenant.
+    func homeTeam(at venue: Venue, sport: Sport) -> Team? {
+        let pool = (allTeams + customTeams).filter { $0.sport == sport }
+        if let t = pool.first(where: { $0.homeVenueId == venue.id }) { return t }
+        let tenants = Set((venue.homeTeams ?? []).map { $0.lowercased() })
+        return pool.first { tenants.contains("\($0.locationName) \($0.teamName)".lowercased()) }
+    }
+
+    /// Stadium visits with no home team get the ground's own team, so the card can say whose stadium it is.
+    func fillVisitHomeTeams() {
+        var changed = false
+        for i in games.indices where games[i].kind == .visit && games[i].homeTeamId == nil {
+            guard let venue = venue(games[i].venueId), let team = homeTeam(at: venue, sport: games[i].sport) else { continue }
+            games[i].homeTeamId = team.id
+            changed = true
+        }
+        if changed { save() }
     }
 
     /// Scores and plays for a game that has since been played, found again on its schedule.
@@ -528,7 +598,8 @@ final class Library {
         guard force ? g.coverChosenByFan != true : (g.coverPhoto == nil && g.coverChosenByFan != true) else { return }
         coverWork.insert(id)
         defer { coverWork.remove(id) }
-        guard let best = await CoverPicker.best(g.photos), let again = game(id), again.coverChosenByFan != true else { return }
+        let stills = MediaInfo.stills(g.photos)
+        guard stills.count > 1, let best = await CoverPicker.best(stills), let again = game(id), again.coverChosenByFan != true else { return }
         setCover(id, to: best, byFan: false)
     }
 

@@ -28,7 +28,7 @@ struct GamePhotosView: View {
                         } label: {
                             Color.panel
                                 .aspectRatio(1, contentMode: .fit)
-                                .overlay { PhotoView(ref: ref) }
+                                .overlay { PhotoView(ref: ref, showsMediaBadge: true) }
                                 .overlay(alignment: .bottomLeading) {
                                     if ref == game.heroPhoto, !selecting { coverTag(auto: game.coverChosenByFan != true) }
                                 }

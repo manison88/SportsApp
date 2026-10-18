@@ -4,6 +4,7 @@ import SwiftUI
 struct WitnessApp: App {
     @State private var library: Library
     @State private var presenter = Presenter()
+    @Environment(\.scenePhase) private var scenePhase
 
     init() {
         Appearance.apply()
@@ -13,6 +14,7 @@ struct WitnessApp: App {
         if args.contains("-demo") { library.loadSample() }
         if args.contains("-empty") { library.startEmpty() }
         if args.contains("-uitest") { UIView.setAnimationsEnabled(false) }
+        if !args.contains("-uitest") { BackgroundPhotoCheck.register(library) }
         _library = State(initialValue: library)
     }
 
@@ -23,6 +25,9 @@ struct WitnessApp: App {
                 .environment(presenter)
                 .preferredColorScheme(.dark)
                 .tint(.white)
+                .onChange(of: scenePhase) { _, phase in
+                    if phase == .background { BackgroundPhotoCheck.schedule() }
+                }
                 .task {
                     // Packs already on the phone first (instant), then ask the host for anything new.
                     await library.applyPacks()
