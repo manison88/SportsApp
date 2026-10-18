@@ -113,11 +113,14 @@ enum GameLookup {
     static func leagues(for venue: Venue) -> [String] {
         var base = clubLeagues(for: venue)
         // Any soccer ground can host a World Cup, Euro, Copa América or continental final.
-        if canHostSoccer(venue) {
+        if venue.sports.contains(.soccer) {
             for l in ["soccer/fifa.world", "soccer/uefa.euro", "soccer/conmebol.america", "soccer/concacaf.gold",
                       "soccer/fifa.cwc", "soccer/uefa.champions", "soccer/uefa.europa", "soccer/conmebol.libertadores",
                       "soccer/fifa.friendly"] + nationalLeagues(for: venue)
             where !base.contains(l) { base.append(l) }
+        } else if canHostSoccer(venue) {
+            // Football bowls only host the neutral-ground tournaments; keep the lookup short.
+            for l in neutralTournaments.sorted() where !base.contains(l) { base.append(l) }
         }
         return base
     }

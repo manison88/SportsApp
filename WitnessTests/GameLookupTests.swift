@@ -81,7 +81,10 @@ final class GameLookupTests: XCTestCase {
     }
 
     func testLeagueGuessForVenuesWithoutLeagues() {
-        XCTAssertEqual(GameLookup.leagues(for: lambeau), ["football/nfl", "football/college-football"])
+        let football = GameLookup.leagues(for: lambeau)
+        XCTAssertEqual(Array(football.prefix(2)), ["football/nfl", "football/college-football"])
+        XCTAssertTrue(football.contains("soccer/fifa.world"), "Big football bowls host World Cup games")
+        XCTAssertFalse(football.contains("soccer/uefa.champions"))
         var camp = lambeau
         camp.sports = [.soccer]
         camp.countryCode = "ES"
