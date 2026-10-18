@@ -45,6 +45,8 @@ struct PlanGameView: View {
     @State private var games: [FoundGame] = []
     @State private var loading = false
     @State private var empty = false
+    @State private var noSource = false
+    @State private var teamEspnId: String?
 
     var body: some View {
         NavigationStack {
@@ -78,8 +80,11 @@ struct PlanGameView: View {
                     } else if !games.isEmpty {
                         Text("Upcoming games").unitLabel()
                         ForEach(games) { game in row(game) }
+                    } else if noSource {
+                        Text("We can\u{2019}t look up this team\u{2019}s schedule yet. Add the game from Add game instead.")
+                            .font(.footnote).foregroundStyle(Color.textSecondary)
                     } else if empty {
-                        Text("No upcoming games found for this team.")
+                        Text("No upcoming games on this team\u{2019}s schedule right now. In the off-season the schedule comes out later.")
                             .font(.footnote).foregroundStyle(Color.textSecondary)
                     }
                 }
@@ -103,12 +108,14 @@ struct PlanGameView: View {
     private func load() async {
         games = []
         empty = false
-        guard let team = library.team(teamId), let espn = team.externalIds?.espn,
-              let league = team.leagueKey ?? team.externalIds?.espnLeague else { empty = teamId != nil; return }
+        noSource = false
+        guard let team = library.team(teamId) else { return }
         loading = true
-        games = await GameLookup.upcoming(league: league, teamEspnId: espn)
+        defer { loading = false }
+        guard let source = await TeamDirectory.shared.resolve(team) else { noSource = true; return }
+        teamEspnId = source.id
+        games = await GameLookup.upcoming(league: source.league, teamEspnId: source.id)
         empty = games.isEmpty
-        loading = false
     }
 
     private func isPlanned(_ game: FoundGame) -> Bool {
@@ -116,7 +123,7 @@ struct PlanGameView: View {
     }
 
     private func row(_ game: FoundGame) -> some View {
-        let isHome = game.home.espnId == library.team(teamId)?.externalIds?.espn
+        let isHome = game.home.espnId == teamEspnId
         let other = isHome ? game.away : game.home
         let tz = GameLookup.venue(of: game, in: library.venues)?.tz ?? .current
         let planned = isPlanned(game)

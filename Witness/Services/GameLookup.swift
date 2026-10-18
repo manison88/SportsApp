@@ -531,3 +531,54 @@ extension GameLookup {
         return Array(found.filter { seen.insert($0.id).inserted }.sorted { $0.start < $1.start }.prefix(limit))
     }
 }
+
+
+/// ESPN's own list of teams per league, so a team the app ships without an ESPN id (the Bears, the Cubs) is still found.
+actor TeamDirectory {
+    static let shared = TeamDirectory()
+
+    struct Entry: Sendable { let id: String; let abbreviation: String; let location: String; let name: String; let display: String }
+    private var cache: [String: [Entry]] = [:]
+
+    /// League paths for the leagues the app ships teams for.
+    static let leagues: [String: String] = [
+        "MLB": "baseball/mlb", "NFL": "football/nfl", "NBA": "basketball/nba", "WNBA": "basketball/wnba", "NHL": "hockey/nhl",
+        "MLS": "soccer/usa.1", "NWSL": "soccer/usa.nwsl", "Premier League": "soccer/eng.1", "LaLiga": "soccer/esp.1",
+        "Bundesliga": "soccer/ger.1", "Serie A": "soccer/ita.1", "Ligue 1": "soccer/fra.1",
+    ]
+
+    /// The league path and ESPN id for a team: what it already carries, else matched on ESPN's team list.
+    func resolve(_ team: Team) async -> (league: String, id: String)? {
+        if let id = team.externalIds?.espn, let league = team.externalIds?.espnLeague ?? team.leagueKey { return (league, id) }
+        guard let league = Self.leagues[team.league] ?? team.leagueKey ?? team.externalIds?.espnLeague else { return nil }
+        let entries = await teams(in: league)
+        func fold(_ s: String) -> String { GameLookup.tokens(s).sorted().joined(separator: " ") }
+        let location = fold(team.locationName), name = fold(team.teamName)
+        let match = entries.first { fold($0.location) == location && fold($0.name) == name }
+            ?? entries.first { fold($0.name) == name && !name.isEmpty && (fold($0.location).contains(location) || location.contains(fold($0.location))) }
+            ?? entries.first { $0.abbreviation.caseInsensitiveCompare(team.abbreviation) == .orderedSame
+                               && (fold($0.location).contains(location) || location.contains(fold($0.location))) }
+            ?? entries.first { fold($0.display).contains(location) && fold($0.display).contains(name) && !name.isEmpty }
+        return match.map { (league, $0.id) }
+    }
+
+    private func teams(in league: String) async -> [Entry] {
+        if let hit = cache[league] { return hit }
+        guard let url = URL(string: "\(GameLookup.base)\(league)/teams?limit=500"),
+              let (data, response) = try? await URLSession.shared.data(from: url),
+              (response as? HTTPURLResponse)?.statusCode == 200,
+              let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return [] }
+        var out: [Entry] = []
+        for sport in root["sports"] as? [[String: Any]] ?? [] {
+            for lg in sport["leagues"] as? [[String: Any]] ?? [] {
+                for wrapper in lg["teams"] as? [[String: Any]] ?? [] {
+                    guard let t = wrapper["team"] as? [String: Any], let id = t["id"] as? String else { continue }
+                    out.append(Entry(id: id, abbreviation: t["abbreviation"] as? String ?? "", location: t["location"] as? String ?? "",
+                                     name: t["name"] as? String ?? "", display: t["displayName"] as? String ?? ""))
+                }
+            }
+        }
+        if !out.isEmpty { cache[league] = out }
+        return out
+    }
+}

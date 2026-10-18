@@ -654,6 +654,11 @@ final class Library {
             && $0.locationName.caseInsensitiveCompare(team.locationName) == .orderedSame }) {
             return known
         }
+        // ESPN and the catalog can code a team differently (GS and GSW), so city plus name matches too.
+        if let known = allTeams.first(where: { $0.sport == team.sport && $0.teamName.caseInsensitiveCompare(team.teamName) == .orderedSame
+            && $0.locationName.caseInsensitiveCompare(team.locationName) == .orderedSame }) {
+            return known
+        }
         if let known = customTeams.first(where: { $0.id == team.id }) { return known }
         customTeams.append(team)
         save()
