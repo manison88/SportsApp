@@ -285,6 +285,21 @@ final class WitnessUITests: XCTestCase {
         XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'game-card-'")).firstMatch.waitForExistence(timeout: 5))
     }
 
+    /// "Select your teams" on You: pick a team once and it is on the list.
+    func testSelectYourTeams() {
+        launch(["-empty"])
+        tab("You")
+        tap("you-teams")
+        tap("favorites-add")
+        let search = app.searchFields.firstMatch
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        search.tap()
+        search.typeText("Cubs")
+        tap("team-row-mlb-chc")
+        XCTAssertTrue(el("favorite-mlb-chc").waitForExistence(timeout: 5), "The team is on Your teams")
+        snap("you-teams")
+    }
+
     /// A venue that isn't in the catalog: created by hand with a pin.
     func testAddCustomVenue() {
         launch(["-empty"])
