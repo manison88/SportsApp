@@ -165,8 +165,20 @@ struct PassportView: View {
             .filter { Self.isTenant($0, of: venue) }.map(\.id)
         let top = Dictionary(grouping: homes, by: { $0 }).max { $0.value.count < $1.value.count }?.key
         let team = library.team(top)
-        let fallback = CountryCodes.iso3(venue.countryCode) ?? String(venue.name.filter(\.isLetter).prefix(3)).uppercased()
+        // A circuit wears its country (USA, ITA); any other neutral ground wears its city (SEA, SF, KC).
+        let fallback = venue.sports.contains(.motorsport)
+            ? (CountryCodes.iso3(venue.countryCode) ?? Self.cityCode(venue.city))
+            : Self.cityCode(venue.city.isEmpty ? venue.name : venue.city)
         return Stamp(venueId: venueId, code: team?.abbreviation ?? fallback, color: team?.accent ?? Color(hex: "3A4150"), date: date)
+    }
+
+    /// A short code for a city: the first three letters of one word ("Seattle" is SEA), else the initials ("San Francisco" is SF).
+    static func cityCode(_ city: String) -> String {
+        let folded = city.folding(options: [.diacriticInsensitive, .caseInsensitive], locale: nil)
+        let words = folded.split { !$0.isLetter }.map(String.init)
+        guard let first = words.first else { return "" }
+        let code = words.count == 1 ? String(first.prefix(3)) : String(words.compactMap(\.first).prefix(3))
+        return code.uppercased()
     }
 
     /// True when the venue is the team's own ground: the catalog says so, or the venue lists the team as a tenant.

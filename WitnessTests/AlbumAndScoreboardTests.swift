@@ -325,8 +325,10 @@ final class AlbumAndScoreboardTests: XCTestCase {
         let lumen = try XCTUnwrap(library.venue("lumen-field"))
         let bosnia = try XCTUnwrap(library.allTeams.first { $0.sport == .soccer && $0.abbreviation == "BIH" })
         XCTAssertFalse(PassportView.isTenant(bosnia, of: lumen), "Bosnia is not Lumen Field's team")
-        XCTAssertEqual(CountryCodes.iso3(lumen.countryCode), "USA")
-        XCTAssertEqual(CountryCodes.iso3("BA"), "BIH")
+        XCTAssertEqual(PassportView.cityCode(lumen.city), "SEA", "A neutral ground wears its city")
+        XCTAssertEqual(PassportView.cityCode("San Francisco"), "SF")
+        XCTAssertEqual(PassportView.cityCode("Kansas City"), "KC")
+        XCTAssertEqual(CountryCodes.iso3("US"), "USA", "Circuits wear the country")
         if let sounders = library.allTeams.first(where: { $0.abbreviation == "SEA" && $0.sport == .soccer }) {
             XCTAssertTrue(PassportView.isTenant(sounders, of: lumen), "A tenant keeps its own code")
         }
