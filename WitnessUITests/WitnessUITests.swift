@@ -366,7 +366,7 @@ final class WitnessUITests: XCTestCase {
     func testImportAlbumWithScoreboardReading() {
         launch(["-empty", "-seedAlbum"])
         tap("add-menu")
-        app.buttons["Import an album"].tap()
+        app.buttons["Import an album or trip"].tap()
         let album = el("album-Chicago weekend")
         let deadline = Date().addingTimeInterval(30)
         while Date() < deadline && !album.exists {
