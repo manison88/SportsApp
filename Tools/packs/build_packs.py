@@ -200,6 +200,8 @@ def build(out_dir, note, include_sources=()):
         seen_path = os.path.join(scope_dir, "venues-seen.json")
         for vs in load_json(seen_path, []) if os.path.exists(seen_path) else []:
             target = vs.get("catalogVenueId")
+            if not target and (vs.get("latitude") is None or vs.get("longitude") is None):
+                continue
             if not target:
                 probe = {"id": "", "name": vs["name"], "aliases": vs.get("aliases") or [],
                          "latitude": vs["latitude"], "longitude": vs["longitude"]}
