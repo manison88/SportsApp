@@ -61,3 +61,7 @@ somewhere else (`SceneVerdict.clearlyElsewhere`); thresholds are guesses until r
 ## Where things are
 `Witness/` app; `WitnessTests/`, `WitnessUITests/`; `Tools/` data pipeline and research; `mockups/` all design explorations (onboarding,
 welcome-onboarding, scan-handling, scan-waiting, timeline-views, big-games, final); `docs/INTEGRATIONS.md`; `README.md`.
+
+
+## Parked ideas
+See `PARKING_LOT.md`. All six social ideas (Together, Witnesses, Head to head, Circles, Going, Here now) are parked as designs only, with mockups in `mockups/social/`.
