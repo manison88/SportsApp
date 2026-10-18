@@ -14,7 +14,16 @@
   ],
   "leagues": [],
   "homeTeams": [
-   "Andorra national football team"
+   "Andorra national football team",
+   "CE Carroi",
+   "CE Casa de Portugal",
+   "CF Esperança d'Andorra",
+   "Inter Club d'Escaldes",
+   "FC Ordino",
+   "Penya Encarnada d'Andorra",
+   "FC Rànger's",
+   "FC Santa Coloma",
+   "Sporting Club d'Escaldes"
   ],
   "timeZone": "Europe/Andorra",
   "capacity": null,
@@ -235,7 +244,9 @@
  {
   "id": "armavir-city-stadium",
   "name": "Armavir City Stadium",
-  "aliases": [],
+  "aliases": [
+   "Hakob Tonoyan Stadium"
+  ],
   "city": "Armavir",
   "region": null,
   "country": "Armenia",
@@ -347,8 +358,8 @@
   "region": null,
   "country": "Armenia",
   "countryCode": "AM",
-  "latitude": 39.52083,
-  "longitude": 46.03222,
+  "latitude": 39.52308,
+  "longitude": 46.02002,
   "sports": [
    "soccer"
   ],
@@ -384,7 +395,9 @@
  {
   "id": "josko-arena",
   "name": "Josko Arena",
-  "aliases": [],
+  "aliases": [
+   "Keine Sorgen Arena"
+  ],
   "city": "Ried im Innkreis",
   "region": null,
   "country": "Austria",
@@ -430,7 +443,9 @@
  {
   "id": "reichshofstadion",
   "name": "Reichshofstadion",
-  "aliases": [],
+  "aliases": [
+   "Sun Minimeal Arena"
+  ],
   "city": "Lustenau",
   "region": null,
   "country": "Austria",
@@ -453,13 +468,15 @@
  {
   "id": "stadion-hartberg",
   "name": "Stadion Hartberg",
-  "aliases": [],
+  "aliases": [
+   "Profertil Arena Hartberg"
+  ],
   "city": "Hartberg",
   "region": null,
   "country": "Austria",
   "countryCode": "AT",
-  "latitude": 47.281,
-  "longitude": 15.9772,
+  "latitude": 47.28107,
+  "longitude": 15.97785,
   "sports": [
    "soccer"
   ],
@@ -522,7 +539,9 @@
  {
   "id": "bakcell-arena",
   "name": "Bakcell Arena",
-  "aliases": [],
+  "aliases": [
+   "Neftchi Arena"
+  ],
   "city": "Baku",
   "region": null,
   "country": "Azerbaijan",
@@ -627,13 +646,15 @@
  {
   "id": "imishli-city-stadium",
   "name": "Imishli City Stadium",
-  "aliases": [],
+  "aliases": [
+   "Heydar Aliyev Stadium"
+  ],
   "city": "Imishli",
   "region": null,
   "country": "Azerbaijan",
   "countryCode": "AZ",
-  "latitude": 39.86972,
-  "longitude": 48.06,
+  "latitude": 39.85082,
+  "longitude": 48.04127,
   "sports": [
    "soccer"
   ],
@@ -779,8 +800,8 @@
   "region": null,
   "country": "Bosnia and Herzegovina",
   "countryCode": "BA",
-  "latitude": 44.75444,
-  "longitude": 19.225,
+  "latitude": 44.75413,
+  "longitude": 19.22521,
   "sports": [
    "soccer"
   ],
@@ -985,12 +1006,12 @@
   "id": "stadion-krupa-na-vrbasu",
   "name": "Stadion Krupa na Vrbasu",
   "aliases": [],
-  "city": "Banja Luka",
+  "city": "Krupa na Vrbasu",
   "region": null,
   "country": "Bosnia and Herzegovina",
   "countryCode": "BA",
-  "latitude": 44.772,
-  "longitude": 17.191,
+  "latitude": 44.61756,
+  "longitude": 17.14738,
   "sports": [
    "soccer"
   ],
@@ -1031,8 +1052,8 @@
   "region": null,
   "country": "Bosnia and Herzegovina",
   "countryCode": "BA",
-  "latitude": 43.3787,
-  "longitude": 17.598,
+  "latitude": 43.3788,
+  "longitude": 17.59803,
   "sports": [
    "soccer"
   ],
@@ -1527,7 +1548,9 @@
  {
   "id": "ovcha-kupel-stadium",
   "name": "Ovcha Kupel Stadium",
-  "aliases": [],
+  "aliases": [
+   "Stadion Aleksandar Shalamanov"
+  ],
   "city": "Sofia",
   "region": null,
   "country": "Bulgaria",
@@ -1889,8 +1912,8 @@
   "aliases": [],
   "city": "Vaduz",
   "region": null,
-  "country": "Switzerland",
-  "countryCode": "CH",
+  "country": "Liechtenstein",
+  "countryCode": "LI",
   "latitude": 47.14028,
   "longitude": 9.51028,
   "sports": [
@@ -1903,7 +1926,7 @@
    "FC Vaduz",
    "Liechtenstein national football team"
   ],
-  "timeZone": "Europe/Zurich",
+  "timeZone": "Europe/Vaduz",
   "capacity": 7584,
   "opened": 1998
  },
@@ -2063,7 +2086,8 @@
   ],
   "homeTeams": [
    "AEL Limassol",
-   "Apollon Limassol FC"
+   "Apollon Limassol FC",
+   "Aris Limassol FC"
   ],
   "timeZone": "Asia/Nicosia",
   "capacity": 10300,
@@ -2141,7 +2165,9 @@
  {
   "id": "pafiako-stadium",
   "name": "Pafiako Stadium",
-  "aliases": [],
+  "aliases": [
+   "Stelios Kyriakides Stadium"
+  ],
   "city": "Paphos",
   "region": null,
   "country": "Cyprus",
@@ -2178,7 +2204,8 @@
    "soccer/cyp.1"
   ],
   "homeTeams": [
-   "Karmiotissa FC"
+   "Karmiotissa FC",
+   "Krasava ENY Ypsonas FC"
   ],
   "timeZone": "Asia/Nicosia",
   "capacity": null,
@@ -2229,7 +2256,9 @@
  {
   "id": "chance-arena",
   "name": "Chance Arena",
-  "aliases": [],
+  "aliases": [
+   "Stadion Střelnice"
+  ],
   "city": "Jablonec nad Nisou",
   "region": null,
   "country": "Czechia",
@@ -2335,7 +2364,9 @@
  {
   "id": "mestsky-stadion-mlada-boleslav",
   "name": "Městský stadion",
-  "aliases": [],
+  "aliases": [
+   "Lokotrans Aréna"
+  ],
   "city": "Mladá Boleslav",
   "region": null,
   "country": "Czechia",
@@ -2808,7 +2839,9 @@
  {
   "id": "odense-stadium",
   "name": "Odense Stadium",
-  "aliases": [],
+  "aliases": [
+   "Nature Energy Park"
+  ],
   "city": "Odense",
   "region": null,
   "country": "Denmark",
@@ -2877,7 +2910,9 @@
  {
   "id": "vejlby-stadium",
   "name": "Vejlby Stadium",
-  "aliases": [],
+  "aliases": [
+   "Ceres Park Vejlby"
+  ],
   "city": "Aarhus",
   "region": null,
   "country": "Denmark",
@@ -3229,7 +3264,9 @@
  {
   "id": "estadio-municipal-de-butarque",
   "name": "Estadio Municipal de Butarque",
-  "aliases": [],
+  "aliases": [
+   "Estadio Ontime Butarque"
+  ],
   "city": "Madrid",
   "region": null,
   "country": "Spain",
@@ -3281,8 +3318,8 @@
   "region": null,
   "country": "Spain",
   "countryCode": "ES",
-  "latitude": 36.84,
-  "longitude": -2.43528,
+  "latitude": 36.84007,
+  "longitude": -2.43547,
   "sports": [
    "soccer"
   ],
@@ -3389,7 +3426,9 @@
  {
   "id": "kuopio-football-stadium",
   "name": "Kuopio Football Stadium",
-  "aliases": [],
+  "aliases": [
+   "Väre Areena"
+  ],
   "city": "Kuopio",
   "region": null,
   "country": "Finland",
@@ -3452,7 +3491,9 @@
  {
   "id": "oulunkyla-stadium",
   "name": "Oulunkylä Stadium",
-  "aliases": [],
+  "aliases": [
+   "Markku.fi Areena"
+  ],
   "city": "Oulunkylä",
   "region": null,
   "country": "Finland",
@@ -3478,8 +3519,8 @@
   "region": null,
   "country": "Finland",
   "countryCode": "FI",
-  "latitude": 63.67199,
-  "longitude": 22.694,
+  "latitude": 63.67213,
+  "longitude": 22.69405,
   "sports": [
    "soccer"
   ],
@@ -3759,9 +3800,7 @@
    "soccer"
   ],
   "leagues": [],
-  "homeTeams": [
-   "FC Suðuroy"
-  ],
+  "homeTeams": [],
   "timeZone": "Atlantic/Faroe",
   "capacity": null,
   "opened": null
@@ -3933,8 +3972,8 @@
   "region": null,
   "country": "France",
   "countryCode": "FR",
-  "latitude": 48.696,
-  "longitude": 6.21222,
+  "latitude": 48.69572,
+  "longitude": 6.21054,
   "sports": [
    "soccer"
   ],
@@ -4174,7 +4213,9 @@
  {
   "id": "cambrian-united-ground",
   "name": "Cambrian United Ground",
-  "aliases": [],
+  "aliases": [
+   "M&P Group 3G"
+  ],
   "city": "Clydach Vale",
   "region": null,
   "country": "Wales",
@@ -4195,7 +4236,9 @@
  {
   "id": "cardiff-metropolitan-university",
   "name": "Cardiff Metropolitan University",
-  "aliases": [],
+  "aliases": [
+   "Cyncoed Campus"
+  ],
   "city": "Cyncoed",
   "region": null,
   "country": "Wales",
@@ -4719,7 +4762,9 @@
  {
   "id": "taylors-avenue",
   "name": "Taylors Avenue",
-  "aliases": [],
+  "aliases": [
+   "Loughshore Hotel Arena"
+  ],
   "city": "Carrickfergus",
   "region": null,
   "country": "Northern Ireland",
@@ -4854,8 +4899,8 @@
   "region": null,
   "country": "Wales",
   "countryCode": "GB",
-  "latitude": 51.79053,
-  "longitude": -3.99922,
+  "latitude": 51.7899,
+  "longitude": -3.9955,
   "sports": [
    "soccer"
   ],
@@ -5137,8 +5182,8 @@
   "region": null,
   "country": "Greece",
   "countryCode": "GR",
-  "latitude": 40.6255,
-  "longitude": 22.967,
+  "latitude": 40.62555,
+  "longitude": 22.96698,
   "sports": [
    "soccer"
   ],
@@ -5615,8 +5660,8 @@
   "region": null,
   "country": "Croatia",
   "countryCode": "HR",
-  "latitude": 45.724,
-  "longitude": 16.0732,
+  "latitude": 45.72399,
+  "longitude": 16.07312,
   "sports": [
    "soccer"
   ],
@@ -5826,8 +5871,8 @@
   "region": null,
   "country": "Hungary",
   "countryCode": "HU",
-  "latitude": 47.464,
-  "longitude": 18.5868,
+  "latitude": 47.46396,
+  "longitude": 18.58662,
   "sports": [
    "soccer"
   ],
@@ -5842,7 +5887,9 @@
  {
   "id": "varkert-sportpalya",
   "name": "Várkert Sportpálya",
-  "aliases": [],
+  "aliases": [
+   "Várkerti Stadion"
+  ],
   "city": "Kisvárda",
   "region": null,
   "country": "Hungary",
@@ -5910,8 +5957,8 @@
   "region": null,
   "country": "Republic of Ireland",
   "countryCode": "IE",
-  "latitude": 54.99063,
-  "longitude": -7.336,
+  "latitude": 54.99048,
+  "longitude": -7.33627,
   "sports": [
    "soccer"
   ],
@@ -6031,7 +6078,9 @@
  {
   "id": "united-park",
   "name": "United Park",
-  "aliases": [],
+  "aliases": [
+   "Sullivan and Lambe Park"
+  ],
   "city": "Drogheda",
   "region": null,
   "country": "Republic of Ireland",
@@ -6190,7 +6239,9 @@
  {
   "id": "akranesvollur",
   "name": "Akranesvöllur",
-  "aliases": [],
+  "aliases": [
+   "ELKEM völlurinn"
+  ],
   "city": "Akranes",
   "region": null,
   "country": "Iceland",
@@ -6210,14 +6261,18 @@
  },
  {
   "id": "framvollur",
-  "name": "Framvöllur",
-  "aliases": [],
+  "name": "Lambhagavöllur",
+  "aliases": [
+   "Framvöllur",
+   "Fram Stadium",
+   "Lambhagavöllurinn"
+  ],
   "city": "Reykjavík",
   "region": null,
   "country": "Iceland",
   "countryCode": "IS",
-  "latitude": 64.1331,
-  "longitude": -21.8908,
+  "latitude": 64.13164,
+  "longitude": -21.73667,
   "sports": [
    "soccer"
   ],
@@ -6232,7 +6287,9 @@
  {
   "id": "hlidarendi",
   "name": "Hlíðarendi",
-  "aliases": [],
+  "aliases": [
+   "N1 völlurinn"
+  ],
   "city": "Reykjavík",
   "region": null,
   "country": "Iceland",
@@ -6274,7 +6331,9 @@
  {
   "id": "ka-vollur",
   "name": "KA-Völlur",
-  "aliases": [],
+  "aliases": [
+   "Greifavöllurinn"
+  ],
   "city": "Akureyri",
   "region": null,
   "country": "Iceland",
@@ -6295,7 +6354,9 @@
  {
   "id": "kr-vollur",
   "name": "KR-völlur",
-  "aliases": [],
+  "aliases": [
+   "Meistaravellir"
+  ],
   "city": "Reykjavík",
   "region": null,
   "country": "Iceland",
@@ -6342,8 +6403,8 @@
   "region": null,
   "country": "Iceland",
   "countryCode": "IS",
-  "latitude": 63.998,
-  "longitude": -22.55922,
+  "latitude": 63.99799,
+  "longitude": -22.55856,
   "sports": [
    "soccer"
   ],
@@ -6379,7 +6440,9 @@
  {
   "id": "stjornuvollur",
   "name": "Stjörnuvöllur",
-  "aliases": [],
+  "aliases": [
+   "Samsung völlurinn"
+  ],
   "city": "Garðabær",
   "region": null,
   "country": "Iceland",
@@ -6470,8 +6533,8 @@
   "region": null,
   "country": "Italy",
   "countryCode": "IT",
-  "latitude": 43.72639,
-  "longitude": 10.955,
+  "latitude": 43.72655,
+  "longitude": 10.95473,
   "sports": [
    "soccer"
   ],
@@ -6827,7 +6890,9 @@
  {
   "id": "jas-qanat-stadium",
   "name": "Jas Qanat Stadium",
-  "aliases": [],
+  "aliases": [
+   "Zhastar Stadium"
+  ],
   "city": "Aktau",
   "region": null,
   "country": "Kazakhstan",
@@ -6916,8 +6981,8 @@
   "region": null,
   "country": "Kazakhstan",
   "countryCode": "KZ",
-  "latitude": 47.48034,
-  "longitude": 67.43006,
+  "latitude": 47.80103,
+  "longitude": 67.71693,
   "sports": [
    "soccer"
   ],
@@ -6953,7 +7018,9 @@
  {
   "id": "okzhetpes-stadium",
   "name": "Okzhetpes Stadium",
-  "aliases": [],
+  "aliases": [
+   "Torpedo Stadium"
+  ],
   "city": "Kokshetau",
   "region": null,
   "country": "Kazakhstan",
@@ -7037,7 +7104,9 @@
  {
   "id": "zhetysu-stadium",
   "name": "Zhetysu Stadium",
-  "aliases": [],
+  "aliases": [
+   "Samat Suyumbayev Stadium"
+  ],
   "city": "Taldykorgan",
   "region": null,
   "country": "Kazakhstan",
@@ -7163,14 +7232,18 @@
  },
  {
   "id": "suduva-stadium",
-  "name": "Sūduva Stadium",
-  "aliases": [],
+  "name": "Marijampolė Football Arena",
+  "aliases": [
+   "Arvi Arena",
+   "Sūduva Stadium",
+   "Mantingos futbolo arena"
+  ],
   "city": "Marijampolė",
   "region": null,
   "country": "Lithuania",
   "countryCode": "LT",
-  "latitude": 54.56852,
-  "longitude": 23.36319,
+  "latitude": 54.57462,
+  "longitude": 23.36536,
   "sports": [
    "soccer"
   ],
@@ -7442,8 +7515,8 @@
   "region": null,
   "country": "Luxembourg",
   "countryCode": "LU",
-  "latitude": 49.47479,
-  "longitude": 6.03608,
+  "latitude": 49.45735,
+  "longitude": 6.0332,
   "sports": [
    "soccer"
   ],
@@ -7484,8 +7557,8 @@
   "region": null,
   "country": "Luxembourg",
   "countryCode": "LU",
-  "latitude": 49.56301,
-  "longitude": 5.90602,
+  "latitude": 49.5629,
+  "longitude": 5.905,
   "sports": [
    "soccer"
   ],
@@ -7526,8 +7599,8 @@
   "region": null,
   "country": "Luxembourg",
   "countryCode": "LU",
-  "latitude": 49.78619,
-  "longitude": 6.07789,
+  "latitude": 49.7889,
+  "longitude": 6.0844,
   "sports": [
    "soccer"
   ],
@@ -7607,7 +7680,7 @@
   "id": "janis-skredelis-stadium",
   "name": "Jānis Skredelis' Stadium",
   "aliases": [],
-  "city": "Jānis Skredelis' Stadium",
+  "city": "Riga",
   "region": null,
   "country": "Latvia",
   "countryCode": "LV",
@@ -7632,8 +7705,8 @@
   "region": null,
   "country": "Latvia",
   "countryCode": "LV",
-  "latitude": 56.908,
-  "longitude": 24.155,
+  "latitude": 56.90829,
+  "longitude": 24.15416,
   "sports": [
    "soccer"
   ],
@@ -7649,12 +7722,12 @@
   "id": "ogres-stadions",
   "name": "Ogres stadions",
   "aliases": [],
-  "city": "Ogres stadions",
+  "city": "Ogre",
   "region": null,
   "country": "Latvia",
   "countryCode": "LV",
-  "latitude": 56.858,
-  "longitude": 24.337,
+  "latitude": 56.8179,
+  "longitude": 24.5908,
   "sports": [
    "soccer"
   ],
@@ -7756,7 +7829,7 @@
   "id": "nisporeni-stadium",
   "name": "Nisporeni Stadium",
   "aliases": [],
-  "city": "Chișinău",
+  "city": "Nisporeni",
   "region": null,
   "country": "Moldova",
   "countryCode": "MD",
@@ -7766,10 +7839,7 @@
    "soccer"
   ],
   "leagues": [],
-  "homeTeams": [
-   "FC Dacia Buiucani",
-   "FC Real Sireți"
-  ],
+  "homeTeams": [],
   "timeZone": "Europe/Chisinau",
   "capacity": null,
   "opened": null
@@ -7851,9 +7921,7 @@
    "soccer"
   ],
   "leagues": [],
-  "homeTeams": [
-   "FC Politehnica UTM Chișinău"
-  ],
+  "homeTeams": [],
   "timeZone": "Europe/Chisinau",
   "capacity": null,
   "opened": null
@@ -7861,7 +7929,10 @@
  {
   "id": "zimbru-stadium",
   "name": "Zimbru Stadium",
-  "aliases": [],
+  "aliases": [
+   "Stadionul Zimbru",
+   "Zimbru-2 (adjacent pitch used by Dacia Buiucani)"
+  ],
   "city": "Chișinău",
   "region": null,
   "country": "Moldova",
@@ -7874,7 +7945,8 @@
   "leagues": [],
   "homeTeams": [
    "FC Zimbru Chișinău",
-   "Moldova national football team"
+   "Moldova national football team",
+   "FC Dacia Buiucani"
   ],
   "timeZone": "Europe/Chisinau",
   "capacity": 10400,
@@ -7904,7 +7976,9 @@
  {
   "id": "gradski-stadion-niksic",
   "name": "Gradski stadion",
-  "aliases": [],
+  "aliases": [
+   "Stadion kraj Bistrice"
+  ],
   "city": "Nikšić",
   "region": null,
   "country": "Montenegro",
@@ -8288,8 +8362,8 @@
   "region": null,
   "country": "Netherlands",
   "countryCode": "NL",
-  "latitude": 52.455,
-  "longitude": 4.635,
+  "latitude": 52.45518,
+  "longitude": 4.63493,
   "sports": [
    "soccer"
   ],
@@ -8610,8 +8684,8 @@
   "region": null,
   "country": "Norway",
   "countryCode": "NO",
-  "latitude": 63.125,
-  "longitude": 7.71922,
+  "latitude": 63.12472,
+  "longitude": 7.71806,
   "sports": [
    "soccer"
   ],
@@ -8762,7 +8836,9 @@
  {
   "id": "bialystok-city-stadium",
   "name": "Białystok City Stadium",
-  "aliases": [],
+  "aliases": [
+   "Chorten Arena"
+  ],
   "city": "Białystok",
   "region": null,
   "country": "Poland",
@@ -8831,8 +8907,8 @@
   "region": null,
   "country": "Poland",
   "countryCode": "PL",
-  "latitude": 52.562,
-  "longitude": 19.68407,
+  "latitude": 52.56199,
+  "longitude": 19.68424,
   "sports": [
    "soccer"
   ],
@@ -8847,7 +8923,9 @@
  {
   "id": "kielce-city-stadium",
   "name": "Kielce City Stadium",
-  "aliases": [],
+  "aliases": [
+   "Exbud Arena"
+  ],
   "city": "Kielce",
   "region": null,
   "country": "Poland",
@@ -8910,7 +8988,9 @@
  {
   "id": "radom-municipal-stadium",
   "name": "Radom Municipal Stadium",
-  "aliases": [],
+  "aliases": [
+   "Czachor Brothers Stadium"
+  ],
   "city": "Radom",
   "region": null,
   "country": "Poland",
@@ -8931,7 +9011,9 @@
  {
   "id": "stadion-miejski-im-floriana-krygiera",
   "name": "Stadion Miejski im. Floriana Krygiera",
-  "aliases": [],
+  "aliases": [
+   "Florian Krygier Stadium"
+  ],
   "city": "Szczecin",
   "region": null,
   "country": "Poland",
@@ -8952,7 +9034,9 @@
  {
   "id": "stadion-piast",
   "name": "Stadion Piast",
-  "aliases": [],
+  "aliases": [
+   "Piotr Wieczorek Stadium"
+  ],
   "city": "Gliwice",
   "region": null,
   "country": "Poland",
@@ -8973,13 +9057,15 @@
  {
   "id": "stadion-widzewa",
   "name": "Stadion Widzewa",
-  "aliases": [],
+  "aliases": [
+   "Widzew Łódź Stadium"
+  ],
   "city": "Łódź",
   "region": null,
   "country": "Poland",
   "countryCode": "PL",
-  "latitude": 51.765,
-  "longitude": 19.51167,
+  "latitude": 51.76506,
+  "longitude": 19.51174,
   "sports": [
    "soccer"
   ],
@@ -8994,7 +9080,9 @@
  {
   "id": "stadion-zaglebia-lubin",
   "name": "Stadion Zagłębia Lubin",
-  "aliases": [],
+  "aliases": [
+   "KGHM Zagłębie Arena"
+  ],
   "city": "Lubin",
   "region": null,
   "country": "Poland",
@@ -9043,8 +9131,8 @@
   "region": null,
   "country": "Portugal",
   "countryCode": "PT",
-  "latitude": 38.716,
-  "longitude": -9.406,
+  "latitude": 38.71586,
+  "longitude": -9.40641,
   "sports": [
    "soccer"
   ],
@@ -9135,8 +9223,8 @@
   "region": null,
   "country": "Portugal",
   "countryCode": "PT",
-  "latitude": 40.92833,
-  "longitude": -8.24861,
+  "latitude": 40.9322,
+  "longitude": -8.2505,
   "sports": [
    "soccer"
   ],
@@ -9268,7 +9356,9 @@
  {
   "id": "estadio-do-rio-ave-fc",
   "name": "Estádio do Rio Ave FC",
-  "aliases": [],
+  "aliases": [
+   "Estádio dos Arcos"
+  ],
   "city": "Vila do Conde",
   "region": null,
   "country": "Portugal",
@@ -9406,7 +9496,9 @@
  {
   "id": "stadionul-dacia",
   "name": "Stadionul Dacia",
-  "aliases": [],
+  "aliases": [
+   "Stadionul Orășenesc (Mioveni)"
+  ],
   "city": "Mioveni",
   "region": null,
   "country": "Romania",
@@ -9791,7 +9883,8 @@
   ],
   "leagues": [],
   "homeTeams": [
-   "FK Zemun"
+   "FK Zemun",
+   "FK Jedinstvo Ub"
   ],
   "timeZone": "Europe/Belgrade",
   "capacity": null,
@@ -9910,8 +10003,8 @@
   "region": null,
   "country": "Serbia",
   "countryCode": "RS",
-  "latitude": 42.6833,
-  "longitude": 22.1666,
+  "latitude": 42.69235,
+  "longitude": 22.16545,
   "sports": [
    "soccer"
   ],
@@ -10167,7 +10260,9 @@
  {
   "id": "kazan-arena",
   "name": "Kazan Arena",
-  "aliases": [],
+  "aliases": [
+   "Ak Bars Arena"
+  ],
   "city": "Kazan",
   "region": null,
   "country": "Russia",
@@ -10706,7 +10801,9 @@
  {
   "id": "kosice-football-arena",
   "name": "Košice football arena",
-  "aliases": [],
+  "aliases": [
+   "Košická futbalová aréna"
+  ],
   "city": "Košice",
   "region": null,
   "country": "Slovakia",
@@ -10769,7 +10866,9 @@
  {
   "id": "snp-stadium",
   "name": "SNP Stadium",
-  "aliases": [],
+  "aliases": [
+   "Národný atletický štadión"
+  ],
   "city": "Banská Bystrica",
   "region": null,
   "country": "Slovakia",
@@ -10816,8 +10915,8 @@
   "region": null,
   "country": "Slovakia",
   "countryCode": "SK",
-  "latitude": 48.8167,
-  "longitude": 19.535,
+  "latitude": 48.8074,
+  "longitude": 19.5232,
   "sports": [
    "soccer"
   ],
@@ -10832,13 +10931,15 @@
  {
   "id": "zemplin-stadium",
   "name": "Zemplin Stadium",
-  "aliases": [],
+  "aliases": [
+   "Mestský futbalový štadión"
+  ],
   "city": "Michalovce",
   "region": null,
   "country": "Slovakia",
   "countryCode": "SK",
-  "latitude": 48.75006,
-  "longitude": 21.93623,
+  "latitude": 48.7631,
+  "longitude": 21.9097,
   "sports": [
    "soccer"
   ],
@@ -10853,7 +10954,9 @@
  {
   "id": "stadion-antona-malatinskeho",
   "name": "Štadión Antona Malatinského",
-  "aliases": [],
+  "aliases": [
+   "Anton Malatinský Stadium"
+  ],
   "city": "Trnava",
   "region": null,
   "country": "Slovakia",
@@ -10874,7 +10977,9 @@
  {
   "id": "stadion-mfk-ruzomberok",
   "name": "Štadión MFK Ružomberok",
-  "aliases": [],
+  "aliases": [
+   "Štadión pod Čebraťom"
+  ],
   "city": "Ružomberok",
   "region": null,
   "country": "Slovakia",
@@ -10895,7 +11000,9 @@
  {
   "id": "stadion-msk-zilina",
   "name": "Štadión MŠK Žilina",
-  "aliases": [],
+  "aliases": [
+   "Štadión pod Dubňom"
+  ],
   "city": "Žilina",
   "region": null,
   "country": "Slovakia",
@@ -10916,7 +11023,9 @@
  {
   "id": "stadion-na-sihoti",
   "name": "Štadión na Sihoti",
-  "aliases": [],
+  "aliases": [
+   "Štadión Sihoť"
+  ],
   "city": "Trenčín",
   "region": null,
   "country": "Slovakia",
@@ -10949,7 +11058,8 @@
   ],
   "leagues": [],
   "homeTeams": [
-   "San Marino national football team"
+   "San Marino national football team",
+   "SS Cosmos"
   ],
   "timeZone": "Europe/San_Marino",
   "capacity": 5000,
@@ -11078,8 +11188,8 @@
   "region": null,
   "country": "Turkey",
   "countryCode": "TR",
-  "latitude": 39.911,
-  "longitude": 41.238,
+  "latitude": 39.91117,
+  "longitude": 41.23811,
   "sports": [
    "soccer"
   ],
@@ -11147,8 +11257,8 @@
   "region": null,
   "country": "Turkey",
   "countryCode": "TR",
-  "latitude": 41.042,
-  "longitude": 40.5732,
+  "latitude": 41.04202,
+  "longitude": 40.57257,
   "sports": [
    "soccer"
   ],
@@ -11232,7 +11342,9 @@
  {
   "id": "central-stadium-zhytomyr",
   "name": "Central Stadium",
-  "aliases": [],
+  "aliases": [
+   "Tsentralnyi Stadion"
+  ],
   "city": "Zhytomyr",
   "region": null,
   "country": "Ukraine",
@@ -11554,8 +11666,8 @@
   "region": null,
   "country": "Kosovo",
   "countryCode": "XK",
-  "latitude": 42.905,
-  "longitude": 21.19472,
+  "latitude": 42.90507,
+  "longitude": 21.19489,
   "sports": [
    "soccer"
   ],

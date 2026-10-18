@@ -14847,6 +14847,29 @@
   "opened": null
  },
  {
+  "id": "tate-rink",
+  "name": "Tate Rink",
+  "aliases": [],
+  "city": "West Point",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.3857,
+  "longitude": -73.9654,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey"
+  ],
+  "homeTeams": [
+   "Army Black Knights"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "bentley-arena",
   "name": "Bentley Arena",
   "aliases": [],
@@ -14940,6 +14963,30 @@
   "opened": null
  },
  {
+  "id": "clearview-arena-at-rmu-island-sports-center",
+  "name": "Clearview Arena at RMU Island Sports Center",
+  "aliases": [],
+  "city": "Pittsburgh",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.51876,
+  "longitude": -80.15149,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey",
+   "hockey/womens-college-hockey"
+  ],
+  "homeTeams": [
+   "Robert Morris Colonials"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "martire-family-arena",
   "name": "Martire Family Arena",
   "aliases": [],
@@ -15009,6 +15056,29 @@
   "opened": null
  },
  {
+  "id": "3m-arena-at-mariucci",
+  "name": "3M Arena at Mariucci",
+  "aliases": [],
+  "city": "Minneapolis",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.97806,
+  "longitude": -93.22806,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey"
+  ],
+  "homeTeams": [
+   "Minnesota Golden Gophers"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "compton-family-ice-arena",
   "name": "Compton Family Ice Arena",
   "aliases": [],
@@ -15028,6 +15098,30 @@
    "Notre Dame Fighting Irish"
   ],
   "timeZone": "America/Indiana/Indianapolis",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "pegula-ice-arena",
+  "name": "Pegula Ice Arena",
+  "aliases": [],
+  "city": "University Park",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.8071,
+  "longitude": -77.8568,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey",
+   "hockey/womens-college-hockey"
+  ],
+  "homeTeams": [
+   "Penn State Nittany Lions"
+  ],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  },
@@ -15102,6 +15196,99 @@
   "opened": null
  },
  {
+  "id": "ewigleben-ice-arena",
+  "name": "Ewigleben Ice Arena",
+  "aliases": [],
+  "city": "Big Rapids",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.67915,
+  "longitude": -85.48515,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey"
+  ],
+  "homeTeams": [
+   "Ferris State Bulldogs"
+  ],
+  "timeZone": "America/Detroit",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "taffy-abel-arena",
+  "name": "Taffy Abel Arena",
+  "aliases": [],
+  "city": "Sault Ste. Marie",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 46.49,
+  "longitude": -84.366,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey"
+  ],
+  "homeTeams": [
+   "Lake Superior State Lakers"
+  ],
+  "timeZone": "America/Detroit",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "macinnes-student-ice-arena",
+  "name": "MacInnes Student Ice Arena",
+  "aliases": [],
+  "city": "Houghton",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 47.1125,
+  "longitude": -88.5458,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey"
+  ],
+  "homeTeams": [
+   "Michigan Tech Huskies"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "mayo-clinic-health-system-event-center",
+  "name": "Mayo Clinic Health System Event Center",
+  "aliases": [],
+  "city": "Mankato",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.1655,
+  "longitude": -94.0048,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey",
+   "hockey/womens-college-hockey"
+  ],
+  "homeTeams": [
+   "Minnesota State Mavericks"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "berry-events-center",
   "name": "Berry Events Center",
   "aliases": [],
@@ -15167,6 +15354,30 @@
   ],
   "homeTeams": [
    "Clarkson Golden Knights"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "class-of-1965-arena",
+  "name": "Class of 1965 Arena",
+  "aliases": [],
+  "city": "Hamilton",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.815599,
+  "longitude": -75.542486,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey",
+   "hockey/womens-college-hockey"
+  ],
+  "homeTeams": [
+   "Colgate Raiders"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -15317,6 +15528,30 @@
   "opened": null
  },
  {
+  "id": "messa-rink-at-achilles-center",
+  "name": "Messa Rink at Achilles Center",
+  "aliases": [],
+  "city": "Schenectady",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.81798,
+  "longitude": -73.92487,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey",
+   "hockey/womens-college-hockey"
+  ],
+  "homeTeams": [
+   "Union Garnet Chargers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "ingalls-rink",
   "name": "Ingalls Rink",
   "aliases": [],
@@ -15406,6 +15641,30 @@
   ],
   "homeTeams": [
    "New Hampshire Wildcats"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "matthews-arena",
+  "name": "Matthews Arena",
+  "aliases": [],
+  "city": "Boston",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.3411,
+  "longitude": -71.0844,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey",
+   "hockey/womens-college-hockey"
+  ],
+  "homeTeams": [
+   "Northeastern Huskies"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -15502,6 +15761,29 @@
    "Denver Pioneers"
   ],
   "timeZone": "America/Denver",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "goggin-ice-center",
+  "name": "Goggin Ice Center",
+  "aliases": [],
+  "city": "Oxford",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.5036,
+  "longitude": -84.737,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey"
+  ],
+  "homeTeams": [
+   "Miami (OH) RedHawks"
+  ],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  },
@@ -15623,6 +15905,30 @@
   "opened": null
  },
  {
+  "id": "centene-community-ice-center",
+  "name": "Centene Community Ice Center",
+  "aliases": [],
+  "city": "Maryland Heights",
+  "region": "Missouri",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.74972,
+  "longitude": -90.4775,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/mens-college-hockey",
+   "hockey/womens-college-hockey"
+  ],
+  "homeTeams": [
+   "Lindenwood Lions"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "northwell-health-ice-center",
   "name": "Northwell Health Ice Center",
   "aliases": [],
@@ -15740,6 +16046,29 @@
   "opened": null
  },
  {
+  "id": "ritchie-arena",
+  "name": "Ritchie Arena",
+  "aliases": [],
+  "city": "Winchendon",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.67239,
+  "longitude": -72.03781,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/womens-college-hockey"
+  ],
+  "homeTeams": [
+   "Franklin Pierce Ravens"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "sports-center-of-connecticut",
   "name": "Sports Center of Connecticut",
   "aliases": [],
@@ -15780,6 +16109,29 @@
   ],
   "homeTeams": [
    "Sacred Heart Pioneers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "sullivan-ice-arena",
+  "name": "Sullivan Ice Arena",
+  "aliases": [],
+  "city": "Goffstown",
+  "region": "New Hampshire",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.98244,
+  "longitude": -71.50417,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/womens-college-hockey"
+  ],
+  "homeTeams": [
+   "Saint Anselm Hawks"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -15828,6 +16180,29 @@
    "Minnesota Golden Gophers"
   ],
   "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "osu-ice-rink",
+  "name": "OSU Ice Rink",
+  "aliases": [],
+  "city": "Columbus",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.005278,
+  "longitude": -83.018333,
+  "sports": [
+   "hockey"
+  ],
+  "leagues": [
+   "hockey/womens-college-hockey"
+  ],
+  "homeTeams": [
+   "Ohio State Buckeyes"
+  ],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  },

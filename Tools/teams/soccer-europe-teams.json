@@ -8240,8 +8240,8 @@
   "sport": "soccer",
   "league": "Swiss Super League",
   "leagueKey": "soccer/sui.1",
-  "country": "Switzerland",
-  "countryCode": "CH",
+  "country": "Liechtenstein",
+  "countryCode": "LI",
   "abbreviation": "VAD",
   "locationName": "Vaduz",
   "teamName": "FC Vaduz",
@@ -10272,9 +10272,9 @@
   "teamName": "FC Argeș Pitești",
   "monogram": "A",
   "colors": {
-   "primary": "5B6770",
+   "primary": "4E2784",
    "secondary": "FFFFFF",
-   "accent": "5B6770"
+   "accent": "FFFFFF"
   },
   "externalIds": {
    "espn": "20725",
@@ -13188,9 +13188,9 @@
   "teamName": "FC Polissya Zhytomyr",
   "monogram": "P",
   "colors": {
-   "primary": "5B6770",
-   "secondary": "FFFFFF",
-   "accent": "5B6770"
+   "primary": "FFFFFF",
+   "secondary": "000000",
+   "accent": "FFFFFF"
   },
   "externalIds": {
    "espn": null,
@@ -14241,9 +14241,9 @@
   "teamName": "MFK Skalica",
   "monogram": "S",
   "colors": {
-   "primary": "5B6770",
+   "primary": "007711",
    "secondary": "FFFFFF",
-   "accent": "5B6770"
+   "accent": "007711"
   },
   "externalIds": {
    "espn": null,
@@ -15294,9 +15294,9 @@
   "teamName": "KF Shkëndija Haraçinë",
   "monogram": "S",
   "colors": {
-   "primary": "5B6770",
-   "secondary": "FFFFFF",
-   "accent": "5B6770"
+   "primary": "FF0000",
+   "secondary": "000000",
+   "accent": "FF0000"
   },
   "externalIds": {
    "espn": null,
@@ -16060,7 +16060,7 @@
    "wikidata": "Q5424880",
    "theSportsDb": null
   },
-  "homeVenueId": "nisporeni-stadium",
+  "homeVenueId": "zimbru-stadium",
   "founded": 1997,
   "tier": 1
  },
@@ -16141,7 +16141,7 @@
    "wikidata": "Q3063142",
    "theSportsDb": null
   },
-  "homeVenueId": "utm-stadium",
+  "homeVenueId": "suruceni-stadium",
   "founded": 1964,
   "tier": 1
  },
@@ -16168,7 +16168,7 @@
    "wikidata": null,
    "theSportsDb": null
   },
-  "homeVenueId": "nisporeni-stadium",
+  "homeVenueId": "nicolae-simatoc-stadium",
   "founded": null,
   "tier": 1
  },
@@ -16617,9 +16617,9 @@
   "teamName": "FC Sardarapat",
   "monogram": "S",
   "colors": {
-   "primary": "5B6770",
-   "secondary": "FFFFFF",
-   "accent": "5B6770"
+   "primary": "9F3004",
+   "secondary": "322D53",
+   "accent": "A9451D"
   },
   "externalIds": {
    "espn": null,
@@ -20289,9 +20289,9 @@
   "teamName": "Trefelin B.G.C.",
   "monogram": "T",
   "colors": {
-   "primary": "5B6770",
-   "secondary": "FFFFFF",
-   "accent": "5B6770"
+   "primary": "FF0000",
+   "secondary": "000000",
+   "accent": "FF0000"
   },
   "externalIds": {
    "espn": null,
@@ -20424,9 +20424,9 @@
   "teamName": "US Hostert",
   "monogram": "H",
   "colors": {
-   "primary": "5B6770",
+   "primary": "036F01",
    "secondary": "FFFFFF",
-   "accent": "5B6770"
+   "accent": "036F01"
   },
   "externalIds": {
    "espn": null,
@@ -20586,9 +20586,9 @@
   "teamName": "FC Résidence Walferdange",
   "monogram": "R",
   "colors": {
-   "primary": "5B6770",
+   "primary": "0000FF",
    "secondary": "FFFFFF",
-   "accent": "5B6770"
+   "accent": "FFFFFF"
   },
   "externalIds": {
    "espn": null,
@@ -20898,33 +20898,6 @@
   "tier": 1
  },
  {
-  "id": "fro1-suu",
-  "kind": "club",
-  "sport": "soccer",
-  "league": "Faroe Islands Premier League",
-  "leagueKey": "soccer/fro.1",
-  "country": "Faroe Islands",
-  "countryCode": "FO",
-  "abbreviation": "SUU",
-  "locationName": "FC Suðuroy",
-  "teamName": "FC Suðuroy",
-  "monogram": "S",
-  "colors": {
-   "primary": "0000E0",
-   "secondary": "FFFFFF",
-   "accent": "FFFFFF"
-  },
-  "externalIds": {
-   "espn": null,
-   "espnLeague": null,
-   "wikidata": "Q856036",
-   "theSportsDb": null
-  },
-  "homeVenueId": "a-eidinum",
-  "founded": 2005,
-  "tier": 1
- },
- {
   "id": "fro1-0ve",
   "kind": "club",
   "sport": "soccer",
@@ -20949,33 +20922,6 @@
   },
   "homeVenueId": "a-dungasandi",
   "founded": 2007,
-  "tier": 1
- },
- {
-  "id": "fro1-ttv",
-  "kind": "club",
-  "sport": "soccer",
-  "league": "Faroe Islands Premier League",
-  "leagueKey": "soccer/fro.1",
-  "country": "Faroe Islands",
-  "countryCode": "FO",
-  "abbreviation": "TTV",
-  "locationName": "TB Tvøroyri",
-  "teamName": "Tvøroyrar Bóltfelag",
-  "monogram": "T",
-  "colors": {
-   "primary": "000000",
-   "secondary": "FFFFFF",
-   "accent": "FFFFFF"
-  },
-  "externalIds": {
-   "espn": null,
-   "espnLeague": null,
-   "wikidata": "Q778858",
-   "theSportsDb": null
-  },
-  "homeVenueId": "vid-stora",
-  "founded": 1892,
   "tier": 1
  },
  {

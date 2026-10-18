@@ -4762,29 +4762,35 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 8,
+  "teamCount": 11,
   "season": "Oct-Mar",
   "espnPath": "hockey/mens-college-hockey",
   "teamIds": [
+   "col-hockey-af",
    "col-hockey-aic",
+   "col-hockey-army",
    "col-hockey-bent",
    "col-hockey-can",
    "col-hockey-hc",
    "col-hockey-merc",
    "col-hockey-nia",
    "col-hockey-rit",
+   "col-hockey-rmu",
    "col-hockey-shu"
   ],
   "passport": {
    "label": "Atlantic Hockey America Men's Hockey venues",
    "venueIds": [
+    "clune-arena",
     "massmutual-center",
+    "tate-rink",
     "bentley-arena",
     "lecom-harborcenter",
     "hart-center-arena",
     "mercyhurst-athletic-center",
     "dwyer-arena",
     "gene-polisseni-center",
+    "clearview-arena-at-rmu-island-sports-center",
     "martire-family-arena"
    ]
   }
@@ -4796,14 +4802,16 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 7,
   "season": "Oct-Mar",
   "espnPath": "hockey/mens-college-hockey",
   "teamIds": [
    "col-hockey-mich",
    "col-hockey-msu",
+   "col-hockey-minn",
    "col-hockey-nd",
    "col-hockey-osu",
+   "col-hockey-psu",
    "col-hockey-wis"
   ],
   "passport": {
@@ -4811,8 +4819,10 @@
    "venueIds": [
     "yost-ice-arena",
     "munn-ice-arena",
+    "3m-arena-at-mariucci",
     "compton-family-ice-arena",
     "schottenstein-center",
+    "pegula-ice-arena",
     "kohl-center"
    ]
   }
@@ -4824,13 +4834,17 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 9,
   "season": "Oct-Mar",
   "espnPath": "hockey/mens-college-hockey",
   "teamIds": [
    "col-hockey-ausd",
    "col-hockey-bst",
    "col-hockey-bgsu",
+   "col-hockey-frst",
+   "col-hockey-lss",
+   "col-hockey-mtu",
+   "col-hockey-mnst",
    "col-hockey-nmi",
    "col-hockey-stmn"
   ],
@@ -4840,6 +4854,10 @@
     "midco-arena",
     "sanford-center",
     "slater-family-ice-arena",
+    "ewigleben-ice-arena",
+    "taffy-abel-arena",
+    "macinnes-student-ice-arena",
+    "mayo-clinic-health-system-event-center",
     "berry-events-center",
     "lee-penny-anderson-arena"
    ]
@@ -4852,12 +4870,13 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 10,
+  "teamCount": 12,
   "season": "Oct-Mar",
   "espnPath": "hockey/mens-college-hockey",
   "teamIds": [
    "col-hockey-brwn",
    "col-hockey-clar",
+   "col-hockey-colg",
    "col-hockey-cor",
    "col-hockey-dart",
    "col-hockey-harv",
@@ -4865,6 +4884,7 @@
    "col-hockey-quin",
    "col-hockey-rpi",
    "col-hockey-usl",
+   "col-hockey-unny",
    "col-hockey-yale"
   ],
   "passport": {
@@ -4872,6 +4892,7 @@
    "venueIds": [
     "meehan-auditorium",
     "cheel-arena",
+    "class-of-1965-arena",
     "lynah-rink",
     "thompson-arena",
     "bright-landry-hockey-center",
@@ -4879,6 +4900,7 @@
     "m-and-t-bank-arena",
     "houston-field-house",
     "appleton-arena",
+    "messa-rink-at-achilles-center",
     "ingalls-rink"
    ]
   }
@@ -4890,7 +4912,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 9,
+  "teamCount": 11,
   "season": "Oct-Mar",
   "espnPath": "hockey/mens-college-hockey",
   "teamIds": [
@@ -4898,9 +4920,11 @@
    "col-hockey-bu",
    "col-hockey-conn",
    "col-hockey-me",
+   "col-hockey-mrmk",
    "col-hockey-mass",
    "col-hockey-uml",
    "col-hockey-unh",
+   "col-hockey-ne",
    "col-hockey-prov",
    "col-hockey-uvm"
   ],
@@ -4911,9 +4935,11 @@
     "agganis-arena",
     "toscano-family-ice-forum",
     "harold-alfond-sports-stadium",
+    "lawler-arena",
     "mullins-center",
     "tsongas-center",
     "whittemore-center-arena",
+    "matthews-arena",
     "schneider-arena",
     "gutterson-fieldhouse"
    ]
@@ -4926,13 +4952,14 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 8,
+  "teamCount": 9,
   "season": "Oct-Mar",
   "espnPath": "hockey/mens-college-hockey",
   "teamIds": [
    "col-hockey-asu",
    "col-hockey-colc",
    "col-hockey-den",
+   "col-hockey-moh",
    "col-hockey-umd",
    "col-hockey-und",
    "col-hockey-oma",
@@ -4945,6 +4972,7 @@
     "mullett-arena",
     "ed-robson-arena",
     "magness-arena",
+    "goggin-ice-center",
     "amsoil-arena",
     "betty-engelstad-sioux-center",
     "baxter-arena",
@@ -4960,12 +4988,13 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 4,
+  "teamCount": 5,
   "season": "Oct-Mar",
   "espnPath": "hockey/mens-college-hockey",
   "teamIds": [
    "col-hockey-uaa",
    "col-hockey-akfb",
+   "col-hockey-lin",
    "col-hockey-liu",
    "col-hockey-sto"
   ],
@@ -4974,6 +5003,7 @@
    "venueIds": [
     "seawolf-sports-complex",
     "carlson-center",
+    "centene-community-ice-center",
     "northwell-health-ice-center",
     "bridgewater-ice-arena"
    ]
@@ -4986,21 +5016,27 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 4,
+  "teamCount": 7,
   "season": "Oct-Mar",
   "espnPath": "hockey/womens-college-hockey",
   "teamIds": [
    "col-whockey-db",
+   "col-whockey-lin",
    "col-whockey-merc",
+   "col-whockey-psu",
    "col-whockey-rit",
+   "col-whockey-rmu",
    "col-whockey-syr"
   ],
   "passport": {
    "label": "Atlantic Hockey America Women's Hockey venues",
    "venueIds": [
     "fred-rust-ice-arena",
+    "centene-community-ice-center",
     "mercyhurst-athletic-center",
+    "pegula-ice-arena",
     "gene-polisseni-center",
+    "clearview-arena-at-rmu-island-sports-center",
     "tennity-ice-pavilion"
    ]
   }
@@ -5012,12 +5048,13 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 10,
+  "teamCount": 12,
   "season": "Oct-Mar",
   "espnPath": "hockey/womens-college-hockey",
   "teamIds": [
    "col-whockey-brwn",
    "col-whockey-clar",
+   "col-whockey-colg",
    "col-whockey-cor",
    "col-whockey-dart",
    "col-whockey-harv",
@@ -5025,6 +5062,7 @@
    "col-whockey-quin",
    "col-whockey-rpi",
    "col-whockey-usl",
+   "col-whockey-unny",
    "col-whockey-yale"
   ],
   "passport": {
@@ -5032,6 +5070,7 @@
    "venueIds": [
     "meehan-auditorium",
     "cheel-arena",
+    "class-of-1965-arena",
     "lynah-rink",
     "thompson-arena",
     "bright-landry-hockey-center",
@@ -5039,6 +5078,7 @@
     "m-and-t-bank-arena",
     "houston-field-house",
     "appleton-arena",
+    "messa-rink-at-achilles-center",
     "ingalls-rink"
    ]
   }
@@ -5050,14 +5090,16 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 8,
   "season": "Oct-Mar",
   "espnPath": "hockey/womens-college-hockey",
   "teamIds": [
    "col-whockey-asp",
+   "col-whockey-fp",
    "col-whockey-liu",
    "col-whockey-post",
    "col-whockey-shu",
+   "col-whockey-sans",
    "col-whockey-stm",
    "col-whockey-sto"
   ],
@@ -5065,9 +5107,11 @@
    "label": "NEWHA Women's Hockey venues",
    "venueIds": [
     "fidelity-bank-worcester-ice-center",
+    "ritchie-arena",
     "northwell-health-ice-center",
     "sports-center-of-connecticut",
     "total-mortgage-arena",
+    "sullivan-ice-arena",
     "c-douglas-cairns-recreation-arena",
     "bridgewater-ice-arena"
    ]
@@ -5080,13 +5124,15 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 8,
   "season": "Oct-Mar",
   "espnPath": "hockey/womens-college-hockey",
   "teamIds": [
    "col-whockey-bst",
    "col-whockey-umd",
    "col-whockey-minn",
+   "col-whockey-mnst",
+   "col-whockey-osu",
    "col-whockey-scsu",
    "col-whockey-stmn",
    "col-whockey-wis"
@@ -5097,6 +5143,8 @@
     "sanford-center",
     "amsoil-arena",
     "ridder-arena",
+    "mayo-clinic-health-system-event-center",
+    "osu-ice-rink",
     "herb-brooks-national-hockey-center",
     "lee-penny-anderson-arena",
     "labahn-arena"
@@ -5110,7 +5158,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 8,
+  "teamCount": 10,
   "season": "Oct-Mar",
   "espnPath": "hockey/womens-college-hockey",
   "teamIds": [
@@ -5118,7 +5166,9 @@
    "col-whockey-bu",
    "col-whockey-hc",
    "col-whockey-me",
+   "col-whockey-mrmk",
    "col-whockey-unh",
+   "col-whockey-ne",
    "col-whockey-prov",
    "col-whockey-conn",
    "col-whockey-uvm"
@@ -5130,7 +5180,9 @@
     "case-gym",
     "hart-center-arena",
     "harold-alfond-sports-stadium",
+    "lawler-arena",
     "whittemore-center-arena",
+    "matthews-arena",
     "schneider-arena",
     "toscano-family-ice-forum",
     "gutterson-fieldhouse"

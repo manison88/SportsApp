@@ -1,0 +1,1892 @@
+[
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "rou1-arg",
+  "field": "colors",
+  "old": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "new": {
+   "primary": "4E2784",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "source": "de.wikipedia infobox (vereinsfarben weiß-violett; away kit 4E2784, nickname 'Vulturii violeți') and argesfc.ro violet theme"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "ukr1-pol",
+  "field": "colors",
+  "old": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "new": {
+   "primary": "FFFFFF",
+   "secondary": "000000",
+   "accent": "FFFFFF"
+  },
+  "source": "en.wikipedia infobox 2026-27 kits: home white (Commons Kit body polissya2627h), away black (polissya2627a); de.wikipedia club colours listed as green/yellow (third kit is lime)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "svk1-ska",
+  "field": "colors",
+  "old": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "new": {
+   "primary": "007711",
+   "secondary": "FFFFFF",
+   "accent": "007711"
+  },
+  "source": "en/de.wikipedia infobox (adidas hooped26wg kit: white/green hoops 007711; Vereinsfarben grün-weiß; 'colors white and green')"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "mkd1-s77",
+  "field": "colors",
+  "old": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "new": {
+   "primary": "FF0000",
+   "secondary": "000000",
+   "accent": "FF0000"
+  },
+  "source": "en.wikipedia KF Shkëndija (Tetovo) infobox shows red/black; NOTE this id is Shkëndija Haraçinë, a different club from mkd1-shk: colours here are inferred from the common Shkëndija identity - LOW confidence"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "arm1-sar",
+  "field": "colors",
+  "old": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "new": {
+   "primary": "9F3004",
+   "secondary": "322D53",
+   "accent": "A9451D"
+  },
+  "source": "club website sardarapatfc.am theme colours (9F3004, 322D53, EADFCD); no kit data on Wikipedia - LOW confidence"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "wal1-tbg",
+  "field": "colors",
+  "old": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "new": {
+   "primary": "FF0000",
+   "secondary": "000000",
+   "accent": "FF0000"
+  },
+  "source": "de.wikipedia infobox (Vereinsfarben rot-schwarz; kit1 FF0000 body, 000000 shorts/socks)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "lux1-hos",
+  "field": "colors",
+  "old": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "new": {
+   "primary": "036F01",
+   "secondary": "FFFFFF",
+   "accent": "036F01"
+  },
+  "source": "club website ushostert.lu palette (green 025601/036F01 + white); de.wikipedia kit shows white hoops on light green"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "lux1-rwa",
+  "field": "colors",
+  "old": {
+   "primary": "5B6770",
+   "secondary": "FFFFFF",
+   "accent": "5B6770"
+  },
+  "new": {
+   "primary": "0000FF",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "source": "de.wikipedia infobox (Vereinsfarben blau-weiß; kit1 all 0000FF); fcresidence.lu uses navy 002A5C/3498DB"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "mda1-dbu",
+  "field": "homeVenueId",
+  "old": "nisporeni-stadium",
+  "new": "zimbru-stadium",
+  "source": "ro.wikipedia Liga Moldovei 2026-27 table: Dacia Buiucani at 'Stadionul Zimbru-2' (Zimbru sports complex, Chisinau); the 2025-26 Nisporeni stay ended"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "mda1-put",
+  "field": "homeVenueId",
+  "old": "utm-stadium",
+  "new": "suruceni-stadium",
+  "source": "ro.wikipedia Liga Moldovei 2026-27 table: Politehnica UTM at Stadionul Suruceni"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "mda1-rsi",
+  "field": "homeVenueId",
+  "old": "nisporeni-stadium",
+  "new": "nicolae-simatoc-stadium",
+  "source": "ro.wikipedia Liga Moldovei 2026-27 table: Real Sireti (promoted) at Stadionul Nicolae Simatoc, Sireti"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-leagues.json",
+  "id": "soccer/mda.1",
+  "field": "passport.venueIds",
+  "old": [
+   "stadionul-orasenesc-balti",
+   "nisporeni-stadium",
+   "csr-orhei",
+   "stadionul-municipal-hincesti",
+   "utm-stadium",
+   "sheriff-stadium",
+   "zimbru-stadium"
+  ],
+  "new": [
+   "stadionul-orasenesc-balti",
+   "zimbru-stadium",
+   "csr-orhei",
+   "stadionul-municipal-hincesti",
+   "suruceni-stadium",
+   "sheriff-stadium",
+   "nicolae-simatoc-stadium"
+  ],
+  "source": "derived from the three Moldova team fixes above (venues nisporeni-stadium and utm-stadium leave the league checklist)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "nisporeni-stadium",
+  "field": "city",
+  "old": "Chișinău",
+  "new": "Nisporeni",
+  "source": "Nisporeni is a town in western Moldova (47.076N 28.179E), not Chisinau"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "zimbru-stadium",
+  "field": "homeTeams",
+  "old": [
+   "FC Zimbru Chișinău",
+   "Moldova national football team"
+  ],
+  "new": [
+   "FC Zimbru Chișinău",
+   "Moldova national football team",
+   "FC Dacia Buiucani"
+  ],
+  "source": "ro.wikipedia Liga Moldovei 2026-27 (Dacia Buiucani plays at the Zimbru complex, Zimbru-2)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "zimbru-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Stadionul Zimbru",
+   "Zimbru-2 (adjacent pitch used by Dacia Buiucani)"
+  ],
+  "source": "ro.wikipedia Liga Moldovei 2026-27"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "nisporeni-stadium",
+  "field": "homeTeams",
+  "old": [
+   "FC Dacia Buiucani",
+   "FC Real Sireți"
+  ],
+  "new": [],
+  "source": "no longer a league home ground in 2026-27 (Dacia Buiucani and Real Sireti moved, see team fixes)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "utm-stadium",
+  "field": "homeTeams",
+  "old": [
+   "FC Politehnica UTM Chișinău"
+  ],
+  "new": [],
+  "source": "Politehnica UTM plays at Suruceni Stadium in 2026-27 (ro.wikipedia)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-leagues.json",
+  "id": "soccer/fro.1",
+  "field": "teamIds",
+  "old": [
+   "fro1-bto",
+   "fro1-b68",
+   "fro1-est",
+   "fro1-hbo",
+   "fro1-kkl",
+   "fro1-nru",
+   "fro1-suu",
+   "fro1-0ve",
+   "fro1-ttv",
+   "fro1-vgt"
+  ],
+  "new": [
+   "fro1-bto",
+   "fro1-b68",
+   "fro1-est",
+   "fro1-hbo",
+   "fro1-kkl",
+   "fro1-nru",
+   "fro1-0ve",
+   "fro1-vgt",
+   "fro1-aba",
+   "fro1-ski"
+  ],
+  "source": "Transfermarkt Meistaradeildin 2026 lists B36, HB, KI, NSI, B68, Vikingur, 07 Vestur, EB/Streymur + AB Argir and Skala IF (promoted); FC Sudhuroy and TB Tvoroyri were relegated after 2025"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-leagues.json",
+  "id": "soccer/fro.1",
+  "field": "passport.venueIds",
+  "old": [
+   "gundadalur",
+   "svangaskard",
+   "i-holmanum",
+   "djupumyra-stadium",
+   "runavik-stadium",
+   "a-eidinum",
+   "a-dungasandi",
+   "vid-stora",
+   "serpugerdi-stadium"
+  ],
+  "new": [
+   "gundadalur",
+   "svangaskard",
+   "i-holmanum",
+   "djupumyra-stadium",
+   "runavik-stadium",
+   "a-dungasandi",
+   "serpugerdi-stadium",
+   "skansi-arena",
+   "skala-stadium"
+  ],
+  "source": "derived from teamIds fix"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "fro1-suu",
+  "field": "__delete__",
+  "old": {
+   "id": "fro1-suu",
+   "kind": "club",
+   "sport": "soccer",
+   "league": "Faroe Islands Premier League",
+   "leagueKey": "soccer/fro.1",
+   "country": "Faroe Islands",
+   "countryCode": "FO",
+   "abbreviation": "SUU",
+   "locationName": "FC Suðuroy",
+   "teamName": "FC Suðuroy",
+   "monogram": "S",
+   "colors": {
+    "primary": "0000E0",
+    "secondary": "FFFFFF",
+    "accent": "FFFFFF"
+   },
+   "externalIds": {
+    "espn": null,
+    "espnLeague": null,
+    "wikidata": "Q856036",
+    "theSportsDb": null
+   },
+   "homeVenueId": "a-eidinum",
+   "founded": 2005,
+   "tier": 1
+  },
+  "new": null,
+  "source": "relegated from the Faroese top flight for 2026 (Transfermarkt Meistaradeildin 2026); not in any top-flight league record"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "fro1-ttv",
+  "field": "__delete__",
+  "old": {
+   "id": "fro1-ttv",
+   "kind": "club",
+   "sport": "soccer",
+   "league": "Faroe Islands Premier League",
+   "leagueKey": "soccer/fro.1",
+   "country": "Faroe Islands",
+   "countryCode": "FO",
+   "abbreviation": "TTV",
+   "locationName": "TB Tvøroyri",
+   "teamName": "Tvøroyrar Bóltfelag",
+   "monogram": "T",
+   "colors": {
+    "primary": "000000",
+    "secondary": "FFFFFF",
+    "accent": "FFFFFF"
+   },
+   "externalIds": {
+    "espn": null,
+    "espnLeague": null,
+    "wikidata": "Q778858",
+    "theSportsDb": null
+   },
+   "homeVenueId": "vid-stora",
+   "founded": 1892,
+   "tier": 1
+  },
+  "new": null,
+  "source": "relegated from the Faroese top flight for 2026 (Transfermarkt Meistaradeildin 2026); not in any top-flight league record"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "a-eidinum",
+  "field": "homeTeams",
+  "old": [
+   "FC Suðuroy"
+  ],
+  "new": [],
+  "source": "FC Sudhuroy relegated before 2026 season"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "sui1-vad",
+  "field": "country",
+  "old": "Switzerland",
+  "new": "Liechtenstein",
+  "source": "FC Vaduz is a Liechtenstein club (Rheinpark Stadion is in Vaduz); it plays in the Swiss pyramid (champions of the 2025-26 Challenge League, promoted to the 2026-27 Super League)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-teams.json",
+  "id": "sui1-vad",
+  "field": "countryCode",
+  "old": "CH",
+  "new": "LI",
+  "source": "as above"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "rheinpark-stadion",
+  "field": "country",
+  "old": "Switzerland",
+  "new": "Liechtenstein",
+  "source": "Vaduz is in Liechtenstein"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "rheinpark-stadion",
+  "field": "countryCode",
+  "old": "CH",
+  "new": "LI",
+  "source": "Vaduz is in Liechtenstein"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "rheinpark-stadion",
+  "field": "timeZone",
+  "old": "Europe/Zurich",
+  "new": "Europe/Vaduz",
+  "source": "Vaduz is in Liechtenstein (Europe/Vaduz, same offsets as Zurich)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "the-recreation-ground",
+  "field": "latitude",
+  "old": 51.79053,
+  "new": 51.7899,
+  "source": "OSM Nominatim landuse=recreation_ground 'Ammanford Recreation Ground' 51.78999,-3.99521 and en.wikipedia Ammanford A.F.C. 51.78992,-3.99567 (old value was ~300 m west, map-read)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "the-recreation-ground",
+  "field": "longitude",
+  "old": -3.99922,
+  "new": -3.9955,
+  "source": "OSM Nominatim landuse=recreation_ground 'Ammanford Recreation Ground' 51.78999,-3.99521 and en.wikipedia Ammanford A.F.C. 51.78992,-3.99567 (old value was ~300 m west, map-read)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "metallurg-stadium",
+  "field": "latitude",
+  "old": 47.48034,
+  "new": 47.80103,
+  "source": "OSM leisure=pitch sport=soccer 'Stadion', ul. Titova, Zhezkazgan (only soccer pitch named stadium in the city); old value was 40 km SW of the city (map-read). Medium confidence ~200 m"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "metallurg-stadium",
+  "field": "longitude",
+  "old": 67.43006,
+  "new": 67.71693,
+  "source": "OSM leisure=pitch sport=soccer 'Stadion', ul. Titova, Zhezkazgan (only soccer pitch named stadium in the city); old value was 40 km SW of the city (map-read). Medium confidence ~200 m"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-krupa-na-vrbasu",
+  "field": "latitude",
+  "old": 44.772,
+  "new": 44.61756,
+  "source": "en.wikipedia 'Gradski Stadion (Krupa na Vrbasu)' 44.617561,17.147383 (old value was the centre of Banja Luka, 17 km north)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-krupa-na-vrbasu",
+  "field": "longitude",
+  "old": 17.191,
+  "new": 17.14738,
+  "source": "en.wikipedia 'Gradski Stadion (Krupa na Vrbasu)' 44.617561,17.147383 (old value was the centre of Banja Luka, 17 km north)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-krupa-na-vrbasu",
+  "field": "city",
+  "old": "Banja Luka",
+  "new": "Krupa na Vrbasu",
+  "source": "stadium is in the village of Krupa na Vrbasu (Banja Luka municipality)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "ogres-stadions",
+  "field": "latitude",
+  "old": 56.858,
+  "new": 56.8179,
+  "source": "OSM leisure=stadium on Skolas iela, Ogre (bus stop 'Stadions'); old value 56.858,24.337 is the stadium of Salaspils, 20 km west"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "ogres-stadions",
+  "field": "longitude",
+  "old": 24.337,
+  "new": 24.5908,
+  "source": "OSM leisure=stadium on Skolas iela, Ogre (bus stop 'Stadions'); old value 56.858,24.337 is the stadium of Salaspils, 20 km west"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "ogres-stadions",
+  "field": "city",
+  "old": "Ogres stadions",
+  "new": "Ogre",
+  "source": "city field held the venue name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "janis-skredelis-stadium",
+  "field": "city",
+  "old": "Jānis Skredelis' Stadium",
+  "new": "Riga",
+  "source": "city field held the venue name; coordinates verified (en.wikipedia 56.933175,24.088273)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "sisian-city-stadium",
+  "field": "latitude",
+  "old": 39.52083,
+  "new": 39.52308,
+  "source": "OSM leisure=stadium on H-45 at Sisian (only stadium mapped); old value 39.52083,46.03222 is a street in the town centre. Medium confidence"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "sisian-city-stadium",
+  "field": "longitude",
+  "old": 46.03222,
+  "new": 46.02002,
+  "source": "OSM leisure=stadium on H-45 at Sisian (only stadium mapped); old value 39.52083,46.03222 is a street in the town centre. Medium confidence"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "imishli-city-stadium",
+  "field": "latitude",
+  "old": 39.86972,
+  "new": 39.85082,
+  "source": "OSM leisure=stadium on R11, Imishli (only stadium mapped); en.wikipedia 2026-27 calls it Heydar Aliyev Stadium (8,500). Old value was a town-centre street. Medium confidence"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "imishli-city-stadium",
+  "field": "longitude",
+  "old": 48.06,
+  "new": 48.04127,
+  "source": "OSM leisure=stadium on R11, Imishli (only stadium mapped); en.wikipedia 2026-27 calls it Heydar Aliyev Stadium (8,500). Old value was a town-centre street. Medium confidence"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "imishli-city-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Heydar Aliyev Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 Azerbaijan Premier League table"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stade-municipale-rumelange",
+  "field": "latitude",
+  "old": 49.47479,
+  "new": 49.45735,
+  "source": "Wikidata Q7596145 49.457347,6.033197 and en.wikipedia 49.45722,6.03333 (Parc Municipal, Rumelange); old value 49.47479,6.03608 was the Tetange stadium 2 km north"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stade-municipale-rumelange",
+  "field": "longitude",
+  "old": 6.03608,
+  "new": 6.0332,
+  "source": "Wikidata Q7596145 49.457347,6.033197 and en.wikipedia 49.45722,6.03333 (Parc Municipal, Rumelange); old value 49.47479,6.03608 was the Tetange stadium 2 km north"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stade-um-dribbel",
+  "field": "latitude",
+  "old": 49.56301,
+  "new": 49.5629,
+  "source": "OSM building 'Kaerjenger Dribbel' 49.5628,5.9046 + parking 'Treff Dribbel' 49.5629,5.9053, Avenue de Luxembourg, Bascharage"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stade-um-dribbel",
+  "field": "longitude",
+  "old": 5.90602,
+  "new": 5.905,
+  "source": "OSM building 'Kaerjenger Dribbel' 49.5628,5.9046 + parking 'Treff Dribbel' 49.5629,5.9053, Avenue de Luxembourg, Bascharage"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "terrain-zac-klengbousbierg",
+  "field": "latitude",
+  "old": 49.78619,
+  "new": 49.7889,
+  "source": "OSM landuse=commercial 'Z.A.C Klengbousbierg' centroid 49.78891,6.08442 (the ground is named after the zone); old value was in a residential street 600 m west. Low-medium confidence ~300 m"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "terrain-zac-klengbousbierg",
+  "field": "longitude",
+  "old": 6.07789,
+  "new": 6.0844,
+  "source": "OSM landuse=commercial 'Z.A.C Klengbousbierg' centroid 49.78891,6.08442 (the ground is named after the zone); old value was in a residential street 600 m west. Low-medium confidence ~300 m"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "surdulica-city-stadium",
+  "field": "latitude",
+  "old": 42.6833,
+  "new": 42.69235,
+  "source": "OSM leisure=pitch 'Teren Fudbalskog kluba Radnik' 42.69235,22.16545 (+ auxiliary pitch 42.69283,22.16553); old value 42.6833,22.1666 was the town centre"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "surdulica-city-stadium",
+  "field": "longitude",
+  "old": 22.1666,
+  "new": 22.16545,
+  "source": "OSM leisure=pitch 'Teren Fudbalskog kluba Radnik' 42.69235,22.16545 (+ auxiliary pitch 42.69283,22.16553); old value 42.6833,22.1666 was the town centre"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "zelpo-arena",
+  "field": "latitude",
+  "old": 48.8167,
+  "new": 48.8074,
+  "source": "OSM stadium named 'ZELPO Arena' 48.8074,19.5232 (old value was the village centre of Podbrezova, 1.3 km away)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "zelpo-arena",
+  "field": "longitude",
+  "old": 19.535,
+  "new": 19.5232,
+  "source": "OSM stadium named 'ZELPO Arena' 48.8074,19.5232 (old value was the village centre of Podbrezova, 1.3 km away)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "zemplin-stadium",
+  "field": "latitude",
+  "old": 48.75006,
+  "new": 48.7631,
+  "source": "OSM 'MFK Zemplin Michalovce' 48.7631,21.9096 and en.wikipedia 48.76316,21.9097 (old value was 2.4 km south-east)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "zemplin-stadium",
+  "field": "longitude",
+  "old": 21.93623,
+  "new": 21.9097,
+  "source": "OSM 'MFK Zemplin Michalovce' 48.7631,21.9096 and en.wikipedia 48.76316,21.9097 (old value was 2.4 km south-east)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "estadio-municipal-de-arouca",
+  "field": "latitude",
+  "old": 40.92833,
+  "new": 40.9322,
+  "source": "OSM 'Estadio Municipal de Arouca' 40.93229,-8.25049 and en.wikipedia 40.933,-8.2503 (old value was 470 m south)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "estadio-municipal-de-arouca",
+  "field": "longitude",
+  "old": -8.24861,
+  "new": -8.2505,
+  "source": "OSM 'Estadio Municipal de Arouca' 40.93229,-8.25049 and en.wikipedia 40.933,-8.2503 (old value was 470 m south)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "framvollur",
+  "field": "name",
+  "old": "Framvöllur",
+  "new": "Lambhagavöllur",
+  "source": "en.wikipedia 2026 Besta deild: Fram play at Lambhagavollur (Ulfarsardalur); the old Safamyri ground is no longer used"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "framvollur",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Framvöllur",
+   "Fram Stadium",
+   "Lambhagavöllurinn"
+  ],
+  "source": "Transfermarkt / en.wikipedia 2026"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "framvollur",
+  "field": "latitude",
+  "old": 64.1331,
+  "new": 64.13164,
+  "source": "OSM leisure=pitch 'Framvollur', Ulfarsbraut, Ulfarsardalur 64.13164,-21.73667 and en.wikipedia 64.1313,-21.7360 (old value 64.1331,-21.8908 was the former Safamyri ground)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "framvollur",
+  "field": "longitude",
+  "old": -21.8908,
+  "new": -21.73667,
+  "source": "OSM leisure=pitch 'Framvollur', Ulfarsbraut, Ulfarsardalur 64.13164,-21.73667 and en.wikipedia 64.1313,-21.7360 (old value 64.1331,-21.8908 was the former Safamyri ground)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "suduva-stadium",
+  "field": "name",
+  "old": "Sūduva Stadium",
+  "new": "Marijampolė Football Arena",
+  "source": "en.wikipedia 2026 A Lyga: Suduva play at Marijampole Football Arena (6,523), the new stadium also called 'Arvi Arena'"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "suduva-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Arvi Arena",
+   "Sūduva Stadium",
+   "Mantingos futbolo arena"
+  ],
+  "source": "OSM 'Arvi arena' / Transfermarkt"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "suduva-stadium",
+  "field": "latitude",
+  "old": 54.56852,
+  "new": 54.57462,
+  "source": "OSM leisure=stadium 'Arvi arena' 54.57462,23.36536 and en.wikipedia 54.57455,23.36539 (old value was the former Suduva stadium 700 m south)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "suduva-stadium",
+  "field": "longitude",
+  "old": 23.36319,
+  "new": 23.36536,
+  "source": "OSM leisure=stadium 'Arvi arena' 54.57462,23.36536 and en.wikipedia 54.57455,23.36539 (old value was the former Suduva stadium 700 m south)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-hartberg",
+  "field": "latitude",
+  "old": 47.281,
+  "new": 47.28107,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-hartberg",
+  "field": "longitude",
+  "old": 15.9772,
+  "new": 15.97785,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-pecara",
+  "field": "latitude",
+  "old": 43.3787,
+  "new": 43.3788,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-pecara",
+  "field": "longitude",
+  "old": 17.598,
+  "new": 17.59803,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "estadio-de-los-juegos-mediterraneos",
+  "field": "latitude",
+  "old": 36.84,
+  "new": 36.84007,
+  "source": "OSM leisure=stadium 'Power Horse Stadium' 36.8400670,-2.4354672 (validate.py precision warning: was 36.84) (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "estadio-de-los-juegos-mediterraneos",
+  "field": "longitude",
+  "old": -2.43528,
+  "new": -2.43547,
+  "source": "OSM leisure=stadium 'Power Horse Stadium' 36.8400670,-2.4354672 (validate.py precision warning: was 36.84) (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "project-liv-arena",
+  "field": "latitude",
+  "old": 63.67199,
+  "new": 63.67213,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "project-liv-arena",
+  "field": "longitude",
+  "old": 22.694,
+  "new": 22.69405,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stade-marcel-picot",
+  "field": "latitude",
+  "old": 48.696,
+  "new": 48.69572,
+  "source": "OSM stadium centre; en.wikipedia 48.6955,6.2107 (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stade-marcel-picot",
+  "field": "longitude",
+  "old": 6.21222,
+  "new": 6.21054,
+  "source": "OSM stadium centre; en.wikipedia 48.6955,6.2107 (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kaftanzoglio-national-stadium",
+  "field": "latitude",
+  "old": 40.6255,
+  "new": 40.62555,
+  "source": "OSM leisure=stadium (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kaftanzoglio-national-stadium",
+  "field": "longitude",
+  "old": 22.967,
+  "new": 22.96698,
+  "source": "OSM leisure=stadium (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-radnik",
+  "field": "latitude",
+  "old": 45.724,
+  "new": 45.72399,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-radnik",
+  "field": "longitude",
+  "old": 16.0732,
+  "new": 16.07312,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "pancho-arena",
+  "field": "latitude",
+  "old": 47.464,
+  "new": 47.46396,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "pancho-arena",
+  "field": "longitude",
+  "old": 18.5868,
+  "new": 18.58662,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "brandywell-stadium",
+  "field": "latitude",
+  "old": 54.99063,
+  "new": 54.99048,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "brandywell-stadium",
+  "field": "longitude",
+  "old": -7.336,
+  "new": -7.33627,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "keflavikurvollur",
+  "field": "latitude",
+  "old": 63.998,
+  "new": 63.99799,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "keflavikurvollur",
+  "field": "longitude",
+  "old": -22.55922,
+  "new": -22.55856,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadio-carlo-castellani",
+  "field": "latitude",
+  "old": 43.72639,
+  "new": 43.72655,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadio-carlo-castellani",
+  "field": "longitude",
+  "old": 10.955,
+  "new": 10.95473,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "lnk-sporta-parks",
+  "field": "latitude",
+  "old": 56.908,
+  "new": 56.90829,
+  "source": "OSM sports centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "lnk-sporta-parks",
+  "field": "longitude",
+  "old": 24.155,
+  "new": 24.15416,
+  "source": "OSM sports centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "buko-stadion",
+  "field": "latitude",
+  "old": 52.455,
+  "new": 52.45518,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "buko-stadion",
+  "field": "longitude",
+  "old": 4.635,
+  "new": 4.63493,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kristiansund-stadion",
+  "field": "latitude",
+  "old": 63.125,
+  "new": 63.12472,
+  "source": "en.wikipedia coordinates (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kristiansund-stadion",
+  "field": "longitude",
+  "old": 7.71922,
+  "new": 7.71806,
+  "source": "en.wikipedia coordinates (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kazimierz-gorski-stadium",
+  "field": "latitude",
+  "old": 52.562,
+  "new": 52.56199,
+  "source": "OSM 'Orlen Stadion' (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kazimierz-gorski-stadium",
+  "field": "longitude",
+  "old": 19.68407,
+  "new": 19.68424,
+  "source": "OSM 'Orlen Stadion' (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-widzewa",
+  "field": "latitude",
+  "old": 51.765,
+  "new": 51.76506,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-widzewa",
+  "field": "longitude",
+  "old": 19.51167,
+  "new": 19.51174,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "estadio-antonio-coimbra-da-mota",
+  "field": "latitude",
+  "old": 38.716,
+  "new": 38.71586,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "estadio-antonio-coimbra-da-mota",
+  "field": "longitude",
+  "old": -9.406,
+  "new": -9.40641,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kazim-karabekir-stadium",
+  "field": "latitude",
+  "old": 39.911,
+  "new": 39.91117,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kazim-karabekir-stadium",
+  "field": "longitude",
+  "old": 41.238,
+  "new": 41.23811,
+  "source": "OSM stadium centre (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "yeni-rize-sehir-stadi",
+  "field": "latitude",
+  "old": 41.042,
+  "new": 41.04202,
+  "source": "OSM 'Caykur Didi Stadyumu' (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "yeni-rize-sehir-stadi",
+  "field": "longitude",
+  "old": 40.5732,
+  "new": 40.57257,
+  "source": "OSM 'Caykur Didi Stadyumu' (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "zahir-pajaziti-stadium",
+  "field": "latitude",
+  "old": 42.905,
+  "new": 42.90507,
+  "source": "en.wikipedia coordinates (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "zahir-pajaziti-stadium",
+  "field": "longitude",
+  "old": 21.19472,
+  "new": 21.19489,
+  "source": "en.wikipedia coordinates (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "bijeljina-city-stadium",
+  "field": "latitude",
+  "old": 44.75444,
+  "new": 44.75413,
+  "source": "OSM 'Gradski stadion Bijeljina' (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "bijeljina-city-stadium",
+  "field": "longitude",
+  "old": 19.225,
+  "new": 19.22521,
+  "source": "OSM 'Gradski stadion Bijeljina' (old value had <=3 decimals)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "ka-vollur",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Greifavöllurinn"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kr-vollur",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Meistaravellir"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stjornuvollur",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Samsung völlurinn"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "hlidarendi",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "N1 völlurinn"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "akranesvollur",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "ELKEM völlurinn"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "bialystok-city-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Chorten Arena"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kielce-city-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Exbud Arena"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-piast",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Piotr Wieczorek Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-miejski-im-floriana-krygiera",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Florian Krygier Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "radom-municipal-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Czachor Brothers Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-widzewa",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Widzew Łódź Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-zaglebia-lubin",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "KGHM Zagłębie Arena"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "reichshofstadion",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Sun Minimeal Arena"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "josko-arena",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Keine Sorgen Arena"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-hartberg",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Profertil Arena Hartberg"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "vejlby-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Ceres Park Vejlby"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "odense-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Nature Energy Park"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "oulunkyla-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Markku.fi Areena"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kuopio-football-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Väre Areena"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "chance-arena",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Stadion Střelnice"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "mestsky-stadion-mlada-boleslav",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Lokotrans Aréna"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "varkert-sportpalya",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Várkerti Stadion"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-mfk-ruzomberok",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Štadión pod Čebraťom"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-antona-malatinskeho",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Anton Malatinský Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "zemplin-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Mestský futbalový štadión"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-msk-zilina",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Štadión pod Dubňom"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-na-sihoti",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Štadión Sihoť"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kosice-football-arena",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Košická futbalová aréna"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "snp-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Národný atletický štadión"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/venues/europe-west.json",
+  "id": "mendizorroza",
+  "field": "aliases",
+  "old": [
+   "Mendizorrotza"
+  ],
+  "new": [
+   "Mendizorrotza",
+   "Campo de Fútbol de Mendizorrotza"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "estadio-municipal-de-butarque",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Estadio Ontime Butarque"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "estadio-do-rio-ave-fc",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Estádio dos Arcos"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "ovcha-kupel-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Stadion Aleksandar Shalamanov"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "rapid-giulesti",
+  "field": "aliases",
+  "old": [
+   "Giulești"
+  ],
+  "new": [
+   "Giulești",
+   "Superbet Arena-Giulești"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadionul-dacia",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Stadionul Orășenesc (Mioveni)"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "taylors-avenue",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Loughshore Hotel Arena"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "united-park",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Sullivan and Lambe Park"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "cardiff-metropolitan-university",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Cyncoed Campus"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "cambrian-united-ground",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "M&P Group 3G"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "armavir-city-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Hakob Tonoyan Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "bakcell-arena",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Neftchi Arena"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "pafiako-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Stelios Kyriakides Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "jas-qanat-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Zhastar Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "zhetysu-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Samat Suyumbayev Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "okzhetpes-stadium",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Torpedo Stadium"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "kazan-arena",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Ak Bars Arena"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "podgorica-city-stadium",
+  "field": "aliases",
+  "old": [
+   "Gradski stadion"
+  ],
+  "new": [
+   "Gradski stadion",
+   "Stadion pod Goricom"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "gradski-stadion-niksic",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Stadion kraj Bistrice"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "central-stadium-zhytomyr",
+  "field": "aliases",
+  "old": [],
+  "new": [
+   "Tsentralnyi Stadion"
+  ],
+  "source": "en.wikipedia 2026-27 league page / Transfermarkt current stadium name"
+ },
+ {
+  "file": "Tools/venues/europe-west.json",
+  "id": "balaidos",
+  "field": "homeTeams",
+  "old": [
+   "Celta Vigo"
+  ],
+  "new": [
+   "Celta Vigo",
+   "RC Celta Fortuna"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-west.json",
+  "id": "la-cartuja",
+  "field": "homeTeams",
+  "old": [
+   "Spain national football team"
+  ],
+  "new": [
+   "Spain national football team",
+   "Real Betis"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "stade-du-pays-de-charleroi",
+  "field": "homeTeams",
+  "old": [
+   "R. Charleroi S.C."
+  ],
+  "new": [
+   "R. Charleroi S.C.",
+   "Royal Charleroi SC"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "st-jakob-park",
+  "field": "homeTeams",
+  "old": [
+   "FC Basel"
+  ],
+  "new": [
+   "FC Basel",
+   "Switzerland national football team"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "leoforos",
+  "field": "homeTeams",
+  "old": [
+   "Panathinaikos F.C."
+  ],
+  "new": [
+   "Panathinaikos F.C.",
+   "A.E. Kifisia F.C."
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "oaka-stadium",
+  "field": "homeTeams",
+  "old": [
+   "Greece national football team"
+  ],
+  "new": [
+   "Greece national football team",
+   "Panathinaikos F.C."
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "bloomfield",
+  "field": "homeTeams",
+  "old": [
+   "Maccabi Tel Aviv F.C.",
+   "Hapoel Tel Aviv F.C.",
+   "Bnei Yehuda Tel Aviv F.C."
+  ],
+  "new": [
+   "Maccabi Tel Aviv F.C.",
+   "Hapoel Tel Aviv F.C.",
+   "Bnei Yehuda Tel Aviv F.C.",
+   "Israel national football team"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "gsp-stadium",
+  "field": "homeTeams",
+  "old": [
+   "APOEL FC",
+   "AC Omonia",
+   "Cyprus national football team"
+  ],
+  "new": [
+   "APOEL FC",
+   "AC Omonia",
+   "Cyprus national football team",
+   "Olympiakos Nicosia"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "letna",
+  "field": "homeTeams",
+  "old": [
+   "AC Sparta Prague"
+  ],
+  "new": [
+   "AC Sparta Prague",
+   "Czechia national football team"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "maksimir",
+  "field": "homeTeams",
+  "old": [
+   "GNK Dinamo Zagreb",
+   "Croatia national football team"
+  ],
+  "new": [
+   "GNK Dinamo Zagreb",
+   "Croatia national football team",
+   "NK Lokomotiva"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "rajko-mitic",
+  "field": "homeTeams",
+  "old": [
+   "Red Star Belgrade",
+   "Serbia national football team"
+  ],
+  "new": [
+   "Red Star Belgrade",
+   "Serbia national football team",
+   "RFK Grafičar Beograd"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "lobanovskyi-stadium",
+  "field": "homeTeams",
+  "old": [
+   "FC Dynamo Kyiv"
+  ],
+  "new": [
+   "FC Dynamo Kyiv",
+   "FC Zorya Luhansk"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "vasil-levski",
+  "field": "homeTeams",
+  "old": [
+   "Bulgaria national football team"
+  ],
+  "new": [
+   "Bulgaria national football team",
+   "PFC Septemvri Sofia"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "stozice-stadium",
+  "field": "homeTeams",
+  "old": [
+   "NK Olimpija Ljubljana",
+   "Slovenia national football team"
+  ],
+  "new": [
+   "NK Olimpija Ljubljana",
+   "Slovenia national football team",
+   "NK Bravo"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "republican-stadium-yerevan",
+  "field": "homeTeams",
+  "old": [
+   "Armenia national football team"
+  ],
+  "new": [
+   "Armenia national football team",
+   "FC Ararat Yerevan"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "tal-qali",
+  "field": "homeTeams",
+  "old": [
+   "Malta national football team"
+  ],
+  "new": [
+   "Malta national football team",
+   "Balzan F.C.",
+   "Birkirkara F.C.",
+   "Birżebbuġa St. Peter's F.C.",
+   "Floriana F.C.",
+   "Gżira United F.C.",
+   "Marsaxlokk F.C.",
+   "Mosta F.C.",
+   "Sliema Wanderers F.C.",
+   "Valletta F.C.",
+   "Żabbar St. Patrick F.C."
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "le-coq-arena",
+  "field": "homeTeams",
+  "old": [
+   "FC Flora",
+   "Estonia national football team"
+  ],
+  "new": [
+   "FC Flora",
+   "Estonia national football team",
+   "FCI Levadia Tallinn"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/venues/europe-rest.json",
+  "id": "darius-girenas",
+  "field": "homeTeams",
+  "old": [
+   "Lithuania national football team"
+  ],
+  "new": [
+   "Lithuania national football team",
+   "FK Kauno Žalgiris"
+  ],
+  "source": "soccer-europe-teams.json homeVenueId + league pages: club shares this ground but is missing from the venue's homeTeams"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "estadi-nacional",
+  "field": "homeTeams",
+  "old": [
+   "Andorra national football team"
+  ],
+  "new": [
+   "Andorra national football team",
+   "CE Carroi",
+   "CE Casa de Portugal",
+   "CF Esperança d'Andorra",
+   "Inter Club d'Escaldes",
+   "FC Ordino",
+   "Penya Encarnada d'Andorra",
+   "FC Rànger's",
+   "FC Santa Coloma",
+   "Sporting Club d'Escaldes"
+  ],
+  "source": "new clubs of the soccer-europe-complete files share this ground (FAF / league fixtures / Wikipedia 2026-27 stadium tables)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "san-marino-stadium",
+  "field": "homeTeams",
+  "old": [
+   "San Marino national football team"
+  ],
+  "new": [
+   "San Marino national football team",
+   "SS Cosmos"
+  ],
+  "source": "new clubs of the soccer-europe-complete files share this ground (FAF / league fixtures / Wikipedia 2026-27 stadium tables)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "alphamega-stadium",
+  "field": "homeTeams",
+  "old": [
+   "AEL Limassol",
+   "Apollon Limassol FC"
+  ],
+  "new": [
+   "AEL Limassol",
+   "Apollon Limassol FC",
+   "Aris Limassol FC"
+  ],
+  "source": "new clubs of the soccer-europe-complete files share this ground (FAF / league fixtures / Wikipedia 2026-27 stadium tables)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "tsirion-stadium",
+  "field": "homeTeams",
+  "old": [
+   "Karmiotissa FC"
+  ],
+  "new": [
+   "Karmiotissa FC",
+   "Krasava ENY Ypsonas FC"
+  ],
+  "source": "new clubs of the soccer-europe-complete files share this ground (FAF / league fixtures / Wikipedia 2026-27 stadium tables)"
+ },
+ {
+  "file": "Tools/teams/soccer-europe-missing-venues.json",
+  "id": "stadion-dragan-dzajic",
+  "field": "homeTeams",
+  "old": [
+   "FK Zemun"
+  ],
+  "new": [
+   "FK Zemun",
+   "FK Jedinstvo Ub"
+  ],
+  "source": "new clubs of the soccer-europe-complete files share this ground (FAF / league fixtures / Wikipedia 2026-27 stadium tables)"
+ }
+]

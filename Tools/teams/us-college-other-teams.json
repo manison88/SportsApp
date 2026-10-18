@@ -28485,6 +28485,33 @@
   "tier": 1
  },
  {
+  "id": "col-hockey-af",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Atlantic Hockey America Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/aha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "AF",
+  "locationName": "Air Force",
+  "teamName": "Air Force Falcons",
+  "monogram": "A",
+  "colors": {
+   "primary": "004A7B",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "2005",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "clune-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-hockey-aic",
   "kind": "club",
   "sport": "hockey",
@@ -28508,6 +28535,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "massmutual-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-hockey-army",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Atlantic Hockey America Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/aha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ARMY",
+  "locationName": "Army",
+  "teamName": "Army Black Knights",
+  "monogram": "A",
+  "colors": {
+   "primary": "CE9C00",
+   "secondary": "231F20",
+   "accent": "CE9C00"
+  },
+  "externalIds": {
+   "espn": "349",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "tate-rink",
   "founded": null,
   "tier": 1
  },
@@ -28674,6 +28728,33 @@
   "tier": 1
  },
  {
+  "id": "col-hockey-rmu",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Atlantic Hockey America Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/aha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "RMU",
+  "locationName": "Robert Morris",
+  "teamName": "Robert Morris Colonials",
+  "monogram": "R",
+  "colors": {
+   "primary": "3D4262",
+   "secondary": "A21D2B",
+   "accent": "646881"
+  },
+  "externalIds": {
+   "espn": "2523",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "clearview-arena-at-rmu-island-sports-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-hockey-shu",
   "kind": "club",
   "sport": "hockey",
@@ -28755,6 +28836,33 @@
   "tier": 1
  },
  {
+  "id": "col-hockey-minn",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Big Ten Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/big-ten",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MINN",
+  "locationName": "Minnesota",
+  "teamName": "Minnesota Golden Gophers",
+  "monogram": "M",
+  "colors": {
+   "primary": "752132",
+   "secondary": "FAB41C",
+   "accent": "FAB41C"
+  },
+  "externalIds": {
+   "espn": "135",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "3m-arena-at-mariucci",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-hockey-nd",
   "kind": "club",
   "sport": "hockey",
@@ -28805,6 +28913,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "schottenstein-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-hockey-psu",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Big Ten Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/big-ten",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PSU",
+  "locationName": "Penn State",
+  "teamName": "Penn State Nittany Lions",
+  "monogram": "P",
+  "colors": {
+   "primary": "29294A",
+   "secondary": "002E5C",
+   "accent": "696980"
+  },
+  "externalIds": {
+   "espn": "213",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "pegula-ice-arena",
   "founded": null,
   "tier": 1
  },
@@ -28917,6 +29052,114 @@
   "tier": 1
  },
  {
+  "id": "col-hockey-frst",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "CCHA Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/ccha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FRST",
+  "locationName": "Ferris State",
+  "teamName": "Ferris State Bulldogs",
+  "monogram": "F",
+  "colors": {
+   "primary": "6B7280",
+   "secondary": "FFFFFF",
+   "accent": "6B7280"
+  },
+  "externalIds": {
+   "espn": "2222",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ewigleben-ice-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-hockey-lss",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "CCHA Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/ccha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LSS",
+  "locationName": "Lake Superior State",
+  "teamName": "Lake Superior State Lakers",
+  "monogram": "L",
+  "colors": {
+   "primary": "6B7280",
+   "secondary": "FFFFFF",
+   "accent": "6B7280"
+  },
+  "externalIds": {
+   "espn": "285",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "taffy-abel-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-hockey-mtu",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "CCHA Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/ccha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MTU",
+  "locationName": "Michigan Tech",
+  "teamName": "Michigan Tech Huskies",
+  "monogram": "M",
+  "colors": {
+   "primary": "6B7280",
+   "secondary": "FFFFFF",
+   "accent": "6B7280"
+  },
+  "externalIds": {
+   "espn": "2392",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "macinnes-student-ice-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-hockey-mnst",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "CCHA Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/ccha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MNST",
+  "locationName": "Minnesota State",
+  "teamName": "Minnesota State Mavericks",
+  "monogram": "M",
+  "colors": {
+   "primary": "6B7280",
+   "secondary": "FFFFFF",
+   "accent": "6B7280"
+  },
+  "externalIds": {
+   "espn": "2364",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mayo-clinic-health-system-event-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-hockey-nmi",
   "kind": "club",
   "sport": "hockey",
@@ -29021,6 +29264,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "cheel-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-hockey-colg",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "ECAC Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/ecac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "COLG",
+  "locationName": "Colgate",
+  "teamName": "Colgate Raiders",
+  "monogram": "C",
+  "colors": {
+   "primary": "910028",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "2142",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "class-of-1965-arena",
   "founded": null,
   "tier": 1
  },
@@ -29214,6 +29484,33 @@
   "tier": 1
  },
  {
+  "id": "col-hockey-unny",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "ECAC Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/ecac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UNNY",
+  "locationName": "Union",
+  "teamName": "Union Garnet Chargers",
+  "monogram": "U",
+  "colors": {
+   "primary": "6B7280",
+   "secondary": "FFFFFF",
+   "accent": "6B7280"
+  },
+  "externalIds": {
+   "espn": "2785",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "messa-rink-at-achilles-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-hockey-yale",
   "kind": "club",
   "sport": "hockey",
@@ -29349,6 +29646,33 @@
   "tier": 1
  },
  {
+  "id": "col-hockey-mrmk",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Hockey East Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/hockey-east",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MRMK",
+  "locationName": "Merrimack",
+  "teamName": "Merrimack Warriors",
+  "monogram": "M",
+  "colors": {
+   "primary": "0B335E",
+   "secondary": "FAB20B",
+   "accent": "FAB20B"
+  },
+  "externalIds": {
+   "espn": "2771",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lawler-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-hockey-mass",
   "kind": "club",
   "sport": "hockey",
@@ -29426,6 +29750,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "whittemore-center-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-hockey-ne",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Hockey East Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/hockey-east",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NE",
+  "locationName": "Northeastern",
+  "teamName": "Northeastern Huskies",
+  "monogram": "N",
+  "colors": {
+   "primary": "CC0001",
+   "secondary": "C2C3C0",
+   "accent": "CC0001"
+  },
+  "externalIds": {
+   "espn": "111",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "matthews-arena",
   "founded": null,
   "tier": 1
  },
@@ -29561,6 +29912,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "magness-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-hockey-moh",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NCHC Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/nchc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MOH",
+  "locationName": "Miami (OH)",
+  "teamName": "Miami (OH) RedHawks",
+  "monogram": "M",
+  "colors": {
+   "primary": "CE2229",
+   "secondary": "F0F0F0",
+   "accent": "CE2229"
+  },
+  "externalIds": {
+   "espn": "193",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "goggin-ice-center",
   "founded": null,
   "tier": 1
  },
@@ -29754,6 +30132,33 @@
   "tier": 1
  },
  {
+  "id": "col-hockey-lin",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Independent Men's Hockey",
+  "leagueKey": "hockey/mens-college-hockey/independent",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LIN",
+  "locationName": "Lindenwood",
+  "teamName": "Lindenwood Lions",
+  "monogram": "L",
+  "colors": {
+   "primary": "231F20",
+   "secondary": "C8B362",
+   "accent": "C8B362"
+  },
+  "externalIds": {
+   "espn": "2815",
+   "espnLeague": "hockey/mens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "centene-community-ice-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-hockey-liu",
   "kind": "club",
   "sport": "hockey",
@@ -29835,6 +30240,33 @@
   "tier": 1
  },
  {
+  "id": "col-whockey-lin",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Atlantic Hockey America Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/aha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LIN",
+  "locationName": "Lindenwood",
+  "teamName": "Lindenwood Lions",
+  "monogram": "L",
+  "colors": {
+   "primary": "231F20",
+   "secondary": "C8B362",
+   "accent": "C8B362"
+  },
+  "externalIds": {
+   "espn": "2815",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "centene-community-ice-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-whockey-merc",
   "kind": "club",
   "sport": "hockey",
@@ -29862,6 +30294,33 @@
   "tier": 1
  },
  {
+  "id": "col-whockey-psu",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Atlantic Hockey America Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/aha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PSU",
+  "locationName": "Penn State",
+  "teamName": "Penn State Nittany Lions",
+  "monogram": "P",
+  "colors": {
+   "primary": "29294A",
+   "secondary": "002E5C",
+   "accent": "696980"
+  },
+  "externalIds": {
+   "espn": "213",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "pegula-ice-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-whockey-rit",
   "kind": "club",
   "sport": "hockey",
@@ -29885,6 +30344,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "gene-polisseni-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-whockey-rmu",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Atlantic Hockey America Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/aha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "RMU",
+  "locationName": "Robert Morris",
+  "teamName": "Robert Morris Colonials",
+  "monogram": "R",
+  "colors": {
+   "primary": "3D4262",
+   "secondary": "A21D2B",
+   "accent": "646881"
+  },
+  "externalIds": {
+   "espn": "2523",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "clearview-arena-at-rmu-island-sports-center",
   "founded": null,
   "tier": 1
  },
@@ -29966,6 +30452,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "cheel-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-whockey-colg",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "ECAC Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/ecac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "COLG",
+  "locationName": "Colgate",
+  "teamName": "Colgate Raiders",
+  "monogram": "C",
+  "colors": {
+   "primary": "910028",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "2142",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "class-of-1965-arena",
   "founded": null,
   "tier": 1
  },
@@ -30159,6 +30672,33 @@
   "tier": 1
  },
  {
+  "id": "col-whockey-unny",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "ECAC Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/ecac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UNNY",
+  "locationName": "Union",
+  "teamName": "Union Garnet Chargers",
+  "monogram": "U",
+  "colors": {
+   "primary": "6B7280",
+   "secondary": "FFFFFF",
+   "accent": "6B7280"
+  },
+  "externalIds": {
+   "espn": "2785",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "messa-rink-at-achilles-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-whockey-yale",
   "kind": "club",
   "sport": "hockey",
@@ -30209,6 +30749,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "fidelity-bank-worcester-ice-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-whockey-fp",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NEWHA Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/newha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FP",
+  "locationName": "Franklin Pierce",
+  "teamName": "Franklin Pierce Ravens",
+  "monogram": "F",
+  "colors": {
+   "primary": "6B7280",
+   "secondary": "FFFFFF",
+   "accent": "6B7280"
+  },
+  "externalIds": {
+   "espn": "121934",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ritchie-arena",
   "founded": null,
   "tier": 1
  },
@@ -30290,6 +30857,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "total-mortgage-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-whockey-sans",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "NEWHA Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/newha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SANS",
+  "locationName": "Saint Anselm",
+  "teamName": "Saint Anselm Hawks",
+  "monogram": "S",
+  "colors": {
+   "primary": "6B7280",
+   "secondary": "FFFFFF",
+   "accent": "6B7280"
+  },
+  "externalIds": {
+   "espn": "2830",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "sullivan-ice-arena",
   "founded": null,
   "tier": 1
  },
@@ -30425,6 +31019,60 @@
    "theSportsDb": null
   },
   "homeVenueId": "ridder-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-whockey-mnst",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "WCHA Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/wcha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MNST",
+  "locationName": "Minnesota State",
+  "teamName": "Minnesota State Mavericks",
+  "monogram": "M",
+  "colors": {
+   "primary": "6B7280",
+   "secondary": "FFFFFF",
+   "accent": "6B7280"
+  },
+  "externalIds": {
+   "espn": "2364",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mayo-clinic-health-system-event-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-whockey-osu",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "WCHA Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/wcha",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "OSU",
+  "locationName": "Ohio State",
+  "teamName": "Ohio State Buckeyes",
+  "monogram": "O",
+  "colors": {
+   "primary": "DE3129",
+   "secondary": "505056",
+   "accent": "DE3129"
+  },
+  "externalIds": {
+   "espn": "194",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "osu-ice-rink",
   "founded": null,
   "tier": 1
  },
@@ -30618,6 +31266,33 @@
   "tier": 1
  },
  {
+  "id": "col-whockey-mrmk",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Hockey East Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/hockey-east",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MRMK",
+  "locationName": "Merrimack",
+  "teamName": "Merrimack Warriors",
+  "monogram": "M",
+  "colors": {
+   "primary": "0B335E",
+   "secondary": "FAB20B",
+   "accent": "FAB20B"
+  },
+  "externalIds": {
+   "espn": "2771",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lawler-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-whockey-unh",
   "kind": "club",
   "sport": "hockey",
@@ -30641,6 +31316,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "whittemore-center-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-whockey-ne",
+  "kind": "club",
+  "sport": "hockey",
+  "league": "Hockey East Women's Hockey",
+  "leagueKey": "hockey/womens-college-hockey/hockey-east",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NE",
+  "locationName": "Northeastern",
+  "teamName": "Northeastern Huskies",
+  "monogram": "N",
+  "colors": {
+   "primary": "CC0001",
+   "secondary": "C2C3C0",
+   "accent": "CC0001"
+  },
+  "externalIds": {
+   "espn": "111",
+   "espnLeague": "hockey/womens-college-hockey",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "matthews-arena",
   "founded": null,
   "tier": 1
  },

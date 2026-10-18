@@ -42,14 +42,29 @@ def main():
         records = data if isinstance(data, list) else None
         if records is None:
             print(f"{rel}: not an array, skipped"); skipped += len(items); continue
-        index = {r.get("id"): r for r in records}
+        index = {}
+        for r in records:
+            for k in ("id", "key"):
+                if r.get(k) is not None:
+                    index.setdefault(r[k], r)
         for fx in items:
             rec = index.get(fx["id"])
             if rec is None:
                 print(f"  {rel} {fx['id']}: no such record"); skipped += 1; continue
-            if rec.get(fx["field"]) != fx["old"]:
+            if fx["field"] == "__delete__":
+                # an earlier fix in the same file may already have changed the record, so the id alone decides
+                records.remove(rec)
+                index.pop(fx["id"], None)
+                applied += 1
+                continue
+            # "passport.venueIds" reaches into nested objects
+            parts = fx["field"].split(".")
+            holder = rec
+            for part in parts[:-1]:
+                holder = holder.get(part) if isinstance(holder, dict) else None
+            if not isinstance(holder, dict) or holder.get(parts[-1]) != fx["old"]:
                 print(f"  {rel} {fx['id']}.{fx['field']}: current value differs from `old`, left alone"); skipped += 1; continue
-            rec[fx["field"]] = fx["new"]
+            holder[parts[-1]] = fx["new"]
             applied += 1
         if not args.dry_run:
             with open(path, "w") as f:
