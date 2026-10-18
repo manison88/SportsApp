@@ -173,7 +173,7 @@ final class WitnessUITests: XCTestCase {
 
         XCTAssertTrue(el("hero-venue").exists, "The stadium is a link on the cover")
         XCTAssertTrue(el("hero-you-were-there").exists, "You were there is an icon on the cover")
-        tap("open-you-were-there")
+        tap("hero-you-were-there")
         XCTAssertTrue(el("ywt-hero").waitForExistence(timeout: 5), "The match report opens with the story of your night")
         XCTAssertTrue(el("ywt-timeline").exists, "A timeline of the game clock stays pinned above the report")
         snap("06-you-were-there")
@@ -316,7 +316,7 @@ final class WitnessUITests: XCTestCase {
         XCTAssertTrue(el("venue-title").waitForExistence(timeout: 8), "A venue tile opens the venue page")
         snap("map-list-venue")
         back()
-        app.buttons["Done"].firstMatch.tap()
+        back()
         tap("stat-games")
         XCTAssertTrue(app.navigationBars["Games"].waitForExistence(timeout: 8))
         let game = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'map-game-'")).firstMatch
@@ -324,7 +324,7 @@ final class WitnessUITests: XCTestCase {
         game.tap()
         XCTAssertTrue(el("game-title").waitForExistence(timeout: 8), "A game tile opens the game page")
         back()
-        app.buttons["Done"].firstMatch.tap()
+        back()
         tap("stat-countries")
         XCTAssertTrue(app.navigationBars["Countries"].waitForExistence(timeout: 8))
         snap("map-list-countries")

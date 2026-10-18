@@ -58,7 +58,8 @@ struct LifeMapView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .inkBackground()
-        .sheet(item: $listing) { kind in MapListSheet(kind: kind, games: games) }
+        .navigationDestination(item: $listing) { kind in MapListSheet(kind: kind, games: games) }
+        .navigationDestination(for: CountryRoute.self) { route in CountryGames(code: route.code, games: games) }
         .tabTitle("Map")
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {

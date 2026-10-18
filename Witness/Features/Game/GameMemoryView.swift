@@ -13,7 +13,8 @@ struct GameMemoryView: View {
     @State private var sharing = false
     @State private var viewer: PhotoViewerItem?
 
-    private let heroHeight: CGFloat = 470
+    /// Short enough that the photos section sits above the tab bar on a normal phone.
+    private var heroHeight: CGFloat { min(max(UIScreen.main.bounds.height * 0.43, 340), 440) }
 
     var body: some View {
         if let game = library.game(gameId) {
@@ -26,10 +27,9 @@ struct GameMemoryView: View {
 
     private func content(_ game: GameEntry) -> some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: Spacing.block) {
+            VStack(alignment: .leading, spacing: 18) {
                 hero(game)
                 scoreBlock(game).gutter()
-                rootingBlock(game)
                 photosBlock(game)
                 peopleBlock(game)
                 links(game)
@@ -197,34 +197,6 @@ struct GameMemoryView: View {
         }
     }
 
-    // MARK: Rooting
-
-    /// Who you were there for. One tap changes it; "Always" makes the team one of yours for every game.
-    @ViewBuilder
-    private func rootingBlock(_ game: GameEntry) -> some View {
-        if game.sport != .motorsport, let home = library.team(game.homeTeamId), let away = library.team(game.awayTeamId) {
-            let chosen = library.rootingTeam(game)
-            let favorites = library.profile.favoriteTeamIds
-            VStack(alignment: .leading, spacing: Spacing.inner) {
-                RootingPicker(teams: [away, home], selection: Binding(
-                    get: { chosen },
-                    set: { library.setRooting(game.id, to: $0) }),
-                              known: game.rootingForTeamId != nil || favorites.contains { $0 == game.homeTeamId || $0 == game.awayTeamId })
-                if let chosen, !library.profile.favoriteTeamIds.contains(chosen), let team = library.team(chosen) {
-                    Button {
-                        library.addFavorite(chosen)
-                    } label: {
-                        Label("Always root for \(team.locationName)", systemImage: "plus.circle")
-                            .font(.footnote.weight(.semibold))
-                    }
-                    .accessibilityIdentifier("rooting-make-favorite")
-                }
-            }
-            .gutter()
-            .accessibilityIdentifier("game-rooting")
-        }
-    }
-
     // MARK: Photos
 
     /// The fan's photos from this game: a strip under the score, each opens full screen.
@@ -300,22 +272,11 @@ struct GameMemoryView: View {
 
     @ViewBuilder
     private func links(_ game: GameEntry) -> some View {
-        let venue = library.venue(game.venueId)
-        let trip = library.trip(game.tripId)
-        if venue != nil || trip != nil || hasDetail(game) {
+        // The stadium and You were there live on the cover now; only the trip is left down here.
+        if let trip = library.trip(game.tripId) {
             VStack(spacing: 0) {
-                if hasDetail(game) {
-                    linkRow("You were there", symbol: "waveform.path.ecg", route: .youWereThere(game.id))
-                        .accessibilityIdentifier("open-you-were-there")
-                }
-                if let venue {
-                    linkRow(venue.name, symbol: "building.columns", route: .venue(venue.id))
-                        .accessibilityIdentifier("open-venue")
-                }
-                if let trip {
-                    linkRow(trip.title, symbol: "airplane", route: .trip(trip.id))
-                        .accessibilityIdentifier("open-trip")
-                }
+                linkRow(trip.title, symbol: "airplane", route: .trip(trip.id))
+                    .accessibilityIdentifier("open-trip")
             }
             .gutter()
         }
@@ -347,12 +308,37 @@ struct GameMemoryView: View {
 
     // MARK: Menu
 
+    /// "I was there for": pick the side, in the menu so the page stays short.
+    @ViewBuilder
+    private func rootingMenu(_ game: GameEntry) -> some View {
+        if game.sport != .motorsport, let home = library.team(game.homeTeamId), let away = library.team(game.awayTeamId) {
+            Menu {
+                Picker("I was there for", selection: Binding(
+                    get: { library.rootingTeam(game) ?? home.id },
+                    set: { library.setRooting(game.id, to: $0) })) {
+                    Text(away.locationName).tag(away.id)
+                    Text(home.locationName).tag(home.id)
+                }
+                if let chosen = library.rootingTeam(game), !library.profile.favoriteTeamIds.contains(chosen),
+                   let team = library.team(chosen) {
+                    Button { library.addFavorite(chosen) } label: {
+                        Label("Always root for \(team.locationName)", systemImage: "plus.circle")
+                    }
+                }
+            } label: {
+                Label("I was there for \(library.team(library.rootingTeam(game))?.locationName ?? "")", systemImage: "heart")
+            }
+            .accessibilityIdentifier("game-rooting-menu")
+        }
+    }
+
     private func menu(_ game: GameEntry) -> some View {
         Menu {
             Button { sharing = true } label: {
                 Label("Share", systemImage: "square.and.arrow.up")
             }
             .accessibilityIdentifier("game-share")
+            rootingMenu(game)
             Button { editing = true } label: { Label("Edit", systemImage: "pencil") }
             Button(role: .destructive) { confirmDelete = true } label: { Label("Delete", systemImage: "trash") }
                 .accessibilityIdentifier("game-delete")
