@@ -38,6 +38,7 @@ struct AddGameView: View {
     @State private var foundTeams: [String?] = []
     @State private var findingPhotos = false
     @State private var didPrefill = false
+    @State private var didAutoLookup = false
 
     init(draft: TicketDraft? = nil, editing: GameEntry? = nil, embedded: Bool = false, onDone: (() -> Void)? = nil) {
         self.draft = draft
@@ -218,7 +219,10 @@ struct AddGameView: View {
                 .accessibilityIdentifier("add-save")
             }
         }
-        .onAppear(perform: prefill)
+        .onAppear {
+            prefill()
+            autoLookup()
+        }
         .onChange(of: sport) { _, _ in
             // Any team and any venue can host any sport (a national handball side in a basketball arena), so
             // changing the sport keeps what was picked.
@@ -349,9 +353,18 @@ struct AddGameView: View {
     /// Looks the game up as soon as a venue and day are set, but only on a new game with no teams picked yet, so
     /// nothing the fan typed is overwritten. "Find this game" stays for everything else.
     private func autoLookup() {
-        guard editing == nil, found == nil, !lookingUp, sport != .motorsport,
-              homeTeamId == nil, awayTeamId == nil,
+        guard found == nil, !lookingUp, sport != .motorsport,
               let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty else { return }
+        let noTeamsYet = homeTeamId == nil && awayTeamId == nil
+        if let editing {
+            // A saved stadium visit, or an entry with no teams and no schedule match: look for its game once.
+            guard !didAutoLookup, editing.source == nil, editing.isVisit || (editing.homeTeamId == nil && editing.awayTeamId == nil) else { return }
+        } else if !noTeamsYet {
+            // A ticket brings its teams along: verify them against the schedule once, when the form opens.
+            guard draft != nil, !didAutoLookup else { return }
+        }
+        didAutoLookup = true
+        lookingUp = true   // set now, so a second change in the same moment does not start another lookup
         Task { await lookup() }
     }
 
@@ -433,6 +446,8 @@ struct AddGameView: View {
             if keepScores.0 != nil { g.homeScore = keepScores.0 }
             if keepScores.1 != nil { g.awayScore = keepScores.1 }
             g.rootingForTeamId = rootingForTeamId
+            // A stadium visit that turned out to be a scheduled game is a game now.
+            g.kind = nil
         }
         let seatText = seat.trimmingCharacters(in: .whitespacesAndNewlines)
         g.seat = seatText.isEmpty ? nil : seatText
