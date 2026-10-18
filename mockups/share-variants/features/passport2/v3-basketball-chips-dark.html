@@ -1,0 +1,64 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Grouped stamps, basketball, dark</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+body.phone{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.card{position:relative;width:353px;height:628px;border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.06);flex:none;font-family:var(--f-ui)}
+.cap{font:500 12px/1 var(--f-ui);color:var(--text-3);letter-spacing:.2px}
+.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.abs{position:absolute}
+.top{position:absolute;left:24px;right:24px;top:24px;display:flex;justify-content:space-between;align-items:center;font:700 13px/1 var(--f-cond);letter-spacing:2.4px;text-transform:uppercase}
+.top .sp{display:flex;align-items:center;gap:6px}
+.top .sp .ic{font-size:16px}
+.cond{font-family:var(--f-cond)}
+/* stamp */
+.st{position:relative;width:var(--d);height:var(--d);border-radius:50%;border:2.5px solid var(--k);color:var(--k);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;flex:none;font-family:var(--f-cond)}
+.st::before{content:"";position:absolute;inset:4px;border-radius:50%;border:1px solid var(--k);opacity:.6}
+.st .ic{font-size:calc(var(--d)*.19);margin-bottom:2px}
+.st b{font-weight:800;font-size:calc(var(--d)*.135);line-height:.95;text-transform:uppercase;letter-spacing:.3px}
+.st i{font-style:normal;font-weight:700;font-size:max(12px,calc(var(--d)*.125));letter-spacing:.8px;margin-top:4px;text-transform:uppercase;opacity:.9}
+.st u{text-decoration:none;font-weight:700;font-size:max(12px,calc(var(--d)*.115));letter-spacing:.6px;text-transform:uppercase;opacity:.8;margin-top:1px}
+/* legend */
+.leg{display:flex;justify-content:space-between}
+.leg div{display:flex;align-items:center;gap:5px;font:800 18px/1 var(--f-cond);color:var(--c);padding:6px 8px;border-radius:999px}
+.leg div .ic{font-size:18px}
+.leg div.pr{background:var(--c);color:var(--on)}
+
+.card{background:var(--bg);color:var(--fg)}
+.top{color:var(--mut)} .top .sp{color:var(--a)}
+.big{position:absolute;left:18px;top:46px;font:800 150px/.8 var(--f-cond);letter-spacing:-6px;font-variant-numeric:tabular-nums}
+.of{position:absolute;left:182px;top:62px;font:800 34px/.92 var(--f-cond);text-transform:uppercase}
+.of span{color:var(--a)}
+.gm{position:absolute;left:184px;top:134px;font:600 15px/1.3 var(--f-ui);color:var(--mut2)}
+.gm b{color:var(--fg)}
+.ft{position:absolute;left:18px;right:18px;top:190px;border-radius:12px;background:var(--a);color:var(--on);padding:14px 16px;display:flex;gap:14px;align-items:center}
+.ft .ic{font-size:44px;stroke-width:1.5}
+.ft .e{font:700 12px/1 var(--f-cond);letter-spacing:2.2px;text-transform:uppercase;opacity:.75}
+.ft .n{font:800 30px/1 var(--f-cond);text-transform:uppercase;margin:6px 0 5px}
+.ft .r{font:700 14px/1.3 var(--f-ui)}
+.chips{position:absolute;left:18px;right:18px;top:312px;display:flex;flex-wrap:wrap;gap:6px 5px}
+.chip{display:flex;align-items:center;gap:5px;height:28px;padding:0 9px 0 7px;border-radius:7px;background:var(--cb);color:var(--fg);font:700 14.5px/1 var(--f-cond);letter-spacing:.5px;text-transform:uppercase;box-shadow:inset 0 0 0 1.2px var(--cc);white-space:nowrap}
+.chip .ic{font-size:15px;color:var(--cc)}
+.chip.pri{background:var(--cc);color:var(--on)}.chip.pri .ic{color:var(--on)}
+.foot{position:absolute;left:24px;right:24px;bottom:22px;display:flex;justify-content:space-between;align-items:flex-end;font:600 13px/1.3 var(--f-ui);color:var(--mut2)}
+.foot .w{font:800 15px/1 var(--f-cond);letter-spacing:3px;color:var(--mut)}
+</style></head>
+<body class="phone" data-chrome="none">
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="i-baseball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M6.2 4.6c3.4 3.6 3.4 11.2 0 14.8M17.8 4.6c-3.4 3.6-3.4 11.2 0 14.8"/></symbol>
+<symbol id="i-football" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10.5" ry="6.2" transform="rotate(-38 12 12)"/><path d="M9.2 9.2l5.6 5.6M10.6 13.4l-1.6 -1.6M13.4 10.6l1.6 1.6M12 12l0 0"/></symbol>
+<symbol id="i-soccer" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 8.2l3.4 2.5-1.3 4H9.9l-1.3-4zM12 8.2V2.6M15.4 10.7l5.3-1.7M14.1 14.7l3.3 4.4M9.9 14.7l-3.3 4.4M8.6 10.7L3.3 9"/></symbol>
+<symbol id="i-basketball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5v19M5.2 5.2c3.8 3.2 3.8 10.4 0 13.6M18.8 5.2c-3.8 3.2-3.8 10.4 0 13.6"/></symbol>
+<symbol id="i-hockey" viewBox="0 0 24 24"><ellipse cx="12" cy="8.5" rx="8.5" ry="3.6"/><path d="M3.5 8.5v6.2c0 2 3.8 3.6 8.5 3.6s8.5-1.6 8.5-3.6V8.5"/></symbol>
+<symbol id="i-racing" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="6"/><rect x="8" y="10" width="8" height="4" rx="2"/><path d="M12 6v4"/></symbol>
+</defs></svg>
+<div class="card" style="--a:#a78bfa;--bg:#0a0a0c;--fg:#fff;--mut:rgba(255,255,255,.6);--mut2:rgba(255,255,255,.72);--on:#0a0a0c">
+<div class="top"><span class="sp"><svg class="ic"><use href="#i-basketball"/></svg>Basketball · Venue passport</span><span>Witness</span></div>
+<div class="big">21</div><div class="of">Venues<br><span>visited</span></div>
+<div class="gm"><b>60</b> games · <b>12</b> seasons</div>
+<div class="ft"><svg class="ic"><use href="#i-basketball"/></svg><div><div class="e">Latest basketball stamp</div><div class="n">United Center</div><div class="r">Bulls 112, Heat 109<br>Chicago · Feb 15 2026</div></div></div>
+<div class="chips"><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Wrigley Field</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Rate Field</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>American Family Field</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Busch Stadium</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Target Field</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Fenway Park</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Comerica Park</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Progressive Field</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>PNC Park</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Kauffman Stadium</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Great American Ball Park</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Yankee Stadium</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Dodger Stadium</span><span class="chip" style="--cc:#4d8dff;--cb:#4d8dff29"><svg class="ic" style="color:#4d8dff"><use href="#i-baseball"/></svg>Oracle Park</span><span class="chip" style="--cc:#2fc27d;--cb:#2fc27d29"><svg class="ic" style="color:#2fc27d"><use href="#i-soccer"/></svg>Signal Iduna Park</span><span class="chip" style="--cc:#2fc27d;--cb:#2fc27d29"><svg class="ic" style="color:#2fc27d"><use href="#i-soccer"/></svg>Camp Nou</span><span class="chip" style="--cc:#2fc27d;--cb:#2fc27d29"><svg class="ic" style="color:#2fc27d"><use href="#i-soccer"/></svg>Bernabéu</span><span class="chip" style="--cc:#f0702e;--cb:#f0702e29"><svg class="ic" style="color:#f0702e"><use href="#i-football"/></svg><svg class="ic" style="color:#2fc27d"><use href="#i-soccer"/></svg>Soldier Field</span><span class="chip" style="--cc:#f0702e;--cb:#f0702e29"><svg class="ic" style="color:#f0702e"><use href="#i-football"/></svg>Lambeau Field</span><span class="chip" style="--cc:#ff4a55;--cb:#ff4a5529"><svg class="ic" style="color:#ff4a55"><use href="#i-racing"/></svg>COTA</span></div>
+<div class="foot"><span>Marked by sport, 14 baseball, 4 soccer, 2 football</span><span class="w"></span></div></div>
+<div class="cap">B · Grouped venue stamps · basketball · dark</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

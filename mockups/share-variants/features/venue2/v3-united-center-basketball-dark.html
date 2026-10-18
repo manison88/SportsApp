@@ -1,0 +1,86 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Arena bowl, basketball, dark</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+html,body{margin:0}
+body.phone{background:var(--ink);display:block}
+.stage{position:absolute;left:0;top:0;width:393px;height:852px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.card{position:relative;width:353px;height:628px;border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.07);flex:none}
+.cap{font:500 12px var(--f-ui);color:var(--text-3);letter-spacing:.2px}
+.card *{box-sizing:border-box}
+.abs{position:absolute}
+.k{font:700 12px var(--f-ui);letter-spacing:1.8px;text-transform:uppercase}
+.c{font-family:var(--f-cond);font-weight:800;text-transform:uppercase}
+.card{background:var(--ink);color:var(--text)}
+.k{left:22px;top:22px;color:var(--signal)}
+.nm{left:22px;top:42px;font-size:44px;line-height:1;font-weight:800}
+#b{left:6px;top:104px}
+.rec{left:22px;top:424px;display:flex;align-items:flex-end;gap:12px}
+.rec b{font:800 112px/.8 var(--f-cond)}
+.rec span{font:700 17px/1.15 var(--f-ui);padding-bottom:6px;white-space:nowrap}
+.rec span i{display:block;font-style:normal;font-weight:500}
+.sec{right:22px;top:430px;text-align:right}
+.sec b{display:block;font:800 52px/1 var(--f-cond)}
+.sec span{font:600 12px var(--f-ui);letter-spacing:1.2px;text-transform:uppercase}
+.ft{left:22px;right:22px;bottom:20px;display:flex;justify-content:space-between;padding-top:12px}
+.ft b{display:block;font:800 20px var(--f-cond);text-transform:uppercase;letter-spacing:.3px}
+.ft span{font:500 12px var(--f-ui)}.rec b{color:var(--signal)}.rec span{color:var(--text)}.rec span i{color:var(--text-2)}.sec span,.ft span{color:var(--text-2)}.ft{border-top:1px solid var(--line-2)}
+</style></head>
+<body class="phone" data-chrome="none" data-homebar="none">
+<div class="stage"><div class="card"><div class="abs k">Your seats at</div><div class="abs c nm">United Center</div>
+<svg id="b" class="abs" width="341" height="300"></svg>
+<div class="abs rec"><b>4–1</b><span>Bulls<i>5 nights</i></span></div>
+<div class="abs sec"><b>118</b><span>Section</span></div>
+<div class="abs ft"><div><b>Dec 25, 2014</b><span>First visit</span></div><div style="text-align:right"><b>Feb 15, 2026</b><span>Last visit</span></div></div></div><div class="cap">Arena bowl · dark · basketball</div></div>
+<script>
+function bowl(id,o){
+  const NS='http://www.w3.org/2000/svg',svg=document.getElementById(id);
+  const W=+svg.getAttribute('width'),H=+svg.getAttribute('height'),cx=W/2,cy=H/2;
+  const rx=W/2-6,ry=H/2-6; // outer
+  const rad=d=>d*Math.PI/180;
+  function pt(a,t,k){ // a deg from top, t 0..1 radius factor, ellipse
+    const x=cx+Math.sin(rad(a))*rx*t, y=cy-Math.cos(rad(a))*ry*t*k; return [x,y];}
+  function sec(a0,a1,t0,t1){const p=[];const n=6;
+    for(let i=0;i<=n;i++)p.push(pt(a0+(a1-a0)*i/n,t1,1));
+    for(let i=n;i>=0;i--)p.push(pt(a0+(a1-a0)*i/n,t0,1));
+    return 'M'+p.map(q=>q[0].toFixed(1)+' '+q[1].toFixed(1)).join('L')+'Z';}
+  function el(t,a,p){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e;}
+  // tiers: [t0,t1,count,labelBase]
+  const tiers=[[.50,.68,22,100],[.72,.84,22,200],[.88,1,26,300]];
+  const gap=1.6;
+  tiers.forEach((T,ti)=>{
+    const st=360/T[2];
+    for(let i=0;i<T[2];i++){
+      const a0=i*st+gap/2-st/2, a1=(i+1)*st-gap/2-st/2;
+      const num=T[3]+((i+Math.round(T[2]/2)) % T[2])+1; // 1 at bottom-ish
+      const id=String(num);
+      const lv=(o.lit&&o.lit[id])||0;
+      const e=el('path',{d:sec(a0,a1,T[0],T[1]),fill:lv?o.on:o.off});
+      if(lv){e.setAttribute('fill-opacity',lv);if(lv>=1&&o.glow)e.setAttribute('style','filter:drop-shadow(0 0 9px '+o.glow+')');}
+      if(lv>=1){const m=pt((a0+a1)/2,(T[0]+T[1])/2,1);const t=el('text',{x:m[0],y:m[1]+5,'text-anchor':'middle',fill:o.ink,'font-family':'Barlow Condensed','font-weight':800,'font-size':15});t.textContent=id;}
+    }
+  });
+  // centre
+  const g=el('g',{});
+  const f=o.floor, ln=o.line;
+  if(o.sport==='basketball'){
+    const w=112,h=176;
+    el('rect',{x:cx-w/2,y:cy-h/2,width:w,height:h,rx:3,fill:f,stroke:ln,'stroke-width':1.6},g);
+    el('line',{x1:cx-w/2,x2:cx+w/2,y1:cy,y2:cy,stroke:ln,'stroke-width':1.6},g);
+    el('circle',{cx:cx,cy:cy,r:15,fill:'none',stroke:ln,'stroke-width':1.6},g);
+    [-1,1].forEach(s=>{el('rect',{x:cx-17,y:s<0?cy-h/2:cy+h/2-52,width:34,height:52,fill:'none',stroke:ln,'stroke-width':1.6},g);
+      const yy=cy+s*(h/2-52);el('path',{d:'M'+(cx-17)+' '+yy+'A17 17 0 0 '+(s<0?0:1)+' '+(cx+17)+' '+yy,fill:'none',stroke:ln,'stroke-width':1.6},g);
+      el('path',{d:'M'+(cx-42)+' '+(cy+s*(h/2))+'L'+(cx-42)+' '+(cy+s*(h/2-26))+'A42 42 0 0 '+(s<0?0:1)+' '+(cx+42)+' '+(cy+s*(h/2-26))+'L'+(cx+42)+' '+(cy+s*(h/2)),fill:'none',stroke:ln,'stroke-width':1.6},g);});
+  } else {
+    const w=96,h=188;
+    el('rect',{x:cx-w/2,y:cy-h/2,width:w,height:h,rx:34,fill:f,stroke:ln,'stroke-width':1.6},g);
+    el('line',{x1:cx-w/2,x2:cx+w/2,y1:cy,y2:cy,stroke:o.red||ln,'stroke-width':2.2},g);
+    el('circle',{cx:cx,cy:cy,r:14,fill:'none',stroke:o.blue||ln,'stroke-width':1.6},g);
+    [-1,1].forEach(s=>{[-1,1].forEach(q=>{el('circle',{cx:cx+q*24,cy:cy+s*56,r:11,fill:'none',stroke:o.red||ln,'stroke-width':1.4},g);});
+      el('line',{x1:cx-w/2,x2:cx+w/2,y1:cy+s*34,y2:cy+s*34,stroke:o.blue||ln,'stroke-width':2.2},g);
+      el('line',{x1:cx-w/2+8,x2:cx+w/2-8,y1:cy+s*(h/2-14),y2:cy+s*(h/2-14),stroke:o.red||ln,'stroke-width':1.4},g);});
+  }
+}
+bowl("b",{sport:"basketball",lit:{"118":1,"117":.55,"119":.55,"204":.3},on:"#ffb547",glow:"rgba(255,181,71,.85)",off:"rgba(255,255,255,.08)",floor:"rgba(255,181,71,.10)",line:"rgba(255,255,255,.35)",ink:"#000"});</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

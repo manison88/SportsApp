@@ -104,10 +104,7 @@ struct YouView: View {
                 .foregroundStyle(.white)
                 .accessibilityIdentifier("you-big-games")
             }
-            if let year = stats.years.last {
-                LinkRow(title: "Wrapped \(String(year))", value: nil) { presenter.modal = .wrapped(year) }
-                    .accessibilityIdentifier("you-wrapped")
-            }
+            // Wrapped is off for now: its row returns when the redesign is built (WrappedView and Modal.wrapped stay in place).
             ForEach(stats.companions.prefix(3)) { c in
                 NavigationLink(value: Route.person(c.person.id)) {
                     HStack(spacing: 12) {

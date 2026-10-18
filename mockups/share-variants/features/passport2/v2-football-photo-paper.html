@@ -1,0 +1,59 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Photo hero, football, paper</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+body.phone{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.card{position:relative;width:353px;height:628px;border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.06);flex:none;font-family:var(--f-ui)}
+.cap{font:500 12px/1 var(--f-ui);color:var(--text-3);letter-spacing:.2px}
+.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.abs{position:absolute}
+.top{position:absolute;left:24px;right:24px;top:24px;display:flex;justify-content:space-between;align-items:center;font:700 13px/1 var(--f-cond);letter-spacing:2.4px;text-transform:uppercase}
+.top .sp{display:flex;align-items:center;gap:6px}
+.top .sp .ic{font-size:16px}
+.cond{font-family:var(--f-cond)}
+/* stamp */
+.st{position:relative;width:var(--d);height:var(--d);border-radius:50%;border:2.5px solid var(--k);color:var(--k);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;flex:none;font-family:var(--f-cond)}
+.st::before{content:"";position:absolute;inset:4px;border-radius:50%;border:1px solid var(--k);opacity:.6}
+.st .ic{font-size:calc(var(--d)*.19);margin-bottom:2px}
+.st b{font-weight:800;font-size:calc(var(--d)*.135);line-height:.95;text-transform:uppercase;letter-spacing:.3px}
+.st i{font-style:normal;font-weight:700;font-size:max(12px,calc(var(--d)*.125));letter-spacing:.8px;margin-top:4px;text-transform:uppercase;opacity:.9}
+.st u{text-decoration:none;font-weight:700;font-size:max(12px,calc(var(--d)*.115));letter-spacing:.6px;text-transform:uppercase;opacity:.8;margin-top:1px}
+/* legend */
+.leg{display:flex;justify-content:space-between}
+.leg div{display:flex;align-items:center;gap:5px;font:800 18px/1 var(--f-cond);color:var(--c);padding:6px 8px;border-radius:999px}
+.leg div .ic{font-size:18px}
+.leg div.pr{background:var(--c);color:var(--on)}
+
+.card{background:var(--paper);color:var(--paper-ink)}
+.ph{position:absolute;left:14px;right:14px;top:14px;height:330px;border-radius:6px;overflow:hidden;box-shadow:0 0 0 1px rgba(29,26,22,.2)}
+.ph img{width:100%;height:100%;object-fit:cover;object-position:var(--pos)}
+.ph .tag{position:absolute;left:12px;top:12px;right:12px;display:flex;justify-content:space-between;align-items:center;font:700 13px/1 var(--f-cond);letter-spacing:2.4px;text-transform:uppercase;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.ph .tag .sp{display:flex;gap:6px;align-items:center}.ph .tag .ic{font-size:16px}
+.big{position:absolute;left:18px;top:340px;font:800 168px/.82 var(--f-cond);letter-spacing:-6px;font-variant-numeric:tabular-nums}
+.of{position:absolute;left:196px;top:366px;font:800 36px/.92 var(--f-cond);text-transform:uppercase}
+.of span{color:var(--a);display:block}
+.gm{position:absolute;left:198px;top:440px;font:600 15px/1.3 var(--f-ui);color:rgba(29,26,22,.72)}
+.gm b{color:var(--paper-ink)}
+.last{position:absolute;left:24px;right:24px;top:486px;display:flex;gap:14px;align-items:center;padding-top:14px;border-top:2px solid var(--paper-ink)}
+.last .tx .e{font:700 12px/1 var(--f-cond);letter-spacing:2.2px;text-transform:uppercase;color:rgba(29,26,22,.55)}
+.last .tx .n{font:800 24px/1 var(--f-cond);text-transform:uppercase;margin:5px 0 4px}
+.last .tx .r{font:600 13.5px/1.3 var(--f-ui);color:rgba(29,26,22,.72)}
+.lg{position:absolute;left:18px;right:18px;bottom:18px}
+</style></head>
+<body class="phone" data-chrome="none">
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="i-baseball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M6.2 4.6c3.4 3.6 3.4 11.2 0 14.8M17.8 4.6c-3.4 3.6-3.4 11.2 0 14.8"/></symbol>
+<symbol id="i-football" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10.5" ry="6.2" transform="rotate(-38 12 12)"/><path d="M9.2 9.2l5.6 5.6M10.6 13.4l-1.6 -1.6M13.4 10.6l1.6 1.6M12 12l0 0"/></symbol>
+<symbol id="i-soccer" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 8.2l3.4 2.5-1.3 4H9.9l-1.3-4zM12 8.2V2.6M15.4 10.7l5.3-1.7M14.1 14.7l3.3 4.4M9.9 14.7l-3.3 4.4M8.6 10.7L3.3 9"/></symbol>
+<symbol id="i-basketball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5v19M5.2 5.2c3.8 3.2 3.8 10.4 0 13.6M18.8 5.2c-3.8 3.2-3.8 10.4 0 13.6"/></symbol>
+<symbol id="i-hockey" viewBox="0 0 24 24"><ellipse cx="12" cy="8.5" rx="8.5" ry="3.6"/><path d="M3.5 8.5v6.2c0 2 3.8 3.6 8.5 3.6s8.5-1.6 8.5-3.6V8.5"/></symbol>
+<symbol id="i-racing" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="6"/><rect x="8" y="10" width="8" height="4" rx="2"/><path d="M12 6v4"/></symbol>
+</defs></svg>
+<div class="card" style="--a:#c4501a"><div class="ph"><img src="../../../photos/soldier-skyline.jpg" style="--pos:50% 60%"><div class="tag"><span class="sp"><svg class="ic"><use href="#i-football"/></svg>Football · Venue passport</span><span>Witness</span></div></div>
+<div class="big">21</div><div class="of">Venues<span>visited</span></div>
+<div class="gm"><b>60</b> games<br><b>12</b> seasons</div>
+<div class="last"><div class="st" style="--d:92px;--k:#c4501a;transform:rotate(0deg);"><svg class="ic"><use href="#i-football"/></svg><b>Soldier<br>Field</b><i>Nov 2025</i></div><div class="tx"><div class="e">Latest football stamp</div><div class="n">Soldier Field</div><div class="r">Bears 27, Vikings 24<br>Chicago · Nov 2 2025</div></div></div>
+<div class="lg"><div class="leg"><div style="--c:#2456c9;--on:#f3ece0"><svg class="ic"><use href="#i-baseball"/></svg>14</div><div style="--c:#1a8a56;--on:#f3ece0"><svg class="ic"><use href="#i-soccer"/></svg>4</div><div class="pr" style="--c:#c4501a;--on:#f3ece0"><svg class="ic"><use href="#i-football"/></svg>2</div><div style="--c:#14829f;--on:#f3ece0"><svg class="ic"><use href="#i-hockey"/></svg>1</div><div style="--c:#6a4bd0;--on:#f3ece0"><svg class="ic"><use href="#i-basketball"/></svg>1</div><div style="--c:#c8222e;--on:#f3ece0"><svg class="ic"><use href="#i-racing"/></svg>1</div></div></div></div>
+<div class="cap">A · Photo hero · football · paper</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>
