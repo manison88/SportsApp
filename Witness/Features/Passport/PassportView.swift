@@ -17,7 +17,8 @@ struct PassportView: View {
 
     private var sports: [Sport] {
         let present = Set(library.games.map(\.sport))
-        return Sport.allCases.filter { $0 == .baseball || present.contains($0) }
+        let shown = Sport.allCases.filter { present.contains($0) }
+        return shown.isEmpty ? [.baseball] : shown
     }
 
     var body: some View {
@@ -25,7 +26,6 @@ struct PassportView: View {
         let titleVenues = Dictionary(grouping: library.games.filter { $0.sport == sport && $0.bigGame?.kind == .championship },
                                      by: \.venueId).mapValues(\.count)
         let earned = all.0.map { s -> Stamp in var s = s; s.titles = titleVenues[s.venueId] ?? 0; return s }
-        let missing = all.1
         let latest = earned.max { ($0.date ?? .distantPast) < ($1.date ?? .distantPast) }
 
         ScrollView {
@@ -46,9 +46,6 @@ struct PassportView: View {
                     .foregroundStyle(.white)
                     .accessibilityElement(children: .combine)
 
-                    if sport == .baseball {
-                        SegmentBar(total: library.ballparks.count, filled: earned.count)
-                    }
                 }
 
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 3), spacing: 12) {
@@ -59,15 +56,13 @@ struct PassportView: View {
                         .buttonStyle(.plain)
                         .accessibilityIdentifier("stamp-\(stamp.venueId)")
                     }
-                    ForEach(missing.prefix(earned.count % 3 == 0 ? 3 : 3 + (3 - earned.count % 3))) { stamp in
-                        GhostTile(stamp: stamp)
-                    }
                 }
             }
             .gutter()
             .padding(.bottom, Spacing.block)
         }
         .inkBackground()
+        .onAppear { if !sports.contains(sport), let first = sports.first { sport = first } }
         .tabTitle("Passport")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -129,7 +124,7 @@ struct PassportView: View {
 
     private func heroLabel(earned: Int) -> String {
         switch sport {
-        case .baseball: "of \(library.ballparks.count)\nMLB parks"
+        case .baseball: earned == 1 ? "MLB\npark" : "MLB\nparks"
         case .soccer: earned == 1 ? "football\nground" : "football\ngrounds"
         case .motorsport: earned == 1 ? "circuit" : "circuits"
         case .handball: earned == 1 ? "handball\narena" : "handball\narenas"
@@ -169,23 +164,6 @@ struct PassportView: View {
         let team = library.team(top)
         let code = team?.abbreviation ?? String(venue.name.filter(\.isLetter).prefix(3)).uppercased()
         return Stamp(venueId: venueId, code: code, color: team?.accent ?? Color(hex: "3A4150"), date: date)
-    }
-}
-
-private struct SegmentBar: View {
-    let total: Int
-    let filled: Int
-
-    var body: some View {
-        HStack(spacing: 3) {
-            ForEach(0..<max(total, 1), id: \.self) { i in
-                Capsule()
-                    .fill(i < filled ? Color.white : Color.panelRaised)
-                    .frame(height: 10)
-            }
-        }
-        .accessibilityElement()
-        .accessibilityLabel("\(filled) of \(total)")
     }
 }
 
@@ -239,35 +217,6 @@ private struct StampTile: View {
             }
         }
         .accessibilityElement(children: .combine)
-    }
-}
-
-private struct GhostTile: View {
-    @Environment(Library.self) private var library
-    let stamp: PassportView.Stamp
-
-    var body: some View {
-        let name = library.venue(stamp.venueId)?.name
-        VStack(alignment: .leading, spacing: 6) {
-            Text(stamp.code)
-                .displayFont(34, relativeTo: .title)
-                .foregroundStyle(Color.textTertiary)
-            if let name {
-                Text(name)
-                    .font(.condensed(.caption, weight: .heavy))
-                    .textCase(.uppercase)
-                    .foregroundStyle(Color.textTertiary)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.8)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            Spacer(minLength: 0)
-        }
-        .frame(maxWidth: .infinity, minHeight: 124, alignment: .topLeading)
-        .padding(12)
-        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.hairline, lineWidth: 1.5))
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(stamp.code), \(name ?? ""), not visited yet")
     }
 }
 

@@ -29,9 +29,9 @@ struct YouView: View {
                         .init(value: "\(stats.venues)", label: "Venues"),
                     ])
                     StatRow(items: [
-                        .init(value: "\(stats.runs)", label: "Runs"),
+                        .init(value: Fmt.number(stats.points), label: "Points"),
                         .init(value: stats.coldestF.map { "\(Int($0.rounded()))°F" } ?? "–", label: "Coldest"),
-                        .init(value: "\(stats.mlbParks.count)/\(library.ballparks.count)", label: "MLB parks"),
+                        .init(value: "\(stats.countries)", label: stats.countries == 1 ? "Country" : "Countries"),
                     ])
                 }
 
@@ -103,13 +103,15 @@ struct YouView: View {
         }
     }
 
+    /// One team only when it is clearly yours (most of your games); otherwise the page stays about all your teams.
     private var favoriteTeam: Team? {
         let ids = library.games.compactMap { library.rootingTeam($0) }
-        let top = Dictionary(grouping: ids, by: { $0 }).max { $0.value.count < $1.value.count }?.key
-        return library.team(top)
+        guard let top = Dictionary(grouping: ids, by: { $0 }).max(by: { $0.value.count < $1.value.count }),
+              top.value.count * 10 >= library.games.count * 6 else { return nil }
+        return library.team(top.key)
     }
 
-    private var favoriteCity: String { favoriteTeam?.locationName ?? library.profile.homeCity }
+    private var favoriteCity: String? { favoriteTeam?.locationName }
     private var favoriteColor: Color { favoriteTeam?.accent ?? Color(hex: "2F6BFF") }
 
     /// Hero is the win-loss record when any game has a result, otherwise the games count.
@@ -131,7 +133,7 @@ struct YouView: View {
                 YouShareCard(heroValue: heroValue, heroLabel: heroLabel, rows: rows, accent: accent, style: st)
             }
         }
-        let key = "\(s.games)|\(s.record.text)|\(s.venues)|\(s.miles)|\(s.countries)|\(favoriteCity)"
+        let key = "\(s.games)|\(s.record.text)|\(s.venues)|\(s.miles)|\(s.countries)|\(favoriteCity ?? "")"
         return ShareCardSheetLink(title: "My numbers", format: .story, key: key, variants: { variants }) {
             Image(systemName: "square.and.arrow.up").fontWeight(.bold)
         }
@@ -427,7 +429,7 @@ private struct YouShareCard: View {
 
 private struct HeroCard: View {
     let stats: Stats
-    let city: String
+    let city: String?
     let color: Color
 
     var body: some View {
@@ -454,7 +456,7 @@ private struct HeroCard: View {
 
     private func line(_ rate: Double?) -> String {
         guard let rate else { return "Add a final score to start your record." }
-        if rate > 0.5 { return "\(city) wins more when you show up." }
+        if rate > 0.5 { return "\(city ?? "Your teams") win\(city == nil ? "" : "s") more when you show up." }
         if rate == 0.5 { return "Dead even when you show up." }
         return "Every game counts. Even these."
     }

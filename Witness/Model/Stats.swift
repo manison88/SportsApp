@@ -35,6 +35,8 @@ struct Stats {
     /// Average pre-game win probability of the side you were there for, 0...1.
     let expectedRate: Double?
     let runs: Int
+    /// Everything scored in the games you saw, in any sport.
+    let points: Int
     let coldestF: Double?
     /// The warmest game in the set, by the temperature at its start time.
     let hottestF: Double?
@@ -79,6 +81,7 @@ struct Stats {
         record = r
         expectedRate = expected.isEmpty ? nil : expected.reduce(0, +) / Double(expected.count)
 
+        points = list.reduce(0) { $0 + ($1.homeScore ?? 0) + ($1.awayScore ?? 0) }
         runs = list.filter { $0.sport == .baseball }.reduce(0) { $0 + ($1.homeScore ?? 0) + ($1.awayScore ?? 0) }
         coldestF = list.compactMap { $0.weather?.temperatureF }.min()
         hottestF = list.compactMap { $0.weather?.temperatureF }.max()
