@@ -1,0 +1,5 @@
+- Added: top-left "You were there for Chicago" glass chip with the team monogram; stub gradient tinted in the rooted team's colour (and a faint tint up the photo scrim).
+- Headline rewritten from your side ("CHICAGO WIN 5–4." / "CHICAGO FALL 104–118."): WIN takes a light team tint, FALL goes grey; your score is always first, so a loss reads 104–118, not 118–104.
+- Opponent demoted to a 15pt line ("over Cleveland · World Series G5"); rivalry games swap it for a hairline "vs Milwaukee" divider. Event badge moves top-right so the chip owns top-left.
+- Stub: date plus season context ("Win #9 of 2026 · Sec 314"); score bug keeps the rooted tile at full colour and dims the opponent.
+- Data: rootingForTeamId, per-season W/L count, rivalry flag. Risk: two-line headline is shorter than the original on short names; a rival flag needs a data source.

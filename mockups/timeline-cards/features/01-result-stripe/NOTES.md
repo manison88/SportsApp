@@ -1,0 +1,5 @@
+- Added: 5pt W/L/D stripe down the card edge plus a corner tab (letter + WIN/LOSS/DRAW) in the rooted team's colour; losses use cool grey (#7d8798), never red.
+- Stub now leads with a "Lucky charm" fact (venue record with you) instead of the date; score bug stays right, rooted tile ringed.
+- Moved: date to a glass chip top-right; headline 54pt to 44pt so the photo breathes; World Series badge sits beside the tab.
+- Data needs: rooted team, result, record at venue when attended, series state for playoff games.
+- Risk: lucky-charm copy must stay under about 2 lines (172pt wide) next to 3-digit basketball scores; draws and unknown rooted team need a neutral tab.

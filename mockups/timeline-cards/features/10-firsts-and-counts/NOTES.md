@@ -1,0 +1,5 @@
+- Added: "WRIGLEY #17" count chip top-right of the photo; amber "NEW ARENA/PARK" starburst replaces it on a first visit; "3rd time seeing Milwaukee" under the date; a tiny rotated passport stamp (dashed and glowing when it is new) between text and score bug.
+- Priority when several apply: championship (champagne keyline + top-left badge, owns the card) > new park (starburst) > count (chip). A lower-priority badge is never dropped but drops to a quiet outline chip (card 2 shows championship plus a quiet count); a first visit and a count never co-occur.
+- Date and score bug are kept; headline unchanged. The stub carries four items, so the bug is a size smaller (20pt).
+- Data: per-venue visit number, first-visit flag, per-opponent meeting count, venue stamp code.
+- Risk: the stub is dense; "NEW PARK" is "NEW ARENA" for non-baseball venues (brief's persona has Sam at United Center before, so card 3 is illustrative).

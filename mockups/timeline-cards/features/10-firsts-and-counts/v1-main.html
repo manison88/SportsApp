@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Firsts and counts</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+*{-webkit-tap-highlight-color:transparent}
+.title{position:absolute;left:16px;top:62px;font:800 36px/1 var(--f-cond);letter-spacing:.2px;text-transform:uppercase}
+.plus{position:absolute;right:20px;top:64px;width:26px;height:26px}
+.plus svg{width:26px;height:26px;stroke:#fff;stroke-width:2.4;stroke-linecap:round;fill:none}
+.search{position:absolute;left:16px;right:16px;top:108px;height:38px;border-radius:11px;background:#1c1c22;display:flex;align-items:center;gap:8px;padding:0 10px;color:var(--text-3);font:400 16px/1 var(--f-ui)}
+.search svg{width:17px;height:17px;stroke:var(--text-3);fill:none;stroke-width:2.2;stroke-linecap:round}
+.card{position:absolute;left:16px;width:361px;border-radius:22px;overflow:hidden;background:#14151c}
+.card.champ{box-shadow:0 0 0 1.5px #e6cf9a,0 0 28px rgba(230,207,154,.18)}
+.photo{position:absolute;left:0;top:0;right:0;overflow:hidden;background:#0b0c10}
+.photo .img,.photo canvas{position:absolute;inset:0;width:100%;height:100%}
+.photo .img{filter:contrast(1.05) saturate(.9) brightness(.92)}
+.scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,8,.94) 0,rgba(5,5,8,.72) 34%,rgba(5,5,8,.12) 66%,rgba(5,5,8,.28) 100%)}
+.hl{position:absolute;left:20px;right:16px;bottom:18px}
+.hl h2{font:800 54px/.88 var(--f-cond);letter-spacing:-.4px;text-transform:uppercase;color:#fff}
+.hl h2 .w{color:var(--tc)} .hl h2 .f{color:rgba(245,241,234,.55)}
+.stub{position:absolute;left:0;right:0;bottom:0;height:92px}
+.stub:before{content:"";position:absolute;left:14px;right:14px;top:0;border-top:1.5px dashed rgba(255,255,255,.22)}
+.notch{position:absolute;top:-9px;width:18px;height:18px;border-radius:9px;background:var(--ink)}
+.notch.l{left:-9px}.notch.r{right:-9px}
+.tile{display:inline-grid;place-items:center;min-width:34px;height:26px;padding:0 6px;border-radius:8px;font:900 15px/1 var(--f-cond);letter-spacing:.3px;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.16)}
+.tile.s{min-width:20px;height:20px;padding:0 4px;font-size:11px;border-radius:6px}
+.tile.dim{opacity:.55;filter:saturate(.7)}
+.bug{position:absolute;right:20px;top:34px;display:flex;align-items:center;gap:5px;font:800 22px/1 var(--f-cond);font-variant-numeric:tabular-nums}
+.bug .sc{min-width:14px;text-align:left;color:var(--text-2)} .bug .sc.me{color:#fff} .bug .gap{width:4px}
+.bug .me-t{box-shadow:0 0 0 2px var(--ink),0 0 0 3.5px var(--signal)}
+.date{font:700 17px/1 var(--f-ui);letter-spacing:-.2px;color:#fff;text-transform:uppercase}
+.sub{font:600 11.5px/1.2 var(--f-ui);color:var(--text-2);letter-spacing:.1px}
+.sub b{color:var(--signal);font-weight:700}
+
+.evb{position:absolute;left:12px;top:12px;height:30px;padding:0 12px;border-radius:15px;display:grid;place-items:center;background:#e6cf9a;color:#2a2210;font:800 12px/1 var(--f-cond);letter-spacing:1.4px;text-transform:uppercase}
+.cnt{position:absolute;right:12px;top:12px;height:30px;padding:0 6px 0 13px;border-radius:15px;display:flex;align-items:center;gap:8px;background:rgba(18,18,24,.55);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:.5px solid rgba(255,255,255,.22);font:700 11px/1 var(--f-ui);letter-spacing:1.6px;color:#fff}
+.cnt b{height:22px;padding:0 9px;border-radius:11px;background:var(--signal);color:#1a1100;display:grid;place-items:center;font:800 15px/1 var(--f-cond);letter-spacing:.3px}
+.cnt.quiet{opacity:.92;color:var(--text-2)} .cnt.quiet b{background:rgba(255,181,71,.2);color:var(--signal)}
+.burst{position:absolute;right:8px;top:6px;width:76px;height:76px;transform:rotate(9deg);filter:drop-shadow(0 4px 10px rgba(0,0,0,.5))}
+.burst svg{position:absolute;inset:0;width:100%;height:100%}
+.burst div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#2a1700;transform:rotate(-9deg)}
+.burst b{font:900 25px/.85 var(--f-cond);letter-spacing:.2px} .burst em{font:800 11.5px/1 var(--f-cond);font-style:normal;letter-spacing:1.4px;margin-top:2px}
+.stampw{position:absolute;left:176px;top:22px;width:46px;height:46px}
+.stamp{width:44px;height:44px;opacity:.95}
+.bug.sm{font-size:20px;gap:4px} .bug.sm .tile{min-width:30px;height:24px;font-size:14px}
+</style></head>
+<body class="phone">
+<div class="title">Timeline</div><div class="plus"><svg viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></svg></div><div class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>Teams, places, years</div><div class="card " style="top:164px;height:512px;--tc:#fff">
+ <div class="photo" style="height:420px"><div class="img" style="background:url(../../../photos/wrigley-scoreboard.jpg) no-repeat;background-size:582px 327px;background-position:-12px 46px"></div><div class="scrim"></div><div class="cnt">WRIGLEY<b>#17</b></div>
+  <div class="hl"><h2>Chicago 5,<br>Milwaukee 4.</h2></div></div>
+ <div class="stub" style="background:#16171e"><div class="notch l"></div><div class="notch r"></div>
+  <div style="position:absolute;left:20px;top:30px"><div class="date">Jul 4, 2026</div><div class="sub" style="margin-top:8px"><b>3rd</b> time seeing Milwaukee</div></div>
+  <div class="stampw"><svg class="stamp" viewBox="0 0 44 44" style="transform:rotate(-10deg)" ><circle cx="22" cy="22" r="20" fill="none" stroke="#ffb547" stroke-width="1.6" /><circle cx="22" cy="22" r="16.5" fill="none" stroke="#ffb547" stroke-width=".7" opacity=".8"/>
+<text x="22" y="14.5" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="7.5" letter-spacing=".8" fill="#ffb547">WRG</text>
+<text x="22" y="28.5" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="15" fill="#ffb547">17</text>
+<text x="22" y="36.5" text-anchor="middle" font-family="JetBrains Mono" font-weight="600" font-size="5" letter-spacing=".4" fill="#ffb547">2026</text></svg></div>
+  <div class="bug sm"><span class="tile  dim" style="background:#F4C24B;color:#2a2100">MIL</span><span class="sc ">4</span><span class="gap"></span><span class="tile  " style="background:#2F6BFF;color:#fff">CHC</span><span class="sc me">5</span></div></div></div><div class="card champ" style="top:700px;height:512px;--tc:#fff">
+ <div class="photo" style="height:420px"><div class="img" style="background:url(../../../photos/wrigley-night.jpg) no-repeat;background-size:722px 963px;background-position:-267px -464px"></div><div class="scrim"></div><div class="evb">World Series · G5</div><div class="cnt quiet">WRIGLEY<b>#6</b></div>
+  <div class="hl"><h2>Chicago 3,<br>Cleveland 2.</h2></div></div>
+ <div class="stub" style="background:#16171e"><div class="notch l"></div><div class="notch r"></div>
+  <div style="position:absolute;left:20px;top:30px"><div class="date">Oct 30, 2016</div><div class="sub" style="margin-top:8px"><b>1st</b> time seeing Cleveland</div></div>
+  <div class="stampw"><svg class="stamp" viewBox="0 0 44 44" style="transform:rotate(-10deg)" ><circle cx="22" cy="22" r="20" fill="none" stroke="#ffb547" stroke-width="1.6" /><circle cx="22" cy="22" r="16.5" fill="none" stroke="#ffb547" stroke-width=".7" opacity=".8"/>
+<text x="22" y="14.5" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="7.5" letter-spacing=".8" fill="#ffb547">WRG</text>
+<text x="22" y="28.5" text-anchor="middle" font-family="Barlow Condensed" font-weight="800" font-size="15" fill="#ffb547">6</text>
+<text x="22" y="36.5" text-anchor="middle" font-family="JetBrains Mono" font-weight="600" font-size="5" letter-spacing=".4" fill="#ffb547">2016</text></svg></div>
+  <div class="bug sm"><span class="tile  dim" style="background:#C8102E;color:#fff">CLE</span><span class="sc ">2</span><span class="gap"></span><span class="tile  " style="background:#2F6BFF;color:#fff">CHC</span><span class="sc me">3</span></div></div></div><script src="../../../kit/kit.js"></script>
+</body></html>

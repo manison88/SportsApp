@@ -1,0 +1,53 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Memory line main</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+:root{--trophy:#e6cd96}
+body.phone{background:#050506}
+.card{position:absolute;left:16px;width:361px;border-radius:22px;overflow:hidden;background:#181a23}
+.card.big .frame{position:absolute;inset:0;border-radius:22px;border:1.5px solid var(--trophy);box-shadow:inset 0 0 0 1px rgba(230,205,150,.25);pointer-events:none;z-index:5}
+.photo{position:relative;overflow:hidden;background:#0b0d10}
+.scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.28) 0%,rgba(5,5,6,0) 22%,rgba(5,5,6,.35) 48%,rgba(5,5,6,.9) 100%)}
+.txt{position:absolute;left:20px;right:20px;bottom:18px}
+h2{font:800 54px/.92 var(--f-cond);text-transform:uppercase;letter-spacing:-.5px;white-space:nowrap;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.45)}
+.badge{position:absolute;left:16px;top:16px;height:28px;padding:0 12px 0 10px;border-radius:14px;display:flex;align-items:center;gap:7px;font:700 11px/1 var(--f-ui);letter-spacing:1.6px;text-transform:uppercase;color:var(--trophy);border-color:rgba(230,205,150,.45)}
+.badge i{width:6px;height:6px;border-radius:3px;background:var(--trophy)}
+.stub{position:absolute;left:0;right:0;height:92px;background:#181a23;padding:0 20px;display:flex;align-items:center;justify-content:space-between;
+ -webkit-mask:radial-gradient(circle at 0 0,#0000 10px,#000 10.5px) left top/51% 100% no-repeat,radial-gradient(circle at 100% 0,#0000 10px,#000 10.5px) right top/51% 100% no-repeat}
+.perf{position:absolute;left:14px;right:14px;top:0;border-top:1.5px dashed rgba(255,255,255,.16)}
+.d{font:700 18px/1 var(--f-ui);letter-spacing:-.3px;color:#fff;font-variant-numeric:tabular-nums}
+.v{font:500 12px/1 var(--f-ui);color:var(--text-3);margin-top:7px;letter-spacing:.1px}
+.v.sec{font-weight:700;letter-spacing:1.4px;color:var(--text-2);font-size:11px}
+.bug{display:flex;align-items:center;gap:12px}
+.bt{display:flex;align-items:center;gap:7px}
+.bt b{font:800 19px/1 var(--f-ui);color:#fff}
+.tile{display:inline-grid;place-items:center;height:30px;padding:0 9px;min-width:40px;border-radius:9px;font:900 17px/1 var(--f-cond);letter-spacing:.6px;opacity:.78}
+.tile.me{opacity:1;box-shadow:0 0 0 1.5px #181a23,0 0 0 3px var(--signal)}
+/* 07 */
+.mem{margin-top:12px;font:italic 400 19px/1.22 var(--f-serif);color:rgba(245,241,234,.82);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-wrap:pretty}
+.mem.prompt{display:flex;align-items:center;gap:8px;color:var(--signal);opacity:.92;font-size:19px}
+.mem.prompt span{border-bottom:1px dashed rgba(255,181,71,.55);padding-bottom:1px}
+/* 08 */
+.ribbon{position:absolute;left:0;right:0;bottom:0;height:38px;padding:0 20px;display:flex;align-items:center;gap:20px;
+ background:rgba(12,13,17,.46);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);border-top:.5px solid rgba(255,255,255,.18);color:rgba(245,241,234,.92)}
+.ribbon.full{justify-content:space-between;gap:0}
+.st{display:flex;align-items:center;gap:6px}
+.st svg{opacity:.7;flex:none}
+.st em{font:600 12.5px/1 var(--f-ui);font-style:normal;letter-spacing:.1px}
+body.m08 .txt{bottom:54px}
+.title{position:absolute;left:16px;top:62px;font:900 34px/1 var(--f-cond);letter-spacing:.3px}
+.plus{position:absolute;right:18px;top:64px}
+.search{position:absolute;left:16px;right:16px;top:108px;height:38px;border-radius:12px;background:#1a1a1f;display:flex;align-items:center;gap:8px;padding:0 10px;color:var(--text-3);font:400 16px/1 var(--f-ui)}
+</style></head>
+<body class="phone m07">
+<div class="title">TIMELINE</div>
+<svg class="plus" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 3v18M3 12h18"/></svg>
+<div class="search"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Teams, places, years</div><div class="card" style="top:164px;height:512px">
+  <div class="photo" style="height:420px"><img class="ph graded" src="../../../photos/wrigley-scoreboard.jpg" style="position:absolute;width:802px;height:451px;left:-221px;top:-15px;max-width:none"><div class="scrim"></div><div class="txt"><h2>Chicago 5,<br>Milwaukee 4.</h2><p class="mem">Held on in the 9th. You were in the bleachers with Dana and Dad.</p></div></div>
+  <div class="stub" style="top:420px"><div class="perf"></div><div class="l"><div class="d">JUL 4, 2026</div><div class="v">Wrigley Field, Chicago</div></div><div class="bug"><span class="bt"><span class="tile" style="background:#F4C24B;color:#241a00">MIL</span><b class="tnum">4</b></span><span class="bt"><span class="tile me" style="background:#2F6BFF;color:#fff">CHC</span><b class="tnum">5</b></span></div></div>
+  <div class="frame"></div></div><div class="card big" style="top:700px;height:512px">
+  <div class="photo" style="height:420px"><img class="ph graded" src="../../../photos/wrigley-night.jpg" style="position:absolute;width:902px;height:1203px;left:-478px;top:-422px;max-width:none"><div class="scrim"></div><div class="badge glass"><i></i>World Series</div><div class="txt"><h2>Chicago 3,<br>Cleveland 2.</h2><p class="mem">Down 3-1 in the series. Chapman got eight outs.</p></div></div>
+  <div class="stub" style="top:420px"><div class="perf"></div><div class="l"><div class="d">OCT 30, 2016</div><div class="v">Wrigley Field, Chicago</div></div><div class="bug"><span class="bt"><span class="tile" style="background:#E8344A;color:#fff">CLE</span><b class="tnum">2</b></span><span class="bt"><span class="tile me" style="background:#2F6BFF;color:#fff">CHC</span><b class="tnum">3</b></span></div></div>
+  <div class="frame"></div></div>
+<script src="../../../kit/kit.js"></script>
+</body></html>
