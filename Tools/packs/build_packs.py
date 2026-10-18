@@ -79,8 +79,13 @@ APP_SPORTS = {"baseball", "football", "basketball", "hockey", "soccer", "motorsp
 VENUE_FIELDS = ("id", "name", "aliases", "city", "region", "country", "countryCode", "latitude", "longitude",
                 "sports", "leagues", "homeTeams", "timeZone", "capacity", "opened")
 
-def build(out_dir, note):
+# Schedule sources whose terms we have not cleared for republishing: undocumented APIs behind other sites' own apps.
+# Their files stay in the repo as research data but are not put into published packs unless --include-sources says so.
+HELD_SOURCES = ("sofascore", "hockeytech")
+
+def build(out_dir, note, include_sources=()):
     packs = []
+    held = {}
 
     def write(pack_id, kind, payload, **extra):
         data = payload if isinstance(payload, bytes) else compact(payload)
@@ -210,6 +215,11 @@ def build(out_dir, note):
                 continue
             pack_id = f"schedule/{slug}/{fname[:-5]}"
             data.pop("fetched", None)
+            source = str(data.get("source", "")).lower()
+            hold = next((h for h in HELD_SOURCES if source.startswith(h) and h not in include_sources), None)
+            if hold:
+                held[hold] = held.get(hold, 0) + len(data["games"])
+                continue
             write(pack_id, "schedule", data, league=data.get("league"), season=data.get("season"), items=len(data["games"]))
     write("catalog/venue-map", "catalog", venue_map, items=sum(len(v) for v in venue_map.values()))
 
@@ -224,6 +234,9 @@ def build(out_dir, note):
         f.write(json.dumps(envelope, ensure_ascii=False, separators=(",", ":")).encode())
     total = sum(p["bytes"] for p in packs)
     sched = [p for p in packs if p["kind"] == "schedule"]
+    if held:
+        print("  schedules held back (terms not cleared; use --include-sources to publish):",
+              {k: f"{v} games" for k, v in held.items()})
     if skipped_sports:
         print("  teams left out (the app has no such sport yet):", skipped_sports)
     print(f"{len(packs)} packs ({len(sched)} schedule), {total / 1e6:.1f} MB raw; {len(teams)} new teams, "
@@ -247,6 +260,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(REPO, "dist", "packs"))
     ap.add_argument("--version-note", default="")
+    ap.add_argument("--include-sources", default="", help="comma list of held sources to publish anyway (" + ", ".join(HELD_SOURCES) + ")")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
-    build(args.out, args.version_note)
+    build(args.out, args.version_note, tuple(x for x in args.include_sources.split(",") if x))
