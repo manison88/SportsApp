@@ -505,8 +505,8 @@ final class WitnessUITests: XCTestCase {
         sleep(3)
         snap("store-07-you")
 
+        // The Timeline tab still has the game open, so the menu is right there.
         tab("Timeline")
-        tap("game-card-mlb-2016-ws5")
         XCTAssertTrue(el("game-title").waitForExistence(timeout: 8))
         tap("game-menu")
         tap("game-share")

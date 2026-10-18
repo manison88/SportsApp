@@ -38,8 +38,11 @@ jobs:
           DEVICE: iPhone 16 Pro Max
         run: |
           bash ci/sim_setup.sh
+
+      - name: Clean status bar
+        run: |
           xcrun simctl status_bar "$SIM_UDID" override --time "9:41" --dataNetwork wifi --wifiMode active --wifiBars 3 \
-            --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100 || true
+            --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100
 
       - name: Take the screens
         id: test
