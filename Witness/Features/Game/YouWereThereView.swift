@@ -24,34 +24,7 @@ struct YouWereThereView: View {
 
     private func content(_ game: GameEntry) -> some View {
         let moments = photoMoments(game)
-        return ScrollView {
-            VStack(alignment: .leading, spacing: Spacing.block) {
-                photo(game, moments: moments)
-                if game.winProbability.count > 1 {
-                    VStack(alignment: .leading, spacing: 8) {
-                        ProbabilityCurve(game: game,
-                                         rootingIsHome: library.rootingTeam(game) == game.homeTeamId || game.awayTeamId == nil,
-                                         accent: library.team(library.rootingTeam(game))?.accent ?? Color.signal,
-                                         pins: pins(moments),
-                                         shown: shown(moments)?.ref,
-                                         selection: $selection)
-                            .frame(height: 210)
-                            .accessibilityIdentifier("ywt-chart")
-                        Text(moments.contains { $0.time != nil }
-                             ? "Round photos are when you took pictures. Small dots are key plays. Drag along the chart, or swipe the photo."
-                             : "Small dots are key plays. Drag along the chart to move through the game.")
-                            .font(.footnote)
-                            .foregroundStyle(Color.textTertiary)
-                    }
-                }
-                plays(game)
-            }
-            .gutter()
-            .padding(.top, 8)
-            .padding(.bottom, 40)
-        }
-        .scrollIndicators(.hidden)
-        .inkBackground()
+        return MatchReportView(game: game, moments: moments)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -69,12 +42,6 @@ struct YouWereThereView: View {
             }
         }
         .task(id: game.photos) { photoTimes = await PhotoTimes.load(game.photos) }
-        .onChange(of: selection) { _, new in
-            // Dragging along the chart brings up the photo taken nearest that moment.
-            guard let new, let nearest = moments.filter({ $0.time != nil })
-                .min(by: { abs($0.time!.timeIntervalSince(new)) < abs($1.time!.timeIntervalSince(new)) }) else { return }
-            if current != nearest.ref { current = nearest.ref }
-        }
     }
 
     // MARK: Photos along the game

@@ -168,8 +168,8 @@ final class WitnessUITests: XCTestCase {
         }
 
         tap("open-you-were-there")
-        XCTAssertTrue(el("ywt-plays").waitForExistence(timeout: 5))
-        XCTAssertTrue(el("ywt-photo").exists, "The game's photo sits above the chart and follows it")
+        XCTAssertTrue(el("ywt-hero").waitForExistence(timeout: 5), "The match report opens with the story of your night")
+        XCTAssertTrue(el("ywt-timeline").exists, "A timeline of the game clock stays pinned above the report")
         snap("06-you-were-there")
         back()
 
