@@ -25,7 +25,9 @@ struct LiveCheckInView: View {
     @State private var moments: [Date] = []
     @State private var suggested = false
     /// Games on the schedule at the stadium you're standing in, found from your location and the time.
-    @State private var nearby: [FoundGame] = []
+    @State private var nearbyGames: [NearbyGame] = []
+    @State private var nearbyPlaces: [Venue] = []
+    @State private var manual = false
     @State private var nearbyVenue: Venue?
     @State private var searchedNearby = false
     @State private var chosen: FoundGame?
@@ -38,16 +40,20 @@ struct LiveCheckInView: View {
         }
         .onAppear {
             prefill()
-            if !isUITest { location.start() }
+            if isUITest { manual = true } else {
+                location.start()
+                // No fix (indoors, or location is slow): stop spinning and say so.
+                Task {
+                    try? await Task.sleep(for: .seconds(12))
+                    if !searchedNearby && location.location == nil && !location.denied { searchedNearby = true }
+                }
+            }
         }
         .onDisappear { location.stop() }
         .onChange(of: location.location) { _, newValue in
-            guard !suggested, let loc = newValue,
-                  let v = LocationService.nearestVenue(to: loc, in: library.venues) else { return }
+            guard !suggested, let loc = newValue else { return }
             suggested = true
-            selectVenue(v.id)
-            nearbyVenue = v
-            Task { await findNearby(v) }
+            Task { await findNearby(around: loc) }
         }
     }
 
@@ -55,42 +61,11 @@ struct LiveCheckInView: View {
 
     private var setup: some View {
         NavigationStack {
-            Form {
-                nearbySection
-                Section {
-                    Picker("Venue", selection: venueBinding) {
-                        if venueId.isEmpty { Text("Choose a venue").tag("") }
-                        ForEach(library.venues(for: nil)) { v in
-                            Text(v.name).tag(v.id)
-                        }
-                    }
-                    .pickerStyle(.navigationLink)
-                    .accessibilityIdentifier("live-venue")
-
-                    Picker("Sport", selection: $sport) {
-                        ForEach(Sport.allCases.filter { $0 != .motorsport }) { s in
-                            Label(s.name, systemImage: s.symbol).tag(s)
-                        }
-                    }
-                }
-                Section {
-                    teamPicker("Home", selection: $homeId).accessibilityIdentifier("live-home")
-                    teamPicker("Away", selection: $awayId).accessibilityIdentifier("live-away")
-                }
-                Section {
-                    Picker("With", selection: $companionId) {
-                        Text("Nobody").tag("")
-                        ForEach(library.people) { p in
-                            Text(p.name).tag(p.id)
-                        }
-                    }
-                    TextField("Seat", text: $seat)
-                        .textInputAutocapitalization(.words)
-                }
+            Group {
+                if manual { manualForm } else { nearbyView }
             }
-            .scrollContentBackground(.hidden)
             .background(Color.ink.ignoresSafeArea())
-            .navigationTitle("Check in")
+            .navigationTitle(manual ? "Log manually" : "Check in")
             .navigationBarTitleDisplayMode(.inline)
             .onChange(of: sport) { _, _ in defaultTeams() }
             .toolbar {
@@ -105,7 +80,7 @@ struct LiveCheckInView: View {
                         started = true
                     } label: { Image(systemName: "checkmark") }
                     .buttonStyle(.borderedProminent)
-                    .disabled(!canStart)
+                    .disabled(!canStart || (!manual && chosen == nil))
                     .accessibilityLabel("Start")
                     .accessibilityIdentifier("live-start")
                 }
@@ -113,77 +88,191 @@ struct LiveCheckInView: View {
         }
     }
 
-    // MARK: Games near you
-
-    /// The game on at your stadium right now (or starting soon), one tap to pick. Typing stays as the fallback.
-    @ViewBuilder
-    private var nearbySection: some View {
-        if !nearby.isEmpty {
-            Section("Your game") {
-                ForEach(LiveGames.ordered(nearby, now: .now)) { game in
-                    Button { select(game) } label: {
-                        HStack(spacing: 12) {
-                            VStack(alignment: .leading, spacing: 6) {
-                                HStack(spacing: 8) {
-                                    TeamTile(team: GameLookup.team(from: game.away, game: game), compact: true)
-                                    Text(game.away.location).lineLimit(1)
-                                }
-                                HStack(spacing: 8) {
-                                    TeamTile(team: GameLookup.team(from: game.home, game: game), compact: true)
-                                    Text(game.home.location).lineLimit(1)
-                                }
-                            }
-                            .font(.condensed(.headline, weight: .bold))
-                            .textCase(.uppercase)
-                            Spacer()
-                            VStack(alignment: .trailing, spacing: 4) {
-                                Text(LiveGames.status(game, now: .now)).unitLabel()
-                                if chosen?.id == game.id {
-                                    Image(systemName: "checkmark.circle.fill").foregroundStyle(Color.signal)
-                                }
-                            }
-                        }
-                        .foregroundStyle(.white)
-                        .frame(minHeight: 56)
-                        .contentShape(.rect)
+    /// Pick the venue and the teams by hand.
+    private var manualForm: some View {
+        Form {
+            if !isUITest {
+                Section {
+                    Button { manual = false } label: { Label("Find games near me", systemImage: "location") }
+                        .accessibilityIdentifier("live-find-nearby")
+                }
+                .listRowBackground(Color.panel)
+            }
+            Section {
+                Picker("Venue", selection: venueBinding) {
+                    if venueId.isEmpty { Text("Choose a venue").tag("") }
+                    ForEach(library.venues(for: nil)) { v in
+                        Text(v.name).tag(v.id)
                     }
-                    .buttonStyle(.plain)
-                    .accessibilityElement(children: .combine)
-                    .accessibilityIdentifier("live-game-\(game.eventId)")
+                }
+                .pickerStyle(.navigationLink)
+                .accessibilityIdentifier("live-venue")
+
+                Picker("Sport", selection: $sport) {
+                    ForEach(Sport.allCases.filter { $0 != .motorsport }) { s in
+                        Label(s.name, systemImage: s.symbol).tag(s)
+                    }
                 }
             }
-            .accessibilityIdentifier("live-nearby")
-        } else if searchedNearby, let v = nearbyVenue {
             Section {
-                Label("No game on the schedule at \(v.name) right now. Pick the teams below.", systemImage: "calendar.badge.exclamationmark")
-                    .font(.footnote)
-                    .foregroundStyle(Color.textSecondary)
-                    .accessibilityIdentifier("live-nearby-none")
+                teamPicker("Home", selection: $homeId).accessibilityIdentifier("live-home")
+                teamPicker("Away", selection: $awayId).accessibilityIdentifier("live-away")
             }
-        } else if !isUITest, location.location == nil {
             Section {
-                Label(location.authorized ? "Finding your stadium…" : "Allow location and Witness will find the game you're at.",
-                      systemImage: "location")
-                    .font(.footnote)
-                    .foregroundStyle(Color.textSecondary)
+                withAndSeat
+            }
+        }
+        .scrollContentBackground(.hidden)
+    }
+
+    @ViewBuilder
+    private var withAndSeat: some View {
+        Picker("With", selection: $companionId) {
+            Text("Nobody").tag("")
+            ForEach(library.people) { p in
+                Text(p.name).tag(p.id)
+            }
+        }
+        TextField("Seat", text: $seat)
+            .textInputAutocapitalization(.words)
+    }
+
+    // MARK: Games near you
+
+    /// A game on the schedule at a stadium close to you.
+    struct NearbyGame: Identifiable {
+        let game: FoundGame
+        let venue: Venue
+        let meters: CLLocationDistance
+        var id: String { game.id }
+    }
+
+    /// Looks at where you are, finds the stadiums around you and lists the games on their schedules today.
+    private var nearbyView: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 12) {
+                if location.denied && location.location == nil {
+                    state("location.slash", "Location is off",
+                          "Allow location and Witness will find the stadiums around you and the games on today.") {
+                        Button("Open Settings") {
+                            if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
+                        }
+                        .buttonStyle(.primary)
+                        .accessibilityIdentifier("live-open-settings")
+                    }
+                } else if !searchedNearby {
+                    VStack(spacing: 14) {
+                        ProgressView()
+                        Text("Finding stadiums near you\u{2026}").font(.subheadline).foregroundStyle(Color.textSecondary)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, 80)
                     .accessibilityIdentifier("live-locating")
+                } else if nearbyGames.isEmpty {
+                    state("calendar.badge.exclamationmark", "Sorry, no game found",
+                          nearbyVenueNames.isEmpty ? "We couldn\u{2019}t find a stadium near you."
+                          : "No games on the schedule at \(nearbyVenueNames) right now.", content: { EmptyView() })
+                        .accessibilityIdentifier("live-nearby-none")
+                } else {
+                    Text("Games near you").unitLabel()
+                    ForEach(nearbyGames) { item in gameCard(item) }
+                    if chosen != nil {
+                        VStack(spacing: 0) { withAndSeat.padding(.horizontal, 14).frame(minHeight: 48) }
+                            .background(Color.panel, in: .rect(cornerRadius: 16))
+                    }
+                }
+                Button { manual = true } label: {
+                    Label("Not here, or not listed? Log manually", systemImage: "square.and.pencil")
+                        .font(.subheadline.weight(.semibold))
+                        .frame(maxWidth: .infinity, minHeight: 48)
+                        .foregroundStyle(nearbyGames.isEmpty && searchedNearby ? Color.black : Color.signal)
+                        .background(nearbyGames.isEmpty && searchedNearby ? Color.white : Color.clear, in: .rect(cornerRadius: 14))
+                }
+                .padding(.top, 6)
+                .accessibilityIdentifier("live-log-manually")
             }
+            .gutter()
+            .padding(.top, 8)
         }
     }
 
-    private func findNearby(_ venue: Venue) async {
-        let now = Date.now
-        var found: [FoundGame] = []
-        for v in [venue] + PhotoMatcher.neighbors(of: venue, in: library.venues) {
-            // In progress (started up to five hours ago) or starting within three hours.
-            found += await GameLookup.games(at: v, from: now, to: now.addingTimeInterval(3 * 3600))
+    private func state<Content: View>(_ symbol: String, _ title: String, _ detail: String,
+                                      @ViewBuilder content: () -> Content) -> some View {
+        VStack(spacing: 10) {
+            Image(systemName: symbol).font(.system(size: 34)).foregroundStyle(Color.signal)
+            Text(title).font(.condensed(.title2, weight: .heavy)).textCase(.uppercase)
+            Text(detail).font(.subheadline).foregroundStyle(Color.textSecondary).multilineTextAlignment(.center)
+            content()
         }
+        .foregroundStyle(.white)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 40)
+    }
+
+    private var nearbyVenueNames: String {
+        let names = nearbyPlaces.prefix(2).map(\.name)
+        return names.joined(separator: " or ")
+    }
+
+    private func gameCard(_ item: NearbyGame) -> some View {
+        let game = item.game
+        let selected = chosen?.id == game.id
+        return Button { nearbyVenue = item.venue; select(game) } label: {
+            HStack(spacing: 12) {
+                VStack(alignment: .leading, spacing: 6) {
+                    HStack(spacing: 8) {
+                        TeamTile(team: GameLookup.team(from: game.away, game: game), compact: true)
+                        Text(game.away.location).lineLimit(1)
+                    }
+                    HStack(spacing: 8) {
+                        TeamTile(team: GameLookup.team(from: game.home, game: game), compact: true)
+                        Text(game.home.location).lineLimit(1)
+                    }
+                }
+                .font(.condensed(.headline, weight: .bold))
+                .textCase(.uppercase)
+                Spacer()
+                VStack(alignment: .trailing, spacing: 4) {
+                    Text(LiveGames.status(game, now: .now)).unitLabel()
+                    Text("\(item.venue.name) \u{00B7} \(Self.distance(item.meters))")
+                        .font(.caption).foregroundStyle(Color.textSecondary).lineLimit(1)
+                    if selected { Image(systemName: "checkmark.circle.fill").foregroundStyle(Color.signal) }
+                }
+            }
+            .foregroundStyle(.white)
+            .padding(14)
+            .background(Color.panel, in: .rect(cornerRadius: 16))
+            .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(selected ? Color.signal : .clear, lineWidth: 1.5))
+            .contentShape(.rect)
+        }
+        .buttonStyle(.plain)
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("live-game-\(game.eventId)")
+    }
+
+    private static func distance(_ meters: CLLocationDistance) -> String {
+        meters < 160 ? "here" : (meters < 1000 ? "\(Int((meters / 10).rounded()) * 10) m" : String(format: "%.1f km", meters / 1000))
+    }
+
+    private func findNearby(around loc: CLLocation) async {
+        let places = library.venues.map { ($0, $0.location.distance(from: loc)) }
+            .filter { $0.1 <= 3000 }.sorted { $0.1 < $1.1 }.prefix(6)
+        nearbyPlaces = places.map(\.0)
+        let now = Date.now
+        var found: [NearbyGame] = []
         var seen = Set<String>()
-        nearby = found.filter { seen.insert($0.id).inserted }
+        for (venue, meters) in places {
+            // In progress (started up to five hours ago) or starting later today.
+            for game in await GameLookup.games(at: venue, from: now, to: now.addingTimeInterval(12 * 3600)) where seen.insert(game.id).inserted {
+                found.append(NearbyGame(game: game, venue: venue, meters: meters))
+            }
+        }
+        let order = LiveGames.ordered(found.map(\.game), now: now).map(\.id)
+        nearbyGames = found.sorted { (order.firstIndex(of: $0.id) ?? 0) < (order.firstIndex(of: $1.id) ?? 0) }
         searchedNearby = true
         // One game on and not over: that's the one.
-        let open = nearby.filter { !$0.completed }
-        if open.count == 1, let only = open.first { select(only) }
+        let open = nearbyGames.filter { !$0.game.completed }
+        if open.count == 1, let only = open.first { nearbyVenue = only.venue; select(only.game) }
     }
 
     private func select(_ game: FoundGame) {

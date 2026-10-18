@@ -8,6 +8,8 @@ import Observation
 final class LocationService: NSObject, CLLocationManagerDelegate {
     var location: CLLocation?
     var authorized = false
+    /// The fan said no (or it is restricted): asking again will not show a prompt.
+    var denied = false
 
     @ObservationIgnored private let manager = CLLocationManager()
 
@@ -16,6 +18,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         authorized = Self.isAuthorized(manager.authorizationStatus)
+        denied = Self.isDenied(manager.authorizationStatus)
     }
 
     func start() {
@@ -35,6 +38,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             .min { $0.1 < $1.1 }?.0
     }
 
+    private static func isDenied(_ s: CLAuthorizationStatus) -> Bool { s == .denied || s == .restricted }
+
     private static func isAuthorized(_ s: CLAuthorizationStatus) -> Bool {
         s == .authorizedWhenInUse || s == .authorizedAlways
     }
@@ -48,6 +53,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         let status = manager.authorizationStatus
         Task { @MainActor in
             self.authorized = Self.isAuthorized(status)
+            self.denied = Self.isDenied(status)
             if self.authorized { self.manager.startUpdatingLocation() }
         }
     }
