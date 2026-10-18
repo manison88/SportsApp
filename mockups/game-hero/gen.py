@@ -21,7 +21,7 @@ body.champ{--acc:var(--trophy)}
 .cover{position:absolute;left:0;right:0;top:0;height:548px;overflow:hidden}
 .cover .ph{position:absolute;inset:0;width:100%;height:100%}
 .cover .scrim{position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(5,5,6,.55) 0,rgba(5,5,6,0) 20%),
+  linear-gradient(180deg,rgba(5,5,6,.85) 0,rgba(5,5,6,.45) 22%,rgba(5,5,6,0) 40%),
   linear-gradient(0deg,rgba(5,5,6,1) 0,rgba(5,5,6,.9) 22%,rgba(5,5,6,.55) 48%,rgba(5,5,6,0) 74%)}
 .nav{position:absolute;top:58px;left:16px;right:16px;display:flex;justify-content:space-between;z-index:5}
 .nav .r{display:flex;gap:10px}
@@ -36,7 +36,7 @@ body.champ{--acc:var(--trophy)}
 .hl{display:flex;flex-direction:column;gap:2px;font-family:var(--f-cond);font-weight:800;text-transform:uppercase;
   line-height:.94;letter-spacing:.2px;color:var(--text)}
 .hl .ln{display:grid;grid-template-columns:.2em minmax(0,1fr) 1.22em;column-gap:.14em;align-items:baseline}
-.hl .nm{white-space:nowrap;overflow:visible}
+.hl .nm{white-space:nowrap;display:inline-block;justify-self:start}
 .hl .sc{text-align:right;font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
 .hl .dot{width:.1em;height:.1em;min-width:5px;min-height:5px;border-radius:50%;background:var(--acc);align-self:center;transform:translateY(-.02em)}
 .hl .ln.lose{color:var(--text-2)}
@@ -60,7 +60,7 @@ body.champ{--acc:var(--trophy)}
 .tm{display:flex;align-items:center;gap:10px}
 .tm .mono-badge{width:24px;height:24px;font-size:12px;border-radius:7px}
 .chips{display:flex;gap:8px;margin-top:12px;flex-wrap:nowrap}
-.chip{height:34px;padding:0 14px;border-radius:17px;background:var(--raised);border:.5px solid var(--line-2);font:600 13px/34px var(--f-ui);color:var(--text);white-space:nowrap}
+.chip{height:34px;padding:0 13px;border-radius:17px;background:var(--raised);border:.5px solid var(--line-2);font:600 13px/34px var(--f-ui);color:var(--text);white-space:nowrap}
 .chip.on{background:color-mix(in srgb,var(--acc) 18%,transparent);border-color:color-mix(in srgb,var(--acc) 55%,transparent);color:var(--acc)}
 """
 
@@ -98,10 +98,10 @@ def v2_html(items):
 def v3_css():
     return """
 .info{flex-direction:column;align-items:stretch;gap:0}
-.chiprow{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
-.cp{height:46px;border-radius:23px;display:flex;align-items:center;gap:8px;padding:0 15px 0 13px;background:rgba(22,22,26,.5);
-  font:700 10.5px/1 var(--f-ui);letter-spacing:1.1px;text-transform:uppercase;color:#fff;white-space:nowrap}
-.cp svg{width:20px;height:20px;flex:none}
+.chiprow{display:flex;justify-content:flex-end;gap:6px;margin-top:16px}
+.cp{height:46px;border-radius:23px;display:flex;align-items:center;gap:6px;padding:0 12px 0 11px;background:rgba(22,22,26,.5);
+  font:700 10px/1 var(--f-ui);letter-spacing:.7px;text-transform:uppercase;color:#fff;white-space:nowrap}
+.cp svg{width:18px;height:18px;flex:none}
 .cp.k{background:color-mix(in srgb,var(--acc) 20%,rgba(22,22,26,.5));border-color:color-mix(in srgb,var(--acc) 55%,transparent);color:var(--acc)}
 .cp.k svg{stroke:var(--acc)}
 .metarow{display:flex;justify-content:space-between;align-items:flex-end}
@@ -123,7 +123,7 @@ VARS = {
 
 GAMES = {
  'v1-main': dict(
-   title_suffix='Group stage', photo='soldier-soccer', champ=False, pos='50% 60%',
+   title_suffix='Group stage', photo='soldier-soccer', champ=False, pos='50% 60%', zoom=3,
    badge='FIFA World Cup · Group stage', items=['ywt', 'stadium', 'trip'],
    lines=[('Bosnia and Herzegovina', 3, True, 'win'), ('Qatar', 1, False, 'lose')],
    venue='Lumen Field', place='Seattle', date='Wednesday, June 24, 2026',
@@ -157,7 +157,7 @@ def sheet_html(kind):
   <div class="tr" style="grid-template-columns:1fr 64px 64px"><span class="tm"><span class="mono-badge" style="background:#0c2340">CLE</span>Cleveland</span><span class="c f">2</span><span class="c">3</span></div>
 </div>
 <div class="sec" style="margin-top:22px">I was there for</div>
-<div class="chips"><span class="chip on">Bryant HR, 4th</span><span class="chip">Chapman 8-out save</span><span class="chip">Final out</span></div>"""
+<div class="chips"><span class="chip on">Bryant HR, 4th</span><span class="chip">Chapman save</span><span class="chip">Final out</span></div>"""
 
 FIT_JS = """
 window.afterPaint = async () => {
@@ -197,7 +197,7 @@ def build(var, vkey, g):
 <style>{BASE_CSS}{css_fn()}
 </style></head>
 <body class="phone{' champ' if g['champ'] else ''}">
-<div class="cover"><img class="ph graded" src="../../../photos/{g['photo']}.jpg" style="object-position:{g['pos']}"><div class="scrim"></div>{nav}{info}</div>
+<div class="cover"><img class="ph graded" src="../../../photos/{g['photo']}.jpg" style="object-position:{g['pos']};transform:scale({g.get('zoom',1)});transform-origin:50% 100%"><div class="scrim"></div>{nav}{info}</div>
 <div class="sheet">{sheet_html(g['sheet'])}</div>
 <script src="../../../kit/kit.js"></script>
 <script>{FIT_JS}</script>
