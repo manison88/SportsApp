@@ -1,0 +1,39 @@
+<!doctype html><html><head><meta charset="utf-8"><title>3 · Justified rows</title><link rel="stylesheet" href="../../../kit/kit.css"><style>
+html,body{margin:0;background:#000}
+.phone{position:relative;width:393px;height:852px;overflow:hidden;background:#050506;color:#f5f1ea;font-family:-apple-system,Inter,sans-serif}
+.cover{position:absolute;left:0;right:0;top:0;height:330px;background:url(../../../photos/soldier-skyline.jpg) center 30%/cover}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.7),rgba(5,5,6,0) 30%),linear-gradient(0deg,#050506 0,rgba(5,5,6,.85) 30%,rgba(5,5,6,0) 70%)}
+.sb{position:absolute;top:18px;left:30px;right:30px;display:flex;justify-content:space-between;font:600 15px Inter,sans-serif;z-index:6}
+.nav{position:absolute;top:56px;left:16px;right:16px;display:flex;justify-content:space-between;z-index:6}
+.nav .r{display:flex;gap:10px}
+.c{width:40px;height:40px;border-radius:50%;background:rgba(18,18,22,.55);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center}
+.c svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.c.more svg{fill:#fff;stroke:none}
+.c.play{background:#fff}.c.play svg{fill:#050506;stroke:none;margin-left:2px}
+.info{position:absolute;left:20px;right:20px;top:calc(330px - 128px);z-index:4}
+.ln{display:flex;justify-content:space-between;align-items:baseline;font:800 44px/.94 "Barlow Condensed","Arial Narrow",sans-serif;text-transform:uppercase}
+.meta{display:flex;align-items:center;margin-top:10px;font:500 13.5px -apple-system,Inter,sans-serif;color:rgba(245,241,234,.64)}
+.meta .v{color:#ffb547;font-weight:600;display:flex;align-items:center;gap:6px}
+.meta svg{width:16px;height:16px;stroke:#ffb547;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.meta .y{margin-left:auto;display:flex}
+.meta .y svg{width:24px;height:24px}
+.tabs{position:absolute;left:16px;right:16px;bottom:20px;height:68px;border-radius:34px;background:rgba(28,28,32,.92);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-around;z-index:9;font:600 11px Inter,sans-serif;color:#cfcac0}
+.tabs span{display:flex;flex-direction:column;align-items:center;gap:4px}
+.tabs .on{color:#fff}
+.tabs i{width:22px;height:20px;border-radius:5px;background:#cfcac0;display:block}
+.tabs .on i{background:#fff}
+.body{position:absolute;left:0;right:0;top:344px;bottom:0;overflow:hidden}
+.fade{position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(0deg,#050506 25%,rgba(5,5,6,0));z-index:7;pointer-events:none}
+.p{background-size:cover;background-position:center;border-radius:6px}
+.sec{display:flex;align-items:baseline;justify-content:space-between;padding:0 20px;margin-bottom:10px;font:800 17px "Barlow Condensed",sans-serif;letter-spacing:.5px;text-transform:uppercase}
+.sec small{font:600 12px Inter,sans-serif;color:rgba(245,241,234,.4);margin-left:8px;letter-spacing:1px}
+.sec a{font:600 13px Inter,sans-serif;color:#ffb547;text-transform:none;letter-spacing:0}
+</style></head><body>
+<div class="phone"><div class="cover"></div>
+<div class="sb"><span>9:41</span><span>●●● 100</span></div>
+<div class="nav"><div class="c"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div><div class="r"><div class="c play"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></div><div class="c more"><svg viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18.5" cy="12" r="1.6"/></svg></div></div></div>
+<div class="info"><div class="ln"><span>Toronto</span><span>8</span></div><div class="ln"><span>New York</span><span style="color:rgba(245,241,234,.64)">5</span></div>
+<div class="meta"><span class="v"><svg viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5M4.5 20h15M6 10.5v7M10 10.5v7M14 10.5v7M18 10.5v7"/></svg>Rogers Centre</span><span>&nbsp;, Jun 12, 2026</span><span class="y" style="color:#ffb547"><svg viewBox="0 0 24 24" style="stroke:#ffb547;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round"><path d="M2 12h4l2.5-6 4 13 3-9 1.5 2H22"/></svg></span></div></div>
+<div class="body"><div class="sec"><span>Photos<small>54</small></span><a>See all</a></div><div style="padding:0 16px"><div style="display:flex;gap:4px;height:140px;margin-bottom:4px"><div class="p " style="background-image:url(../../../photos/wrigley-night.jpg);flex:1.6;border-radius:4px"></div><div class="p " style="background-image:url(../../../photos/fenway-night.jpg);flex:1;border-radius:4px"></div></div><div style="display:flex;gap:4px;height:110px;margin-bottom:4px"><div class="p " style="background-image:url(../../../photos/soldier-soccer.jpg);flex:1;border-radius:4px"></div><div class="p " style="background-image:url(../../../photos/soldier-skyline.jpg);flex:1.5;border-radius:4px"></div><div class="p " style="background-image:url(../../../photos/lambeau-concourse.jpg);flex:1.2;border-radius:4px"></div></div><div style="display:flex;gap:4px;height:130px;margin-bottom:4px"><div class="p " style="background-image:url(../../../photos/wrigley-bleachers.jpg);flex:1.3;border-radius:4px"></div><div class="p " style="background-image:url(../../../photos/fenway-day.jpg);flex:1;border-radius:4px"></div></div><div style="display:flex;gap:4px;height:100px;margin-bottom:4px"><div class="p " style="background-image:url(../../../photos/united-center-court.jpg);flex:1;border-radius:4px"></div><div class="p " style="background-image:url(../../../photos/wrigley-scoreboard.jpg);flex:1;border-radius:4px"></div><div class="p " style="background-image:url(../../../photos/lambeau-exterior.jpg);flex:1;border-radius:4px"></div></div></div></div><div class="fade"></div>
+<div class="tabs"><span class="on"><i></i>Timeline</span><span><i style="border-radius:50%"></i>Map</span><span><i></i>Passport</span><span><i style="border-radius:50%"></i>You</span></div>
+</div><script>window.__ready=true</script></body></html>
