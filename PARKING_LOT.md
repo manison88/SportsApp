@@ -19,3 +19,14 @@ Order if it is picked up again: Together, Witnesses, Head to head, Circles, Goin
 Shared groundwork all six need: Sign in with Apple at the first social action (never at onboarding), a friend invite link, per-friend visibility switches. Rules that hold for every idea: photos never leave the phone unless a person picks them, no public feed, no follower counts, no location shared silently, kids' profiles never shown.
 
 Open facts for a future start: Together and Going need the same "memory with members" record; Witnesses needs an ordered join index per game; the mockup photos are stand-ins and some show real signage.
+
+## Share cards, new variations (parked Oct 18, 2026)
+Two rounds of share-card mockups (9:16 story cards), designed but not built. The shipped cards stay as they are. Source: `mockups/share-variants/` (briefs `BRIEF.md` and `BRIEF-2.md`, files in `features/<set>/`, renders in `png/`).
+
+- **Round 1** (baseball-based; rejected for that reason, except the Game set): `game`, `passport`, `venue`, `trip`, `numbers`, `recap`. The client picked Game styles 1 (photo hero, giant score in the sky) and 2 (framed photo, serif score) from this round.
+- **Round 2, built for every sport** (the one to start from): `game2` (Game 1 and 2 in soccer, football, basketball), `passport2` (venue count, not "of 30"), `venue2` (generic seating bowl), `numbers2` (My numbers and Lucky charm, sport-mix bar and dot grid). Not redone for all sports: Trip and Recap / You were there (their round-1 sets already used soccer), and Shared Passport was never done.
+
+Open items before building: Bears at Soldier Field is 6-3 in the sample data (the brief said 5-4); the seat sections 118 and 205 and the 42,900 miles are placeholders; Trip miles (9,000) were estimated; the mockup photos are stand-ins (Camp Nou is a miniature model; there are no hockey or racing photos); the giant score has to shrink for two- and three-digit scores.
+
+## Wrapped revamp (parked Oct 18, 2026)
+Ten mockups with a way to reach every previous year (story slides, scroll reports, year hubs, poster, calendar, versus last year). Source: `mockups/wrapped-revamp/` (`BRIEF.md`, `features/wrapped/`, renders in `png/`). The Wrapped entry was removed from the You tab; `WrappedView` and `Modal.wrapped` are still in the code. Pick: the swipe-deck hub into the color-block story, with the poster as the share card. Sample numbers for 2025 (5 games, 5-0) and the miles are estimates.
