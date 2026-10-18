@@ -276,7 +276,7 @@ struct VenueGlyph: View {
     var body: some View {
         Canvas { ctx, canvas in
             let w = canvas.width, h = canvas.height
-            let rect = CGRect(origin: .zero, size: canvas.size)
+            let rect = CGRect(origin: .zero, size: canvas)
             ctx.fill(Path(roundedRect: rect, cornerRadius: w * 0.28), with: .color(Color.panelRaised))
             // The bowl: two rings, like seating tiers seen from above.
             let bowl = rect.insetBy(dx: w * 0.1, dy: h * 0.18)
@@ -392,7 +392,8 @@ struct CountryGlobe: View {
             for ring in CountryShapes.all[code] ?? [] {
                 for p in ring {
                     let lam = p.x * .pi / 180 - lon0, phi = p.y * .pi / 180
-                    extent = max(extent, acos(min(1, max(-1, sin(lat0) * sin(phi) + cos(lat0) * cos(phi) * cos(lam)))))
+                    let c: Double = min(1, max(-1, sin(lat0) * sin(phi) + cos(lat0) * cos(phi) * cos(lam)))
+                    extent = max(extent, Foundation.acos(c))
                 }
             }
             let zoom = CountryShapes.all[code] == nil ? 1 : min(max(0.55 / max(sin(min(extent, 1.4)), 0.01), 1), 7)
