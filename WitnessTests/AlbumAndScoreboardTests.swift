@@ -321,6 +321,20 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertNil(after.coverChosenByFan)
     }
 
+    func testNeutralGroundStampWearsTheCountry() throws {
+        let lumen = try XCTUnwrap(library.venue("lumen-field"))
+        let bosnia = try XCTUnwrap(library.allTeams.first { $0.sport == .soccer && $0.abbreviation == "BIH" })
+        XCTAssertFalse(PassportView.isTenant(bosnia, of: lumen), "Bosnia is not Lumen Field's team")
+        XCTAssertEqual(CountryCodes.iso3(lumen.countryCode), "USA")
+        XCTAssertEqual(CountryCodes.iso3("BA"), "BIH")
+        if let sounders = library.allTeams.first(where: { $0.abbreviation == "SEA" && $0.sport == .soccer }) {
+            XCTAssertTrue(PassportView.isTenant(sounders, of: lumen), "A tenant keeps its own code")
+        }
+        let wrigley = try XCTUnwrap(library.venue("wrigley"))
+        let cubs = try XCTUnwrap(library.team("mlb-chc"))
+        XCTAssertTrue(PassportView.isTenant(cubs, of: wrigley))
+    }
+
     func testWorldCupGameIsFoundAtAFootballStadium() throws {
         let library = self.library!
         let levis = try XCTUnwrap(library.venues.first { $0.id == "levis-stadium" })

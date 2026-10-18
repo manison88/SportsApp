@@ -159,11 +159,26 @@ struct PassportView: View {
     /// A venue's stamp wears the color of the team that plays there most.
     private func stamp(for venueId: String, games: [GameEntry], date: Date?) -> Stamp? {
         guard let venue = library.venue(venueId) else { return nil }
-        let homes = games.filter { $0.venueId == venueId }.compactMap(\.homeTeamId)
+        // The tenant that played here most. A "home" side at a neutral ground (a World Cup game in Seattle) is not
+        // the venue's team, so that stamp wears the country instead.
+        let homes = games.filter { $0.venueId == venueId }.compactMap(\.homeTeamId).compactMap { library.team($0) }
+            .filter { Self.isTenant($0, of: venue) }.map(\.id)
         let top = Dictionary(grouping: homes, by: { $0 }).max { $0.value.count < $1.value.count }?.key
         let team = library.team(top)
-        let code = team?.abbreviation ?? (venue.sports.contains(.motorsport) ? venue.countryCode : String(venue.name.filter(\.isLetter).prefix(3)).uppercased())
-        return Stamp(venueId: venueId, code: code, color: team?.accent ?? Color(hex: "3A4150"), date: date)
+        let fallback = CountryCodes.iso3(venue.countryCode) ?? String(venue.name.filter(\.isLetter).prefix(3)).uppercased()
+        return Stamp(venueId: venueId, code: team?.abbreviation ?? fallback, color: team?.accent ?? Color(hex: "3A4150"), date: date)
+    }
+
+    /// True when the venue is the team's own ground: the catalog says so, or the venue lists the team as a tenant.
+    static func isTenant(_ team: Team, of venue: Venue) -> Bool {
+        if team.homeVenueId == venue.id { return true }
+        // Tenants unknown: any club counts, but a national side never owns a club's ground.
+        if (venue.homeTeams ?? []).isEmpty { return team.league != "National teams" && !team.id.hasPrefix("nat-") }
+        let name = TicketParser.normalize(team.teamName), place = TicketParser.normalize(team.locationName)
+        return (venue.homeTeams ?? []).contains { tenant in
+            let t = TicketParser.normalize(tenant)
+            return (!name.isEmpty && t.contains(name)) || (!place.isEmpty && !name.isEmpty && t.contains(place) && t.contains(name))
+        }
     }
 }
 
