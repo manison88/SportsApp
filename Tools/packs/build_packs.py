@@ -81,7 +81,7 @@ VENUE_FIELDS = ("id", "name", "aliases", "city", "region", "country", "countryCo
 
 # Schedule sources whose terms we have not cleared for republishing: undocumented APIs behind other sites' own apps.
 # Their files stay in the repo as research data but are not put into published packs unless --include-sources says so.
-HELD_SOURCES = ("sofascore", "hockeytech")
+HELD_SOURCES = ("sofascore", "hockeytech", "fiba")
 
 def build(out_dir, note, include_sources=()):
     packs = []
