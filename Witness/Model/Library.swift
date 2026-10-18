@@ -19,6 +19,8 @@ final class Library {
     private var sampleTrips: [Trip] = []
     /// Trips the fan made, e.g. from an imported album.
     private(set) var customTrips: [Trip] = []
+    /// The teams the fan picked as theirs: who they root for by default at every game.
+    private(set) var chosenFavoriteTeamIds: [String] = []
     var trips: [Trip] { sampleTrips + customTrips }
     private var samplePeople: [Person] = []
     private var sampleProfile: Profile?
@@ -42,6 +44,7 @@ final class Library {
         var customPeople: [Person]
         var customTeams: [Team]? = nil
         var customTrips: [Trip]? = nil
+        var favoriteTeamIds: [String]? = nil
     }
 
     nonisolated static var defaultStoreURL: URL {
@@ -69,11 +72,39 @@ final class Library {
 
     /// Sam is the sample persona; a real user gets a neutral profile.
     var profile: Profile {
-        if isSample, let sampleProfile { return sampleProfile }
+        if isSample, var sample = sampleProfile {
+            if !chosenFavoriteTeamIds.isEmpty { sample.favoriteTeamIds = chosenFavoriteTeamIds }
+            return sample
+        }
         return Profile(displayName: "You", homeCity: sampleProfile?.homeCity ?? "Chicago",
                        homeLatitude: sampleProfile?.homeLatitude ?? 41.8781,
                        homeLongitude: sampleProfile?.homeLongitude ?? -87.6298,
-                       favoriteTeamIds: [])
+                       favoriteTeamIds: chosenFavoriteTeamIds)
+    }
+
+    /// Your teams, in the order you chose them.
+    var favoriteTeams: [Team] { profile.favoriteTeamIds.compactMap { team($0) } }
+
+    func addFavorite(_ id: String) {
+        var ids = profile.favoriteTeamIds
+        guard !ids.contains(id) else { return }
+        ids.append(id)
+        chosenFavoriteTeamIds = ids
+        save()
+    }
+
+    func removeFavorite(_ id: String) {
+        chosenFavoriteTeamIds = profile.favoriteTeamIds.filter { $0 != id }
+        // An emptied list must not fall back to the sample's teams.
+        if chosenFavoriteTeamIds.isEmpty && isSample { chosenFavoriteTeamIds = ["none"] }
+        save()
+    }
+
+    /// Who the fan was rooting for at one game. `nil` goes back to the default (your teams, else the home side).
+    func setRooting(_ gameId: String, to teamId: String?) {
+        guard var g = game(gameId) else { return }
+        g.rootingForTeamId = teamId
+        update(g)
     }
 
     /// People you can tag at a game. "me" is never a companion.
@@ -393,7 +424,7 @@ final class Library {
     }
 
     func reset() {
-        games = []; customVenues = []; customPeople = []; customTeams = []; customTrips = []; hasLibrary = false
+        games = []; customVenues = []; customPeople = []; customTeams = []; customTrips = []; chosenFavoriteTeamIds = []; hasLibrary = false
         try? FileManager.default.removeItem(at: storeURL)
     }
 
@@ -406,7 +437,8 @@ final class Library {
 
     private func save() {
         hasLibrary = true
-        let stored = Stored(games: games, customVenues: customVenues, customPeople: customPeople, customTeams: customTeams, customTrips: customTrips)
+        let stored = Stored(games: games, customVenues: customVenues, customPeople: customPeople, customTeams: customTeams, customTrips: customTrips,
+                        favoriteTeamIds: chosenFavoriteTeamIds.isEmpty ? nil : chosenFavoriteTeamIds)
         do {
             let data = try Self.encoder.encode(stored)
             try FileManager.default.createDirectory(at: storeURL.deletingLastPathComponent(), withIntermediateDirectories: true)
@@ -424,6 +456,7 @@ final class Library {
         customPeople = stored.customPeople
         customTeams = stored.customTeams ?? []
         customTrips = stored.customTrips ?? []
+        chosenFavoriteTeamIds = stored.favoriteTeamIds ?? []
         hasLibrary = true
     }
 

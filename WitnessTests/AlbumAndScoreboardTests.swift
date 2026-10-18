@@ -292,6 +292,22 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(GameLookup.venue(of: game, in: library.venues)?.id, "united-center")
     }
 
+    func testYourTeamsDecideWhoYouWereRootingFor() throws {
+        let cubs = try XCTUnwrap(library.team("mlb-chc"))
+        let brewers = try XCTUnwrap(library.team("mlb-mil"))
+        var game = GameEntry(sport: .baseball, date: Date(), venueId: "wrigley", origin: .manual)
+        game.homeTeamId = cubs.id
+        game.awayTeamId = brewers.id
+        library.add(game)
+        XCTAssertEqual(library.rootingTeam(library.games[0]), cubs.id, "No teams chosen: the home side")
+        library.addFavorite(brewers.id)
+        XCTAssertEqual(library.rootingTeam(library.games[0]), brewers.id, "Your team wins over home")
+        library.setRooting(library.games[0].id, to: cubs.id)
+        XCTAssertEqual(library.rootingTeam(library.games[0]), cubs.id, "A choice on the game wins over your teams")
+        library.removeFavorite(brewers.id)
+        XCTAssertTrue(library.favoriteTeams.isEmpty)
+    }
+
     func testWorldCupGameIsFoundAtAFootballStadium() throws {
         let library = self.library!
         let levis = try XCTUnwrap(library.venues.first { $0.id == "levis-stadium" })

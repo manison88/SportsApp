@@ -18,6 +18,10 @@ struct YouView: View {
                 .buttonStyle(.plain)
                 .accessibilityIdentifier("you-lucky")
 
+                NavigationLink { FavoriteTeamsView() } label: { favoritesRow }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("you-teams")
+
                 if !chrono.isEmpty {
                     ResultDots(games: chrono, stats: stats, color: favoriteColor)
                 }
@@ -51,6 +55,33 @@ struct YouView: View {
         .confirmationDialog("Remove the sample games?", isPresented: $confirmRemove, titleVisibility: .visible) {
             Button("Remove sample games", role: .destructive) { library.removeSample() }
         }
+    }
+
+    /// "Select your teams", or the chips of the teams already chosen.
+    private var favoritesRow: some View {
+        let teams = library.favoriteTeams
+        return HStack(spacing: 10) {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(teams.isEmpty ? "Select your teams" : "Your teams")
+                    .font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+                if teams.isEmpty {
+                    Text("Pick who you root for and every game starts with them.")
+                        .font(.footnote).foregroundStyle(Color.textSecondary).multilineTextAlignment(.leading)
+                } else {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 6) { ForEach(teams.prefix(12)) { TeamTile(team: $0, compact: true) } }
+                    }
+                    .scrollDisabled(true)
+                }
+            }
+            Spacer(minLength: 8)
+            Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary).accessibilityHidden(true)
+        }
+        .foregroundStyle(.white)
+        .padding(16)
+        .frame(maxWidth: .infinity, minHeight: 64, alignment: .leading)
+        .background(Color.panel, in: .rect(cornerRadius: 16))
+        .contentShape(.rect)
     }
 
     @ViewBuilder

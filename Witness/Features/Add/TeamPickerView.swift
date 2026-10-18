@@ -283,3 +283,90 @@ extension Color {
         return String(format: "%02X%02X%02X", Int((r * 255).rounded()), Int((g * 255).rounded()), Int((b * 255).rounded()))
     }
 }
+
+/// Two teams, tap the one you were there for. Used on a game, in the review and when adding.
+struct RootingChips: View {
+    let teams: [Team]
+    @Binding var selection: String?
+
+    var body: some View {
+        HStack(spacing: 10) {
+            ForEach(teams) { team in
+                let on = selection == team.id
+                Button { selection = team.id } label: {
+                    HStack(spacing: 8) {
+                        TeamTile(team: team, compact: true)
+                        Text(team.locationName).font(.condensed(.subheadline, weight: .heavy)).lineLimit(1).minimumScaleFactor(0.7)
+                        Spacer(minLength: 0)
+                        if on { Image(systemName: "checkmark.circle.fill").foregroundStyle(Color.signal).accessibilityHidden(true) }
+                    }
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 12)
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(Color.panel, in: .rect(cornerRadius: 12))
+                    .overlay { RoundedRectangle(cornerRadius: 12).stroke(on ? Color.signal : Color.hairline, lineWidth: on ? 2 : 1) }
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("\(team.locationName), rooting for")
+                .accessibilityAddTraits(on ? .isSelected : [])
+                .accessibilityIdentifier("rooting-\(team.abbreviation)")
+            }
+        }
+    }
+}
+
+/// "Select your teams": the teams you follow. They are who you were rooting for at any game they play in, unless a game says otherwise.
+struct FavoriteTeamsView: View {
+    @Environment(Library.self) private var library
+
+    var body: some View {
+        List {
+            Section {
+                NavigationLink {
+                    TeamPickerView(selection: addBinding, sport: startSport)
+                } label: {
+                    Label("Add a team", systemImage: "plus")
+                }
+                .accessibilityIdentifier("favorites-add")
+            } footer: {
+                Text("Your teams are who you were rooting for at every game they play in. You can change it on any single game.")
+            }
+            .listRowBackground(Color.panel)
+
+            if !library.favoriteTeams.isEmpty {
+                Section("Your teams") {
+                    ForEach(library.favoriteTeams) { team in
+                        HStack(spacing: 12) {
+                            TeamTile(team: team, compact: true)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(team.locationName).font(.condensed(.headline)).foregroundStyle(.white)
+                                Text(team.league).font(.footnote).foregroundStyle(Color.textSecondary)
+                            }
+                            Spacer()
+                        }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityIdentifier("favorite-\(team.id)")
+                    }
+                    .onDelete { offsets in
+                        let teams = library.favoriteTeams
+                        for i in offsets { library.removeFavorite(teams[i].id) }
+                    }
+                }
+                .listRowBackground(Color.panel)
+            }
+        }
+        .scrollContentBackground(.hidden)
+        .background(Color.ink.ignoresSafeArea())
+        .navigationTitle("Your teams")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var addBinding: Binding<String?> {
+        Binding(get: { nil }, set: { if let id = $0 { library.addFavorite(id) } })
+    }
+
+    /// The picker opens on the sport of your latest team, else of your latest game.
+    private var startSport: Sport {
+        library.favoriteTeams.last?.sport ?? library.games.first?.sport ?? .baseball
+    }
+}

@@ -131,13 +131,11 @@ struct AddGameView: View {
                 Section {
                     scoreRow
                     if let home = homeTeamId, let away = awayTeamId {
-                        LabeledContent("Rooting for") {
-                            Picker("Rooting for", selection: $rootingForTeamId) {
-                                Text(library.team(away)?.abbreviation ?? "Away").tag(Optional(away))
-                                Text(library.team(home)?.abbreviation ?? "Home").tag(Optional(home))
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("I was there for").font(.footnote).foregroundStyle(Color.textSecondary)
+                            if let h = library.team(home), let a = library.team(away) {
+                                RootingChips(teams: [a, h], selection: $rootingForTeamId)
                             }
-                            .pickerStyle(.segmented)
-                            .frame(maxWidth: 180)
                         }
                         .accessibilityIdentifier("add-rooting")
                     }

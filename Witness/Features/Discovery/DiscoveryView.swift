@@ -21,6 +21,8 @@ struct DiscoveryView: View {
     @State private var index = 0
     @State private var confirmed = 0
     @State private var lookup: FoundGame?
+    /// Who the fan was there for at the game on screen; nil means the default (your teams, else home).
+    @State private var rootingId: String?
     @State private var lookupFor: String?
     @State private var checkedFor: String?
     @State private var lookupVenue: Venue?
@@ -212,6 +214,8 @@ struct DiscoveryView: View {
             .accessibilityElement()
             .accessibilityLabel("\(cluster.assetIds.count) photos at \(cluster.venue.name)")
 
+            rootingPicker(cluster)
+
             Label("\(cluster.assetIds.count.formatted()) \(cluster.assetIds.count == 1 ? "photo" : "photos") will be added to this game",
                   systemImage: "photo.on.rectangle")
                 .font(.footnote)
@@ -235,6 +239,37 @@ struct DiscoveryView: View {
                     .foregroundStyle(Color.textSecondary)
                     .accessibilityIdentifier("discovery-unverified")
             }
+        }
+    }
+
+    // MARK: Rooting
+
+    /// The catalog team for a schedule side, so "your teams" recognizes it.
+    private func resolved(_ side: FoundGame.Side, in game: FoundGame) -> Team {
+        library.catalogTeam(league: game.league, espnId: side.espnId)
+            ?? library.allTeams.first { $0.sport == game.sport && $0.abbreviation == side.abbreviation
+                && $0.locationName.caseInsensitiveCompare(side.location) == .orderedSame }
+            ?? GameLookup.team(from: side, game: game)
+    }
+
+    /// Your team if it is playing, else the home side.
+    private func defaultRoot(_ home: Team, _ away: Team) -> String {
+        let favorites = Set(library.profile.favoriteTeamIds)
+        return favorites.contains(home.id) ? home.id : favorites.contains(away.id) ? away.id : home.id
+    }
+
+    @ViewBuilder
+    private func rootingPicker(_ cluster: PhotoCluster) -> some View {
+        if let game = lookup, lookupFor == cluster.id, game.race == nil, game.sport != .motorsport {
+            let home = resolved(game.home, in: game), away = resolved(game.away, in: game)
+            VStack(alignment: .leading, spacing: 8) {
+                Text("I was there for").font(.condensed(.subheadline, weight: .heavy)).tracking(1.2).textCase(.uppercase)
+                    .foregroundStyle(Color.textSecondary)
+                RootingChips(teams: [away, home], selection: Binding(
+                    get: { rootingId ?? defaultRoot(home, away) },
+                    set: { rootingId = $0 }))
+            }
+            .accessibilityIdentifier("discovery-rooting")
         }
     }
 
@@ -503,6 +538,10 @@ struct DiscoveryView: View {
             entry.date = lookup.start
             if let lookupVenue { entry.venueId = lookupVenue.id }
             GameLookup.apply(lookup, detail: nil, to: &entry, library: library)
+            if lookup.race == nil, let rootingId {
+                let home = resolved(lookup.home, in: lookup), away = resolved(lookup.away, in: lookup)
+                entry.rootingForTeamId = rootingId == away.id ? entry.awayTeamId : rootingId == home.id ? entry.homeTeamId : entry.rootingForTeamId
+            }
             // Plays and the win-probability curve arrive after; the card moves on now.
             let id = entry.id
             Task {
@@ -517,6 +556,7 @@ struct DiscoveryView: View {
     }
 
     private func advance() {
+        rootingId = nil
         lookup = nil
         lookupFor = nil
         index += 1

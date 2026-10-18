@@ -29,6 +29,7 @@ struct GameMemoryView: View {
             VStack(alignment: .leading, spacing: Spacing.block) {
                 heroLink(game)
                 scoreBlock(game).gutter()
+                rootingBlock(game)
                 photosBlock(game)
                 peopleBlock(game)
                 links(game)
@@ -167,6 +168,34 @@ struct GameMemoryView: View {
             LineScoreTable(game: game)
         } else if game.hasScore {
             ScoreStack(game: game)
+        }
+    }
+
+    // MARK: Rooting
+
+    /// Who you were there for. One tap changes it; "Always" makes the team one of yours for every game.
+    @ViewBuilder
+    private func rootingBlock(_ game: GameEntry) -> some View {
+        if game.sport != .motorsport, let home = library.team(game.homeTeamId), let away = library.team(game.awayTeamId) {
+            let chosen = library.rootingTeam(game)
+            VStack(alignment: .leading, spacing: Spacing.inner) {
+                Text("I was there for").font(.condensed(.subheadline, weight: .heavy)).tracking(1.2).textCase(.uppercase)
+                    .foregroundStyle(Color.textSecondary)
+                RootingChips(teams: [away, home], selection: Binding(
+                    get: { chosen },
+                    set: { library.setRooting(game.id, to: $0) }))
+                if let chosen, !library.profile.favoriteTeamIds.contains(chosen), let team = library.team(chosen) {
+                    Button {
+                        library.addFavorite(chosen)
+                    } label: {
+                        Label("Always root for \(team.locationName)", systemImage: "plus.circle")
+                            .font(.footnote.weight(.semibold))
+                    }
+                    .accessibilityIdentifier("rooting-make-favorite")
+                }
+            }
+            .gutter()
+            .accessibilityIdentifier("game-rooting")
         }
     }
 
