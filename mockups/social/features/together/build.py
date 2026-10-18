@@ -279,7 +279,7 @@ body3=f'''<div class="bgfeed"><div class="abs" style="left:0;right:0;top:0;heigh
 <div class="vis"><span class="a">{av('Chris',20,fs=8)}{av('Jordan',20,fs=8)}</span><span style="margin-left:6px">Visible to Chris and Jordan</span></div>
 <div class="chips"><span class="chip on">Suggested <small>16</small></span><span class="chip">During play <small>38</small></span><span class="chip">All <small>104</small></span></div>
 <div class="grid"><div class="gh"><span>Suggested · best of your night</span><em>12 selected</em></div><div class="gr">{t1}</div><div class="gh" style="margin-top:6px"><span>The rest of your night</span><em>0 selected</em></div><div class="gr">{t2}</div></div>
-<div class="bar"><div class="note">{LOCK}<div><b>Everyone sees only what each person shares.</b> Remove any time.</div></div><div class="btn pri">Share 12 of your 104 photos</div></div>
+<div class="bar"><div class="note">{LOCK}<div><b>Everyone sees only what each person shares.</b><br>Remove any time.</div></div><div class="btn pri">Share 12 of your 104 photos</div></div>
 </div>'''
 write('v3-pick-photos.html','Pick photos',css3,body3)
 
@@ -311,7 +311,7 @@ css4='''
 .cap{font:500 10.5px/1.3 var(--f-ui);color:var(--text-2);margin-top:5px}
 .foot{position:absolute;left:18px;right:18px;bottom:0;height:98px;border-top:.5px solid var(--line-2);display:flex;align-items:center;gap:12px}
 .foot .a{display:flex}.foot .a .av{margin-right:-5px;box-shadow:0 0 0 2.5px #0d0c0b}
-.foot .n{font:600 13.5px/1.2 var(--f-tight);margin-left:6px}
+.foot .n{font:600 12.5px/1.2 var(--f-tight);margin-left:6px;white-space:nowrap}
 .foot .n span{display:block;font:400 11px/1.2 var(--f-ui);color:var(--text-2);margin-top:3px}
 .foot .st{margin-left:auto;text-align:right}
 .foot .st b{font:700 30px/.9 var(--f-cond);color:var(--text);display:block}
@@ -346,7 +346,7 @@ body4=f'''<div class="nav"><div class="btn-circle glass">{BACK}</div><span class
 <div class="mos">{mt('big','play','Chris')}{mt('','crowd','Jordan')}{mt('','playR','Sam')}{mt('','wide','Sam')}{mt('','pair','Jordan')}{mt('','mid','Chris')}</div>
 <div class="tl">{tl2}{gd2}</div>
 <div class="cap">Qatar 1, Bosnia and Herzegovina 3 · 66,925 there</div>
-<div class="foot"><div class="a">{av('Sam',34,fs=12)}{av('Chris',34,fs=12)}{av('Jordan',34,fs=12)}</div><div class="n">Sam, Chris &amp; Jordan<span>Made with Witness</span></div><div class="st"><b>38</b><span>PHOTOS</span></div></div></div>
+<div class="foot"><div class="a">{av('Sam',30,fs=11)}{av('Chris',30,fs=11)}{av('Jordan',30,fs=11)}</div><div class="n">Sam, Chris &amp; Jordan<span>Made with Witness</span></div><div class="st"><b>38</b><span>PHOTOS</span></div></div></div>
 <div class="acts"><div class="btn pri">{SHARE.format(s=18)}Share card</div><div class="btn sec">Save image</div></div>
 <div class="fine">The card shows only photos each of you chose to share.</div>'''
 body4=body4.replace('<div class="mos">','<div class="mos">')
