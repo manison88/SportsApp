@@ -1,0 +1,5 @@
+- Photo: date chip top-left, event badge top-right, venue eyebrow (amber tick) over a condensed 52pt occasion title; big games get champagne title ("WORLD SERIES" small over "GAME 5").
+- Occasion is derived: holiday/opener/stage when known, else quiet fallback (600 weight, tracked, 28pt) like "HOME GAME 21" (Bulls card shows this state).
+- Stub: 03 two-row fact stub + tear-off score bug; row one is start time + Sec/Row.
+- Badge on the World Series card reads "Down 3-1" so it does not repeat the title; use "World Series" if the title is not stage-based.
+- Data: holiday/stage/opener tagging, start time, season game number. Risk: many regular games will show the quiet fallback, so the list may feel sparse.

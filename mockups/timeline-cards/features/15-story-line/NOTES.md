@@ -1,0 +1,6 @@
+- Photo: date chip top-left, venue eyebrow in tracked caps, then 1-2 lines of the night's story in serif italic (27pt). No score. Big game keeps champagne keyline + World Series badge (top-right).
+- Empty state: no note shows an amber dashed "Add a note about this night" prompt under the eyebrow.
+- Stub: identical to 03 (date/seat, weather, attendance, length, ticket glyph, tear-off score bug).
+- Changed vs 02/03: headline replaced by story; eyebrow moved down onto the text block; chip shows weekday + day.
+- Data: user note per game (or auto-drafted line); companions are named in text, so stale if tags change.
+- Risk: 3-line stories need ~100pt of scrim; keep to ~80 chars.

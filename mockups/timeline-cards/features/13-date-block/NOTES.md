@@ -1,0 +1,5 @@
+- Photo: stacked date block bottom-left (day 104pt condensed, tracked month with amber underline, "SAT · 2026"), hairline, venue + city as its eyebrow; event badge top-right; big games get a champagne day number.
+- Stub: 03 two-row fact stub + tear-off score bug; row one is now start time + Sec/Row (date removed, it lives on the photo).
+- Changed vs 02/03: no headline, no date chip; date is the hero type; badge moved to top-right.
+- Data: start time (new field), weekday/year derived from date.
+- Risk: block eats ~140pt of photo height (84pt day on short crops); two-digit days are wider; year must stay visible for old games.

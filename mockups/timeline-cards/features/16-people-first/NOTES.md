@@ -1,0 +1,6 @@
+- Photo: date chip top-left, venue eyebrow, initials avatars + "With Dana and Dad" (25pt condensed), "63 photos" camera chip bottom-right. No score.
+- Untagged games: ghost avatar, "Just you" and small amber "Add who came"; chip hidden when no photos.
+- Stub: identical to 03 (date/seat, weather, attendance, length, ticket glyph, tear-off score bug).
+- Changed vs 02/03: headline replaced by companions row; photo count moves from stub/none to the photo.
+- Data: companion tags (name, colour), photo count.
+- Risk: 3+ companions need "Dana, Dad +2" truncation; the long line plus chip is tight at 361pt.

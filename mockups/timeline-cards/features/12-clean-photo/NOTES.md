@@ -1,0 +1,5 @@
+- On the photo: date chip top-left, event badge top-right, one 12pt venue line ("Wrigley Field · Chicago") bottom-left on a light 50% scrim. Nothing else.
+- Stub: row one is matchup in words ("vs Milwaukee", "at Green Bay" for away games) + Sec/Row; row two is weather / attendance / length / ticket; tear-off score bug at right (as 03).
+- Changed vs 02/03: headline and venue eyebrow removed; date moves to chip only (no year; consider adding year to chip for older games); photo 360pt (420 before), so card is ~60pt shorter, about 15% more cards per screen.
+- Data: opponent name, home/away flag, plus the 03 facts.
+- Risk: busy photos make the small venue line hard to read; scrim may need to be stronger on bright shots. Long opponent names (e.g. "Tampa Bay") need truncation next to the section.

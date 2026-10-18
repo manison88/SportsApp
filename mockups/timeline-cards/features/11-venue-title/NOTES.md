@@ -1,0 +1,6 @@
+- On the photo: date chip top-left (SAT · JUL 4), event badge top-right, venue name in 54pt condensed caps, city in 11pt tracked caps below. No score text.
+- Stub: unchanged 03 two-row stub (date + Sec/Row, weather / attendance / length / ticket) with the tear-off score bug.
+- Changed vs 02/03: headline is now the place instead of the score; weekday moves to the chip, full date with year stays in the stub; badge moves to the right.
+- Data: venue name + city (city shown as "Chicago, Illinois"; use state/country abbreviation for long names).
+- Risk: longest venue names (e.g. "Mercedes-Benz Stadium") exceed one line at 54pt; scale to ~44pt or wrap to two lines. Photo 420pt, card unchanged height.
+- Same venue title repeats on every card at the same stadium, so scanning a list relies on the photo and chip for variety.

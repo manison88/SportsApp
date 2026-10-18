@@ -1,0 +1,70 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Date block</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+:root{--trophy:#e6c987;--stub:#171926}
+.hdr h1{position:absolute;left:16px;top:56px;font:800 36px/40px var(--f-cond);letter-spacing:.2px;text-transform:uppercase}
+.hdr .plus{position:absolute;right:16px;top:60px;width:32px;height:32px;display:grid;place-items:center}
+.search{position:absolute;left:16px;right:16px;top:99px;height:36px;border-radius:10px;background:rgba(118,118,128,.24);display:flex;align-items:center;gap:8px;padding:0 10px;color:var(--text-3);font:400 16px var(--f-ui)}
+.card{position:absolute;left:16px;width:361px;border-radius:22px}
+.card.big{box-shadow:0 0 0 1.5px var(--trophy)}
+.clip{border-radius:22px;overflow:hidden;position:relative;background:var(--ink)}
+.photo{position:relative;width:100%;overflow:hidden;background:#0c0d12}
+.photo canvas,.photo>.ph{position:absolute;inset:0;width:100%;height:100%}
+.scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,0) 38%,rgba(5,5,6,.55) 62%,rgba(5,5,6,.94) 100%)}
+.scrim.top{background:linear-gradient(180deg,rgba(5,5,6,.45) 0,rgba(5,5,6,0) 22%),linear-gradient(180deg,rgba(5,5,6,0) 38%,rgba(5,5,6,.55) 62%,rgba(5,5,6,.94) 100%)}
+.hl{position:absolute;left:24px;right:24px;bottom:22px;font:800 54px/.93 var(--f-cond);text-transform:uppercase;letter-spacing:.2px;color:#fff}
+.hl.sm{font-size:54px}
+.badge{position:absolute;left:14px;top:14px;height:26px;padding:0 11px;border-radius:13px;display:flex;align-items:center;gap:6px;font:700 11px var(--f-ui);letter-spacing:1.3px;text-transform:uppercase;color:#2a2008;background:linear-gradient(180deg,#f3dba5,#d9b66a)}
+.tile{display:inline-grid;place-items:center;height:22px;min-width:34px;padding:0 6px;border-radius:6px;font:800 13px/1 var(--f-cond);letter-spacing:.8px}
+.stub{position:relative;background:var(--stub);
+ -webkit-mask-image:var(--m);-webkit-mask-composite:source-in;mask-image:var(--m);mask-composite:intersect}
+.stub::before{content:"";position:absolute;left:12px;right:12px;top:0;border-top:1.5px dashed rgba(255,255,255,.2)}
+.tabs{}
+svg.i{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+.stub{height:100px;--m:radial-gradient(circle at 0 0,transparent 8px,#000 8.5px),radial-gradient(circle at 100% 0,transparent 8px,#000 8.5px),radial-gradient(circle at calc(100% - 96px) 0,transparent 7px,#000 7.5px),radial-gradient(circle at calc(100% - 96px) 100%,transparent 7px,#000 7.5px)}
+.main{position:absolute;left:0;top:0;bottom:0;right:96px;padding:2px 12px 0 18px;display:flex;flex-direction:column;justify-content:center}
+.r1{display:flex;justify-content:space-between;align-items:baseline}
+.date{font:700 16px/1 var(--f-tight);letter-spacing:.2px;text-transform:uppercase;color:var(--text)}
+.date small{font:600 9.5px/1 var(--f-ui);letter-spacing:1.3px;color:var(--text-3);margin-left:7px}
+.seat{white-space:nowrap;font:600 10.5px/1 var(--f-ui);letter-spacing:1.1px;text-transform:uppercase;color:var(--text-2)}
+.seat b{color:var(--text);font-weight:700}
+.r2{margin-top:13px;padding-top:11px;border-top:1px solid var(--line);display:flex;align-items:center}
+.f{display:flex;align-items:center;gap:5px;font:600 11.5px/1 var(--f-ui);font-variant-numeric:tabular-nums;color:var(--text-2);white-space:nowrap;padding:0 9px;border-left:1px solid var(--line-2);height:14px}
+.f:first-child{padding-left:0;border-left:0}
+.f.tk{color:var(--signal);margin-left:auto;padding-right:0}
+.f svg{color:var(--text-3)} .f.tk svg{color:var(--signal)}
+.perf{position:absolute;right:96px;top:12px;bottom:12px;border-left:1.5px dashed rgba(255,255,255,.2)}
+.tear{position:absolute;right:0;top:0;bottom:0;width:96px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding-top:2px}
+.fin{font:700 9px/1 var(--f-ui);letter-spacing:1.6px;color:var(--text-3);margin-bottom:3px}
+.fin b{color:var(--signal)} .fin b.l{color:var(--text-2)}
+.row{display:flex;align-items:center;gap:6px;width:76px;justify-content:space-between}
+.sc{font:800 21px/1 var(--f-cond);font-variant-numeric:tabular-nums;color:var(--text-2);text-align:right}
+.row.me .tile{box-shadow:0 0 0 1.5px var(--stub),0 0 0 3px var(--signal)}
+.row.me .sc{color:#fff}
+
+.badge{left:auto;right:14px}
+.blk{position:absolute;left:22px;right:20px;bottom:20px;display:flex;align-items:flex-end;gap:15px}
+.dt{display:flex;flex-direction:column;align-items:flex-start}
+.dd{font:800 var(--ds)/.8 var(--f-cond);letter-spacing:-1px;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.4);font-variant-numeric:tabular-nums}
+.big .dd{color:var(--trophy)}
+.mm{font:800 21px/1 var(--f-cond);letter-spacing:6px;text-transform:uppercase;color:#fff;margin-top:11px;padding-bottom:9px;border-bottom:1.5px solid var(--signal);align-self:stretch}
+.big .mm{border-color:var(--trophy)}
+.wk{font:700 10px/1 var(--f-ui);letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:9px}
+.vn{padding:0 0 2px 15px;border-left:1px solid rgba(255,255,255,.28);display:flex;flex-direction:column;gap:7px;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.vn b{font:700 11px/1 var(--f-ui);letter-spacing:2.2px;text-transform:uppercase;color:rgba(255,255,255,.92)}
+.vn span{font:600 10px/1 var(--f-ui);letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.scrim.top{background:linear-gradient(180deg,rgba(5,5,6,.45) 0,rgba(5,5,6,0) 22%),linear-gradient(180deg,rgba(5,5,6,0) 30%,rgba(5,5,6,.6) 58%,rgba(5,5,6,.94) 100%)}
+</style></head>
+<body class="phone">
+<div class="hdr"><h1>Timeline</h1><div class="plus"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 4v16M4 12h16"/></svg></div></div>
+<div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Teams, places, years</div><div class="card" style="top:157px"><div class="clip">
+<div class="photo" style="height:420px"><img class="ph graded" src="../../../photos/wrigley-scoreboard.jpg" style="object-position:35% 50%"><div class="scrim top"></div>
+<div class="blk" style="--ds:104px"><div class="dt"><div class="dd">4</div><div class="mm">Jul</div><div class="wk">Sat · 2026</div></div>
+<div class="vn"><b>Wrigley Field</b><span>Chicago</span></div></div></div><div class="stub"><div class="main"><div class="r1"><span class="date">1:20 PM</span><span class="seat"><b>Sec 314</b> · Row 8</span></div><div class="r2"><span class="f"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>84°F</span><span class="f"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-5.5 6-5.5s6 2 6 5.5"/><path d="M16 5.2a3 3 0 0 1 0 5.6M18 14.8c2 .7 3.2 2.4 3.2 5.2"/></svg>41,203</span><span class="f"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></svg>2h 58m</span><span class="f tk"><svg class="i" viewBox="0 0 24 24"><path d="M3 8.5V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v1.5a3.5 3.5 0 0 0 0 7V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.5a3.5 3.5 0 0 0 0-7z"/><path d="M14 6.5v11" stroke-dasharray="1.6 2.2"/></svg></span></div></div><div class="perf"></div><div class="tear"><div class="fin">FINAL · <b class="">W</b></div><div class="row"><span class="tile" style="background:#f4c24b;color:#1a1405">MIL</span><span class="sc tnum">4</span></div><div class="row me"><span class="tile" style="background:#2f6bff;color:#fff">CHC</span><span class="sc tnum">5</span></div></div></div></div></div><div class="card big" style="top:701px"><div class="clip">
+<div class="photo" style="height:420px"><div style="position:absolute;inset:0;background:url(../../../photos/wrigley-night.jpg) -451px -632px/902px 1203px no-repeat"></div><div class="scrim top"></div><div class="badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="#2a2008"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg>World Series</div>
+<div class="blk" style="--ds:104px"><div class="dt"><div class="dd">30</div><div class="mm">Oct</div><div class="wk">Sun · 2016</div></div>
+<div class="vn"><b>Wrigley Field</b><span>Chicago</span></div></div></div><div class="stub"><div class="main"><div class="r1"><span class="date">7:08 PM</span><span class="seat"><b>Sec 314</b> · Row 6</span></div><div class="r2"><span class="f"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>63°F</span><span class="f"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-5.5 6-5.5s6 2 6 5.5"/><path d="M16 5.2a3 3 0 0 1 0 5.6M18 14.8c2 .7 3.2 2.4 3.2 5.2"/></svg>41,711</span><span class="f"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></svg>3h 21m</span><span class="f tk"><svg class="i" viewBox="0 0 24 24"><path d="M3 8.5V7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v1.5a3.5 3.5 0 0 0 0 7V17a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.5a3.5 3.5 0 0 0 0-7z"/><path d="M14 6.5v11" stroke-dasharray="1.6 2.2"/></svg></span></div></div><div class="perf"></div><div class="tear"><div class="fin">FINAL · <b class="">W</b></div><div class="row"><span class="tile" style="background:#0c2340;color:#ff5a6e">CLE</span><span class="sc tnum">2</span></div><div class="row me"><span class="tile" style="background:#2f6bff;color:#fff">CHC</span><span class="sc tnum">3</span></div></div></div></div></div>
+<script src="../../../kit/kit.js"></script>
+</body></html>
