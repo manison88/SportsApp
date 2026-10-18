@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Paper print, photo</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+html,body{margin:0;background:var(--ink);}
+body{width:393px;height:852px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;overflow:hidden;color:var(--text);font-family:var(--f-ui)}
+.card{position:relative;width:353px;height:628px;border-radius:12px;overflow:hidden;box-shadow:0 18px 48px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06);flex:none}
+.cap{font:500 12px/1 var(--f-ui);letter-spacing:.3px;color:var(--text-3)}
+.card img.bg{position:absolute;max-width:none}
+.num{font-family:var(--f-cond);font-weight:800;font-variant-numeric:tabular-nums;line-height:.8}
+.eb{font:700 12px/1 var(--f-cond);letter-spacing:3px;text-transform:uppercase}
+
+.card{background:#efe7d8}
+.tex{position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,.5),rgba(0,0,0,0) 60%),repeating-linear-gradient(0deg,rgba(90,70,40,.035) 0 1px,transparent 1px 3px)}
+.pol{position:absolute;left:28px;top:44px;width:297px;height:412px;background:#fbf8f1;transform:rotate(-2.2deg);box-shadow:0 10px 24px rgba(60,40,10,.28),0 1px 2px rgba(60,40,10,.3);padding:14px 14px 0}
+.pol .ph{position:relative;width:269px;height:300px;overflow:hidden;background:#000}
+.pol .ph img{left:-100px;top:-40px;width:420px;height:560px;filter:contrast(1.05) saturate(.95)}
+.pol .cp{font:500 34px/1 var(--f-hand);color:#2b2118;margin-top:14px;text-align:center}
+.pol .cp2{font:700 12px/1 var(--f-cond);letter-spacing:2.5px;color:#7a6a52;text-align:center;margin-top:10px;text-transform:uppercase}
+.tape{position:absolute;left:50%;top:-14px;width:84px;height:26px;margin-left:-42px;background:rgba(224,200,140,.75);transform:rotate(3deg)}
+.bt{position:absolute;left:28px;right:28px;bottom:26px;color:#2b2118;display:flex;justify-content:space-between;align-items:flex-end}
+.bt .sc{font:400 72px/.85 var(--f-serif)}
+.bt .sc em{color:#c2551d}
+.bt .m{text-align:right;font:700 13px/1.45 var(--f-cond);letter-spacing:2px;text-transform:uppercase;color:#6a5a44}
+.bt .m b{color:#2b2118;font-size:15px}
+
+</style></head><body>
+<div class="card"><div class="tex"></div>
+<div class="pol"><div class="tape"></div><div class="ph"><img class="bg" src="../../../photos/wrigley-night.jpg"></div>
+<div class="cp">down 3–1, and then…</div><div class="cp2">Game 5 · with Dad</div></div>
+<div class="bt"><div class="sc">3<em>–</em>2</div><div class="m"><b>Chicago · Cleveland</b><br>Wrigley Field<br>Oct 30, 2016</div></div></div>
+<div class="cap">Paper keepsake · print on a tabletop</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

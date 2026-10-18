@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Photo hero, night</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+html,body{margin:0}
+body.phone{background:var(--ink);display:block}
+.stage{position:absolute;left:0;top:0;width:393px;height:852px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.card{position:relative;width:353px;height:628px;border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.07);flex:none}
+.cap{font:500 12px var(--f-ui);color:var(--text-3);letter-spacing:.2px}
+.card *{box-sizing:border-box}
+.cond{font-family:var(--f-cond);font-weight:800;text-transform:uppercase}
+
+.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 50%;filter:contrast(1.05) saturate(.95) brightness(.95)}
+.card .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.35) 0%,rgba(5,5,6,0) 30%,rgba(5,5,6,0) 52%,rgba(5,5,6,.92) 88%)}
+.top{position:absolute;left:24px;top:28px;right:24px}
+.top .k{font:600 12px var(--f-ui);letter-spacing:1.6px;text-transform:uppercase;color:var(--signal)}
+.top .n{font-size:44px;line-height:.95;color:#fff;margin-top:6px}
+.rec{position:absolute;left:20px;top:100px;font-size:190px;line-height:.9;color:#fff;letter-spacing:-2px;white-space:nowrap}
+.rec i{font-style:normal;color:var(--signal)}
+.lbl{position:absolute;left:26px;top:282px;font:600 13px var(--f-ui);color:var(--text-2)}
+.bot{position:absolute;left:24px;right:24px;bottom:26px;display:flex;justify-content:space-between;align-items:flex-end}
+.bot b{display:block;font-size:30px;line-height:1;color:#fff}
+.bot span{font:500 12px var(--f-ui);color:var(--text-2)}
+.bot .a b{color:var(--signal)}
+
+</style></head>
+<body class="phone" data-chrome="none" data-homebar="none">
+<div class="stage"><div class="card"><img src="../../../photos/wrigley-night.jpg"><div class="sh"></div>
+<div class="top"><div class="k">Your record at</div><div class="n cond">Wrigley Field</div></div>
+<div class="rec cond">11<i>–</i>6</div>
+<div class="bot"><div class="a"><b class="cond">Section 314</b><span>11 nights</span></div><div style="text-align:right"><b class="cond">Jun 14, 2014 – Jul 4, 2026</b><span>First and last visit</span></div></div></div><div class="cap">Photo hero · night crop</div></div>
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script></script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

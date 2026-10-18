@@ -1,0 +1,44 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Photo hero, night</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+body.phone{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.card{position:relative;width:353px;height:628px;border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.06);flex:none}
+.cap{font:500 12px/1 var(--f-ui);color:var(--text-3);letter-spacing:.2px}
+.cond{font-family:var(--f-cond)}
+
+.ph{position:absolute;inset:0;background-size:cover}
+.shade{position:absolute;inset:0}
+.lab{position:absolute;left:24px;right:24px;top:26px;display:flex;justify-content:space-between;font:700 13px/1 var(--f-cond);letter-spacing:2.4px;text-transform:uppercase;color:#fff}
+.lab span:last-child{color:var(--signal)}
+.hero{position:absolute;left:20px;bottom:150px;font:800 220px/.78 var(--f-cond);letter-spacing:-7px;color:#fff;font-variant-numeric:tabular-nums}
+.sub{position:absolute;left:24px;bottom:104px;font:800 34px/.92 var(--f-cond);text-transform:uppercase;color:#fff}
+.rb{position:absolute;left:24px;right:24px;bottom:56px;height:22px;display:grid;grid-template-columns:repeat(30,1fr);gap:2px}
+.rb i{border-radius:2px;background:rgba(255,255,255,.2)}
+.fo{position:absolute;left:24px;right:24px;bottom:24px;display:flex;justify-content:space-between;font:600 14px/1 var(--f-ui);color:rgba(255,255,255,.8)}
+.fo b{font:800 15px/1 var(--f-cond);letter-spacing:3px;color:rgba(255,255,255,.6)}
+/* v4 postcard */
+.card.pc{background:var(--paper);color:var(--paper-ink)}
+.win{position:absolute;left:18px;right:18px;top:18px;height:318px;border-radius:4px;background:url(../../../photos/fenway-day.jpg) 42% 55%/cover;box-shadow:0 0 0 1px rgba(29,26,22,.2)}
+.win:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),transparent 30%)}
+.win span{position:absolute;left:14px;top:14px;z-index:2;font:700 13px/1 var(--f-cond);letter-spacing:2.4px;text-transform:uppercase;color:#fff}
+.pc .n{position:absolute;left:20px;top:340px;font:800 150px/.86 var(--f-cond);letter-spacing:-4px;font-variant-numeric:tabular-nums}
+.pc .t2{position:absolute;left:200px;top:362px;font:800 34px/.95 var(--f-cond);text-transform:uppercase}
+.pc .t2 em{font-style:normal;display:block;color:rgba(29,26,22,.5)}
+.chips{position:absolute;left:24px;right:24px;top:500px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.chips i{height:36px;border-radius:50%;aspect-ratio:1;justify-self:center;width:36px;box-shadow:inset 0 0 0 3px var(--paper),inset 0 0 0 4px rgba(29,26,22,.25);}
+.chips i{background-clip:padding-box}
+.pc .fo{color:rgba(29,26,22,.7)}
+.pc .fo b{color:var(--paper-ink)}
+.pc .rule{position:absolute;left:24px;right:24px;top:600px;height:0}
+
+</style></head>
+<body class="phone" data-chrome="none">
+<div class="card"><div class="ph" style="background-image:url(../../../photos/wrigley-night.jpg);background-position:50% 40%"></div>
+<div class="shade" style="background:linear-gradient(180deg,rgba(5,5,6,.55) 0,rgba(5,5,6,0) 22%,rgba(5,5,6,0) 38%,rgba(5,5,6,.82) 66%,rgba(5,5,6,.96) 100%)"></div>
+<div class="lab"><span>Stadium Passport</span><span>MLB</span></div>
+<div class="hero">14</div><div class="sub">of 30 MLB parks</div><div class="rb"><i style="background:#2f6bff"></i><i style="background:#4a4f58"></i><i style="background:#c41e3a"></i><i style="background:#0c2c56"></i><i style="background:#e31937"></i><i style="background:#bd3039"></i><i style="background:#fdb827"></i><i style="background:#c6011f"></i><i style="background:#1c2c5b"></i><i style="background:#004687"></i><i style="background:#005a9c"></i><i style="background:#fd5a1e"></i><i style="background:#ffc52f"></i><i style="background:#d31145"></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i><i style=""></i></div>
+<div class="fo"><span>2014 &ndash; 2025</span><b>WITNESS</b></div></div>
+<div class="cap">B &middot; Photo hero &middot; Wrigley night</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>
