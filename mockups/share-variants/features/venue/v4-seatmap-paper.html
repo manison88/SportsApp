@@ -12,13 +12,13 @@ body.phone{background:var(--ink);display:block}
  
 .card{background:var(--paper);color:var(--paper-ink)}
 .card:before{content:"";position:absolute;inset:12px;border:1px solid rgba(29,26,22,.25);border-radius:4px}
-#m{position:absolute;left:0;top:112px;width:353px;height:330px}
+#m{position:absolute;left:0;top:112px;width:353px;height:343px}
 .t{position:absolute;left:0;right:0;top:34px;text-align:center}
 .t .k{font:600 12px var(--f-ui);letter-spacing:1.8px;text-transform:uppercase;color:rgba(29,26,22,.6)}
 .t .n{font:400 46px/1 var(--f-serif);margin-top:6px}
-.big{position:absolute;left:0;right:0;bottom:92px;text-align:center;font:400 112px/.9 var(--f-serif);letter-spacing:-1px}
+.big{position:absolute;left:0;right:0;bottom:84px;text-align:center;font:400 96px/.9 var(--f-serif);letter-spacing:-1px}
 .big i{color:#c9791a}
-.s{position:absolute;left:0;right:0;bottom:62px;text-align:center;font:600 12px var(--f-ui);letter-spacing:1.6px;text-transform:uppercase;color:rgba(29,26,22,.65)}
+.s{position:absolute;left:0;right:0;bottom:56px;text-align:center;font:600 12px var(--f-ui);letter-spacing:1.6px;text-transform:uppercase;color:rgba(29,26,22,.65)}
 .foot{position:absolute;left:30px;right:30px;bottom:30px;display:flex;justify-content:space-between;font:italic 400 16px var(--f-serif);color:rgba(29,26,22,.8)}
 
 </style></head>
@@ -55,6 +55,6 @@ function seatMap(sel,o){
     g.append('text').attr('x',x).attr('y',y+(id==='314'?7:5)).attr('text-anchor','middle').attr('fill',o.lab).attr('font-family','Barlow Condensed').attr('font-weight',800).attr('font-size',id==='314'?20:15).text(id);});
   if(o.mound) g.append('circle').attr('r',3).attr('cy',-18).attr('fill',o.line);
 }
-seatMap('#m',{vb:'-178 -205 356 345',field:'rgba(29,26,22,.05)',line:'rgba(29,26,22,.35)',on:'rgba(201,121,26,A)',off:'rgba(29,26,22,.1)',lab:'#fff',mound:1});</script>
+seatMap('#m',{vb:'-135 -185 270 262',field:'rgba(29,26,22,.05)',line:'rgba(29,26,22,.35)',on:'rgba(201,121,26,A)',off:'rgba(29,26,22,.1)',lab:'#fff',mound:1});</script>
 <script src="../../../kit/kit.js"></script>
 </body></html>

@@ -1,0 +1,57 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Globe arc, dark</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+body{background:#07080a;color:#fff;font-family:var(--f-ui);-webkit-font-smoothing:antialiased}
+.stage{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.card{position:relative;width:353px;height:628px;border-radius:12px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06);flex:none}
+.cap{font:500 12px/1 var(--f-ui);color:rgba(245,241,234,.42);letter-spacing:.2px}
+.abs{position:absolute}
+.cond{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase}
+
+.card{background:#07080a}
+.eyebrow{left:22px;top:22px;font:700 14px/1 "Barlow Condensed";letter-spacing:2.6px;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.num{left:18px;top:42px;font:800 150px/.82 "Barlow Condensed";letter-spacing:-3px;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.unit{left:22px;top:172px;font:800 30px/1 "Barlow Condensed";letter-spacing:1.4px;text-transform:uppercase;color:#ffb547}
+.fade{left:0;right:0;bottom:0;height:200px;background:linear-gradient(180deg,rgba(7,8,10,0),#07080a 78%)}
+.stats{left:22px;right:22px;bottom:24px;display:flex}
+.stats div{flex:1}.stats div+div{padding-left:16px;box-shadow:inset 1px 0 0 rgba(255,255,255,.12)}
+.stats b{display:block;font:800 34px/1 "Barlow Condensed"}
+.stats span{display:block;margin-top:6px;font:700 12px/1 "Barlow Condensed";letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+</style></head>
+<body data-chrome="none">
+<div class="stage"><div class="card" id="card">
+<svg id="map" class="abs" style="left:0;top:0" width="353" height="628" viewBox="0 0 353 628"></svg>
+<div class="abs fade"></div>
+<div class="abs eyebrow">Spain · Feb 20 – Mar 2, 2020</div>
+<div class="abs num">9,000</div><div class="abs unit">Miles for two games</div>
+<div class="abs stats"><div><b>5–0</b><span>Camp Nou</span></div><div><b>2–0</b><span>Bernabéu</span></div><div><b>12</b><span>Days</span></div></div>
+</div><div class="cap">Globe crossing, dark ink</div></div>
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script src="../../../kit/vendor/topojson-client.min.js"></script>
+<script src="../../../kit/vendor/countries-110m.js"></script>
+<script>
+
+const topo=window.__atlas['countries-110m'];
+const all=topojson.feature(topo,topo.objects.countries).features;
+const proj=d3.geoOrthographic().rotate([44,-36]).scale(215).translate([176,420]).clipAngle(90);
+const path=d3.geoPath(proj);const svg=d3.select('#map');const P={"cy": 420, "sea": "#0f131b", "grat": "rgba(255,255,255,.07)", "land": "#232a38", "coast": "#0a0c10", "rim": "rgba(255,255,255,.12)", "glow": "#ffb547", "arc": "#ffb547", "arc2": "rgba(255,255,255,.5)", "dot": "#fff", "label": "#fff", "lf": "Barlow Condensed", "lw": 800, "ls": 22};
+svg.append('circle').attr('cx',176).attr('cy',420).attr('r',215).attr('fill',P.sea);
+svg.append('path').attr('d',path(d3.geoGraticule().step([15,15])())).attr('fill','none').attr('stroke',P.grat).attr('stroke-width',.8);
+svg.append('g').selectAll('path').data(all).join('path').attr('d',path).attr('fill',P.land).attr('stroke',P.coast).attr('stroke-width',.8);
+svg.append('circle').attr('cx',176).attr('cy',420).attr('r',215).attr('fill','none').attr('stroke',P.rim).attr('stroke-width',1.5);
+const C=[-87.90,41.98],B=[2.17,41.39],M=[-3.70,40.42];
+const arc=(a,b)=>({type:'LineString',coordinates:[a,b]});
+// lift the arc a little: draw great circle
+svg.append('path').attr('d',path(arc(C,B))).attr('fill','none').attr('stroke',P.glow).attr('stroke-width',9).attr('opacity',.25).attr('stroke-linecap','round');
+svg.append('path').attr('d',path(arc(C,B))).attr('fill','none').attr('stroke',P.arc).attr('stroke-width',3.5).attr('stroke-linecap','round');
+svg.append('path').attr('d',path(arc(M,C))).attr('fill','none').attr('stroke',P.arc2).attr('stroke-width',2).attr('stroke-dasharray','2 6').attr('stroke-linecap','round');
+[[C,'Chicago',-1],[B,'Spain',1]].forEach(([p,t,s])=>{const q=proj(p);
+ svg.append('circle').attr('cx',q[0]).attr('cy',q[1]).attr('r',16).attr('fill',P.arc).attr('opacity',.25);
+ svg.append('circle').attr('cx',q[0]).attr('cy',q[1]).attr('r',7).attr('fill',P.arc).attr('stroke',P.dot).attr('stroke-width',2.5);
+ svg.append('text').text(t).attr('x',q[0]).attr('y',q[1]+(t==='Spain'?-24:-22)).attr('text-anchor','middle').attr('font-family','Barlow Condensed').attr('font-weight',800).attr('font-size',22).attr('fill',P.label).style('text-transform','uppercase').attr('letter-spacing',1);});
+
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

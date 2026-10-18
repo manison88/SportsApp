@@ -10,14 +10,14 @@ body.phone{background:var(--ink);display:block}
 .card *{box-sizing:border-box}
 .cond{font-family:var(--f-cond);font-weight:800;text-transform:uppercase}
  
-#m{position:absolute;left:0;top:92px;width:353px;height:340px}
+#m{position:absolute;left:0;top:96px;width:353px;height:343px}
 .card{background:radial-gradient(120% 70% at 50% 40%,#17130d 0%,#07070a 70%)}
 .t{position:absolute;left:24px;top:28px}
 .t .k{font:600 12px var(--f-ui);letter-spacing:1.6px;text-transform:uppercase;color:var(--text-3)}
 .t .n{font-size:40px;line-height:1;color:#fff;margin-top:4px}
-.big{position:absolute;left:24px;bottom:78px;font-size:128px;line-height:.82;color:var(--signal)}
+.big{position:absolute;left:24px;bottom:72px;font-size:112px;line-height:.82;color:var(--signal)}
 .big i{font-style:normal;color:#fff}
-.side{position:absolute;right:24px;bottom:84px;text-align:right}
+.side{position:absolute;right:24px;bottom:78px;text-align:right}
 .side b{display:block;font:800 26px var(--f-cond);color:#fff;text-transform:uppercase}
 .side span{font:500 12px var(--f-ui);color:var(--text-2)}
 .foot{position:absolute;left:24px;right:24px;bottom:26px;display:flex;justify-content:space-between;font:500 12px var(--f-ui);color:var(--text-2)}
@@ -56,6 +56,6 @@ function seatMap(sel,o){
     g.append('text').attr('x',x).attr('y',y+(id==='314'?7:5)).attr('text-anchor','middle').attr('fill',o.lab).attr('font-family','Barlow Condensed').attr('font-weight',800).attr('font-size',id==='314'?20:15).text(id);});
   if(o.mound) g.append('circle').attr('r',3).attr('cy',-18).attr('fill',o.line);
 }
-seatMap('#m',{vb:'-178 -205 356 345',field:'rgba(255,255,255,.04)',line:'rgba(255,255,255,.2)',on:'rgba(255,181,71,A)',off:'rgba(255,255,255,.09)',lab:'#000',glow:14,mound:1});</script>
+seatMap('#m',{vb:'-135 -185 270 262',field:'rgba(255,255,255,.04)',line:'rgba(255,255,255,.2)',on:'rgba(255,181,71,A)',off:'rgba(255,255,255,.09)',lab:'#000',glow:14,mound:1});</script>
 <script src="../../../kit/kit.js"></script>
 </body></html>
