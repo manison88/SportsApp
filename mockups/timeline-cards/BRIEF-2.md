@@ -1,0 +1,12 @@
+# Round 2: flavors of "Venue first" (02) + "Fact stub" (03), without the big score headline
+
+The user likes the structure of 02-venue-first (venue eyebrow, date chip on the photo, time / section / weather cells in the stub) and 03-fact-stub (two-row ticket stub with weather, attendance, game length, ticket glyph, and the score bug on a tear-off). They do NOT want the huge score headline on the picture ("CHICAGO 5, MILWAUKEE 4.") because the score is already in the stub's score bug, so it is repetitive. Everything else about the baseline in `BRIEF.md` still applies (read it, and `../BRIEF.md`).
+
+Look at the built examples first and reuse their card geometry, fonts, tokens and stub construction so the new flavors sit next to them as siblings: `features/02-venue-first/` and `features/03-fact-stub/` (HTML, `common.py`/`build.py`) and their PNGs in `png/02-venue-first/` and `png/03-fact-stub/`.
+
+Rules for every flavor:
+- NO big text carrying the score on the photo, and no headline that restates the score. The score lives only in the stub's score bug (tear-off, stacked, rooted team ringed amber, as in 03).
+- The photo is the hero. Whatever text sits on it must say something the stub does not, and must be calmer than today's 54pt headline.
+- Keep the 03 stub's facts row (weather, attendance, game length, ticket glyph) and its tear-off score. Cards with unknown facts hide them (indoor game shows "Indoors"; no ticket hides the glyph).
+- Same three sample cards as `BRIEF.md`: Cubs 5 Brewers 4 (Wrigley, Jul 4 2026); 2016 World Series Game 5 (champagne keyline, World Series badge, Down 3-1); Bulls 104 Lakers 118 at United Center with no photo (generated backdrop). Keep their data identical across flavors.
+- Deliver per flavor, folder `features/<NN-slug>/` with `feature.json` ({"title","summary"}), `v1-main.html` (Timeline screen: status bar, large title, search, card 1 in full with the top of card 2 peeking), `v2-states.html` (cards 2 and 3 stacked), `NOTES.md` (max 6 lines: what's on the photo, what's in the stub, what changed vs 02/03, data needs, risk). Kit paths `../../../kit/kit.css`, `../../../kit/kit.js`, photos `../../../photos/`. Render from `mockups/`: `FEATURES_DIR=timeline-cards/features OUT_DIR=timeline-cards/png NODE_PATH=$(npm root -g) node render.cjs <NN-slug>`; open every PNG with the Read tool; 2-3 passes. Keep generator scripts inside your own folders. Do not touch other folders; do not git commit.
