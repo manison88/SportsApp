@@ -1,0 +1,294 @@
+[
+ {
+  "key": "soccer/and.1",
+  "name": "Primera Divisió",
+  "sport": "soccer",
+  "country": "Andorra",
+  "countryCode": "AD",
+  "tier": 1,
+  "teamCount": 10,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "and1-ace",
+   "and1-car",
+   "and1-cdp",
+   "and1-esp",
+   "and1-int",
+   "and1-ord",
+   "and1-pen",
+   "and1-ran",
+   "and1-sfc",
+   "and1-sce"
+  ],
+  "passport": {
+   "label": "Primera Divisió grounds",
+   "venueIds": [
+    "centre-d-entrenament-de-la-faf",
+    "estadi-nacional"
+   ]
+  }
+ },
+ {
+  "key": "soccer/smr.1",
+  "name": "Campionato Sammarinese",
+  "sport": "soccer",
+  "country": "San Marino",
+  "countryCode": "SM",
+  "tier": 1,
+  "teamCount": 16,
+  "season": "Sep-May",
+  "espnPath": null,
+  "teamIds": [
+   "smr1-cai",
+   "smr1-cos",
+   "smr1-dom",
+   "smr1-fae",
+   "smr1-fol",
+   "smr1-fio",
+   "smr1-jdo",
+   "smr1-lfi",
+   "smr1-lib",
+   "smr1-mur",
+   "smr1-pen",
+   "smr1-sgi",
+   "smr1-sma",
+   "smr1-tfi",
+   "smr1-tpe",
+   "smr1-vir"
+  ],
+  "passport": {
+   "label": "Campionato Sammarinese grounds",
+   "venueIds": [
+    "campo-sportivo-di-fonte-dell-ovo",
+    "san-marino-stadium",
+    "campo-sportivo-di-domagnano",
+    "campo-sportivo-di-faetano",
+    "campo-sportivo-di-serravalle-b",
+    "campo-sportivo-di-fiorentino",
+    "campo-sportivo-di-dogana",
+    "campo-sportivo-di-montegiardino",
+    "campo-sportivo-di-borgo-maggiore",
+    "campo-sportivo-di-chiesanuova",
+    "campo-sportivo-di-acquaviva"
+   ]
+  }
+ },
+ {
+  "key": "soccer/gib.1",
+  "name": "Gibraltar Football League",
+  "sport": "soccer",
+  "country": "Gibraltar",
+  "countryCode": "GI",
+  "tier": 1,
+  "teamCount": 11,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "gib1-c75",
+   "gib1-eur",
+   "gib1-epo",
+   "gib1-gla",
+   "gib1-hou",
+   "gib1-lri",
+   "gib1-lio",
+   "gib1-lyn",
+   "gib1-mag",
+   "gib1-mca",
+   "gib1-stj"
+  ],
+  "passport": {
+   "label": "Gibraltar Football League grounds",
+   "venueIds": [
+    "europa-sports-park"
+   ]
+  }
+ },
+ {
+  "key": "soccer/geo.1",
+  "name": "Erovnuli Liga",
+  "sport": "soccer",
+  "country": "Georgia",
+  "countryCode": "GE",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Feb-Nov",
+  "espnPath": null,
+  "teamIds": [
+   "geo1-mes",
+   "geo1-sam"
+  ],
+  "passport": {
+   "label": "Erovnuli Liga grounds",
+   "venueIds": [
+    "26-may-stadium"
+   ]
+  },
+  "delta": true
+ },
+ {
+  "key": "soccer/blr.1",
+  "name": "Belarusian Premier League",
+  "sport": "soccer",
+  "country": "Belarus",
+  "countryCode": "BY",
+  "tier": 1,
+  "teamCount": 1,
+  "season": "Mar-Nov",
+  "espnPath": null,
+  "teamIds": [
+   "blr1-adz"
+  ],
+  "passport": {
+   "label": "Belarusian Premier League grounds",
+   "venueIds": [
+    "dzerzhinsk-city-stadium"
+   ]
+  },
+  "delta": true
+ },
+ {
+  "key": "soccer/srb.1",
+  "name": "Serbian SuperLiga",
+  "sport": "soccer",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "tier": 1,
+  "teamCount": 1,
+  "season": "Jul-May",
+  "espnPath": null,
+  "teamIds": [
+   "srb1-zpa"
+  ],
+  "passport": {
+   "label": "Serbian SuperLiga grounds",
+   "venueIds": [
+    "sc-mladost-stadium-pancevo"
+   ]
+  },
+  "delta": true
+ },
+ {
+  "key": "soccer/srb.2",
+  "name": "Serbian First League",
+  "sport": "soccer",
+  "country": "Serbia",
+  "countryCode": "RS",
+  "tier": 2,
+  "teamCount": 2,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "srb2-vrs",
+   "srb2-jub"
+  ],
+  "passport": {
+   "label": "Serbian First League grounds",
+   "venueIds": [
+    "vrsac-city-stadium",
+    "stadion-dragan-dzajic"
+   ]
+  },
+  "delta": true
+ },
+ {
+  "key": "soccer/cyp.1",
+  "name": "Cypriot First Division",
+  "sport": "soccer",
+  "country": "Cyprus",
+  "countryCode": "CY",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "cyp1-ari",
+   "cyp1-kra"
+  ],
+  "passport": {
+   "label": "Cypriot First Division grounds",
+   "venueIds": [
+    "alphamega-stadium",
+    "tsirion-stadium"
+   ]
+  },
+  "delta": true
+ },
+ {
+  "key": "soccer/fro.1",
+  "name": "Faroe Islands Premier League",
+  "sport": "soccer",
+  "country": "Faroe Islands",
+  "countryCode": "FO",
+  "tier": 1,
+  "teamCount": 2,
+  "season": "Mar-Nov",
+  "espnPath": null,
+  "teamIds": [
+   "fro1-aba",
+   "fro1-ski"
+  ],
+  "passport": {
+   "label": "Faroe Islands Premier League grounds",
+   "venueIds": [
+    "skansi-arena",
+    "skala-stadium"
+   ]
+  },
+  "delta": true
+ },
+ {
+  "key": "soccer/cro.2",
+  "name": "Prva NL",
+  "sport": "soccer",
+  "country": "Croatia",
+  "countryCode": "HR",
+  "tier": 2,
+  "teamCount": 2,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "cro2-hrv",
+   "cro2-zmi"
+  ],
+  "passport": {
+   "label": "Prva NL grounds",
+   "venueIds": [
+    "hrvace-city-stadium",
+    "src-marijan-suto-mrma"
+   ]
+  },
+  "delta": true
+ },
+ {
+  "key": "soccer/bih.2",
+  "name": "First League of the Federation of BiH",
+  "sport": "soccer",
+  "country": "Bosnia and Herzegovina",
+  "countryCode": "BA",
+  "tier": 2,
+  "teamCount": 6,
+  "season": "Aug-May",
+  "espnPath": null,
+  "teamIds": [
+   "bih2-cap",
+   "bih2-jbi",
+   "bih2-rha",
+   "bih2-rka",
+   "bih2-tos",
+   "bih2-tom"
+  ],
+  "passport": {
+   "label": "First League of the Federation of BiH grounds",
+   "venueIds": [
+    "bjelave-stadium",
+    "pod-boricima-stadium",
+    "hadzici-city-stadium",
+    "stadion-rudara-kakanj",
+    "stadion-luke-tesanj",
+    "stadion-tomislav-tomislavgrad"
+   ]
+  },
+  "delta": true
+ }
+]
