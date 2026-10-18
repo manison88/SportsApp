@@ -89,7 +89,41 @@ final class Library {
     func venues(for sport: Sport?) -> [Venue] {
         let all = venues.sorted { $0.name < $1.name }
         guard let sport else { return all }
-        return all.filter { $0.sports.contains(sport) }
+        return all.filter { hosts($0, sport) }
+    }
+
+    /// Whether a venue is a place for this sport. Big football bowls count for soccer too: World Cup and Gold Cup games.
+    func hosts(_ venue: Venue, _ sport: Sport) -> Bool {
+        venue.sports.contains(sport)
+            || (sport == .soccer && venue.sports.contains(.football) && (venue.capacity ?? 0) >= 30_000)
+    }
+
+    /// Venues matching what was typed: every word is the start of a word in the name, an old name, the city, the region,
+    /// the country or a tenant, so "levi stadium", "levis" and "santa clara" all find Levi's Stadium.
+    /// Names that start with the query lead; the sport's own venues come before the rest.
+    func searchVenues(_ query: String, sport: Sport?) -> [Venue] {
+        let words = Self.words(query)
+        guard !words.isEmpty else { return [] }
+        var hits: [(venue: Venue, rank: Int)] = []
+        for v in venues {
+            let name = Self.words(v.name)
+            let rest = Self.words(([v.city, v.region ?? "", v.country] + (v.aliases ?? []) + (v.homeTeams ?? [])).joined(separator: " "))
+            let all = name + rest
+            guard words.allSatisfy({ w in all.contains { $0.hasPrefix(w) } }) else { continue }
+            var rank = 2
+            if name.first?.hasPrefix(words[0]) == true { rank = 0 }
+            else if words.allSatisfy({ w in name.contains { $0.hasPrefix(w) } }) { rank = 1 }
+            if let sport, !hosts(v, sport) { rank += 4 }
+            hits.append((v, rank))
+        }
+        return hits.sorted { $0.rank != $1.rank ? $0.rank < $1.rank : $0.venue.name < $1.venue.name }.map(\.venue)
+    }
+
+    /// Lowercase words with accents and apostrophes folded away: "Levi\u{2019}s Stadium" is ["levis", "stadium"].
+    private static func words(_ s: String) -> [String] {
+        let folded = s.folding(options: [.caseInsensitive, .diacriticInsensitive], locale: Locale(identifier: "en_US"))
+            .replacingOccurrences(of: "'", with: "").replacingOccurrences(of: "\u{2019}", with: "")
+        return folded.components(separatedBy: CharacterSet.alphanumerics.inverted).filter { !$0.isEmpty }
     }
 
     func games(at venueId: String) -> [GameEntry] { games.filter { $0.venueId == venueId } }

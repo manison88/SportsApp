@@ -275,6 +275,14 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(library.catalogTeam(league: "football/nfl", espnId: "13")?.id, "nfl-lv")
     }
 
+    func testVenueSearchFindsLevisHoweverItIsTyped() {
+        for q in ["levi", "levis", "Levi's", "levi stadium", "santa clara stadium", "49ers"] {
+            XCTAssertTrue(library.searchVenues(q, sport: .soccer).prefix(5).contains { $0.id == "levis-stadium" }, "\(q) finds Levi's")
+        }
+        XCTAssertTrue(library.venues(for: .soccer).contains { $0.id == "levis-stadium" }, "World Cup grounds are on the soccer list")
+        XCTAssertFalse(library.venues(for: .baseball).contains { $0.id == "levis-stadium" })
+    }
+
     func testWorldCupGameIsFoundAtAFootballStadium() throws {
         let library = self.library!
         let levis = try XCTUnwrap(library.venues.first { $0.id == "levis-stadium" })

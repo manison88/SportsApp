@@ -95,11 +95,7 @@ struct VenuePickerView: View {
             let forSport = library.venues(for: sport)
             return forSport.isEmpty ? library.venues(for: nil) : forSport
         }
-        let matches = library.venues(for: nil).filter {
-            TicketParser.normalize($0.name).contains(q) || TicketParser.normalize($0.city).contains(q)
-        }
-        guard let sport else { return matches }
-        return matches.filter { $0.sports.contains(sport) } + matches.filter { !$0.sports.contains(sport) }
+        return Array(library.searchVenues(query, sport: sport).prefix(200))
     }
 
     private func searchMaps() async {
