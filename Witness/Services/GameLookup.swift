@@ -113,7 +113,7 @@ enum GameLookup {
     static func leagues(for venue: Venue) -> [String] {
         var base = clubLeagues(for: venue)
         // Any soccer ground can host a World Cup, Euro, Copa América or continental final.
-        if venue.sports.contains(.soccer) {
+        if canHostSoccer(venue) {
             for l in ["soccer/fifa.world", "soccer/uefa.euro", "soccer/conmebol.america", "soccer/concacaf.gold",
                       "soccer/fifa.cwc", "soccer/uefa.champions", "soccer/uefa.europa", "soccer/conmebol.libertadores",
                       "soccer/fifa.friendly"] + nationalLeagues(for: venue)
@@ -121,6 +121,18 @@ enum GameLookup {
         }
         return base
     }
+
+    /// Soccer grounds, plus the big football bowls (Levi's Stadium, MetLife, SoFi...) and any venue
+    /// without a known capacity, which all host World Cup and Gold Cup games.
+    private static func canHostSoccer(_ venue: Venue) -> Bool {
+        if venue.sports.contains(.soccer) { return true }
+        guard venue.sports.contains(where: { $0 == .football }) else { return venue.isCustom == true }
+        return (venue.capacity ?? 30_000) >= 30_000
+    }
+
+    private static let neutralTournaments: Set<String> = [
+        "soccer/fifa.world", "soccer/uefa.euro", "soccer/conmebol.america", "soccer/concacaf.gold", "soccer/fifa.cwc",
+    ]
 
     /// Qualifiers and the Nations League, by the venue's confederation.
     private static func nationalLeagues(for venue: Venue) -> [String] {
@@ -333,6 +345,10 @@ enum GameLookup {
                 if c == eventName || c.isSubset(of: eventName) || eventName.isSubset(of: c) { return true }
             }
         }
+        // Tournaments use neutral grounds, often under a tournament name ("San Francisco Bay Area Stadium"),
+        // so the city is enough.
+        if neutralTournaments.contains(game.league), let city = game.venueCity, !tokens(city).isEmpty,
+           tokens(city) == tokens(venue.city) { return true }
         if let city = game.venueCity, tokens(city) == tokens(venue.city) {
             let homeName = tokens("\(game.home.location) \(game.home.name)")
             for tenant in venue.homeTeams ?? [] where !tokens(tenant).isEmpty && tokens(tenant).isSubset(of: homeName) {

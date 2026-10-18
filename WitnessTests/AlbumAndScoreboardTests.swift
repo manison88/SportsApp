@@ -226,6 +226,17 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(library.game(game.id)?.heroPhoto, .bundled("a"), "Clearing goes back to the first photo")
     }
 
+    func testWorldCupGameIsFoundAtAFootballStadium() throws {
+        let library = self.library!
+        let levis = try XCTUnwrap(library.venues.first { $0.id == "levis-stadium" })
+        XCTAssertTrue(GameLookup.leagues(for: levis).contains("soccer/fifa.world"), "NFL bowls host World Cup games")
+        let side = FoundGame.Side(espnId: "1", abbreviation: "USA", location: "United States", name: "", color: nil, altColor: nil, score: nil, line: [])
+        let other = FoundGame.Side(espnId: "2", abbreviation: "BIH", location: "Bosnia and Herzegovina", name: "", color: nil, altColor: nil, score: nil, line: [])
+        let game = FoundGame(league: "soccer/fifa.world", leagueName: "FIFA World Cup", eventId: "1", sport: .soccer, start: Date(),
+                             venueName: "San Francisco Bay Area Stadium", venueCity: "Santa Clara", home: side, away: other, completed: true, note: nil)
+        XCTAssertTrue(GameLookup.venueMatches(game, venue: levis), "Tournament ground names differ; the city is enough")
+    }
+
     func testHomeNearAStadiumIsNotAGame() {
         // Photos from a kid's room and a document, taken the morning of a real game: nothing sports-like.
         let home = SceneCheck.score([("indoor", 0.9), ("bedroom", 0.8), ("document", 0.6)])
