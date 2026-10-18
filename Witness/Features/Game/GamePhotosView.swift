@@ -63,13 +63,23 @@ struct GamePhotosView: View {
             .navigationTitle(game.photos.count == 1 ? "1 photo" : "\(game.photos.count) photos")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(selecting ? "Done" : "Select") {
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button {
                         selecting.toggle()
                         selected = []
+                    } label: {
+                        if selecting { Text("Done") } else { Image(systemName: "checkmark.circle") }
                     }
                     .disabled(game.photos.isEmpty)
+                    .accessibilityLabel(selecting ? "Done selecting" : "Select photos")
                     .accessibilityIdentifier("photos-select")
+                    // Next to Select: chosen photos go with the trash.
+                    Button(role: .destructive) { confirmRemove = true } label: {
+                        Image(systemName: "trash")
+                    }
+                    .disabled(!selecting || selected.isEmpty)
+                    .accessibilityLabel(selected.isEmpty ? "Remove photos" : "Remove \(selected.count)")
+                    .accessibilityIdentifier("photos-trash")
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -94,11 +104,9 @@ struct GamePhotosView: View {
                         }
                         .accessibilityIdentifier("photos-select-all")
                         Spacer()
-                        Button(role: .destructive) { confirmRemove = true } label: {
-                            Label(selected.isEmpty ? "Remove" : "Remove \(selected.count)", systemImage: "trash")
-                        }
-                        .disabled(selected.isEmpty)
-                        .accessibilityIdentifier("photos-remove")
+                        Text(selected.isEmpty ? "Tap photos to choose" : "\(selected.count) selected")
+                            .foregroundStyle(Color.textSecondary)
+                            .accessibilityIdentifier("photos-selected-count")
                     }
                     .font(.condensed(.headline, weight: .heavy))
                     .padding(.horizontal, 20)
