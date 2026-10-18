@@ -1014,7 +1014,7 @@
 "longitude": -5.955,
 "firstSeason": 2010,
 "lastSeason": 2026,
-"games": 106,
+"games": 103,
 "leagues": [
 "soccer/concacaf.nations.league",
 "soccer/fifa.worldq.concacaf",
@@ -1034,12 +1034,10 @@
 ],
 "coordSource": "sibling agent (catalog)",
 "aliases": [
-"National Football Stadium at Windsor Park",
-"Nicaragua National Football Stadium"
+"National Football Stadium at Windsor Park"
 ],
 "sourceVenueIds": [
 "1277",
-"w:nicaragua-national-football-stadium-managua",
 "w:windsor-park-roseau"
 ]
 },
@@ -4892,37 +4890,6 @@
 "coordSource": "sibling agent (teams-missing-venues)"
 },
 {
-"league": "soccer/uefa.champions",
-"sourceVenueId": "339",
-"name": "Stade Louis II",
-"city": "Monaco",
-"region": "",
-"countryCode": "FR",
-"catalogVenueId": null,
-"latitude": 43.727553,
-"longitude": 7.415472,
-"firstSeason": 2011,
-"lastSeason": 2026,
-"games": 56,
-"leagues": [
-"soccer/uefa.champions",
-"soccer/uefa.champions_qual",
-"soccer/uefa.europa",
-"soccer/uefa.europa.conf",
-"soccer/uefa.europa.conf_qual",
-"soccer/uefa.super_cup",
-"soccer/uefa.weuroq"
-],
-"coordSource": "sibling agent (osm-single)",
-"aliases": [
-"M. Meskhi II Stadium"
-],
-"sourceVenueIds": [
-"339",
-"w:m-meskhi-ii-stadium-tbilisi"
-]
-},
-{
 "league": "soccer/afc.champions",
 "sourceVenueId": "3953",
 "name": "Khalifa International Stadium",
@@ -5600,6 +5567,29 @@
 ]
 },
 {
+"league": "soccer/uefa.champions",
+"sourceVenueId": "339",
+"name": "Stade Louis II",
+"city": "Monaco",
+"region": "",
+"countryCode": "FR",
+"catalogVenueId": null,
+"latitude": 43.727553,
+"longitude": 7.415472,
+"firstSeason": 2011,
+"lastSeason": 2026,
+"games": 51,
+"leagues": [
+"soccer/uefa.champions",
+"soccer/uefa.champions_qual",
+"soccer/uefa.europa",
+"soccer/uefa.europa.conf",
+"soccer/uefa.europa.conf_qual",
+"soccer/uefa.super_cup"
+],
+"coordSource": "sibling agent (osm-single)"
+},
+{
 "league": "soccer/uefa.champions_qual",
 "sourceVenueId": "1510",
 "name": "Aspmyra Stadion",
@@ -5710,36 +5700,6 @@
 "2751",
 "6844",
 "8684"
-]
-},
-{
-"league": "soccer/uefa.europa.conf_qual",
-"sourceVenueId": "3312",
-"name": "Park Hall",
-"city": "Oswestry",
-"region": "Wales",
-"countryCode": "GB",
-"catalogVenueId": null,
-"latitude": 52.8759,
-"longitude": -3.02631,
-"firstSeason": 2011,
-"lastSeason": 2026,
-"games": 50,
-"leagues": [
-"soccer/afc.champions",
-"soccer/uefa.champions",
-"soccer/uefa.champions_qual",
-"soccer/uefa.europa",
-"soccer/uefa.europa.conf_qual",
-"soccer/uefa.europa_qual"
-],
-"coordSource": "sibling agent (teams-missing-venues)",
-"aliases": [
-"Sports Hall"
-],
-"sourceVenueIds": [
-"3312",
-"w:sports-hall-jeddah"
 ]
 },
 {
@@ -7886,6 +7846,28 @@
 "soccer/uefa.weuroq"
 ],
 "coordSource": "sibling agent (?)"
+},
+{
+"league": "soccer/uefa.europa.conf_qual",
+"sourceVenueId": "3312",
+"name": "Park Hall",
+"city": "Oswestry",
+"region": "Wales",
+"countryCode": "GB",
+"catalogVenueId": null,
+"latitude": 52.8759,
+"longitude": -3.02631,
+"firstSeason": 2011,
+"lastSeason": 2026,
+"games": 38,
+"leagues": [
+"soccer/uefa.champions",
+"soccer/uefa.champions_qual",
+"soccer/uefa.europa",
+"soccer/uefa.europa.conf_qual",
+"soccer/uefa.europa_qual"
+],
+"coordSource": "sibling agent (teams-missing-venues)"
 },
 {
 "league": "soccer/uefa.wchampions",
@@ -11600,6 +11582,32 @@
 "coordSource": "sibling agent (city-centroid(approx))"
 },
 {
+"league": "soccer/afc.cup",
+"sourceVenueId": "8291",
+"name": "Sheikh Ali Bin Mohammed Al Khalifa Stadium",
+"city": "Muharraq",
+"region": "",
+"countryCode": "BH",
+"catalogVenueId": null,
+"latitude": 26.257767,
+"longitude": 50.627532,
+"firstSeason": 2019,
+"lastSeason": 2025,
+"games": 25,
+"leagues": [
+"soccer/afc.cup",
+"soccer/fifa.worldq.afc"
+],
+"coordSource": "sibling agent (osm-q2)",
+"aliases": [
+"Al Muharraq Stadium"
+],
+"sourceVenueIds": [
+"8291",
+"w:al-muharraq-stadium-arad"
+]
+},
+{
 "league": "soccer/caf.nations_qual",
 "sourceVenueId": "4688",
 "name": "Mahamasina Municipal Stadium",
@@ -11880,6 +11888,34 @@
 "sourceVenueIds": [
 "6246",
 "w:academy-stadium-manchester"
+]
+},
+{
+"league": "soccer/fifa.wwc",
+"sourceVenueId": "1800",
+"name": "Suncorp Stadium",
+"city": "Brisbane",
+"region": "",
+"countryCode": "AU",
+"catalogVenueId": null,
+"latitude": -27.464722,
+"longitude": 153.009444,
+"firstSeason": 2011,
+"lastSeason": 2023,
+"games": 24,
+"leagues": [
+"soccer/afc.asian.cup",
+"soccer/afc.champions",
+"soccer/fifa.worldq.afc",
+"soccer/fifa.wwc"
+],
+"coordSource": "sibling agent (wikidata+osm)",
+"aliases": [
+"Brisbane Stadium"
+],
+"sourceVenueIds": [
+"1800",
+"w:brisbane-stadium-brisbane"
 ]
 },
 {
@@ -12385,27 +12421,6 @@
 ]
 },
 {
-"league": "soccer/fifa.wwc",
-"sourceVenueId": "1800",
-"name": "Suncorp Stadium",
-"city": "Brisbane",
-"region": "",
-"countryCode": "AU",
-"catalogVenueId": null,
-"latitude": -27.464722,
-"longitude": 153.009444,
-"firstSeason": 2011,
-"lastSeason": 2023,
-"games": 23,
-"leagues": [
-"soccer/afc.asian.cup",
-"soccer/afc.champions",
-"soccer/fifa.worldq.afc",
-"soccer/fifa.wwc"
-],
-"coordSource": "sibling agent (wikidata+osm)"
-},
-{
 "league": "soccer/afc.champions",
 "sourceVenueId": "6582",
 "name": "Jinan Olympic Sports Center",
@@ -12651,6 +12666,32 @@
 "sourceVenueIds": [
 "3995",
 "5009"
+]
+},
+{
+"league": "soccer/concacaf.nations.league",
+"sourceVenueId": "9714",
+"name": "Raymond E. Guishard Technical Centre",
+"city": "The Valley",
+"region": "",
+"countryCode": "AI",
+"catalogVenueId": null,
+"latitude": 18.214586,
+"longitude": -63.051776,
+"firstSeason": 2019,
+"lastSeason": 2023,
+"games": 23,
+"leagues": [
+"soccer/concacaf.nations.league",
+"soccer/fifa.worldq.concacaf"
+],
+"coordSource": "sibling agent (city-centroid(approx))",
+"aliases": [
+"Raymond E. Guishard Stadium"
+],
+"sourceVenueIds": [
+"9714",
+"w:raymond-e-guishard-stadium-the-valley"
 ]
 },
 {
@@ -12980,6 +13021,41 @@
 "soccer/caf.confed"
 ],
 "coordSource": "osm+wikipedia agree (25m)"
+},
+{
+"league": "soccer/caf.champions",
+"sourceVenueId": "4850",
+"name": "St. Mary's Stadium",
+"city": "Southampton",
+"region": "England",
+"countryCode": "GB",
+"catalogVenueId": "st-marys-stadium",
+"latitude": 50.90583,
+"longitude": -1.39111,
+"firstSeason": 2015,
+"lastSeason": 2026,
+"games": 22,
+"leagues": [
+"soccer/caf.champions",
+"soccer/caf.confed",
+"soccer/fifa.worldq.caf",
+"soccer/fifa.wworldq.uefa",
+"soccer/uefa.europa",
+"soccer/uefa.euroq",
+"soccer/uefa.weuro"
+],
+"coordSource": "sibling agent (catalog)",
+"aliases": [
+"St Mary's Stadium",
+"St Mary's"
+],
+"sourceVenueIds": [
+"10871",
+"4850",
+"w:st-mary-s-stadium-entebbe",
+"w:st-mary-s-stadium-kampala",
+"w:st-mary-s-stadium-wakiso-town"
+]
 },
 {
 "league": "soccer/caf.nations",
@@ -13588,40 +13664,6 @@
 "7733",
 "w:ben-m-hamed-el-abdi-stadium-el-jadida-morocco",
 "w:stade-el-abdi-el-jadida"
-]
-},
-{
-"league": "soccer/caf.champions",
-"sourceVenueId": "4850",
-"name": "St. Mary's Stadium",
-"city": "Southampton",
-"region": "England",
-"countryCode": "GB",
-"catalogVenueId": "st-marys-stadium",
-"latitude": 50.90583,
-"longitude": -1.39111,
-"firstSeason": 2015,
-"lastSeason": 2022,
-"games": 21,
-"leagues": [
-"soccer/caf.champions",
-"soccer/caf.confed",
-"soccer/fifa.worldq.caf",
-"soccer/fifa.wworldq.uefa",
-"soccer/uefa.europa",
-"soccer/uefa.euroq",
-"soccer/uefa.weuro"
-],
-"coordSource": "sibling agent (catalog)",
-"aliases": [
-"St Mary's Stadium",
-"St Mary's"
-],
-"sourceVenueIds": [
-"4850",
-"w:st-mary-s-stadium-entebbe",
-"w:st-mary-s-stadium-kampala",
-"w:st-mary-s-stadium-wakiso-town"
 ]
 },
 {
@@ -14945,36 +14987,6 @@
 },
 {
 "league": "soccer/caf.champions",
-"sourceVenueId": "w:petro-sport-stadium-cairo-egypt",
-"name": "Petro Sport Stadium",
-"city": "Cairo",
-"region": "",
-"countryCode": "",
-"catalogVenueId": null,
-"latitude": 37.005796,
-"longitude": -89.177245,
-"firstSeason": 2017,
-"lastSeason": 2022,
-"games": 19,
-"leagues": [
-"soccer/caf.champions",
-"soccer/caf.confed",
-"soccer/caf.nations_qual"
-],
-"coordSource": "approximate (nominatim city-level)",
-"aliases": [
-"Cairo Military Academy Stadium",
-"Al Ahly WE Al Salam Stadium"
-],
-"sourceVenueIds": [
-"w:al-ahly-we-al-salam-stadium-cairo",
-"w:cairo-military-academy-stadium-cairo-egypt",
-"w:petro-sport-stadium-cairo-egypt"
-],
-"approximate": true
-},
-{
-"league": "soccer/caf.champions",
 "sourceVenueId": "8234",
 "name": "Stade El Hadj Hassan Gouled",
 "city": "Djibouti City",
@@ -15095,25 +15107,6 @@
 "soccer/fifa.cwc"
 ],
 "coordSource": "sibling agent (catalog-name)"
-},
-{
-"league": "soccer/concacaf.nations.league",
-"sourceVenueId": "9714",
-"name": "Raymond E. Guishard Technical Centre",
-"city": "The Valley",
-"region": "",
-"countryCode": "AI",
-"catalogVenueId": null,
-"latitude": 18.214586,
-"longitude": -63.051776,
-"firstSeason": 2019,
-"lastSeason": 2023,
-"games": 19,
-"leagues": [
-"soccer/concacaf.nations.league",
-"soccer/fifa.worldq.concacaf"
-],
-"coordSource": "sibling agent (city-centroid(approx))"
 },
 {
 "league": "soccer/concacaf.nations.league",
@@ -15639,25 +15632,6 @@
 ]
 },
 {
-"league": "soccer/afc.cup",
-"sourceVenueId": "8291",
-"name": "Sheikh Ali Bin Mohammed Al Khalifa Stadium",
-"city": "Muharraq",
-"region": "",
-"countryCode": "BH",
-"catalogVenueId": null,
-"latitude": 26.257767,
-"longitude": 50.627532,
-"firstSeason": 2019,
-"lastSeason": 2025,
-"games": 18,
-"leagues": [
-"soccer/afc.cup",
-"soccer/fifa.worldq.afc"
-],
-"coordSource": "sibling agent (osm-q2)"
-},
-{
 "league": "soccer/caf.confed",
 "sourceVenueId": "6215",
 "name": "Nnamdi Azikiwe",
@@ -16068,15 +16042,42 @@
 "coordSource": "sibling agent (wikidata)"
 },
 {
+"league": "soccer/fifa.worldq.afc",
+"sourceVenueId": "7780",
+"name": "Lao National Stadium KM16",
+"city": "Vientiene",
+"region": "",
+"countryCode": "LA",
+"catalogVenueId": null,
+"latitude": 18.062113,
+"longitude": 102.703974,
+"firstSeason": 2011,
+"lastSeason": 2024,
+"games": 17,
+"leagues": [
+"soccer/afc.cupq",
+"soccer/fifa.worldq.afc"
+],
+"coordSource": "approximate (osm, weak name/place evidence)",
+"aliases": [
+"New Laos National Stadium"
+],
+"sourceVenueIds": [
+"7780",
+"w:new-laos-national-stadium-vientiane"
+],
+"approximate": true
+},
+{
 "league": "soccer/caf.nations_qual",
 "sourceVenueId": "w:stade-linite-victoria",
 "name": "Stade Linité",
 "city": "Victoria",
 "region": "",
-"countryCode": "",
+"countryCode": "MU",
 "catalogVenueId": null,
-"latitude": -36.59861,
-"longitude": 144.678005,
+"latitude": -20.162764,
+"longitude": 57.49874,
 "firstSeason": 2011,
 "lastSeason": 2019,
 "games": 17,
@@ -16086,7 +16087,7 @@
 "soccer/caf.nations_qual",
 "soccer/fifa.worldq.caf"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -16107,7 +16108,7 @@
 "soccer/caf.confed",
 "soccer/caf.nations"
 ],
-"coordSource": "osm only",
+"coordSource": "osm+wikipedia agree (29m)",
 "sourceVenueIds": [
 "2512",
 "3729",
@@ -16822,34 +16823,6 @@
 "coordSource": "osm+wikipedia agree (16m)"
 },
 {
-"league": "soccer/caf.champions",
-"sourceVenueId": "10871",
-"name": "St. Mary's Stadium",
-"city": "Kitende",
-"region": "",
-"countryCode": "UG",
-"catalogVenueId": null,
-"latitude": 0.197732,
-"longitude": 32.532263,
-"firstSeason": 2019,
-"lastSeason": 2026,
-"games": 16,
-"leagues": [
-"soccer/caf.champions",
-"soccer/caf.confed",
-"soccer/caf.nations_qual"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"aliases": [
-"St. Mary's Stadium-Kitende"
-],
-"sourceVenueIds": [
-"10871",
-"w:st-mary-s-stadium-kitende-entebbe"
-],
-"approximate": true
-},
-{
 "league": "soccer/caf.nations_qual",
 "sourceVenueId": "8245",
 "name": "Bahir Dar Stadium",
@@ -17530,6 +17503,26 @@
 "w:stade-municipal-nouadhibou",
 "w:stade-municipal-pointe-noire"
 ]
+},
+{
+"league": "soccer/caf.champions",
+"sourceVenueId": "w:st-mary-s-stadium-kitende-entebbe",
+"name": "St. Mary's Stadium-Kitende",
+"city": "Entebbe",
+"region": "",
+"countryCode": "UG",
+"catalogVenueId": null,
+"latitude": 0.197732,
+"longitude": 32.532263,
+"firstSeason": 2019,
+"lastSeason": 2025,
+"games": 15,
+"leagues": [
+"soccer/caf.champions",
+"soccer/caf.confed",
+"soccer/caf.nations_qual"
+],
+"coordSource": "osm+wikipedia agree (109m)"
 },
 {
 "league": "soccer/caf.nations_qual",
@@ -18381,6 +18374,27 @@
 ]
 },
 {
+"league": "soccer/caf.champions",
+"sourceVenueId": "w:petro-sport-stadium-cairo-egypt",
+"name": "Petro Sport Stadium",
+"city": "Cairo",
+"region": "",
+"countryCode": "TN",
+"catalogVenueId": null,
+"latitude": 35.504349,
+"longitude": 11.070616,
+"firstSeason": 2017,
+"lastSeason": 2020,
+"games": 14,
+"leagues": [
+"soccer/caf.champions",
+"soccer/caf.confed",
+"soccer/caf.nations_qual"
+],
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
+"approximate": true
+},
+{
 "league": "soccer/caf.nations_qual",
 "sourceVenueId": "6841",
 "name": "11 June Stadium",
@@ -19163,6 +19177,37 @@
 "soccer/afc.champions"
 ],
 "coordSource": "approximate (wikipedia, sources disagree)",
+"approximate": true
+},
+{
+"league": "soccer/afc.cup",
+"sourceVenueId": "6861",
+"name": "Macau Olympic Stadium",
+"city": "Taipa",
+"region": "",
+"countryCode": "CN",
+"catalogVenueId": null,
+"latitude": 22.15473,
+"longitude": 113.55347,
+"firstSeason": 2011,
+"lastSeason": 2024,
+"games": 13,
+"leagues": [
+"soccer/afc.champions",
+"soccer/afc.cup",
+"soccer/afc.cupq",
+"soccer/fifa.worldq.afc"
+],
+"coordSource": "approximate (osm, weak name/place evidence)",
+"aliases": [
+"Estádio Campo Desportivo",
+"Centro Desportivo Olímpico - Estádio"
+],
+"sourceVenueIds": [
+"6861",
+"w:centro-desportivo-olimpico-estadio-taipa",
+"w:estadio-campo-desportivo-macau"
+],
 "approximate": true
 },
 {
@@ -20198,6 +20243,25 @@
 ]
 },
 {
+"league": "soccer/afc.champions",
+"sourceVenueId": "w:sports-hall-jeddah",
+"name": "Sports Hall",
+"city": "Jeddah",
+"region": "",
+"countryCode": "QA",
+"catalogVenueId": null,
+"latitude": 25.371097,
+"longitude": 51.47058,
+"firstSeason": 2021,
+"lastSeason": 2021,
+"games": 12,
+"leagues": [
+"soccer/afc.champions"
+],
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
+"approximate": true
+},
+{
 "league": "soccer/afc.cup",
 "sourceVenueId": "9674",
 "name": "Hisor Central Stadium",
@@ -20382,6 +20446,34 @@
 "soccer/fifa.worldq.caf"
 ],
 "coordSource": "sibling agent (wikidata)"
+},
+{
+"league": "soccer/caf.champions",
+"sourceVenueId": "9559",
+"name": "National Sports Complex Pitch 1",
+"city": "Saint Pierre",
+"region": "",
+"countryCode": "MU",
+"catalogVenueId": null,
+"latitude": -20.224902,
+"longitude": 57.538378,
+"firstSeason": 2022,
+"lastSeason": 2025,
+"games": 12,
+"leagues": [
+"soccer/caf.champions",
+"soccer/caf.confed",
+"soccer/caf.nations_qual"
+],
+"coordSource": "approximate (nominatim city-level)",
+"aliases": [
+"Complexe Sportif de Côte d'Or"
+],
+"sourceVenueIds": [
+"9559",
+"w:complexe-sportif-de-cote-d-or-saint-pierre"
+],
+"approximate": true
 },
 {
 "league": "soccer/caf.championship",
@@ -21073,33 +21165,6 @@
 "soccer/fifa.worldq.afc"
 ],
 "coordSource": "sibling agent (osm-q2)"
-},
-{
-"league": "soccer/fifa.worldq.afc",
-"sourceVenueId": "w:new-laos-national-stadium-vientiane",
-"name": "New Laos National Stadium",
-"city": "Vientiane",
-"region": "",
-"countryCode": "LA",
-"catalogVenueId": null,
-"latitude": 17.964099,
-"longitude": 102.613371,
-"firstSeason": 2011,
-"lastSeason": 2024,
-"games": 11,
-"leagues": [
-"soccer/afc.cupq",
-"soccer/fifa.worldq.afc"
-],
-"coordSource": "approximate (nominatim city-level)",
-"aliases": [
-"Lao National Stadium"
-],
-"sourceVenueIds": [
-"w:lao-national-stadium-vientiane",
-"w:new-laos-national-stadium-vientiane"
-],
-"approximate": true
 },
 {
 "league": "soccer/fifa.worldq.afc",
@@ -23241,34 +23306,6 @@
 "coordSource": "wikipedia only"
 },
 {
-"league": "soccer/afc.champions",
-"sourceVenueId": "6750",
-"name": "Yadegar-e-Imam Stadium",
-"city": "Tabriz",
-"region": "",
-"countryCode": "IR",
-"catalogVenueId": null,
-"latitude": 36.326223,
-"longitude": 59.570548,
-"firstSeason": 2016,
-"lastSeason": 2024,
-"games": 9,
-"leagues": [
-"soccer/afc.champions",
-"soccer/afc.cup",
-"soccer/fifa.worldq.afc"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"aliases": [
-"Imam Reza Stadium"
-],
-"sourceVenueIds": [
-"6750",
-"8426"
-],
-"approximate": true
-},
-{
 "league": "soccer/afc.cup",
 "sourceVenueId": "10460",
 "name": "Dragon Solar Park",
@@ -23276,8 +23313,8 @@
 "region": "",
 "countryCode": "TH",
 "catalogVenueId": null,
-"latitude": 13.63179,
-"longitude": 99.355822,
+"latitude": 13.521677,
+"longitude": 99.769588,
 "firstSeason": 2025,
 "lastSeason": 2026,
 "games": 9,
@@ -23285,8 +23322,7 @@
 "soccer/afc.champions",
 "soccer/afc.cup"
 ],
-"coordSource": "approximate (nominatim city-level)",
-"approximate": true
+"coordSource": "wikipedia only"
 },
 {
 "league": "soccer/caf.confed",
@@ -23362,27 +23398,6 @@
 ]
 },
 {
-"league": "soccer/caf.champions",
-"sourceVenueId": "9559",
-"name": "National Sports Complex Pitch 1",
-"city": "Saint Pierre",
-"region": "",
-"countryCode": "MU",
-"catalogVenueId": null,
-"latitude": -20.224902,
-"longitude": 57.538378,
-"firstSeason": 2022,
-"lastSeason": 2025,
-"games": 9,
-"leagues": [
-"soccer/caf.champions",
-"soccer/caf.confed",
-"soccer/caf.nations_qual"
-],
-"coordSource": "approximate (nominatim city-level)",
-"approximate": true
-},
-{
 "league": "soccer/caf.confed",
 "sourceVenueId": "4166",
 "name": "DHL Cape Town Stadium",
@@ -23438,8 +23453,8 @@
 "region": "",
 "countryCode": "CM",
 "catalogVenueId": null,
-"latitude": 5.475548,
-"longitude": 10.552742,
+"latitude": 5.478111,
+"longitude": 10.546556,
 "firstSeason": 2021,
 "lastSeason": 2022,
 "games": 9,
@@ -23447,7 +23462,8 @@
 "soccer/caf.confed",
 "soccer/caf.nations"
 ],
-"coordSource": "osm only"
+"coordSource": "approximate (wikipedia, sources disagree)",
+"approximate": true
 },
 {
 "league": "soccer/caf.nations",
@@ -24553,6 +24569,26 @@
 },
 {
 "league": "soccer/afc.champions",
+"sourceVenueId": "6750",
+"name": "Yadegar-e-Imam Stadium",
+"city": "Tabriz",
+"region": "",
+"countryCode": "IR",
+"catalogVenueId": null,
+"latitude": 38.073861,
+"longitude": 46.297879,
+"firstSeason": 2016,
+"lastSeason": 2024,
+"games": 8,
+"leagues": [
+"soccer/afc.champions",
+"soccer/afc.cup"
+],
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
+"approximate": true
+},
+{
+"league": "soccer/afc.champions",
 "sourceVenueId": "8892",
 "name": "Khao Kradong Stadium",
 "city": "Buriram",
@@ -24653,26 +24689,6 @@
 "coordSource": "osm only"
 },
 {
-"league": "soccer/fifa.worldq.afc",
-"sourceVenueId": "7780",
-"name": "Lao National Stadium KM16",
-"city": "Vientiene",
-"region": "",
-"countryCode": "LA",
-"catalogVenueId": null,
-"latitude": 18.062113,
-"longitude": 102.703974,
-"firstSeason": 2019,
-"lastSeason": 2024,
-"games": 8,
-"leagues": [
-"soccer/afc.cupq",
-"soccer/fifa.worldq.afc"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
-},
-{
 "league": "soccer/caf.confed",
 "sourceVenueId": "w:stade-george-v-curepipe",
 "name": "Stade George V",
@@ -24768,17 +24784,17 @@
 "name": "Khartoum Stadium",
 "city": "Khartoum",
 "region": "",
-"countryCode": "CG",
+"countryCode": "SD",
 "catalogVenueId": null,
-"latitude": -4.355329,
-"longitude": 15.306754,
+"latitude": 15.59836,
+"longitude": 32.51502,
 "firstSeason": 2011,
 "lastSeason": 2019,
 "games": 8,
 "leagues": [
 "soccer/caf.nations_qual"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -25937,25 +25953,6 @@
 "coordSource": "sibling agent (osm)"
 },
 {
-"league": "soccer/afc.cup",
-"sourceVenueId": "w:al-muharraq-stadium-arad",
-"name": "Al Muharraq Stadium",
-"city": "Arad",
-"region": "",
-"countryCode": "HU",
-"catalogVenueId": null,
-"latitude": 46.175379,
-"longitude": 21.319634,
-"firstSeason": 2021,
-"lastSeason": 2023,
-"games": 7,
-"leagues": [
-"soccer/afc.cup"
-],
-"coordSource": "approximate (nominatim city-level)",
-"approximate": true
-},
-{
 "league": "soccer/fifa.worldq.afc",
 "sourceVenueId": "9676",
 "name": "Bashundhara Kings Arena",
@@ -26228,10 +26225,10 @@
 "name": "Campo da ABB",
 "city": "Maputo",
 "region": "",
-"countryCode": "BR",
+"countryCode": "MZ",
 "catalogVenueId": null,
-"latitude": -18.581467,
-"longitude": -48.704188,
+"latitude": -25.966213,
+"longitude": 32.56745,
 "firstSeason": 2024,
 "lastSeason": 2025,
 "games": 7,
@@ -26239,7 +26236,7 @@
 "soccer/caf.champions",
 "soccer/caf.confed"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -26380,6 +26377,32 @@
 "soccer/fifa.w.concacaf.olympicsq"
 ],
 "coordSource": "sibling agent (wikidata)"
+},
+{
+"league": "soccer/concacaf.nations.league",
+"sourceVenueId": "w:synthetic-track-and-field-facility-leonora",
+"name": "Synthetic Track and Field Facility",
+"city": "Leonora",
+"region": "",
+"countryCode": "GY",
+"catalogVenueId": null,
+"latitude": 6.87054,
+"longitude": -58.28844,
+"firstSeason": 2019,
+"lastSeason": 2022,
+"games": 7,
+"leagues": [
+"soccer/concacaf.nations.league"
+],
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
+"aliases": [
+"National Track and Field Centre Leonora"
+],
+"sourceVenueIds": [
+"w:national-track-and-field-centre-leonora-leonora",
+"w:synthetic-track-and-field-facility-leonora"
+],
+"approximate": true
 },
 {
 "league": "soccer/fifa.worldq.concacaf",
@@ -27747,27 +27770,6 @@
 "coordSource": "sibling agent (wikidata)"
 },
 {
-"league": "soccer/afc.cup",
-"sourceVenueId": "6861",
-"name": "Macau Olympic Stadium",
-"city": "Taipa",
-"region": "",
-"countryCode": "CN",
-"catalogVenueId": null,
-"latitude": 22.15473,
-"longitude": 113.55347,
-"firstSeason": 2015,
-"lastSeason": 2023,
-"games": 6,
-"leagues": [
-"soccer/afc.champions",
-"soccer/afc.cup",
-"soccer/fifa.worldq.afc"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
-},
-{
 "league": "soccer/afc.champions",
 "sourceVenueId": "10065",
 "name": "Stadion Majmuasi (SOK Jar)",
@@ -27847,27 +27849,6 @@
 "leagues": [
 "soccer/afc.champions",
 "soccer/afc.cup"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
-},
-{
-"league": "soccer/afc.cupq",
-"sourceVenueId": "w:estadio-campo-desportivo-macau",
-"name": "Estádio Campo Desportivo",
-"city": "Macau",
-"region": "",
-"countryCode": "TL",
-"catalogVenueId": null,
-"latitude": -9.202155,
-"longitude": 124.369504,
-"firstSeason": 2011,
-"lastSeason": 2023,
-"games": 6,
-"leagues": [
-"soccer/afc.cup",
-"soccer/afc.cupq",
-"soccer/fifa.worldq.afc"
 ],
 "coordSource": "approximate (osm, weak name/place evidence)",
 "approximate": true
@@ -28524,17 +28505,17 @@
 "name": "HEB Park",
 "city": "Texas",
 "region": "",
-"countryCode": "US",
+"countryCode": "CR",
 "catalogVenueId": null,
-"latitude": 26.283038,
-"longitude": -98.135638,
+"latitude": 9.936947,
+"longitude": -84.142986,
 "firstSeason": 2018,
 "lastSeason": 2018,
 "games": 6,
 "leagues": [
 "soccer/concacaf.womens.championship"
 ],
-"coordSource": "approximate (nominatim stadium-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -29702,10 +29683,10 @@
 "name": "Walhalla Stadium",
 "city": "Gothenburg",
 "region": "",
-"countryCode": "",
+"countryCode": "SE",
 "catalogVenueId": null,
-"latitude": 40.927732,
-"longitude": -100.16199,
+"latitude": 57.707233,
+"longitude": 11.967017,
 "firstSeason": 2012,
 "lastSeason": 2024,
 "games": 6,
@@ -29713,7 +29694,7 @@
 "soccer/uefa.wchampions",
 "soccer/uefa.wchampions_qual"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "aliases": [
 "Hisingen Arena"
 ],
@@ -30368,25 +30349,6 @@
 "6366",
 "w:montego-bay-sports-complex-montego-bay"
 ]
-},
-{
-"league": "soccer/concacaf.nations.league",
-"sourceVenueId": "w:synthetic-track-and-field-facility-leonora",
-"name": "Synthetic Track and Field Facility",
-"city": "Leonora",
-"region": "",
-"countryCode": "CA",
-"catalogVenueId": null,
-"latitude": 49.153092,
-"longitude": -122.903353,
-"firstSeason": 2019,
-"lastSeason": 2019,
-"games": 5,
-"leagues": [
-"soccer/concacaf.nations.league"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
 },
 {
 "league": "soccer/concacaf.nations.league",
@@ -31947,6 +31909,25 @@
 "coordSource": "local:seen:sched-soccer-europe-west"
 },
 {
+"league": "soccer/uefa.weuroq",
+"sourceVenueId": "w:m-meskhi-ii-stadium-tbilisi",
+"name": "M. Meskhi II Stadium",
+"city": "Tbilisi",
+"region": "",
+"countryCode": "GE",
+"catalogVenueId": null,
+"latitude": 41.693459,
+"longitude": 44.801449,
+"firstSeason": 2023,
+"lastSeason": 2023,
+"games": 5,
+"leagues": [
+"soccer/uefa.weuroq"
+],
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
+"approximate": true
+},
+{
 "league": "soccer/afc.cup",
 "sourceVenueId": "6574",
 "name": "Huanglong Sports Centre",
@@ -32112,32 +32093,6 @@
 "soccer/afc.cup"
 ],
 "coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
-},
-{
-"league": "soccer/afc.champions",
-"sourceVenueId": "8042",
-"name": "Daegu iM Bank Park",
-"city": "Daegu",
-"region": "",
-"countryCode": "KR",
-"catalogVenueId": null,
-"latitude": 35.881295,
-"longitude": 128.587414,
-"firstSeason": 2019,
-"lastSeason": 2022,
-"games": 4,
-"leagues": [
-"soccer/afc.champions"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"aliases": [
-"DGB Daegu Bank Park"
-],
-"sourceVenueIds": [
-"8042",
-"w:dgb-daegu-bank-park-daegu"
-],
 "approximate": true
 },
 {
@@ -32403,6 +32358,26 @@
 "soccer/caf.confed"
 ],
 "coordSource": "osm only"
+},
+{
+"league": "soccer/caf.champions",
+"sourceVenueId": "w:al-ahly-we-al-salam-stadium-cairo",
+"name": "Al Ahly WE Al Salam Stadium",
+"city": "Cairo",
+"region": "",
+"countryCode": "EG",
+"catalogVenueId": null,
+"latitude": 30.044388,
+"longitude": 31.235726,
+"firstSeason": 2021,
+"lastSeason": 2022,
+"games": 4,
+"leagues": [
+"soccer/caf.champions",
+"soccer/caf.confed"
+],
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
+"approximate": true
 },
 {
 "league": "soccer/caf.champions",
@@ -32733,25 +32708,6 @@
 "soccer/concacaf.nations.league"
 ],
 "coordSource": "osm only"
-},
-{
-"league": "soccer/concacaf.nations.league",
-"sourceVenueId": "w:raymond-e-guishard-stadium-the-valley",
-"name": "Raymond E. Guishard Stadium",
-"city": "The Valley",
-"region": "",
-"countryCode": "GB",
-"catalogVenueId": null,
-"latitude": 51.10432,
-"longitude": -1.785846,
-"firstSeason": 2022,
-"lastSeason": 2022,
-"games": 4,
-"leagues": [
-"soccer/concacaf.nations.league"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
 },
 {
 "league": "soccer/concacaf.nations.league",
@@ -33255,10 +33211,10 @@
 "name": "Inđija Stadium",
 "city": "Inđija",
 "region": "",
-"countryCode": "",
+"countryCode": "RS",
 "catalogVenueId": null,
-"latitude": 22.351115,
-"longitude": 78.667743,
+"latitude": 45.050378,
+"longitude": 20.090019,
 "firstSeason": 2011,
 "lastSeason": 2013,
 "games": 4,
@@ -33266,7 +33222,7 @@
 "soccer/fifa.wworldq.uefa",
 "soccer/uefa.weuroq"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -34064,7 +34020,7 @@
 "name": "OSK Brestskiy",
 "city": "",
 "region": "",
-"countryCode": "PL",
+"countryCode": "BY",
 "catalogVenueId": null,
 "latitude": 52.08972,
 "longitude": 23.68375,
@@ -34544,17 +34500,17 @@
 "name": "Leoforos Alexandras Stadium",
 "city": "Athens",
 "region": "",
-"countryCode": "US",
+"countryCode": "GR",
 "catalogVenueId": null,
-"latitude": 33.959768,
-"longitude": -83.376398,
+"latitude": 37.975565,
+"longitude": 23.734832,
 "firstSeason": 2011,
 "lastSeason": 2019,
 "games": 4,
 "leagues": [
 "soccer/uefa.weuroq"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "aliases": [
 "Yiannis Pathiakakis Stadium",
 "Acharnes Stadium"
@@ -34800,6 +34756,25 @@
 "soccer/afc.champions"
 ],
 "coordSource": "approximate (manual (approximate; place-level knowledge, not independently verified))",
+"approximate": true
+},
+{
+"league": "soccer/afc.champions",
+"sourceVenueId": "8042",
+"name": "Daegu iM Bank Park",
+"city": "Daegu",
+"region": "",
+"countryCode": "TH",
+"catalogVenueId": null,
+"latitude": 13.728641,
+"longitude": 100.514222,
+"firstSeason": 2019,
+"lastSeason": 2019,
+"games": 3,
+"leagues": [
+"soccer/afc.champions"
+],
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -35350,10 +35325,10 @@
 "name": "Remo Stars Stadium",
 "city": "Sagamu",
 "region": "",
-"countryCode": "KE",
+"countryCode": "NG",
 "catalogVenueId": null,
-"latitude": -2.292284,
-"longitude": 40.912001,
+"latitude": 6.847716,
+"longitude": 3.644055,
 "firstSeason": 2023,
 "lastSeason": 2024,
 "games": 3,
@@ -35361,7 +35336,7 @@
 "soccer/caf.champions",
 "soccer/caf.confed"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -35541,25 +35516,6 @@
 "w:estadio-da-machava-maputo",
 "w:estadio-da-machava-matola"
 ]
-},
-{
-"league": "soccer/caf.nations_qual",
-"sourceVenueId": "w:complexe-sportif-de-cote-d-or-saint-pierre",
-"name": "Complexe Sportif de Côte d'Or",
-"city": "Saint Pierre",
-"region": "",
-"countryCode": "FR",
-"catalogVenueId": null,
-"latitude": 47.393437,
-"longitude": 5.144408,
-"firstSeason": 2022,
-"lastSeason": 2022,
-"games": 3,
-"leagues": [
-"soccer/caf.nations_qual"
-],
-"coordSource": "approximate (osm, sources disagree)",
-"approximate": true
 },
 {
 "league": "soccer/caf.nations_qual",
@@ -35804,6 +35760,25 @@
 "soccer/concacaf.nations.league"
 ],
 "coordSource": "osm only"
+},
+{
+"league": "soccer/concacaf.nations.league",
+"sourceVenueId": "w:nicaragua-national-football-stadium-managua",
+"name": "Nicaragua National Football Stadium",
+"city": "Managua",
+"region": "",
+"countryCode": "NI",
+"catalogVenueId": null,
+"latitude": 12.154712,
+"longitude": -86.273725,
+"firstSeason": 2019,
+"lastSeason": 2019,
+"games": 3,
+"leagues": [
+"soccer/concacaf.nations.league"
+],
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
+"approximate": true
 },
 {
 "league": "soccer/concacaf.nations.league",
@@ -36540,6 +36515,32 @@
 "soccer/uefa.europa"
 ],
 "coordSource": "local:schedules/sched-soccer-europe-east/missing-venues.json"
+},
+{
+"league": "soccer/fifa.wworldq.uefa",
+"sourceVenueId": "9100",
+"name": "Sportivnyj Gorodok Luzhniki",
+"city": "Moscow",
+"region": "",
+"countryCode": "RU",
+"catalogVenueId": null,
+"latitude": 55.625578,
+"longitude": 37.606392,
+"firstSeason": 2013,
+"lastSeason": 2021,
+"games": 3,
+"leagues": [
+"soccer/fifa.wworldq.uefa"
+],
+"coordSource": "approximate (nominatim city-level)",
+"aliases": [
+"Krylia Sovetov"
+],
+"sourceVenueIds": [
+"9100",
+"w:krylia-sovetov-moscow"
+],
+"approximate": true
 },
 {
 "league": "soccer/fifa.wworldq.uefa",
@@ -38270,17 +38271,17 @@
 "name": "Sports Park",
 "city": "Lendava",
 "region": "",
-"countryCode": "SI",
+"countryCode": "FI",
 "catalogVenueId": null,
-"latitude": 46.563964,
-"longitude": 16.452647,
+"latitude": 62.614974,
+"longitude": 25.713397,
 "firstSeason": 2013,
 "lastSeason": 2013,
 "games": 3,
 "leagues": [
 "soccer/uefa.wchampions"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -38692,17 +38693,17 @@
 "name": "Sport Complex",
 "city": "Sevastopol",
 "region": "",
-"countryCode": "UZ",
+"countryCode": "UA",
 "catalogVenueId": null,
-"latitude": 41.321813,
-"longitude": 69.23148,
+"latitude": 44.605443,
+"longitude": 33.522084,
 "firstSeason": 2011,
 "lastSeason": 2011,
 "games": 3,
 "leagues": [
 "soccer/uefa.weuroq"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -39165,10 +39166,10 @@
 "name": "Sheikh Khalifa International Stadium",
 "city": "Al Ain",
 "region": "",
-"countryCode": "BD",
+"countryCode": "SA",
 "catalogVenueId": null,
-"latitude": 25.931947,
-"longitude": 88.84541,
+"latitude": 28.351525,
+"longitude": 36.489372,
 "firstSeason": 2011,
 "lastSeason": 2014,
 "games": 2,
@@ -39176,7 +39177,26 @@
 "soccer/afc.cupq",
 "soccer/fifa.worldq.afc"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
+"approximate": true
+},
+{
+"league": "soccer/afc.cupq",
+"sourceVenueId": "w:lao-national-stadium-vientiane",
+"name": "Lao National Stadium",
+"city": "Vientiane",
+"region": "",
+"countryCode": "LA",
+"catalogVenueId": null,
+"latitude": 17.964099,
+"longitude": 102.613371,
+"firstSeason": 2016,
+"lastSeason": 2016,
+"games": 2,
+"leagues": [
+"soccer/afc.cupq"
+],
+"coordSource": "approximate (nominatim city-level)",
 "approximate": true
 },
 {
@@ -39203,10 +39223,10 @@
 "name": "Dora International Stadium",
 "city": "Hebron",
 "region": "",
-"countryCode": "AU",
+"countryCode": "PS",
 "catalogVenueId": null,
-"latitude": -37.646107,
-"longitude": 145.058251,
+"latitude": 31.528902,
+"longitude": 35.094487,
 "firstSeason": 2015,
 "lastSeason": 2016,
 "games": 2,
@@ -39214,7 +39234,7 @@
 "soccer/afc.cupq",
 "soccer/fifa.worldq.afc"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -39242,17 +39262,17 @@
 "name": "Stade d’Amitié",
 "city": "Praslin",
 "region": "",
-"countryCode": "FR",
+"countryCode": "MU",
 "catalogVenueId": null,
-"latitude": 48.04588,
-"longitude": 4.196909,
+"latitude": -20.153446,
+"longitude": 57.644765,
 "firstSeason": 2017,
 "lastSeason": 2018,
 "games": 2,
 "leagues": [
 "soccer/caf.champions"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -39346,6 +39366,32 @@
 "soccer/caf.champions"
 ],
 "coordSource": "osm only"
+},
+{
+"league": "soccer/caf.champions",
+"sourceVenueId": "10558",
+"name": "28 March Stadium",
+"city": "Benghazi",
+"region": "",
+"countryCode": "LY",
+"catalogVenueId": null,
+"latitude": 32.120017,
+"longitude": 20.081217,
+"firstSeason": 2023,
+"lastSeason": 2025,
+"games": 2,
+"leagues": [
+"soccer/caf.champions",
+"soccer/fifa.worldq.caf"
+],
+"coordSource": "sibling agent (city-centroid(approx))",
+"aliases": [
+"First Statement Stadium"
+],
+"sourceVenueIds": [
+"10558",
+"w:first-statement-stadium-benghazi"
+]
 },
 {
 "league": "soccer/caf.champions",
@@ -39914,17 +39960,17 @@
 "name": "Wildey Astro Turf",
 "city": "Wildey",
 "region": "",
-"countryCode": "IE",
+"countryCode": "BB",
 "catalogVenueId": null,
-"latitude": 53.515575,
-"longitude": -6.55214,
+"latitude": 13.092435,
+"longitude": -59.584313,
 "firstSeason": 2019,
 "lastSeason": 2019,
 "games": 2,
 "leagues": [
 "soccer/concacaf.nations.league"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -39947,25 +39993,6 @@
 "aliases": [
 "Stade Georges Chaumet"
 ]
-},
-{
-"league": "soccer/concacaf.nations.league",
-"sourceVenueId": "w:national-track-and-field-centre-leonora-leonora",
-"name": "National Track and Field Centre Leonora",
-"city": "Leonora",
-"region": "",
-"countryCode": "US",
-"catalogVenueId": null,
-"latitude": 40.808212,
-"longitude": -77.850246,
-"firstSeason": 2022,
-"lastSeason": 2022,
-"games": 2,
-"leagues": [
-"soccer/concacaf.nations.league"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
 },
 {
 "league": "soccer/concacaf.nations.league",
@@ -40462,17 +40489,17 @@
 "name": "Cicero Stadium",
 "city": "Asmara",
 "region": "",
-"countryCode": "ER",
+"countryCode": "MA",
 "catalogVenueId": null,
-"latitude": 15.349297,
-"longitude": 38.921179,
+"latitude": 32.599875,
+"longitude": -6.275633,
 "firstSeason": 2011,
 "lastSeason": 2015,
 "games": 2,
 "leagues": [
 "soccer/fifa.worldq.caf"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -41297,10 +41324,10 @@
 "name": "Minor Sport Arena Petrovsky",
 "city": "Saint Petersburg",
 "region": "",
-"countryCode": "US",
+"countryCode": "RU",
 "catalogVenueId": null,
-"latitude": 27.771226,
-"longitude": -82.634026,
+"latitude": 59.960674,
+"longitude": 30.158655,
 "firstSeason": 2015,
 "lastSeason": 2017,
 "games": 2,
@@ -41308,7 +41335,7 @@
 "soccer/fifa.wworldq.uefa",
 "soccer/uefa.weuroq"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -41466,25 +41493,6 @@
 "soccer/uefa.weuroq"
 ],
 "coordSource": "osm only"
-},
-{
-"league": "soccer/fifa.wworldq.uefa",
-"sourceVenueId": "9100",
-"name": "Sportivnyj Gorodok Luzhniki",
-"city": "Moscow",
-"region": "",
-"countryCode": "RU",
-"catalogVenueId": null,
-"latitude": 55.625578,
-"longitude": 37.606392,
-"firstSeason": 2021,
-"lastSeason": 2021,
-"games": 2,
-"leagues": [
-"soccer/fifa.wworldq.uefa"
-],
-"coordSource": "approximate (nominatim city-level)",
-"approximate": true
 },
 {
 "league": "soccer/fifa.wworldq.uefa",
@@ -41959,17 +41967,17 @@
 "name": "Stadyen Dask Brestski",
 "city": "Brest",
 "region": "",
-"countryCode": "FR",
+"countryCode": "BY",
 "catalogVenueId": null,
-"latitude": 48.391232,
-"longitude": -4.485114,
+"latitude": 52.093751,
+"longitude": 23.685185,
 "firstSeason": 2020,
 "lastSeason": 2020,
 "games": 2,
 "leagues": [
 "soccer/uefa.champions_qual"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -43599,21 +43607,47 @@
 },
 {
 "league": "soccer/uefa.weuroq",
-"sourceVenueId": "w:stadion-srem-jakovo-jakovo",
-"name": "Stadion Srem Jakovo",
-"city": "Jakovo",
+"sourceVenueId": "w:yuri-gagarin-stadium-chernihiv",
+"name": "Yuri Gagarin Stadium",
+"city": "Chernihiv",
 "region": "",
-"countryCode": "",
+"countryCode": "UA",
 "catalogVenueId": null,
-"latitude": 56.971491,
-"longitude": 27.707636,
+"latitude": 51.272593,
+"longitude": 31.741723,
 "firstSeason": 2011,
 "lastSeason": 2011,
 "games": 2,
 "leagues": [
 "soccer/uefa.weuroq"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
+"aliases": [
+"Olympic sports training centre Chernihiv"
+],
+"sourceVenueIds": [
+"w:olympic-sports-training-centre-chernihiv-chernihiv",
+"w:yuri-gagarin-stadium-chernihiv"
+],
+"approximate": true
+},
+{
+"league": "soccer/uefa.weuroq",
+"sourceVenueId": "w:stadion-srem-jakovo-jakovo",
+"name": "Stadion Srem Jakovo",
+"city": "Jakovo",
+"region": "",
+"countryCode": "RS",
+"catalogVenueId": null,
+"latitude": 44.752281,
+"longitude": 20.251994,
+"firstSeason": 2011,
+"lastSeason": 2011,
+"games": 2,
+"leagues": [
+"soccer/uefa.weuroq"
+],
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -43937,25 +43971,6 @@
 },
 {
 "league": "soccer/afc.champions",
-"sourceVenueId": "w:brisbane-stadium-brisbane",
-"name": "Brisbane Stadium",
-"city": "Brisbane",
-"region": "",
-"countryCode": "GB",
-"catalogVenueId": null,
-"latitude": 51.560071,
-"longitude": -0.0126,
-"firstSeason": 2017,
-"lastSeason": 2017,
-"games": 1,
-"leagues": [
-"soccer/afc.champions"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
-},
-{
-"league": "soccer/afc.champions",
 "sourceVenueId": "w:thung-thalay-luang-stadium-sukhothai",
 "name": "Thung Thalay Luang Stadium",
 "city": "Sukhothai",
@@ -44072,17 +44087,17 @@
 "name": "PAT Stadium",
 "city": "Bangkok",
 "region": "",
-"countryCode": "US",
+"countryCode": "TH",
 "catalogVenueId": null,
-"latitude": 28.805322,
-"longitude": -81.872398,
+"latitude": 13.71521,
+"longitude": 100.559711,
 "firstSeason": 2020,
 "lastSeason": 2020,
 "games": 1,
 "leagues": [
 "soccer/afc.champions"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -44159,6 +44174,24 @@
 ],
 "coordSource": "approximate (osm, sources disagree)",
 "approximate": true
+},
+{
+"league": "soccer/afc.champions",
+"sourceVenueId": "w:dgb-daegu-bank-park-daegu",
+"name": "DGB Daegu Bank Park",
+"city": "Daegu",
+"region": "",
+"countryCode": "KR",
+"catalogVenueId": null,
+"latitude": 35.881295,
+"longitude": 128.587989,
+"firstSeason": 2022,
+"lastSeason": 2022,
+"games": 1,
+"leagues": [
+"soccer/afc.champions"
+],
+"coordSource": "osm+nominatim agree (0m)"
 },
 {
 "league": "soccer/afc.champions",
@@ -44523,25 +44556,6 @@
 },
 {
 "league": "soccer/afc.cupq",
-"sourceVenueId": "w:centro-desportivo-olimpico-estadio-taipa",
-"name": "Centro Desportivo Olímpico - Estádio",
-"city": "Taipa",
-"region": "",
-"countryCode": "CN",
-"catalogVenueId": null,
-"latitude": 22.155272,
-"longitude": 113.552667,
-"firstSeason": 2024,
-"lastSeason": 2024,
-"games": 1,
-"leagues": [
-"soccer/afc.cupq"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
-},
-{
-"league": "soccer/afc.cupq",
 "sourceVenueId": "w:jawaharlal-nehru-stadium-shillong",
 "name": "Jawaharlal Nehru Stadium",
 "city": "Shillong",
@@ -44764,21 +44778,21 @@
 },
 {
 "league": "soccer/caf.champions",
-"sourceVenueId": "w:first-statement-stadium-benghazi",
-"name": "First Statement Stadium",
-"city": "Benghazi",
+"sourceVenueId": "w:cairo-military-academy-stadium-cairo-egypt",
+"name": "Cairo Military Academy Stadium",
+"city": "Cairo",
 "region": "",
-"countryCode": "AU",
+"countryCode": "",
 "catalogVenueId": null,
-"latitude": -28.007303,
-"longitude": 153.367443,
-"firstSeason": 2025,
-"lastSeason": 2025,
+"latitude": 37.005796,
+"longitude": -89.177245,
+"firstSeason": 2020,
+"lastSeason": 2020,
 "games": 1,
 "leagues": [
 "soccer/caf.champions"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim city-level)",
 "approximate": true
 },
 {
@@ -45064,17 +45078,17 @@
 "name": "National Complex",
 "city": "Paynesville",
 "region": "",
-"countryCode": "",
+"countryCode": "LR",
 "catalogVenueId": null,
-"latitude": 45.380469,
-"longitude": -94.711892,
+"latitude": 6.272411,
+"longitude": -10.69511,
 "firstSeason": 2011,
 "lastSeason": 2011,
 "games": 1,
 "leagues": [
 "soccer/caf.nations_qual"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -46127,17 +46141,17 @@
 "name": "Amman International Stadium, Amman",
 "city": "Jordan.",
 "region": "",
-"countryCode": "PH",
+"countryCode": "PS",
 "catalogVenueId": null,
-"latitude": 10.595964,
-"longitude": 122.587793,
+"latitude": 32.31889,
+"longitude": 35.554569,
 "firstSeason": 2015,
 "lastSeason": 2015,
 "games": 1,
 "leagues": [
 "soccer/fifa.worldq.afc"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -46280,6 +46294,24 @@
 "catalogVenueId": null,
 "latitude": 37.319314,
 "longitude": 126.818766,
+"firstSeason": 2019,
+"lastSeason": 2019,
+"games": 1,
+"leagues": [
+"soccer/fifa.worldq.afc"
+],
+"coordSource": "sibling agent (wikidata)"
+},
+{
+"league": "soccer/fifa.worldq.afc",
+"sourceVenueId": "8426",
+"name": "Imam Reza Stadium",
+"city": "Mashhad",
+"region": "",
+"countryCode": "IR",
+"catalogVenueId": null,
+"latitude": 36.326111,
+"longitude": 59.570278,
 "firstSeason": 2019,
 "lastSeason": 2019,
 "games": 1,
@@ -46617,24 +46649,6 @@
 "soccer/fifa.worldq.caf"
 ],
 "coordSource": "sibling agent (osm)"
-},
-{
-"league": "soccer/fifa.worldq.caf",
-"sourceVenueId": "10558",
-"name": "28 March Stadium",
-"city": "Benghazi",
-"region": "",
-"countryCode": "LY",
-"catalogVenueId": null,
-"latitude": 32.120017,
-"longitude": 20.081217,
-"firstSeason": 2023,
-"lastSeason": 2023,
-"games": 1,
-"leagues": [
-"soccer/fifa.worldq.caf"
-],
-"coordSource": "sibling agent (city-centroid(approx))"
 },
 {
 "league": "soccer/fifa.worldq.concacaf",
@@ -47632,36 +47646,17 @@
 "name": "FFU Training Complex",
 "city": "Kyiv",
 "region": "",
-"countryCode": "US",
+"countryCode": "UA",
 "catalogVenueId": null,
-"latitude": 35.796727,
-"longitude": -78.892516,
+"latitude": 50.450034,
+"longitude": 30.524136,
 "firstSeason": 2013,
 "lastSeason": 2013,
 "games": 1,
 "leagues": [
 "soccer/fifa.wworldq.uefa"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
-},
-{
-"league": "soccer/fifa.wworldq.uefa",
-"sourceVenueId": "w:krylia-sovetov-moscow",
-"name": "Krylia Sovetov",
-"city": "Moscow",
-"region": "",
-"countryCode": "US",
-"catalogVenueId": null,
-"latitude": 46.732388,
-"longitude": -117.000165,
-"firstSeason": 2013,
-"lastSeason": 2013,
-"games": 1,
-"leagues": [
-"soccer/fifa.wworldq.uefa"
-],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -51349,25 +51344,6 @@
 },
 {
 "league": "soccer/uefa.weuroq",
-"sourceVenueId": "w:yuri-gagarin-stadium-chernihiv",
-"name": "Yuri Gagarin Stadium",
-"city": "Chernihiv",
-"region": "",
-"countryCode": "GB",
-"catalogVenueId": null,
-"latitude": 51.476765,
-"longitude": -0.000651,
-"firstSeason": 2011,
-"lastSeason": 2011,
-"games": 1,
-"leagues": [
-"soccer/uefa.weuroq"
-],
-"coordSource": "approximate (osm, weak name/place evidence)",
-"approximate": true
-},
-{
-"league": "soccer/uefa.weuroq",
 "sourceVenueId": "w:im-ojca-wladyslawa-augustynka-nowy-sacz",
 "name": "im. Ojca Władysława Augustynka",
 "city": "Nowy Sącz",
@@ -51630,25 +51606,6 @@
 "soccer/uefa.weuroq"
 ],
 "coordSource": "osm+nominatim agree (0m)"
-},
-{
-"league": "soccer/uefa.weuroq",
-"sourceVenueId": "w:olympic-sports-training-centre-chernihiv-chernihiv",
-"name": "Olympic sports training centre Chernihiv",
-"city": "Chernihiv",
-"region": "",
-"countryCode": "UA",
-"catalogVenueId": null,
-"latitude": 51.272593,
-"longitude": 31.741723,
-"firstSeason": 2011,
-"lastSeason": 2011,
-"games": 1,
-"leagues": [
-"soccer/uefa.weuroq"
-],
-"coordSource": "approximate (nominatim city-level)",
-"approximate": true
 },
 {
 "league": "soccer/uefa.weuroq",
@@ -52270,17 +52227,17 @@
 "name": "Stadion FK Kolubara",
 "city": "Belgrade",
 "region": "",
-"countryCode": "",
+"countryCode": "RS",
 "catalogVenueId": null,
-"latitude": 45.776288,
-"longitude": -111.177168,
+"latitude": 44.38385,
+"longitude": 20.266318,
 "firstSeason": 2019,
 "lastSeason": 2019,
 "games": 1,
 "leagues": [
 "soccer/uefa.weuroq"
 ],
-"coordSource": "approximate (nominatim city-level)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -52325,17 +52282,17 @@
 "name": "Football Centre FRF",
 "city": "Mogoșoaia",
 "region": "",
-"countryCode": "GB",
+"countryCode": "RO",
 "catalogVenueId": null,
-"latitude": 55.975842,
-"longitude": -4.230037,
+"latitude": 44.529735,
+"longitude": 26.000714,
 "firstSeason": 2019,
 "lastSeason": 2019,
 "games": 1,
 "leagues": [
 "soccer/uefa.weuroq"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {
@@ -52417,17 +52374,17 @@
 "name": "FC Kairat Academy",
 "city": "Almaty",
 "region": "",
-"countryCode": "GB",
+"countryCode": "KZ",
 "catalogVenueId": null,
-"latitude": 51.421547,
-"longitude": -0.031208,
+"latitude": 43.236392,
+"longitude": 76.945728,
 "firstSeason": 2023,
 "lastSeason": 2023,
 "games": 1,
 "leagues": [
 "soccer/uefa.weuroq"
 ],
-"coordSource": "approximate (osm, weak name/place evidence)",
+"coordSource": "approximate (nominatim, country re-checked from home teams)",
 "approximate": true
 },
 {

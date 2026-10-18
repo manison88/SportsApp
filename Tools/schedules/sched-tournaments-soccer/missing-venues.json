@@ -1350,32 +1350,6 @@
 "opened": null
 },
 {
-"id": "stade-louis-ii-monaco",
-"name": "Stade Louis II",
-"aliases": [
-"M. Meskhi II Stadium"
-],
-"city": "Monaco",
-"region": null,
-"country": "France",
-"countryCode": "FR",
-"latitude": 43.727553,
-"longitude": 7.415472,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/uefa.champions",
-"soccer/uefa.europa",
-"soccer/uefa.europa.conf",
-"soccer/uefa.weuroq"
-],
-"homeTeams": [],
-"timeZone": "Europe/Paris",
-"capacity": null,
-"opened": null
-},
-{
 "id": "khalifa-international-stadium-doha",
 "name": "Khalifa International Stadium",
 "aliases": [],
@@ -1678,6 +1652,29 @@
 "opened": null
 },
 {
+"id": "stade-louis-ii-monaco",
+"name": "Stade Louis II",
+"aliases": [],
+"city": "Monaco",
+"region": null,
+"country": "France",
+"countryCode": "FR",
+"latitude": 43.727553,
+"longitude": 7.415472,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/uefa.champions",
+"soccer/uefa.europa",
+"soccer/uefa.europa.conf"
+],
+"homeTeams": [],
+"timeZone": "Europe/Paris",
+"capacity": null,
+"opened": null
+},
+{
 "id": "ahmad-bin-ali-stadium-doha",
 "name": "Ahmad bin Ali Stadium",
 "aliases": [],
@@ -1755,31 +1752,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Asia/Tashkent",
-"capacity": null,
-"opened": null
-},
-{
-"id": "park-hall-oswestry",
-"name": "Park Hall",
-"aliases": [
-"Sports Hall"
-],
-"city": "Oswestry",
-"region": "Wales",
-"country": "United Kingdom",
-"countryCode": "GB",
-"latitude": 52.8759,
-"longitude": -3.02631,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.champions",
-"soccer/uefa.champions",
-"soccer/uefa.europa"
-],
-"homeTeams": [],
-"timeZone": "Europe/London",
 "capacity": null,
 "opened": null
 },
@@ -2931,6 +2903,28 @@
 ],
 "homeTeams": [],
 "timeZone": "Africa/Abidjan",
+"capacity": null,
+"opened": null
+},
+{
+"id": "park-hall-oswestry",
+"name": "Park Hall",
+"aliases": [],
+"city": "Oswestry",
+"region": "Wales",
+"country": "United Kingdom",
+"countryCode": "GB",
+"latitude": 52.8759,
+"longitude": -3.02631,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/uefa.champions",
+"soccer/uefa.europa"
+],
+"homeTeams": [],
+"timeZone": "Europe/London",
 "capacity": null,
 "opened": null
 },
@@ -5232,6 +5226,30 @@
 "opened": null
 },
 {
+"id": "sheikh-ali-bin-mohammed-al-khalifa-stadium-muharraq",
+"name": "Sheikh Ali Bin Mohammed Al Khalifa Stadium",
+"aliases": [
+"Al Muharraq Stadium"
+],
+"city": "Muharraq",
+"region": null,
+"country": "Bahrain",
+"countryCode": "BH",
+"latitude": 26.257767,
+"longitude": 50.627532,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/afc.cup",
+"soccer/fifa.worldq.afc"
+],
+"homeTeams": [],
+"timeZone": "Asia/Qatar",
+"capacity": null,
+"opened": null
+},
+{
 "id": "mahamasina-municipal-stadium-antananarivo",
 "name": "Mahamasina Municipal Stadium",
 "aliases": [
@@ -5482,6 +5500,32 @@
 ],
 "homeTeams": [],
 "timeZone": "Europe/London",
+"capacity": null,
+"opened": null
+},
+{
+"id": "suncorp-stadium-brisbane",
+"name": "Suncorp Stadium",
+"aliases": [
+"Brisbane Stadium"
+],
+"city": "Brisbane",
+"region": null,
+"country": "Australia",
+"countryCode": "AU",
+"latitude": -27.464722,
+"longitude": 153.009444,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/afc.asian.cup",
+"soccer/afc.champions",
+"soccer/fifa.worldq.afc",
+"soccer/fifa.wwc"
+],
+"homeTeams": [],
+"timeZone": "Australia/Brisbane",
 "capacity": null,
 "opened": null
 },
@@ -5852,30 +5896,6 @@
 "opened": null
 },
 {
-"id": "suncorp-stadium-brisbane",
-"name": "Suncorp Stadium",
-"aliases": [],
-"city": "Brisbane",
-"region": null,
-"country": "Australia",
-"countryCode": "AU",
-"latitude": -27.464722,
-"longitude": 153.009444,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.asian.cup",
-"soccer/afc.champions",
-"soccer/fifa.worldq.afc",
-"soccer/fifa.wwc"
-],
-"homeTeams": [],
-"timeZone": "Australia/Brisbane",
-"capacity": null,
-"opened": null
-},
-{
 "id": "jinan-olympic-sports-center-jinan",
 "name": "Jinan Olympic Sports Center",
 "aliases": [],
@@ -6133,6 +6153,30 @@
 ],
 "homeTeams": [],
 "timeZone": "America/Bahia_Banderas",
+"capacity": null,
+"opened": null
+},
+{
+"id": "raymond-e-guishard-technical-centre-the-valley",
+"name": "Raymond E. Guishard Technical Centre",
+"aliases": [
+"Raymond E. Guishard Stadium"
+],
+"city": "The Valley",
+"region": null,
+"country": "Anguilla",
+"countryCode": "AI",
+"latitude": 18.214586,
+"longitude": -63.051776,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/concacaf.nations.league",
+"soccer/fifa.worldq.concacaf"
+],
+"homeTeams": [],
+"timeZone": "America/Puerto_Rico",
 "capacity": null,
 "opened": null
 },
@@ -7796,31 +7840,6 @@
 "opened": null
 },
 {
-"id": "petro-sport-stadium-cairo",
-"name": "Petro Sport Stadium",
-"aliases": [
-"Cairo Military Academy Stadium",
-"Al Ahly WE Al Salam Stadium"
-],
-"city": "Cairo",
-"region": null,
-"country": "Unknown",
-"countryCode": "XX",
-"latitude": 37.005796,
-"longitude": -89.177245,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/caf.champions",
-"soccer/caf.confed"
-],
-"homeTeams": [],
-"timeZone": "UTC",
-"capacity": null,
-"opened": null
-},
-{
 "id": "stade-el-hadj-hassan-gouled-djibouti-city",
 "name": "Stade El Hadj Hassan Gouled",
 "aliases": [
@@ -7894,28 +7913,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Africa/Abidjan",
-"capacity": null,
-"opened": null
-},
-{
-"id": "raymond-e-guishard-technical-centre-the-valley",
-"name": "Raymond E. Guishard Technical Centre",
-"aliases": [],
-"city": "The Valley",
-"region": null,
-"country": "Anguilla",
-"countryCode": "AI",
-"latitude": 18.214586,
-"longitude": -63.051776,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/concacaf.nations.league",
-"soccer/fifa.worldq.concacaf"
-],
-"homeTeams": [],
-"timeZone": "America/Puerto_Rico",
 "capacity": null,
 "opened": null
 },
@@ -8231,28 +8228,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Asia/Tokyo",
-"capacity": null,
-"opened": null
-},
-{
-"id": "sheikh-ali-bin-mohammed-al-khalifa-stadium-muharraq",
-"name": "Sheikh Ali Bin Mohammed Al Khalifa Stadium",
-"aliases": [],
-"city": "Muharraq",
-"region": null,
-"country": "Bahrain",
-"countryCode": "BH",
-"latitude": 26.257767,
-"longitude": 50.627532,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.cup",
-"soccer/fifa.worldq.afc"
-],
-"homeTeams": [],
-"timeZone": "Asia/Qatar",
 "capacity": null,
 "opened": null
 },
@@ -8626,15 +8601,39 @@
 "opened": null
 },
 {
+"id": "lao-national-stadium-km16-vientiene",
+"name": "Lao National Stadium KM16",
+"aliases": [
+"New Laos National Stadium"
+],
+"city": "Vientiene",
+"region": null,
+"country": "Laos",
+"countryCode": "LA",
+"latitude": 18.062113,
+"longitude": 102.703974,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/afc.cupq",
+"soccer/fifa.worldq.afc"
+],
+"homeTeams": [],
+"timeZone": "Asia/Bangkok",
+"capacity": null,
+"opened": null
+},
+{
 "id": "stade-linite-victoria",
 "name": "Stade Linité",
 "aliases": [],
 "city": "Victoria",
 "region": null,
-"country": "Unknown",
-"countryCode": "XX",
-"latitude": -36.59861,
-"longitude": 144.678005,
+"country": "Mauritius",
+"countryCode": "MU",
+"latitude": -20.162764,
+"longitude": 57.49874,
 "sports": [
 "soccer"
 ],
@@ -8644,7 +8643,7 @@
 "soccer/fifa.worldq.caf"
 ],
 "homeTeams": [],
-"timeZone": "UTC",
+"timeZone": "Indian/Mauritius",
 "capacity": null,
 "opened": null
 },
@@ -9179,30 +9178,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Africa/Bissau",
-"capacity": null,
-"opened": null
-},
-{
-"id": "st-mary-s-stadium-kitende",
-"name": "St. Mary's Stadium",
-"aliases": [
-"St. Mary's Stadium-Kitende"
-],
-"city": "Kitende",
-"region": null,
-"country": "Uganda",
-"countryCode": "UG",
-"latitude": 0.197732,
-"longitude": 32.532263,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/caf.champions",
-"soccer/caf.confed"
-],
-"homeTeams": [],
-"timeZone": "Africa/Nairobi",
 "capacity": null,
 "opened": null
 },
@@ -9762,6 +9737,28 @@
 ],
 "homeTeams": [],
 "timeZone": "Europe/Paris",
+"capacity": null,
+"opened": null
+},
+{
+"id": "st-mary-s-stadium-kitende-entebbe",
+"name": "St. Mary's Stadium-Kitende",
+"aliases": [],
+"city": "Entebbe",
+"region": null,
+"country": "Uganda",
+"countryCode": "UG",
+"latitude": 0.197732,
+"longitude": 32.532263,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/caf.champions",
+"soccer/caf.confed"
+],
+"homeTeams": [],
+"timeZone": "Africa/Nairobi",
 "capacity": null,
 "opened": null
 },
@@ -10405,6 +10402,28 @@
 ],
 "homeTeams": [],
 "timeZone": "Asia/Bangkok",
+"capacity": null,
+"opened": null
+},
+{
+"id": "petro-sport-stadium-cairo",
+"name": "Petro Sport Stadium",
+"aliases": [],
+"city": "Cairo",
+"region": null,
+"country": "Tunisia",
+"countryCode": "TN",
+"latitude": 35.504349,
+"longitude": 11.070616,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/caf.champions",
+"soccer/caf.confed"
+],
+"homeTeams": [],
+"timeZone": "Africa/Tunis",
 "capacity": null,
 "opened": null
 },
@@ -11055,6 +11074,33 @@
 ],
 "homeTeams": [],
 "timeZone": "Asia/Tashkent",
+"capacity": null,
+"opened": null
+},
+{
+"id": "macau-olympic-stadium-taipa",
+"name": "Macau Olympic Stadium",
+"aliases": [
+"Estádio Campo Desportivo",
+"Centro Desportivo Olímpico - Estádio"
+],
+"city": "Taipa",
+"region": null,
+"country": "China",
+"countryCode": "CN",
+"latitude": 22.15473,
+"longitude": 113.55347,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/afc.champions",
+"soccer/afc.cup",
+"soccer/afc.cupq",
+"soccer/fifa.worldq.afc"
+],
+"homeTeams": [],
+"timeZone": "Asia/Shanghai",
 "capacity": null,
 "opened": null
 },
@@ -11940,6 +11986,27 @@
 "opened": null
 },
 {
+"id": "sports-hall-jeddah",
+"name": "Sports Hall",
+"aliases": [],
+"city": "Jeddah",
+"region": null,
+"country": "Qatar",
+"countryCode": "QA",
+"latitude": 25.371097,
+"longitude": 51.47058,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/afc.champions"
+],
+"homeTeams": [],
+"timeZone": "Asia/Qatar",
+"capacity": null,
+"opened": null
+},
+{
 "id": "hisor-central-stadium-hisor",
 "name": "Hisor Central Stadium",
 "aliases": [],
@@ -12140,6 +12207,30 @@
 ],
 "homeTeams": [],
 "timeZone": "Africa/Maputo",
+"capacity": null,
+"opened": null
+},
+{
+"id": "national-sports-complex-pitch-1-saint-pierre",
+"name": "National Sports Complex Pitch 1",
+"aliases": [
+"Complexe Sportif de Côte d'Or"
+],
+"city": "Saint Pierre",
+"region": null,
+"country": "Mauritius",
+"countryCode": "MU",
+"latitude": -20.224902,
+"longitude": 57.538378,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/caf.champions",
+"soccer/caf.confed"
+],
+"homeTeams": [],
+"timeZone": "Indian/Mauritius",
 "capacity": null,
 "opened": null
 },
@@ -12715,30 +12806,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Asia/Dubai",
-"capacity": null,
-"opened": null
-},
-{
-"id": "new-laos-national-stadium-vientiane",
-"name": "New Laos National Stadium",
-"aliases": [
-"Lao National Stadium"
-],
-"city": "Vientiane",
-"region": null,
-"country": "Laos",
-"countryCode": "LA",
-"latitude": 17.964099,
-"longitude": 102.613371,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.cupq",
-"soccer/fifa.worldq.afc"
-],
-"homeTeams": [],
-"timeZone": "Asia/Bangkok",
 "capacity": null,
 "opened": null
 },
@@ -14594,31 +14661,6 @@
 "opened": null
 },
 {
-"id": "yadegar-e-imam-stadium-tabriz",
-"name": "Yadegar-e-Imam Stadium",
-"aliases": [
-"Imam Reza Stadium"
-],
-"city": "Tabriz",
-"region": null,
-"country": "Iran",
-"countryCode": "IR",
-"latitude": 36.326223,
-"longitude": 59.570548,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.champions",
-"soccer/afc.cup",
-"soccer/fifa.worldq.afc"
-],
-"homeTeams": [],
-"timeZone": "Asia/Tehran",
-"capacity": null,
-"opened": null
-},
-{
 "id": "dragon-solar-park-ratchaburi",
 "name": "Dragon Solar Park",
 "aliases": [],
@@ -14626,8 +14668,8 @@
 "region": null,
 "country": "Thailand",
 "countryCode": "TH",
-"latitude": 13.63179,
-"longitude": 99.355822,
+"latitude": 13.521677,
+"longitude": 99.769588,
 "sports": [
 "soccer"
 ],
@@ -14711,28 +14753,6 @@
 "opened": null
 },
 {
-"id": "national-sports-complex-pitch-1-saint-pierre",
-"name": "National Sports Complex Pitch 1",
-"aliases": [],
-"city": "Saint Pierre",
-"region": null,
-"country": "Mauritius",
-"countryCode": "MU",
-"latitude": -20.224902,
-"longitude": 57.538378,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/caf.champions",
-"soccer/caf.confed"
-],
-"homeTeams": [],
-"timeZone": "Indian/Mauritius",
-"capacity": null,
-"opened": null
-},
-{
 "id": "dhl-cape-town-stadium-cape-town",
 "name": "DHL Cape Town Stadium",
 "aliases": [
@@ -14787,8 +14807,8 @@
 "region": null,
 "country": "Cameroon",
 "countryCode": "CM",
-"latitude": 5.475548,
-"longitude": 10.552742,
+"latitude": 5.478111,
+"longitude": 10.546556,
 "sports": [
 "soccer"
 ],
@@ -15724,6 +15744,28 @@
 "opened": null
 },
 {
+"id": "yadegar-e-imam-stadium-tabriz",
+"name": "Yadegar-e-Imam Stadium",
+"aliases": [],
+"city": "Tabriz",
+"region": null,
+"country": "Iran",
+"countryCode": "IR",
+"latitude": 38.073861,
+"longitude": 46.297879,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/afc.champions",
+"soccer/afc.cup"
+],
+"homeTeams": [],
+"timeZone": "Asia/Tehran",
+"capacity": null,
+"opened": null
+},
+{
 "id": "khao-kradong-stadium-buriram",
 "name": "Khao Kradong Stadium",
 "aliases": [],
@@ -15835,28 +15877,6 @@
 "opened": null
 },
 {
-"id": "lao-national-stadium-km16-vientiene",
-"name": "Lao National Stadium KM16",
-"aliases": [],
-"city": "Vientiene",
-"region": null,
-"country": "Laos",
-"countryCode": "LA",
-"latitude": 18.062113,
-"longitude": 102.703974,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.cupq",
-"soccer/fifa.worldq.afc"
-],
-"homeTeams": [],
-"timeZone": "Asia/Bangkok",
-"capacity": null,
-"opened": null
-},
-{
 "id": "stade-george-v-curepipe",
 "name": "Stade George V",
 "aliases": [],
@@ -15952,16 +15972,16 @@
 "aliases": [],
 "city": "Khartoum",
 "region": null,
-"country": "Republic of the Congo",
-"countryCode": "CG",
-"latitude": -4.355329,
-"longitude": 15.306754,
+"country": "Sudan",
+"countryCode": "SD",
+"latitude": 15.59836,
+"longitude": 32.51502,
 "sports": [
 "soccer"
 ],
 "leagues": [],
 "homeTeams": [],
-"timeZone": "Africa/Lagos",
+"timeZone": "Africa/Khartoum",
 "capacity": null,
 "opened": null
 },
@@ -16950,27 +16970,6 @@
 "opened": null
 },
 {
-"id": "al-muharraq-stadium-arad",
-"name": "Al Muharraq Stadium",
-"aliases": [],
-"city": "Arad",
-"region": null,
-"country": "Hungary",
-"countryCode": "HU",
-"latitude": 46.175379,
-"longitude": 21.319634,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.cup"
-],
-"homeTeams": [],
-"timeZone": "Europe/Budapest",
-"capacity": null,
-"opened": null
-},
-{
 "id": "bashundhara-kings-arena-dhaka",
 "name": "Bashundhara Kings Arena",
 "aliases": [],
@@ -17266,10 +17265,10 @@
 "aliases": [],
 "city": "Maputo",
 "region": null,
-"country": "Brazil",
-"countryCode": "BR",
-"latitude": -18.581467,
-"longitude": -48.704188,
+"country": "Mozambique",
+"countryCode": "MZ",
+"latitude": -25.966213,
+"longitude": 32.56745,
 "sports": [
 "soccer"
 ],
@@ -17278,7 +17277,7 @@
 "soccer/caf.confed"
 ],
 "homeTeams": [],
-"timeZone": "America/Sao_Paulo",
+"timeZone": "Africa/Maputo",
 "capacity": null,
 "opened": null
 },
@@ -17432,6 +17431,29 @@
 ],
 "homeTeams": [],
 "timeZone": "America/Phoenix",
+"capacity": null,
+"opened": null
+},
+{
+"id": "synthetic-track-and-field-facility-leonora",
+"name": "Synthetic Track and Field Facility",
+"aliases": [
+"National Track and Field Centre Leonora"
+],
+"city": "Leonora",
+"region": null,
+"country": "Guyana",
+"countryCode": "GY",
+"latitude": 6.87054,
+"longitude": -58.28844,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/concacaf.nations.league"
+],
+"homeTeams": [],
+"timeZone": "America/Guyana",
 "capacity": null,
 "opened": null
 },
@@ -18633,29 +18655,6 @@
 "opened": null
 },
 {
-"id": "macau-olympic-stadium-taipa",
-"name": "Macau Olympic Stadium",
-"aliases": [],
-"city": "Taipa",
-"region": null,
-"country": "China",
-"countryCode": "CN",
-"latitude": 22.15473,
-"longitude": 113.55347,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.champions",
-"soccer/afc.cup",
-"soccer/fifa.worldq.afc"
-],
-"homeTeams": [],
-"timeZone": "Asia/Shanghai",
-"capacity": null,
-"opened": null
-},
-{
 "id": "stadion-majmuasi-sok-jar-tashkent",
 "name": "Stadion Majmuasi (SOK Jar)",
 "aliases": [
@@ -18740,29 +18739,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Asia/Baghdad",
-"capacity": null,
-"opened": null
-},
-{
-"id": "estadio-campo-desportivo-macau",
-"name": "Estádio Campo Desportivo",
-"aliases": [],
-"city": "Macau",
-"region": null,
-"country": "East Timor",
-"countryCode": "TL",
-"latitude": -9.202155,
-"longitude": 124.369504,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.cup",
-"soccer/afc.cupq",
-"soccer/fifa.worldq.afc"
-],
-"homeTeams": [],
-"timeZone": "Asia/Dili",
 "capacity": null,
 "opened": null
 },
@@ -19390,10 +19366,10 @@
 "aliases": [],
 "city": "Texas",
 "region": null,
-"country": "United States",
-"countryCode": "US",
-"latitude": 26.283038,
-"longitude": -98.135638,
+"country": "Costa Rica",
+"countryCode": "CR",
+"latitude": 9.936947,
+"longitude": -84.142986,
 "sports": [
 "soccer"
 ],
@@ -19401,7 +19377,7 @@
 "soccer/concacaf.womens.championship"
 ],
 "homeTeams": [],
-"timeZone": "America/Phoenix",
+"timeZone": "America/Costa_Rica",
 "capacity": null,
 "opened": null
 },
@@ -20433,10 +20409,10 @@
 ],
 "city": "Gothenburg",
 "region": null,
-"country": "Unknown",
-"countryCode": "XX",
-"latitude": 40.927732,
-"longitude": -100.16199,
+"country": "Sweden",
+"countryCode": "SE",
+"latitude": 57.707233,
+"longitude": 11.967017,
 "sports": [
 "soccer"
 ],
@@ -20444,7 +20420,7 @@
 "soccer/uefa.wchampions"
 ],
 "homeTeams": [],
-"timeZone": "UTC",
+"timeZone": "Europe/Berlin",
 "capacity": null,
 "opened": null
 },
@@ -21140,27 +21116,6 @@
 ],
 "homeTeams": [],
 "timeZone": "America/Jamaica",
-"capacity": null,
-"opened": null
-},
-{
-"id": "synthetic-track-and-field-facility-leonora",
-"name": "Synthetic Track and Field Facility",
-"aliases": [],
-"city": "Leonora",
-"region": null,
-"country": "Canada",
-"countryCode": "CA",
-"latitude": 49.153092,
-"longitude": -122.903353,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/concacaf.nations.league"
-],
-"homeTeams": [],
-"timeZone": "America/Vancouver",
 "capacity": null,
 "opened": null
 },
@@ -22530,6 +22485,27 @@
 "opened": null
 },
 {
+"id": "m-meskhi-ii-stadium-tbilisi",
+"name": "M. Meskhi II Stadium",
+"aliases": [],
+"city": "Tbilisi",
+"region": null,
+"country": "Georgia",
+"countryCode": "GE",
+"latitude": 41.693459,
+"longitude": 44.801449,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/uefa.weuroq"
+],
+"homeTeams": [],
+"timeZone": "Asia/Tbilisi",
+"capacity": null,
+"opened": null
+},
+{
 "id": "huanglong-sports-centre-hangzhou",
 "name": "Huanglong Sports Centre",
 "aliases": [
@@ -22700,29 +22676,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Asia/Bangkok",
-"capacity": null,
-"opened": null
-},
-{
-"id": "daegu-im-bank-park-daegu",
-"name": "Daegu iM Bank Park",
-"aliases": [
-"DGB Daegu Bank Park"
-],
-"city": "Daegu",
-"region": null,
-"country": "South Korea",
-"countryCode": "KR",
-"latitude": 35.881295,
-"longitude": 128.587414,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.champions"
-],
-"homeTeams": [],
-"timeZone": "Asia/Seoul",
 "capacity": null,
 "opened": null
 },
@@ -23009,6 +22962,28 @@
 ],
 "homeTeams": [],
 "timeZone": "Africa/Maputo",
+"capacity": null,
+"opened": null
+},
+{
+"id": "al-ahly-we-al-salam-stadium-cairo",
+"name": "Al Ahly WE Al Salam Stadium",
+"aliases": [],
+"city": "Cairo",
+"region": null,
+"country": "Egypt",
+"countryCode": "EG",
+"latitude": 30.044388,
+"longitude": 31.235726,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/caf.champions",
+"soccer/caf.confed"
+],
+"homeTeams": [],
+"timeZone": "Africa/Cairo",
 "capacity": null,
 "opened": null
 },
@@ -23330,27 +23305,6 @@
 ],
 "homeTeams": [],
 "timeZone": "America/Jamaica",
-"capacity": null,
-"opened": null
-},
-{
-"id": "raymond-e-guishard-stadium-the-valley",
-"name": "Raymond E. Guishard Stadium",
-"aliases": [],
-"city": "The Valley",
-"region": null,
-"country": "United Kingdom",
-"countryCode": "GB",
-"latitude": 51.10432,
-"longitude": -1.785846,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/concacaf.nations.league"
-],
-"homeTeams": [],
-"timeZone": "Europe/London",
 "capacity": null,
 "opened": null
 },
@@ -23828,10 +23782,10 @@
 "aliases": [],
 "city": "Inđija",
 "region": null,
-"country": "Unknown",
-"countryCode": "XX",
-"latitude": 22.351115,
-"longitude": 78.667743,
+"country": "Serbia",
+"countryCode": "RS",
+"latitude": 45.050378,
+"longitude": 20.090019,
 "sports": [
 "soccer"
 ],
@@ -23840,7 +23794,7 @@
 "soccer/uefa.weuroq"
 ],
 "homeTeams": [],
-"timeZone": "UTC",
+"timeZone": "Europe/Belgrade",
 "capacity": null,
 "opened": null
 },
@@ -24602,8 +24556,8 @@
 "aliases": [],
 "city": "OSK Brestskiy",
 "region": null,
-"country": "Poland",
-"countryCode": "PL",
+"country": "Belarus",
+"countryCode": "BY",
 "latitude": 52.08972,
 "longitude": 23.68375,
 "sports": [
@@ -24613,7 +24567,7 @@
 "soccer/uefa.europa"
 ],
 "homeTeams": [],
-"timeZone": "Europe/Warsaw",
+"timeZone": "Europe/Minsk",
 "capacity": null,
 "opened": null
 },
@@ -25065,10 +25019,10 @@
 ],
 "city": "Athens",
 "region": null,
-"country": "United States",
-"countryCode": "US",
-"latitude": 33.959768,
-"longitude": -83.376398,
+"country": "Greece",
+"countryCode": "GR",
+"latitude": 37.975565,
+"longitude": 23.734832,
 "sports": [
 "soccer"
 ],
@@ -25076,7 +25030,7 @@
 "soccer/uefa.weuroq"
 ],
 "homeTeams": [],
-"timeZone": "America/Kentucky/Monticello",
+"timeZone": "Europe/Athens",
 "capacity": null,
 "opened": null
 },
@@ -25335,6 +25289,27 @@
 ],
 "homeTeams": [],
 "timeZone": "Asia/Seoul",
+"capacity": null,
+"opened": null
+},
+{
+"id": "daegu-im-bank-park-daegu",
+"name": "Daegu iM Bank Park",
+"aliases": [],
+"city": "Daegu",
+"region": null,
+"country": "Thailand",
+"countryCode": "TH",
+"latitude": 13.728641,
+"longitude": 100.514222,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/afc.champions"
+],
+"homeTeams": [],
+"timeZone": "Asia/Bangkok",
 "capacity": null,
 "opened": null
 },
@@ -25948,10 +25923,10 @@
 "aliases": [],
 "city": "Sagamu",
 "region": null,
-"country": "Kenya",
-"countryCode": "KE",
-"latitude": -2.292284,
-"longitude": 40.912001,
+"country": "Nigeria",
+"countryCode": "NG",
+"latitude": 6.847716,
+"longitude": 3.644055,
 "sports": [
 "soccer"
 ],
@@ -25960,7 +25935,7 @@
 "soccer/caf.confed"
 ],
 "homeTeams": [],
-"timeZone": "Africa/Nairobi",
+"timeZone": "Africa/Lagos",
 "capacity": null,
 "opened": null
 },
@@ -26157,25 +26132,6 @@
 "opened": null
 },
 {
-"id": "complexe-sportif-de-cote-d-or-saint-pierre",
-"name": "Complexe Sportif de Côte d'Or",
-"aliases": [],
-"city": "Saint Pierre",
-"region": null,
-"country": "France",
-"countryCode": "FR",
-"latitude": 47.393437,
-"longitude": 5.144408,
-"sports": [
-"soccer"
-],
-"leagues": [],
-"homeTeams": [],
-"timeZone": "Europe/Paris",
-"capacity": null,
-"opened": null
-},
-{
 "id": "diamniadio-olympic-stadium-dakar",
 "name": "Diamniadio Olympic Stadium",
 "aliases": [],
@@ -26363,6 +26319,27 @@
 ],
 "homeTeams": [],
 "timeZone": "America/Santo_Domingo",
+"capacity": null,
+"opened": null
+},
+{
+"id": "nicaragua-national-football-stadium-managua",
+"name": "Nicaragua National Football Stadium",
+"aliases": [],
+"city": "Managua",
+"region": null,
+"country": "Nicaragua",
+"countryCode": "NI",
+"latitude": 12.154712,
+"longitude": -86.273725,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/concacaf.nations.league"
+],
+"homeTeams": [],
+"timeZone": "America/Managua",
 "capacity": null,
 "opened": null
 },
@@ -27096,6 +27073,29 @@
 ],
 "homeTeams": [],
 "timeZone": "Europe/Istanbul",
+"capacity": null,
+"opened": null
+},
+{
+"id": "sportivnyj-gorodok-luzhniki-moscow",
+"name": "Sportivnyj Gorodok Luzhniki",
+"aliases": [
+"Krylia Sovetov"
+],
+"city": "Moscow",
+"region": null,
+"country": "Russia",
+"countryCode": "RU",
+"latitude": 55.625578,
+"longitude": 37.606392,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/fifa.wworldq.uefa"
+],
+"homeTeams": [],
+"timeZone": "Europe/Moscow",
 "capacity": null,
 "opened": null
 },
@@ -28918,10 +28918,10 @@
 "aliases": [],
 "city": "Lendava",
 "region": null,
-"country": "Slovenia",
-"countryCode": "SI",
-"latitude": 46.563964,
-"longitude": 16.452647,
+"country": "Finland",
+"countryCode": "FI",
+"latitude": 62.614974,
+"longitude": 25.713397,
 "sports": [
 "soccer"
 ],
@@ -28929,7 +28929,7 @@
 "soccer/uefa.wchampions"
 ],
 "homeTeams": [],
-"timeZone": "Europe/Belgrade",
+"timeZone": "Europe/Helsinki",
 "capacity": null,
 "opened": null
 },
@@ -29382,10 +29382,10 @@
 "aliases": [],
 "city": "Sevastopol",
 "region": null,
-"country": "Uzbekistan",
-"countryCode": "UZ",
-"latitude": 41.321813,
-"longitude": 69.23148,
+"country": "Ukraine",
+"countryCode": "UA",
+"latitude": 44.605443,
+"longitude": 33.522084,
 "sports": [
 "soccer"
 ],
@@ -29393,7 +29393,7 @@
 "soccer/uefa.weuroq"
 ],
 "homeTeams": [],
-"timeZone": "Asia/Tashkent",
+"timeZone": "Europe/Simferopol",
 "capacity": null,
 "opened": null
 },
@@ -29911,10 +29911,10 @@
 "aliases": [],
 "city": "Al Ain",
 "region": null,
-"country": "Bangladesh",
-"countryCode": "BD",
-"latitude": 25.931947,
-"longitude": 88.84541,
+"country": "Saudi Arabia",
+"countryCode": "SA",
+"latitude": 28.351525,
+"longitude": 36.489372,
 "sports": [
 "soccer"
 ],
@@ -29923,7 +29923,28 @@
 "soccer/fifa.worldq.afc"
 ],
 "homeTeams": [],
-"timeZone": "Asia/Dhaka",
+"timeZone": "Asia/Riyadh",
+"capacity": null,
+"opened": null
+},
+{
+"id": "lao-national-stadium-vientiane",
+"name": "Lao National Stadium",
+"aliases": [],
+"city": "Vientiane",
+"region": null,
+"country": "Laos",
+"countryCode": "LA",
+"latitude": 17.964099,
+"longitude": 102.613371,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/afc.cupq"
+],
+"homeTeams": [],
+"timeZone": "Asia/Bangkok",
 "capacity": null,
 "opened": null
 },
@@ -29954,10 +29975,10 @@
 "aliases": [],
 "city": "Hebron",
 "region": null,
-"country": "Australia",
-"countryCode": "AU",
-"latitude": -37.646107,
-"longitude": 145.058251,
+"country": "Palestine",
+"countryCode": "PS",
+"latitude": 31.528902,
+"longitude": 35.094487,
 "sports": [
 "soccer"
 ],
@@ -29966,7 +29987,7 @@
 "soccer/fifa.worldq.afc"
 ],
 "homeTeams": [],
-"timeZone": "Australia/Melbourne",
+"timeZone": "Asia/Hebron",
 "capacity": null,
 "opened": null
 },
@@ -29998,10 +30019,10 @@
 "aliases": [],
 "city": "Praslin",
 "region": null,
-"country": "France",
-"countryCode": "FR",
-"latitude": 48.04588,
-"longitude": 4.196909,
+"country": "Mauritius",
+"countryCode": "MU",
+"latitude": -20.153446,
+"longitude": 57.644765,
 "sports": [
 "soccer"
 ],
@@ -30009,7 +30030,7 @@
 "soccer/caf.champions"
 ],
 "homeTeams": [],
-"timeZone": "Europe/Paris",
+"timeZone": "Indian/Mauritius",
 "capacity": null,
 "opened": null
 },
@@ -30116,6 +30137,30 @@
 ],
 "homeTeams": [],
 "timeZone": "Africa/Abidjan",
+"capacity": null,
+"opened": null
+},
+{
+"id": "28-march-stadium-benghazi",
+"name": "28 March Stadium",
+"aliases": [
+"First Statement Stadium"
+],
+"city": "Benghazi",
+"region": null,
+"country": "Libya",
+"countryCode": "LY",
+"latitude": 32.120017,
+"longitude": 20.081217,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/caf.champions",
+"soccer/fifa.worldq.caf"
+],
+"homeTeams": [],
+"timeZone": "Africa/Tripoli",
 "capacity": null,
 "opened": null
 },
@@ -30633,10 +30678,10 @@
 "aliases": [],
 "city": "Wildey",
 "region": null,
-"country": "Ireland",
-"countryCode": "IE",
-"latitude": 53.515575,
-"longitude": -6.55214,
+"country": "Barbados",
+"countryCode": "BB",
+"latitude": 13.092435,
+"longitude": -59.584313,
 "sports": [
 "soccer"
 ],
@@ -30644,7 +30689,7 @@
 "soccer/concacaf.nations.league"
 ],
 "homeTeams": [],
-"timeZone": "Europe/Dublin",
+"timeZone": "America/Barbados",
 "capacity": null,
 "opened": null
 },
@@ -30668,27 +30713,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Europe/Paris",
-"capacity": null,
-"opened": null
-},
-{
-"id": "national-track-and-field-centre-leonora-leonora",
-"name": "National Track and Field Centre Leonora",
-"aliases": [],
-"city": "Leonora",
-"region": null,
-"country": "United States",
-"countryCode": "US",
-"latitude": 40.808212,
-"longitude": -77.850246,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/concacaf.nations.league"
-],
-"homeTeams": [],
-"timeZone": "America/New_York",
 "capacity": null,
 "opened": null
 },
@@ -31254,10 +31278,10 @@
 "aliases": [],
 "city": "Asmara",
 "region": null,
-"country": "Eritrea",
-"countryCode": "ER",
-"latitude": 15.349297,
-"longitude": 38.921179,
+"country": "Morocco",
+"countryCode": "MA",
+"latitude": 32.599875,
+"longitude": -6.275633,
 "sports": [
 "soccer"
 ],
@@ -31265,7 +31289,7 @@
 "soccer/fifa.worldq.caf"
 ],
 "homeTeams": [],
-"timeZone": "Africa/Nairobi",
+"timeZone": "Africa/Casablanca",
 "capacity": null,
 "opened": null
 },
@@ -32147,10 +32171,10 @@
 "aliases": [],
 "city": "Saint Petersburg",
 "region": null,
-"country": "United States",
-"countryCode": "US",
-"latitude": 27.771226,
-"longitude": -82.634026,
+"country": "Russia",
+"countryCode": "RU",
+"latitude": 59.960674,
+"longitude": 30.158655,
 "sports": [
 "soccer"
 ],
@@ -32159,7 +32183,7 @@
 "soccer/uefa.weuroq"
 ],
 "homeTeams": [],
-"timeZone": "America/Kentucky/Monticello",
+"timeZone": "Europe/Moscow",
 "capacity": null,
 "opened": null
 },
@@ -32337,27 +32361,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Europe/Berlin",
-"capacity": null,
-"opened": null
-},
-{
-"id": "sportivnyj-gorodok-luzhniki-moscow",
-"name": "Sportivnyj Gorodok Luzhniki",
-"aliases": [],
-"city": "Moscow",
-"region": null,
-"country": "Russia",
-"countryCode": "RU",
-"latitude": 55.625578,
-"longitude": 37.606392,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/fifa.wworldq.uefa"
-],
-"homeTeams": [],
-"timeZone": "Europe/Moscow",
 "capacity": null,
 "opened": null
 },
@@ -32878,16 +32881,16 @@
 "aliases": [],
 "city": "Brest",
 "region": null,
-"country": "France",
-"countryCode": "FR",
-"latitude": 48.391232,
-"longitude": -4.485114,
+"country": "Belarus",
+"countryCode": "BY",
+"latitude": 52.093751,
+"longitude": 23.685185,
 "sports": [
 "soccer"
 ],
 "leagues": [],
 "homeTeams": [],
-"timeZone": "Europe/Paris",
+"timeZone": "Europe/Minsk",
 "capacity": null,
 "opened": null
 },
@@ -34595,15 +34598,17 @@
 "opened": null
 },
 {
-"id": "stadion-srem-jakovo-jakovo",
-"name": "Stadion Srem Jakovo",
-"aliases": [],
-"city": "Jakovo",
+"id": "yuri-gagarin-stadium-chernihiv",
+"name": "Yuri Gagarin Stadium",
+"aliases": [
+"Olympic sports training centre Chernihiv"
+],
+"city": "Chernihiv",
 "region": null,
-"country": "Unknown",
-"countryCode": "XX",
-"latitude": 56.971491,
-"longitude": 27.707636,
+"country": "Ukraine",
+"countryCode": "UA",
+"latitude": 51.272593,
+"longitude": 31.741723,
 "sports": [
 "soccer"
 ],
@@ -34611,7 +34616,28 @@
 "soccer/uefa.weuroq"
 ],
 "homeTeams": [],
-"timeZone": "UTC",
+"timeZone": "Europe/Kyiv",
+"capacity": null,
+"opened": null
+},
+{
+"id": "stadion-srem-jakovo-jakovo",
+"name": "Stadion Srem Jakovo",
+"aliases": [],
+"city": "Jakovo",
+"region": null,
+"country": "Serbia",
+"countryCode": "RS",
+"latitude": 44.752281,
+"longitude": 20.251994,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/uefa.weuroq"
+],
+"homeTeams": [],
+"timeZone": "Europe/Belgrade",
 "capacity": null,
 "opened": null
 },
@@ -34976,27 +35002,6 @@
 "opened": null
 },
 {
-"id": "brisbane-stadium-brisbane",
-"name": "Brisbane Stadium",
-"aliases": [],
-"city": "Brisbane",
-"region": null,
-"country": "United Kingdom",
-"countryCode": "GB",
-"latitude": 51.560071,
-"longitude": -0.0126,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.champions"
-],
-"homeTeams": [],
-"timeZone": "Europe/London",
-"capacity": null,
-"opened": null
-},
-{
 "id": "thung-thalay-luang-stadium-sukhothai",
 "name": "Thung Thalay Luang Stadium",
 "aliases": [],
@@ -35128,10 +35133,10 @@
 "aliases": [],
 "city": "Bangkok",
 "region": null,
-"country": "United States",
-"countryCode": "US",
-"latitude": 28.805322,
-"longitude": -81.872398,
+"country": "Thailand",
+"countryCode": "TH",
+"latitude": 13.71521,
+"longitude": 100.559711,
 "sports": [
 "soccer"
 ],
@@ -35139,7 +35144,7 @@
 "soccer/afc.champions"
 ],
 "homeTeams": [],
-"timeZone": "America/Kentucky/Monticello",
+"timeZone": "Asia/Bangkok",
 "capacity": null,
 "opened": null
 },
@@ -35224,6 +35229,27 @@
 ],
 "homeTeams": [],
 "timeZone": "Australia/Sydney",
+"capacity": null,
+"opened": null
+},
+{
+"id": "dgb-daegu-bank-park-daegu",
+"name": "DGB Daegu Bank Park",
+"aliases": [],
+"city": "Daegu",
+"region": null,
+"country": "South Korea",
+"countryCode": "KR",
+"latitude": 35.881295,
+"longitude": 128.587989,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/afc.champions"
+],
+"homeTeams": [],
+"timeZone": "Asia/Seoul",
 "capacity": null,
 "opened": null
 },
@@ -35631,27 +35657,6 @@
 "opened": null
 },
 {
-"id": "centro-desportivo-olimpico-estadio-taipa",
-"name": "Centro Desportivo Olímpico - Estádio",
-"aliases": [],
-"city": "Taipa",
-"region": null,
-"country": "China",
-"countryCode": "CN",
-"latitude": 22.155272,
-"longitude": 113.552667,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/afc.cupq"
-],
-"homeTeams": [],
-"timeZone": "Asia/Shanghai",
-"capacity": null,
-"opened": null
-},
-{
 "id": "jawaharlal-nehru-stadium-shillong",
 "name": "Jawaharlal Nehru Stadium",
 "aliases": [],
@@ -35904,15 +35909,15 @@
 "opened": null
 },
 {
-"id": "first-statement-stadium-benghazi",
-"name": "First Statement Stadium",
+"id": "cairo-military-academy-stadium-cairo",
+"name": "Cairo Military Academy Stadium",
 "aliases": [],
-"city": "Benghazi",
+"city": "Cairo",
 "region": null,
-"country": "Australia",
-"countryCode": "AU",
-"latitude": -28.007303,
-"longitude": 153.367443,
+"country": "Unknown",
+"countryCode": "XX",
+"latitude": 37.005796,
+"longitude": -89.177245,
 "sports": [
 "soccer"
 ],
@@ -35920,7 +35925,7 @@
 "soccer/caf.champions"
 ],
 "homeTeams": [],
-"timeZone": "Australia/Brisbane",
+"timeZone": "UTC",
 "capacity": null,
 "opened": null
 },
@@ -36245,16 +36250,16 @@
 "aliases": [],
 "city": "Paynesville",
 "region": null,
-"country": "Unknown",
-"countryCode": "XX",
-"latitude": 45.380469,
-"longitude": -94.711892,
+"country": "Liberia",
+"countryCode": "LR",
+"latitude": 6.272411,
+"longitude": -10.69511,
 "sports": [
 "soccer"
 ],
 "leagues": [],
 "homeTeams": [],
-"timeZone": "UTC",
+"timeZone": "Africa/Monrovia",
 "capacity": null,
 "opened": null
 },
@@ -37325,10 +37330,10 @@
 "aliases": [],
 "city": "Jordan.",
 "region": null,
-"country": "Philippines",
-"countryCode": "PH",
-"latitude": 10.595964,
-"longitude": 122.587793,
+"country": "Palestine",
+"countryCode": "PS",
+"latitude": 32.31889,
+"longitude": 35.554569,
 "sports": [
 "soccer"
 ],
@@ -37336,7 +37341,7 @@
 "soccer/fifa.worldq.afc"
 ],
 "homeTeams": [],
-"timeZone": "Asia/Manila",
+"timeZone": "Asia/Hebron",
 "capacity": null,
 "opened": null
 },
@@ -37507,6 +37512,27 @@
 ],
 "homeTeams": [],
 "timeZone": "Asia/Seoul",
+"capacity": null,
+"opened": null
+},
+{
+"id": "imam-reza-stadium-mashhad",
+"name": "Imam Reza Stadium",
+"aliases": [],
+"city": "Mashhad",
+"region": null,
+"country": "Iran",
+"countryCode": "IR",
+"latitude": 36.326111,
+"longitude": 59.570278,
+"sports": [
+"soccer"
+],
+"leagues": [
+"soccer/fifa.worldq.afc"
+],
+"homeTeams": [],
+"timeZone": "Asia/Tehran",
 "capacity": null,
 "opened": null
 },
@@ -37887,27 +37913,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Europe/London",
-"capacity": null,
-"opened": null
-},
-{
-"id": "28-march-stadium-benghazi",
-"name": "28 March Stadium",
-"aliases": [],
-"city": "Benghazi",
-"region": null,
-"country": "Libya",
-"countryCode": "LY",
-"latitude": 32.120017,
-"longitude": 20.081217,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/fifa.worldq.caf"
-],
-"homeTeams": [],
-"timeZone": "Africa/Tripoli",
 "capacity": null,
 "opened": null
 },
@@ -38941,10 +38946,10 @@
 "aliases": [],
 "city": "Kyiv",
 "region": null,
-"country": "United States",
-"countryCode": "US",
-"latitude": 35.796727,
-"longitude": -78.892516,
+"country": "Ukraine",
+"countryCode": "UA",
+"latitude": 50.450034,
+"longitude": 30.524136,
 "sports": [
 "soccer"
 ],
@@ -38952,28 +38957,7 @@
 "soccer/fifa.wworldq.uefa"
 ],
 "homeTeams": [],
-"timeZone": "America/Kentucky/Monticello",
-"capacity": null,
-"opened": null
-},
-{
-"id": "krylia-sovetov-moscow",
-"name": "Krylia Sovetov",
-"aliases": [],
-"city": "Moscow",
-"region": null,
-"country": "United States",
-"countryCode": "US",
-"latitude": 46.732388,
-"longitude": -117.000165,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/fifa.wworldq.uefa"
-],
-"homeTeams": [],
-"timeZone": "America/Boise",
+"timeZone": "Europe/Kyiv",
 "capacity": null,
 "opened": null
 },
@@ -42897,27 +42881,6 @@
 "opened": null
 },
 {
-"id": "yuri-gagarin-stadium-chernihiv",
-"name": "Yuri Gagarin Stadium",
-"aliases": [],
-"city": "Chernihiv",
-"region": null,
-"country": "United Kingdom",
-"countryCode": "GB",
-"latitude": 51.476765,
-"longitude": -0.000651,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/uefa.weuroq"
-],
-"homeTeams": [],
-"timeZone": "Europe/London",
-"capacity": null,
-"opened": null
-},
-{
 "id": "im-ojca-wadysawa-augustynka-nowy-sacz",
 "name": "im. Ojca Władysława Augustynka",
 "aliases": [
@@ -43193,27 +43156,6 @@
 ],
 "homeTeams": [],
 "timeZone": "Europe/Tallinn",
-"capacity": null,
-"opened": null
-},
-{
-"id": "olympic-sports-training-centre-chernihiv-chernihiv",
-"name": "Olympic sports training centre Chernihiv",
-"aliases": [],
-"city": "Chernihiv",
-"region": null,
-"country": "Ukraine",
-"countryCode": "UA",
-"latitude": 51.272593,
-"longitude": 31.741723,
-"sports": [
-"soccer"
-],
-"leagues": [
-"soccer/uefa.weuroq"
-],
-"homeTeams": [],
-"timeZone": "Europe/Kyiv",
 "capacity": null,
 "opened": null
 },
@@ -43918,10 +43860,10 @@
 "aliases": [],
 "city": "Belgrade",
 "region": null,
-"country": "Unknown",
-"countryCode": "XX",
-"latitude": 45.776288,
-"longitude": -111.177168,
+"country": "Serbia",
+"countryCode": "RS",
+"latitude": 44.38385,
+"longitude": 20.266318,
 "sports": [
 "soccer"
 ],
@@ -43929,7 +43871,7 @@
 "soccer/uefa.weuroq"
 ],
 "homeTeams": [],
-"timeZone": "UTC",
+"timeZone": "Europe/Belgrade",
 "capacity": null,
 "opened": null
 },
@@ -43981,10 +43923,10 @@
 "aliases": [],
 "city": "Mogoșoaia",
 "region": null,
-"country": "United Kingdom",
-"countryCode": "GB",
-"latitude": 55.975842,
-"longitude": -4.230037,
+"country": "Romania",
+"countryCode": "RO",
+"latitude": 44.529735,
+"longitude": 26.000714,
 "sports": [
 "soccer"
 ],
@@ -43992,7 +43934,7 @@
 "soccer/uefa.weuroq"
 ],
 "homeTeams": [],
-"timeZone": "Europe/London",
+"timeZone": "Europe/Bucharest",
 "capacity": null,
 "opened": null
 },
@@ -44086,10 +44028,10 @@
 "aliases": [],
 "city": "Almaty",
 "region": null,
-"country": "United Kingdom",
-"countryCode": "GB",
-"latitude": 51.421547,
-"longitude": -0.031208,
+"country": "Kazakhstan",
+"countryCode": "KZ",
+"latitude": 43.236392,
+"longitude": 76.945728,
 "sports": [
 "soccer"
 ],
@@ -44097,7 +44039,7 @@
 "soccer/uefa.weuroq"
 ],
 "homeTeams": [],
-"timeZone": "Europe/London",
+"timeZone": "Asia/Almaty",
 "capacity": null,
 "opened": null
 },

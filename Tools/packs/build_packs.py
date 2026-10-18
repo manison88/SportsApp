@@ -196,6 +196,7 @@ def build(out_dir, note, include_sources=()):
 
     # ---- schedules and the venue map (source venue id -> app venue id, per league)
     venue_map = {}
+    candidates = {}
     for scope_dir in sorted(glob.glob(os.path.join(TOOLS, "schedules", "*", ""))):
         seen_path = os.path.join(scope_dir, "venues-seen.json")
         for vs in load_json(seen_path, []) if os.path.exists(seen_path) else []:
@@ -215,14 +216,27 @@ def build(out_dir, note, include_sources=()):
             data = load_json(path)
             if not data or "games" not in data:
                 continue
-            pack_id = f"schedule/{slug}/{fname[:-5]}"
-            data.pop("fetched", None)
-            source = str(data.get("source", "")).lower()
-            hold = next((h for h in HELD_SOURCES if source.startswith(h) and h not in include_sources), None)
-            if hold:
-                held[hold] = held.get(hold, 0) + len(data["games"])
-                continue
-            write(pack_id, "schedule", data, league=data.get("league"), season=data.get("season"), items=len(data["games"]))
+            candidates.setdefault(f"schedule/{slug}/{fname[:-5]}", []).append((os.path.basename(scope_dir.rstrip(os.sep)), data))
+
+    # The same league season can come from two scopes (a league agent and a tournament agent): the tournament scope is the
+    # authoritative one, otherwise the file with more games.
+    def preferred(item):
+        scope, data = item
+        return (scope.startswith("sched-tournaments"), len(data["games"]))
+
+    def hold_of(data):
+        source = str(data.get("source", "")).lower()
+        return next((h for h in HELD_SOURCES if source.startswith(h) and h not in include_sources), None)
+
+    for pack_id, options in sorted(candidates.items()):
+        usable = [o for o in options if not hold_of(o[1])]
+        if not usable:
+            for _, d in options[:1]:
+                held[hold_of(d)] = held.get(hold_of(d), 0) + len(d["games"])
+            continue
+        scope, data = max(usable, key=preferred)
+        data.pop("fetched", None)
+        write(pack_id, "schedule", data, league=data.get("league"), season=data.get("season"), items=len(data["games"]))
     write("catalog/venue-map", "catalog", venue_map, items=sum(len(v) for v in venue_map.values()))
 
     packs.sort(key=lambda p: p["id"])
