@@ -108,6 +108,9 @@ final class WitnessUITests: XCTestCase {
         tab("Passport")
         XCTAssertTrue(el("passport-count").waitForExistence(timeout: 5))
         snap("03-passport")
+        XCTAssertFalse(app.staticTexts["CHASE FIELD"].exists || app.staticTexts["Chase Field"].exists,
+                       "Passport lists only parks you have been to, with no empty tiles")
+        XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label CONTAINS[c] 'of 30'")).firstMatch.exists)
         XCTAssertTrue(el("stamp-wrigley").label.localizedCaseInsensitiveContains("Wrigley"),
                       "A stamp names the stadium, not just the team's initials: \(el("stamp-wrigley").label)")
         tap("stamp-wrigley")
@@ -118,6 +121,8 @@ final class WitnessUITests: XCTestCase {
         tab("You")
         XCTAssertTrue(el("you-lucky").waitForExistence(timeout: 5))
         snap("09-you")
+        XCTAssertTrue(app.staticTexts["Points"].exists || app.staticTexts["POINTS"].exists, "You shows sport-neutral stats")
+        XCTAssertFalse(app.staticTexts["Runs"].exists || app.staticTexts["RUNS"].exists)
         tap("you-lucky")
         XCTAssertTrue(el("lucky-title").waitForExistence(timeout: 5))
         snap("10-lucky")
