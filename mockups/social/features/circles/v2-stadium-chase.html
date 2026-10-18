@@ -1,0 +1,67 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Stadium chase</title>
+<link rel="stylesheet" href="../../../kit/kit.css"><link rel="stylesheet" href="circles.css">
+<style>
+.big{position:absolute;left:20px;top:208px;display:flex;align-items:flex-end;gap:10px}
+.big b{font:700 72px/.82 var(--f-cond);letter-spacing:-1px;color:var(--signal)}
+.big span{font:400 22px/1 var(--f-serif);color:var(--text-2);padding-bottom:3px}
+.wk{position:absolute;right:20px;top:208px;text-align:right;font:500 13px/1.3 var(--f-ui);color:var(--text-2)}
+.wk b{display:block;font:600 11px/1 var(--f-ui);letter-spacing:1.6px;text-transform:uppercase;color:var(--text-3);margin-bottom:5px}
+.track{position:absolute;left:20px;right:20px;top:282px;height:22px}
+.track i{position:absolute;bottom:0;width:6.4px;border-radius:2px;background:rgba(245,241,234,.30);height:10px}
+.track i.p{background:var(--signal);height:10px}
+.track i.f{background:rgba(245,241,234,.1)}
+.track i.now{height:22px;background:var(--signal)}
+.tl{position:absolute;left:20px;right:20px;top:312px;display:flex;justify-content:space-between;font:500 10px/1 var(--f-ui);letter-spacing:1px;text-transform:uppercase;color:var(--text-3)}
+.grid{position:absolute;left:20px;right:20px;top:342px;display:grid;grid-template-columns:repeat(10,1fr);row-gap:8px}
+.st{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;font:800 10.5px/1 var(--f-cond);letter-spacing:.4px;color:#1a1208;box-shadow:inset 0 0 0 2px rgba(0,0,0,.18),inset 0 0 0 3.4px rgba(255,255,255,.28)}
+.st.m{background:transparent;border:1.3px dashed rgba(245,241,234,.45);color:var(--text);box-shadow:none}
+.who{position:absolute;left:20px;right:20px;top:466px}
+.bar{display:flex;gap:2px;height:10px;margin-top:12px}
+.bar i{display:block;border-radius:3px}
+.lg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px 6px;margin-top:12px}
+.lg div{display:flex;align-items:center;gap:7px;font:500 13px/1 var(--f-ui);color:var(--text-2)}
+.lg .av{width:22px;height:22px;font-size:9px}
+.lg b{color:var(--text);font:700 15px/1 var(--f-cond)}
+.need{position:absolute;left:20px;right:20px;top:572px;padding:14px 16px;background:linear-gradient(180deg,rgba(255,181,71,.13),rgba(255,181,71,.05));border:.5px solid rgba(255,181,71,.4);border-radius:20px}
+.need h3{font:400 24px/1.05 var(--f-serif)}.need h3 i{color:var(--signal)}
+.need .r{display:flex;gap:8px;margin-top:12px}
+.need .r div{flex:1;display:flex;align-items:center;gap:8px;font:600 12.5px/1.15 var(--f-ui);color:var(--text)}
+.need .r small{display:block;font:500 11px/1.2 var(--f-ui);color:var(--text-3);margin-top:2px}
+.nx{position:absolute;left:20px;right:20px;top:684px;padding:14px 16px;display:flex;align-items:center;gap:14px;height:96px}
+.nx .stack{display:flex}.nx .av{width:36px;height:36px;font-size:12px;box-shadow:0 0 0 2px var(--surface)}.nx .av+.av{margin-left:-4px}
+.nx h4{font:600 16px/1.15 var(--f-ui)}
+.nx p{font:400 13px/1.35 var(--f-ui);color:var(--text-2);margin-top:4px}
+.nx .go{margin-left:auto;flex:none;height:36px;padding:0 14px;border-radius:18px;background:var(--signal);color:#1a1208;font:700 13px/36px var(--f-ui)}
+</style></head>
+<body class="phone"><div class="glow"></div>
+<div class="nav"><div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div><div class="pill glass">Section 314 Crew</div></div>
+<div class="abs eyebrow sig" style="left:20px;top:116px">Seasonal challenge</div>
+<h1 class="t abs" style="left:20px;top:134px">Stadium chase <i>2026</i></h1>
+<div class="abs" style="left:20px;top:182px;font:400 14px/1 var(--f-ui);color:var(--text-2)">30 parks, 30 weeks. Every stamp counts for all of us.</div>
+
+<div class="big"><b>27</b><span>of 30 parks</span></div>
+<div class="wk"><b>Week 21 of 30</b>9 weeks left<br>3 parks to go</div>
+<div class="track" id="tr"></div>
+<div class="tl"><span>Mar 26</span><span>You are here</span><span>Oct 21</span></div>
+<div class="grid" id="gr"></div>
+
+<div class="who"><div class="sec">Who added what</div>
+  <div class="bar"><i style="flex:7;background:#8fe3a0"></i><i style="flex:5;background:#ffb547"></i><i style="flex:5;background:#ffd36e"></i><i style="flex:4;background:#6fd3ff"></i><i style="flex:3;background:#ff7a8a"></i><i style="flex:3;background:#ff9f5a"></i></div>
+  <div class="lg">
+    <div><span class="av a-ray">RO</span>Ray <b>7</b></div><div><span class="av a-sam">SO</span>You <b>5</b></div><div><span class="av a-chris">CD</span>Chris <b>5</b></div>
+    <div><span class="av a-jordan">JP</span>Jordan <b>4</b></div><div><span class="av a-priya">PN</span>Priya <b>3</b></div><div><span class="av a-marcus">MB</span>Marcus <b>3</b></div>
+  </div></div>
+
+<div class="need"><div style="display:flex;justify-content:space-between;align-items:center"><h3>You need <i>3 more</i></h3><div style="display:flex;gap:6px"><span class="st m">SF</span><span class="st m">SD</span><span class="st m">SEA</span></div></div>
+  <p style="margin-top:10px;font:500 14px/1.3 var(--f-ui);color:var(--text)">Oracle Park, Petco Park, T-Mobile Park</p></div>
+
+<div class="card nx"><div class="stack"><span class="av a-priya">PN</span><span class="av a-jordan">JP</span></div>
+  <div style="min-width:0"><div class="sec" style="color:var(--signal);margin-bottom:6px">Next up</div><h4>Oracle Park</h4><p>Priya lives 12 mi away in Oakland</p></div><div class="go">Plan it</div></div>
+<script src="circles.js"></script>
+<script>
+var g=document.getElementById('gr'),n=0;
+PARKS.slice().sort(function(a,b){return (a[1]===null)-(b[1]===null)}).forEach(function(p,i){var d=document.createElement('div');d.className='st'+(p[1]?'':' m');d.textContent=p[0];if(p[1])d.style.background=C[p[1]];d.style.transform='rotate('+(((i*37)%9)-4)+'deg)';g.appendChild(d)});
+var t=document.getElementById('tr');for(var i=0;i<30;i++){var e=document.createElement('i');e.style.left=(i*(353-6.4)/29)+'px';e.className=i<20?'p':(i==20?'now':'f');t.appendChild(e)}
+</script>
+<script src="../../../kit/kit.js"></script></body></html>

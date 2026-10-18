@@ -1,0 +1,7 @@
+# Here now (live layer on game day)
+- Idea: Live check-in gains friends. Who is at the same game right now (section only, never GPS), a ping to meet up, shared moments, then a post-game Together report and an audit of what was shared.
+- Why: game day is the most social moment; friends are in the same building and do not know it. Meeting at the gate and "we were both there" are the payoffs.
+- First use / empty state: the first check-in shows Here with you as "No friends sharing yet. Invite from Contacts" plus a one-line explainer. Sharing is OFF by default; the person picks friends and turns it on per game.
+- Privacy: opt-in per game, section level only, time-boxed to the final whistle, always-visible chip with Stop (v1). Friends see only people who chose to share. Replies never reveal the seat (v2). After the game, an audit log lists what was shared, with whom, when, and that zero photos left the phone, plus Delete log and Turn off Here now (v3). Kids' accounts never appear.
+- Plugs into: Live check-in (v1 is the live screen), a push/in-app ping, Timeline (shared moment chip), game page and match report (the Together report becomes a section and a shareable card), You tab > Privacy (audit log, global off).
+- Minimum backend: friend graph from invite links, a short-lived presence record (game id, section, expiry, audience list), ping messages with 3 canned replies, a shared-moment record (marker only, no photos), and an append-only share log readable by its owner. Records auto-expire after the game; the log is kept until deleted.

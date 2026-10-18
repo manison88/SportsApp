@@ -1,0 +1,58 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Start a circle</title>
+<link rel="stylesheet" href="../../../kit/kit.css"><link rel="stylesheet" href="circles.css">
+<style>
+.cancel{font:500 16px/1 var(--f-ui);color:var(--text-2);padding:0 4px}
+.ttl{font:600 17px/1 var(--f-ui)}
+.crest{position:absolute;left:20px;top:116px;width:88px;height:88px;border-radius:26px;background:linear-gradient(150deg,#ffc56b,#e8891c);display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3),0 10px 30px rgba(255,181,71,.2);color:#1a1208;overflow:hidden}
+.crest b{font:800 46px/1 var(--f-cond);letter-spacing:-.5px}
+.crest:after{content:"";position:absolute;inset:6px;border-radius:20px;border:1.5px solid rgba(26,18,8,.35)}
+.fld{position:absolute;left:124px;right:20px;top:112px}
+.fld .sec{margin-bottom:8px}
+.inp{height:46px;border-radius:14px;background:var(--surface);border:1px solid var(--signal);display:flex;align-items:center;padding:0 14px;font:500 17px/1 var(--f-ui)}
+.inp u{width:1.5px;height:20px;background:var(--signal);margin-left:2px}
+.sw{display:flex;gap:10px;margin-top:12px}
+.sw i{width:24px;height:24px;border-radius:50%;display:block}
+.sw i.on{box-shadow:0 0 0 2px var(--ink),0 0 0 3.5px var(--text)}
+.mn{position:absolute;left:20px;top:214px;font:500 12px/1 var(--f-ui);color:var(--text-3)}
+.inv{position:absolute;left:20px;right:20px;top:246px;padding:14px 16px}
+.link{margin-top:10px;display:flex;align-items:center;gap:10px;height:44px;border-radius:12px;background:var(--ink);border:.5px solid var(--line-2);padding:0 6px 0 12px}
+.link span{font:500 13px/1 var(--f-mono);color:var(--text);flex:1;white-space:nowrap}
+.link div{height:32px;padding:0 14px;border-radius:16px;background:var(--signal);color:#1a1208;font:700 13px/32px var(--f-ui)}
+.inv p{margin-top:10px;font:400 12.5px/1.35 var(--f-ui);color:var(--text-2)}
+.pv{position:absolute;left:20px;right:20px;top:394px;padding:16px 16px 0}
+.pv h3{font:400 26px/1 var(--f-serif);margin:8px 0 4px}.pv h3 i{color:var(--signal)}
+.row{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:.5px solid var(--line)}
+.row:first-of-type{border-top:0}
+.ic{width:26px;height:26px;border-radius:8px;background:rgba(255,181,71,.14);display:grid;place-items:center;flex:none}
+.ic svg{width:14px;height:14px;stroke:var(--signal);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.row b{display:block;font:600 14px/1.15 var(--f-ui)}
+.row small{display:block;margin-top:3px;font:400 12.5px/1.3 var(--f-ui);color:var(--text-2)}
+.lock{margin:2px -16px 0;padding:12px 16px;border-top:.5px solid var(--line);display:flex;gap:10px;align-items:center;font:500 12.5px/1.3 var(--f-ui);color:var(--text-2);background:rgba(255,255,255,.025);border-radius:0 0 20px 20px}
+.lock svg{width:15px;height:15px;stroke:var(--text-3);fill:none;stroke-width:2;flex:none}
+.empty{position:absolute;left:20px;right:20px;top:660px;height:132px;border-radius:20px;border:1.5px dashed rgba(245,241,234,.25);padding:14px 16px;display:flex;gap:14px;align-items:center}
+.empty .th{width:76px;height:96px;border-radius:12px;background:url(../../../photos/wrigley-night.jpg) 70% 52%/330% auto;position:relative;flex:none;box-shadow:0 0 0 1px var(--line-2)}
+.empty .th:after{content:"";position:absolute;inset:0;border-radius:12px;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.7))}
+.empty h4{font:400 20px/1.1 var(--f-serif)}.empty h4 i{color:var(--signal)}
+.empty p{margin-top:6px;font:400 12.5px/1.35 var(--f-ui);color:var(--text-2)}
+.empty .go{margin-top:9px;display:inline-block;font:600 13px/1 var(--f-ui);color:var(--signal)}
+</style></head>
+<body class="phone"><div class="glow"></div>
+<div class="nav"><span class="cancel">Cancel</span><span class="ttl">New circle</span><div class="pill amber">Create</div></div>
+<div class="crest"><b>314</b></div>
+<div class="fld"><div class="sec">Circle name</div><div class="inp">Section 314 Crew<u></u></div>
+  <div class="sw"><i class="on" style="background:#ffb547"></i><i style="background:#8fe3a0"></i><i style="background:#6fd3ff"></i><i style="background:#b79cff"></i><i style="background:#ff7a8a"></i><i style="background:#f3ece0"></i></div></div>
+<div class="mn">Crest from your name, in the color you pick. Change it anytime.</div>
+
+<div class="card inv"><div class="sec">Invite link</div>
+  <div class="link"><span>witness.app/c/sec314-4kq9</span><div>Copy</div></div>
+  <p>Only people with this link can join, and you approve each one. No public search, ever.</p></div>
+
+<div class="card pv"><div class="sec" style="color:var(--signal)">Before anyone joins</div><h3>What members <i>can see</i></h3>
+  <div style="margin-top:6px">
+  <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Games and venues</b><small>The games you attend and the parks you cover. Nothing else.</small></div></div>
+  <div class="row"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div><b>Photos, only when you post</b><small>You pick each one. Your camera roll never leaves your phone.</small></div></div></div>
+  <div class="lock"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>No live location, no tickets, no kids&rsquo; profiles.</div></div>
+
+<div class="empty"><div class="th"></div><div><h4>The wall starts <i>quiet</i></h4><p>Post the game you most want the crew to see.</p><span class="go">Pick a first game &rsaquo;</span></div></div>
+<script src="../../../kit/kit.js"></script></body></html>

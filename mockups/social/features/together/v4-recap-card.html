@@ -1,0 +1,69 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Together recap</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+html,body{background:#050506}
+.abs{position:absolute}
+i{font-style:normal}
+.av{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font:700 11px/1 var(--f-ui);color:#1a1204;flex:none;letter-spacing:.2px}
+.th{display:block;border-radius:8px;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14);position:relative;flex:none}
+.dot{position:absolute;right:3px;top:3px;width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 1.5px rgba(5,5,6,.92)}
+.eyebrow{font:600 9.5px/1 var(--f-ui);letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3)}
+.nav{position:absolute;top:56px;left:16px;right:16px;height:40px;display:flex;align-items:center;justify-content:space-between;z-index:30}
+.bug{display:flex;align-items:center;height:36px;padding:0 14px;border-radius:18px;gap:10px;font:700 15px/1 var(--f-cond);letter-spacing:.6px;background:rgba(30,30,36,.72);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14)}
+.bug .t{color:var(--text-2);font-size:14px;letter-spacing:1px}
+.bug b{font:700 20px/1 var(--f-cond);color:var(--text)}
+.bug b.dim{color:var(--text-3)}
+.bug .sep{width:1px;height:14px;background:var(--line-2)}
+.bug .fin{font:600 10.5px/1 var(--f-ui);letter-spacing:1.6px;color:var(--signal)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:50px;border-radius:25px;font:600 16px/1 var(--f-ui);letter-spacing:-.1px}
+.btn.pri{background:var(--signal);color:#1a1204;box-shadow:0 8px 28px rgba(255,181,71,.28)}
+.btn.sec{background:rgba(255,255,255,.08);color:var(--text);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.16)}
+
+.nav .tt{font:600 15px/1 var(--f-ui)}
+.card{position:absolute;left:36px;right:36px;top:110px;height:566px;border-radius:26px;overflow:hidden;background:#0d0c0b;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14),0 24px 60px rgba(0,0,0,.6),0 0 80px rgba(255,181,71,.10);padding:20px 18px 0}
+.card:before{content:"";position:absolute;inset:0;background:radial-gradient(80% 40% at 15% 0%,rgba(255,181,71,.16),transparent 70%),radial-gradient(60% 30% at 100% 100%,rgba(111,211,255,.10),transparent 70%)}
+.card>*{position:relative}
+.ey{display:flex;justify-content:space-between;font:600 9px/1 var(--f-ui);letter-spacing:1.5px;color:var(--text-3)}
+.ey b{color:var(--signal);font-weight:700}
+.card h1{font:400 33px/1 var(--f-serif);letter-spacing:-.4px;margin-top:12px}
+.card h1 em{font-style:italic;color:var(--signal)}
+.mos{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:4px;height:262px;margin-top:14px}
+.mos .t{position:relative;border-radius:10px;overflow:hidden}
+.mos .t .th{width:100%!important;height:100%!important;border-radius:0}
+.mos .big{grid-column:1/3;grid-row:1/3}
+.mos .wide{grid-column:1/4}
+.mos .dot{width:10px;height:10px;right:6px;top:6px}
+.mos .big .dot{width:12px;height:12px}
+.mos .by{position:absolute;left:8px;bottom:8px;display:flex;align-items:center;gap:6px;height:22px;padding:0 9px 0 4px;border-radius:11px;background:rgba(15,15,18,.72);font:600 10px/1 var(--f-ui)}
+.tl{position:relative;height:50px;margin-top:14px}
+.tl .tr{position:absolute;left:0;right:0;height:14px}
+.tl .base{position:absolute;left:0;right:0;bottom:2px;height:1px;background:rgba(255,255,255,.14)}
+.tl .tk{position:absolute;bottom:3px;width:2px;border-radius:1px}
+.tl .g{position:absolute;top:-2px;width:7px;height:7px;border-radius:50%;margin-left:-3px}
+.cap{font:500 10.5px/1.3 var(--f-ui);color:var(--text-2);margin-top:5px}
+.foot{position:absolute;left:18px;right:18px;bottom:0;height:98px;border-top:.5px solid var(--line-2);display:flex;align-items:center;gap:12px}
+.foot .a{display:flex}.foot .a .av{margin-right:-8px;box-shadow:0 0 0 2.5px #0d0c0b}
+.foot .n{font:600 13.5px/1.2 var(--f-tight);margin-left:6px}
+.foot .n span{display:block;font:400 11px/1.2 var(--f-ui);color:var(--text-2);margin-top:3px}
+.foot .st{margin-left:auto;text-align:right}
+.foot .st b{font:700 30px/.9 var(--f-cond);color:var(--text);display:block}
+.foot .st span{font:600 8.5px/1 var(--f-ui);letter-spacing:1.3px;color:var(--text-3)}
+.mk{position:absolute;right:18px;top:20px;display:none}
+.acts{position:absolute;left:16px;right:16px;top:698px;display:flex;gap:10px}
+.acts .btn{flex:1}
+.fine{position:absolute;left:24px;right:24px;top:760px;text-align:center;font:400 11.5px/1.4 var(--f-ui);color:var(--text-3)}
+
+</style></head>
+<body class="phone">
+<div class="nav"><div class="btn-circle glass"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg></div><span class="tt">Together recap</span><div class="btn-circle glass" style="opacity:0"></div></div>
+<div class="card"><div class="ey"><b>TOGETHER</b><span>WED JUN 24 2026 · LUMEN FIELD</span></div>
+<h1>One night, <em>three phones.</em></h1>
+<div class="mos"><div class="t big"><i class="th " style="width:10px;height:10px;background:url(../../../photos/soldier-soccer.jpg) -12.1px -20.9px/28.6px 38.1px no-repeat;"><i class=dot style=background:#f4e04d></i></i><span class="by"><span class="av" style="width:14px;height:14px;background:#f4e04d;font-size:6px;">CD</span>Chris, 12:45:31 PM</span></div><div class="t "><i class="th " style="width:10px;height:10px;background:url(../../../photos/soldier-soccer.jpg) -5.0px -11.2px/22.2px 29.6px no-repeat;"><i class=dot style=background:#6fd3ff></i></i></div><div class="t "><i class="th " style="width:10px;height:10px;background:url(../../../photos/soldier-soccer.jpg) -30.0px -33.4px/40.0px 53.3px no-repeat;"><i class=dot style=background:#ffb547></i></i></div><div class="t "><i class="th " style="width:10px;height:10px;background:url(../../../photos/soldier-soccer.jpg) -1.2px -5.3px/12.5px 16.7px no-repeat;"><i class=dot style=background:#ffb547></i></i></div><div class="t "><i class="th " style="width:10px;height:10px;background:url(../../../photos/soldier-soccer.jpg) -45.6px -47.6px/55.6px 74.1px no-repeat;"><i class=dot style=background:#6fd3ff></i></i></div><div class="t "><i class="th " style="width:10px;height:10px;background:url(../../../photos/soldier-soccer.jpg) -6.0px -13.7px/20.0px 26.7px no-repeat;"><i class=dot style=background:#f4e04d></i></i></div></div>
+<div class="tl"><div class="tr" style="top:8px"><i class="base"></i><i class="tk" style="left:24px;height:3px;background:#ffb547"></i><i class="tk" style="left:39px;height:3px;background:#ffb547"></i><i class="tk" style="left:36px;height:3px;background:#ffb547"></i><i class="tk" style="left:15px;height:4px;background:#ffb547"></i><i class="tk" style="left:12px;height:4px;background:#ffb547"></i><i class="tk" style="left:90px;height:4px;background:#ffb547"></i><i class="tk" style="left:96px;height:7px;background:#ffb547"></i><i class="tk" style="left:90px;height:5px;background:#ffb547"></i><i class="tk" style="left:99px;height:8px;background:#ffb547"></i><i class="tk" style="left:99px;height:5px;background:#ffb547"></i><i class="tk" style="left:108px;height:4px;background:#ffb547"></i><i class="tk" style="left:120px;height:6px;background:#ffb547"></i><i class="tk" style="left:111px;height:5px;background:#ffb547"></i><i class="tk" style="left:114px;height:9px;background:#ffb547"></i><i class="tk" style="left:111px;height:8px;background:#ffb547"></i><i class="tk" style="left:117px;height:7px;background:#ffb547"></i><i class="tk" style="left:117px;height:5px;background:#ffb547"></i><i class="tk" style="left:111px;height:6px;background:#ffb547"></i><i class="tk" style="left:120px;height:7px;background:#ffb547"></i><i class="tk" style="left:147px;height:4px;background:#ffb547"></i><i class="tk" style="left:150px;height:3px;background:#ffb547"></i><i class="tk" style="left:162px;height:4px;background:#ffb547"></i><i class="tk" style="left:192px;height:7px;background:#ffb547"></i><i class="tk" style="left:198px;height:8px;background:#ffb547"></i><i class="tk" style="left:204px;height:5px;background:#ffb547"></i><i class="tk" style="left:210px;height:4px;background:#ffb547"></i><i class="tk" style="left:195px;height:7px;background:#ffb547"></i><i class="tk" style="left:189px;height:6px;background:#ffb547"></i><i class="tk" style="left:186px;height:7px;background:#ffb547"></i><i class="tk" style="left:204px;height:7px;background:#ffb547"></i><i class="tk" style="left:246px;height:3px;background:#ffb547"></i><i class="tk" style="left:237px;height:4px;background:#ffb547"></i><i class="tk" style="left:231px;height:4px;background:#ffb547"></i><i class="tk" style="left:243px;height:5px;background:#ffb547"></i><i class="tk" style="left:225px;height:4px;background:#ffb547"></i><i class="tk" style="left:258px;height:3px;background:#ffb547"></i><i class="tk" style="left:264px;height:4px;background:#ffb547"></i></div><div class="tr" style="top:22px"><i class="base"></i><i class="tk" style="left:9px;height:4px;background:#f4e04d"></i><i class="tk" style="left:27px;height:4px;background:#f4e04d"></i><i class="tk" style="left:15px;height:3px;background:#f4e04d"></i><i class="tk" style="left:105px;height:5px;background:#f4e04d"></i><i class="tk" style="left:96px;height:5px;background:#f4e04d"></i><i class="tk" style="left:96px;height:6px;background:#f4e04d"></i><i class="tk" style="left:90px;height:4px;background:#f4e04d"></i><i class="tk" style="left:120px;height:6px;background:#f4e04d"></i><i class="tk" style="left:114px;height:8px;background:#f4e04d"></i><i class="tk" style="left:117px;height:5px;background:#f4e04d"></i><i class="tk" style="left:117px;height:8px;background:#f4e04d"></i><i class="tk" style="left:162px;height:4px;background:#f4e04d"></i><i class="tk" style="left:159px;height:3px;background:#f4e04d"></i><i class="tk" style="left:159px;height:3px;background:#f4e04d"></i><i class="tk" style="left:207px;height:5px;background:#f4e04d"></i><i class="tk" style="left:207px;height:5px;background:#f4e04d"></i><i class="tk" style="left:201px;height:7px;background:#f4e04d"></i><i class="tk" style="left:201px;height:4px;background:#f4e04d"></i><i class="tk" style="left:198px;height:6px;background:#f4e04d"></i><i class="tk" style="left:192px;height:4px;background:#f4e04d"></i><i class="tk" style="left:258px;height:3px;background:#f4e04d"></i><i class="tk" style="left:231px;height:3px;background:#f4e04d"></i><i class="tk" style="left:234px;height:4px;background:#f4e04d"></i></div><div class="tr" style="top:36px"><i class="base"></i><i class="tk" style="left:6px;height:3px;background:#6fd3ff"></i><i class="tk" style="left:18px;height:3px;background:#6fd3ff"></i><i class="tk" style="left:66px;height:5px;background:#6fd3ff"></i><i class="tk" style="left:84px;height:4px;background:#6fd3ff"></i><i class="tk" style="left:75px;height:3px;background:#6fd3ff"></i><i class="tk" style="left:111px;height:5px;background:#6fd3ff"></i><i class="tk" style="left:120px;height:4px;background:#6fd3ff"></i><i class="tk" style="left:123px;height:5px;background:#6fd3ff"></i><i class="tk" style="left:114px;height:4px;background:#6fd3ff"></i><i class="tk" style="left:204px;height:5px;background:#6fd3ff"></i><i class="tk" style="left:201px;height:5px;background:#6fd3ff"></i><i class="tk" style="left:192px;height:4px;background:#6fd3ff"></i><i class="tk" style="left:210px;height:3px;background:#6fd3ff"></i><i class="tk" style="left:222px;height:3px;background:#6fd3ff"></i><i class="tk" style="left:204px;height:4px;background:#6fd3ff"></i></div><i class="g" style="left:98px;background:#2f6bff"></i><i class="g" style="left:105px;background:#2f6bff"></i><i class="g" style="left:117px;background:#d8456b"></i><i class="g" style="left:198px;background:#2f6bff"></i></div>
+<div class="cap">Qatar 1, Bosnia and Herzegovina 3 · 66,925 there</div>
+<div class="foot"><div class="a"><span class="av" style="width:34px;height:34px;background:#ffb547;font-size:12px;">SO</span><span class="av" style="width:34px;height:34px;background:#f4e04d;font-size:12px;">CD</span><span class="av" style="width:34px;height:34px;background:#6fd3ff;font-size:12px;">JP</span></div><div class="n">Sam, Chris &amp; Jordan<span>Made with Witness</span></div><div class="st"><b>38</b><span>PHOTOS</span></div></div></div>
+<div class="acts"><div class="btn pri"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3.5M7.5 8 12 3.5 16.5 8"/><path d="M6 11.5H5.5A1.5 1.5 0 0 0 4 13v6.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V13a1.5 1.5 0 0 0-1.5-1.5H18"/></svg>Share card</div><div class="btn sec">Save image</div></div>
+<div class="fine">The card shows only photos each of you chose to share.</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

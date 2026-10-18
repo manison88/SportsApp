@@ -1,0 +1,73 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Together report</title>
+<link rel="stylesheet" href="common.css">
+<style>
+.hdr{position:absolute;top:58px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center}
+.hero{left:16px;right:16px;top:104px;height:262px;overflow:hidden;border-radius:26px}
+.hero img{position:absolute;inset:0;filter:contrast(1.05) saturate(.9) brightness(.62)}
+.hero .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.1) 0%,rgba(5,5,6,.2) 35%,rgba(5,5,6,.93) 78%)}
+.hero .eb{position:absolute;left:18px;top:16px;display:flex;align-items:center;gap:8px;font:600 10.5px/1 var(--f-ui);letter-spacing:1.7px;color:var(--signal)}
+.hero .tag{position:absolute;right:14px;top:12px;font:700 10.5px/1 var(--f-ui);letter-spacing:1.2px;padding:6px 9px;border-radius:10px;background:rgba(0,0,0,.45);color:#fff;border:.5px solid rgba(255,255,255,.25)}
+.hero h1{position:absolute;left:18px;right:18px;top:112px;font:400 38px/1.02 var(--f-serif);letter-spacing:-.5px}
+.hero h1 i{color:var(--signal)}
+.hero .stat{position:absolute;left:18px;right:18px;bottom:16px;display:flex;gap:0}
+.hero .stat div{flex:1}
+.hero .stat b{display:block;font:800 30px/1 var(--f-cond);font-variant-numeric:tabular-nums}
+.hero .stat span{display:block;font:500 11.5px/1.2 var(--f-ui);color:var(--text-2);margin-top:3px}
+.faces{position:absolute;left:18px;top:62px;display:flex}
+.faces .av{margin-right:-4px}
+.mom{left:16px;right:16px;top:378px;height:80px;display:flex;align-items:center;gap:10px;padding:0 12px}
+.mom .t{width:56px;height:56px;border-radius:13px;overflow:hidden;flex:none;position:relative}
+.mom b{display:block;font:600 14px/1.2 var(--f-ui)}
+.mom span.s{display:block;font:500 12px/1.3 var(--f-ui);color:var(--text-2);margin-top:2px}
+.audit{left:16px;right:16px;top:470px;height:342px;padding:16px 16px 0}
+.audit .e{display:flex;justify-content:space-between;align-items:center}
+.audit h2{font:600 17px/1.2 var(--f-ui);margin-top:8px;letter-spacing:-.2px}
+.log{margin-top:12px;border-top:.5px solid var(--line)}
+.lr{display:flex;gap:11px;padding:8px 0;border-bottom:.5px solid var(--line);align-items:flex-start}
+.lr .ic{width:26px;height:26px;border-radius:9px;background:rgba(255,181,71,.14);color:var(--signal);display:grid;place-items:center;flex:none}
+.lr .ic svg{width:14px;height:14px}
+.lr b{display:block;font:600 13.5px/1.25 var(--f-ui)}
+.lr span{display:block;font:500 12px/1.3 var(--f-ui);color:var(--text-2);margin-top:2px}
+.lr time{margin-left:auto;font:500 11.5px var(--f-mono);color:var(--text-3);flex:none;padding-top:2px}
+.acts{position:absolute;left:16px;right:16px;bottom:14px;display:flex;gap:8px}
+.acts div{flex:1;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;font:600 13px var(--f-ui);background:var(--raised);border:.5px solid var(--line-2)}
+.acts .d{color:#ff8b7e}
+.off{display:flex;align-items:center;gap:6px;font:600 11.5px/1 var(--f-ui);color:#8fe3a0}
+.off:before{content:"";width:7px;height:7px;border-radius:50%;background:#8fe3a0}
+</style></head>
+<body class="phone">
+<div class="hdr">
+  <div><div class="eyebrow">Final · Wrigley Field</div><div style="font:600 17px var(--f-ui);margin-top:5px;letter-spacing:-.2px">Chicago 5, Milwaukee 3</div></div>
+  <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+</div>
+
+<div class="card hero">
+  <img class="ph" src="../../../photos/wrigley-night.jpg">
+  <div class="sh"></div>
+  <div class="eb"><span style="width:6px;height:6px;border-radius:50%;background:var(--signal)"></span>TOGETHER REPORT</div>
+  <div class="tag">3 OF YOU</div>
+  <div class="faces"><span class="av" style="width:36px;height:36px;background:#ffb547">SO</span><span class="av" style="width:36px;height:36px;background:#ffd36e">CD</span><span class="av" style="width:36px;height:36px;background:#6fd3ff">JP</span></div>
+  <h1>Chris and Jordan were <i>there too</i></h1>
+  <div class="stat"><div><b>3</b><span>of you in the park</span></div><div><b>2</b><span>moments together</span></div><div><b>5–3</b><span>Chicago won</span></div></div>
+</div>
+
+<div class="card mom">
+  <div class="t"><img class="ph graded" src="../../../photos/wrigley-bleachers.jpg"></div>
+  <div style="flex:1"><b>Together at the gate</b><span class="s">8:36 PM · top 6 · saved with Chris</span></div>
+  <div class="pair" style="display:flex"><span class="av" style="width:26px;height:26px;background:#ffb547;font-size:10px;margin-right:-7px">SO</span><span class="av" style="width:26px;height:26px;background:#ffd36e;font-size:10px">CD</span></div>
+</div>
+
+<div class="card audit">
+  <div class="e"><span class="eyebrow">What was shared</span><span class="off">Sharing off</span></div>
+  <h2>Only your section, only until 9:48 PM</h2>
+  <div class="log">
+    <div class="lr"><div class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></div><div><b>Section shared 7:05 to 9:48 PM</b><span>With Chris, Jordan · Sec 124 only, no GPS</span></div></div>
+    <div class="lr"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7z"/></svg></div><div><b>Meet-up ping: “On my way”</b><span>Between you and Chris</span></div><time>8:31</time></div>
+    <div class="lr"><div class="ic"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .8-4.4 4.2 1.1 6L12 16.7 6.7 19.6l1.1-6L3.4 9.4l6-.8z"/></svg></div><div><b>Moment saved together</b><span>No photos left your phone.</span></div><time>8:36</time></div>
+  <div class="lr"><div class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/></svg></div><div><b>You saw their sections too</b><span>Chris and Jordan chose to share with you</span></div></div>
+  </div>
+  <div class="acts"><div>Delete this log</div><div class="d">Turn off Here now</div></div>
+</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>
