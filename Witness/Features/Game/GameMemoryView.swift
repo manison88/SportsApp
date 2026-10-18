@@ -339,7 +339,7 @@ struct GameMemoryView: View {
                     }
                 }
             } label: {
-                Label("I was there for \(library.team(library.rootingTeam(game))?.locationName ?? "")", systemImage: "heart")
+                Label("I was there for", systemImage: "heart")
             }
             .accessibilityIdentifier("game-rooting-menu")
         }
