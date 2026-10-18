@@ -85,16 +85,20 @@ struct VenueView: View {
             .frame(height: 400)
             .clipped()
             Scrim()
-            VStack(alignment: .leading, spacing: 6) {
-                Text(venue.name.uppercased())
-                    .displayFont(48)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.5)
-                    .accessibilityIdentifier("venue-title")
-                    .accessibilityAddTraits(.isHeader)
-                Text(venue.cityLine)
-                    .font(.subheadline)
-                    .foregroundStyle(Color.textSecondary)
+            HStack(spacing: 14) {
+                AerialVenueIcon(venue: venue, sport: Dictionary(grouping: games, by: \.sport).max { $0.value.count < $1.value.count }?.key
+                                ?? venue.sports.first ?? .baseball, size: 56)
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(venue.name.uppercased())
+                        .displayFont(48)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.5)
+                        .accessibilityIdentifier("venue-title")
+                        .accessibilityAddTraits(.isHeader)
+                    Text(venue.cityLine)
+                        .font(.subheadline)
+                        .foregroundStyle(Color.textSecondary)
+                }
             }
             .gutter()
             .padding(.bottom, 4)

@@ -256,7 +256,8 @@ final class AerialCache {
         if let hit = images[venue.id] { return hit }
         let options = MKMapSnapshotter.Options()
         options.region = MKCoordinateRegion(center: venue.coordinate, latitudinalMeters: 700, longitudinalMeters: 700)
-        options.size = CGSize(width: points * 2, height: points * 2)
+        // One size serves the round icon and the Passport backdrop.
+        options.size = CGSize(width: max(points, 120), height: max(points, 120))
         options.mapType = .satellite
         options.showsBuildings = false
         guard let snap = try? await MKMapSnapshotter(options: options).start() else { return nil }

@@ -225,7 +225,7 @@ private struct StampTile: View {
         }
         .frame(maxWidth: .infinity, minHeight: 124, alignment: .topLeading)
         .padding(12)
-        .background(stamp.color, in: .rect(cornerRadius: 16))
+        .background { StampBackdrop(venue: library.venue(stamp.venueId), color: stamp.color) }
         .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(ink.opacity(0.22), lineWidth: 1.5).padding(5))
         .overlay(alignment: .topTrailing) {
             if stamp.titles > 0 {
@@ -509,5 +509,29 @@ private struct PassportShareCard: View {
             .padding(.horizontal, 8)
             .frame(width: side, height: side)
             .background(fill, in: .rect(cornerRadius: 22))
+    }
+}
+
+
+/// The stamp's team color over a faded satellite view of its ground.
+private struct StampBackdrop: View {
+    let venue: Venue?
+    let color: Color
+    @State private var image: UIImage?
+
+    var body: some View {
+        ZStack {
+            color
+            if let image {
+                Image(uiImage: image).resizable().scaledToFill()
+                    .saturation(0).opacity(0.55).blendMode(.luminosity)
+            }
+            LinearGradient(colors: [color, color.opacity(0)], startPoint: .leading, endPoint: .trailing)
+                .opacity(0.92)
+        }
+        .clipShape(.rect(cornerRadius: 16))
+        .task(id: venue?.id) {
+            if let venue { image = await AerialCache.shared.image(for: venue, points: 120) }
+        }
     }
 }
