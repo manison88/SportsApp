@@ -27,7 +27,7 @@ struct GameMemoryView: View {
     private func content(_ game: GameEntry) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.block) {
-                heroLink(game)
+                hero(game)
                 scoreBlock(game).gutter()
                 rootingBlock(game)
                 photosBlock(game)
@@ -84,18 +84,6 @@ struct GameMemoryView: View {
         !game.plays.isEmpty || !game.winProbability.isEmpty
     }
 
-    @ViewBuilder
-    private func heroLink(_ game: GameEntry) -> some View {
-        if hasDetail(game) {
-            NavigationLink(value: Route.youWereThere(game.id)) { hero(game) }
-                .buttonStyle(.plain)
-                .accessibilityHint("Opens the moments you were there for")
-                .accessibilityIdentifier("hero-you-were-there")
-        } else {
-            hero(game)
-        }
-    }
-
     private func hero(_ game: GameEntry) -> some View {
         let venue = library.venue(game.venueId)
         let tz = venue?.tz ?? .current
@@ -117,14 +105,30 @@ struct GameMemoryView: View {
                 ScoreLinesTitle(game: game)
                     .accessibilityIdentifier("game-title")
                     .accessibilityAddTraits(.isHeader)
-                Text([venue?.name, Fmt.dayTitle(game.date, in: tz)].compactMap { $0 }.joined(separator: ", "))
-                    .font(.subheadline)
-                    .foregroundStyle(Color.textSecondary)
-                if let kickoff = Fmt.kickoff(game, in: tz) {
-                    Label(kickoff, systemImage: game.weather?.symbol ?? "clock")
-                        .font(.subheadline)
-                        .foregroundStyle(Color.textSecondary)
-                        .accessibilityIdentifier("game-kickoff")
+                HStack(alignment: .center, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        venueLine(venue, game: game, tz: tz)
+                        if let kickoff = Fmt.kickoff(game, in: tz) {
+                            Label(kickoff, systemImage: game.weather?.symbol ?? "clock")
+                                .font(.subheadline)
+                                .foregroundStyle(Color.textSecondary)
+                                .accessibilityIdentifier("game-kickoff")
+                        }
+                    }
+                    Spacer(minLength: 8)
+                    if hasDetail(game) {
+                        NavigationLink(value: Route.youWereThere(game.id)) {
+                            Image(systemName: "waveform.path.ecg")
+                                .font(.system(size: 22, weight: .semibold))
+                                .foregroundStyle(Color.signal)
+                                .frame(width: 48, height: 48)
+                                .contentShape(.rect)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("You were there")
+                        .accessibilityHint("Opens the moments you were there for")
+                        .accessibilityIdentifier("hero-you-were-there")
+                    }
                 }
             }
             .gutter()
@@ -132,6 +136,30 @@ struct GameMemoryView: View {
         }
         .frame(height: heroHeight)
         .contentShape(.rect)
+    }
+
+    /// The stadium, tappable, then the date: "Wrigley Field, Oct 30, 2016".
+    @ViewBuilder
+    private func venueLine(_ venue: Venue?, game: GameEntry, tz: TimeZone) -> some View {
+        let date = Fmt.dayTitle(game.date, in: tz)
+        if let venue {
+            HStack(spacing: 0) {
+                NavigationLink(value: Route.venue(venue.id)) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "building.columns").font(.footnote.weight(.semibold))
+                        Text(venue.name).font(.subheadline.weight(.semibold)).lineLimit(1)
+                    }
+                    .foregroundStyle(Color.signal)
+                    .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("\(venue.name), stadium")
+                .accessibilityIdentifier("hero-venue")
+                Text(", \(date)").font(.subheadline).foregroundStyle(Color.textSecondary).lineLimit(1)
+            }
+        } else {
+            Text(date).font(.subheadline).foregroundStyle(Color.textSecondary)
+        }
     }
 
     // MARK: Score

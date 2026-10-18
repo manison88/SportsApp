@@ -171,6 +171,8 @@ final class WitnessUITests: XCTestCase {
             app.buttons["Close"].firstMatch.tap()
         }
 
+        XCTAssertTrue(el("hero-venue").exists, "The stadium is a link on the cover")
+        XCTAssertTrue(el("hero-you-were-there").exists, "You were there is an icon on the cover")
         tap("open-you-were-there")
         XCTAssertTrue(el("ywt-hero").waitForExistence(timeout: 5), "The match report opens with the story of your night")
         XCTAssertTrue(el("ywt-timeline").exists, "A timeline of the game clock stays pinned above the report")
