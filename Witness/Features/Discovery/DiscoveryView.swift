@@ -263,11 +263,10 @@ struct DiscoveryView: View {
         if let game = lookup, lookupFor == cluster.id, game.race == nil, game.sport != .motorsport {
             let home = resolved(game.home, in: game), away = resolved(game.away, in: game)
             VStack(alignment: .leading, spacing: 8) {
-                Text("I was there for").font(.condensed(.subheadline, weight: .heavy)).tracking(1.2).textCase(.uppercase)
-                    .foregroundStyle(Color.textSecondary)
-                RootingChips(teams: [away, home], selection: Binding(
+                RootingPicker(teams: [away, home], selection: Binding(
                     get: { rootingId ?? defaultRoot(home, away) },
-                    set: { rootingId = $0 }))
+                    set: { rootingId = $0 }),
+                              known: !Set(library.profile.favoriteTeamIds).isDisjoint(with: [home.id, away.id]))
             }
             .accessibilityIdentifier("discovery-rooting")
         }

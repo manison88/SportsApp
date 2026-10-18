@@ -132,9 +132,9 @@ struct AddGameView: View {
                     scoreRow
                     if let home = homeTeamId, let away = awayTeamId {
                         VStack(alignment: .leading, spacing: 8) {
-                            Text("I was there for").font(.footnote).foregroundStyle(Color.textSecondary)
                             if let h = library.team(home), let a = library.team(away) {
-                                RootingChips(teams: [a, h], selection: $rootingForTeamId)
+                                RootingPicker(teams: [a, h], selection: $rootingForTeamId,
+                                              known: !Set(library.profile.favoriteTeamIds).isDisjoint(with: [h.id, a.id]))
                             }
                         }
                         .accessibilityIdentifier("add-rooting")

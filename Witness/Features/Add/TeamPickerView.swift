@@ -315,6 +315,54 @@ struct RootingChips: View {
     }
 }
 
+/// "I was there for", folded to one line when it is already settled (your team is playing, or you chose); tap to change.
+struct RootingPicker: View {
+    let teams: [Team]
+    @Binding var selection: String?
+    /// True when it is already settled: one of your teams plays, or it was chosen before.
+    let known: Bool
+
+    @State private var expanded = false
+    @State private var chosen = false
+
+    var body: some View {
+        let collapsed = (known || chosen) && !expanded
+        VStack(alignment: .leading, spacing: 8) {
+            if collapsed, let team = teams.first(where: { $0.id == selection }) {
+                Button {
+                    withAnimation(.snappy) { expanded = true }
+                } label: {
+                    HStack(spacing: 10) {
+                        Text("I was there for").font(.footnote.weight(.semibold)).foregroundStyle(Color.textSecondary)
+                        TeamTile(team: team, compact: true)
+                        Text(team.locationName).font(.condensed(.subheadline, weight: .heavy)).foregroundStyle(.white).lineLimit(1)
+                        Spacer(minLength: 8)
+                        Text("Change").font(.footnote.weight(.semibold)).foregroundStyle(Color.signal)
+                        Image(systemName: "chevron.down").font(.caption.weight(.bold)).foregroundStyle(Color.signal).accessibilityHidden(true)
+                    }
+                    .padding(.horizontal, 12)
+                    .frame(maxWidth: .infinity, minHeight: 48)
+                    .background(Color.panel, in: .rect(cornerRadius: 12))
+                    .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("I was there for \(team.locationName). Change")
+                .accessibilityIdentifier("rooting-collapsed")
+            } else {
+                Text("I was there for").font(.condensed(.subheadline, weight: .heavy)).tracking(1.2).textCase(.uppercase)
+                    .foregroundStyle(Color.textSecondary)
+                RootingChips(teams: teams, selection: Binding(
+                    get: { selection },
+                    set: { new in
+                        selection = new
+                        chosen = true
+                        withAnimation(.snappy) { expanded = false }
+                    }))
+            }
+        }
+    }
+}
+
 /// "Select your teams": the teams you follow. They are who you were rooting for at any game they play in, unless a game says otherwise.
 struct FavoriteTeamsView: View {
     @Environment(Library.self) private var library

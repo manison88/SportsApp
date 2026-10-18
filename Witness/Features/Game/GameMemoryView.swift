@@ -178,12 +178,12 @@ struct GameMemoryView: View {
     private func rootingBlock(_ game: GameEntry) -> some View {
         if game.sport != .motorsport, let home = library.team(game.homeTeamId), let away = library.team(game.awayTeamId) {
             let chosen = library.rootingTeam(game)
+            let favorites = library.profile.favoriteTeamIds
             VStack(alignment: .leading, spacing: Spacing.inner) {
-                Text("I was there for").font(.condensed(.subheadline, weight: .heavy)).tracking(1.2).textCase(.uppercase)
-                    .foregroundStyle(Color.textSecondary)
-                RootingChips(teams: [away, home], selection: Binding(
+                RootingPicker(teams: [away, home], selection: Binding(
                     get: { chosen },
-                    set: { library.setRooting(game.id, to: $0) }))
+                    set: { library.setRooting(game.id, to: $0) }),
+                              known: game.rootingForTeamId != nil || favorites.contains { $0 == game.homeTeamId || $0 == game.awayTeamId })
                 if let chosen, !library.profile.favoriteTeamIds.contains(chosen), let team = library.team(chosen) {
                     Button {
                         library.addFavorite(chosen)
