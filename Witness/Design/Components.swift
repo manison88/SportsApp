@@ -261,6 +261,8 @@ struct PhotoView: View {
                 }
             }
             .clipped()
+            // A filled photo is bigger than its frame; without this the overflow still takes taps meant for what is above it.
+            .contentShape(.rect)
             .overlay(alignment: .bottomLeading) {
                 if showsMediaBadge, MediaInfo.info(ref).isVideo {
                     HStack(spacing: 4) {
