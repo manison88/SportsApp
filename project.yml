@@ -42,6 +42,7 @@ targets:
         INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: UIInterfaceOrientationPortrait
         INFOPLIST_KEY_NSPhotoLibraryUsageDescription: "Witness finds the games you've been to from your photos' dates and places, entirely on this iPhone."
         INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "Witness uses your location to check you in when you're at a stadium."
+        INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription: "Witness uses the calendar only to add games you plan to attend."
         INFOPLIST_KEY_NSCameraUsageDescription: "Witness lets you capture a moment at the game."
   WitnessTests:
     type: bundle.unit-test

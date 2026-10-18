@@ -685,6 +685,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Witness;
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "Witness uses the calendar only to add games you plan to attend.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Witness lets you capture a moment at the game.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Witness uses your location to check you in when you're at a stadium.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Witness finds the games you've been to from your photos' dates and places, entirely on this iPhone.";
@@ -886,6 +887,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Witness;
+				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "Witness uses the calendar only to add games you plan to attend.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Witness lets you capture a moment at the game.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Witness uses your location to check you in when you're at a stadium.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Witness finds the games you've been to from your photos' dates and places, entirely on this iPhone.";

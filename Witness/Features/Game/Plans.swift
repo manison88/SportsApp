@@ -1,5 +1,6 @@
 import SwiftUI
 import UserNotifications
+import EventKit
 
 // MARK: - Helpers
 
@@ -162,6 +163,9 @@ struct PlanView: View {
     @State private var forecast: Weather?
     @State private var seat = ""
     @State private var reminderDenied = false
+    @State private var calendarState: CalendarState = .idle
+
+    private enum CalendarState { case idle, added, denied }
 
     var body: some View {
         if let plan = library.plan(planId) {
@@ -208,6 +212,25 @@ struct PlanView: View {
                             .accessibilityIdentifier("plan-seat")
                     }
                     .padding(14).background(Color.panel, in: .rect(cornerRadius: 16))
+                    Button { Task { await addToCalendar(plan) } } label: {
+                        HStack(spacing: 12) {
+                            Image(systemName: calendarState == .added ? "checkmark.circle.fill" : "calendar.badge.plus")
+                                .foregroundStyle(Color.signal).frame(width: 24)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Add to Calendar").font(.subheadline.weight(.semibold))
+                                Text(calendarState == .added ? "Added to your calendar"
+                                     : calendarState == .denied ? "Allow calendar access in Settings"
+                                     : "Saves it to your calendar")
+                                    .font(.footnote).foregroundStyle(Color.textSecondary)
+                            }
+                            Spacer()
+                        }
+                        .foregroundStyle(.white)
+                        .padding(14).background(Color.panel, in: .rect(cornerRadius: 16))
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(calendarState == .added)
+                    .accessibilityIdentifier("plan-calendar")
                     Toggle(isOn: Binding(get: { plan.planReminder ?? false }, set: { setReminder($0, plan) })) {
                         HStack(spacing: 12) {
                             Image(systemName: "bell").foregroundStyle(Color.signal).frame(width: 24)
@@ -284,6 +307,29 @@ struct PlanView: View {
         let text = seat.trimmingCharacters(in: .whitespacesAndNewlines)
         p.seat = text.isEmpty ? nil : text
         if p != plan { library.updatePlan(p) }
+    }
+
+    // MARK: Calendar
+
+    /// Writes the game into the fan's calendar. Write-only access: the app never reads their events.
+    private func addToCalendar(_ plan: GameEntry) async {
+        let store = EKEventStore()
+        guard (try? await store.requestWriteOnlyAccessToEvents()) == true else { calendarState = .denied; return }
+        let venue = library.venue(plan.venueId)
+        let event = EKEvent(eventStore: store)
+        event.title = PlanText.title(plan, library)
+        event.startDate = plan.date
+        event.endDate = plan.date.addingTimeInterval(3 * 3600)
+        event.timeZone = venue?.tz
+        event.location = [venue?.name, venue?.cityLine].compactMap { $0 }.joined(separator: ", ")
+        event.notes = plan.seat.map { "Seat: \($0)" }
+        event.calendar = store.defaultCalendarForNewEvents
+        do {
+            try store.save(event, span: .thisEvent)
+            calendarState = .added
+        } catch {
+            calendarState = .denied
+        }
     }
 
     // MARK: Reminder
