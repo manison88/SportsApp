@@ -17,6 +17,7 @@ struct RootView: View {
         .sheet(item: sheetBinding) { modal in
             switch modal {
             case .addGame: AddGameView()
+            case .planGame: PlanGameView()
             case .importTicket: TicketImportView()
             case .importAlbum: AlbumImportView()
             default: EmptyView()
@@ -53,7 +54,7 @@ struct RootView: View {
 
     private static func isCover(_ m: Modal) -> Bool {
         switch m {
-        case .addGame, .importTicket, .importAlbum: false
+        case .addGame, .planGame, .importTicket, .importAlbum: false
         default: true
         }
     }
@@ -82,6 +83,7 @@ extension View {
             case .lucky: LuckyCharmView()
             case .bigGames: BigGamesView()
             case .photos(let id): GamePhotosView(gameId: id)
+            case .plan(let id): PlanView(planId: id)
             }
         }
     }

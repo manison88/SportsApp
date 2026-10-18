@@ -13,6 +13,8 @@ struct PassportView: View {
         /// Title games seen here; earns the stamp a gold star.
         var titles = 0
         var id: String { venueId }
+        /// The plan a dashed stamp stands for.
+        var planId = ""
     }
 
     private var sports: [Sport] {
@@ -46,6 +48,11 @@ struct PassportView: View {
                     .foregroundStyle(.white)
                     .accessibilityElement(children: .combine)
 
+                    if let next = plannedStamps(excluding: Set(earned.map(\.venueId))).first, let date = next.date {
+                        Text("+ \(library.venue(next.venueId)?.name ?? next.code) planned for \(Fmt.day(date).capitalized)")
+                            .font(.subheadline).foregroundStyle(Color.signal)
+                            .accessibilityIdentifier("passport-planned-caption")
+                    }
                 }
 
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 12), count: 3), spacing: 12) {
@@ -55,6 +62,13 @@ struct PassportView: View {
                         }
                         .buttonStyle(.plain)
                         .accessibilityIdentifier("stamp-\(stamp.venueId)")
+                    }
+                    ForEach(plannedStamps(excluding: Set(earned.map(\.venueId)))) { stamp in
+                        NavigationLink(value: Route.plan(stamp.planId)) {
+                            PlannedStampTile(stamp: stamp)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityIdentifier("planned-stamp-\(stamp.venueId)")
                     }
                 }
             }
@@ -154,6 +168,17 @@ struct PassportView: View {
         let earned = firstVisit.keys.compactMap { stamp(for: $0, games: games, date: firstVisit[$0]) }
             .sorted { ($0.date ?? .distantPast) < ($1.date ?? .distantPast) }
         return (earned, [])
+    }
+
+    /// Dashed stamps for grounds you plan to visit and haven't yet, soonest first.
+    private func plannedStamps(excluding earnedVenues: Set<String>) -> [Stamp] {
+        var seen = Set<String>()
+        return PlanText.coming(library).filter { $0.sport == sport && !earnedVenues.contains($0.venueId) && seen.insert($0.venueId).inserted }
+            .compactMap { plan in
+                guard var made = stamp(for: plan.venueId, games: [plan], date: plan.date) else { return nil }
+                made.planId = plan.id
+                return made
+            }
     }
 
     /// A venue's stamp wears the color of the team that plays there most.
@@ -536,5 +561,26 @@ private struct StampBackdrop: View {
         .task(id: venue?.id) {
             if let venue { image = await AerialCache.shared.image(for: venue, points: 120) }
         }
+    }
+}
+
+
+/// A ground you plan to visit: dashed, amber, with the date it is planned for.
+private struct PlannedStampTile: View {
+    let stamp: PassportView.Stamp
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(stamp.code).displayFont(34, relativeTo: .title).foregroundStyle(Color.signal)
+            Spacer(minLength: 0)
+            Text("Planned" + (stamp.date.map { " \u{00B7} " + Fmt.day($0) } ?? ""))
+                .font(.condensed(.caption2, weight: .heavy)).tracking(1.2).foregroundStyle(Color.signal)
+                .lineLimit(2).minimumScaleFactor(0.7)
+        }
+        .frame(maxWidth: .infinity, minHeight: 124, alignment: .topLeading)
+        .padding(12)
+        .background(Color.signal.opacity(0.08), in: .rect(cornerRadius: 16))
+        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.signal, style: StrokeStyle(lineWidth: 1.5, dash: [5, 4])))
+        .accessibilityElement(children: .combine)
     }
 }

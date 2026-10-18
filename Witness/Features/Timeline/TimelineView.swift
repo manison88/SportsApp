@@ -20,6 +20,7 @@ struct TimelineView: View {
     var body: some View {
         ScrollView {
             LazyVStack(spacing: Spacing.block) {
+                if query.trimmingCharacters(in: .whitespaces).isEmpty { UpcomingSection() }
                 ForEach(games) { game in
                     NavigationLink(value: Route.game(game.id)) {
                         TimelineCard(game: game)
@@ -33,7 +34,7 @@ struct TimelineView: View {
             .padding(.bottom, Spacing.block)
         }
         .overlay {
-            if library.games.isEmpty {
+            if library.games.isEmpty && library.plans.isEmpty {
                 EmptyTimeline()
             } else if games.isEmpty {
                 ContentUnavailableView.search(text: query)
@@ -108,6 +109,7 @@ struct AddMenu: View {
     var body: some View {
         Menu {
             Button("Add game", systemImage: "plus") { presenter.modal = .addGame }
+            Button("Plan a game", systemImage: "calendar.badge.plus") { presenter.modal = .planGame }
             Button("Import ticket", systemImage: "ticket") { presenter.modal = .importTicket }
             Button("Find in photos", systemImage: "photo.on.rectangle.angled") { presenter.modal = .discovery }
             Button("Import an album or trip", systemImage: "rectangle.stack.badge.plus") { presenter.modal = .importAlbum }

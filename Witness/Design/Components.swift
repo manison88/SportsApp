@@ -54,11 +54,13 @@ enum Route: Hashable {
     case lucky
     case bigGames
     case photos(String)
+    case plan(String)
 }
 
 /// Full-screen and sheet presentations reachable from anywhere.
 enum Modal: Identifiable, Hashable {
     case addGame
+    case planGame
     case importTicket
     case importAlbum
     case discovery
@@ -69,6 +71,7 @@ enum Modal: Identifiable, Hashable {
     var id: String {
         switch self {
         case .addGame: "add"
+        case .planGame: "plan"
         case .importTicket: "import"
         case .importAlbum: "album"
         case .discovery: "discovery"

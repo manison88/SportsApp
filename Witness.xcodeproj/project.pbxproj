@@ -30,6 +30,7 @@
 		37B16E29C9D27A66D480E00D /* VenuePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C48F08394BC610EA16614E /* VenuePickerView.swift */; };
 		41282078C6400EAF3917D94E /* YouWereThereView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704303482A7331087EFF150 /* YouWereThereView.swift */; };
 		901D08EF4A4A4539A0CB1038 /* MatchReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2487206229E4ED59D3FD656 /* MatchReport.swift */; };
+		1E25478ED82A463EAA50F533 /* Plans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A55E1FBC00484C951F38B5 /* Plans.swift */; };
 		4FA66493F78992F852961E30 /* PhotoMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD292282DB6DC3BCC066881 /* PhotoMatcherTests.swift */; };
 		548395EAEB6FB7409DF57100 /* TicketImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0886E427272EE4FBED88DB5 /* TicketImportView.swift */; };
 		5B7AF8406D59899769065BD7 /* ScoreboardReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5F7CEAB6296502544C0B9F /* ScoreboardReader.swift */; };
@@ -142,6 +143,7 @@
 		A2E5222772FB0C38016D430A /* WitnessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitnessUITests.swift; sourceTree = "<group>"; };
 		A704303482A7331087EFF150 /* YouWereThereView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouWereThereView.swift; sourceTree = "<group>"; };
 		B2487206229E4ED59D3FD656 /* MatchReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchReport.swift; sourceTree = "<group>"; };
+		39A55E1FBC00484C951F38B5 /* Plans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plans.swift; sourceTree = "<group>"; };
 		A857D75ED272F933EF88177E /* VenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueView.swift; sourceTree = "<group>"; };
 		B67381837ED335A8DC3A8AB2 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		EAA64AFCCCD04D0FA8C3AB27 /* ScanProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanProgressView.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				08AAD768395210D8C4AC6920 /* RecapFilmView.swift */,
 				A704303482A7331087EFF150 /* YouWereThereView.swift */,
 				B2487206229E4ED59D3FD656 /* MatchReport.swift */,
+				39A55E1FBC00484C951F38B5 /* Plans.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -638,6 +641,7 @@
 				9B4532F2E8F9A71114DAE408 /* YouView.swift in Sources */,
 				41282078C6400EAF3917D94E /* YouWereThereView.swift in Sources */,
 				901D08EF4A4A4539A0CB1038 /* MatchReport.swift in Sources */,
+				1E25478ED82A463EAA50F533 /* Plans.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

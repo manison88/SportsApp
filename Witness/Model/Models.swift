@@ -250,6 +250,8 @@ struct GameEntry: Codable, Hashable, Identifiable {
     var coverChosenByFan: Bool?
     /// `.visit` for a stadium tour or a walk past the ground: photos at the venue, no game that day.
     var kind: Kind?
+    /// A planned game: the fan asked for a game-day reminder.
+    var planReminder: Bool?
 
     enum Kind: String, Codable { case visit }
     var isVisit: Bool { kind == .visit }

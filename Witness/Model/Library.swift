@@ -27,6 +27,8 @@ final class Library {
 
     // User data, persisted.
     private(set) var games: [GameEntry] = []
+    /// Games the fan plans to go to. They are not games yet: no stats, stamps or map pins until attended.
+    private(set) var plans: [GameEntry] = []
     private(set) var customVenues: [Venue] = []
     private(set) var customPeople: [Person] = []
     /// Teams learned from real schedules (any league, any country).
@@ -45,6 +47,7 @@ final class Library {
         var customTeams: [Team]? = nil
         var customTrips: [Trip]? = nil
         var favoriteTeamIds: [String]? = nil
+        var plans: [GameEntry]? = nil
     }
 
     nonisolated static var defaultStoreURL: URL {
@@ -67,6 +70,7 @@ final class Library {
         return teams[id] ?? customTeams.first { $0.id == id }
     }
     func game(_ id: String) -> GameEntry? { games.first { $0.id == id } }
+    func plan(_ id: String) -> GameEntry? { plans.first { $0.id == id } }
     func trip(_ id: String?) -> Trip? { id.flatMap { tid in trips.first { $0.id == tid } } }
     var isSample: Bool { games.contains { $0.origin == .sample } }
 
@@ -181,6 +185,61 @@ final class Library {
         if r == game.homeTeamId { return homeWon ? .win : .loss }
         if r == game.awayTeamId { return homeWon ? .loss : .win }
         return .none
+    }
+
+    // MARK: Plans
+
+    /// A planned game from the schedule. Nothing happens if that event is already planned or its ground is unknown.
+    @discardableResult
+    func addPlan(_ found: FoundGame) -> GameEntry? {
+        if let existing = plans.first(where: { $0.source?.eventId == found.eventId && $0.source?.league == found.league }) { return existing }
+        guard let venue = GameLookup.venue(of: found, in: venues)
+                ?? team(GameLookup.team(from: found.home, game: found).id).flatMap({ $0.homeVenueId }).flatMap({ self.venue($0) }) else { return nil }
+        var entry = GameEntry(sport: found.sport, date: found.start, venueId: venue.id, origin: .manual)
+        GameLookup.apply(found, detail: nil, to: &entry, library: self)
+        plans.append(entry)
+        plans.sort { $0.date < $1.date }
+        save()
+        return entry
+    }
+
+    func updatePlan(_ plan: GameEntry) {
+        guard let i = plans.firstIndex(where: { $0.id == plan.id }) else { return }
+        plans[i] = plan
+        save()
+    }
+
+    func removePlan(_ id: String) {
+        plans.removeAll { $0.id == id }
+        save()
+    }
+
+    /// The fan is at the game: the plan becomes a game, and the schedule fills in what it knows.
+    @discardableResult
+    func attend(plan id: String) -> String? {
+        guard var entry = plan(id) else { return nil }
+        plans.removeAll { $0.id == id }
+        entry.planReminder = nil
+        entry.origin = .manual
+        entry.kind = nil
+        games.append(entry)
+        sortAndSave()
+        Task {
+            await refreshFromSchedule(entry.id)
+            await fillWeather(entry.id)
+        }
+        return entry.id
+    }
+
+    /// Scores and plays for a game that has since been played, found again on its schedule.
+    func refreshFromSchedule(_ id: String) async {
+        guard let g = game(id), let source = g.source, let venue = venue(g.venueId) else { return }
+        let found = await GameLookup.games(at: venue, from: g.date.addingTimeInterval(-6 * 3600), to: g.date.addingTimeInterval(8 * 3600))
+        guard let match = found.first(where: { $0.eventId == source.eventId }), match.completed else { return }
+        let detail = await GameLookup.detail(match)
+        guard var current = game(id) else { return }
+        GameLookup.apply(match, detail: detail, to: &current, library: self)
+        update(current)
     }
 
     // MARK: Mutations
@@ -449,7 +508,8 @@ final class Library {
     private func save() {
         hasLibrary = true
         let stored = Stored(games: games, customVenues: customVenues, customPeople: customPeople, customTeams: customTeams, customTrips: customTrips,
-                        favoriteTeamIds: chosenFavoriteTeamIds.isEmpty ? nil : chosenFavoriteTeamIds)
+                        favoriteTeamIds: chosenFavoriteTeamIds.isEmpty ? nil : chosenFavoriteTeamIds,
+                        plans: plans.isEmpty ? nil : plans)
         do {
             let data = try Self.encoder.encode(stored)
             try FileManager.default.createDirectory(at: storeURL.deletingLastPathComponent(), withIntermediateDirectories: true)
@@ -468,6 +528,7 @@ final class Library {
         customTeams = stored.customTeams ?? []
         customTrips = stored.customTrips ?? []
         chosenFavoriteTeamIds = stored.favoriteTeamIds ?? []
+        plans = (stored.plans ?? []).sorted { $0.date < $1.date }
         hasLibrary = true
     }
 

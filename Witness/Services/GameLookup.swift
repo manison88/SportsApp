@@ -504,3 +504,30 @@ enum GameLookup {
         return 0.2126 * r + 0.7152 * g + 0.0722 * b
     }
 }
+
+
+extension GameLookup {
+    /// A team's coming games, soonest first: its own schedule, else one range of the league scoreboard.
+    static func upcoming(league: String, teamEspnId: String, limit: Int = 14) async -> [FoundGame] {
+        let now = Date()
+        func mine(_ list: [FoundGame]) -> [FoundGame] {
+            list.filter { ($0.home.espnId == teamEspnId || $0.away.espnId == teamEspnId) && $0.start >= now.addingTimeInterval(-3 * 3600) }
+        }
+        var found: [FoundGame] = []
+        if let url = URL(string: "\(base)\(league)/teams/\(teamEspnId)/schedule"), let data = await fetch(url) {
+            found = mine(parseScoreboard(data, league: league))
+        }
+        if found.isEmpty {
+            let f = DateFormatter()
+            f.locale = Locale(identifier: "en_US_POSIX")
+            f.timeZone = TimeZone(identifier: "UTC")
+            f.dateFormat = "yyyyMMdd"
+            let range = "\(f.string(from: now))-\(f.string(from: now.addingTimeInterval(75 * 86_400)))"
+            if let url = URL(string: "\(base)\(league)/scoreboard?dates=\(range)&limit=1000"), let data = await fetch(url) {
+                found = mine(parseScoreboard(data, league: league))
+            }
+        }
+        var seen = Set<String>()
+        return Array(found.filter { seen.insert($0.id).inserted }.sorted { $0.start < $1.start }.prefix(limit))
+    }
+}
