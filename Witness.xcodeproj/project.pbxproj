@@ -24,6 +24,7 @@
 		26BF4BFB83576FB3F048F517 /* PhotoCredits.md in Resources */ = {isa = PBXBuildFile; fileRef = 281972298861717804A0CBFD /* PhotoCredits.md */; };
 		29A2F767CE1F9907F6F16402 /* TicketParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF398484DD3487B795AB540 /* TicketParserTests.swift */; };
 		2A1B4249B8E285AC96DDCC6C /* EventTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F48A3DC2D47231C6E56B7 /* EventTheme.swift */; };
+		2C04CCBC8A87B9A2E1328A35 /* MapListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B587E65EAF454E7F2872C /* MapListSheet.swift */; };
 		2FB08C6E1D9C2F5F821BFEA3 /* GameLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8BFCA25D2EAB73580B35B /* GameLookup.swift */; };
 		33986E7A0BDD5EAC7B8E13D7 /* TicketOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903443890581343B7B39B754 /* TicketOCRTests.swift */; };
 		36CECB56088ADBB858CA2A45 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89965E1544CBDB43E6EC2FE2 /* TimelineView.swift */; };
@@ -128,6 +129,7 @@
 		8007189AFB335F74AD2F2242 /* Sample */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sample; path = Witness/Resources/Sample; sourceTree = SOURCE_ROOT; };
 		81F8BFCA25D2EAB73580B35B /* GameLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLookup.swift; sourceTree = "<group>"; };
 		82C4FEF32607AF617D75F825 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		870B587E65EAF454E7F2872C /* MapListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListSheet.swift; sourceTree = "<group>"; };
 		873BADEA2FBDB111EADA8449 /* LocalSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSchedule.swift; sourceTree = "<group>"; };
 		89965E1544CBDB43E6EC2FE2 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		8E49321B29793341AF81A22B /* ScanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanModel.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				FEF8E52CBD3AA88A2CCFCB6E /* LifeMapView.swift */,
+				870B587E65EAF454E7F2872C /* MapListSheet.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				7CC194ACCCEFAF5ED14CE814 /* LocalSchedule.swift in Sources */,
 				F61374DE999DCBA79E8FDEAC /* LocationService.swift in Sources */,
 				C969C27B55763B17CA718E21 /* LuckyCharmView.swift in Sources */,
+				2C04CCBC8A87B9A2E1328A35 /* MapListSheet.swift in Sources */,
 				51AAD9E609451B460C8F24BB /* MatchReport.swift in Sources */,
 				6B98A0B4A7CAA2D8F2034974 /* Models.swift in Sources */,
 				00FBD37F25C6CD2BE47DD619 /* OnboardingView.swift in Sources */,
