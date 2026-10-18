@@ -1,0 +1,42 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Hub: swipe deck</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../final/system/final.css">
+<link rel="stylesheet" href="wr.css">
+<style>
+  .card { position:absolute; border-radius:22px; overflow:hidden; background:#111; }
+  .card img { position:absolute; max-width:none; }
+  .card .sh { position:absolute; inset:0; }
+  .main { left:40px; right:40px; top:116px; height:520px; box-shadow:0 20px 50px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.14); }
+  .main img { width:1342px; height:900px; left:-480px; top:-300px; filter:contrast(1.05) saturate(.9); }
+  .main .sh { background:linear-gradient(180deg,rgba(7,8,10,.35),rgba(7,8,10,0) 28%,rgba(7,8,10,.5) 52%,rgba(7,8,10,.95) 82%); }
+  .main .y { position:absolute; left:18px; top:12px; font:800 104px/.85 var(--b-cond); letter-spacing:-2px; }
+  .main .sbtn { position:absolute; right:12px; top:12px; width:44px; height:44px; border-radius:12px; background:rgba(0,0,0,.4); display:grid; place-items:center; }
+  .main .b { position:absolute; left:18px; right:18px; bottom:18px; }
+  .main .r { font:800 76px/.85 var(--b-cond); }
+  .main .t { font:700 20px/1.1 var(--b-cond); text-transform:uppercase; margin-top:8px; }
+  .main .m { font:500 14px/1.3 var(--b-ui); color:rgba(255,255,255,.75); margin-top:4px; margin-bottom:14px; }
+  .side { top:152px; height:448px; width:300px; filter:brightness(.55); }
+  .side .y { position:absolute; top:12px; font:800 70px/.85 var(--b-cond); }
+  .l { left:-282px; } .l .y { right:14px; }
+  .r2 { right:-282px; } .r2 .y { left:14px; }
+  .scr { position:absolute; left:20px; right:20px; top:672px; display:flex; align-items:flex-end; gap:2px; }
+  .scr div { flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .scr i { width:100%; border-radius:3px; background:rgba(255,255,255,.28); display:block; }
+  .scr span { font:700 13px/1 var(--b-cond); letter-spacing:.2px; color:rgba(255,255,255,.7); font-variant-numeric:tabular-nums; }
+  .scr .on i { background:#fff; }
+  .scr .on span { color:#000; background:#fff; border-radius:5px; padding:3px 3px; }
+</style></head>
+<body class="phone b">
+<div class="b-nav"><div class="f-title">Wrapped</div><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div></div>
+
+<div class="card side l"><img src="../../../photos/wrigley-scoreboard-wide.jpg" style="width:700px;height:454px;left:-200px;top:-20px"><div class="sh" style="background:rgba(7,8,10,.4)"></div><div class="y">2024</div></div>
+<div class="card side r2"><img src="../../../photos/wrigley-scoreboard.jpg" style="width:720px;height:405px;left:-220px;top:0"><div class="sh" style="background:rgba(7,8,10,.4)"></div><div class="y">2026</div></div>
+
+<div class="card main"><img src="../../../photos/lambeau-concourse.jpg"><div class="sh"></div><div class="y">2025</div><div class="sbtn"><svg class="i" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+  <div class="b"><div class="r">5–0</div><div class="t">The kick that went through the snow</div><div class="m">5 games, 5 grounds, 4,720 miles</div><div class="b-btn" style="width:100%">Open 2025</div></div></div>
+
+<div class="scr"><div class=""><i style="height:62px"></i><span>14</span></div><div class=""><i style="height:52px"></i><span>15</span></div><div class=""><i style="height:73px"></i><span>16</span></div><div class=""><i style="height:52px"></i><span>17</span></div><div class=""><i style="height:73px"></i><span>18</span></div><div class=""><i style="height:83px"></i><span>19</span></div><div class=""><i style="height:31px"></i><span>20</span></div><div class=""><i style="height:62px"></i><span>21</span></div><div class=""><i style="height:62px"></i><span>22</span></div><div class=""><i style="height:62px"></i><span>23</span></div><div class=""><i style="height:52px"></i><span>24</span></div><div class="on"><i style="height:62px"></i><span>25</span></div><div class=""><i style="height:31px"></i><span>26</span></div></div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Scroll: broadcast report</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../final/system/final.css">
+<link rel="stylesheet" href="wr.css">
+<style>
+  .hdr { position:absolute; top:0; left:0; right:0; height:150px; z-index:30; background:linear-gradient(180deg,#07080a 70%,rgba(7,8,10,0)); }
+  .hdr .b-nav { top:56px; }
+  .hdr .strip { position:absolute; left:20px; right:0; top:104px; --chip:rgba(255,255,255,.1); }
+  .scroll { position:absolute; inset:0; overflow-y:auto; padding:150px 20px 120px; }
+  .scroll > * { margin-bottom:44px; }
+  .hero { position:relative; margin:0 -20px 44px; height:420px; overflow:hidden; }
+  .hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:6% 50%; filter:brightness(.8); }
+  .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(7,8,10,.5),rgba(7,8,10,0) 30%,rgba(7,8,10,.9) 90%); }
+  .hero .in { position:absolute; left:20px; right:20px; bottom:20px; z-index:2; }
+  .hero .yr { font:800 168px/.8 var(--b-cond); letter-spacing:-3px; margin-left:-4px; }
+  .hero .ln { font:800 40px/.92 var(--b-cond); text-transform:uppercase; margin-top:10px; }
+  .hero .ws { display:flex; gap:8px; margin-top:16px; }
+  .hero .ws span { width:44px; height:44px; font-size:22px; border-radius:8px; }
+  .th { position:relative; width:56px; height:56px; border-radius:10px; overflow:hidden; flex:none; background:#111; }
+  .th canvas { position:absolute; inset:0; width:100%; height:100%; }
+  .h1 { font:800 44px/.92 var(--b-cond); text-transform:uppercase; letter-spacing:-.3px; margin-bottom:16px; }
+  .big { position:relative; height:300px; border-radius:14px; overflow:hidden; }
+  .big img { position:absolute; width:1100px; height:738px; max-width:none; left:-330px; top:-220px; filter:contrast(1.05) saturate(.9); }
+  .big::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(7,8,10,0) 40%,rgba(7,8,10,.9)); }
+  .big .lt { position:absolute; left:16px; right:16px; bottom:14px; z-index:2; display:flex; gap:8px; align-items:center; }
+  .miles { font:800 130px/.8 var(--b-cond); letter-spacing:-2px; }
+  .miles small { font:800 30px/1 var(--b-cond); letter-spacing:4px; color:var(--amber); margin-left:8px; }
+  .split { display:flex; height:14px; border-radius:7px; overflow:hidden; gap:3px; }
+  .split i { display:block; height:100%; }
+  .leg { display:flex; flex-direction:column; margin-top:12px; }
+  .leg div { display:flex; justify-content:space-between; align-items:center; min-height:48px; box-shadow:inset 0 -1px 0 var(--b-line); font:700 19px/1 var(--b-cond); text-transform:uppercase; letter-spacing:.5px; }
+  .leg div:last-child { box-shadow:none; }
+  .leg b { font-size:26px; }
+  .leg em { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:10px; font-style:normal; }
+  .shares { display:flex; gap:10px; margin:0 -20px; padding:0 20px; overflow:hidden; }
+  .sc { flex:none; width:150px; height:190px; border-radius:14px; position:relative; overflow:hidden; padding:14px; box-shadow:inset 0 0 0 1px rgba(255,255,255,.1); }
+  .sc b { display:block; font:800 64px/.85 var(--b-cond); }
+  .sc span { display:block; margin-top:8px; font:800 18px/1 var(--b-cond); text-transform:uppercase; }
+</style></head>
+<body class="phone b">
+<div class="hdr">
+  <div class="b-nav"><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div><div class="b-h2">Wrapped</div><div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div></div>
+  <div class="strip"><b class="" style="margin-left:-34px">2022</b><b class="">2023</b><b class="">2024</b><b class="on">2025</b><b class="">2026</b></div>
+</div>
+<div class="scroll">
+  <div class="hero">
+    <img src="../../../photos/wrigley-bleachers.jpg" style="width:auto;height:900px;max-width:none;left:-110px;top:-440px">
+    <div class="in"><div class="yr">2025</div><div class="ln">Five games. Five wins.</div>
+      <div class="ws"><span class="W">W</span><span class="W">W</span><span class="W">W</span><span class="W">W</span><span class="W">W</span></div></div>
+  </div>
+
+  <div><div class="h1">Every game</div><div class="f-list"><div class="f-item" style="min-height:76px"><div class="th"><img src="../../../photos/lambeau-concourse.jpg" style="position:absolute;object-fit:cover;width:150px;height:100px;max-width:none;left:-52px;top:-38px"></div><div><div class="t">Chicago 24, Green Bay 22</div><div class="s">Jan 5, Lambeau Field, 19°F</div></div><span class="W end">W</span></div><div class="f-item" style="min-height:76px"><div class="th"><img src="../../../photos/united-center-court.jpg" style="position:absolute;object-fit:cover;width:100%;height:100%"></div><div><div class="t">Chicago 4, St. Louis 1</div><div class="s">Mar 2, United Center</div></div><span class="W end">W</span></div><div class="f-item" style="min-height:76px"><div class="th"><canvas class="photo" data-style="dayGame" data-seed="4" data-accent="#e8590c" data-secondary="#2f6bff"></canvas></div><div><div class="t">Chicago 5, San Francisco 2</div><div class="s">Jun 14, Oracle Park</div></div><span class="W end">W</span></div><div class="f-item" style="min-height:76px"><div class="th"><img src="../../../photos/wrigley-night.jpg" style="position:absolute;object-fit:cover;width:100%;height:auto;top:-8px"></div><div><div class="t">Chicago 8, Atlanta 7</div><div class="s">Aug 9, Wrigley Field</div></div><span class="W end">W</span></div><div class="f-item" style="min-height:76px"><div class="th"><img src="../../../photos/soldier-skyline.jpg" style="position:absolute;object-fit:cover;width:100%;height:100%"></div><div><div class="t">Chicago 27, Minnesota 24</div><div class="s">Nov 2, Soldier Field</div></div><span class="W end">W</span></div></div></div>
+
+  <div><div class="h1">The big one</div>
+    <div class="big"><img src="../../../photos/lambeau-concourse.jpg"><div class="lt"><span class="b-bug"><span class="team" style="--c:#f05a1a">CHI</span><span class="score">24</span></span><span class="b-bug"><span class="team" style="--c:#203731">GB</span><span class="score">22</span></span></div></div>
+    <div class="b-body" style="margin-top:14px;font-size:16px">The kick that went through the snow. Lambeau Field, 19°F, with Maya and Leo.</div></div>
+
+  <div><div class="miles">4,720<small>MILES</small></div>
+    <svg viewBox="0 0 353 150" style="width:100%;margin-top:14px"><path d="M30 112 Q 120 6 236 66" fill="none" stroke="#ffb547" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/><path d="M236 66 L 262 22" stroke="#ffb547" stroke-width="3" stroke-linecap="round"/><circle cx="30" cy="112" r="7" fill="#fff"/><circle cx="236" cy="66" r="7" fill="#ffb547"/><circle cx="262" cy="22" r="7" fill="#fff"/>
+    <g font-family="Barlow Condensed" font-weight="700" font-size="16" letter-spacing="1.5" fill="#fff"><text x="30" y="140">SAN FRANCISCO</text><text x="228" y="92" text-anchor="middle">CHICAGO</text><text x="248" y="28" text-anchor="end">GREEN BAY</text></g></svg></div>
+
+  <div><div class="h1">Three sports</div>
+    <div class="split"><i style="flex:2;background:#f05a1a"></i><i style="flex:2;background:#2f6bff"></i><i style="flex:1;background:#e8243c"></i></div>
+    <div class="leg"><div><span><em style="background:#f05a1a"></em>Football</span><b>2</b></div><div><span><em style="background:#2f6bff"></em>Baseball</span><b>2</b></div><div><span><em style="background:#e8243c"></em>Hockey</span><b>1</b></div></div></div>
+
+  <div><div class="h1">Your share cards</div>
+    <div class="shares">
+      <div class="sc" style="background:#f05a1a"><b>5–0</b><span>Five games.<br>Five wins.</span></div>
+      <div class="sc" style="background:#0b162a"><b style="font-size:52px">4,720</b><span style="color:#ffb547">Miles</span></div>
+      <div class="sc" style="background:#2f6bff"><b>19°</b><span>Coldest</span></div>
+    </div>
+    <div class="b-btn" style="width:100%;margin-top:16px"><svg class="i" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share a card</div></div>
+</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

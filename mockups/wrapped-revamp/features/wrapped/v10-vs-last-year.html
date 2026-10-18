@@ -1,0 +1,57 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Year vs last year</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../final/system/final.css">
+<link rel="stylesheet" href="wr.css">
+<style>
+  .bar { position:absolute; top:56px; left:20px; right:20px; display:flex; justify-content:space-between; align-items:center; }
+  .ys { --chip:#171a21; }
+  .vs { position:absolute; left:20px; right:20px; top:122px; display:grid; grid-template-columns:1fr 1fr; }
+  .vs .a { font:800 112px/.8 var(--b-cond); letter-spacing:-2px; }
+  .vs .b { font:800 112px/.8 var(--b-cond); letter-spacing:-2px; color:rgba(255,255,255,.32); text-align:right; }
+  .vs .l { font:800 24px/1 var(--b-cond); letter-spacing:1px; margin-top:10px; }
+  .vs .b + .l, .vs .l.r { text-align:right; color:rgba(255,255,255,.55); }
+  .rows { position:absolute; left:20px; right:20px; top:278px; }
+  .rw { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; min-height:52px; box-shadow:inset 0 -1px 0 var(--b-line); }
+  .rw:last-child { box-shadow:none; }
+  .rw b { font:800 32px/1 var(--b-cond); font-variant-numeric:tabular-nums; }
+  .rw b.d { text-align:right; color:rgba(255,255,255,.4); }
+  .rw span { font:700 14px/1 var(--b-cond); letter-spacing:1.6px; text-transform:uppercase; color:rgba(255,255,255,.7); padding:0 10px; }
+  .streak { position:absolute; left:20px; right:20px; top:448px; }
+  .streak .n { display:flex; align-items:flex-end; gap:12px; }
+  .streak .n b { font:800 96px/.8 var(--b-cond); color:#ffb547; }
+  .streak .n span { font:800 30px/.95 var(--b-cond); text-transform:uppercase; padding-bottom:2px; }
+  .tl { display:flex; gap:6px; margin-top:16px; }
+  .tl .W { flex:1; width:auto; height:42px; border-radius:8px; font-size:20px; }
+  .tl .W.k { background:#fff; }
+  .tl .W.l { background:transparent; }
+  .tl-n { margin-top:10px; font:500 14px/1.35 var(--b-ui); color:rgba(255,255,255,.7); }
+  .firsts { position:absolute; left:20px; right:20px; top:672px; }
+  .firsts .f-item { min-height:60px; }
+  .firsts .f-item .t { font-size:20px; }
+  .firsts .dt { font:700 16px/1 var(--b-cond); letter-spacing:1px; color:rgba(255,255,255,.65); text-transform:uppercase; }
+</style></head>
+<body class="phone b">
+<div class="bar"><div class="ys"><span class="a"><svg class="i" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span><b>2025</b><span class="a"><svg class="i" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span></div><div class="b-icon-btn" style="width:44px;height:44px"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div></div>
+
+<div class="vs"><div><div class="a">5–0</div><div class="l">2025</div></div><div><div class="b">2–2</div><div class="l r">2024</div></div></div>
+
+<div class="rows">
+  <div class="rw"><b>5</b><span>Games</span><b class="d">4</b></div>
+  <div class="rw"><b>4,720</b><span>Miles</span><b class="d">3,540</b></div>
+  <div class="rw"><b>5</b><span>Grounds</span><b class="d">4</b></div>
+</div>
+
+<div class="streak">
+  <div class="n"><b>7</b><span>Wins in<br>a row</span></div>
+  <div class="tl"><span class="W l">L</span><span class="W k">W</span><span class="W k">W</span><span class="W k">W</span><span class="W k">W</span><span class="W k">W</span><span class="W k">W</span><span class="W k">W</span></div>
+  <div class="tl-n">Five in 2025, two so far in 2026. Your longest streak since 2014.</div>
+</div>
+
+<div class="firsts f-list">
+  <div class="f-item"><div class="t">First time at Lambeau Field</div><span class="dt end">Jan 5</span></div>
+  <div class="f-item"><div class="t">First time at Oracle Park</div><span class="dt end">Jun 14</span></div>
+</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>
