@@ -29,18 +29,10 @@ struct GameMemoryView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 hero(game)
-                scoreBlock(game).gutter()
+                if game.sport == .motorsport { scoreBlock(game).gutter() }
                 photosBlock(game)
                 peopleBlock(game)
                 links(game)
-                Button {
-                    presenter.modal = .recap(game.id)
-                } label: {
-                    Label("Play recap", systemImage: "play.fill")
-                }
-                .buttonStyle(.primary)
-                .accessibilityIdentifier("play-recap")
-                .gutter()
             }
             .padding(.bottom, 40)
         }
@@ -50,6 +42,7 @@ struct GameMemoryView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
+            ToolbarItem(placement: .topBarTrailing) { playButton(game) }
             ToolbarItem(placement: .topBarTrailing) { menu(game) }
         }
         .fullScreenCover(item: $viewer) { item in
@@ -218,25 +211,45 @@ struct GameMemoryView: View {
                     .accessibilityIdentifier("game-photos-all")
                 }
                 .gutter()
-                ScrollView(.horizontal) {
-                    LazyHStack(spacing: 8) {
-                        ForEach(Array(game.photos.enumerated()), id: \.offset) { i, ref in
-                            Button { viewer = PhotoViewerItem(id: i) } label: {
-                                Color.panel
-                                    .frame(width: 128, height: 96)
-                                    .overlay { PhotoView(ref: ref) }
-                                    .clipShape(.rect(cornerRadius: 10))
-                            }
-                            .buttonStyle(.plain)
-                            .accessibilityLabel("Photo \(i + 1) of \(game.photos.count)")
-                            .accessibilityIdentifier("game-photo-\(i)")
-                        }
-                    }
-                    .padding(.horizontal, Spacing.gutter)
-                }
-                .scrollIndicators(.hidden)
+                photoGrid(game)
+                    .gutter()
             }
             .accessibilityIdentifier("game-photos")
+        }
+    }
+
+    /// One wide photo, then a two-column grid; the last tile says how many more there are.
+    private func photoGrid(_ game: GameEntry) -> some View {
+        let shown = Array(game.photos.prefix(5))
+        let extra = game.photos.count - shown.count
+        func tile(_ i: Int, height: CGFloat) -> some View {
+            Button { viewer = PhotoViewerItem(id: i) } label: {
+                Color.panel
+                    .frame(maxWidth: .infinity)
+                    .frame(height: height)
+                    .overlay { PhotoView(ref: shown[i]) }
+                    .overlay {
+                        if i == shown.count - 1, extra > 0 {
+                            ZStack {
+                                Color.black.opacity(0.55)
+                                Text("+\(extra)").font(.condensed(.title2, weight: .heavy)).foregroundStyle(.white)
+                            }
+                        }
+                    }
+                    .clipShape(.rect(cornerRadius: 12))
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("Photo \(i + 1) of \(game.photos.count)")
+            .accessibilityIdentifier("game-photo-\(i)")
+        }
+        return VStack(spacing: 6) {
+            tile(0, height: 190)
+            if shown.count > 1 {
+                let columns = [GridItem(.flexible(), spacing: 6), GridItem(.flexible(), spacing: 6)]
+                LazyVGrid(columns: columns, spacing: 6) {
+                    ForEach(1..<shown.count, id: \.self) { tile($0, height: 130) }
+                }
+            }
         }
     }
 
@@ -330,6 +343,21 @@ struct GameMemoryView: View {
             }
             .accessibilityIdentifier("game-rooting-menu")
         }
+    }
+
+    /// The slideshow, one tap from the cover, beside the menu.
+    private func playButton(_ game: GameEntry) -> some View {
+        Button { presenter.modal = .recap(game.id) } label: {
+            Image(systemName: "play.fill")
+                .font(.body.weight(.bold))
+                .foregroundStyle(.black)
+                .frame(width: 36, height: 36)
+                .background(.white, in: .circle)
+                .frame(width: 44, height: 44)
+                .contentShape(.circle)
+        }
+        .accessibilityLabel("Play recap")
+        .accessibilityIdentifier("play-recap")
     }
 
     private func menu(_ game: GameEntry) -> some View {
