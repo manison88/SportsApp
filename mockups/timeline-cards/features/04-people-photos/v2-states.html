@@ -1,0 +1,59 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>People and photos states</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+:root{--trophy:#e6c987;--stub:#171926}
+.hdr h1{position:absolute;left:16px;top:56px;font:800 36px/40px var(--f-cond);letter-spacing:.2px;text-transform:uppercase}
+.hdr .plus{position:absolute;right:16px;top:60px;width:32px;height:32px;display:grid;place-items:center}
+.search{position:absolute;left:16px;right:16px;top:99px;height:36px;border-radius:10px;background:rgba(118,118,128,.24);display:flex;align-items:center;gap:8px;padding:0 10px;color:var(--text-3);font:400 16px var(--f-ui)}
+.card{position:absolute;left:16px;width:361px;border-radius:22px}
+.card.big{box-shadow:0 0 0 1.5px var(--trophy)}
+.clip{border-radius:22px;overflow:hidden;position:relative;background:var(--ink)}
+.photo{position:relative;width:100%;overflow:hidden;background:#0c0d12}
+.photo canvas,.photo>.ph{position:absolute;inset:0;width:100%;height:100%}
+.scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,0) 38%,rgba(5,5,6,.55) 62%,rgba(5,5,6,.94) 100%)}
+.scrim.top{background:linear-gradient(180deg,rgba(5,5,6,.45) 0,rgba(5,5,6,0) 22%),linear-gradient(180deg,rgba(5,5,6,0) 38%,rgba(5,5,6,.55) 62%,rgba(5,5,6,.94) 100%)}
+.hl{position:absolute;left:24px;right:24px;bottom:22px;font:800 54px/.93 var(--f-cond);text-transform:uppercase;letter-spacing:.2px;color:#fff}
+.hl.sm{font-size:54px}
+.badge{position:absolute;left:14px;top:14px;height:26px;padding:0 11px;border-radius:13px;display:flex;align-items:center;gap:6px;font:700 11px var(--f-ui);letter-spacing:1.3px;text-transform:uppercase;color:#2a2008;background:linear-gradient(180deg,#f3dba5,#d9b66a)}
+.tile{display:inline-grid;place-items:center;height:22px;min-width:34px;padding:0 6px;border-radius:6px;font:800 13px/1 var(--f-cond);letter-spacing:.8px}
+.stub{position:relative;background:var(--stub);
+ -webkit-mask-image:var(--m);-webkit-mask-composite:source-in;mask-image:var(--m);mask-composite:intersect}
+.stub::before{content:"";position:absolute;left:12px;right:12px;top:0;border-top:1.5px dashed rgba(255,255,255,.2)}
+.tabs{}
+svg.i{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+.stub{height:100px;--m:radial-gradient(circle at 0 0,transparent 8px,#000 8.5px),radial-gradient(circle at 100% 0,transparent 8px,#000 8.5px)}
+.sl{position:absolute;left:18px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;gap:12px;padding-top:2px}
+.date{font:700 16px/1 var(--f-tight);letter-spacing:.2px;text-transform:uppercase}
+.pp{display:flex;align-items:center;gap:11px}
+.av{display:flex}
+.av i{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:800 11px/1 var(--f-ui);font-style:normal;color:#10101a;box-shadow:0 0 0 2px var(--stub);margin-left:-7px}
+.av i:first-child{margin-left:0}
+.av i.ghost{background:transparent;border:1.5px dashed rgba(255,255,255,.3);color:var(--text-3);box-shadow:none}
+.av i.ghost svg{width:11px;height:11px}
+.cnt{display:flex;align-items:center;gap:5px;font:600 12.5px/1 var(--f-ui);color:var(--text);padding-left:11px;border-left:1px solid var(--line-2);height:16px;font-variant-numeric:tabular-nums}
+.cnt svg{color:var(--text-2);width:14px;height:14px}
+.add{display:flex;align-items:center;gap:5px;height:24px;padding:0 10px 0 8px;border-radius:12px;border:1.5px dashed rgba(255,181,71,.6);color:var(--signal);font:700 12px/1 var(--f-ui)}
+.add svg{width:14px;height:14px}
+.bug{position:absolute;right:16px;top:0;bottom:0;display:flex;align-items:center;gap:7px;padding-top:2px}
+.bug .sc{font:800 22px/1 var(--f-cond);font-variant-numeric:tabular-nums;color:var(--text-2)}
+.bug .me{color:#fff}
+.bug .tile.rt{box-shadow:0 0 0 1.5px var(--stub),0 0 0 3px var(--signal)}
+.bug .gap{width:2px}
+.poly{position:absolute;right:12px;bottom:16px;width:74px;height:70px}
+.pl{position:absolute;width:46px;height:56px;padding:3px 3px 11px;background:#f3ece0;border-radius:2px;box-shadow:0 4px 10px rgba(0,0,0,.55),0 0 0 .5px rgba(0,0,0,.4)}
+.pl div{width:100%;height:100%;background-size:cover}
+.pl.a{left:0;bottom:6px;transform:rotate(-10deg)}
+.pl.b{left:13px;bottom:2px;transform:rotate(-2deg)}
+.pl.c{left:26px;bottom:0;transform:rotate(8deg)}
+.pl em{position:absolute;right:-6px;top:-7px;font:800 10px/1 var(--f-ui);font-style:normal;color:#2a1a00;background:var(--signal);padding:4px 6px;border-radius:9px;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+</style></head>
+<body class="phone">
+<div class="card big" style="top:68px"><div class="clip">
+<div class="photo" style="height:244px"><div style="position:absolute;inset:0;background:url(../../../photos/wrigley-night.jpg) -306px -506px/785px 1046px no-repeat"></div><div class="scrim top"></div><div class="badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="#2a2008"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg>World Series</div><div class="hl" style="font-size:48px">Chicago 3,<br>Cleveland 2.</div><div class="poly"><div class="pl a"><div style="background-image:url(../../../photos/wrigley-bleachers.jpg);background-position:30% 50%;background-size:cover"></div></div><div class="pl b"><div style="background-image:url(../../../photos/wrigley-night-2.jpg);background-position:72% 66%;background-size:230%"></div></div><div class="pl c"><div style="background-image:url(../../../photos/wrigley-scoreboard-wide.jpg);background-position:25% 60%;background-size:240%"></div><em>+59</em></div></div></div>
+<div class="stub"><div class="sl"><span class="date">Oct 30, 2016</span><div class="pp"><span class="av"><i style="background:#8fe3a0">R</i></span><span class="cnt"><svg class="i" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7H8l1.4-2h5.2L16 7h2.5A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.4"/></svg>63 photos</span></div></div><div class="bug"><span class="tile" style="background:#0c2340;color:#ff5a6e">CLE</span><span class="sc">2</span><span class="gap"></span><span class="tile rt" style="background:#2f6bff;color:#fff">CHC</span><span class="sc me">3</span></div></div></div></div><div class="card" style="top:434px"><div class="clip">
+<div class="photo" style="height:244px"><canvas class="photo" data-style="arena" data-seed="11" data-accent="#e8213f" data-secondary="#552583" data-board="LAL 118|CHI 104"></canvas><div class="scrim top"></div><div class="hl" style="font-size:46px">Los Angeles 118,<br>Chicago 104.</div></div>
+<div class="stub"><div class="sl"><span class="date">Jan 3, 2025</span><div class="pp"><span class="av"><i class="ghost"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></i></span><span class="add"><svg class="i" viewBox="0 0 24 24"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7H8l1.4-2h5.2L16 7h2.5A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5z"/><circle cx="12" cy="13" r="3.4"/></svg>Add photos</span></div></div><div class="bug"><span class="tile" style="background:#552583;color:#fdb927">LAL</span><span class="sc">118</span><span class="gap"></span><span class="tile rt" style="background:#e8213f;color:#fff">CHI</span><span class="sc me">104</span></div></div></div></div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

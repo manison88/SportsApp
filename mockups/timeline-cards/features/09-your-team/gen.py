@@ -135,7 +135,7 @@ def fc_card(n, top, ph):
              top='count', cnt=('WRIGLEY','#17'), stamp=('WRG','17','2026',False)),
      2: dict(head='Chicago 3,<br>Cleveland 2.', date='Oct 30, 2016', sub='<b>1st</b> time seeing Cleveland', a=('CLE',2), h=('CHC',3), me='CHC', champ=True,
              top='champ+count', cnt=('WRIGLEY','#6'), stamp=('WRG','6','2016',False)),
-     3: dict(head='L.A. 118,<br>Chicago 104.', date='Jan 3, 2025', sub='<b>1st</b> time seeing Los Angeles', a=('LAL',118), h=('CHI',104), me='CHI', champ=False,
+     3: dict(head='L.A. 118,<br>Chicago 104.', date='Jan 3, 2025', sub='<b>1st</b> time seeing Los&nbsp;Angeles', a=('LAL',118), h=('CHI',104), me='CHI', champ=False,
              top='new', cnt=None, stamp=('UC','1','2025',True)),
     }[n]
     tl = tr = ''

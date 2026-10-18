@@ -1,0 +1,4 @@
+- Stub grows 92 to 100pt: row one is date + Sec/Row, row two is weather, attendance, game length, ticket glyph (amber) split by hairlines.
+- Score bug moves into a tear-off section behind a dashed perforation with half-moon notches; bug is stacked, rooted team ringed in amber, FINAL · W/L label.
+- Data: weather, attendance, duration (new fields), seat row, ticket-attached flag. Indoor venues swap weather for "Indoors"; ticket glyph hidden when no ticket.
+- Risk: row two is full at ~237pt wide; a fifth fact will not fit. Three-digit scores (NBA) fit the tear-off but only just. Long NBA headline needs 46pt to stay on two lines.

@@ -1,0 +1,5 @@
+- Stub (100pt): date stays left, under it stacked initials avatars (Dana, Dad in their colours) and "63 photos" with a camera glyph; score bug stays right, rooted tile ringed amber.
+- On the photo, three stacked polaroids peek at the bottom-right with a "+59" chip, so the card says "this night has a lot in it".
+- No-photo card: dashed ghost avatar and an amber dashed "Add photos" pill replace the counts, and the polaroids are gone.
+- Data: companions (initials+colour), photo count, 3 extra photo thumbnails. Seat/section is dropped from the stub.
+- Risk: polaroids sit in the headline's bottom-right corner; "MILWAUKEE 4." runs close to them. Long 3-line headlines would collide.
