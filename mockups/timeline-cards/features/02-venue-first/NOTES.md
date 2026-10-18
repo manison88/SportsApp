@@ -1,0 +1,5 @@
+- Added: venue as tracked-caps eyebrow above the headline; date + weekday chip top-left ("SAT · JUL 4"); big-game badge moved top-right.
+- Stub rebuilt as three cells (first pitch / tip-off, section, weather icon + temp) with a stacked score bug at right; date removed from the stub.
+- Headline kept huge: 50pt (was 54) so "LOS ANGELES 118, CHICAGO 104." holds two lines; the eyebrow tracks the headline height.
+- Data needs: start time, section, weather (indoor venues show "Indoors"), venue + city.
+- Risk: three cells plus bug is the densest stub of the set; a missing section needs a "—" or the cell should collapse.

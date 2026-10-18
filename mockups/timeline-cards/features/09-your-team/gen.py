@@ -24,8 +24,8 @@ CSS = """
 .search svg{width:17px;height:17px;stroke:var(--text-3);fill:none;stroke-width:2.2;stroke-linecap:round}
 .card{position:absolute;left:16px;width:361px;border-radius:22px;overflow:hidden;background:#14151c}
 .card.champ{box-shadow:0 0 0 1.5px #e6cf9a,0 0 28px rgba(230,207,154,.18)}
-.photo{position:absolute;left:0;top:0;right:0;overflow:hidden;background:#0b0c10}
-.photo .img,.photo canvas{position:absolute;inset:0;width:100%;height:100%}
+.ph2{position:absolute;left:0;top:0;right:0;overflow:hidden;background:#0b0c10}
+.ph2 .img,.ph2 canvas{position:absolute;inset:0;width:100%;height:100%}
 .photo .img{filter:contrast(1.05) saturate(.9) brightness(.92)}
 .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,8,.94) 0,rgba(5,5,8,.72) 34%,rgba(5,5,8,.12) 66%,rgba(5,5,8,.28) 100%)}
 .hl{position:absolute;left:20px;right:16px;bottom:18px}
@@ -53,9 +53,9 @@ HEADER = ('<div class="title">Timeline</div><div class="plus"><svg viewBox="0 0 
 
 # cards: (id, bg style, tag)
 def bg(card, bw, bh):
-    if card == 1: return f'<div class="img" style="{crop("wrigley-scoreboard",719/1280,.33,.5,.62 if bh>300 else .8,bw,bh)}"></div>'
+    if card == 1: return f'<div class="img" style="background:url({P}wrigley-scoreboard.jpg) 30% 40%/cover no-repeat"></div>'
     if card == 2: return f'<div class="img" style="{crop("wrigley-night",2560/1920,.62,.70,.5,bw,bh)}"></div>'
-    return '<canvas class="photo-c" data-style="arena" data-seed="11" data-accent="#e8213f" data-secondary="#3a0b14"></canvas>'
+    return '<canvas class="photo" data-style="arena" data-seed="11" data-accent="#e8213f" data-secondary="#3a0b14"></canvas>'
 
 # ============================ 09 =============================
 def yt_card(n, top, ph):
@@ -78,7 +78,7 @@ def yt_card(n, top, ph):
     bug = (f'{tile(d["a"][0],"",d["a"][0]!=d["me"])}<span class="sc {"me" if am else ""}">{d["a"][1]}</span><span class="gap"></span>'
            f'{tile(d["h"][0],"",d["h"][0]!=d["me"])}<span class="sc {"me" if not am else ""}">{d["h"][1]}</span>')
     return f'''<div class="card {"champ" if d["champ"] else ""}" style="top:{top}px;height:{ph+92}px;--tc:{d["w"]}">
- <div class="photo" style="height:{ph}px">{bg(n,361,ph)}<div class="scrim"></div>
+ <div class="ph2" style="height:{ph}px">{bg(n,361,ph)}<div class="scrim"></div>
   <div class="tint" style="background:linear-gradient(to top,color-mix(in srgb,{d["tc"]} 26%,transparent),transparent 55%)"></div>
   <div class="chip">{tile(d["me"],"s")}<span>You were there for <b>{d["city"]}</b></span></div>{badge}
   <div class="hl"><h2>{d["head"]}</h2>{opp}</div></div>
@@ -135,7 +135,7 @@ def fc_card(n, top, ph):
              top='count', cnt=('WRIGLEY','#17'), stamp=('WRG','17','2026',False)),
      2: dict(head='Chicago 3,<br>Cleveland 2.', date='Oct 30, 2016', sub='<b>1st</b> time seeing Cleveland', a=('CLE',2), h=('CHC',3), me='CHC', champ=True,
              top='champ+count', cnt=('WRIGLEY','#6'), stamp=('WRG','6','2016',False)),
-     3: dict(head='Los Angeles 118,<br>Chicago 104.', date='Jan 3, 2025', sub='<b>1st</b> time seeing Los Angeles', a=('LAL',118), h=('CHI',104), me='CHI', champ=False,
+     3: dict(head='L.A. 118,<br>Chicago 104.', date='Jan 3, 2025', sub='<b>1st</b> time seeing Los Angeles', a=('LAL',118), h=('CHI',104), me='CHI', champ=False,
              top='new', cnt=None, stamp=('UC','1','2025',True)),
     }[n]
     tl = tr = ''
@@ -147,10 +147,10 @@ def fc_card(n, top, ph):
     bug = (f'{tile(d["a"][0],"",d["a"][0]!=d["me"])}<span class="sc {"me" if am else ""}">{d["a"][1]}</span><span class="gap"></span>'
            f'{tile(d["h"][0],"",d["h"][0]!=d["me"])}<span class="sc {"me" if not am else ""}">{d["h"][1]}</span>')
     return f'''<div class="card {"champ" if d["champ"] else ""}" style="top:{top}px;height:{ph+92}px;--tc:#fff">
- <div class="photo" style="height:{ph}px">{bg(n,361,ph)}<div class="scrim"></div>{tl}{tr}
+ <div class="ph2" style="height:{ph}px">{bg(n,361,ph)}<div class="scrim"></div>{tl}{tr}
   <div class="hl"><h2>{d["head"]}</h2></div></div>
  <div class="stub" style="background:#16171e"><div class="notch l"></div><div class="notch r"></div>
-  <div style="position:absolute;left:20px;top:30px"><div class="date">{d["date"]}</div><div class="sub" style="margin-top:8px">{d["sub"]}</div></div>
+  <div style="position:absolute;left:74px;top:24px"><div class="date">{d["date"]}</div><div class="sub" style="margin-top:7px;max-width:128px">{d["sub"]}</div></div>
   <div class="stampw">{stamp(*d["stamp"][:3], new=d["stamp"][3])}</div>
   <div class="bug sm">{bug}</div></div></div>'''
 
@@ -163,7 +163,7 @@ X10 = """
 .burst svg{position:absolute;inset:0;width:100%;height:100%}
 .burst div{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#2a1700;transform:rotate(-9deg)}
 .burst b{font:900 25px/.85 var(--f-cond);letter-spacing:.2px} .burst em{font:800 11.5px/1 var(--f-cond);font-style:normal;letter-spacing:1.4px;margin-top:2px}
-.stampw{position:absolute;left:176px;top:22px;width:46px;height:46px}
+.stampw{position:absolute;left:18px;top:26px;width:46px;height:46px}
 .stamp{width:44px;height:44px;opacity:.95}
 .bug.sm{font-size:20px;gap:4px} .bug.sm .tile{min-width:30px;height:24px;font-size:14px}
 """
@@ -173,7 +173,7 @@ def build10():
     open(os.path.join(d, 'v1-main.html'), 'w').write(v1)
     # priority legend
     leg = '''<div class="leg"><span>Badge priority</span><i class="a">Championship</i><u>›</u><i class="b">New park</i><u>›</u><i class="c">Count</i></div>'''
-    x = X10 + ".leg{position:absolute;left:16px;right:16px;top:58px;height:24px;display:flex;align-items:center;gap:8px;font:600 10.5px/1 var(--f-ui);color:var(--text-3);letter-spacing:.3px} .leg span{letter-spacing:1.4px;text-transform:uppercase;margin-right:2px} .leg i{font-style:normal;padding:4px 8px;border-radius:9px} .leg .a{background:#e6cf9a;color:#2a2210} .leg .b{background:var(--signal);color:#2a1700} .leg .c{background:rgba(255,255,255,.12);color:#fff} .leg u{text-decoration:none;color:var(--text-4)}"
+    x = X10 + ".leg{position:absolute;left:16px;right:16px;top:58px;height:24px;display:flex;align-items:center;gap:8px;font:600 10.5px/1 var(--f-ui);color:var(--text-3);letter-spacing:.3px;white-space:nowrap} .leg span{letter-spacing:1px;text-transform:uppercase;margin-right:2px} .leg i{font-style:normal;padding:4px 8px;border-radius:9px} .leg .a{background:#e6cf9a;color:#2a2210} .leg .b{background:var(--signal);color:#2a1700} .leg .c{background:rgba(255,255,255,.12);color:#fff} .leg u{text-decoration:none;color:var(--text-4)}"
     v2 = head(x).replace('{T}', 'Firsts and counts states') + leg + fc_card(2, 92, 244) + fc_card(3, 92+336+16, 244) + FOOT
     open(os.path.join(d, 'v2-states.html'), 'w').write(v2)
     json.dump({"title": "10 · Firsts and counts", "summary": "Visit-aware badges (venue count chip, NEW PARK starburst, \"3rd time seeing\" and a passport stamp) so the card celebrates what's special about this visit."}, open(os.path.join(d, 'feature.json'), 'w'))
