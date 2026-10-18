@@ -21,6 +21,8 @@ body{background:var(--ink)}
 .pill svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .crop{position:absolute;left:0;width:100%;bottom:0;height:175%;object-fit:cover;object-position:55% 100%}
 .pill{white-space:nowrap}
+.hero img,.inv img{z-index:0!important}
+.hero:after,.inv:after{z-index:1}
 .pill.amb{background:var(--signal);color:#1a1305;border-color:transparent}
 </style>'''
 def page(title,body,name):
@@ -63,8 +65,8 @@ b1=f'''<style>
 .mt p{{font:500 14px/1.3 var(--f-ui);color:var(--text-2);margin-top:6px}}
 .who{{position:absolute;left:20px;right:20px;top:272px;display:flex;align-items:center;gap:10px;font:600 14px/1 var(--f-ui)}}
 .who small{{color:var(--text-2);font-weight:500}}
-.acts{{position:absolute;left:20px;right:20px;bottom:18px;display:flex;gap:8px}}
-.acts .pill{{height:38px;padding:0 11px;font-size:12.5px;gap:5px}}
+.acts{{position:absolute;left:16px;right:16px;bottom:18px;display:flex;gap:6px}}
+.acts .pill{{height:38px;padding:0 10px;font-size:12px;gap:5px}}
 .sec{{position:absolute;left:20px;right:20px;top:516px;display:flex;justify-content:space-between;align-items:baseline}}
 .row{{position:relative;display:flex;gap:12px;align-items:center;background:var(--surface);border:.5px solid var(--line-2);border-radius:20px;padding:10px 14px 10px 10px;height:88px;margin-bottom:10px}}
 .th{{width:68px;height:68px;border-radius:14px;flex:none}}
@@ -103,16 +105,16 @@ b2=f'''<style>
 .hero img{{filter:saturate(.85) brightness(.82)}}
 .hero:after{{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.55) 0%,rgba(5,5,6,0) 30%,rgba(5,5,6,.55) 72%,var(--ink) 100%)}}
 .nb{{position:absolute;top:60px;z-index:5}}
-.ht{{position:absolute;left:20px;right:20px;top:100px;z-index:4}}
+.ht{{position:absolute;left:20px;right:20px;top:108px;z-index:4}}
 .ht .ey{{font:700 11px/1 var(--f-ui);letter-spacing:1.8px;color:var(--signal)}}
-.ht h1{{font:400 40px/1 var(--f-serif);letter-spacing:-.8px;margin-top:8px}}
+.ht h1{{font:400 38px/1 var(--f-serif);letter-spacing:-.8px;margin-top:6px}}
 .ht p{{font:500 14px/1.3 var(--f-ui);color:var(--text-2);margin-top:8px}}
-.cdrow{{position:absolute;left:20px;right:20px;top:190px;z-index:4;display:flex;gap:8px;align-items:center}}
+.cdrow{{position:absolute;left:20px;right:20px;top:200px;z-index:4;display:flex;gap:8px;align-items:center}}
 .cdp{{display:flex;align-items:baseline;gap:6px;height:40px;padding:0 14px;border-radius:20px;background:var(--signal);color:#1a1305}}
 .cdp b{{font:800 26px/1 var(--f-cond)}}.cdp span{{font:800 11px/1 var(--f-ui);letter-spacing:1.4px}}
 .cdt{{white-space:nowrap;font:600 13px/1 var(--f-ui);color:var(--text-2)}}
 .card{{background:var(--surface);border:.5px solid var(--line-2);border-radius:20px;padding:14px 16px}}
-.pl{{position:absolute;left:16px;right:16px;top:252px;display:flex;flex-direction:column;gap:10px}}
+.pl{{position:absolute;left:16px;right:16px;top:252px;display:flex;flex-direction:column;gap:8px}}
 .pl .card{{padding:12px 16px}}
 .lbl{{font:700 11px/1 var(--f-ui);letter-spacing:1.6px;color:var(--text-3);text-transform:uppercase}}
 .seg{{display:flex;background:rgba(255,255,255,.07);border-radius:12px;padding:3px;margin-top:10px}}
@@ -122,7 +124,7 @@ b2=f'''<style>
 .gp{{display:flex;flex-direction:column;align-items:center;gap:3px;font:500 12px/1.1 var(--f-ui);width:70px}}
 .gp b{{font-weight:700;font-size:13px;margin-top:4px}}
 .gpa{{position:relative}}.bd{{position:absolute;right:-3px;bottom:-3px;width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font:800 9px/1 var(--f-ui);font-style:normal;color:#10130f;box-shadow:0 0 0 2px #121215}}
-.srow{{display:flex;justify-content:space-between;align-items:center;height:34px;border-top:.5px solid var(--line)}}
+.srow{{display:flex;justify-content:space-between;align-items:center;height:30px;border-top:.5px solid var(--line)}}
 .srow:first-of-type{{border-top:0}}
 .srow .l{{display:flex;gap:10px;align-items:center;font:600 14px/1 var(--f-ui)}}
 .srow .r{{font:500 13.5px/1 var(--f-ui);color:var(--text-2)}}
@@ -135,7 +137,7 @@ b2=f'''<style>
 .note{{background:#201a0e;border:.5px solid rgba(255,181,71,.35);position:relative}}
 .note p{{font:400 23px/1.05 var(--f-hand);color:#ffe7bd;margin-top:6px}}
 .note .by{{display:flex;align-items:center;gap:6px;font:500 12px/1 var(--f-ui);color:var(--text-2);margin-top:8px}}
-.rep{{height:58px;flex:none;border-radius:18px;background:linear-gradient(100deg,rgba(255,181,71,.2),rgba(255,181,71,.06));border:.5px solid rgba(255,181,71,.4);display:flex;align-items:center;gap:12px;padding:0 16px;font:600 13px/1.25 var(--f-ui)}}
+.rep{{height:66px;flex:none;border-radius:18px;background:linear-gradient(100deg,rgba(255,181,71,.2),rgba(255,181,71,.06));border:.5px solid rgba(255,181,71,.4);display:flex;align-items:center;gap:12px;padding:0 16px;font:600 13px/1.25 var(--f-ui)}}
 .rep svg{{width:22px;height:22px;flex:none;stroke:var(--signal);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}}
 .rep small{{display:block;color:var(--text-2);font-weight:500;font-size:12px;margin-top:2px}}
 </style>
@@ -150,9 +152,9 @@ b2=f'''<style>
 <div class="card" style="padding:4px 16px!important"><div class="srow"><div class="l">{SV['tix'].replace('<svg','<svg width=18 height=18 style="stroke:var(--signal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"')}Seats</div><div class="r"><b>Sam</b> Sec 112 Row 41</div></div>
 <div class="srow"><div class="l" style="opacity:0"> </div><div class="r"><b>Chris</b> Sec 114</div></div></div>
 <div class="card note"><div style="display:flex;justify-content:space-between;align-items:center"><span class="lbl" style="color:var(--signal)">Meeting plan</span><div class="by" style="margin:0">{av('Sam',18,'#201a0e')}Sam &middot; today</div></div><p>Meet at the Packers Hall of Fame gate, 11:00</p></div>
-<div class="two" style="margin:0"><div class="card"><span class="lbl">Drive</span><div class="big">3h 25<small>min</small></div><div class="sub">209 mi from Logan Square. Leave by 7:15.</div></div>
+<div class="two" style="margin:0"><div class="card"><span class="lbl">Drive</span><div class="big">3h 25<small>min</small></div><div class="sub">209 mi &middot; leave by 7:15</div></div>
 <div class="card"><span class="lbl">Forecast</span><div class="big">19&deg;<small>F &middot; light snow</small></div><div class="sub">Pack the heavy gloves.</div></div></div>
-<div class="rep"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg><div>Everyone going gets the shared match report after<small>Built from the photos each of you chooses to add.</small></div></div></div>'''
+<div class="rep"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg><div>Everyone going gets the shared<br>match report after<small>Only photos each of you chooses to add.</small></div></div></div>'''
 page('Game plan',b2,'v2-game-plan.html')
 
 # ---------------- v3
@@ -172,7 +174,7 @@ b3=f'''<style>
 .sh b{{font:700 17px/1 var(--f-ui)}}.sh span{{font:600 14px/1 var(--f-ui);color:var(--text-2)}}
 .inv{{position:absolute;left:26px;right:26px;top:52px;height:236px;border-radius:24px;overflow:hidden;background:#0c0c0e;box-shadow:0 18px 40px rgba(0,0,0,.6),0 0 0 .5px rgba(255,255,255,.25);transform:rotate(-1.2deg)}}
 .inv img{{filter:saturate(.9) brightness(.9)}}
-.inv:after{{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.1),rgba(5,5,6,.2) 35%,rgba(5,5,6,.92) 82%)}}
+.inv:after{{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.5),rgba(5,5,6,.4) 40%,rgba(5,5,6,.93) 85%)}}
 .inv>*{{position:absolute;z-index:2}}
 .inv .a{{left:18px;top:16px;display:flex;align-items:center;gap:8px;font:800 11px/1 var(--f-ui);letter-spacing:1.8px}}
 .inv .w{{right:16px;top:16px;font:400 15px/1 var(--f-serif);font-style:italic;color:rgba(255,255,255,.85)}}

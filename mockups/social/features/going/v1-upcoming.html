@@ -14,6 +14,8 @@ body{background:var(--ink)}
 .pill svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .crop{position:absolute;left:0;width:100%;bottom:0;height:175%;object-fit:cover;object-position:55% 100%}
 .pill{white-space:nowrap}
+.hero img,.inv img{z-index:0!important}
+.hero:after,.inv:after{z-index:1}
 .pill.amb{background:var(--signal);color:#1a1305;border-color:transparent}
 </style>
 </head>
@@ -38,8 +40,8 @@ body{background:var(--ink)}
 .mt p{font:500 14px/1.3 var(--f-ui);color:var(--text-2);margin-top:6px}
 .who{position:absolute;left:20px;right:20px;top:272px;display:flex;align-items:center;gap:10px;font:600 14px/1 var(--f-ui)}
 .who small{color:var(--text-2);font-weight:500}
-.acts{position:absolute;left:20px;right:20px;bottom:18px;display:flex;gap:8px}
-.acts .pill{height:38px;padding:0 11px;font-size:12.5px;gap:5px}
+.acts{position:absolute;left:16px;right:16px;bottom:18px;display:flex;gap:6px}
+.acts .pill{height:38px;padding:0 10px;font-size:12px;gap:5px}
 .sec{position:absolute;left:20px;right:20px;top:516px;display:flex;justify-content:space-between;align-items:baseline}
 .row{position:relative;display:flex;gap:12px;align-items:center;background:var(--surface);border:.5px solid var(--line-2);border-radius:20px;padding:10px 14px 10px 10px;height:88px;margin-bottom:10px}
 .th{width:68px;height:68px;border-radius:14px;flex:none}

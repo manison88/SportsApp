@@ -14,6 +14,8 @@ body{background:var(--ink)}
 .pill svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .crop{position:absolute;left:0;width:100%;bottom:0;height:175%;object-fit:cover;object-position:55% 100%}
 .pill{white-space:nowrap}
+.hero img,.inv img{z-index:0!important}
+.hero:after,.inv:after{z-index:1}
 .pill.amb{background:var(--signal);color:#1a1305;border-color:transparent}
 </style>
 </head>
@@ -34,7 +36,7 @@ body{background:var(--ink)}
 .sh b{font:700 17px/1 var(--f-ui)}.sh span{font:600 14px/1 var(--f-ui);color:var(--text-2)}
 .inv{position:absolute;left:26px;right:26px;top:52px;height:236px;border-radius:24px;overflow:hidden;background:#0c0c0e;box-shadow:0 18px 40px rgba(0,0,0,.6),0 0 0 .5px rgba(255,255,255,.25);transform:rotate(-1.2deg)}
 .inv img{filter:saturate(.9) brightness(.9)}
-.inv:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.1),rgba(5,5,6,.2) 35%,rgba(5,5,6,.92) 82%)}
+.inv:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.5),rgba(5,5,6,.4) 40%,rgba(5,5,6,.93) 85%)}
 .inv>*{position:absolute;z-index:2}
 .inv .a{left:18px;top:16px;display:flex;align-items:center;gap:8px;font:800 11px/1 var(--f-ui);letter-spacing:1.8px}
 .inv .w{right:16px;top:16px;font:400 15px/1 var(--f-serif);font-style:italic;color:rgba(255,255,255,.85)}

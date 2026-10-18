@@ -1,0 +1,8 @@
+**Idea:** Circles are small private groups (family, a section crew, a supporters group) with a shared wall of cards members chose to post, combined stats, a combined stadium passport, and a seasonal challenge. Not a feed: no likes, no follower counts, no strangers.
+**Why people want it:** Fandom is shared. "412 games, 71 venues, 9 countries" is a number only a group can have, and "I was there too" turns a keepsake into a reunion.
+**First use / empty state (v3):** One member, an invite link, and a quiet wall with a single friendly prompt ("Post the game you most want the crew to see"), suggesting the user's best shared game.
+**Privacy:** Members see only games and venues, plus photos only when a person picks and posts them. Camera roll and matching stay on device. No live location, tickets or kids' profiles (Maya, Leo never appear). Join by private link with owner approval; no public search. Combined stats count each game once.
+**Reaction:** "I was there too" is one tap and counts people ("3 were there: Ray, Chris, you"), never likes.
+**Challenge (v2):** Collaboration framing; colored stamps by member, who-added-what bar (not a ranked leaderboard), "You need 3 more", and a next-up suggestion that mentions members who live near the venue (a city-level, opt-in profile field).
+**Plugs into:** You tab (Circles row), game page ("Share to a circle" + "N from your circles were there"), Circle passport reuses the passport stamps, Match report share sheet.
+**Minimum backend:** Apple sign-in identity, circle + membership tables, invite tokens with approval, a posted-card record (game id, optional chosen photo upload), reaction set per card, aggregate stat and park-union jobs, challenge definitions.
