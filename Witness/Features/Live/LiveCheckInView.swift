@@ -27,6 +27,7 @@ struct LiveCheckInView: View {
     /// Games on the schedule at the stadium you're standing in, found from your location and the time.
     @State private var nearbyGames: [NearbyGame] = []
     @State private var nearbyPlaces: [Venue] = []
+    @State private var nearestStadium: (Venue, CLLocationDistance)?
     @State private var manual = false
     @State private var nearbyVenue: Venue?
     @State private var searchedNearby = false
@@ -170,8 +171,7 @@ struct LiveCheckInView: View {
                     .accessibilityIdentifier("live-locating")
                 } else if nearbyGames.isEmpty {
                     state("calendar.badge.exclamationmark", "Sorry, no game found",
-                          nearbyVenueNames.isEmpty ? "We couldn\u{2019}t find a stadium near you."
-                          : "No games on the schedule at \(nearbyVenueNames) right now.", content: { EmptyView() })
+                          emptyDetail, content: { EmptyView() })
                         .accessibilityIdentifier("live-nearby-none")
                 } else {
                     Text("Games near you").unitLabel()
@@ -207,6 +207,17 @@ struct LiveCheckInView: View {
         .foregroundStyle(.white)
         .frame(maxWidth: .infinity)
         .padding(.vertical, 40)
+    }
+
+    /// Why nothing is listed: no location, no stadium close by (with how far the closest one is), or no game on today.
+    private var emptyDetail: String {
+        if location.location == nil { return "We couldn\u{2019}t get your location. Check that Location is on for Witness." }
+        if nearbyPlaces.isEmpty {
+            guard let near = nearestStadium else { return "We couldn\u{2019}t find a stadium near you." }
+            let miles = near.1 / 1609.344
+            return "No stadium within 5 miles of you. The closest is \(near.0.name), \(miles < 10 ? String(format: "%.1f", miles) : "\(Int(miles))") miles away."
+        }
+        return "No games on the schedule at \(nearbyVenueNames) right now."
     }
 
     private var nearbyVenueNames: String {
@@ -254,9 +265,13 @@ struct LiveCheckInView: View {
         meters < 160 ? "here" : (meters < 1000 ? "\(Int((meters / 10).rounded()) * 10) m" : String(format: "%.1f km", meters / 1000))
     }
 
+    /// How far from you a stadium can be and still be listed: about 5 miles, enough for a parking lot or a tailgate.
+    private static let searchRadius: CLLocationDistance = 8_000
+
     private func findNearby(around loc: CLLocation) async {
+        nearestStadium = library.venues.map { ($0, $0.location.distance(from: loc)) }.min { $0.1 < $1.1 }
         let places = library.venues.map { ($0, $0.location.distance(from: loc)) }
-            .filter { $0.1 <= 3000 }.sorted { $0.1 < $1.1 }.prefix(6)
+            .filter { $0.1 <= Self.searchRadius }.sorted { $0.1 < $1.1 }.prefix(6)
         nearbyPlaces = places.map(\.0)
         let now = Date.now
         var found: [NearbyGame] = []

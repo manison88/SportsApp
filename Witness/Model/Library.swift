@@ -29,6 +29,8 @@ final class Library {
     private(set) var games: [GameEntry] = []
     /// Games the fan plans to go to. They are not games yet: no stats, stamps or map pins until attended.
     private(set) var plans: [GameEntry] = []
+    /// Where the fan lives, picked by them. Miles traveled and the map's arcs start here.
+    private(set) var customHome: HomePlace?
     private(set) var customVenues: [Venue] = []
     private(set) var customPeople: [Person] = []
     /// Teams learned from real schedules (any league, any country).
@@ -48,6 +50,13 @@ final class Library {
         var customTrips: [Trip]? = nil
         var favoriteTeamIds: [String]? = nil
         var plans: [GameEntry]? = nil
+        var home: HomePlace? = nil
+    }
+
+    struct HomePlace: Codable, Hashable {
+        var city: String
+        var latitude: Double
+        var longitude: Double
     }
 
     nonisolated static var defaultStoreURL: URL {
@@ -80,10 +89,18 @@ final class Library {
             if !chosenFavoriteTeamIds.isEmpty { sample.favoriteTeamIds = chosenFavoriteTeamIds }
             return sample
         }
-        return Profile(displayName: "You", homeCity: sampleProfile?.homeCity ?? "Chicago",
-                       homeLatitude: sampleProfile?.homeLatitude ?? 41.8781,
-                       homeLongitude: sampleProfile?.homeLongitude ?? -87.6298,
+        return Profile(displayName: "You", homeCity: customHome?.city ?? sampleProfile?.homeCity ?? "Chicago",
+                       homeLatitude: customHome?.latitude ?? sampleProfile?.homeLatitude ?? 41.8781,
+                       homeLongitude: customHome?.longitude ?? sampleProfile?.homeLongitude ?? -87.6298,
                        favoriteTeamIds: chosenFavoriteTeamIds)
+    }
+
+    /// Whether miles traveled can be worked out: the sample persona has a home, and a real fan sets theirs.
+    var hasHome: Bool { isSample || customHome != nil }
+
+    func setHome(city: String, latitude: Double, longitude: Double) {
+        customHome = HomePlace(city: city, latitude: latitude, longitude: longitude)
+        save()
     }
 
     /// Your teams, in the order you chose them.
@@ -692,7 +709,7 @@ final class Library {
         hasLibrary = true
         let stored = Stored(games: games, customVenues: customVenues, customPeople: customPeople, customTeams: customTeams, customTrips: customTrips,
                         favoriteTeamIds: chosenFavoriteTeamIds.isEmpty ? nil : chosenFavoriteTeamIds,
-                        plans: plans.isEmpty ? nil : plans)
+                        plans: plans.isEmpty ? nil : plans, home: customHome)
         do {
             let data = try Self.encoder.encode(stored)
             try FileManager.default.createDirectory(at: storeURL.deletingLastPathComponent(), withIntermediateDirectories: true)
@@ -712,6 +729,7 @@ final class Library {
         customTrips = stored.customTrips ?? []
         chosenFavoriteTeamIds = stored.favoriteTeamIds ?? []
         plans = (stored.plans ?? []).sorted { $0.date < $1.date }
+        customHome = stored.home
         hasLibrary = true
     }
 

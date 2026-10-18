@@ -7,6 +7,7 @@ struct LifeMapView: View {
     @State private var sport: Sport?
     @State private var expanded = false
     @State private var path = NavigationPath()
+    @State private var settingHome = false
 
     private var games: [GameEntry] {
         guard let sport else { return library.games }
@@ -52,18 +53,32 @@ struct LifeMapView: View {
                 legend
 
                 VStack(alignment: .leading, spacing: Spacing.block) {
-                    HStack(alignment: .lastTextBaseline, spacing: 10) {
-                        Text(Fmt.number(stats.miles))
-                            .displayFont(96)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
-                        Text("Miles")
-                            .font(.condensed(.title2, weight: .heavy))
-                            .textCase(.uppercase)
+                    if library.hasHome {
+                        HStack(alignment: .lastTextBaseline, spacing: 10) {
+                            Text(Fmt.number(stats.miles))
+                                .displayFont(96)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                            Text("Miles")
+                                .font(.condensed(.title2, weight: .heavy))
+                                .textCase(.uppercase)
+                        }
+                        .foregroundStyle(.white)
+                        .accessibilityElement(children: .combine)
+                        .accessibilityIdentifier("map-miles")
+                    } else {
+                        Button { settingHome = true } label: {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Set home").displayFont(56).textCase(.uppercase).lineLimit(1).minimumScaleFactor(0.5)
+                                Text("to see the miles you\u{2019}ve traveled").font(.subheadline).foregroundStyle(Color.textSecondary)
+                            }
+                            .foregroundStyle(Color.signal)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .contentShape(.rect)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityIdentifier("map-set-home")
                     }
-                    .foregroundStyle(.white)
-                    .accessibilityElement(children: .combine)
-                    .accessibilityIdentifier("map-miles")
 
                     StatRow(items: [
                         .init(value: "\(stats.venues)", label: "Venues"),
@@ -88,12 +103,19 @@ struct LifeMapView: View {
                             Label(s.name, systemImage: s.symbol).tag(Sport?.some(s))
                         }
                     }
+                    Button { settingHome = true } label: {
+                        Label(library.hasHome ? "Change home (\(library.profile.homeCity))" : "Set home", systemImage: "house")
+                    }
+                    .accessibilityIdentifier("map-menu-home")
                 } label: {
                     Image(systemName: "line.3.horizontal.decrease")
                         .fontWeight(.bold)
                 }
                 .accessibilityLabel("Filter by sport")
             }
+        }
+        .sheet(isPresented: $settingHome) {
+            NavigationStack { HomePickerView() }
         }
         .fullScreenCover(isPresented: $expanded) {
             ExpandedMap(legs: legs, venues: venues, home: home, homeCity: library.profile.homeCity, labeled: labeled,
@@ -204,7 +226,7 @@ struct WorldMapCanvas: View {
 
     var body: some View {
         Map(position: $position) {
-            ForEach(legs) { leg in
+            ForEach(library.hasHome ? legs : []) { leg in
                 if let v = library.venue(leg.venueId) {
                     MapPolyline(coordinates: [home, v.coordinate], contourStyle: .geodesic)
                         .stroke(leg.sport.lineColor.opacity(0.9), lineWidth: 1.8)
@@ -226,6 +248,7 @@ struct WorldMapCanvas: View {
                 }
                 .annotationTitles(labeled.contains(v.id) ? .visible : .hidden)
             }
+            if library.hasHome {
             Annotation(homeCity.uppercased(), coordinate: home, anchor: .center) {
                 ZStack {
                     Circle().fill(RadialGradient(colors: [Color.signal.opacity(0.7), .clear], center: .center, startRadius: 2, endRadius: 46))
@@ -233,6 +256,7 @@ struct WorldMapCanvas: View {
                     Circle().fill(.white).frame(width: 12, height: 12)
                 }
                 .allowsHitTesting(false)
+            }
             }
         }
         .mapStyle(.standard(elevation: .realistic, emphasis: .muted, pointsOfInterest: .excludingAll, showsTraffic: false))
