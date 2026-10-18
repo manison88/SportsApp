@@ -116,9 +116,9 @@ struct Venue: Codable, Hashable, Identifiable {
     var geofence: Double {
         if let geofenceMeters { return geofenceMeters }
         switch capacity ?? 0 {
-        case 90_000...: 300
-        case 65_000..<90_000: 260
-        default: 200
+        case 90_000...: return 300
+        case 65_000..<90_000: return 260
+        default: return 200
         }
     }
     var location: CLLocation { CLLocation(latitude: latitude, longitude: longitude) }
