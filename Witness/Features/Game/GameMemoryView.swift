@@ -30,7 +30,7 @@ struct GameMemoryView: View {
             VStack(alignment: .leading, spacing: 18) {
                 hero(game)
                 if game.sport == .motorsport { scoreBlock(game).gutter() }
-                photosBlock(game)
+                photosBlock(game).padding(.top, -16)
                 peopleBlock(game)
                 links(game)
             }
