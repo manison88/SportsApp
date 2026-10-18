@@ -53,9 +53,11 @@ struct GameMemoryView: View {
             ToolbarItem(placement: .topBarTrailing) { menu(game) }
         }
         .fullScreenCover(item: $viewer) { item in
-            PhotoPager(photos: game.photos, start: item.id, cover: game.heroPhoto) { ref in
+            PhotoPager(photos: game.photos, start: item.id, cover: game.heroPhoto, onSetCover: { ref in
                 library.setCover(game.id, to: ref, byFan: true)
-            }
+            }, onDelete: { ref in
+                library.removePhotos(game.id, [ref])
+            })
         }
         .task(id: game.id) {
             if !ProcessInfo.processInfo.arguments.contains("-uitest") { await library.autoCover(game.id) }

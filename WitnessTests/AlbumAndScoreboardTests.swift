@@ -308,6 +308,19 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertTrue(library.favoriteTeams.isEmpty)
     }
 
+    func testRemovingPhotosFromAGame() throws {
+        var game = GameEntry(sport: .baseball, date: Date(), venueId: "wrigley", origin: .manual)
+        game.photos = [.library("a"), .library("b"), .library("c")]
+        library.add(game)
+        let id = library.games[0].id
+        library.setCover(id, to: .library("b"), byFan: true)
+        library.removePhotos(id, [.library("a"), .library("b")])
+        let after = try XCTUnwrap(library.game(id))
+        XCTAssertEqual(after.photos, [.library("c")])
+        XCTAssertNil(after.coverPhoto, "Removing the cover clears it so another can be picked")
+        XCTAssertNil(after.coverChosenByFan)
+    }
+
     func testWorldCupGameIsFoundAtAFootballStadium() throws {
         let library = self.library!
         let levis = try XCTUnwrap(library.venues.first { $0.id == "levis-stadium" })

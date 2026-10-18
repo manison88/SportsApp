@@ -7,6 +7,9 @@ struct GamePhotosView: View {
     @Environment(Library.self) private var library
     @State private var viewer: PhotoViewerItem?
     @State private var picking = false
+    @State private var selecting = false
+    @State private var selected = Set<PhotoRef>()
+    @State private var confirmRemove = false
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 3), count: 3)
 
@@ -16,12 +19,29 @@ struct GamePhotosView: View {
                 if let cover = game.heroPhoto { header(game, cover: cover) }
                 LazyVGrid(columns: columns, spacing: 3) {
                     ForEach(Array(game.photos.enumerated()), id: \.offset) { i, ref in
-                        Button { viewer = PhotoViewerItem(id: i) } label: {
+                        Button {
+                            if selecting {
+                                if selected.contains(ref) { selected.remove(ref) } else { selected.insert(ref) }
+                            } else {
+                                viewer = PhotoViewerItem(id: i)
+                            }
+                        } label: {
                             Color.panel
                                 .aspectRatio(1, contentMode: .fit)
                                 .overlay { PhotoView(ref: ref) }
                                 .overlay(alignment: .bottomLeading) {
-                                    if ref == game.heroPhoto { coverTag(auto: game.coverChosenByFan != true) }
+                                    if ref == game.heroPhoto, !selecting { coverTag(auto: game.coverChosenByFan != true) }
+                                }
+                                .overlay { if selected.contains(ref) { Color.signal.opacity(0.28) } }
+                                .overlay(alignment: .topTrailing) {
+                                    if selecting {
+                                        Image(systemName: selected.contains(ref) ? "checkmark.circle.fill" : "circle")
+                                            .font(.title3)
+                                            .foregroundStyle(selected.contains(ref) ? Color.signal : .white)
+                                            .shadow(color: .black.opacity(0.5), radius: 2)
+                                            .padding(6)
+                                            .accessibilityHidden(true)
+                                    }
                                 }
                                 .clipped()
                         }
@@ -32,6 +52,7 @@ struct GamePhotosView: View {
                             }
                         }
                         .accessibilityLabel("Photo \(i + 1) of \(game.photos.count)")
+                        .accessibilityAddTraits(selected.contains(ref) ? .isSelected : [])
                         .accessibilityIdentifier("photos-tile-\(i)")
                     }
                 }
@@ -42,6 +63,14 @@ struct GamePhotosView: View {
             .navigationTitle(game.photos.count == 1 ? "1 photo" : "\(game.photos.count) photos")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(selecting ? "Done" : "Select") {
+                        selecting.toggle()
+                        selected = []
+                    }
+                    .disabled(game.photos.isEmpty)
+                    .accessibilityIdentifier("photos-select")
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         picking = true
@@ -57,10 +86,42 @@ struct GamePhotosView: View {
                     .accessibilityIdentifier("photos-auto")
                 }
             }
-            .fullScreenCover(item: $viewer) { item in
-                PhotoPager(photos: game.photos, start: item.id, cover: game.heroPhoto) { ref in
-                    library.setCover(game.id, to: ref, byFan: true)
+            .safeAreaInset(edge: .bottom) {
+                if selecting {
+                    HStack {
+                        Button(selected.count == game.photos.count ? "Select none" : "Select all") {
+                            selected = selected.count == game.photos.count ? [] : Set(game.photos)
+                        }
+                        .accessibilityIdentifier("photos-select-all")
+                        Spacer()
+                        Button(role: .destructive) { confirmRemove = true } label: {
+                            Label(selected.isEmpty ? "Remove" : "Remove \(selected.count)", systemImage: "trash")
+                        }
+                        .disabled(selected.isEmpty)
+                        .accessibilityIdentifier("photos-remove")
+                    }
+                    .font(.condensed(.headline, weight: .heavy))
+                    .padding(.horizontal, 20)
+                    .frame(minHeight: 56)
+                    .background(.ultraThinMaterial)
                 }
+            }
+            .confirmationDialog("Remove \(selected.count) \(selected.count == 1 ? "photo" : "photos") from this game?",
+                                isPresented: $confirmRemove, titleVisibility: .visible) {
+                Button("Remove", role: .destructive) {
+                    library.removePhotos(game.id, selected)
+                    selected = []
+                    selecting = false
+                }
+            } message: {
+                Text("They stay in your Photos library.")
+            }
+            .fullScreenCover(item: $viewer) { item in
+                PhotoPager(photos: game.photos, start: item.id, cover: game.heroPhoto, onSetCover: { ref in
+                    library.setCover(game.id, to: ref, byFan: true)
+                }, onDelete: { ref in
+                    library.removePhotos(game.id, [ref])
+                })
             }
         } else {
             ContentUnavailableView("Game not found", systemImage: "photo").inkBackground()

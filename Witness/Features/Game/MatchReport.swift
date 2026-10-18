@@ -114,7 +114,9 @@ struct MatchReportView: View {
         }
         .inkBackground()
         .fullScreenCover(item: $viewing) { item in
-            PhotoPager(photos: allRefs, start: item.id, cover: game.heroPhoto)
+            PhotoPager(photos: allRefs, start: item.id, cover: game.heroPhoto, onDelete: { ref in
+                library.removePhotos(game.id, [ref])
+            })
         }
         .accessibilityIdentifier("ywt-report")
     }

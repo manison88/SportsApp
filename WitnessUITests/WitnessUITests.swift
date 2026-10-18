@@ -159,10 +159,13 @@ final class WitnessUITests: XCTestCase {
             seeAll.tap()
             XCTAssertTrue(el("photos-grid").waitForExistence(timeout: 5), "See all should show a grid")
             XCTAssertTrue(el("photos-tile-1").exists, "The grid shows more than one photo")
+            XCTAssertTrue(el("photos-select").exists, "The grid can select several photos to remove")
             snap("05a-photo-grid")
             back()
             tap("game-photo-0")
             XCTAssertTrue(el("photo-viewer").waitForExistence(timeout: 5), "A photo should open full screen")
+            XCTAssertTrue(el("photo-viewer-delete").exists, "A photo can be removed from the viewer")
+            XCTAssertTrue(el("photo-viewer-strip").exists, "A strip of thumbnails shows the other photos and jumps to them")
             snap("05b-photo-viewer")
             app.buttons["Close"].firstMatch.tap()
         }

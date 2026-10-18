@@ -607,14 +607,31 @@ struct PhotoPager: View {
     let photos: [PhotoRef]
     var cover: PhotoRef?
     var onSetCover: ((PhotoRef) -> Void)?
+    /// Takes a photo off the game (never out of the Photos library). Shows a trash button when set.
+    var onDelete: ((PhotoRef) -> Void)?
     @State var index: Int
+    @State private var confirmDelete = false
     @Environment(\.dismiss) private var dismiss
 
-    init(photos: [PhotoRef], start: Int, cover: PhotoRef? = nil, onSetCover: ((PhotoRef) -> Void)? = nil) {
+    init(photos: [PhotoRef], start: Int, cover: PhotoRef? = nil, onSetCover: ((PhotoRef) -> Void)? = nil,
+         onDelete: ((PhotoRef) -> Void)? = nil) {
         self.photos = photos
         self.cover = cover
         self.onSetCover = onSetCover
+        self.onDelete = onDelete
         _index = State(initialValue: start)
+    }
+
+    private func removeCurrent() {
+        guard photos.indices.contains(index) else { return }
+        let ref = photos[index]
+        if photos.count <= 1 {
+            onDelete?(ref)
+            dismiss()
+            return
+        }
+        index = min(index, photos.count - 2)
+        onDelete?(ref)
     }
 
     var body: some View {
@@ -636,11 +653,56 @@ struct PhotoPager: View {
                     .foregroundStyle(.white)
                     .padding(.horizontal, 12).frame(minHeight: 32)
                     .background(.black.opacity(0.55), in: .capsule)
+                if onDelete != nil {
+                    CircleButton(systemName: "trash", label: "Remove photo") { confirmDelete = true }
+                        .accessibilityIdentifier("photo-viewer-delete")
+                }
             }
             .padding(.horizontal, 16)
             .padding(.top, 8)
         }
+        .confirmationDialog("Remove this photo from the game?", isPresented: $confirmDelete, titleVisibility: .visible) {
+            Button("Remove photo", role: .destructive) { removeCurrent() }
+        } message: {
+            Text("It stays in your Photos library.")
+        }
         .overlay(alignment: .bottom) {
+            VStack(spacing: 14) {
+                if photos.count > 1 { filmstrip }
+                coverButton
+            }
+        }
+    }
+
+    /// Small thumbnails along the bottom: shows how many there are and jumps to any of them.
+    private var filmstrip: some View {
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 6) {
+                    ForEach(Array(photos.enumerated()), id: \.offset) { i, ref in
+                        Button { withAnimation(.snappy) { index = i } } label: {
+                            Color.panel.frame(width: 44, height: 44)
+                                .overlay { PhotoView(ref: ref) }
+                                .clipShape(.rect(cornerRadius: 6))
+                                .overlay { RoundedRectangle(cornerRadius: 6).stroke(i == index ? Color.signal : .clear, lineWidth: 2) }
+                                .opacity(i == index ? 1 : 0.65)
+                        }
+                        .buttonStyle(.plain)
+                        .id(i)
+                        .accessibilityLabel("Photo \(i + 1)")
+                    }
+                }
+                .padding(.horizontal, 16)
+            }
+            .frame(height: 48)
+            .onChange(of: index) { _, new in withAnimation { proxy.scrollTo(new, anchor: .center) } }
+            .onAppear { proxy.scrollTo(index, anchor: .center) }
+        }
+        .accessibilityIdentifier("photo-viewer-strip")
+    }
+
+    @ViewBuilder
+    private var coverButton: some View {
             if let onSetCover, photos.indices.contains(index) {
                 let isCover = (coverSet ?? cover) == photos[index]
                 Button {
@@ -658,7 +720,6 @@ struct PhotoPager: View {
                 .padding(.bottom, 24)
                 .accessibilityIdentifier("photo-viewer-cover")
             }
-        }
     }
 
     @State private var coverSet: PhotoRef?

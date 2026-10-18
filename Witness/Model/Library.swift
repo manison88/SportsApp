@@ -330,6 +330,17 @@ final class Library {
         }
     }
 
+    /// Takes photos off a game. They stay in the Photos library; only this game's link to them goes.
+    func removePhotos(_ gameId: String, _ refs: Set<PhotoRef>) {
+        guard var g = game(gameId), !refs.isEmpty else { return }
+        g.photos.removeAll { refs.contains($0) }
+        if let cover = g.coverPhoto, refs.contains(cover) {
+            g.coverPhoto = nil
+            g.coverChosenByFan = nil
+        }
+        update(g)
+    }
+
     /// Sets a game's cover photo (nil clears it so it can be picked again).
     func setCover(_ id: String, to ref: PhotoRef?, byFan: Bool) {
         guard var g = game(id) else { return }
