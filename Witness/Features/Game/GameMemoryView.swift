@@ -30,7 +30,7 @@ struct GameMemoryView: View {
             VStack(alignment: .leading, spacing: 18) {
                 hero(game)
                 if game.sport == .motorsport { scoreBlock(game).gutter() }
-                photosBlock(game).padding(.top, -16)
+                photosBlock(game).padding(.top, -10)
                 peopleBlock(game)
                 links(game)
             }
@@ -91,7 +91,7 @@ struct GameMemoryView: View {
                 LinearGradient(colors: [Color.trophy.opacity(0.22), .clear], startPoint: .bottom, endPoint: .center)
                     .allowsHitTesting(false)
             }
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: 20) {
                 if let stage = game.bigGame {
                     EventMark(game: game, stage: stage)
                 }
