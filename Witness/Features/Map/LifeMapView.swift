@@ -32,7 +32,7 @@ struct LifeMapView: View {
         return library.games.filter { $0.sport == sport }
     }
 
-    private var content: some View {
+    @ViewBuilder private var content: some View {
         let stats = Stats(library: library, games: games)
         let home = library.profile.homeLocation.coordinate
         let venues = Set(games.map(\.venueId)).compactMap { library.venue($0) }
