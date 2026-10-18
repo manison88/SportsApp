@@ -283,6 +283,15 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertFalse(library.venues(for: .baseball).contains { $0.id == "levis-stadium" })
     }
 
+    func testUnitedCenterIsNotCambrianUnitedGround() throws {
+        let side = FoundGame.Side(espnId: "1", abbreviation: "CHI", location: "Chicago", name: "Bulls", color: nil, altColor: nil, score: nil, line: [])
+        let game = FoundGame(league: "basketball/nba", leagueName: "NBA", eventId: "1", sport: .basketball, start: Date(),
+                             venueName: "United Center", venueCity: "Chicago, Illinois", home: side, away: side, completed: true, note: nil)
+        let welsh = try XCTUnwrap(library.venue("cambrian-united-ground"))
+        XCTAssertFalse(GameLookup.venueMatches(game, venue: welsh), "A partial name in another country is not a match")
+        XCTAssertEqual(GameLookup.venue(of: game, in: library.venues)?.id, "united-center")
+    }
+
     func testWorldCupGameIsFoundAtAFootballStadium() throws {
         let library = self.library!
         let levis = try XCTUnwrap(library.venues.first { $0.id == "levis-stadium" })

@@ -104,7 +104,17 @@ enum GameLookup {
 
     /// The catalog venue a schedule's game was played at, by name, alias, or city plus home team.
     static func venue(of game: FoundGame, in venues: [Venue]) -> Venue? {
-        venues.first { venueMatches(game, venue: $0) }
+        let matches = venues.filter { venueMatches(game, venue: $0) }
+        // An exact name and city beats a looser match ("United Center" is not "Cambrian United Ground").
+        let name = tokens(game.venueName)
+        return matches.first { tokens($0.name) == name && sameCity(game, $0) } ?? matches.first { sameCity(game, $0) } ?? matches.first
+    }
+
+    /// The schedule's city ("Chicago, Illinois") holds the venue's city ("Chicago"), or either is unknown.
+    private static func sameCity(_ game: FoundGame, _ venue: Venue) -> Bool {
+        guard let city = game.venueCity else { return true }
+        let a = tokens(city), b = tokens(venue.city)
+        return a.isEmpty || b.isEmpty || !a.isDisjoint(with: b)
     }
 
     /// Plays, win probability and attendance for a found game.
@@ -352,13 +362,15 @@ enum GameLookup {
             for candidate in [venue.name] + (venue.aliases ?? []) {
                 let c = tokens(candidate)
                 guard !c.isEmpty else { continue }
-                if c == eventName || c.isSubset(of: eventName) || eventName.isSubset(of: c) { return true }
+                if c == eventName { return true }
+                // A partial name ("United" for "United Center") only counts in the same city.
+                if (c.isSubset(of: eventName) || eventName.isSubset(of: c)) && sameCity(game, venue) { return true }
             }
         }
         // Tournaments use neutral grounds, often under a tournament name ("San Francisco Bay Area Stadium"),
         // so the city is enough.
         if neutralTournaments.contains(game.league), let city = game.venueCity, !tokens(city).isEmpty,
-           tokens(city) == tokens(venue.city) { return true }
+           !tokens(venue.city).isEmpty, tokens(venue.city).isSubset(of: tokens(city)) { return true }
         if let city = game.venueCity, tokens(city) == tokens(venue.city) {
             let homeName = tokens("\(game.home.location) \(game.home.name)")
             for tenant in venue.homeTeams ?? [] where !tokens(tenant).isEmpty && tokens(tenant).isSubset(of: homeName) {
