@@ -47,6 +47,7 @@ struct TimelineView: View {
             }
         }
         .inkBackground()
+        .task { await library.sweepPlans() }
         .tabTitle("Timeline")
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Teams, places, years")
         .toolbar {

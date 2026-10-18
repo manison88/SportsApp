@@ -231,6 +231,23 @@ struct PlanView: View {
                     .buttonStyle(.plain)
                     .disabled(calendarState == .added)
                     .accessibilityIdentifier("plan-calendar")
+                    Toggle(isOn: Binding(get: { plan.planAutoPhotos ?? true }, set: { value in
+                        guard var p = library.plan(plan.id) else { return }
+                        p.planAutoPhotos = value
+                        library.updatePlan(p)
+                    })) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "photo.on.rectangle.angled").foregroundStyle(Color.signal).frame(width: 24)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Add my photos automatically").font(.subheadline.weight(.semibold))
+                                Text("Photos from the stadium around game time")
+                                    .font(.footnote).foregroundStyle(Color.textSecondary)
+                            }
+                        }
+                    }
+                    .tint(Color.signal)
+                    .padding(14).background(Color.panel, in: .rect(cornerRadius: 16))
+                    .accessibilityIdentifier("plan-auto-photos")
                     Toggle(isOn: Binding(get: { plan.planReminder ?? false }, set: { setReminder($0, plan) })) {
                         HStack(spacing: 12) {
                             Image(systemName: "bell").foregroundStyle(Color.signal).frame(width: 24)
@@ -446,10 +463,10 @@ struct UpcomingSection: View {
                     Text("Are you at \(library.venue(plan.venueId)?.name ?? "the game")?").font(.subheadline.weight(.semibold))
                 }
             }
-            Text("\(PlanText.title(plan, library)), \(Fmt.time(plan.date, in: tz(plan))). Save today\u{2019}s photos to this game?")
+            Text("\(PlanText.title(plan, library)), \(Fmt.time(plan.date, in: tz(plan))). We\u{2019}ll add the photos from this stadium around game time.")
                 .font(.footnote).foregroundStyle(Color.textSecondary)
             HStack(spacing: 10) {
-                Button { library.attend(plan: plan.id) } label: { Text("Yes, I\u{2019}m here").frame(maxWidth: .infinity) }
+                Button { library.attend(plan: plan.id) } label: { Text("Yes, add my photos").frame(maxWidth: .infinity) }
                     .buttonStyle(.primary).accessibilityIdentifier("plan-day-yes")
                 Button { dismissed.insert(plan.id) } label: {
                     Text("Not today").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).foregroundStyle(.white)

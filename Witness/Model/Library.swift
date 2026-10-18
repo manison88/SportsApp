@@ -220,15 +220,44 @@ final class Library {
         guard var entry = plan(id) else { return nil }
         plans.removeAll { $0.id == id }
         entry.planReminder = nil
+        entry.planAutoPhotos = nil
         entry.origin = .manual
         entry.kind = nil
         games.append(entry)
         sortAndSave()
         Task {
             await refreshFromSchedule(entry.id)
+            await attachPhotos(entry.id)
             await fillWeather(entry.id)
         }
         return entry.id
+    }
+
+    /// The photos taken at the game's stadium around its start, added to the game. The fan already told us when and where.
+    func attachPhotos(_ id: String) async {
+        guard await PhotoMatcher.requestAccess(),
+              let g = game(id), let venue = venue(g.venueId) else { return }
+        let ids = await PhotoMatcher.photos(at: venue, around: g.date)
+        guard var current = game(id) else { return }
+        let fresh = ids.map { PhotoRef.library($0) }.filter { !current.photos.contains($0) }
+        guard !fresh.isEmpty else { return }
+        current.photos += fresh
+        update(current)
+        await autoCover(id)
+    }
+
+    /// Planned games that are over, with photos at their stadium, become games with those photos. Without access to photos
+    /// or without a photo from the stadium, a plan stays a plan: a game is never invented.
+    func sweepPlans() async {
+        guard PhotoMatcher.hasAccess else { return }
+        let now = Date()
+        let due = plans.filter { $0.planAutoPhotos != false && $0.date.addingTimeInterval(4 * 3600) < now
+                                 && $0.date > now.addingTimeInterval(-14 * 86_400) }
+        for plan in due {
+            guard let venue = venue(plan.venueId) else { continue }
+            let ids = await PhotoMatcher.photos(at: venue, around: plan.date)
+            if !ids.isEmpty { attend(plan: plan.id) }
+        }
     }
 
     /// Scores and plays for a game that has since been played, found again on its schedule.

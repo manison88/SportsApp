@@ -252,6 +252,8 @@ struct GameEntry: Codable, Hashable, Identifiable {
     var kind: Kind?
     /// A planned game: the fan asked for a game-day reminder.
     var planReminder: Bool?
+    /// A planned game: add the photos from the game's day, time and stadium by themselves (on unless the fan turns it off).
+    var planAutoPhotos: Bool?
 
     enum Kind: String, Codable { case visit }
     var isVisit: Bool { kind == .visit }
