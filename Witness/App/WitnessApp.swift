@@ -28,6 +28,7 @@ struct WitnessApp: App {
                     await library.applyPacks()
                     if await PackStore.shared.refresh() { await library.applyPacks() }
                     await library.backfillWeather()
+                    await library.repairSoccerPlays()
                 }
         }
     }

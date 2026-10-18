@@ -271,10 +271,11 @@ enum GameLookup {
                 let type = ((e["type"] as? [String: Any])?["text"] as? String ?? "").lowercased()
                 guard type.contains("goal") || type.contains("penalty - scored") else { continue }
                 let teamId = (e["team"] as? [String: Any])?["id"] as? String
-                var scorer = teamId == game.home.espnId
-                if type.contains("own goal") { scorer.toggle() }
-                if scorer { h += 1 } else { a += 1 }
                 let text = e["text"] as? String ?? "Goal."
+                // ESPN credits an own goal to the side that gains the goal, so the event's team is who scores, own goal or not.
+                if teamId == game.home.espnId { h += 1 } else { a += 1 }
+                // The goal text carries the running score ("Goal! Bosnia and Herzegovina 2, Qatar 1."): it wins over counting.
+                if let running = runningScore(in: text, game: game) { h = running.home; a = running.away }
                 let clock = (e["clock"] as? [String: Any])?["displayValue"] as? String ?? ""
                 raw.append((text, h, a, clock, date(e["wallclock"] as? String)))
             }
@@ -304,6 +305,22 @@ enum GameLookup {
             }
         }
         return FoundDetail(plays: plays, winProbability: probability, attendance: attendance)
+    }
+
+    /// The score a goal's text states, as (home, away): "Goal! Bosnia and Herzegovina 2, Qatar 1. ..." or
+    /// "Own Goal by A, Qatar. Bosnia and Herzegovina 2, Qatar 0." Nil when the text has none or the names fit neither side.
+    static func runningScore(in text: String, game: FoundGame) -> (home: Int, away: Int)? {
+        guard let regex = try? NSRegularExpression(pattern: #"([^\d,.!]+?)\s+(\d+),\s+([^\d,.!]+?)\s+(\d+)"#) else { return nil }
+        let whole = NSRange(text.startIndex..., in: text)
+        guard let m = regex.firstMatch(in: text, range: whole), m.numberOfRanges == 5,
+              let nameRange = Range(m.range(at: 1), in: text), let firstRange = Range(m.range(at: 2), in: text),
+              let secondRange = Range(m.range(at: 4), in: text),
+              let first = Int(text[firstRange]), let second = Int(text[secondRange]) else { return nil }
+        let named = tokens(String(text[nameRange]))
+        let home = tokens("\(game.home.location) \(game.home.name)").intersection(named).count
+        let away = tokens("\(game.away.location) \(game.away.name)").intersection(named).count
+        guard home != away else { return nil }
+        return home > away ? (first, second) : (second, first)
     }
 
     /// True when the event's venue is this venue, by name or alias, or by city plus home team.

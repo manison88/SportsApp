@@ -171,4 +171,31 @@ final class GameLookupTests: XCTestCase {
         dome.name = "Caesars Superdome"
         XCTAssertTrue(dome.likelyIndoor)
     }
+
+    // MARK: Soccer goals and own goals
+
+    /// Bosnia and Herzegovina 3, Qatar 1, Lumen Field, 24 June 2026: ESPN lists an own goal on the beneficiary's side.
+    func testOwnGoalCountsForTheSideThatGainsIt() {
+        let home = FoundGame.Side(espnId: "452", abbreviation: "BIH", location: "Bosnia-Herzegovina", name: "Bosnia-Herzegovina",
+                                  color: nil, altColor: nil, score: 3, line: [])
+        let away = FoundGame.Side(espnId: "4398", abbreviation: "QAT", location: "Qatar", name: "Qatar",
+                                  color: nil, altColor: nil, score: 1, line: [])
+        let game = FoundGame(league: "soccer/fifa.world", leagueName: "FIFA World Cup", eventId: "760462", sport: .soccer,
+                             start: ISO8601DateFormatter().date(from: "2026-06-24T19:00:00Z")!, venueName: "Lumen Field",
+                             venueCity: "Seattle", home: home, away: away, completed: true, note: nil)
+        let json = #"""
+        {"keyEvents":[
+          {"type":{"text":"Goal"},"clock":{"displayValue":"29'"},"team":{"id":"452"},"text":"Goal! Bosnia and Herzegovina 1, Qatar 0. Kerim Alajbegovic (Bosnia and Herzegovina) right footed shot."},
+          {"type":{"text":"Own Goal"},"clock":{"displayValue":"34'"},"team":{"id":"452"},"text":"Own Goal by Mahmoud Abunada, Qatar. Bosnia and Herzegovina 2, Qatar 0."},
+          {"type":{"text":"Goal"},"clock":{"displayValue":"42'"},"team":{"id":"4398"},"text":"Goal! Bosnia and Herzegovina 2, Qatar 1. Hassan Al Haydos (Qatar) right footed shot."},
+          {"type":{"text":"Goal"},"clock":{"displayValue":"80'"},"team":{"id":"452"},"text":"Goal! Bosnia and Herzegovina 3, Qatar 1. Ermin Mahmic (Bosnia and Herzegovina) right footed shot."}
+        ]}
+        """#
+        let detail = GameLookup.parseDetail(Data(json.utf8), game: game)
+        XCTAssertEqual(detail.plays.prefix(4).map { "\($0.homeScore)-\($0.awayScore)" }, ["1-0", "2-0", "2-1", "3-1"])
+        XCTAssertEqual(GameLookup.runningScore(in: "Goal! Bosnia and Herzegovina 2, Qatar 1. Hassan Al Haydos", game: game)?.home, 2)
+        XCTAssertEqual(GameLookup.runningScore(in: "Goal! Qatar 1, Bosnia and Herzegovina 2. X", game: game)?.home, 2,
+                       "The order in the text is read by team name, not assumed")
+        XCTAssertNil(GameLookup.runningScore(in: "Delay in match because of an injury", game: game))
+    }
 }

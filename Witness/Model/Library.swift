@@ -146,6 +146,28 @@ final class Library {
         update(latest)
     }
 
+    /// Soccer games saved before own goals were scored correctly: fetch their plays again so the running score is right.
+    func repairSoccerPlays() async {
+        let ids = games.filter { g in
+            g.sport == .soccer && g.source?.provider == "espn" && g.plays.contains { $0.text.lowercased().hasPrefix("own goal") }
+        }.map(\.id)
+        for id in ids {
+            guard let g = game(id), let source = g.source, let home = soccerSide(g.homeTeamId, g.homeScore),
+                  let away = soccerSide(g.awayTeamId, g.awayScore) else { continue }
+            let found = FoundGame(league: source.league, leagueName: "", eventId: source.eventId, sport: .soccer, start: g.date,
+                                  venueName: "", venueCity: nil, home: home, away: away, completed: g.hasScore, note: nil)
+            guard let detail = await GameLookup.detail(found), !detail.plays.isEmpty, var latest = game(id) else { continue }
+            latest.plays = detail.plays
+            update(latest)
+        }
+    }
+
+    private func soccerSide(_ teamId: String?, _ score: Int?) -> FoundGame.Side? {
+        guard let team = team(teamId), let espn = team.externalIds?.espn else { return nil }
+        return FoundGame.Side(espnId: espn, abbreviation: team.abbreviation, location: team.locationName, name: team.teamName,
+                              color: nil, altColor: nil, score: score, line: [])
+    }
+
     /// Fills weather for saved games that lack it, most recent first, a batch at a time.
     func backfillWeather(limit: Int = 30) async {
         let ids = games.filter { $0.weather == nil && $0.origin != .sample }

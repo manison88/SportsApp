@@ -2741,10 +2741,13 @@
   "latitude": 25.7545,
   "longitude": -80.3808,
   "sports": [
-   "baseball"
+   "baseball",
+   "soccer"
   ],
   "leagues": [
-   "baseball/college-baseball"
+   "baseball/college-baseball",
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
   ],
   "homeTeams": [
    "Florida International Panthers"
@@ -2998,7 +3001,8 @@
    "baseball"
   ],
   "leagues": [
-   "baseball/college-baseball"
+   "baseball/college-baseball",
+   "baseball/college-softball"
   ],
   "homeTeams": [
    "Oakland Golden Grizzlies"
@@ -4488,6 +4492,30 @@
   "timeZone": "America/Chicago",
   "capacity": 1500,
   "opened": 1972
+ },
+ {
+  "id": "usi-baseball-field",
+  "name": "USI Baseball Field",
+  "aliases": [],
+  "city": "Evansville",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.958469,
+  "longitude": -87.674203,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-baseball",
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Southern Indiana Screaming Eagles"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
  },
  {
   "id": "skyhawk-park",
@@ -6119,7 +6147,8 @@
    "baseball"
   ],
   "leagues": [
-   "baseball/college-baseball"
+   "baseball/college-baseball",
+   "baseball/college-softball"
   ],
   "homeTeams": [
    "James Madison Dukes"
@@ -6727,6 +6756,75 @@
   "opened": null
  },
  {
+  "id": "ecu-softball-stadium",
+  "name": "ECU Softball Stadium",
+  "aliases": [],
+  "city": "Greenville",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.632851,
+  "longitude": -77.485267,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "East Carolina Pirates"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "fau-softball-stadium",
+  "name": "FAU Softball Stadium",
+  "aliases": [],
+  "city": "Boca Raton",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 26.374344,
+  "longitude": -80.102724,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Florida Atlantic Owls"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "tiger-softball-complex",
+  "name": "Tiger Softball Complex",
+  "aliases": [],
+  "city": "Memphis",
+  "region": "Tennessee",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.149859,
+  "longitude": -89.848877,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Memphis Tigers"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "lovelace-stadium",
   "name": "Lovelace Stadium",
   "aliases": [],
@@ -6750,6 +6848,29 @@
   "opened": null
  },
  {
+  "id": "usf-softball-stadium",
+  "name": "USF Softball Stadium",
+  "aliases": [],
+  "city": "Tampa",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 28.06,
+  "longitude": -82.413836,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "South Florida Bulls"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "collins-family-softball-complex",
   "name": "Collins Family Softball Complex",
   "aliases": [],
@@ -6767,6 +6888,29 @@
   ],
   "homeTeams": [
    "Tulsa Golden Hurricane"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "uab-softball-field",
+  "name": "UAB Softball Field",
+  "aliases": [],
+  "city": "Birmingham",
+  "region": "Alabama",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.501615,
+  "longitude": -86.806048,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "UAB Blazers"
   ],
   "timeZone": "America/Chicago",
   "capacity": null,
@@ -6962,6 +7106,29 @@
   "opened": null
  },
  {
+  "id": "skytop-softball-stadium",
+  "name": "Skytop Softball Stadium",
+  "aliases": [],
+  "city": "Syracuse",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.017997,
+  "longitude": -76.117536,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Syracuse Orange"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "palmer-park",
   "name": "Palmer Park",
   "aliases": [],
@@ -6979,6 +7146,55 @@
   ],
   "homeTeams": [
    "Virginia Cavaliers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "fgcu-softball-complex",
+  "name": "FGCU Softball Complex",
+  "aliases": [],
+  "city": "Fort Myers",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 26.463648,
+  "longitude": -81.774725,
+  "sports": [
+   "baseball",
+   "soccer"
+  ],
+  "leagues": [
+   "baseball/college-softball",
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Florida Gulf Coast Eagles"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "pruitt-softball-complex",
+  "name": "Pruitt Softball Complex",
+  "aliases": [],
+  "city": "Jacksonville",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 30.422561,
+  "longitude": -81.752625,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Jacksonville Dolphins"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -7004,6 +7220,29 @@
    "Lipscomb Bisons"
   ],
   "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "unf-softball-complex",
+  "name": "UNF Softball Complex",
+  "aliases": [],
+  "city": "Jacksonville",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 30.25664,
+  "longitude": -81.502723,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "North Florida Ospreys"
+  ],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  },
@@ -7054,6 +7293,55 @@
   "opened": null
  },
  {
+  "id": "uwf-softball-complex",
+  "name": "UWF Softball Complex",
+  "aliases": [],
+  "city": "Pensacola",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 30.409079,
+  "longitude": -87.21258,
+  "sports": [
+   "baseball",
+   "soccer"
+  ],
+  "leagues": [
+   "baseball/college-softball",
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "West Florida Argonauts"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "ud-softball-stadium",
+  "name": "UD Softball Stadium",
+  "aliases": [],
+  "city": "Dayton",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.738381,
+  "longitude": -84.179168,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Dayton Flyers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "bahoshy-softball-complex-murphy-field",
   "name": "Bahoshy Softball Complex/Murphy Field",
   "aliases": [],
@@ -7073,6 +7361,98 @@
    "Fordham Rams"
   ],
   "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "george-mason-softball-complex",
+  "name": "George Mason Softball Complex",
+  "aliases": [],
+  "city": "Fairfax",
+  "region": "Virginia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.837776,
+  "longitude": -77.331351,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "George Mason Patriots"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "uri-softball-complex",
+  "name": "URI Softball Complex",
+  "aliases": [],
+  "city": "Kingston",
+  "region": "Rhode Island",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.487513,
+  "longitude": -71.534309,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Rhode Island Rams"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "sju-softball-field",
+  "name": "SJU Softball Field",
+  "aliases": [],
+  "city": "Philadelphia",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.945927,
+  "longitude": -75.206648,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Saint Joseph's Hawks"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "butler-softball-field",
+  "name": "Butler Softball Field",
+  "aliases": [],
+  "city": "Indianapolis",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.840719,
+  "longitude": -86.173749,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Butler Bulldogs"
+  ],
+  "timeZone": "America/Indiana/Indianapolis",
   "capacity": null,
   "opened": null
  },
@@ -7143,6 +7523,29 @@
   ],
   "homeTeams": [
    "Providence Friars"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "villanova-softball-complex",
+  "name": "Villanova Softball Complex",
+  "aliases": [],
+  "city": "Villanova",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.039609,
+  "longitude": -75.339522,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Villanova Wildcats"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -7258,6 +7661,52 @@
   ],
   "homeTeams": [
    "Longwood Lancers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "presbyterian-college-softball-complex",
+  "name": "Presbyterian College Softball Complex",
+  "aliases": [],
+  "city": "Clinton",
+  "region": "South Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.46275,
+  "longitude": -81.867177,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Presbyterian Blue Hose"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "radford-university-softball-field",
+  "name": "Radford University Softball Field",
+  "aliases": [],
+  "city": "Radford",
+  "region": "Virginia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.136999,
+  "longitude": -80.54976,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Radford Highlanders"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -7517,6 +7966,29 @@
   "opened": null
  },
  {
+  "id": "rutgers-softball-complex",
+  "name": "Rutgers Softball Complex",
+  "aliases": [],
+  "city": "Piscataway",
+  "region": "New Jersey",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.520417,
+  "longitude": -74.46453,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Rutgers Scarlet Knights"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "easton-stadium",
   "name": "Easton Stadium",
   "aliases": [],
@@ -7536,6 +8008,29 @@
    "UCLA Bruins"
   ],
   "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "goodman-softball-complex",
+  "name": "Goodman Softball Complex",
+  "aliases": [],
+  "city": "Madison",
+  "region": "Wisconsin",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.037719,
+  "longitude": -89.395586,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Wisconsin Badgers"
+  ],
+  "timeZone": "America/Chicago",
   "capacity": null,
   "opened": null
  },
@@ -7605,6 +8100,29 @@
    "Baylor Bears"
   ],
   "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "gail-miller-field-at-miller-park",
+  "name": "Gail Miller Field at Miller Park",
+  "aliases": [],
+  "city": "Provo",
+  "region": "Utah",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.25489,
+  "longitude": -111.65211,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "BYU Cougars"
+  ],
+  "timeZone": "America/Denver",
   "capacity": null,
   "opened": null
  },
@@ -7727,6 +8245,29 @@
   "opened": null
  },
  {
+  "id": "ucf-softball-complex",
+  "name": "UCF Softball Complex",
+  "aliases": [],
+  "city": "Orlando",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 28.599591,
+  "longitude": -81.197128,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "UCF Knights"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "dumke-family-softball-stadium",
   "name": "Dumke Family Softball Stadium",
   "aliases": [],
@@ -7822,6 +8363,29 @@
   "opened": null
  },
  {
+  "id": "roadrunner-softball-complex",
+  "name": "Roadrunner Softball Complex",
+  "aliases": [],
+  "city": "Bakersfield",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.348323,
+  "longitude": -119.103227,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Cal State Bakersfield Roadrunners"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "amy-s-harrison-field",
   "name": "Amy S. Harrison Field",
   "aliases": [],
@@ -7891,6 +8455,98 @@
   "opened": null
  },
  {
+  "id": "drexel-softball-field",
+  "name": "Drexel Softball Field",
+  "aliases": [],
+  "city": "Philadelphia",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.954533,
+  "longitude": -75.186565,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Drexel Dragons"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "hunt-softball-park",
+  "name": "Hunt Softball Park",
+  "aliases": [],
+  "city": "Elon",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.108639,
+  "longitude": -79.505141,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Elon Phoenix"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "monmouth-university-softball-park",
+  "name": "Monmouth University Softball Park",
+  "aliases": [],
+  "city": "West Long Branch",
+  "region": "New Jersey",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.280115,
+  "longitude": -74.006966,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Monmouth Hawks"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "tiger-softball-complex-towson",
+  "name": "Tiger Softball Complex",
+  "aliases": [],
+  "city": "Towson",
+  "region": "Maryland",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.387321,
+  "longitude": -76.616312,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Towson Tigers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "boseman-field",
   "name": "Boseman Field",
   "aliases": [],
@@ -7931,6 +8587,29 @@
   ],
   "homeTeams": [
    "Delaware Blue Hens"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "felsberg-field-at-fiu-softball-complex",
+  "name": "Felsberg Field at FIU Softball Complex",
+  "aliases": [],
+  "city": "Miami",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 25.75539,
+  "longitude": -80.376283,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Florida International Panthers"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -7983,6 +8662,52 @@
   "opened": null
  },
  {
+  "id": "blue-raider-softball-field",
+  "name": "Blue Raider Softball Field",
+  "aliases": [],
+  "city": "Murfreesboro",
+  "region": "Tennessee",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.852055,
+  "longitude": -86.358728,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Middle Tennessee Blue Raiders"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "nmsu-softball-complex",
+  "name": "NMSU Softball Complex",
+  "aliases": [],
+  "city": "Las Cruces",
+  "region": "New Mexico",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.272903,
+  "longitude": -106.743493,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "New Mexico State Aggies"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "bearkat-softball-complex",
   "name": "Bearkat Softball Complex",
   "aliases": [],
@@ -8000,6 +8725,31 @@
   ],
   "homeTeams": [
    "Sam Houston Bearkats"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "wku-softball-complex",
+  "name": "WKU Softball Complex",
+  "aliases": [],
+  "city": "Bowling Green",
+  "region": "Kentucky",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.984529,
+  "longitude": -86.457647,
+  "sports": [
+   "baseball",
+   "soccer"
+  ],
+  "leagues": [
+   "baseball/college-softball",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Western Kentucky Hilltoppers"
   ],
   "timeZone": "America/Chicago",
   "capacity": null,
@@ -8048,6 +8798,29 @@
    "Green Bay Phoenix"
   ],
   "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "iu-indy-softball-complex",
+  "name": "IU Indy Softball Complex",
+  "aliases": [],
+  "city": "Indianapolis",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.774483,
+  "longitude": -86.176547,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "IU Indianapolis Jaguars"
+  ],
+  "timeZone": "America/Indiana/Indianapolis",
   "capacity": null,
   "opened": null
  },
@@ -8115,6 +8888,144 @@
   ],
   "homeTeams": [
    "Robert Morris Colonials"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "ysu-softball-complex",
+  "name": "YSU Softball Complex",
+  "aliases": [],
+  "city": "Youngstown",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.106369,
+  "longitude": -80.648363,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Youngstown State Penguins"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "brown-softball-field",
+  "name": "Brown Softball Field",
+  "aliases": [],
+  "city": "Providence",
+  "region": "Rhode Island",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.81864,
+  "longitude": -71.408801,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Brown Bears"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "columbia-softball-field",
+  "name": "Columbia Softball Field",
+  "aliases": [],
+  "city": "New York",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.241503,
+  "longitude": -73.672346,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Columbia Lions"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "niemandrobison-softball-field",
+  "name": "Niemand–Robison Softball Field",
+  "aliases": [],
+  "city": "Ithaca",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.435616,
+  "longitude": -76.466218,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Cornell Big Red"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "dartmouth-softball-park",
+  "name": "Dartmouth Softball Park",
+  "aliases": [],
+  "city": "Hanover",
+  "region": "New Hampshire",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.70338,
+  "longitude": -72.288602,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Dartmouth Big Green"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "soldiers-softball-field",
+  "name": "Soldiers Softball Field",
+  "aliases": [],
+  "city": "Boston",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.353858,
+  "longitude": -71.11682,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Harvard Crimson"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -8265,6 +9176,52 @@
   "opened": null
  },
  {
+  "id": "niagara-softball-field",
+  "name": "Niagara Softball Field",
+  "aliases": [],
+  "city": "Niagara University",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.135814,
+  "longitude": -79.034922,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Niagara Purple Eagles"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "quinnipiac-softball-field",
+  "name": "Quinnipiac Softball Field",
+  "aliases": [],
+  "city": "Hamden",
+  "region": "Connecticut",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.415276,
+  "longitude": -72.913332,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Quinnipiac Bobcats"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "pioneer-park",
   "name": "Pioneer Park",
   "aliases": [],
@@ -8360,6 +9317,29 @@
   "opened": null
  },
  {
+  "id": "bsu-softball-complex",
+  "name": "BSU Softball Complex",
+  "aliases": [],
+  "city": "Muncie",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.187821,
+  "longitude": -85.438163,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Ball State Cardinals"
+  ],
+  "timeZone": "America/Indiana/Indianapolis",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "meserve-field",
   "name": "Meserve Field",
   "aliases": [],
@@ -8429,6 +9409,29 @@
   "opened": null
  },
  {
+  "id": "miami-softball-stadium",
+  "name": "Miami Softball Stadium",
+  "aliases": [],
+  "city": "Oxford",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.50942,
+  "longitude": -84.731155,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Miami (OH) RedHawks"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "ohio-softball-field",
   "name": "Ohio Softball Field",
   "aliases": [],
@@ -8450,6 +9453,52 @@
   "timeZone": "America/New_York",
   "capacity": 500,
   "opened": 1999
+ },
+ {
+  "id": "scott-park-softball-complex",
+  "name": "Scott Park Softball Complex",
+  "aliases": [],
+  "city": "Toledo",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.645266,
+  "longitude": -83.61263,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Toledo Rockets"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "umass-softball-complex",
+  "name": "UMass Softball Complex",
+  "aliases": [],
+  "city": "Amherst",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.389326,
+  "longitude": -72.528361,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "UMass Minutemen"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
  },
  {
   "id": "ebert-field",
@@ -8593,6 +9642,52 @@
   "opened": null
  },
  {
+  "id": "valparaiso-university-softball-field",
+  "name": "Valparaiso University Softball Field",
+  "aliases": [],
+  "city": "Valparaiso",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.462963,
+  "longitude": -87.044689,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Valparaiso Beacons"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "gcu-softball-stadium",
+  "name": "GCU Softball Stadium",
+  "aliases": [],
+  "city": "Phoenix",
+  "region": "Arizona",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.513186,
+  "longitude": -112.127183,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Grand Canyon Lopes"
+  ],
+  "timeZone": "America/Phoenix",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "christina-m-hixson-softball-park",
   "name": "Christina M. Hixson Softball Park",
   "aliases": [],
@@ -8681,6 +9776,78 @@
    "UTEP Miners"
   ],
   "timeZone": "America/Denver",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "ccsu-softball-field",
+  "name": "CCSU Softball Field",
+  "aliases": [],
+  "city": "New Britain",
+  "region": "Connecticut",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.695516,
+  "longitude": -72.760601,
+  "sports": [
+   "baseball",
+   "soccer"
+  ],
+  "leagues": [
+   "baseball/college-softball",
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Central Connecticut Blue Devils"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "new-haven-softball-field",
+  "name": "New Haven Softball Field",
+  "aliases": [],
+  "city": "West Haven",
+  "region": "Connecticut",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.278422,
+  "longitude": -72.963366,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "New Haven Chargers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "wagner-college-softball-field",
+  "name": "Wagner College Softball Field",
+  "aliases": [],
+  "city": "Staten Island",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.614719,
+  "longitude": -74.093559,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Wagner Seahawks"
+  ],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  },
@@ -8846,6 +10013,52 @@
   "opened": null
  },
  {
+  "id": "osu-softball-complex",
+  "name": "OSU Softball Complex",
+  "aliases": [],
+  "city": "Corvallis",
+  "region": "Oregon",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.563056,
+  "longitude": -123.283923,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Oregon State Beavers"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "sdsu-softball-stadium",
+  "name": "SDSU Softball Stadium",
+  "aliases": [],
+  "city": "San Diego",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.776153,
+  "longitude": -117.073304,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "San Diego State Aztecs"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "bu-softball-field",
   "name": "BU Softball Field",
   "aliases": [],
@@ -8869,6 +10082,29 @@
   "opened": null
  },
  {
+  "id": "eaton-street-softball-complex",
+  "name": "Eaton Street Softball Complex",
+  "aliases": [],
+  "city": "Hamilton",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.830402,
+  "longitude": -75.552452,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Colgate Raiders"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "freshman-field",
   "name": "Freshman Field",
   "aliases": [],
@@ -8886,6 +10122,29 @@
   ],
   "homeTeams": [
    "Holy Cross Crusaders"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "lafayette-softball-field",
+  "name": "Lafayette Softball Field",
+  "aliases": [],
+  "city": "Easton",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.69867,
+  "longitude": -75.209255,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Lafayette Leopards"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -9147,6 +10406,52 @@
   "opened": null
  },
  {
+  "id": "ole-miss-softball-complex",
+  "name": "Ole Miss Softball Complex",
+  "aliases": [],
+  "city": "University",
+  "region": "Mississippi",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.366455,
+  "longitude": -89.530024,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Ole Miss Rebels"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "carolina-softball-stadium",
+  "name": "Carolina Softball Stadium",
+  "aliases": [],
+  "city": "Columbia",
+  "region": "South Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.992884,
+  "longitude": -81.026868,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "South Carolina Gamecocks"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "red-and-charline-mccombs-field",
   "name": "Red and Charline McCombs Field",
   "aliases": [],
@@ -9210,6 +10515,55 @@
   ],
   "homeTeams": [
    "East Tennessee State Buccaneers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "pepsi-softball-stadium",
+  "name": "Pepsi Softball Stadium",
+  "aliases": [],
+  "city": "Greenville",
+  "region": "South Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.929772,
+  "longitude": -82.231287,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Furman Paladins"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "uncg-softball-stadium",
+  "name": "UNCG Softball Stadium",
+  "aliases": [],
+  "city": "Greensboro",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.070318,
+  "longitude": -79.812824,
+  "sports": [
+   "baseball",
+   "soccer"
+  ],
+  "leagues": [
+   "baseball/college-softball",
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "UNC Greensboro Spartans"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -9364,10 +10718,12 @@
   "latitude": 31.7444,
   "longitude": -93.0972,
   "sports": [
-   "baseball"
+   "baseball",
+   "soccer"
   ],
   "leagues": [
-   "baseball/college-softball"
+   "baseball/college-softball",
+   "soccer/usa.ncaa.w.1"
   ],
   "homeTeams": [
    "Northwestern State Demons"
@@ -9469,6 +10825,54 @@
   "opened": null
  },
  {
+  "id": "gsu-softball-complex",
+  "name": "GSU Softball Complex",
+  "aliases": [],
+  "city": "Grambling",
+  "region": "Louisiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.521906,
+  "longitude": -92.713152,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Grambling Tigers"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "jackson-state-university-softball-stadium",
+  "name": "Jackson State University Softball Stadium",
+  "aliases": [],
+  "city": "Jackson",
+  "region": "Mississippi",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.296409,
+  "longitude": -90.207438,
+  "sports": [
+   "baseball",
+   "soccer"
+  ],
+  "leagues": [
+   "baseball/college-softball",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Jackson State Tigers"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "memorial-park",
   "name": "Memorial Park",
   "aliases": [],
@@ -9509,6 +10913,55 @@
   ],
   "homeTeams": [
    "North Dakota State Bison"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "westside-field-at-westbrook",
+  "name": "Westside Field at Westbrook",
+  "aliases": [],
+  "city": "Omaha",
+  "region": "Nebraska",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.276866,
+  "longitude": -96.038678,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Omaha Mavericks"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "south-field-softball-complex",
+  "name": "South Field Softball Complex",
+  "aliases": [],
+  "city": "Saint Paul",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.949547,
+  "longitude": -93.1498,
+  "sports": [
+   "baseball",
+   "soccer"
+  ],
+  "leagues": [
+   "baseball/college-softball",
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "St. Thomas Tommies"
   ],
   "timeZone": "America/Chicago",
   "capacity": null,
@@ -9601,6 +11054,29 @@
   ],
   "homeTeams": [
    "Coastal Carolina Chanticleers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "eagle-field-at-the-gsu-softball-complex",
+  "name": "Eagle Field at the GSU Softball Complex",
+  "aliases": [],
+  "city": "Statesboro",
+  "region": "Georgia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.42596,
+  "longitude": -81.788618,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Georgia Southern Eagles"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -9814,6 +11290,54 @@
   "opened": null
  },
  {
+  "id": "una-softball-complex",
+  "name": "UNA Softball Complex",
+  "aliases": [],
+  "city": "Florence",
+  "region": "Alabama",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.819048,
+  "longitude": -87.68799,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "North Alabama Lions"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "tarleton-softball-complex",
+  "name": "Tarleton Softball Complex",
+  "aliases": [],
+  "city": "Stephenville",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.214673,
+  "longitude": -98.219688,
+  "sports": [
+   "baseball",
+   "soccer"
+  ],
+  "leagues": [
+   "baseball/college-softball",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Tarleton State Texans"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "allan-saxe-field",
   "name": "Allan Saxe Field",
   "aliases": [],
@@ -9837,6 +11361,31 @@
   "opened": null
  },
  {
+  "id": "university-softball-field",
+  "name": "University Softball Field",
+  "aliases": [],
+  "city": "Carrollton",
+  "region": "Georgia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.574993,
+  "longitude": -85.103359,
+  "sports": [
+   "baseball",
+   "soccer"
+  ],
+  "leagues": [
+   "baseball/college-softball",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "West Georgia Wolves"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "smith-field",
   "name": "Smith Field",
   "aliases": [],
@@ -9854,6 +11403,52 @@
   ],
   "homeTeams": [
    "Loyola Marymount Lions"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "usd-softball-complex",
+  "name": "USD Softball Complex",
+  "aliases": [],
+  "city": "San Diego",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.771564,
+  "longitude": -117.188845,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "San Diego Toreros"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "scu-softball-field",
+  "name": "SCU Softball Field",
+  "aliases": [],
+  "city": "Santa Clara",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.348624,
+  "longitude": -121.936544,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Santa Clara Broncos"
   ],
   "timeZone": "America/Los_Angeles",
   "capacity": null,
@@ -11286,6 +12881,29 @@
   "opened": null
  },
  {
+  "id": "leemanturner-arena-at-grace-hall",
+  "name": "Leeman–Turner Arena at Grace Hall",
+  "aliases": [],
+  "city": "Bethlehem",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.60629,
+  "longitude": -75.374536,
+  "sports": [
+   "volleyball"
+  ],
+  "leagues": [
+   "volleyball/womens-college-volleyball"
+  ],
+  "homeTeams": [
+   "Lehigh Mountain Hawks"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "wesley-brown-field-house",
   "name": "Wesley Brown Field House",
   "aliases": [],
@@ -12631,6 +14249,30 @@
   "opened": null
  },
  {
+  "id": "lipscomb-soccer-complex",
+  "name": "Lipscomb Soccer Complex",
+  "aliases": [],
+  "city": "Nashville",
+  "region": "Tennessee",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.105072,
+  "longitude": -86.798641,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Lipscomb Bisons"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "valley-fields",
   "name": "Valley Fields",
   "aliases": [],
@@ -12751,6 +14393,78 @@
   "opened": null
  },
  {
+  "id": "edens-field-at-martin-stadium",
+  "name": "Edens Field at Martin Stadium",
+  "aliases": [],
+  "city": "Clinton",
+  "region": "South Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.465872,
+  "longitude": -81.867328,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Presbyterian Blue Hose"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "tom-lillard-field-at-cupp-stadium",
+  "name": "Tom Lillard Field at Cupp Stadium",
+  "aliases": [],
+  "city": "Radford",
+  "region": "Virginia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.139358,
+  "longitude": -80.543925,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Radford Highlanders"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "greenwood-soccer-field",
+  "name": "Greenwood Soccer Field",
+  "aliases": [],
+  "city": "Asheville",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.562877,
+  "longitude": -82.509088,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "UNC Asheville Bulldogs"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "county-university-soccer-stadium",
   "name": "County University Soccer Stadium",
   "aliases": [],
@@ -12843,6 +14557,30 @@
    "Maryland Terrapins"
   ],
   "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "u-m-soccer-stadium",
+  "name": "U-M Soccer Stadium",
+  "aliases": [],
+  "city": "Ann Arbor",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.296405,
+  "longitude": -83.696806,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Michigan Wolverines"
+  ],
+  "timeZone": "America/Detroit",
   "capacity": null,
   "opened": null
  },
@@ -13179,6 +14917,30 @@
    "Detroit Mercy Titans"
   ],
   "timeZone": "America/Detroit",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "festival-foods-field-at-aldo-santaga-stadium",
+  "name": "Festival Foods Field at Aldo Santaga Stadium",
+  "aliases": [],
+  "city": "Green Bay",
+  "region": "Wisconsin",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.530141,
+  "longitude": -87.913821,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Green Bay Phoenix"
+  ],
+  "timeZone": "America/Chicago",
   "capacity": null,
   "opened": null
  },
@@ -13638,15 +15400,15 @@
   "opened": null
  },
  {
-  "id": "ccsu-soccer-field",
-  "name": "CCSU Soccer Field",
+  "id": "aggie-soccer-field",
+  "name": "Aggie Soccer Field",
   "aliases": [],
-  "city": "New Britain",
-  "region": "Connecticut",
+  "city": "Davis",
+  "region": "California",
   "country": "United States",
   "countryCode": "US",
-  "latitude": 41.695516,
-  "longitude": -72.760601,
+  "latitude": 38.540987,
+  "longitude": -121.742797,
   "sports": [
    "soccer"
   ],
@@ -13655,9 +15417,9 @@
    "soccer/usa.ncaa.w.1"
   ],
   "homeTeams": [
-   "Central Connecticut Blue Devils"
+   "UC Davis Aggies"
   ],
-  "timeZone": "America/New_York",
+  "timeZone": "America/Los_Angeles",
   "capacity": null,
   "opened": null
  },
@@ -13782,6 +15544,30 @@
   "opened": null
  },
  {
+  "id": "cbu-soccer-stadium",
+  "name": "CBU Soccer Stadium",
+  "aliases": [],
+  "city": "Riverside",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.928324,
+  "longitude": -117.425921,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "California Baptist Lancers"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "sdsu-sports-deck",
   "name": "SDSU Sports Deck",
   "aliases": [],
@@ -13800,6 +15586,54 @@
   ],
   "homeTeams": [
    "San Diego State Aztecs"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "uc-riverside-soccer-stadium",
+  "name": "UC Riverside Soccer Stadium",
+  "aliases": [],
+  "city": "Riverside",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.964258,
+  "longitude": -117.33981,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "UC Riverside Highlanders"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "triton-soccer-stadium",
+  "name": "Triton Soccer Stadium",
+  "aliases": [],
+  "city": "La Jolla",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.879315,
+  "longitude": -117.236143,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "UC San Diego Tritons"
   ],
   "timeZone": "America/Los_Angeles",
   "capacity": null,
@@ -13974,30 +15808,6 @@
   "opened": null
  },
  {
-  "id": "uncg-soccer-stadium",
-  "name": "UNCG Soccer Stadium",
-  "aliases": [],
-  "city": "Greensboro",
-  "region": "North Carolina",
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 36.070318,
-  "longitude": -79.812824,
-  "sports": [
-   "soccer"
-  ],
-  "leagues": [
-   "soccer/usa.ncaa.m.1",
-   "soccer/usa.ncaa.w.1"
-  ],
-  "homeTeams": [
-   "UNC Greensboro Spartans"
-  ],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "patchin-field",
   "name": "Patchin Field",
   "aliases": [],
@@ -14094,15 +15904,15 @@
   "opened": null
  },
  {
-  "id": "south-field-mn",
-  "name": "South Field (MN)",
+  "id": "case-soccer-complex",
+  "name": "Case Soccer Complex",
   "aliases": [],
-  "city": "Saint Paul",
-  "region": "Minnesota",
+  "city": "Tulsa",
+  "region": "Oklahoma",
   "country": "United States",
   "countryCode": "US",
-  "latitude": 44.949547,
-  "longitude": -93.1498,
+  "latitude": 36.150294,
+  "longitude": -95.949826,
   "sports": [
    "soccer"
   ],
@@ -14111,9 +15921,33 @@
    "soccer/usa.ncaa.w.1"
   ],
   "homeTeams": [
-   "St. Thomas Tommies"
+   "Oral Roberts Golden Eagles"
   ],
   "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "ccu-soccer-stadium",
+  "name": "CCU Soccer Stadium",
+  "aliases": [],
+  "city": "Conway",
+  "region": "South Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.795323,
+  "longitude": -79.012682,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Coastal Carolina Chanticleers"
+  ],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  },
@@ -14136,6 +15970,31 @@
   ],
   "homeTeams": [
    "Georgia Southern Eagles"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "gsu-soccer-complex",
+  "name": "GSU Soccer Complex",
+  "aliases": [],
+  "city": "Atlanta",
+  "region": "Georgia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.753589,
+  "longitude": -84.385421,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Georgia State Panthers",
+   "Grambling Tigers"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -14208,6 +16067,30 @@
   ],
   "homeTeams": [
    "Marshall Thundering Herd"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "odu-soccer-stadium",
+  "name": "ODU Soccer Stadium",
+  "aliases": [],
+  "city": "Norfolk",
+  "region": "Virginia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.88627,
+  "longitude": -76.309725,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Old Dominion Monarchs"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -14405,6 +16288,29 @@
   "opened": null
  },
  {
+  "id": "alabama-soccer-complex",
+  "name": "Alabama Soccer Complex",
+  "aliases": [],
+  "city": "Tuscaloosa",
+  "region": "Alabama",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.212082,
+  "longitude": -87.539674,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Alabama Crimson Tide"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "asu-soccer-complex",
   "name": "ASU Soccer Complex",
   "aliases": [],
@@ -14428,6 +16334,52 @@
   "opened": null
  },
  {
+  "id": "appalachian-soccer-stadium-at-the-ted-mackorell-soccer-complex",
+  "name": "Appalachian Soccer Stadium at the Ted Mackorell Soccer Complex",
+  "aliases": [],
+  "city": "Boone",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 36.211352,
+  "longitude": -81.686091,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "App State Mountaineers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "murphey-field-at-mulcahy-soccer-stadium",
+  "name": "Murphey Field at Mulcahy Soccer Stadium",
+  "aliases": [],
+  "city": "Tucson",
+  "region": "Arizona",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.215459,
+  "longitude": -110.937093,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Arizona Wildcats"
+  ],
+  "timeZone": "America/Phoenix",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "razorback-field",
   "name": "Razorback Field",
   "aliases": [],
@@ -14445,6 +16397,52 @@
   ],
   "homeTeams": [
    "Arkansas Razorbacks"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "a-state-soccer-park",
+  "name": "A-State Soccer Park",
+  "aliases": [],
+  "city": "Jonesboro",
+  "region": "Arkansas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.84788,
+  "longitude": -90.685159,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Arkansas State Red Wolves"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "auburn-soccer-complex",
+  "name": "Auburn Soccer Complex",
+  "aliases": [],
+  "city": "Auburn",
+  "region": "Alabama",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.591953,
+  "longitude": -85.495977,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Auburn Tigers"
   ],
   "timeZone": "America/Chicago",
   "capacity": null,
@@ -14520,6 +16518,52 @@
   "opened": null
  },
  {
+  "id": "bill-clark-homes-field-at-johnson-stadium",
+  "name": "Bill Clark Homes Field at Johnson Stadium",
+  "aliases": [],
+  "city": "Greenville",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.592744,
+  "longitude": -77.366097,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "East Carolina Pirates"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "lion-soccer-field",
+  "name": "Lion Soccer Field",
+  "aliases": [],
+  "city": "Commerce",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.241823,
+  "longitude": -95.908226,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "East Texas A&M Lions"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "eku-soccer-field",
   "name": "EKU Soccer Field",
   "aliases": [],
@@ -14562,6 +16606,29 @@
    "Eastern Michigan Eagles"
   ],
   "timeZone": "America/Detroit",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "ewu-soccer-field",
+  "name": "EWU Soccer Field",
+  "aliases": [],
+  "city": "Cheney",
+  "region": "Washington",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 47.492713,
+  "longitude": -117.583109,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Eastern Washington Eagles"
+  ],
+  "timeZone": "America/Los_Angeles",
   "capacity": null,
   "opened": null
  },
@@ -14767,6 +16834,29 @@
   ],
   "homeTeams": [
    "Kansas Jayhawks"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "lu-soccer-complex",
+  "name": "LU Soccer Complex",
+  "aliases": [],
+  "city": "Beaumont",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 30.038895,
+  "longitude": -94.075893,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Lamar Cardinals"
   ],
   "timeZone": "America/Chicago",
   "capacity": null,
@@ -14980,6 +17070,30 @@
   "opened": null
  },
  {
+  "id": "msu-soccer-field",
+  "name": "MSU Soccer Field",
+  "aliases": [],
+  "city": "Mississippi State",
+  "region": "Mississippi",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.438688,
+  "longitude": -88.794323,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Mississippi State Bulldogs",
+   "Morehead State Eagles"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "audrey-j-walton-stadium",
   "name": "Audrey J. Walton Stadium",
   "aliases": [],
@@ -15072,6 +17186,29 @@
   "opened": null
  },
  {
+  "id": "unm-soccer-complex",
+  "name": "UNM Soccer Complex",
+  "aliases": [],
+  "city": "Albuquerque",
+  "region": "New Mexico",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.086633,
+  "longitude": -106.620209,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "New Mexico Lobos"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "bronson-field",
   "name": "Bronson Field",
   "aliases": [],
@@ -15160,6 +17297,29 @@
    "Northern Colorado Bears"
   ],
   "timeZone": "America/Denver",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "uni-soccer-field",
+  "name": "UNI Soccer Field",
+  "aliases": [],
+  "city": "Cedar Falls",
+  "region": "Iowa",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.51027,
+  "longitude": -92.463055,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Northern Iowa Panthers"
+  ],
+  "timeZone": "America/Chicago",
   "capacity": null,
   "opened": null
  },
@@ -15279,6 +17439,29 @@
   "opened": null
  },
  {
+  "id": "pvamu-soccer-complex",
+  "name": "PVAMU Soccer Complex",
+  "aliases": [],
+  "city": "Prairie View",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 30.096096,
+  "longitude": -95.987001,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Prairie View A&M Lady Panthers"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "folk-field",
   "name": "Folk Field",
   "aliases": [],
@@ -15325,6 +17508,29 @@
   "opened": null
  },
  {
+  "id": "president-s-field-at-river-road",
+  "name": "President's Field at River Road",
+  "aliases": [],
+  "city": "Richmond",
+  "region": "Virginia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.568122,
+  "longitude": -77.528133,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Richmond Spiders"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "the-cage",
   "name": "The Cage",
   "aliases": [],
@@ -15348,6 +17554,29 @@
   "opened": null
  },
  {
+  "id": "first-bank-and-trust-soccer-complex",
+  "name": "First Bank & Trust Soccer Complex",
+  "aliases": [],
+  "city": "Vermillion",
+  "region": "South Dakota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.779678,
+  "longitude": -96.931024,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "South Dakota Coyotes"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "fishback-soccer-park",
   "name": "Fishback Soccer Park",
   "aliases": [],
@@ -15365,6 +17594,52 @@
   ],
   "homeTeams": [
    "South Dakota State Jackrabbits"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "thunderbird-soccer-field",
+  "name": "Thunderbird Soccer Field",
+  "aliases": [],
+  "city": "Cedar City",
+  "region": "Utah",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.673855,
+  "longitude": -113.07691,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Southern Utah Thunderbirds"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "sfa-soccer-field",
+  "name": "SFA Soccer Field",
+  "aliases": [],
+  "city": "Nacogdoches",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 31.620806,
+  "longitude": -94.642433,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Stephen F. Austin Lumberjacks"
   ],
   "timeZone": "America/Chicago",
   "capacity": null,
@@ -15551,6 +17826,29 @@
    "Toledo Rockets"
   ],
   "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "troy-soccer-complex",
+  "name": "Troy Soccer Complex",
+  "aliases": [],
+  "city": "Troy",
+  "region": "Alabama",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 31.802224,
+  "longitude": -85.955687,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Troy Trojans"
+  ],
+  "timeZone": "America/Chicago",
   "capacity": null,
   "opened": null
  },

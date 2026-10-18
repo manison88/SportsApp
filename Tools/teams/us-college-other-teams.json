@@ -5508,6 +5508,33 @@
   "tier": 1
  },
  {
+  "id": "col-baseball-usi",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Ohio Valley Baseball",
+  "leagueKey": "baseball/college-baseball/ovc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "USI",
+  "locationName": "Southern Indiana",
+  "teamName": "Southern Indiana Screaming Eagles",
+  "monogram": "S",
+  "colors": {
+   "primary": "CF102D",
+   "secondary": "002D5D",
+   "accent": "CF102D"
+  },
+  "externalIds": {
+   "espn": "1246",
+   "espnLeague": "baseball/college-baseball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "usi-baseball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-baseball-utm",
   "kind": "club",
   "sport": "baseball",
@@ -8289,6 +8316,87 @@
   "tier": 1
  },
  {
+  "id": "col-softball-ecu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "American Softball",
+  "leagueKey": "baseball/college-softball/american",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ECU",
+  "locationName": "East Carolina",
+  "teamName": "East Carolina Pirates",
+  "monogram": "E",
+  "colors": {
+   "primary": "4B1869",
+   "secondary": "F0907B",
+   "accent": "F0907B"
+  },
+  "externalIds": {
+   "espn": "506",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ecu-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-fau",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "American Softball",
+  "leagueKey": "baseball/college-softball/american",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FAU",
+  "locationName": "Florida Atlantic",
+  "teamName": "Florida Atlantic Owls",
+  "monogram": "F",
+  "colors": {
+   "primary": "000099",
+   "secondary": "D31245",
+   "accent": "D31245"
+  },
+  "externalIds": {
+   "espn": "575",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "fau-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-mem",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "American Softball",
+  "leagueKey": "baseball/college-softball/american",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MEM",
+  "locationName": "Memphis",
+  "teamName": "Memphis Tigers",
+  "monogram": "M",
+  "colors": {
+   "primary": "29299C",
+   "secondary": "8E908F",
+   "accent": "8E908F"
+  },
+  "externalIds": {
+   "espn": "531",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "tiger-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-unt",
   "kind": "club",
   "sport": "baseball",
@@ -8316,6 +8424,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-usf",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "American Softball",
+  "leagueKey": "baseball/college-softball/american",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "USF",
+  "locationName": "South Florida",
+  "teamName": "South Florida Bulls",
+  "monogram": "S",
+  "colors": {
+   "primary": "004231",
+   "secondary": "231F20",
+   "accent": "33685A"
+  },
+  "externalIds": {
+   "espn": "488",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "usf-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-tlsa",
   "kind": "club",
   "sport": "baseball",
@@ -8339,6 +8474,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "collins-family-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-uab",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "American Softball",
+  "leagueKey": "baseball/college-softball/american",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UAB",
+  "locationName": "UAB",
+  "teamName": "UAB Blazers",
+  "monogram": "U",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFC845",
+   "accent": "FFC845"
+  },
+  "externalIds": {
+   "espn": "801",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "uab-softball-field",
   "founded": null,
   "tier": 1
  },
@@ -8613,6 +8775,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-syr",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "ACC Softball",
+  "leagueKey": "baseball/college-softball/acc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SYR",
+  "locationName": "Syracuse",
+  "teamName": "Syracuse Orange",
+  "monogram": "S",
+  "colors": {
+   "primary": "1A3E86",
+   "secondary": "000E54",
+   "accent": "48659E"
+  },
+  "externalIds": {
+   "espn": "793",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "skytop-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-uva",
   "kind": "club",
   "sport": "baseball",
@@ -8667,6 +8856,60 @@
   "tier": 1
  },
  {
+  "id": "col-softball-fgcu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "ASUN Softball",
+  "leagueKey": "baseball/college-softball/asun",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FGCU",
+  "locationName": "Florida Gulf Coast",
+  "teamName": "Florida Gulf Coast Eagles",
+  "monogram": "F",
+  "colors": {
+   "primary": "000000",
+   "secondary": "076C3B",
+   "accent": "666666"
+  },
+  "externalIds": {
+   "espn": "645",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "fgcu-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-jax",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "ASUN Softball",
+  "leagueKey": "baseball/college-softball/asun",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "JAX",
+  "locationName": "Jacksonville",
+  "teamName": "Jacksonville Dolphins",
+  "monogram": "J",
+  "colors": {
+   "primary": "008568",
+   "secondary": "000000",
+   "accent": "008568"
+  },
+  "externalIds": {
+   "espn": "551",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "pruitt-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-lip",
   "kind": "club",
   "sport": "baseball",
@@ -8690,6 +8933,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "draper-diamond",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-unf",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "ASUN Softball",
+  "leagueKey": "baseball/college-softball/asun",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UNF",
+  "locationName": "North Florida",
+  "teamName": "North Florida Ospreys",
+  "monogram": "N",
+  "colors": {
+   "primary": "000000",
+   "secondary": "BABCBE",
+   "accent": "BABCBE"
+  },
+  "externalIds": {
+   "espn": "650",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "unf-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -8748,6 +9018,60 @@
   "tier": 1
  },
  {
+  "id": "col-softball-wf",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "ASUN Softball",
+  "leagueKey": "baseball/college-softball/asun",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WF",
+  "locationName": "West Florida",
+  "teamName": "West Florida Argonauts",
+  "monogram": "W",
+  "colors": {
+   "primary": "000000",
+   "secondary": "C60000",
+   "accent": "C60000"
+  },
+  "externalIds": {
+   "espn": null,
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "uwf-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-day",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Atlantic 10 Softball",
+  "leagueKey": "baseball/college-softball/a10",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DAY",
+  "locationName": "Dayton",
+  "teamName": "Dayton Flyers",
+  "monogram": "D",
+  "colors": {
+   "primary": "E50B0D",
+   "secondary": "FFFFFF",
+   "accent": "E50B0D"
+  },
+  "externalIds": {
+   "espn": "692",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ud-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-for",
   "kind": "club",
   "sport": "baseball",
@@ -8775,6 +9099,114 @@
   "tier": 1
  },
  {
+  "id": "col-softball-gmu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Atlantic 10 Softball",
+  "leagueKey": "baseball/college-softball/a10",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GMU",
+  "locationName": "George Mason",
+  "teamName": "George Mason Patriots",
+  "monogram": "G",
+  "colors": {
+   "primary": "016600",
+   "secondary": "ECB010",
+   "accent": "ECB010"
+  },
+  "externalIds": {
+   "espn": "578",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "george-mason-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-luc",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Atlantic 10 Softball",
+  "leagueKey": "baseball/college-softball/a10",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LUC",
+  "locationName": "Loyola Chicago",
+  "teamName": "Loyola Chicago Ramblers",
+  "monogram": "L",
+  "colors": {
+   "primary": "9D1244",
+   "secondary": "FDB913",
+   "accent": "FDB913"
+  },
+  "externalIds": {
+   "espn": "735",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gentile-arena",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-uri",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Atlantic 10 Softball",
+  "leagueKey": "baseball/college-softball/a10",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "URI",
+  "locationName": "Rhode Island",
+  "teamName": "Rhode Island Rams",
+  "monogram": "R",
+  "colors": {
+   "primary": "003559",
+   "secondary": "5AB3E8",
+   "accent": "5AB3E8"
+  },
+  "externalIds": {
+   "espn": "776",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "uri-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-joes",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Atlantic 10 Softball",
+  "leagueKey": "baseball/college-softball/a10",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "JOES",
+  "locationName": "Saint Joseph's",
+  "teamName": "Saint Joseph's Hawks",
+  "monogram": "S",
+  "colors": {
+   "primary": "BB003A",
+   "secondary": "BCBDC0",
+   "accent": "BCBDC0"
+  },
+  "externalIds": {
+   "espn": "779",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "sju-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-slu",
   "kind": "club",
   "sport": "baseball",
@@ -8798,6 +9230,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "billiken-sports-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-but",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Big East Softball",
+  "leagueKey": "baseball/college-softball/big-east",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BUT",
+  "locationName": "Butler",
+  "teamName": "Butler Bulldogs",
+  "monogram": "B",
+  "colors": {
+   "primary": "0D1361",
+   "secondary": "00A3E0",
+   "accent": "00A3E0"
+  },
+  "externalIds": {
+   "espn": "680",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "butler-softball-field",
   "founded": null,
   "tier": 1
  },
@@ -8906,6 +9365,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "glay-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-vill",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Big East Softball",
+  "leagueKey": "baseball/college-softball/big-east",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "VILL",
+  "locationName": "Villanova",
+  "teamName": "Villanova Wildcats",
+  "monogram": "V",
+  "colors": {
+   "primary": "006699",
+   "secondary": "13B5EA",
+   "accent": "006699"
+  },
+  "externalIds": {
+   "espn": "812",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "villanova-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -9041,6 +9527,60 @@
    "theSportsDb": null
   },
   "homeVenueId": "lancer-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-pres",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Big South Softball",
+  "leagueKey": "baseball/college-softball/big-south",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PRES",
+  "locationName": "Presbyterian",
+  "teamName": "Presbyterian Blue Hose",
+  "monogram": "P",
+  "colors": {
+   "primary": "003372",
+   "secondary": "990134",
+   "accent": "4C709C"
+  },
+  "externalIds": {
+   "espn": "772",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "presbyterian-college-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-rad",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Big South Softball",
+  "leagueKey": "baseball/college-softball/big-south",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "RAD",
+  "locationName": "Radford",
+  "teamName": "Radford Highlanders",
+  "monogram": "R",
+  "colors": {
+   "primary": "BD1818",
+   "secondary": "C2C3C0",
+   "accent": "BD1818"
+  },
+  "externalIds": {
+   "espn": "775",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "radford-university-softball-field",
   "founded": null,
   "tier": 1
  },
@@ -9342,6 +9882,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-rutg",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Big Ten Softball",
+  "leagueKey": "baseball/college-softball/big-ten",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "RUTG",
+  "locationName": "Rutgers",
+  "teamName": "Rutgers Scarlet Knights",
+  "monogram": "R",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "514",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "rutgers-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-ucla",
   "kind": "club",
   "sport": "baseball",
@@ -9392,6 +9959,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "husky-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-wis",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Big Ten Softball",
+  "leagueKey": "baseball/college-softball/big-ten",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WIS",
+  "locationName": "Wisconsin",
+  "teamName": "Wisconsin Badgers",
+  "monogram": "W",
+  "colors": {
+   "primary": "C32122",
+   "secondary": "FFFFFF",
+   "accent": "C32122"
+  },
+  "externalIds": {
+   "espn": "818",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "goodman-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -9473,6 +10067,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "getterman-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-byu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Big 12 Softball",
+  "leagueKey": "baseball/college-softball/big12",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BYU",
+  "locationName": "BYU",
+  "teamName": "BYU Cougars",
+  "monogram": "B",
+  "colors": {
+   "primary": "002942",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "539",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gail-miller-field-at-miller-park",
   "founded": null,
   "tier": 1
  },
@@ -9612,6 +10233,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-ucf",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Big 12 Softball",
+  "leagueKey": "baseball/college-softball/big12",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UCF",
+  "locationName": "UCF",
+  "teamName": "UCF Knights",
+  "monogram": "U",
+  "colors": {
+   "primary": "000000",
+   "secondary": "B4A269",
+   "accent": "B4A269"
+  },
+  "externalIds": {
+   "espn": "572",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ucf-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-utah",
   "kind": "club",
   "sport": "baseball",
@@ -9716,6 +10364,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "matador-diamond",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-csub",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Big West Softball",
+  "leagueKey": "baseball/college-softball/big-west",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CSUB",
+  "locationName": "Cal State Bakersfield",
+  "teamName": "Cal State Bakersfield Roadrunners",
+  "monogram": "C",
+  "colors": {
+   "primary": "003BAB",
+   "secondary": "FDB913",
+   "accent": "FDB913"
+  },
+  "externalIds": {
+   "espn": "681",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "roadrunner-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -9855,6 +10530,87 @@
   "tier": 1
  },
  {
+  "id": "col-softball-drex",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "CAA Softball",
+  "leagueKey": "baseball/college-softball/caa",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DREX",
+  "locationName": "Drexel",
+  "teamName": "Drexel Dragons",
+  "monogram": "D",
+  "colors": {
+   "primary": "020260",
+   "secondary": "FFC600",
+   "accent": "FFC600"
+  },
+  "externalIds": {
+   "espn": "699",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "drexel-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-elon",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "CAA Softball",
+  "leagueKey": "baseball/college-softball/caa",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ELON",
+  "locationName": "Elon",
+  "teamName": "Elon Phoenix",
+  "monogram": "E",
+  "colors": {
+   "primary": "000000",
+   "secondary": "B59A57",
+   "accent": "B59A57"
+  },
+  "externalIds": {
+   "espn": "657",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "hunt-softball-park",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-monm",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "CAA Softball",
+  "leagueKey": "baseball/college-softball/caa",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MONM",
+  "locationName": "Monmouth",
+  "teamName": "Monmouth Hawks",
+  "monogram": "M",
+  "colors": {
+   "primary": "0D217B",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "590",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "monmouth-university-softball-park",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-stbk",
   "kind": "club",
   "sport": "baseball",
@@ -9878,6 +10634,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "tom-mary-casey-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-tow",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "CAA Softball",
+  "leagueKey": "baseball/college-softball/caa",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "TOW",
+  "locationName": "Towson",
+  "teamName": "Towson Tigers",
+  "monogram": "T",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFCC00",
+   "accent": "FFCC00"
+  },
+  "externalIds": {
+   "espn": "659",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "tiger-softball-complex-towson",
   "founded": null,
   "tier": 1
  },
@@ -9932,6 +10715,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "delaware-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-fiu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Conference USA Softball",
+  "leagueKey": "baseball/college-softball/cusa",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FIU",
+  "locationName": "Florida International",
+  "teamName": "Florida International Panthers",
+  "monogram": "F",
+  "colors": {
+   "primary": "091731",
+   "secondary": "C5960C",
+   "accent": "C5960C"
+  },
+  "externalIds": {
+   "espn": "576",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "felsberg-field-at-fiu-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -10017,6 +10827,60 @@
   "tier": 1
  },
  {
+  "id": "col-softball-mtsu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Conference USA Softball",
+  "leagueKey": "baseball/college-softball/cusa",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MTSU",
+  "locationName": "Middle Tennessee",
+  "teamName": "Middle Tennessee Blue Raiders",
+  "monogram": "M",
+  "colors": {
+   "primary": "1842D6",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "589",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "blue-raider-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-nmsu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Conference USA Softball",
+  "leagueKey": "baseball/college-softball/cusa",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NMSU",
+  "locationName": "New Mexico State",
+  "teamName": "New Mexico State Aggies",
+  "monogram": "N",
+  "colors": {
+   "primary": "730000",
+   "secondary": "000000",
+   "accent": "9D4C4C"
+  },
+  "externalIds": {
+   "espn": "515",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "nmsu-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-shsu",
   "kind": "club",
   "sport": "baseball",
@@ -10040,6 +10904,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "bearkat-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-wku",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Conference USA Softball",
+  "leagueKey": "baseball/college-softball/cusa",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WKU",
+  "locationName": "Western Kentucky",
+  "teamName": "Western Kentucky Hilltoppers",
+  "monogram": "W",
+  "colors": {
+   "primary": "000000",
+   "secondary": "B3B5B8",
+   "accent": "B3B5B8"
+  },
+  "externalIds": {
+   "espn": "496",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "wku-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -10098,6 +10989,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-iuin",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Horizon League Softball",
+  "leagueKey": "baseball/college-softball/horizon",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "IUIN",
+  "locationName": "IU Indianapolis",
+  "teamName": "IU Indianapolis Jaguars",
+  "monogram": "I",
+  "colors": {
+   "primary": "CA3A44",
+   "secondary": "D59F0F",
+   "accent": "CA3A44"
+  },
+  "externalIds": {
+   "espn": "729",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "iu-indy-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-niu",
   "kind": "club",
   "sport": "baseball",
@@ -10152,6 +11070,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-oak",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Horizon League Softball",
+  "leagueKey": "baseball/college-softball/horizon",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "OAK",
+  "locationName": "Oakland",
+  "teamName": "Oakland Golden Grizzlies",
+  "monogram": "O",
+  "colors": {
+   "primary": "04091C",
+   "secondary": "BC955C",
+   "accent": "BC955C"
+  },
+  "externalIds": {
+   "espn": "766",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "oakland-university",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-rmu",
   "kind": "club",
   "sport": "baseball",
@@ -10175,6 +11120,168 @@
    "theSportsDb": null
   },
   "homeVenueId": "north-athletic-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-ysu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Horizon League Softball",
+  "leagueKey": "baseball/college-softball/horizon",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "YSU",
+  "locationName": "Youngstown State",
+  "teamName": "Youngstown State Penguins",
+  "monogram": "Y",
+  "colors": {
+   "primary": "961F22",
+   "secondary": "690717",
+   "accent": "AB4C4E"
+  },
+  "externalIds": {
+   "espn": "621",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ysu-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-brwn",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Ivy League Softball",
+  "leagueKey": "baseball/college-softball/ivy",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BRWN",
+  "locationName": "Brown",
+  "teamName": "Brown Bears",
+  "monogram": "B",
+  "colors": {
+   "primary": "54413A",
+   "secondary": "949300",
+   "accent": "949300"
+  },
+  "externalIds": {
+   "espn": "528",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "brown-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-colu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Ivy League Softball",
+  "leagueKey": "baseball/college-softball/ivy",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "COLU",
+  "locationName": "Columbia",
+  "teamName": "Columbia Lions",
+  "monogram": "C",
+  "colors": {
+   "primary": "000000",
+   "secondary": "183863",
+   "accent": "666666"
+  },
+  "externalIds": {
+   "espn": "638",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "columbia-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-cor",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Ivy League Softball",
+  "leagueKey": "baseball/college-softball/ivy",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "COR",
+  "locationName": "Cornell",
+  "teamName": "Cornell Big Red",
+  "monogram": "C",
+  "colors": {
+   "primary": "D60027",
+   "secondary": "101010",
+   "accent": "D60027"
+  },
+  "externalIds": {
+   "espn": "690",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "niemandrobison-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-dart",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Ivy League Softball",
+  "leagueKey": "baseball/college-softball/ivy",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "DART",
+  "locationName": "Dartmouth",
+  "teamName": "Dartmouth Big Green",
+  "monogram": "D",
+  "colors": {
+   "primary": "005730",
+   "secondary": "000000",
+   "accent": "337959"
+  },
+  "externalIds": {
+   "espn": "512",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "dartmouth-softball-park",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-harv",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Ivy League Softball",
+  "leagueKey": "baseball/college-softball/ivy",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "HARV",
+  "locationName": "Harvard",
+  "teamName": "Harvard Crimson",
+  "monogram": "H",
+  "colors": {
+   "primary": "990000",
+   "secondary": "DBDBDB",
+   "accent": "DBDBDB"
+  },
+  "externalIds": {
+   "espn": "717",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "soldiers-softball-field",
   "founded": null,
   "tier": 1
  },
@@ -10368,6 +11475,60 @@
   "tier": 1
  },
  {
+  "id": "col-softball-nia",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Metro Softball",
+  "leagueKey": "baseball/college-softball/metro",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NIA",
+  "locationName": "Niagara",
+  "teamName": "Niagara Purple Eagles",
+  "monogram": "N",
+  "colors": {
+   "primary": "641460",
+   "secondary": "F0F0F0",
+   "accent": "F0F0F0"
+  },
+  "externalIds": {
+   "espn": "752",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "niagara-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-quin",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Metro Softball",
+  "leagueKey": "baseball/college-softball/metro",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "QUIN",
+  "locationName": "Quinnipiac",
+  "teamName": "Quinnipiac Bobcats",
+  "monogram": "Q",
+  "colors": {
+   "primary": "002162",
+   "secondary": "FFB81C",
+   "accent": "FFB81C"
+  },
+  "externalIds": {
+   "espn": "774",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "quinnipiac-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-shu",
   "kind": "club",
   "sport": "baseball",
@@ -10476,6 +11637,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-ball",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MAC Softball",
+  "leagueKey": "baseball/college-softball/mac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "BALL",
+  "locationName": "Ball State",
+  "teamName": "Ball State Cardinals",
+  "monogram": "B",
+  "colors": {
+   "primary": "DE0000",
+   "secondary": "FFFFFF",
+   "accent": "DE0000"
+  },
+  "externalIds": {
+   "espn": "569",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "bsu-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-bgsu",
   "kind": "club",
   "sport": "baseball",
@@ -10557,6 +11745,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-moh",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MAC Softball",
+  "leagueKey": "baseball/college-softball/mac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MOH",
+  "locationName": "Miami (OH)",
+  "teamName": "Miami (OH) RedHawks",
+  "monogram": "M",
+  "colors": {
+   "primary": "CE2229",
+   "secondary": "F0F0F0",
+   "accent": "CE2229"
+  },
+  "externalIds": {
+   "espn": "519",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "miami-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-ohio",
   "kind": "club",
   "sport": "baseball",
@@ -10580,6 +11795,60 @@
    "theSportsDb": null
   },
   "homeVenueId": "ohio-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-tol",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MAC Softball",
+  "leagueKey": "baseball/college-softball/mac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "TOL",
+  "locationName": "Toledo",
+  "teamName": "Toledo Rockets",
+  "monogram": "T",
+  "colors": {
+   "primary": "00275D",
+   "secondary": "FFCD00",
+   "accent": "FFCD00"
+  },
+  "externalIds": {
+   "espn": "799",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "scott-park-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-mass",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "MAC Softball",
+  "leagueKey": "baseball/college-softball/mac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MASS",
+  "locationName": "UMass",
+  "teamName": "UMass Minutemen",
+  "monogram": "U",
+  "colors": {
+   "primary": "AC0D1E",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "740",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "umass-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -10773,6 +12042,60 @@
   "tier": 1
  },
  {
+  "id": "col-softball-val",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Missouri Valley Softball",
+  "leagueKey": "baseball/college-softball/mvc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "VAL",
+  "locationName": "Valparaiso",
+  "teamName": "Valparaiso Beacons",
+  "monogram": "V",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFCC00",
+   "accent": "FFCC00"
+  },
+  "externalIds": {
+   "espn": "656",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "valparaiso-university-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-gcu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Mountain West Softball",
+  "leagueKey": "baseball/college-softball/mwc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GCU",
+  "locationName": "Grand Canyon",
+  "teamName": "Grand Canyon Lopes",
+  "monogram": "G",
+  "colors": {
+   "primary": "522398",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "714",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gcu-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-nev",
   "kind": "club",
   "sport": "baseball",
@@ -10877,6 +12200,114 @@
    "theSportsDb": null
   },
   "homeVenueId": "helen-of-troy-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-ccsu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "NEC Softball",
+  "leagueKey": "baseball/college-softball/nec",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CCSU",
+  "locationName": "Central Connecticut",
+  "teamName": "Central Connecticut Blue Devils",
+  "monogram": "C",
+  "colors": {
+   "primary": "1E489C",
+   "secondary": "D1D5D8",
+   "accent": "D1D5D8"
+  },
+  "externalIds": {
+   "espn": "571",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ccsu-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-mer",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "NEC Softball",
+  "leagueKey": "baseball/college-softball/nec",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MER",
+  "locationName": "Mercyhurst",
+  "teamName": "Mercyhurst Lakers",
+  "monogram": "M",
+  "colors": {
+   "primary": "07594D",
+   "secondary": "182752",
+   "accent": "206A5F"
+  },
+  "externalIds": {
+   "espn": "129697",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "mercyhurst-athletic-center",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-nhvn",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "NEC Softball",
+  "leagueKey": "baseball/college-softball/nec",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NHVN",
+  "locationName": "New Haven",
+  "teamName": "New Haven Chargers",
+  "monogram": "N",
+  "colors": {
+   "primary": "0B1E73",
+   "secondary": "FFC425",
+   "accent": "FFC425"
+  },
+  "externalIds": {
+   "espn": "129708",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "new-haven-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-wag",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "NEC Softball",
+  "leagueKey": "baseball/college-softball/nec",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WAG",
+  "locationName": "Wagner",
+  "teamName": "Wagner Seahawks",
+  "monogram": "W",
+  "colors": {
+   "primary": "003E22",
+   "secondary": "C60000",
+   "accent": "C60000"
+  },
+  "externalIds": {
+   "espn": "814",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "wagner-college-softball-field",
   "founded": null,
   "tier": 1
  },
@@ -11016,6 +12447,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-usi",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Ohio Valley Softball",
+  "leagueKey": "baseball/college-softball/ovc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "USI",
+  "locationName": "Southern Indiana",
+  "teamName": "Southern Indiana Screaming Eagles",
+  "monogram": "S",
+  "colors": {
+   "primary": "CF102D",
+   "secondary": "002D5D",
+   "accent": "CF102D"
+  },
+  "externalIds": {
+   "espn": "1251",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "usi-baseball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-utm",
   "kind": "club",
   "sport": "baseball",
@@ -11097,6 +12555,60 @@
   "tier": 1
  },
  {
+  "id": "col-softball-orst",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Pac-12 Softball",
+  "leagueKey": "baseball/college-softball/pac12",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ORST",
+  "locationName": "Oregon State",
+  "teamName": "Oregon State Beavers",
+  "monogram": "O",
+  "colors": {
+   "primary": "000000",
+   "secondary": "D73F09",
+   "accent": "D73F09"
+  },
+  "externalIds": {
+   "espn": "525",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "osu-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-sdsu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Pac-12 Softball",
+  "leagueKey": "baseball/college-softball/pac12",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SDSU",
+  "locationName": "San Diego State",
+  "teamName": "San Diego State Aztecs",
+  "monogram": "S",
+  "colors": {
+   "primary": "D60039",
+   "secondary": "000000",
+   "accent": "D60039"
+  },
+  "externalIds": {
+   "espn": "474",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "sdsu-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-txst",
   "kind": "club",
   "sport": "baseball",
@@ -11151,6 +12663,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-colg",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Patriot League Softball",
+  "leagueKey": "baseball/college-softball/patriot",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "COLG",
+  "locationName": "Colgate",
+  "teamName": "Colgate Raiders",
+  "monogram": "C",
+  "colors": {
+   "primary": "910028",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "687",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "eaton-street-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-hc",
   "kind": "club",
   "sport": "baseball",
@@ -11174,6 +12713,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "freshman-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-laf",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Patriot League Softball",
+  "leagueKey": "baseball/college-softball/patriot",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LAF",
+  "locationName": "Lafayette",
+  "teamName": "Lafayette Leopards",
+  "monogram": "L",
+  "colors": {
+   "primary": "790000",
+   "secondary": "A59474",
+   "accent": "A59474"
+  },
+  "externalIds": {
+   "espn": "557",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lafayette-softball-field",
   "founded": null,
   "tier": 1
  },
@@ -11475,6 +13041,60 @@
   "tier": 1
  },
  {
+  "id": "col-softball-miss",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "SEC Softball",
+  "leagueKey": "baseball/college-softball/sec",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MISS",
+  "locationName": "Ole Miss",
+  "teamName": "Ole Miss Rebels",
+  "monogram": "O",
+  "colors": {
+   "primary": "101894",
+   "secondary": "C8102E",
+   "accent": "C8102E"
+  },
+  "externalIds": {
+   "espn": "504",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ole-miss-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-sc",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "SEC Softball",
+  "leagueKey": "baseball/college-softball/sec",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SC",
+  "locationName": "South Carolina",
+  "teamName": "South Carolina Gamecocks",
+  "monogram": "S",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "605",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "carolina-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-tenn",
   "kind": "club",
   "sport": "baseball",
@@ -11579,6 +13199,60 @@
    "theSportsDb": null
   },
   "homeVenueId": "betty-basler-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-fur",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Southern Conference Softball",
+  "leagueKey": "baseball/college-softball/socon",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FUR",
+  "locationName": "Furman",
+  "teamName": "Furman Paladins",
+  "monogram": "F",
+  "colors": {
+   "primary": "4A2184",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "709",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "pepsi-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-uncg",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Southern Conference Softball",
+  "leagueKey": "baseball/college-softball/socon",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UNCG",
+  "locationName": "UNC Greensboro",
+  "teamName": "UNC Greensboro Spartans",
+  "monogram": "U",
+  "colors": {
+   "primary": "21467B",
+   "secondary": "FFD90A",
+   "accent": "FFD90A"
+  },
+  "externalIds": {
+   "espn": "593",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "uncg-softball-stadium",
   "founded": null,
   "tier": 1
  },
@@ -11961,6 +13635,60 @@
   "tier": 1
  },
  {
+  "id": "col-softball-gram",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "SWAC Softball",
+  "leagueKey": "baseball/college-softball/swac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GRAM",
+  "locationName": "Grambling",
+  "teamName": "Grambling Tigers",
+  "monogram": "G",
+  "colors": {
+   "primary": "EE8601",
+   "secondary": "FFD10A",
+   "accent": "EE8601"
+  },
+  "externalIds": {
+   "espn": "713",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gsu-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-jkst",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "SWAC Softball",
+  "leagueKey": "baseball/college-softball/swac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "JKST",
+  "locationName": "Jackson State",
+  "teamName": "Jackson State Tigers",
+  "monogram": "J",
+  "colors": {
+   "primary": "000000",
+   "secondary": "B5B7BA",
+   "accent": "B5B7BA"
+  },
+  "externalIds": {
+   "espn": "639",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "jackson-state-university-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-txso",
   "kind": "club",
   "sport": "baseball",
@@ -12011,6 +13739,60 @@
    "theSportsDb": null
   },
   "homeVenueId": "ellig-sports-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-oma",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Summit League Softball",
+  "leagueKey": "baseball/college-softball/summit",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "OMA",
+  "locationName": "Omaha",
+  "teamName": "Omaha Mavericks",
+  "monogram": "O",
+  "colors": {
+   "primary": "E3193E",
+   "secondary": "474648",
+   "accent": "E3193E"
+  },
+  "externalIds": {
+   "espn": "750",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "westside-field-at-westbrook",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-stmn",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Summit League Softball",
+  "leagueKey": "baseball/college-softball/summit",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "STMN",
+  "locationName": "St. Thomas",
+  "teamName": "St. Thomas Tommies",
+  "monogram": "S",
+  "colors": {
+   "primary": "512773",
+   "secondary": "98999B",
+   "accent": "98999B"
+  },
+  "externalIds": {
+   "espn": "1188",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "south-field-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -12119,6 +13901,60 @@
    "theSportsDb": null
   },
   "homeVenueId": "st-john-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-gaso",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Sun Belt Softball",
+  "leagueKey": "baseball/college-softball/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GASO",
+  "locationName": "Georgia Southern",
+  "teamName": "Georgia Southern Eagles",
+  "monogram": "G",
+  "colors": {
+   "primary": "0A3861",
+   "secondary": "F0F0F0",
+   "accent": "F0F0F0"
+  },
+  "externalIds": {
+   "espn": "550",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "eagle-field-at-the-gsu-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-jmu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "Sun Belt Softball",
+  "leagueKey": "baseball/college-softball/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "JMU",
+  "locationName": "James Madison",
+  "teamName": "James Madison Dukes",
+  "monogram": "J",
+  "colors": {
+   "primary": "0F1358",
+   "secondary": "B5A068",
+   "accent": "B5A068"
+  },
+  "externalIds": {
+   "espn": "541",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "eagle-field-at-veterans-memorial-park",
   "founded": null,
   "tier": 1
  },
@@ -12393,6 +14229,60 @@
   "tier": 1
  },
  {
+  "id": "col-softball-una",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "United Athletic Softball",
+  "leagueKey": "baseball/college-softball/uac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UNA",
+  "locationName": "North Alabama",
+  "teamName": "North Alabama Lions",
+  "monogram": "N",
+  "colors": {
+   "primary": "000000",
+   "secondary": "DB9F11",
+   "accent": "DB9F11"
+  },
+  "externalIds": {
+   "espn": "1106",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "una-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-tar",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "United Athletic Softball",
+  "leagueKey": "baseball/college-softball/uac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "TAR",
+  "locationName": "Tarleton State",
+  "teamName": "Tarleton State Texans",
+  "monogram": "T",
+  "colors": {
+   "primary": "4F2D7F",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "1149",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "tarleton-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-uta",
   "kind": "club",
   "sport": "baseball",
@@ -12420,6 +14310,33 @@
   "tier": 1
  },
  {
+  "id": "col-softball-wes",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "United Athletic Softball",
+  "leagueKey": "baseball/college-softball/uac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WES",
+  "locationName": "West Georgia",
+  "teamName": "West Georgia Wolves",
+  "monogram": "W",
+  "colors": {
+   "primary": "000000",
+   "secondary": "DB1A21",
+   "accent": "DB1A21"
+  },
+  "externalIds": {
+   "espn": "129696",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "university-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-softball-lmu",
   "kind": "club",
   "sport": "baseball",
@@ -12443,6 +14360,60 @@
    "theSportsDb": null
   },
   "homeVenueId": "smith-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-usd",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "West Coast Softball",
+  "leagueKey": "baseball/college-softball/wcc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "USD",
+  "locationName": "San Diego",
+  "teamName": "San Diego Toreros",
+  "monogram": "S",
+  "colors": {
+   "primary": "0D1361",
+   "secondary": "2F99D4",
+   "accent": "2F99D4"
+  },
+  "externalIds": {
+   "espn": "555",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "usd-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-softball-scu",
+  "kind": "club",
+  "sport": "baseball",
+  "league": "West Coast Softball",
+  "leagueKey": "baseball/college-softball/wcc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SCU",
+  "locationName": "Santa Clara",
+  "teamName": "Santa Clara Broncos",
+  "monogram": "S",
+  "colors": {
+   "primary": "690B0B",
+   "secondary": "101010",
+   "accent": "965454"
+  },
+  "externalIds": {
+   "espn": "781",
+   "espnLeague": "baseball/college-softball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "scu-softball-field",
   "founded": null,
   "tier": 1
  },
@@ -18657,6 +20628,33 @@
   "tier": 1
  },
  {
+  "id": "col-volleyball-leh",
+  "kind": "club",
+  "sport": "volleyball",
+  "league": "Patriot League Women's Volleyball",
+  "leagueKey": "volleyball/womens-college-volleyball/patriot",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LEH",
+  "locationName": "Lehigh",
+  "teamName": "Lehigh Mountain Hawks",
+  "monogram": "L",
+  "colors": {
+   "primary": "6C2B2A",
+   "secondary": "B69E70",
+   "accent": "B69E70"
+  },
+  "externalIds": {
+   "espn": "2329",
+   "espnLeague": "volleyball/womens-college-volleyball",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "leemanturner-arena-at-grace-hall",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-volleyball-lmd",
   "kind": "club",
   "sport": "volleyball",
@@ -21195,6 +23193,33 @@
   "tier": 1
  },
  {
+  "id": "col-soccer-fiu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "American Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/american",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FIU",
+  "locationName": "Florida International",
+  "teamName": "Florida International Panthers",
+  "monogram": "F",
+  "colors": {
+   "primary": "081E3F",
+   "secondary": "B6862C",
+   "accent": "B6862C"
+  },
+  "externalIds": {
+   "espn": "5691",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "fiu-baseball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-soccer-mem",
   "kind": "club",
   "sport": "soccer",
@@ -21488,6 +23513,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "mccarthy-stadium-philadelphia",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-luc",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Atlantic 10 Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/a10",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LUC",
+  "locationName": "Loyola Chicago",
+  "teamName": "Loyola Chicago Ramblers",
+  "monogram": "L",
+  "colors": {
+   "primary": "582931",
+   "secondary": "FDB913",
+   "accent": "FDB913"
+  },
+  "externalIds": {
+   "espn": "5655",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gentile-arena",
   "founded": null,
   "tier": 1
  },
@@ -21924,6 +23976,33 @@
   "tier": 1
  },
  {
+  "id": "col-soccer-fgcu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "ASUN Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/asun",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FGCU",
+  "locationName": "Florida Gulf Coast",
+  "teamName": "Florida Gulf Coast Eagles",
+  "monogram": "F",
+  "colors": {
+   "primary": "004785",
+   "secondary": "00794C",
+   "accent": "00794C"
+  },
+  "externalIds": {
+   "espn": "17390",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "fgcu-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-soccer-jax",
   "kind": "club",
   "sport": "soccer",
@@ -21951,6 +24030,33 @@
   "tier": 1
  },
  {
+  "id": "col-soccer-lip",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "ASUN Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/asun",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LIP",
+  "locationName": "Lipscomb",
+  "teamName": "Lipscomb Bisons",
+  "monogram": "L",
+  "colors": {
+   "primary": "F4AA00",
+   "secondary": "331E54",
+   "accent": "F4AA00"
+  },
+  "externalIds": {
+   "espn": "8726",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lipscomb-soccer-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-soccer-unf",
   "kind": "club",
   "sport": "soccer",
@@ -21974,6 +24080,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "hodges-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-uwf",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "ASUN Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/asun",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UWF",
+  "locationName": "West Florida",
+  "teamName": "West Florida Argonauts",
+  "monogram": "W",
+  "colors": {
+   "primary": "000000",
+   "secondary": "C60000",
+   "accent": "C60000"
+  },
+  "externalIds": {
+   "espn": "131753",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "uwf-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -22194,6 +24327,33 @@
   "tier": 1
  },
  {
+  "id": "col-soccer-conn",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big East Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/big-east",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CONN",
+  "locationName": "UConn",
+  "teamName": "UConn Huskies",
+  "monogram": "U",
+  "colors": {
+   "primary": "000E2F",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "5605",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "morrone-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-soccer-vill",
   "kind": "club",
   "sport": "soccer",
@@ -22271,6 +24431,87 @@
    "theSportsDb": null
   },
   "homeVenueId": "vert-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-pres",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big South Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/big-south",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PRES",
+  "locationName": "Presbyterian",
+  "teamName": "Presbyterian Blue Hose",
+  "monogram": "P",
+  "colors": {
+   "primary": "0060A9",
+   "secondary": "9D2235",
+   "accent": "0060A9"
+  },
+  "externalIds": {
+   "espn": "17409",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "edens-field-at-martin-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-rad",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big South Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/big-south",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "RAD",
+  "locationName": "Radford",
+  "teamName": "Radford Highlanders",
+  "monogram": "R",
+  "colors": {
+   "primary": "C2011B",
+   "secondary": "808285",
+   "accent": "C2011B"
+  },
+  "externalIds": {
+   "espn": "5754",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "tom-lillard-field-at-cupp-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-unca",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big South Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/big-south",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UNCA",
+  "locationName": "UNC Asheville",
+  "teamName": "UNC Asheville Bulldogs",
+  "monogram": "U",
+  "colors": {
+   "primary": "003DA5",
+   "secondary": "000000",
+   "accent": "3364B7"
+  },
+  "externalIds": {
+   "espn": "6812",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "greenwood-soccer-field",
   "founded": null,
   "tier": 1
  },
@@ -22379,6 +24620,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "ludwig-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-mich",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big Ten Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/big-ten",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MICH",
+  "locationName": "Michigan",
+  "teamName": "Michigan Wolverines",
+  "monogram": "M",
+  "colors": {
+   "primary": "00274C",
+   "secondary": "FFCB05",
+   "accent": "FFCB05"
+  },
+  "externalIds": {
+   "espn": "5735",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "u-m-soccer-stadium",
   "founded": null,
   "tier": 1
  },
@@ -22541,6 +24809,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "wallis-annenberg-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-wash",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big Ten Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/big-ten",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WASH",
+  "locationName": "Washington",
+  "teamName": "Washington Huskies",
+  "monogram": "W",
+  "colors": {
+   "primary": "4B2E83",
+   "secondary": "B7A57A",
+   "accent": "B7A57A"
+  },
+  "externalIds": {
+   "espn": "5636",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "husky-stadium",
   "founded": null,
   "tier": 1
  },
@@ -22946,6 +25241,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "titan-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-gb",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Horizon League Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/horizon",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GB",
+  "locationName": "Green Bay",
+  "teamName": "Green Bay Phoenix",
+  "monogram": "G",
+  "colors": {
+   "primary": "006633",
+   "secondary": "000000",
+   "accent": "1A7547"
+  },
+  "externalIds": {
+   "espn": "8599",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "festival-foods-field-at-aldo-santaga-stadium",
   "founded": null,
   "tier": 1
  },
@@ -23760,6 +26082,33 @@
   "tier": 1
  },
  {
+  "id": "col-soccer-ucd",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Mountain West Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/mwc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UCD",
+  "locationName": "UC Davis",
+  "teamName": "UC Davis Aggies",
+  "monogram": "U",
+  "colors": {
+   "primary": "002855",
+   "secondary": "B3A369",
+   "accent": "B3A369"
+  },
+  "externalIds": {
+   "espn": "5745",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "aggie-soccer-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-soccer-utu",
   "kind": "club",
   "sport": "soccer",
@@ -23809,7 +26158,7 @@
    "wikidata": null,
    "theSportsDb": null
   },
-  "homeVenueId": "ccsu-soccer-field",
+  "homeVenueId": "ccsu-softball-field",
   "founded": null,
   "tier": 1
  },
@@ -24057,6 +26406,60 @@
   "tier": 1
  },
  {
+  "id": "col-soccer-cbu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Pac-12 Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/pac12",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CBU",
+  "locationName": "California Baptist",
+  "teamName": "California Baptist Lancers",
+  "monogram": "C",
+  "colors": {
+   "primary": "000000",
+   "secondary": "C60000",
+   "accent": "C60000"
+  },
+  "externalIds": {
+   "espn": "19333",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "cbu-soccer-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-cp",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Pac-12 Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/pac12",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CP",
+  "locationName": "Cal Poly",
+  "teamName": "Cal Poly Mustangs",
+  "monogram": "C",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "5752",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "alex-g-spanos-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-soccer-sdsu",
   "kind": "club",
   "sport": "soccer",
@@ -24080,6 +26483,60 @@
    "theSportsDb": null
   },
   "homeVenueId": "sdsu-sports-deck",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-ucr",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Pac-12 Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/pac12",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UCR",
+  "locationName": "UC Riverside",
+  "teamName": "UC Riverside Highlanders",
+  "monogram": "U",
+  "colors": {
+   "primary": "2D6CC0",
+   "secondary": "F1AB00",
+   "accent": "2D6CC0"
+  },
+  "externalIds": {
+   "espn": "5611",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "uc-riverside-soccer-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-ucsd",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Pac-12 Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/pac12",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UCSD",
+  "locationName": "UC San Diego",
+  "teamName": "UC San Diego Tritons",
+  "monogram": "U",
+  "colors": {
+   "primary": "192847",
+   "secondary": "FBCB07",
+   "accent": "FBCB07"
+  },
+  "externalIds": {
+   "espn": "21110",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "triton-soccer-stadium",
   "founded": null,
   "tier": 1
  },
@@ -24295,7 +26752,7 @@
    "wikidata": null,
    "theSportsDb": null
   },
-  "homeVenueId": "uncg-soccer-stadium",
+  "homeVenueId": "uncg-softball-stadium",
   "founded": null,
   "tier": 1
  },
@@ -24408,6 +26865,33 @@
   "tier": 1
  },
  {
+  "id": "col-soccer-oru",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Summit League Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/summit",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ORU",
+  "locationName": "Oral Roberts",
+  "teamName": "Oral Roberts Golden Eagles",
+  "monogram": "O",
+  "colors": {
+   "primary": "002F60",
+   "secondary": "CFB67C",
+   "accent": "CFB67C"
+  },
+  "externalIds": {
+   "espn": "5596",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "case-soccer-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-soccer-stmn",
   "kind": "club",
   "sport": "soccer",
@@ -24430,7 +26914,34 @@
    "wikidata": null,
    "theSportsDb": null
   },
-  "homeVenueId": "south-field-mn",
+  "homeVenueId": "south-field-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-ccu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Sun Belt Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CCU",
+  "locationName": "Coastal Carolina",
+  "teamName": "Coastal Carolina Chanticleers",
+  "monogram": "C",
+  "colors": {
+   "primary": "006F71",
+   "secondary": "A27752",
+   "accent": "006F71"
+  },
+  "externalIds": {
+   "espn": "5743",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ccu-soccer-stadium",
   "founded": null,
   "tier": 1
  },
@@ -24458,6 +26969,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "bo-pitts-field-at-erk-russell-athletic-park",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-gast",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Sun Belt Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GAST",
+  "locationName": "Georgia State",
+  "teamName": "Georgia State Panthers",
+  "monogram": "G",
+  "colors": {
+   "primary": "0039A6",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "5719",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gsu-soccer-complex",
   "founded": null,
   "tier": 1
  },
@@ -24539,6 +27077,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "hoops-family-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-soccer-odu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Sun Belt Men's Soccer",
+  "leagueKey": "soccer/usa.ncaa.m.1/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ODU",
+  "locationName": "Old Dominion",
+  "teamName": "Old Dominion Monarchs",
+  "monogram": "O",
+  "colors": {
+   "primary": "00325B",
+   "secondary": "A1D1F1",
+   "accent": "A1D1F1"
+  },
+  "externalIds": {
+   "espn": "5659",
+   "espnLeague": "soccer/usa.ncaa.m.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "odu-soccer-stadium",
   "founded": null,
   "tier": 1
  },
@@ -24867,6 +27432,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-ala",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "SEC Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/sec",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ALA",
+  "locationName": "Alabama",
+  "teamName": "Alabama Crimson Tide",
+  "monogram": "A",
+  "colors": {
+   "primary": "9E1B32",
+   "secondary": "828A8F",
+   "accent": "828A8F"
+  },
+  "externalIds": {
+   "espn": "20524",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "alabama-soccer-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-alst",
   "kind": "club",
   "sport": "soccer",
@@ -24917,6 +27509,60 @@
    "theSportsDb": null
   },
   "homeVenueId": "bob-ford-field-at-tom-and-mary-casey-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-app",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Sun Belt Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "APP",
+  "locationName": "App State",
+  "teamName": "App State Mountaineers",
+  "monogram": "A",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFCC00",
+   "accent": "FFCC00"
+  },
+  "externalIds": {
+   "espn": "20446",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "appalachian-soccer-stadium-at-the-ted-mackorell-soccer-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-ariz",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big 12 Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big12",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ARIZ",
+  "locationName": "Arizona",
+  "teamName": "Arizona Wildcats",
+  "monogram": "A",
+  "colors": {
+   "primary": "AB0520",
+   "secondary": "002147",
+   "accent": "BC374D"
+  },
+  "externalIds": {
+   "espn": "20503",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "murphey-field-at-mulcahy-soccer-stadium",
   "founded": null,
   "tier": 1
  },
@@ -24975,6 +27621,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-arst",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Sun Belt Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ARST",
+  "locationName": "Arkansas State",
+  "teamName": "Arkansas State Red Wolves",
+  "monogram": "A",
+  "colors": {
+   "primary": "CC092F",
+   "secondary": "000000",
+   "accent": "CC092F"
+  },
+  "externalIds": {
+   "espn": "20587",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "a-state-soccer-park",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-uapb",
   "kind": "club",
   "sport": "soccer",
@@ -25025,6 +27698,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "malek-stadium-at-clinton-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-aub",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "SEC Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/sec",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "AUB",
+  "locationName": "Auburn",
+  "teamName": "Auburn Tigers",
+  "monogram": "A",
+  "colors": {
+   "primary": "0C2340",
+   "secondary": "E87722",
+   "accent": "E87722"
+  },
+  "externalIds": {
+   "espn": "20527",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "auburn-soccer-complex",
   "founded": null,
   "tier": 1
  },
@@ -25272,6 +27972,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-cp",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big West Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-west",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CP",
+  "locationName": "Cal Poly",
+  "teamName": "Cal Poly Mustangs",
+  "monogram": "C",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "20475",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "alex-g-spanos-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-csuf",
   "kind": "club",
   "sport": "soccer",
@@ -25349,6 +28076,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "edwards-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-cbu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big West Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-west",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CBU",
+  "locationName": "California Baptist",
+  "teamName": "California Baptist Lancers",
+  "monogram": "C",
+  "colors": {
+   "primary": "000000",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "21551",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "cbu-soccer-stadium",
   "founded": null,
   "tier": 1
  },
@@ -25456,7 +28210,7 @@
    "wikidata": null,
    "theSportsDb": null
   },
-  "homeVenueId": "ccsu-soccer-field",
+  "homeVenueId": "ccsu-softball-field",
   "founded": null,
   "tier": 1
  },
@@ -25592,6 +28346,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "krenzler-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-ccu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Sun Belt Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CCU",
+  "locationName": "Coastal Carolina",
+  "teamName": "Coastal Carolina Chanticleers",
+  "monogram": "C",
+  "colors": {
+   "primary": "006F71",
+   "secondary": "A27752",
+   "accent": "006F71"
+  },
+  "externalIds": {
+   "espn": "20467",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ccu-soccer-stadium",
   "founded": null,
   "tier": 1
  },
@@ -25947,6 +28728,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-ecu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "American Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/american",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ECU",
+  "locationName": "East Carolina",
+  "teamName": "East Carolina Pirates",
+  "monogram": "E",
+  "colors": {
+   "primary": "592A8A",
+   "secondary": "FDC82F",
+   "accent": "FDC82F"
+  },
+  "externalIds": {
+   "espn": "20479",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "bill-clark-homes-field-at-johnson-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-etsu",
   "kind": "club",
   "sport": "soccer",
@@ -25970,6 +28778,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "summers-taylor-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-etam",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Southland Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/southland",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ETAM",
+  "locationName": "East Texas A&M",
+  "teamName": "East Texas A&M Lions",
+  "monogram": "E",
+  "colors": {
+   "primary": "000000",
+   "secondary": "C60000",
+   "accent": "C60000"
+  },
+  "externalIds": {
+   "espn": "21654",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lion-soccer-field",
   "founded": null,
   "tier": 1
  },
@@ -26055,6 +28890,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-ewu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big Sky Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-sky",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "EWU",
+  "locationName": "Eastern Washington",
+  "teamName": "Eastern Washington Eagles",
+  "monogram": "E",
+  "colors": {
+   "primary": "A10022",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "20526",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "ewu-soccer-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-elon",
   "kind": "club",
   "sport": "soccer",
@@ -26136,6 +28998,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-fiu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Conference USA Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/cusa",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FIU",
+  "locationName": "Florida International",
+  "teamName": "Florida International Panthers",
+  "monogram": "F",
+  "colors": {
+   "primary": "081E3F",
+   "secondary": "B6862C",
+   "accent": "B6862C"
+  },
+  "externalIds": {
+   "espn": "20415",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "fiu-baseball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-fla",
   "kind": "club",
   "sport": "soccer",
@@ -26190,6 +29079,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-fgcu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "ASUN Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/asun",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FGCU",
+  "locationName": "Florida Gulf Coast",
+  "teamName": "Florida Gulf Coast Eagles",
+  "monogram": "F",
+  "colors": {
+   "primary": "002D72",
+   "secondary": "007749",
+   "accent": "007749"
+  },
+  "externalIds": {
+   "espn": "20609",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "fgcu-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-fsu",
   "kind": "club",
   "sport": "soccer",
@@ -26240,6 +29156,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "jack-coffey-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-fres",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Pac-12 Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/pac12",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "FRES",
+  "locationName": "Fresno State",
+  "teamName": "Fresno State Bulldogs",
+  "monogram": "F",
+  "colors": {
+   "primary": "CC0033",
+   "secondary": "00235D",
+   "accent": "CC0033"
+  },
+  "externalIds": {
+   "espn": "20515",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "valley-childrens-stadium",
   "founded": null,
   "tier": 1
  },
@@ -26352,6 +29295,60 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-gast",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Sun Belt Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GAST",
+  "locationName": "Georgia State",
+  "teamName": "Georgia State Panthers",
+  "monogram": "G",
+  "colors": {
+   "primary": "0039A6",
+   "secondary": "C60C30",
+   "accent": "C60C30"
+  },
+  "externalIds": {
+   "espn": "20443",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gsu-soccer-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-gram",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "SWAC Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/swac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GRAM",
+  "locationName": "Grambling",
+  "teamName": "Grambling Tigers",
+  "monogram": "G",
+  "colors": {
+   "primary": "EAA921",
+   "secondary": "000000",
+   "accent": "EAA921"
+  },
+  "externalIds": {
+   "espn": "20583",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gsu-soccer-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-gcu",
   "kind": "club",
   "sport": "soccer",
@@ -26375,6 +29372,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "gcu-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-gb",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Horizon League Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/horizon",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "GB",
+  "locationName": "Green Bay",
+  "teamName": "Green Bay Phoenix",
+  "monogram": "G",
+  "colors": {
+   "primary": "006633",
+   "secondary": "000000",
+   "accent": "1A7547"
+  },
+  "externalIds": {
+   "espn": "20591",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "festival-foods-field-at-aldo-santaga-stadium",
   "founded": null,
   "tier": 1
  },
@@ -26811,6 +29835,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-jkst",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "SWAC Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/swac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "JKST",
+  "locationName": "Jackson State",
+  "teamName": "Jackson State Tigers",
+  "monogram": "J",
+  "colors": {
+   "primary": "002147",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "20614",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "jackson-state-university-softball-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-jax",
   "kind": "club",
   "sport": "soccer",
@@ -27054,6 +30105,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-lam",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Southland Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/southland",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LAM",
+  "locationName": "Lamar",
+  "teamName": "Lamar Cardinals",
+  "monogram": "L",
+  "colors": {
+   "primary": "DC0032",
+   "secondary": "FFFFFF",
+   "accent": "DC0032"
+  },
+  "externalIds": {
+   "espn": "20617",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lu-soccer-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-lin",
   "kind": "club",
   "sport": "soccer",
@@ -27077,6 +30155,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "hunter-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-lip",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "ASUN Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/asun",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LIP",
+  "locationName": "Lipscomb",
+  "teamName": "Lipscomb Bisons",
+  "monogram": "L",
+  "colors": {
+   "primary": "F4AA00",
+   "secondary": "331E54",
+   "accent": "F4AA00"
+  },
+  "externalIds": {
+   "espn": "20594",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lipscomb-soccer-complex",
   "founded": null,
   "tier": 1
  },
@@ -27185,6 +30290,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "brown-stadium-la",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-luc",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Atlantic 10 Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/a10",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "LUC",
+  "locationName": "Loyola Chicago",
+  "teamName": "Loyola Chicago Ramblers",
+  "monogram": "L",
+  "colors": {
+   "primary": "922247",
+   "secondary": "FEBD18",
+   "accent": "FEBD18"
+  },
+  "externalIds": {
+   "espn": "20379",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "gentile-arena",
   "founded": null,
   "tier": 1
  },
@@ -27567,6 +30699,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-mich",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big Ten Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-ten",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MICH",
+  "locationName": "Michigan",
+  "teamName": "Michigan Wolverines",
+  "monogram": "M",
+  "colors": {
+   "primary": "00274C",
+   "secondary": "FFCB05",
+   "accent": "FFCB05"
+  },
+  "externalIds": {
+   "espn": "20459",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "u-m-soccer-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-msu",
   "kind": "club",
   "sport": "soccer",
@@ -27648,6 +30807,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-msst",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "SEC Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/sec",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MSST",
+  "locationName": "Mississippi State",
+  "teamName": "Mississippi State Bulldogs",
+  "monogram": "M",
+  "colors": {
+   "primary": "660000",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "20537",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "msu-soccer-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-miz",
   "kind": "club",
   "sport": "soccer",
@@ -27725,6 +30911,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "south-campus-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-more",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Ohio Valley Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/ovc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "MORE",
+  "locationName": "Morehead State",
+  "teamName": "Morehead State Eagles",
+  "monogram": "M",
+  "colors": {
+   "primary": "FFCF00",
+   "secondary": "005EB8",
+   "accent": "FFCF00"
+  },
+  "externalIds": {
+   "espn": "20592",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "msu-soccer-field",
   "founded": null,
   "tier": 1
  },
@@ -27887,6 +31100,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "wildcat-stadium-nh",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-unm",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Mountain West Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/mwc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UNM",
+  "locationName": "New Mexico",
+  "teamName": "New Mexico Lobos",
+  "monogram": "N",
+  "colors": {
+   "primary": "BA0C2F",
+   "secondary": "A7A8AA",
+   "accent": "A7A8AA"
+  },
+  "externalIds": {
+   "espn": "20321",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "unm-soccer-complex",
   "founded": null,
   "tier": 1
  },
@@ -28134,6 +31374,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-uni",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Missouri Valley Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/mvc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UNI",
+  "locationName": "Northern Iowa",
+  "teamName": "Northern Iowa Panthers",
+  "monogram": "N",
+  "colors": {
+   "primary": "4B116F",
+   "secondary": "FFCC00",
+   "accent": "FFCC00"
+  },
+  "externalIds": {
+   "espn": "20623",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "uni-soccer-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-nku",
   "kind": "club",
   "sport": "soccer",
@@ -28184,6 +31451,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "martin-stadium-evanston",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-nwst",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Southland Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/southland",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "NWST",
+  "locationName": "Northwestern State",
+  "teamName": "Northwestern State Demons",
+  "monogram": "N",
+  "colors": {
+   "primary": "663399",
+   "secondary": "FF6600",
+   "accent": "FF6600"
+  },
+  "externalIds": {
+   "espn": "20551",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "lady-demon-diamond",
   "founded": null,
   "tier": 1
  },
@@ -28350,6 +31644,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-odu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Sun Belt Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ODU",
+  "locationName": "Old Dominion",
+  "teamName": "Old Dominion Monarchs",
+  "monogram": "O",
+  "colors": {
+   "primary": "00325B",
+   "secondary": "A1D1F1",
+   "accent": "A1D1F1"
+  },
+  "externalIds": {
+   "espn": "20383",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "odu-soccer-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-miss",
   "kind": "club",
   "sport": "soccer",
@@ -28400,6 +31721,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "caniglia-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-oru",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Summit League Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/summit",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "ORU",
+  "locationName": "Oral Roberts",
+  "teamName": "Oral Roberts Golden Eagles",
+  "monogram": "O",
+  "colors": {
+   "primary": "002F60",
+   "secondary": "CFB67C",
+   "accent": "CFB67C"
+  },
+  "externalIds": {
+   "espn": "20320",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "case-soccer-complex",
   "founded": null,
   "tier": 1
  },
@@ -28566,6 +31914,60 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-pv",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "SWAC Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/swac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PV",
+  "locationName": "Prairie View A&M",
+  "teamName": "Prairie View A&M Lady Panthers",
+  "monogram": "P",
+  "colors": {
+   "primary": "330066",
+   "secondary": "FFCC33",
+   "accent": "FFCC33"
+  },
+  "externalIds": {
+   "espn": "20625",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "pvamu-soccer-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-pres",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big South Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-south",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "PRES",
+  "locationName": "Presbyterian",
+  "teamName": "Presbyterian Blue Hose",
+  "monogram": "P",
+  "colors": {
+   "primary": "0060A9",
+   "secondary": "9D2235",
+   "accent": "0060A9"
+  },
+  "externalIds": {
+   "espn": "20626",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "edens-field-at-martin-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-prin",
   "kind": "club",
   "sport": "soccer",
@@ -28674,6 +32076,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-rad",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big South Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-south",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "RAD",
+  "locationName": "Radford",
+  "teamName": "Radford Highlanders",
+  "monogram": "R",
+  "colors": {
+   "primary": "C2011B",
+   "secondary": "808285",
+   "accent": "C2011B"
+  },
+  "externalIds": {
+   "espn": "20477",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "tom-lillard-field-at-cupp-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-uri",
   "kind": "club",
   "sport": "soccer",
@@ -28724,6 +32153,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "holloway-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-rich",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Atlantic 10 Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/a10",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "RICH",
+  "locationName": "Richmond",
+  "teamName": "Richmond Spiders",
+  "monogram": "R",
+  "colors": {
+   "primary": "C32032",
+   "secondary": "002B5E",
+   "accent": "C32032"
+  },
+  "externalIds": {
+   "espn": "20345",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "president-s-field-at-river-road",
   "founded": null,
   "tier": 1
  },
@@ -28885,7 +32341,7 @@
    "wikidata": null,
    "theSportsDb": null
   },
-  "homeVenueId": "south-field-mn",
+  "homeVenueId": "south-field-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -29214,6 +32670,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-sdak",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Summit League Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/summit",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SDAK",
+  "locationName": "South Dakota",
+  "teamName": "South Dakota Coyotes",
+  "monogram": "S",
+  "colors": {
+   "primary": "AD0000",
+   "secondary": "000000",
+   "accent": "BD3333"
+  },
+  "externalIds": {
+   "espn": "20633",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "first-bank-and-trust-soccer-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-sdst",
   "kind": "club",
   "sport": "soccer",
@@ -29322,6 +32805,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-suu",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big Sky Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-sky",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SUU",
+  "locationName": "Southern Utah",
+  "teamName": "Southern Utah Thunderbirds",
+  "monogram": "S",
+  "colors": {
+   "primary": "C41425",
+   "secondary": "000000",
+   "accent": "C41425"
+  },
+  "externalIds": {
+   "espn": "20636",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "thunderbird-soccer-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-stan",
   "kind": "club",
   "sport": "soccer",
@@ -29345,6 +32855,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "maloney-field-at-laird-q-cagan-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-sfa",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Southland Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/southland",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "SFA",
+  "locationName": "Stephen F. Austin",
+  "teamName": "Stephen F. Austin Lumberjacks",
+  "monogram": "S",
+  "colors": {
+   "primary": "613393",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "20593",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "sfa-soccer-field",
   "founded": null,
   "tier": 1
  },
@@ -29426,6 +32963,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "su-soccer-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-tar",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "United Athletic Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/uac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "TAR",
+  "locationName": "Tarleton State",
+  "teamName": "Tarleton State Texans",
+  "monogram": "T",
+  "colors": {
+   "primary": "4F2D7F",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "21981",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "tarleton-softball-complex",
   "founded": null,
   "tier": 1
  },
@@ -29673,6 +33237,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-troy",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Sun Belt Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/sunbelt",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "TROY",
+  "locationName": "Troy",
+  "teamName": "Troy Trojans",
+  "monogram": "T",
+  "colors": {
+   "primary": "8A2432",
+   "secondary": "B3B5B8",
+   "accent": "B3B5B8"
+  },
+  "externalIds": {
+   "espn": "20590",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "troy-soccer-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-tlsa",
   "kind": "club",
   "sport": "soccer",
@@ -29727,6 +33318,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-ucd",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Mountain West Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/mwc",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UCD",
+  "locationName": "UC Davis",
+  "teamName": "UC Davis Aggies",
+  "monogram": "U",
+  "colors": {
+   "primary": "002855",
+   "secondary": "B3A369",
+   "accent": "B3A369"
+  },
+  "externalIds": {
+   "espn": "20469",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "aggie-soccer-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-uci",
   "kind": "club",
   "sport": "soccer",
@@ -29750,6 +33368,60 @@
    "theSportsDb": null
   },
   "homeVenueId": "anteater-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-ucr",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big West Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-west",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UCR",
+  "locationName": "UC Riverside",
+  "teamName": "UC Riverside Highlanders",
+  "monogram": "U",
+  "colors": {
+   "primary": "2D6CC0",
+   "secondary": "F1AB00",
+   "accent": "2D6CC0"
+  },
+  "externalIds": {
+   "espn": "20335",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "uc-riverside-soccer-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-ucsd",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big West Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-west",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UCSD",
+  "locationName": "UC San Diego",
+  "teamName": "UC San Diego Tritons",
+  "monogram": "U",
+  "colors": {
+   "primary": "182B49",
+   "secondary": "FFCD00",
+   "accent": "FFCD00"
+  },
+  "externalIds": {
+   "espn": "21815",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "triton-soccer-stadium",
   "founded": null,
   "tier": 1
  },
@@ -29804,6 +33476,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "wallis-annenberg-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-conn",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big East Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-east",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "CONN",
+  "locationName": "UConn",
+  "teamName": "UConn Huskies",
+  "monogram": "U",
+  "colors": {
+   "primary": "000E2F",
+   "secondary": "FFFFFF",
+   "accent": "FFFFFF"
+  },
+  "externalIds": {
+   "espn": "20329",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "morrone-stadium",
   "founded": null,
   "tier": 1
  },
@@ -29889,6 +33588,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-unca",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big South Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-south",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UNCA",
+  "locationName": "UNC Asheville",
+  "teamName": "UNC Asheville Bulldogs",
+  "monogram": "U",
+  "colors": {
+   "primary": "003DA5",
+   "secondary": "000000",
+   "accent": "3364B7"
+  },
+  "externalIds": {
+   "espn": "20562",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "greenwood-soccer-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-uncg",
   "kind": "club",
   "sport": "soccer",
@@ -29911,7 +33637,7 @@
    "wikidata": null,
    "theSportsDb": null
   },
-  "homeVenueId": "uncg-soccer-stadium",
+  "homeVenueId": "uncg-softball-stadium",
   "founded": null,
   "tier": 1
  },
@@ -30402,6 +34128,33 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-wash",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Big Ten Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/big-ten",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WASH",
+  "locationName": "Washington",
+  "teamName": "Washington Huskies",
+  "monogram": "W",
+  "colors": {
+   "primary": "4B2E83",
+   "secondary": "B7A57A",
+   "accent": "B7A57A"
+  },
+  "externalIds": {
+   "espn": "20360",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "husky-stadium",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-wsu",
   "kind": "club",
   "sport": "soccer",
@@ -30456,6 +34209,60 @@
   "tier": 1
  },
  {
+  "id": "col-wsoccer-uwf",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "ASUN Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/asun",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "UWF",
+  "locationName": "West Florida",
+  "teamName": "West Florida Argonauts",
+  "monogram": "W",
+  "colors": {
+   "primary": "000000",
+   "secondary": "C60000",
+   "accent": "C60000"
+  },
+  "externalIds": {
+   "espn": "131300",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "uwf-softball-complex",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-wga",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "United Athletic Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/uac",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WGA",
+  "locationName": "West Georgia",
+  "teamName": "West Georgia Wolves",
+  "monogram": "W",
+  "colors": {
+   "primary": "000000",
+   "secondary": "C60000",
+   "accent": "C60000"
+  },
+  "externalIds": {
+   "espn": "130919",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "university-softball-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
   "id": "col-wsoccer-wvu",
   "kind": "club",
   "sport": "soccer",
@@ -30506,6 +34313,33 @@
    "theSportsDb": null
   },
   "homeVenueId": "john-mackenzie-alumni-field",
+  "founded": null,
+  "tier": 1
+ },
+ {
+  "id": "col-wsoccer-wku",
+  "kind": "club",
+  "sport": "soccer",
+  "league": "Conference USA Women's Soccer",
+  "leagueKey": "soccer/usa.ncaa.w.1/cusa",
+  "country": "United States",
+  "countryCode": "US",
+  "abbreviation": "WKU",
+  "locationName": "Western Kentucky",
+  "teamName": "Western Kentucky Hilltoppers",
+  "monogram": "W",
+  "colors": {
+   "primary": "C60C30",
+   "secondary": "000000",
+   "accent": "C60C30"
+  },
+  "externalIds": {
+   "espn": "20324",
+   "espnLeague": "soccer/usa.ncaa.w.1",
+   "wikidata": null,
+   "theSportsDb": null
+  },
+  "homeVenueId": "wku-softball-complex",
   "founded": null,
   "tier": 1
  },
