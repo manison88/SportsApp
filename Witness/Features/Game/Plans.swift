@@ -47,6 +47,8 @@ struct PlanGameView: View {
     @State private var empty = false
     @State private var noSource = false
     @State private var teamEspnId: String?
+    @State private var pickerShown = false
+    @State private var openedPicker = false
 
     var body: some View {
         NavigationStack {
@@ -102,6 +104,18 @@ struct PlanGameView: View {
                 }
             }
             .onChange(of: teamId) { _, _ in Task { await load() } }
+            // Everyone starts by choosing a team, so go straight to that list. Backing out with nothing chosen closes this.
+            .navigationDestination(isPresented: $pickerShown) {
+                TeamPickerView(selection: $teamId, sport: .baseball)
+            }
+            .onAppear {
+                guard teamId == nil, !openedPicker else { return }
+                openedPicker = true
+                pickerShown = true
+            }
+            .onChange(of: pickerShown) { _, shown in
+                if !shown && teamId == nil { dismiss() }
+            }
         }
     }
 

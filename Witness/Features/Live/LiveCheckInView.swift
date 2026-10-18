@@ -176,10 +176,7 @@ struct LiveCheckInView: View {
                 } else {
                     Text("Games near you").unitLabel()
                     ForEach(nearbyGames) { item in gameCard(item) }
-                    if chosen != nil {
-                        VStack(spacing: 0) { withAndSeat.padding(.horizontal, 14).frame(minHeight: 48) }
-                            .background(Color.panel, in: .rect(cornerRadius: 16))
-                    }
+                    if chosen != nil { chosenDetails }
                 }
                 Button { manual = true } label: {
                     Label("Not here, or not listed? Log manually", systemImage: "square.and.pencil")
@@ -194,6 +191,34 @@ struct LiveCheckInView: View {
             .gutter()
             .padding(.top, 8)
         }
+    }
+
+    /// With and Seat for the chosen game: a label on the left, the answer on the right, like the rows of the manual form.
+    private var chosenDetails: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Text("With").font(.body)
+                Spacer()
+                Picker("With", selection: $companionId) {
+                    Text("Nobody").tag("")
+                    ForEach(library.people) { p in Text(p.name).tag(p.id) }
+                }
+                .labelsHidden()
+                .tint(Color.textSecondary)
+            }
+            .frame(minHeight: 50)
+            Rectangle().fill(Color.hairline).frame(height: 1)
+            HStack {
+                Text("Seat").font(.body)
+                TextField("Section, row", text: $seat)
+                    .multilineTextAlignment(.trailing)
+                    .textInputAutocapitalization(.words)
+            }
+            .frame(minHeight: 50)
+        }
+        .padding(.horizontal, 16)
+        .foregroundStyle(.white)
+        .background(Color.panel, in: .rect(cornerRadius: 16))
     }
 
     private func state<Content: View>(_ symbol: String, _ title: String, _ detail: String,
