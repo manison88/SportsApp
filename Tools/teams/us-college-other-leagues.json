@@ -708,7 +708,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 9,
+  "teamCount": 10,
   "season": "Feb-Jun",
   "espnPath": "baseball/college-baseball",
   "teamIds": [
@@ -716,6 +716,7 @@
    "col-baseball-copp",
    "col-baseball-dsu",
    "col-baseball-fdu",
+   "col-baseball-lem",
    "col-baseball-liu",
    "col-baseball-umes",
    "col-baseball-norf",
@@ -729,6 +730,7 @@
     "joe-cannon-stadium",
     "soldier-field",
     "naimoli-family-baseball-complex",
+    "dick-rockwell-field",
     "long-island-university-baseball-stadium",
     "hawk-stadium",
     "marty-l-miller-field",
@@ -1006,7 +1008,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 6,
   "season": "Feb-Jun",
   "espnPath": "baseball/college-baseball",
   "teamIds": [
@@ -1014,6 +1016,7 @@
    "col-baseball-unco",
    "col-baseball-oma",
    "col-baseball-oru",
+   "col-baseball-stmn",
    "col-baseball-sdst"
   ],
   "passport": {
@@ -1023,6 +1026,7 @@
     "jackson-field-greeley",
     "tal-anderson-field",
     "j-l-johnson-stadium",
+    "koch-diamond",
     "erv-huether-field"
    ]
   }
@@ -1150,16 +1154,18 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 2,
+  "teamCount": 3,
   "season": "Feb-May",
   "espnPath": "baseball/college-softball",
   "teamIds": [
+   "col-softball-bing",
    "col-softball-bry",
    "col-softball-umbc"
   ],
   "passport": {
    "label": "America East Softball venues",
    "venueIds": [
+    "varsity-field-binghamton",
     "bryant-softball-complex-at-conaty-park",
     "umbc-softball-stadium"
    ]
@@ -1260,15 +1266,17 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 1,
+  "teamCount": 2,
   "season": "Feb-May",
   "espnPath": "baseball/college-softball",
   "teamIds": [
+   "col-softball-for",
    "col-softball-slu"
   ],
   "passport": {
    "label": "Atlantic 10 Softball venues",
    "venueIds": [
+    "bahoshy-softball-complex-murphy-field",
     "billiken-sports-center"
    ]
   }
@@ -1566,13 +1574,14 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 7,
+  "teamCount": 8,
   "season": "Feb-May",
   "espnPath": "baseball/college-softball",
   "teamIds": [
    "col-softball-can",
    "col-softball-fair",
    "col-softball-man",
+   "col-softball-mrst",
    "col-softball-mrmk",
    "col-softball-shu",
    "col-softball-spu",
@@ -1584,6 +1593,7 @@
     "demske-sports-complex",
     "alumni-softball-field",
     "gaelic-park",
+    "softball-park-at-gartland-athletic-field",
     "martonemejail-field",
     "pioneer-park",
     "joseph-j-jaroschak-field-jersey-city",
@@ -1762,7 +1772,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 12,
+  "teamCount": 13,
   "season": "Feb-May",
   "espnPath": "baseball/college-softball",
   "teamIds": [
@@ -1773,6 +1783,7 @@
    "col-softball-uga",
    "col-softball-uk",
    "col-softball-lsu",
+   "col-softball-msst",
    "col-softball-miz",
    "col-softball-ou",
    "col-softball-tenn",
@@ -1789,6 +1800,7 @@
     "jack-turner-stadium",
     "john-cropp-stadium",
     "tiger-park",
+    "nusz-park",
     "mizzou-softball-stadium",
     "love-s-field",
     "lindsey-nelson-stadium",
@@ -1864,12 +1876,13 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 3,
+  "teamCount": 4,
   "season": "Feb-May",
   "espnPath": "baseball/college-softball",
   "teamIds": [
    "col-softball-aamu",
    "col-softball-alst",
+   "col-softball-bcu",
    "col-softball-txso"
   ],
   "passport": {
@@ -1877,6 +1890,7 @@
    "venueIds": [
     "bulldog-field",
     "barbara-williams-softball-complex",
+    "sunnyland-park",
     "memorial-park"
    ]
   }
@@ -2384,13 +2398,14 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 10,
+  "teamCount": 11,
   "season": "Aug-Dec",
   "espnPath": "volleyball/womens-college-volleyball",
   "teamIds": [
    "col-volleyball-cp",
    "col-volleyball-csub",
    "col-volleyball-csuf",
+   "col-volleyball-csun",
    "col-volleyball-cbu",
    "col-volleyball-lbsu",
    "col-volleyball-sac",
@@ -2405,6 +2420,7 @@
     "mott-athletics-center",
     "icardo-center",
     "titan-gym",
+    "premier-america-credit-union-arena",
     "van-dyne-gym",
     "walter-pyramid-long-beach",
     "hornets-nest",
@@ -2460,13 +2476,14 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 9,
+  "teamCount": 10,
   "season": "Aug-Dec",
   "espnPath": "volleyball/womens-college-volleyball",
   "teamIds": [
    "col-volleyball-del",
    "col-volleyball-fiu",
    "col-volleyball-jxst",
+   "col-volleyball-kenn",
    "col-volleyball-lib",
    "col-volleyball-mtsu",
    "col-volleyball-most",
@@ -2480,6 +2497,7 @@
     "bob-carpenter-center",
     "ocean-bank-convocation-center",
     "pete-mathews-coliseum",
+    "vystar-arena",
     "liberty-arena",
     "alumni-memorial-gym",
     "hammons-student-center",
@@ -3044,12 +3062,13 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 7,
+  "teamCount": 8,
   "season": "Aug-Dec",
   "espnPath": "volleyball/womens-college-volleyball",
   "teamIds": [
    "col-volleyball-kc",
    "col-volleyball-und",
+   "col-volleyball-ndsu",
    "col-volleyball-oma",
    "col-volleyball-oru",
    "col-volleyball-stmn",
@@ -3061,6 +3080,7 @@
    "venueIds": [
     "swinney-center",
     "betty-engelstad-sioux-center",
+    "bentson-bunker-fieldhouse",
     "baxter-arena",
     "cooper-aerobics-center",
     "lee-penny-anderson-arena",
@@ -3194,23 +3214,27 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 7,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
+   "col-soccer-ualb",
    "col-soccer-bry",
    "col-soccer-unh",
    "col-soccer-njit",
    "col-soccer-uml",
+   "col-soccer-umbc",
    "col-soccer-uvm"
   ],
   "passport": {
    "label": "America East Men's Soccer venues",
    "venueIds": [
+    "bob-ford-field-at-tom-and-mary-casey-stadium",
     "beirne-stadium",
     "wildcat-stadium-nh",
     "lubetkin-field-at-mal-simon-stadium",
     "cushing-field-complex",
+    "retriever-soccer-park",
     "virtue-field"
    ]
   }
@@ -3222,11 +3246,12 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 7,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
    "col-soccer-clt",
+   "col-soccer-fau",
    "col-soccer-mem",
    "col-soccer-most",
    "col-soccer-tem",
@@ -3237,6 +3262,7 @@
    "label": "American Men's Soccer venues",
    "venueIds": [
     "transamerica-field",
+    "fau-soccer-stadium",
     "billy-j-murphy-soccer-track-and-field-complex",
     "betty-and-bobby-allison-south-stadium",
     "temple-sports-complex",
@@ -3252,7 +3278,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 7,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
@@ -3260,6 +3286,7 @@
    "col-soccer-day",
    "col-soccer-duq",
    "col-soccer-for",
+   "col-soccer-gmu",
    "col-soccer-las",
    "col-soccer-uri"
   ],
@@ -3270,6 +3297,7 @@
     "baujan-field",
     "arthur-j-rooney-athletic-field",
     "jack-coffey-field",
+    "george-mason-stadium",
     "mccarthy-stadium-philadelphia",
     "uri-soccer-complex"
    ]
@@ -3282,13 +3310,20 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 13,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
+   "col-soccer-bc",
    "col-soccer-cal",
+   "col-soccer-duke",
+   "col-soccer-ncsu",
    "col-soccer-unc",
+   "col-soccer-nd",
    "col-soccer-pitt",
+   "col-soccer-smu",
+   "col-soccer-stan",
+   "col-soccer-syr",
    "col-soccer-uva",
    "col-soccer-vt",
    "col-soccer-wake"
@@ -3296,9 +3331,16 @@
   "passport": {
    "label": "ACC Men's Soccer venues",
    "venueIds": [
+    "newton-campus-lacrosse-and-soccer-field",
     "edwards-stadium",
+    "freeman-field-at-koskinen-stadium",
+    "dail-softball-stadium",
     "dorrance-field",
+    "alumni-stadium",
     "ambrose-urbanic-field",
+    "washburne-soccer-and-track-stadium",
+    "maloney-field-at-laird-q-cagan-stadium",
+    "su-soccer-stadium",
     "klockner-stadium",
     "thompson-field",
     "spry-stadium"
@@ -3312,10 +3354,11 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 3,
+  "teamCount": 4,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
+   "col-soccer-bell",
    "col-soccer-cark",
    "col-soccer-jax",
    "col-soccer-unf"
@@ -3323,6 +3366,7 @@
   "passport": {
    "label": "ASUN Men's Soccer venues",
    "venueIds": [
+    "owsley-b-frazier-stadium",
     "bill-stephens-track-soccer-complex",
     "southern-oak-stadium",
     "hodges-stadium"
@@ -3336,7 +3380,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 10,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
@@ -3345,6 +3389,10 @@
    "col-soccer-crei",
    "col-soccer-dep",
    "col-soccer-marq",
+   "col-soccer-prov",
+   "col-soccer-sju",
+   "col-soccer-hall",
+   "col-soccer-vill",
    "col-soccer-xav"
   ],
   "passport": {
@@ -3355,6 +3403,10 @@
     "morrison-stadium",
     "cacciatore-stadium",
     "valley-fields",
+    "chapey-field-at-anderson-stadium",
+    "belson-stadium",
+    "owen-t-carroll-field",
+    "higgins-soccer-complex",
     "corcoran-field"
    ]
   }
@@ -3390,7 +3442,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 7,
+  "teamCount": 9,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
@@ -3399,6 +3451,8 @@
    "col-soccer-msu",
    "col-soccer-nu",
    "col-soccer-osu",
+   "col-soccer-psu",
+   "col-soccer-rutg",
    "col-soccer-ucla",
    "col-soccer-wis"
   ],
@@ -3410,6 +3464,8 @@
     "demartin-stadium",
     "martin-stadium-evanston",
     "jesse-owens-memorial-stadium",
+    "jeffrey-field",
+    "yurcak-field",
     "wallis-annenberg-stadium",
     "mcclimon-track-soccer-complex"
    ]
@@ -3450,12 +3506,14 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 7,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
    "col-soccer-cam",
+   "col-soccer-chls",
    "col-soccer-elon",
+   "col-soccer-ne",
    "col-soccer-stbk",
    "col-soccer-uncw",
    "col-soccer-wm"
@@ -3464,7 +3522,9 @@
    "label": "CAA Men's Soccer venues",
    "venueIds": [
     "eakes-athletics-complex",
+    "ralph-lundy-field-at-patriots-point",
     "rudd-field-nc",
+    "parsons-field",
     "kenneth-p-lavalle-stadium",
     "uncw-soccer-stadium",
     "martin-family-stadium-at-albert-daly-field"
@@ -3478,25 +3538,31 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 9,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
+   "col-soccer-cle",
    "col-soccer-detm",
    "col-soccer-iuin",
    "col-soccer-milw",
+   "col-soccer-niu",
    "col-soccer-nku",
    "col-soccer-oak",
+   "col-soccer-pfw",
    "col-soccer-rmu"
   ],
   "passport": {
    "label": "Horizon League Men's Soccer venues",
    "venueIds": [
+    "krenzler-field",
     "titan-field",
     "carroll-stadium",
     "engelmann-stadium",
+    "niu-soccer-and-track-and-field-complex",
     "nku-soccer-stadium",
     "oakland-soccer-field",
+    "hefner-soccer-complex",
     "north-athletic-complex-moon-township"
    ]
   }
@@ -3508,12 +3574,13 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 4,
+  "teamCount": 5,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
    "col-soccer-dart",
    "col-soccer-harv",
+   "col-soccer-prin",
    "col-soccer-penn",
    "col-soccer-yale"
   ],
@@ -3522,6 +3589,7 @@
    "venueIds": [
     "burnham-field",
     "jordan-field",
+    "myslik-field-at-roberts-stadium",
     "rhodes-field",
     "reese-stadium"
    ]
@@ -3568,22 +3636,28 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 4,
+  "teamCount": 7,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
+   "col-soccer-bel",
    "col-soccer-bgsu",
    "col-soccer-brad",
    "col-soccer-drke",
-   "col-soccer-uic"
+   "col-soccer-evan",
+   "col-soccer-uic",
+   "col-soccer-wmu"
   ],
   "passport": {
    "label": "Missouri Valley Men's Soccer venues",
    "venueIds": [
+    "e-s-rose-park",
     "cochrane-soccer-stadium",
     "shea-stadium",
     "mediacom-stadium",
-    "flames-field"
+    "arad-mccutchan-stadium",
+    "flames-field",
+    "wmu-soccer-complex"
    ]
   }
  },
@@ -3594,10 +3668,11 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 3,
+  "teamCount": 4,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
+   "col-soccer-af",
    "col-soccer-gcu",
    "col-soccer-sjsu",
    "col-soccer-utu"
@@ -3605,6 +3680,7 @@
   "passport": {
    "label": "Mountain West Men's Soccer venues",
    "venueIds": [
+    "cadet-soccer-stadium",
     "gcu-stadium",
     "cefcu-stadium",
     "greater-zion-stadium"
@@ -3694,20 +3770,24 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 3,
+  "teamCount": 5,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
+   "col-soccer-army",
    "col-soccer-bu",
    "col-soccer-hc",
-   "col-soccer-lmd"
+   "col-soccer-lmd",
+   "col-soccer-navy"
   ],
   "passport": {
    "label": "Patriot League Men's Soccer venues",
    "venueIds": [
+    "malek-stadium-at-clinton-field",
     "nickerson-field",
     "linda-johnson-smith-soccer-stadium",
-    "ridley-athletic-complex"
+    "ridley-athletic-complex",
+    "glenn-warner-soccer-facility"
    ]
   }
  },
@@ -3770,22 +3850,26 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 4,
+  "teamCount": 6,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
+   "col-soccer-gaso",
    "col-soccer-jmu",
    "col-soccer-uk",
    "col-soccer-mrsh",
-   "col-soccer-sc"
+   "col-soccer-sc",
+   "col-soccer-wvu"
   ],
   "passport": {
    "label": "Sun Belt Men's Soccer venues",
    "venueIds": [
+    "bo-pitts-field-at-erk-russell-athletic-park",
     "sentara-park",
     "wendell-and-vickie-bell-soccer-complex",
     "hoops-family-field",
-    "eugene-e-stone-iii-stadium"
+    "eugene-e-stone-iii-stadium",
+    "dick-dlesk-soccer-stadium"
    ]
   }
  },
@@ -3796,11 +3880,13 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 7,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.m.1",
   "teamIds": [
+   "col-soccer-den",
    "col-soccer-lmu",
+   "col-soccer-port",
    "col-soccer-smc",
    "col-soccer-usd",
    "col-soccer-sf",
@@ -3809,7 +3895,9 @@
   "passport": {
    "label": "West Coast Men's Soccer venues",
    "venueIds": [
+    "university-of-denver-soccer-stadium",
     "sullivan-field-los-angeles",
+    "merlo-field-at-the-clive-charles-soccer-complex",
     "saint-marys-stadium",
     "torero-stadium",
     "negoesco-stadium",
@@ -3844,8 +3932,8 @@
   }
  },
  {
-  "key": "soccer/usa.ncaa.w.1/mac",
-  "name": "MAC Women's Soccer",
+  "key": "soccer/usa.ncaa.w.1/mwc",
+  "name": "Mountain West Women's Soccer",
   "sport": "soccer",
   "country": "United States",
   "countryCode": "US",
@@ -3854,13 +3942,47 @@
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
+   "col-wsoccer-af",
+   "col-wsoccer-colc",
+   "col-wsoccer-gcu",
+   "col-wsoccer-nev",
+   "col-wsoccer-sjsu",
+   "col-wsoccer-utep",
+   "col-wsoccer-wyo"
+  ],
+  "passport": {
+   "label": "Mountain West Women's Soccer venues",
+   "venueIds": [
+    "cadet-soccer-stadium",
+    "stewart-field",
+    "gcu-stadium",
+    "mackay-stadium",
+    "cefcu-stadium",
+    "university-field-tx",
+    "madrid-sports-complex"
+   ]
+  }
+ },
+ {
+  "key": "soccer/usa.ncaa.w.1/mac",
+  "name": "MAC Women's Soccer",
+  "sport": "soccer",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 9,
+  "season": "Aug-Nov",
+  "espnPath": "soccer/usa.ncaa.w.1",
+  "teamIds": [
    "col-wsoccer-akr",
    "col-wsoccer-bgsu",
    "col-wsoccer-buf",
    "col-wsoccer-emu",
+   "col-wsoccer-kent",
    "col-wsoccer-moh",
    "col-wsoccer-ohio",
-   "col-wsoccer-tol"
+   "col-wsoccer-tol",
+   "col-wsoccer-wmu"
   ],
   "passport": {
    "label": "MAC Women's Soccer venues",
@@ -3869,9 +3991,11 @@
     "cochrane-soccer-stadium",
     "ub-stadium",
     "scicluna-field",
+    "dix-stadium",
     "bobby-kramig-field",
     "chessa-field",
-    "paul-hotmer-field"
+    "paul-hotmer-field",
+    "wmu-soccer-complex"
    ]
   }
  },
@@ -3898,6 +4022,84 @@
     "k-l-johnson-complex",
     "mumford-stadium",
     "alexander-durley-stadium"
+   ]
+  }
+ },
+ {
+  "key": "soccer/usa.ncaa.w.1/america-east",
+  "name": "America East Women's Soccer",
+  "sport": "soccer",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 8,
+  "season": "Aug-Nov",
+  "espnPath": "soccer/usa.ncaa.w.1",
+  "teamIds": [
+   "col-wsoccer-ualb",
+   "col-wsoccer-bry",
+   "col-wsoccer-me",
+   "col-wsoccer-unh",
+   "col-wsoccer-njit",
+   "col-wsoccer-uml",
+   "col-wsoccer-umbc",
+   "col-wsoccer-uvm"
+  ],
+  "passport": {
+   "label": "America East Women's Soccer venues",
+   "venueIds": [
+    "bob-ford-field-at-tom-and-mary-casey-stadium",
+    "beirne-stadium",
+    "new-balance-soccer-complex",
+    "wildcat-stadium-nh",
+    "lubetkin-field-at-mal-simon-stadium",
+    "cushing-field-complex",
+    "retriever-soccer-park",
+    "virtue-field"
+   ]
+  }
+ },
+ {
+  "key": "soccer/usa.ncaa.w.1/big12",
+  "name": "Big 12 Women's Soccer",
+  "sport": "soccer",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 13,
+  "season": "Aug-Nov",
+  "espnPath": "soccer/usa.ncaa.w.1",
+  "teamIds": [
+   "col-wsoccer-asu",
+   "col-wsoccer-byu",
+   "col-wsoccer-cin",
+   "col-wsoccer-colo",
+   "col-wsoccer-hou",
+   "col-wsoccer-isu",
+   "col-wsoccer-ku",
+   "col-wsoccer-ksu",
+   "col-wsoccer-okst",
+   "col-wsoccer-tcu",
+   "col-wsoccer-ttu",
+   "col-wsoccer-utah",
+   "col-wsoccer-wvu"
+  ],
+  "passport": {
+   "label": "Big 12 Women's Soccer venues",
+   "venueIds": [
+    "mountain-america-stadium",
+    "south-field-ut",
+    "nippert-stadium",
+    "prentup-field",
+    "carl-lewis-international-complex",
+    "cyclone-sports-complex",
+    "rock-chalk-park",
+    "tointon-family-stadium",
+    "neal-patterson-stadium",
+    "garvey-rosenthal-soccer-stadium",
+    "john-walker-soccer-complex",
+    "ute-field",
+    "dick-dlesk-soccer-stadium"
    ]
   }
  },
@@ -3948,50 +4150,130 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 3,
+  "teamCount": 5,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
+   "col-wsoccer-army",
    "col-wsoccer-bu",
    "col-wsoccer-hc",
-   "col-wsoccer-lmd"
+   "col-wsoccer-lmd",
+   "col-wsoccer-navy"
   ],
   "passport": {
    "label": "Patriot League Women's Soccer venues",
    "venueIds": [
+    "malek-stadium-at-clinton-field",
     "nickerson-field",
     "linda-johnson-smith-soccer-stadium",
-    "ridley-athletic-complex"
+    "ridley-athletic-complex",
+    "glenn-warner-soccer-facility"
    ]
   }
  },
  {
-  "key": "soccer/usa.ncaa.w.1/america-east",
-  "name": "America East Women's Soccer",
+  "key": "soccer/usa.ncaa.w.1/asun",
+  "name": "ASUN Women's Soccer",
   "sport": "soccer",
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 3,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
-   "col-wsoccer-bry",
-   "col-wsoccer-me",
-   "col-wsoccer-unh",
-   "col-wsoccer-njit",
-   "col-wsoccer-uml",
-   "col-wsoccer-uvm"
+   "col-wsoccer-bell",
+   "col-wsoccer-jax",
+   "col-wsoccer-unf"
   ],
   "passport": {
-   "label": "America East Women's Soccer venues",
+   "label": "ASUN Women's Soccer venues",
    "venueIds": [
-    "beirne-stadium",
-    "new-balance-soccer-complex",
-    "wildcat-stadium-nh",
-    "lubetkin-field-at-mal-simon-stadium",
-    "cushing-field-complex",
-    "virtue-field"
+    "owsley-b-frazier-stadium",
+    "southern-oak-stadium",
+    "hodges-stadium"
+   ]
+  }
+ },
+ {
+  "key": "soccer/usa.ncaa.w.1/mvc",
+  "name": "Missouri Valley Women's Soccer",
+  "sport": "soccer",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 8,
+  "season": "Aug-Nov",
+  "espnPath": "soccer/usa.ncaa.w.1",
+  "teamIds": [
+   "col-wsoccer-bel",
+   "col-wsoccer-drke",
+   "col-wsoccer-evan",
+   "col-wsoccer-ilst",
+   "col-wsoccer-inst",
+   "col-wsoccer-mur",
+   "col-wsoccer-uic",
+   "col-wsoccer-val"
+  ],
+  "passport": {
+   "label": "Missouri Valley Women's Soccer venues",
+   "venueIds": [
+    "e-s-rose-park",
+    "mediacom-stadium",
+    "arad-mccutchan-stadium",
+    "adelaide-street-field",
+    "memorial-stadium-terre-haute-in",
+    "cutchin-field",
+    "flames-field",
+    "brown-field"
+   ]
+  }
+ },
+ {
+  "key": "soccer/usa.ncaa.w.1/acc",
+  "name": "ACC Women's Soccer",
+  "sport": "soccer",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 15,
+  "season": "Aug-Nov",
+  "espnPath": "soccer/usa.ncaa.w.1",
+  "teamIds": [
+   "col-wsoccer-bc",
+   "col-wsoccer-cal",
+   "col-wsoccer-duke",
+   "col-wsoccer-fsu",
+   "col-wsoccer-mia",
+   "col-wsoccer-ncsu",
+   "col-wsoccer-unc",
+   "col-wsoccer-nd",
+   "col-wsoccer-pitt",
+   "col-wsoccer-smu",
+   "col-wsoccer-stan",
+   "col-wsoccer-syr",
+   "col-wsoccer-uva",
+   "col-wsoccer-vt",
+   "col-wsoccer-wake"
+  ],
+  "passport": {
+   "label": "ACC Women's Soccer venues",
+   "venueIds": [
+    "newton-campus-lacrosse-and-soccer-field",
+    "edwards-stadium",
+    "freeman-field-at-koskinen-stadium",
+    "joanne-graf-field-at-the-seminole-softball-complex",
+    "cobb-stadium",
+    "dail-softball-stadium",
+    "dorrance-field",
+    "alumni-stadium",
+    "ambrose-urbanic-field",
+    "washburne-soccer-and-track-stadium",
+    "maloney-field-at-laird-q-cagan-stadium",
+    "su-soccer-stadium",
+    "klockner-stadium",
+    "thompson-field",
+    "spry-stadium"
    ]
   }
  },
@@ -4002,7 +4284,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 9,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
@@ -4010,6 +4292,10 @@
    "col-wsoccer-crei",
    "col-wsoccer-dep",
    "col-wsoccer-marq",
+   "col-wsoccer-prov",
+   "col-wsoccer-sju",
+   "col-wsoccer-hall",
+   "col-wsoccer-vill",
    "col-wsoccer-xav"
   ],
   "passport": {
@@ -4019,45 +4305,11 @@
     "morrison-stadium",
     "cacciatore-stadium",
     "valley-fields",
+    "chapey-field-at-anderson-stadium",
+    "belson-stadium",
+    "owen-t-carroll-field",
+    "higgins-soccer-complex",
     "corcoran-field"
-   ]
-  }
- },
- {
-  "key": "soccer/usa.ncaa.w.1/big12",
-  "name": "Big 12 Women's Soccer",
-  "sport": "soccer",
-  "country": "United States",
-  "countryCode": "US",
-  "tier": 1,
-  "teamCount": 10,
-  "season": "Aug-Nov",
-  "espnPath": "soccer/usa.ncaa.w.1",
-  "teamIds": [
-   "col-wsoccer-byu",
-   "col-wsoccer-cin",
-   "col-wsoccer-colo",
-   "col-wsoccer-isu",
-   "col-wsoccer-ku",
-   "col-wsoccer-ksu",
-   "col-wsoccer-okst",
-   "col-wsoccer-tcu",
-   "col-wsoccer-ttu",
-   "col-wsoccer-utah"
-  ],
-  "passport": {
-   "label": "Big 12 Women's Soccer venues",
-   "venueIds": [
-    "south-field-ut",
-    "nippert-stadium",
-    "prentup-field",
-    "cyclone-sports-complex",
-    "rock-chalk-park",
-    "tointon-family-stadium",
-    "neal-patterson-stadium",
-    "garvey-rosenthal-soccer-stadium",
-    "john-walker-soccer-complex",
-    "ute-field"
    ]
   }
  },
@@ -4092,52 +4344,20 @@
   }
  },
  {
-  "key": "soccer/usa.ncaa.w.1/acc",
-  "name": "ACC Women's Soccer",
-  "sport": "soccer",
-  "country": "United States",
-  "countryCode": "US",
-  "tier": 1,
-  "teamCount": 8,
-  "season": "Aug-Nov",
-  "espnPath": "soccer/usa.ncaa.w.1",
-  "teamIds": [
-   "col-wsoccer-cal",
-   "col-wsoccer-fsu",
-   "col-wsoccer-mia",
-   "col-wsoccer-unc",
-   "col-wsoccer-pitt",
-   "col-wsoccer-uva",
-   "col-wsoccer-vt",
-   "col-wsoccer-wake"
-  ],
-  "passport": {
-   "label": "ACC Women's Soccer venues",
-   "venueIds": [
-    "edwards-stadium",
-    "joanne-graf-field-at-the-seminole-softball-complex",
-    "cobb-stadium",
-    "dorrance-field",
-    "ambrose-urbanic-field",
-    "klockner-stadium",
-    "thompson-field",
-    "spry-stadium"
-   ]
-  }
- },
- {
   "key": "soccer/usa.ncaa.w.1/caa",
   "name": "CAA Women's Soccer",
   "sport": "soccer",
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 5,
+  "teamCount": 7,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
    "col-wsoccer-cam",
+   "col-wsoccer-chls",
    "col-wsoccer-elon",
+   "col-wsoccer-ne",
    "col-wsoccer-stbk",
    "col-wsoccer-uncw",
    "col-wsoccer-wm"
@@ -4146,7 +4366,9 @@
    "label": "CAA Women's Soccer venues",
    "venueIds": [
     "eakes-athletics-complex",
+    "ralph-lundy-field-at-patriots-point",
     "rudd-field-nc",
+    "parsons-field",
     "kenneth-p-lavalle-stadium",
     "uncw-soccer-stadium",
     "martin-family-stadium-at-albert-daly-field"
@@ -4222,11 +4444,12 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 7,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
    "col-wsoccer-clt",
+   "col-wsoccer-fau",
    "col-wsoccer-mem",
    "col-wsoccer-rice",
    "col-wsoccer-tem",
@@ -4237,6 +4460,7 @@
    "label": "American Women's Soccer venues",
    "venueIds": [
     "transamerica-field",
+    "fau-soccer-stadium",
     "billy-j-murphy-soccer-track-and-field-complex",
     "holloway-field",
     "temple-sports-complex",
@@ -4278,32 +4502,40 @@
   }
  },
  {
-  "key": "soccer/usa.ncaa.w.1/mwc",
-  "name": "Mountain West Women's Soccer",
+  "key": "soccer/usa.ncaa.w.1/horizon",
+  "name": "Horizon League Women's Soccer",
   "sport": "soccer",
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 10,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
-   "col-wsoccer-colc",
-   "col-wsoccer-gcu",
-   "col-wsoccer-nev",
-   "col-wsoccer-sjsu",
-   "col-wsoccer-utep",
-   "col-wsoccer-wyo"
+   "col-wsoccer-cle",
+   "col-wsoccer-detm",
+   "col-wsoccer-iuin",
+   "col-wsoccer-milw",
+   "col-wsoccer-niu",
+   "col-wsoccer-nku",
+   "col-wsoccer-oak",
+   "col-wsoccer-pfw",
+   "col-wsoccer-rmu",
+   "col-wsoccer-ysu"
   ],
   "passport": {
-   "label": "Mountain West Women's Soccer venues",
+   "label": "Horizon League Women's Soccer venues",
    "venueIds": [
-    "stewart-field",
-    "gcu-stadium",
-    "mackay-stadium",
-    "cefcu-stadium",
-    "university-field-tx",
-    "madrid-sports-complex"
+    "krenzler-field",
+    "titan-field",
+    "carroll-stadium",
+    "engelmann-stadium",
+    "niu-soccer-and-track-and-field-complex",
+    "nku-soccer-stadium",
+    "oakland-soccer-field",
+    "hefner-soccer-complex",
+    "north-athletic-complex-moon-township",
+    "farmers-national-bank-field"
    ]
   }
  },
@@ -4314,13 +4546,14 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 4,
+  "teamCount": 5,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
    "col-wsoccer-dart",
    "col-wsoccer-harv",
    "col-wsoccer-penn",
+   "col-wsoccer-prin",
    "col-wsoccer-yale"
   ],
   "passport": {
@@ -4329,6 +4562,7 @@
     "burnham-field",
     "jordan-field",
     "rhodes-field",
+    "myslik-field-at-roberts-stadium",
     "reese-stadium"
    ]
   }
@@ -4340,7 +4574,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 6,
+  "teamCount": 7,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
@@ -4348,6 +4582,7 @@
    "col-wsoccer-day",
    "col-wsoccer-duq",
    "col-wsoccer-for",
+   "col-wsoccer-gmu",
    "col-wsoccer-las",
    "col-wsoccer-uri"
   ],
@@ -4358,6 +4593,7 @@
     "baujan-field",
     "arthur-j-rooney-athletic-field",
     "jack-coffey-field",
+    "george-mason-stadium",
     "mccarthy-stadium-philadelphia",
     "uri-soccer-complex"
    ]
@@ -4370,12 +4606,13 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 3,
+  "teamCount": 4,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
    "col-wsoccer-del",
    "col-wsoccer-jxst",
+   "col-wsoccer-kenn",
    "col-wsoccer-most"
   ],
   "passport": {
@@ -4383,13 +4620,14 @@
    "venueIds": [
     "stuart-and-suzanne-grant-stadium",
     "jax-state-soccer-complex",
+    "fifth-third-stadium-kennesaw",
     "betty-and-bobby-allison-south-stadium"
    ]
   }
  },
  {
-  "key": "soccer/usa.ncaa.w.1/horizon",
-  "name": "Horizon League Women's Soccer",
+  "key": "soccer/usa.ncaa.w.1/wcc",
+  "name": "West Coast Women's Soccer",
   "sport": "soccer",
   "country": "United States",
   "countryCode": "US",
@@ -4398,54 +4636,24 @@
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
-   "col-wsoccer-detm",
-   "col-wsoccer-iuin",
-   "col-wsoccer-milw",
-   "col-wsoccer-nku",
-   "col-wsoccer-oak",
-   "col-wsoccer-rmu",
-   "col-wsoccer-ysu"
+   "col-wsoccer-den",
+   "col-wsoccer-lmu",
+   "col-wsoccer-port",
+   "col-wsoccer-smc",
+   "col-wsoccer-usd",
+   "col-wsoccer-sf",
+   "col-wsoccer-sea"
   ],
   "passport": {
-   "label": "Horizon League Women's Soccer venues",
+   "label": "West Coast Women's Soccer venues",
    "venueIds": [
-    "titan-field",
-    "carroll-stadium",
-    "engelmann-stadium",
-    "nku-soccer-stadium",
-    "oakland-soccer-field",
-    "north-athletic-complex-moon-township",
-    "farmers-national-bank-field"
-   ]
-  }
- },
- {
-  "key": "soccer/usa.ncaa.w.1/mvc",
-  "name": "Missouri Valley Women's Soccer",
-  "sport": "soccer",
-  "country": "United States",
-  "countryCode": "US",
-  "tier": 1,
-  "teamCount": 6,
-  "season": "Aug-Nov",
-  "espnPath": "soccer/usa.ncaa.w.1",
-  "teamIds": [
-   "col-wsoccer-drke",
-   "col-wsoccer-ilst",
-   "col-wsoccer-inst",
-   "col-wsoccer-mur",
-   "col-wsoccer-uic",
-   "col-wsoccer-val"
-  ],
-  "passport": {
-   "label": "Missouri Valley Women's Soccer venues",
-   "venueIds": [
-    "mediacom-stadium",
-    "adelaide-street-field",
-    "memorial-stadium-terre-haute-in",
-    "cutchin-field",
-    "flames-field",
-    "brown-field"
+    "university-of-denver-soccer-stadium",
+    "sullivan-field-los-angeles",
+    "merlo-field-at-the-clive-charles-soccer-complex",
+    "saint-marys-stadium",
+    "torero-stadium",
+    "negoesco-stadium",
+    "championship-field"
    ]
   }
  },
@@ -4476,6 +4684,36 @@
     "houck-stadium",
     "skyhawk-soccer-field",
     "john-mackenzie-alumni-field"
+   ]
+  }
+ },
+ {
+  "key": "soccer/usa.ncaa.w.1/sunbelt",
+  "name": "Sun Belt Women's Soccer",
+  "sport": "soccer",
+  "country": "United States",
+  "countryCode": "US",
+  "tier": 1,
+  "teamCount": 6,
+  "season": "Aug-Nov",
+  "espnPath": "soccer/usa.ncaa.w.1",
+  "teamIds": [
+   "col-wsoccer-gaso",
+   "col-wsoccer-jmu",
+   "col-wsoccer-lt",
+   "col-wsoccer-ulm",
+   "col-wsoccer-mrsh",
+   "col-wsoccer-usa"
+  ],
+  "passport": {
+   "label": "Sun Belt Women's Soccer venues",
+   "venueIds": [
+    "bo-pitts-field-at-erk-russell-athletic-park",
+    "sentara-park",
+    "robert-mack-caruthers-field",
+    "brown-stadium-la",
+    "hoops-family-field",
+    "the-cage"
    ]
   }
  },
@@ -4544,7 +4782,7 @@
   "country": "United States",
   "countryCode": "US",
   "tier": 1,
-  "teamCount": 12,
+  "teamCount": 16,
   "season": "Aug-Nov",
   "espnPath": "soccer/usa.ncaa.w.1",
   "teamIds": [
@@ -4554,11 +4792,15 @@
    "col-wsoccer-md",
    "col-wsoccer-msu",
    "col-wsoccer-minn",
+   "col-wsoccer-neb",
    "col-wsoccer-nu",
    "col-wsoccer-osu",
    "col-wsoccer-ore",
+   "col-wsoccer-psu",
    "col-wsoccer-pur",
+   "col-wsoccer-rutg",
    "col-wsoccer-ucla",
+   "col-wsoccer-usc",
    "col-wsoccer-wis"
   ],
   "passport": {
@@ -4570,11 +4812,15 @@
     "ludwig-field",
     "demartin-stadium",
     "elizabeth-lyle-robbie-stadium",
+    "barbara-hibner-soccer-stadium",
     "martin-stadium-evanston",
     "jesse-owens-memorial-stadium",
     "pape-field",
+    "jeffrey-field",
     "folk-field",
+    "yurcak-field",
     "wallis-annenberg-stadium",
+    "rawlinson-stadium",
     "mcclimon-track-soccer-complex"
    ]
   }
@@ -4600,84 +4846,6 @@
     "gayle-and-tom-benson-stadium",
     "strawberry-stadium",
     "utrgv-soccer-and-track-and-field-complex"
-   ]
-  }
- },
- {
-  "key": "soccer/usa.ncaa.w.1/asun",
-  "name": "ASUN Women's Soccer",
-  "sport": "soccer",
-  "country": "United States",
-  "countryCode": "US",
-  "tier": 1,
-  "teamCount": 2,
-  "season": "Aug-Nov",
-  "espnPath": "soccer/usa.ncaa.w.1",
-  "teamIds": [
-   "col-wsoccer-jax",
-   "col-wsoccer-unf"
-  ],
-  "passport": {
-   "label": "ASUN Women's Soccer venues",
-   "venueIds": [
-    "southern-oak-stadium",
-    "hodges-stadium"
-   ]
-  }
- },
- {
-  "key": "soccer/usa.ncaa.w.1/sunbelt",
-  "name": "Sun Belt Women's Soccer",
-  "sport": "soccer",
-  "country": "United States",
-  "countryCode": "US",
-  "tier": 1,
-  "teamCount": 5,
-  "season": "Aug-Nov",
-  "espnPath": "soccer/usa.ncaa.w.1",
-  "teamIds": [
-   "col-wsoccer-jmu",
-   "col-wsoccer-lt",
-   "col-wsoccer-ulm",
-   "col-wsoccer-mrsh",
-   "col-wsoccer-usa"
-  ],
-  "passport": {
-   "label": "Sun Belt Women's Soccer venues",
-   "venueIds": [
-    "sentara-park",
-    "robert-mack-caruthers-field",
-    "brown-stadium-la",
-    "hoops-family-field",
-    "the-cage"
-   ]
-  }
- },
- {
-  "key": "soccer/usa.ncaa.w.1/wcc",
-  "name": "West Coast Women's Soccer",
-  "sport": "soccer",
-  "country": "United States",
-  "countryCode": "US",
-  "tier": 1,
-  "teamCount": 5,
-  "season": "Aug-Nov",
-  "espnPath": "soccer/usa.ncaa.w.1",
-  "teamIds": [
-   "col-wsoccer-lmu",
-   "col-wsoccer-smc",
-   "col-wsoccer-usd",
-   "col-wsoccer-sf",
-   "col-wsoccer-sea"
-  ],
-  "passport": {
-   "label": "West Coast Women's Soccer venues",
-   "venueIds": [
-    "sullivan-field-los-angeles",
-    "saint-marys-stadium",
-    "torero-stadium",
-    "negoesco-stadium",
-    "championship-field"
    ]
   }
  },

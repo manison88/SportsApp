@@ -36,7 +36,8 @@
    "baseball"
   ],
   "leagues": [
-   "baseball/college-baseball"
+   "baseball/college-baseball",
+   "baseball/college-softball"
   ],
   "homeTeams": [
    "Binghamton Bearcats"
@@ -1280,10 +1281,13 @@
   "latitude": 40.7412,
   "longitude": -74.2476,
   "sports": [
-   "baseball"
+   "baseball",
+   "soccer"
   ],
   "leagues": [
-   "baseball/college-baseball"
+   "baseball/college-baseball",
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
   ],
   "homeTeams": [
    "Seton Hall Pirates"
@@ -2596,10 +2600,13 @@
   "latitude": 42.3369,
   "longitude": -71.1139,
   "sports": [
-   "baseball"
+   "baseball",
+   "soccer"
   ],
   "leagues": [
-   "baseball/college-baseball"
+   "baseball/college-baseball",
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
   ],
   "homeTeams": [
    "Northeastern Huskies"
@@ -3752,11 +3759,14 @@
   "latitude": 36.142867,
   "longitude": -86.78297,
   "sports": [
-   "baseball"
+   "baseball",
+   "soccer"
   ],
   "leagues": [
    "baseball/college-baseball",
-   "baseball/college-softball"
+   "baseball/college-softball",
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
   ],
   "homeTeams": [
    "Belmont Bruins"
@@ -4224,6 +4234,29 @@
   "timeZone": "America/New_York",
   "capacity": 500,
   "opened": 2011
+ },
+ {
+  "id": "dick-rockwell-field",
+  "name": "Dick Rockwell Field",
+  "aliases": [],
+  "city": "Syracuse",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.050353,
+  "longitude": -76.087765,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-baseball"
+  ],
+  "homeTeams": [
+   "Le Moyne Dolphins"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
  },
  {
   "id": "long-island-university-baseball-stadium",
@@ -5912,6 +5945,29 @@
   "opened": 1977
  },
  {
+  "id": "koch-diamond",
+  "name": "Koch Diamond",
+  "aliases": [],
+  "city": "Saint Paul",
+  "region": "Minnesota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 44.945179,
+  "longitude": -93.190971,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-baseball"
+  ],
+  "homeTeams": [
+   "St. Thomas Tommies"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "erv-huether-field",
   "name": "Erv Huether Field",
   "aliases": [],
@@ -6867,10 +6923,13 @@
   "latitude": 35.782296,
   "longitude": -78.670491,
   "sports": [
-   "baseball"
+   "baseball",
+   "soccer"
   ],
   "leagues": [
-   "baseball/college-softball"
+   "baseball/college-softball",
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
   ],
   "homeTeams": [
    "NC State Wolfpack"
@@ -6989,6 +7048,29 @@
   ],
   "homeTeams": [
    "Stetson Hatters"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "bahoshy-softball-complex-murphy-field",
+  "name": "Bahoshy Softball Complex/Murphy Field",
+  "aliases": [],
+  "city": "Bronx",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.864444,
+  "longitude": -73.885,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Fordham Rams"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -8134,6 +8216,29 @@
   "opened": null
  },
  {
+  "id": "softball-park-at-gartland-athletic-field",
+  "name": "Softball Park at Gartland Athletic Field",
+  "aliases": [],
+  "city": "Poughkeepsie",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.726111,
+  "longitude": -73.936111,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Marist Red Foxes"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "martonemejail-field",
   "name": "Martone–Mejail Field",
   "aliases": [],
@@ -8973,6 +9078,29 @@
   "opened": 2009
  },
  {
+  "id": "nusz-park",
+  "name": "Nusz Park",
+  "aliases": [],
+  "city": "Mississippi State",
+  "region": "Mississippi",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 33.466361,
+  "longitude": -88.792944,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Mississippi State Bulldogs"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "mizzou-softball-stadium",
   "name": "Mizzou Softball Stadium",
   "aliases": [],
@@ -9314,6 +9442,29 @@
    "Alabama State Hornets"
   ],
   "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "sunnyland-park",
+  "name": "Sunnyland Park",
+  "aliases": [],
+  "city": "Daytona Beach",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.223333,
+  "longitude": -81.035556,
+  "sports": [
+   "baseball"
+  ],
+  "leagues": [
+   "baseball/college-softball"
+  ],
+  "homeTeams": [
+   "Bethune-Cookman Wildcats"
+  ],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  },
@@ -11528,6 +11679,29 @@
   "opened": 1977
  },
  {
+  "id": "bentson-bunker-fieldhouse",
+  "name": "Bentson Bunker Fieldhouse",
+  "aliases": [],
+  "city": "Fargo",
+  "region": "North Dakota",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 46.89484,
+  "longitude": -96.798756,
+  "sports": [
+   "volleyball"
+  ],
+  "leagues": [
+   "volleyball/womens-college-volleyball"
+  ],
+  "homeTeams": [
+   "North Dakota State Bison"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "cooper-aerobics-center",
   "name": "Cooper Aerobics Center",
   "aliases": [],
@@ -11689,6 +11863,30 @@
   "opened": null
  },
  {
+  "id": "bob-ford-field-at-tom-and-mary-casey-stadium",
+  "name": "Bob Ford Field at Tom & Mary Casey Stadium",
+  "aliases": [],
+  "city": "Albany",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.6833,
+  "longitude": -73.8271,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "UAlbany Great Danes"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "lubetkin-field-at-mal-simon-stadium",
   "name": "Lubetkin Field at Mal Simon Stadium",
   "aliases": [],
@@ -11737,6 +11935,30 @@
   "opened": null
  },
  {
+  "id": "retriever-soccer-park",
+  "name": "Retriever Soccer Park",
+  "aliases": [],
+  "city": "Catonsville",
+  "region": "Maryland",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.2528,
+  "longitude": -76.7144,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "UMBC Retrievers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "virtue-field",
   "name": "Virtue Field",
   "aliases": [],
@@ -11779,6 +12001,30 @@
   ],
   "homeTeams": [
    "Charlotte 49ers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "fau-soccer-stadium",
+  "name": "FAU Soccer Stadium",
+  "aliases": [],
+  "city": "Boca Raton",
+  "region": "Florida",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 26.3705,
+  "longitude": -80.1119,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Florida Atlantic Owls"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -11953,6 +12199,30 @@
   "opened": null
  },
  {
+  "id": "george-mason-stadium",
+  "name": "George Mason Stadium",
+  "aliases": [],
+  "city": "Fairfax",
+  "region": "Virginia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.8337,
+  "longitude": -77.3166,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "George Mason Patriots"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "mccarthy-stadium-philadelphia",
   "name": "McCarthy Stadium (Philadelphia)",
   "aliases": [],
@@ -12001,6 +12271,30 @@
   "opened": null
  },
  {
+  "id": "newton-campus-lacrosse-and-soccer-field",
+  "name": "Newton Campus Lacrosse & Soccer Field",
+  "aliases": [],
+  "city": "Newton",
+  "region": "Massachusetts",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.344444,
+  "longitude": -71.195278,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Boston College Eagles"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "edwards-stadium",
   "name": "Edwards Stadium",
   "aliases": [],
@@ -12021,6 +12315,30 @@
    "California Golden Bears"
   ],
   "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "freeman-field-at-koskinen-stadium",
+  "name": "Freeman Field at Koskinen Stadium",
+  "aliases": [],
+  "city": "Durham",
+  "region": "North Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 35.9958,
+  "longitude": -78.944,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Duke Blue Devils"
+  ],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  },
@@ -12049,6 +12367,30 @@
   "opened": null
  },
  {
+  "id": "alumni-stadium",
+  "name": "Alumni Stadium",
+  "aliases": [],
+  "city": "Notre Dame",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.697778,
+  "longitude": -86.228611,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Notre Dame Fighting Irish"
+  ],
+  "timeZone": "America/Indiana/Indianapolis",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "ambrose-urbanic-field",
   "name": "Ambrose Urbanic Field",
   "aliases": [],
@@ -12067,6 +12409,78 @@
   ],
   "homeTeams": [
    "Pittsburgh Panthers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "washburne-soccer-and-track-stadium",
+  "name": "Washburne Soccer and Track Stadium",
+  "aliases": [],
+  "city": "Dallas",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.8397,
+  "longitude": -96.7823,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "SMU Mustangs"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "maloney-field-at-laird-q-cagan-stadium",
+  "name": "Maloney Field at Laird Q. Cagan Stadium",
+  "aliases": [],
+  "city": "Stanford",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.433102,
+  "longitude": -122.158051,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Stanford Cardinal"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "su-soccer-stadium",
+  "name": "SU Soccer Stadium",
+  "aliases": [],
+  "city": "Syracuse",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 43.022668,
+  "longitude": -76.12295,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Syracuse Orange"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -12145,6 +12559,30 @@
   "opened": null
  },
  {
+  "id": "owsley-b-frazier-stadium",
+  "name": "Owsley B. Frazier Stadium",
+  "aliases": [],
+  "city": "Louisville",
+  "region": "Kentucky",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.21571,
+  "longitude": -85.70322,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Bellarmine Knights"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "bill-stephens-track-soccer-complex",
   "name": "Bill Stephens Track/Soccer Complex",
   "aliases": [],
@@ -12213,6 +12651,54 @@
    "Marquette Golden Eagles"
   ],
   "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "chapey-field-at-anderson-stadium",
+  "name": "Chapey Field at Anderson Stadium",
+  "aliases": [],
+  "city": "Providence",
+  "region": "Rhode Island",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.84531,
+  "longitude": -71.43354,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Providence Friars"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "higgins-soccer-complex",
+  "name": "Higgins Soccer Complex",
+  "aliases": [],
+  "city": "Villanova",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.0419,
+  "longitude": -75.34593,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Villanova Wildcats"
+  ],
+  "timeZone": "America/New_York",
   "capacity": null,
   "opened": null
  },
@@ -12409,6 +12895,30 @@
   "opened": null
  },
  {
+  "id": "jeffrey-field",
+  "name": "Jeffrey Field",
+  "aliases": [],
+  "city": "University Park",
+  "region": "Pennsylvania",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.810473,
+  "longitude": -77.860904,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Penn State Nittany Lions"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "wallis-annenberg-stadium",
   "name": "Wallis Annenberg Stadium",
   "aliases": [],
@@ -12529,6 +13039,30 @@
   "opened": null
  },
  {
+  "id": "ralph-lundy-field-at-patriots-point",
+  "name": "Ralph Lundy Field at Patriots Point",
+  "aliases": [],
+  "city": "Charleston",
+  "region": "South Carolina",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.790377,
+  "longitude": -79.90821,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "College of Charleston Cougars"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "rudd-field-nc",
   "name": "Rudd Field (NC)",
   "aliases": [],
@@ -12601,6 +13135,30 @@
   "opened": null
  },
  {
+  "id": "krenzler-field",
+  "name": "Krenzler Field",
+  "aliases": [],
+  "city": "Cleveland",
+  "region": "Ohio",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.5042,
+  "longitude": -81.6786,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Cleveland State Vikings"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "titan-field",
   "name": "Titan Field",
   "aliases": [],
@@ -12649,6 +13207,30 @@
   "opened": null
  },
  {
+  "id": "niu-soccer-and-track-and-field-complex",
+  "name": "NIU Soccer and Track & Field Complex",
+  "aliases": [],
+  "city": "DeKalb",
+  "region": "Illinois",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.934472,
+  "longitude": -88.782,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Northern Illinois Huskies"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "oakland-soccer-field",
   "name": "Oakland Soccer Field",
   "aliases": [],
@@ -12669,6 +13251,30 @@
    "Oakland Golden Grizzlies"
   ],
   "timeZone": "America/Detroit",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "hefner-soccer-complex",
+  "name": "Hefner Soccer Complex",
+  "aliases": [],
+  "city": "Fort Wayne",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.1194,
+  "longitude": -85.1158,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Purdue Fort Wayne Mastodons"
+  ],
+  "timeZone": "America/Indiana/Indianapolis",
   "capacity": null,
   "opened": null
  },
@@ -12715,6 +13321,30 @@
   ],
   "homeTeams": [
    "Dartmouth Big Green"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "myslik-field-at-roberts-stadium",
+  "name": "Myslik Field at Roberts Stadium",
+  "aliases": [],
+  "city": "Princeton",
+  "region": "New Jersey",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.3434,
+  "longitude": -74.6543,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Princeton Tigers"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -12912,6 +13542,78 @@
   "opened": null
  },
  {
+  "id": "arad-mccutchan-stadium",
+  "name": "Arad McCutchan Stadium",
+  "aliases": [],
+  "city": "Evansville",
+  "region": "Indiana",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 37.97541,
+  "longitude": -87.531646,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Evansville Purple Aces"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "wmu-soccer-complex",
+  "name": "WMU Soccer Complex",
+  "aliases": [],
+  "city": "Kalamazoo",
+  "region": "Michigan",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 42.25758,
+  "longitude": -85.64163,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Western Michigan Broncos"
+  ],
+  "timeZone": "America/Detroit",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "cadet-soccer-stadium",
+  "name": "Cadet Soccer Stadium",
+  "aliases": [],
+  "city": "USAF Academy",
+  "region": "Colorado",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.0144,
+  "longitude": -104.893,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Air Force Falcons"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "gcu-stadium",
   "name": "GCU Stadium",
   "aliases": [],
@@ -13104,6 +13806,30 @@
   "opened": null
  },
  {
+  "id": "malek-stadium-at-clinton-field",
+  "name": "Malek Stadium at Clinton Field",
+  "aliases": [],
+  "city": "West Point",
+  "region": "New York",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 41.393833,
+  "longitude": -73.954333,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Army Black Knights"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "nickerson-field",
   "name": "Nickerson Field",
   "aliases": [],
@@ -13170,6 +13896,30 @@
   ],
   "homeTeams": [
    "Loyola Maryland Greyhounds"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "glenn-warner-soccer-facility",
+  "name": "Glenn Warner Soccer Facility",
+  "aliases": [],
+  "city": "Annapolis",
+  "region": "Maryland",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 38.984167,
+  "longitude": -76.481667,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Navy Midshipmen"
   ],
   "timeZone": "America/New_York",
   "capacity": null,
@@ -13368,6 +14118,30 @@
   "opened": null
  },
  {
+  "id": "bo-pitts-field-at-erk-russell-athletic-park",
+  "name": "Bo Pitts Field at Erk Russell Athletic Park",
+  "aliases": [],
+  "city": "Statesboro",
+  "region": "Georgia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 32.4098,
+  "longitude": -81.7796,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Georgia Southern Eagles"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "sentara-park",
   "name": "Sentara Park",
   "aliases": [],
@@ -13464,6 +14238,54 @@
   "opened": null
  },
  {
+  "id": "dick-dlesk-soccer-stadium",
+  "name": "Dick Dlesk Soccer Stadium",
+  "aliases": [],
+  "city": "Morgantown",
+  "region": "West Virginia",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.6517,
+  "longitude": -79.9842,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "West Virginia Mountaineers"
+  ],
+  "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "university-of-denver-soccer-stadium",
+  "name": "University of Denver Soccer Stadium",
+  "aliases": [],
+  "city": "Denver",
+  "region": "Colorado",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 39.681466,
+  "longitude": -104.963279,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Denver Pioneers"
+  ],
+  "timeZone": "America/Denver",
+  "capacity": null,
+  "opened": null
+ },
+ {
   "id": "sullivan-field-los-angeles",
   "name": "Sullivan Field",
   "aliases": [],
@@ -13482,6 +14304,30 @@
   ],
   "homeTeams": [
    "Loyola Marymount Lions"
+  ],
+  "timeZone": "America/Los_Angeles",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "merlo-field-at-the-clive-charles-soccer-complex",
+  "name": "Merlo Field at the Clive Charles Soccer Complex",
+  "aliases": [],
+  "city": "Portland",
+  "region": "Oregon",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 45.574444,
+  "longitude": -122.727222,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.m.1",
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Portland Pilots"
   ],
   "timeZone": "America/Los_Angeles",
   "capacity": null,
@@ -13739,6 +14585,29 @@
    "Florida Gators"
   ],
   "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "carl-lewis-international-complex",
+  "name": "Carl Lewis International Complex",
+  "aliases": [],
+  "city": "Houston",
+  "region": "Texas",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 29.7264,
+  "longitude": -95.3481,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Houston Cougars"
+  ],
+  "timeZone": "America/Chicago",
   "capacity": null,
   "opened": null
  },
@@ -14174,6 +15043,29 @@
   ],
   "homeTeams": [
    "Murray State Racers"
+  ],
+  "timeZone": "America/Chicago",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "barbara-hibner-soccer-stadium",
+  "name": "Barbara Hibner Soccer Stadium",
+  "aliases": [],
+  "city": "Lincoln",
+  "region": "Nebraska",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 40.8378,
+  "longitude": -96.7,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "Nebraska Cornhuskers"
   ],
   "timeZone": "America/Chicago",
   "capacity": null,
@@ -14659,6 +15551,29 @@
    "Toledo Rockets"
   ],
   "timeZone": "America/New_York",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "rawlinson-stadium",
+  "name": "Rawlinson Stadium",
+  "aliases": [],
+  "city": "Los Angeles",
+  "region": "California",
+  "country": "United States",
+  "countryCode": "US",
+  "latitude": 34.026806,
+  "longitude": -118.282651,
+  "sports": [
+   "soccer"
+  ],
+  "leagues": [
+   "soccer/usa.ncaa.w.1"
+  ],
+  "homeTeams": [
+   "USC Trojans"
+  ],
+  "timeZone": "America/Los_Angeles",
   "capacity": null,
   "opened": null
  },
