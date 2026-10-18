@@ -1,0 +1,90 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Friend Comparison</title>
+<link rel="stylesheet" href="../../../kit/kit.css"><link rel="stylesheet" href="common.css">
+<style>
+.hero{position:absolute;top:102px;left:16px;right:16px;height:206px;border-radius:26px;overflow:hidden;background:#0c0c0e;border:1px solid var(--line)}
+.side{position:absolute;inset:0}
+.side.l{background:linear-gradient(120deg,rgba(255,181,71,.55),rgba(255,181,71,.08) 75%),#120d05;clip-path:polygon(0 0,58% 0,42% 100%,0 100%)}
+.side.r{background:linear-gradient(240deg,rgba(255,211,110,.5),rgba(255,211,110,.06) 75%),#141007;clip-path:polygon(58% 0,100% 0,100% 100%,42% 100%)}
+.ghost{position:absolute;font:400 190px/1 var(--f-anton);color:rgba(255,255,255,.05);bottom:-34px}
+.hero svg.cut{position:absolute;inset:0}
+.who{position:absolute;top:22px;width:150px}
+.who.l{left:18px}.who.r{right:18px;text-align:right}
+.who .av{width:44px;height:44px;font-size:18px;margin-bottom:10px}.who.r .av{margin-left:auto}
+.who .n{font:400 44px/.95 var(--f-anton);letter-spacing:.5px;text-transform:uppercase}
+.who .c{font:500 12px/1.3 var(--f-ui);color:rgba(245,241,234,.7);margin-top:6px}
+.who .badge{display:inline-block;margin-top:10px;font:700 10px/1 var(--f-ui);letter-spacing:1.4px;padding:5px 8px;border-radius:6px;text-transform:uppercase}
+.vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#050506;border:1.5px solid rgba(255,255,255,.7);display:grid;place-items:center;font:800 15px/1 var(--f-cond);letter-spacing:1px}
+.strip{position:absolute;left:0;right:0;bottom:0;height:34px;background:rgba(5,5,6,.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;gap:8px;font:600 11px/1 var(--f-ui);letter-spacing:1.5px;text-transform:uppercase;color:var(--text-2)}
+.strip b{color:var(--text)}
+.rows{position:absolute;top:322px;left:16px;right:16px}
+.row{display:grid;grid-template-columns:96px 1fr 96px;align-items:center;height:50px;border-bottom:1px solid var(--line)}
+.row:last-child{border:0}
+.row .v{font:800 34px/1 var(--f-cond);font-variant-numeric:tabular-nums;letter-spacing:.2px}
+.row .v.l{text-align:left;color:var(--sam)}.row .v.r{text-align:right;color:var(--chris)}
+.row .v.lose{opacity:.5}
+.row .m{text-align:center}
+.row .m i{display:block;font:600 10px/1 var(--f-ui);letter-spacing:1.6px;text-transform:uppercase;color:var(--text-2);margin-bottom:7px;font-style:normal}
+.tug{display:flex;gap:3px;height:5px}
+.tug span{border-radius:3px}
+.tug .a{background:var(--sam)}.tug .b{background:var(--chris);opacity:.55}
+.tug .a.lo{opacity:.55}.tug .b.hi{opacity:1}
+.sec{position:absolute;left:16px;right:16px}
+.sec h3{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.sec h3 span:first-child{font:600 11px/1 var(--f-ui);letter-spacing:1.8px;text-transform:uppercase;color:var(--text-2)}
+.sec h3 span:last-child{font:600 12px/1 var(--f-ui);color:var(--signal)}
+.stamps{display:flex;gap:10px}
+.st{flex:1;height:104px;border-radius:18px;background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px}
+.stamp{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;text-align:center;position:relative;font:800 12px/1 var(--f-cond);letter-spacing:.8px;text-transform:uppercase}
+.stamp:before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid currentColor}
+.stamp:after{content:"";position:absolute;inset:5px;border-radius:50%;border:1px dashed currentColor;opacity:.7}
+.stamp em{font-style:normal;position:relative;z-index:1;font-size:13px;line-height:1.05}
+.st .d{font:500 10px/1 var(--f-ui);color:var(--text-3);letter-spacing:.2px}
+.both{display:flex;align-items:center;gap:12px;height:60px;border-radius:18px;background:var(--surface);border:1px solid var(--line);padding:0 16px}
+.both .num{font:800 34px/1 var(--f-cond);color:var(--text)}
+.both .tx{flex:1;font:600 13px/1.25 var(--f-ui)}.both .tx small{display:block;font:400 11px/1.3 var(--f-ui);color:var(--text-3);margin-top:2px}
+.both .chev{width:20px;height:20px;stroke:var(--signal);fill:none;stroke-width:2.2}
+.verdict{position:absolute;left:16px;right:16px;font:400 23px/1.15 var(--f-serif);letter-spacing:-.2px;color:var(--text)}
+.verdict em{color:var(--chris)}.verdict u{text-decoration:none;color:var(--sam)}
+</style></head>
+<body class="phone">
+<div class="nav">
+ <button class="btn-circle glass"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+ <div class="t"><small>Friend</small>Head to head</div>
+ <button class="btn-circle glass"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M8 8l4-4 4 4M5 12v7h14v-7"/></svg></button>
+</div>
+
+<div class="hero">
+ <div class="side l"><div class="ghost" style="left:-14px">S</div></div>
+ <div class="side r"><div class="ghost" style="right:-10px">C</div></div>
+ <svg class="cut" viewBox="0 0 361 206" preserveAspectRatio="none"><line x1="209" y1="0" x2="152" y2="206" stroke="#050506" stroke-width="4"/><line x1="209" y1="0" x2="152" y2="206" stroke="rgba(255,255,255,.35)" stroke-width=".8"/></svg>
+ <div class="who l"><div class="av" style="background:var(--sam)">SO</div><div class="n">Sam</div><div class="c">Logan Square<br>Chicago</div></div>
+ <div class="who r"><div class="av" style="background:var(--chris)">CD</div><div class="n">Chris</div><div class="c">Shaker Heights<br>Ohio</div></div>
+ <div class="vs">VS</div>
+ <div class="strip">Friends since <b>2009</b> &nbsp;·&nbsp; <b>9</b> games together</div>
+</div>
+
+<div class="rows">
+ <div class="row"><div class="v l">60</div><div class="m"><i>Games</i><div class="tug"><span class="a" style="flex:60"></span><span class="b" style="flex:41"></span></div></div><div class="v r lose">41</div></div>
+ <div class="row"><div class="v l">21</div><div class="m"><i>Venues</i><div class="tug"><span class="a" style="flex:21"></span><span class="b" style="flex:17"></span></div></div><div class="v r lose">17</div></div>
+ <div class="row"><div class="v l lose">3</div><div class="m"><i>Countries</i><div class="tug"><span class="a lo" style="flex:3"></span><span class="b hi" style="flex:5"></span></div></div><div class="v r">5</div></div>
+ <div class="row"><div class="v l">42.9k</div><div class="m"><i>Miles</i><div class="tug"><span class="a" style="flex:42.9"></span><span class="b" style="flex:38.4"></span></div></div><div class="v r lose">38.4k</div></div>
+</div>
+
+<div class="sec" style="top:536px">
+ <h3><span>Stadiums you've both been to</span><span>13 &rsaquo;</span></h3>
+ <div class="stamps">
+  <div class="st"><div class="stamp" style="color:#6fa8ff;transform:rotate(-6deg)"><em>Wrigley<br>Field</em></div><div class="d">Chicago, IL</div></div>
+  <div class="st"><div class="stamp" style="color:#ff8a5c;transform:rotate(5deg)"><em>Soldier<br>Field</em></div><div class="d">Chicago, IL</div></div>
+  <div class="st"><div class="stamp" style="color:#ff7a8a;transform:rotate(-3deg)"><em>Fenway<br>Park</em></div><div class="d">Boston, MA</div></div>
+ </div>
+</div>
+
+<div class="sec" style="top:672px">
+ <div class="both"><div class="num">9</div><div class="tx">Games you both attended<small>Starting with the 2021 US Grand Prix</small></div>
+ <svg class="chev" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
+</div>
+
+<div class="verdict" style="top:752px"><em>Chris</em> has been to 4 stadiums you haven't. <u>Sam</u> is 19 ahead on games.</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

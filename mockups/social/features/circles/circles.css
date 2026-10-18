@@ -1,0 +1,15 @@
+body.phone{background:var(--ink)}
+.glow{position:absolute;left:-60px;right:-60px;top:-120px;height:420px;background:radial-gradient(60% 60% at 50% 40%,rgba(255,181,71,.14),transparent 70%);pointer-events:none}
+.nav{position:absolute;top:58px;left:16px;right:16px;height:40px;display:flex;justify-content:space-between;align-items:center;z-index:5}
+.nav .btn-circle{background:rgba(255,255,255,.07);border:.5px solid rgba(255,255,255,.14)}
+.pill{height:40px;border-radius:20px;padding:0 16px;display:flex;align-items:center;gap:7px;font:600 14px/1 var(--f-ui);color:var(--text)}
+.pill svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pill.amber{background:var(--signal);color:#1a1208}
+.eyebrow.sig{color:var(--signal)}
+h1.t{font:400 40px/1 var(--f-serif);letter-spacing:-.4px;color:var(--text)}
+h1.t i{color:var(--signal)}
+.av{display:inline-grid;place-items:center;border-radius:50%;color:#1a1208;font:800 14px/1 var(--f-tight);letter-spacing:.2px;flex:none}
+.cond{font-family:var(--f-cond);font-weight:700;font-variant-numeric:tabular-nums}
+.card{background:var(--surface);border:.5px solid var(--line-2);border-radius:20px}
+.sec{font:600 11px/1 var(--f-ui);letter-spacing:1.8px;text-transform:uppercase;color:var(--text-3)}
+.a-sam{background:#ffb547}.a-ray{background:#8fe3a0}.a-chris{background:#ffd36e}.a-jordan{background:#6fd3ff}.a-priya{background:#ff7a8a}.a-marcus{background:#ff9f5a}

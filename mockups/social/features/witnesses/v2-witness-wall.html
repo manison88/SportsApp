@@ -1,0 +1,94 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Witness Wall</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+.nav{position:absolute;top:54px;left:16px;right:16px;height:44px;display:flex;align-items:center;justify-content:space-between}
+.nav .t{font:600 17px/1 var(--f-ui)}
+.hero{position:absolute;top:106px;left:0;right:0;height:196px;overflow:hidden}
+.hero img{object-position:50% 85%;transform:scale(1.5) translateY(-6%);filter:saturate(.75) brightness(.55)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.2),var(--ink) 98%)}
+.hero .c{position:absolute;z-index:2;left:20px;right:20px;bottom:8px}
+.hero .n{font:800 82px/.85 var(--f-cond);letter-spacing:-1px}
+.hero .n small{font:800 30px/1 var(--f-cond);letter-spacing:1px;color:var(--signal);margin-left:10px;text-transform:uppercase}
+.hero p{font:500 13px/1.35 var(--f-ui);color:var(--text-2);margin-top:10px}
+.hero p b{color:var(--text);font-weight:600}
+.wall{position:absolute;top:312px;left:16px;right:16px;border-radius:20px;background:var(--surface);border:.5px solid var(--line);padding:12px 12px 10px}
+.wall .r{display:flex;justify-content:space-between;font:500 11px/1 var(--f-ui);color:var(--text-3)}
+.wall canvas{display:block;width:100%;height:92px;margin-top:10px}
+.key{display:flex;gap:12px;margin-top:9px;font:500 11px/1 var(--f-ui);color:var(--text-2)}
+.key u{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;text-decoration:none;vertical-align:0}
+.sh{position:absolute;left:20px;right:20px;display:flex;justify-content:space-between;align-items:baseline}
+.sh h2{font:600 15px/1 var(--f-ui)}.sh span{font:500 12px/1 var(--f-ui);color:var(--text-3)}
+.ms{position:absolute;top:516px;left:0;right:0;display:flex;gap:10px;padding:0 16px}
+.m{flex:1;height:112px;border-radius:18px;padding:10px 6px 0;text-align:center;background:var(--surface);border:.5px solid var(--line);position:relative}
+.m .ic{width:38px;height:38px;margin:0 auto;border-radius:50%;display:grid;place-items:center;font:800 15px/1 var(--f-cond);color:var(--text-2);background:var(--high)}
+.m b{display:block;font:700 12.5px/1.15 var(--f-ui);margin-top:8px}
+.m span{display:block;font:500 10.5px/1.2 var(--f-ui);color:var(--text-3);margin-top:3px}
+.m.on{border-color:rgba(255,181,71,.55);background:linear-gradient(160deg,#2a1d08,#15110a)}
+.m.on .ic{background:conic-gradient(from 210deg,#ffe2a8,#ffb547,#b9701a,#ffd38a,#ffb547,#ffe2a8);color:#1b1308;box-shadow:0 0 16px rgba(255,181,71,.45)}
+.m.on span{color:var(--signal)}
+.m.lock{opacity:.6}
+.hi{position:absolute;top:640px;left:16px;right:16px;border-radius:20px;background:var(--surface);border:.5px solid var(--line);padding:12px 14px;display:flex;align-items:center;gap:12px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font:700 15px/1 var(--f-ui);color:#14110b;flex:none}
+.hi .t{flex:1}.hi .t b{display:block;font:600 14.5px/1.2 var(--f-ui)}.hi .t span{display:block;font:500 12px/1.3 var(--f-ui);color:var(--text-2);margin-top:2px}
+.btn{height:36px;padding:0 14px;border-radius:18px;background:rgba(255,211,110,.14);border:.5px solid rgba(255,211,110,.5);color:#ffd36e;font:600 13px/36px var(--f-ui);white-space:nowrap}
+.share{position:absolute;left:16px;right:16px;top:716px;height:74px;border-radius:20px;display:flex;align-items:center;gap:12px;padding:0 8px 0 10px;background:var(--signal);color:#1a1206}
+.card{width:44px;height:60px;border-radius:8px;background:#1b1308;transform:rotate(-6deg);display:grid;place-items:center;flex:none;box-shadow:0 4px 10px rgba(0,0,0,.35);border:1px solid #ffd38a}
+.card span{font:800 17px/1 var(--f-cond);color:var(--signal)}
+.share .t{flex:1}.share .t b{display:block;font:700 16px/1.1 var(--f-ui)}.share .t span{display:block;font:500 12px/1.3 var(--f-ui);margin-top:3px;opacity:.75}
+.share .go{height:42px;padding:0 16px;border-radius:21px;background:#1a1206;color:var(--signal);font:700 14px/42px var(--f-ui)}
+</style></head>
+<body class="phone">
+<div class="nav">
+  <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="t">Witness wall</div>
+  <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4M6 12v7h12v-7"/></svg></div>
+</div>
+<div class="hero"><img class="ph" src="../../../photos/wrigley-night.jpg" alt="">
+  <div class="c"><span class="eyebrow" style="color:var(--signal)">Landmark game</span>
+  <div class="n tnum" style="margin-top:8px">9,412<small>Witnesses</small></div>
+  <p><b>2016 World Series, Game 5</b> · Oct 30 · Wrigley Field<br>Chicago 3, Cleveland 2</p></div></div>
+
+<div class="wall">
+  <div class="r"><span>Every dot is 20 Witnesses, in the order they joined</span></div>
+  <canvas id="w" width="682" height="184"></canvas>
+  <div class="key"><span><u style="background:var(--signal)"></u>First 100</span><span><u style="background:#ffd36e"></u>Chris</span><span><u style="background:#8fe3a0"></u>Ray</span><span><u style="background:#fff;box-shadow:0 0 6px #fff"></u>You, #37</span></div>
+</div>
+
+<div class="sh" style="top:488px"><h2>Your milestones</h2><span>2 earned</span></div>
+<div class="ms">
+  <div class="m on"><div class="ic">100</div><b>First 100</b><span>Earned</span></div>
+  <div class="m on"><div class="ic">#37</div><b>Founding Witness</b><span>Earned</span></div>
+  <div class="m lock"><div class="ic">1K</div><b>First 1,000</b><span>Not yours</span></div>
+</div>
+
+<div class="hi">
+  <div class="av" style="background:#ffd36e">C</div>
+  <div class="t"><b>Chris was there too</b><span>Friends only · a quiet nudge</span></div>
+  <div class="btn">Say hi</div>
+</div>
+
+<div class="share"><div class="card"><span>#37</span></div>
+  <div class="t"><b>Founding Witness #37</b><span>Share your number as a card</span></div><div class="go">Share</div></div>
+
+<script>
+const c=document.getElementById('w'),x=c.getContext('2d');
+const cols=48,rows=10,W=c.width,H=c.height,px=W/cols,py=H/rows;
+const friends={22:'#ffd36e',61:'#8fe3a0'};
+for(let i=0;i<cols*rows;i++){
+  const col=i%cols,row=Math.floor(i/cols),n=i; // dot index = 10 witnesses
+  const cx=col*px+px/2,cy=row*py+py/2;
+  // order: column-major so the first columns are earliest
+}
+for(let col=0;col<cols;col++)for(let row=0;row<rows;row++){
+  const idx=col*rows+row, cx=col*px+px/2, cy=row*py+py/2;
+  let fill='rgba(245,241,234,'+(0.55-0.3*idx/480)+')',r=px*0.28;
+  if(idx<5){fill='#ffb547';}
+  if(idx===1){fill='#fff';x.shadowColor='#fff';x.shadowBlur=14;r=px*0.44}
+  const fcol=idx===240?'#ffd36e':idx===366?'#8fe3a0':null;
+  if(fcol){fill=fcol;x.shadowColor=fcol;x.shadowBlur=10;r=px*0.42}
+  x.fillStyle=fill;x.beginPath();x.arc(cx,cy,r,0,7);x.fill();x.shadowBlur=0;
+}
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

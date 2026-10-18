@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Rivalry Ledger</title>
+<link rel="stylesheet" href="../../../kit/kit.css"><link rel="stylesheet" href="common.css">
+<style>
+:root{--cc:#4c85ff;--cl:#ff4a5e}
+.mono{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;font:400 22px/1 var(--f-anton);letter-spacing:1px;flex:none}
+.mono.c{background:linear-gradient(145deg,#1a4fc7,#0e3386);color:#fff;box-shadow:0 0 0 1.5px #cc3433 inset}
+.mono.k{background:linear-gradient(145deg,#0c2340,#142f55);color:#ff6a7a;box-shadow:0 0 0 1.5px #e8344a inset}
+.match{position:absolute;top:104px;left:16px;right:16px;height:152px;border-radius:26px;background:linear-gradient(90deg,rgba(76,133,255,.20),rgba(255,255,255,.02) 50%,rgba(255,74,94,.20)),var(--surface);border:1px solid var(--line)}
+.team{position:absolute;top:18px;width:104px;display:flex;flex-direction:column;gap:8px}
+.team.l{left:16px}.team.r{right:16px;align-items:flex-end;text-align:right}
+.team .n{font:700 14px/1.15 var(--f-ui)}.team .n small{display:block;font:500 11px/1.3 var(--f-ui);color:var(--text-2);margin-top:2px}
+.rec{position:absolute;left:50%;top:18px;transform:translateX(-50%);text-align:center}
+.rec .big{font:800 58px/.95 var(--f-cond);letter-spacing:1px;white-space:nowrap}
+.rec .big span:first-child{color:var(--cc)}.rec .big span:last-child{color:var(--cl)}.rec .big i{font-style:normal;color:var(--text-4);margin:0 5px}
+.rec .cap{margin-top:8px;white-space:nowrap;font-size:10px;letter-spacing:1.4px}
+.foot{position:absolute;left:0;right:0;bottom:0;height:32px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:center;font:500 11px/1 var(--f-ui);color:var(--text-2)}
+.sec{position:absolute;left:16px;right:16px}
+.sec h3{font:600 11px/1 var(--f-ui);letter-spacing:1.8px;text-transform:uppercase;color:var(--text-2);margin-bottom:12px;display:flex;justify-content:space-between}
+.sec h3 span+span{color:var(--text-3);letter-spacing:.2px;text-transform:none;font-weight:500}
+.bar{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.bar .av{width:30px;height:30px;font-size:12px}
+.bar .tr{flex:1}
+.bar .lab{font:500 12px/1 var(--f-ui);color:var(--text-2);margin-bottom:7px}.bar .lab b{color:var(--text);font-weight:600}
+.bar .bg{height:10px;border-radius:5px;background:var(--raised);overflow:hidden}
+.bar .bg i{display:block;height:100%;border-radius:5px}
+.bar .pc{font:800 34px/1 var(--f-cond);width:62px;text-align:right}
+.dots{display:flex;justify-content:space-between}
+.g{width:34px;white-space:nowrap;text-align:center;font:500 9px/1 var(--f-ui);color:var(--text-3);letter-spacing:.2px}
+.g i{display:grid;place-items:center;width:26px;height:26px;margin:0 auto 7px;border-radius:50%;font:800 11px/1 var(--f-ui);font-style:normal;color:#fff}
+.g .w{background:var(--cc)}.g .l{background:var(--cl)}
+.g.hi i{box-shadow:0 0 0 2px var(--ink),0 0 0 3.5px var(--signal)}
+.cap2{margin-top:12px;font:500 12px/1.35 var(--f-ui);color:var(--text-2)}.cap2 b{color:var(--text)}
+.duel{display:flex;gap:10px}
+.gc{flex:1;border-radius:20px;background:var(--surface);border:1px solid var(--line);height:156px;position:relative;text-align:center;padding-top:12px}
+.gc svg{display:block;margin:0 auto}
+.gc .pv{position:absolute;left:0;right:0;top:56px;font:800 36px/1 var(--f-cond)}
+.gc .tl{position:absolute;left:0;right:0;top:100px;font:700 12px/1 var(--f-ui)}
+.gc .sb{position:absolute;left:8px;right:8px;top:120px;font:400 11px/1.25 var(--f-ui);color:var(--text-3)}
+.share{position:absolute;left:16px;right:16px;top:744px;height:52px;border-radius:26px;background:var(--signal);color:#1a1205;display:flex;align-items:center;justify-content:center;gap:10px;font:700 15px/1 var(--f-ui)}
+.share svg{width:18px;height:18px;stroke:#1a1205;fill:none;stroke-width:2.2}
+.share small{font-weight:500;opacity:.7;font-size:12px}
+</style></head>
+<body class="phone">
+<div class="nav">
+ <button class="btn-circle glass"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+ <div class="t"><small>Sam &amp; Chris</small>Rivalry ledger</div>
+ <button class="btn-circle glass"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M8 8l4-4 4 4M5 12v7h14v-7"/></svg></button>
+</div>
+
+<div class="match">
+ <div class="team l"><div class="mono c">CHC</div><div class="n">Sam<small>Chicago</small></div></div>
+ <div class="rec"><div class="big"><span>6</span><i>&ndash;</i><span>4</span></div><div class="cap">When you're both there</div></div>
+ <div class="team r"><div class="mono k">CLE</div><div class="n">Chris<small>Cleveland</small></div></div>
+ <div class="foot">10 games you've both seen since 2024</div>
+</div>
+
+<div class="sec" style="top:278px">
+ <h3><span>Who brings the wins</span></h3>
+ <div class="bar"><div class="av" style="background:var(--sam)">SO</div><div class="tr"><div class="lab">When <b>Sam's</b> there: Chicago win</div><div class="bg"><i style="width:61%;background:var(--cc)"></i></div></div><div class="pc" style="color:var(--cc)">61%</div></div>
+ <div class="bar" style="margin-bottom:0"><div class="av" style="background:var(--chris)">CD</div><div class="tr"><div class="lab">When <b>Chris'</b> there: Cleveland win</div><div class="bg"><i style="width:52%;background:var(--cl)"></i></div></div><div class="pc" style="color:var(--cl)">52%</div></div>
+</div>
+
+<div class="sec" style="top:402px">
+ <h3><span>2026, game by game</span><span>Chicago's result</span></h3>
+ <div class="dots">
+  <div class="g"><i class="w">W</i>Apr 18</div><div class="g"><i class="w">W</i>May 2</div><div class="g"><i class="l">L</i>May 24</div><div class="g"><i class="w">W</i>Jun 14</div><div class="g"><i class="l">L</i>Jul 3</div>
+  <div class="g"><i class="l">L</i>Jul 4</div><div class="g hi"><i class="l">L</i>Jul 5</div><div class="g"><i class="w">W</i>Aug 9</div><div class="g"><i class="w">W</i>Aug 30</div><div class="g"><i class="w">W</i>Sep 20</div>
+ </div>
+ <div class="cap2"><b>July was Chris's.</b> Cleveland took all three at Progressive Field, with you both in the seats.</div>
+</div>
+
+<div class="sec" style="top:532px">
+ <h3><span>Lucky charm duel</span><span>Team record with you there</span></h3>
+ <div class="duel">
+  <div class="gc">
+   <svg width="150" height="78" viewBox="0 0 150 78"><path d="M15 70A60 60 0 0 1 135 70" fill="none" stroke="#24242a" stroke-width="12" stroke-linecap="round"/><path d="M15 70A60 60 0 0 1 135 70" fill="none" stroke="#4c85ff" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="61 100"/></svg>
+   <div class="pv" style="color:var(--cc)">61%</div><div class="tl" style="color:var(--sam)">Sam: lucky charm</div><div class="sb">Without him: 48%</div>
+  </div>
+  <div class="gc">
+   <svg width="150" height="78" viewBox="0 0 150 78"><path d="M15 70A60 60 0 0 1 135 70" fill="none" stroke="#24242a" stroke-width="12" stroke-linecap="round"/><path d="M15 70A60 60 0 0 1 135 70" fill="none" stroke="#ff4a5e" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="52 100"/></svg>
+   <div class="pv" style="color:var(--cl)">52%</div><div class="tl" style="color:var(--chris)">Chris: coin flip</div><div class="sb">Without him: 50%</div>
+  </div>
+ </div>
+</div>
+
+<div class="share"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M8 8l4-4 4 4M5 12v7h14v-7"/></svg>Send the rivalry card <small>to Chris</small></div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

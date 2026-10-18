@@ -1,0 +1,100 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Circle home</title>
+<link rel="stylesheet" href="../../../kit/kit.css"><link rel="stylesheet" href="circles.css">
+<style>
+.hero{position:absolute;left:20px;right:20px;top:190px;display:flex}
+.hero div{flex:1;padding-right:8px}
+.hero div+div{padding-left:16px;border-left:.5px solid var(--line-2)}
+.hero b{display:block;font:700 58px/.9 var(--f-cond);letter-spacing:-.5px;color:var(--text);font-variant-numeric:tabular-nums}
+.hero b.s{color:var(--signal)}
+.hero span{display:block;margin-top:8px;font:600 11px/1 var(--f-ui);letter-spacing:1.6px;text-transform:uppercase;color:var(--text-3)}
+.cap{position:absolute;left:20px;right:20px;top:274px;font:400 13px/1.35 var(--f-ui);color:var(--text-2)}
+.mem{position:absolute;left:20px;right:20px;top:320px;display:flex;justify-content:space-between}
+.mem div{width:48px;text-align:center}
+.mem .av{width:48px;height:48px;font-size:15px}
+.mem .me .av{box-shadow:0 0 0 2px var(--ink),0 0 0 3.5px var(--signal)}
+.mem em{display:block;margin-top:6px;font:600 12px/1 var(--f-ui);font-style:normal;color:var(--text)}
+.mem small{display:block;margin-top:3px;font:500 11px/1 var(--f-cond);letter-spacing:.4px;color:var(--text-3)}
+.wallh{position:absolute;left:20px;right:20px;top:420px;display:flex;justify-content:space-between;align-items:baseline}
+.wallh span:last-child{font:500 12px/1 var(--f-ui);color:var(--text-3)}
+.wall{position:absolute;left:0;right:0;top:448px;height:236px;display:flex;gap:12px;padding-left:20px;overflow:hidden}
+.wc{flex:none;width:280px;height:236px;background:var(--surface);border:.5px solid var(--line-2);border-radius:20px;overflow:hidden;position:relative}
+.wc .ph{height:100px;background-size:cover;position:relative}
+.wc .ph:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.35),transparent 40%,rgba(18,18,21,.95))}
+.wc .by{position:absolute;left:12px;top:10px;z-index:2;display:flex;align-items:center;gap:7px;font:600 12px/1 var(--f-ui);color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.wc .by .av{width:22px;height:22px;font-size:9px;box-shadow:0 0 0 1.5px rgba(0,0,0,.5)}
+.wc .by u{text-decoration:none;font-weight:500;opacity:.75}
+.wc .ev{position:absolute;left:12px;bottom:8px;z-index:2;font:600 10.5px/1 var(--f-ui);letter-spacing:1.5px;text-transform:uppercase;color:var(--signal)}
+.sc{display:flex;align-items:center;gap:10px;padding:10px 14px 0}
+.sc .mono-badge{width:32px;height:32px;font-size:15px;border-radius:9px}
+.sc .n{font:700 34px/1 var(--f-cond);font-variant-numeric:tabular-nums;letter-spacing:-.3px}
+.sc .d{font:700 20px/1 var(--f-cond);color:var(--text-4)}
+.sc .w{margin-left:auto;text-align:right;font:500 11px/1.35 var(--f-ui);color:var(--text-3)}
+.sc .w b{display:block;font-weight:600;color:var(--text-2)}
+.rx{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;gap:10px}
+.stack{display:flex}.stack .av{width:24px;height:24px;font-size:9px;box-shadow:0 0 0 2px var(--surface)}.stack .av+.av{margin-left:-9px}
+.q{position:absolute;left:14px;right:14px;top:150px;font:400 italic 15px/1.2 var(--f-serif);color:var(--text-2)}
+.rx p{font:500 11.5px/1.25 var(--f-ui);color:var(--text-2);flex:1}
+.rx p b{color:var(--text);font-weight:600}
+.btn{height:32px;padding:0 12px;border-radius:16px;display:flex;align-items:center;gap:6px;font:600 12px/1 var(--f-ui);white-space:nowrap}
+.btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.btn.on{background:var(--signal);color:#1a1208}
+.btn.off{border:1px solid var(--line-2);color:var(--text)}
+.pp{position:absolute;left:20px;right:20px;top:700px;height:106px;padding:0 16px 0 14px;display:flex;align-items:center;gap:16px}
+.pp .rg{width:88px;height:88px;position:relative;flex:none}
+.pp .rg svg{width:88px;height:88px;display:block}
+.pp .rg b{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 30px/1 var(--f-cond);padding-bottom:1px}
+.pp .rg b small{display:block;font:600 9px/1 var(--f-ui);letter-spacing:1.3px;color:var(--text-3);text-align:center;margin-top:3px}
+.pp h3{font:400 22px/1.05 var(--f-serif);margin:7px 0 8px}
+.pp h3 i{color:var(--signal)}
+.pp .miss{display:flex;gap:6px;align-items:center;font:500 12px/1 var(--f-ui);color:var(--text-2)}
+.pp .miss span{border:1px dashed rgba(245,241,234,.4);border-radius:7px;padding:4px 6px;font:700 11px/1 var(--f-cond);letter-spacing:.8px;color:var(--text)}
+.pp .chev{margin-left:auto;stroke:var(--text-3);fill:none;stroke-width:2;width:16px;height:16px;flex:none}
+</style></head>
+<body class="phone"><div class="glow"></div>
+<div class="nav">
+  <div class="btn-circle"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="pill glass"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 19c.6-3.4 3.2-5 6.5-5s5.9 1.6 6.5 5M19 8v6M16 11h6"/></svg>Invite</div>
+</div>
+<div class="abs eyebrow sig" style="left:20px;top:116px;display:flex;align-items:center;gap:6px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Private circle · 6 members</div>
+<h1 class="t abs" style="left:20px;top:136px">Section 314 <i>Crew</i></h1>
+
+<div class="hero"><div><b class="s">412</b><span>games</span></div><div><b>71</b><span>venues</span></div><div><b>9</b><span>countries</span></div></div>
+<p class="cap">Each game counts once, even when you sat together.</p>
+
+<div class="mem">
+  <div class="me"><span class="av a-sam">SO</span><em>You</em><small>60</small></div>
+  <div><span class="av a-ray">RO</span><em>Ray</em><small>118</small></div>
+  <div><span class="av a-chris">CD</span><em>Chris</em><small>74</small></div>
+  <div><span class="av a-jordan">JP</span><em>Jordan</em><small>52</small></div>
+  <div><span class="av a-priya">PN</span><em>Priya</em><small>49</small></div>
+  <div><span class="av a-marcus">MB</span><em>Marcus</em><small>59</small></div>
+</div>
+
+<div class="wallh"><span class="sec">On the wall</span><span>Chosen by members</span></div>
+<div class="wall">
+  <div class="wc">
+    <div class="ph" style="background-image:url(../../../photos/wrigley-night.jpg);background-size:230% auto;background-position:72% 52%"></div>
+    <div class="by"><span class="av a-ray">RO</span>Ray <u>posted · 2d</u></div>
+    <div class="ev" style="top:78px;bottom:auto">2016 World Series · Game 5</div>
+    <div class="sc"><span class="mono-badge" style="background:linear-gradient(135deg,#0e3386,#cc3433)">CHC</span><span class="n">3</span><span class="d">&ndash;</span><span class="n">2</span><span class="mono-badge" style="background:linear-gradient(135deg,#0c2340,#e8344a)">CLE</span><div class="w"><b>Wrigley Field</b>Oct 30, 2016</div></div>
+    <div class="q">&ldquo;Sec 314, bottom of the 9th. Still shaking.&rdquo;</div>
+    <div class="rx"><div class="stack"><span class="av a-ray">RO</span><span class="av a-chris">CD</span><span class="av a-sam">SO</span></div><p><b>3 were there</b><br>Ray, Chris, you</p><div class="btn on"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>You too</div></div>
+  </div>
+  <div class="wc">
+    <div class="ph" style="background-image:url(../../../photos/soldier-soccer.jpg);background-size:210% auto;background-position:50% 56%"></div>
+    <div class="by"><span class="av a-priya">PN</span>Priya <u>posted · 5d</u></div>
+    <div class="ev" style="top:78px;bottom:auto">World Cup · Group stage</div>
+    <div class="sc"><span class="mono-badge" style="background:linear-gradient(135deg,#8a1538,#5a0e25)">QAT</span><span class="n">1</span><span class="d">&ndash;</span><span class="n">3</span><span class="mono-badge" style="background:linear-gradient(135deg,#002f6c,#c9a800)">BIH</span><div class="w"><b>Lumen Field</b>Jun 24, 2026</div></div>
+    <div class="q">&ldquo;Three goals and I lost my voice.&rdquo;</div>
+    <div class="rx"><div class="stack"><span class="av a-priya">PN</span><span class="av a-jordan">JP</span></div><p><b>2 were there</b><br>Priya, Jordan</p><div class="btn off">I was there too</div></div>
+  </div>
+</div>
+
+<div class="card pp">
+  <div class="rg"><svg id="rg"></svg><b>27<small>OF 30</small></b></div>
+  <div style="flex:1;min-width:0"><div class="sec" style="color:var(--signal)">Circle passport · MLB</div><h3>27 parks, <i>together</i></h3><div class="miss">Still open <span>SF</span><span>SD</span><span>SEA</span></div></div>
+  <svg class="chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+</div>
+<script src="circles.js"></script><script>ring(document.getElementById('rg'),88,40,7)</script>
+<script src="../../../kit/kit.js"></script></body></html>

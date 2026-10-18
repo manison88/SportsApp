@@ -1,0 +1,8 @@
+:root{--sam:#ffb547;--chris:#ffd36e;--dana:#b79cff;--ray:#8fe3a0;--jordan:#6fd3ff;--priya:#ff7a8a;--marcus:#ff9f5a}
+body.phone{background:radial-gradient(120% 60% at 50% 0%,#15120c 0%,#050506 60%)}
+.nav{position:absolute;top:54px;left:16px;right:16px;height:40px;display:flex;align-items:center;justify-content:space-between}
+.nav .t{font:700 15px/1 var(--f-ui);letter-spacing:-.1px}
+.nav .t small{display:block;font:600 10px/1 var(--f-ui);letter-spacing:1.8px;text-transform:uppercase;color:var(--text-3);margin-bottom:4px;text-align:center}
+.cap{font:600 11px/1 var(--f-ui);letter-spacing:1.8px;text-transform:uppercase;color:var(--text-3)}
+.cond{font-family:var(--f-cond);font-weight:800;font-variant-numeric:tabular-nums}
+.av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font:800 13px/1 var(--f-tight);color:#1a1205;flex:none}

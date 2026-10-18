@@ -1,0 +1,96 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Game Page</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+.nav{position:absolute;top:54px;left:16px;right:16px;height:44px;display:flex;align-items:center;justify-content:space-between}
+.pill{height:40px;border-radius:20px;padding:0 16px;display:flex;align-items:center;gap:10px;font:700 17px/1 var(--f-cond);letter-spacing:.8px;background:var(--surface);border:.5px solid var(--line-2)}
+.pill b{font-size:22px}.pill i{width:1px;height:16px;background:var(--line-2)}.pill em{font-style:normal;color:var(--signal);font-size:13px;letter-spacing:2px}
+.hero{position:absolute;top:108px;left:16px;right:16px;height:88px;border-radius:20px;overflow:hidden;border:.5px solid var(--line)}
+.hero img{filter:saturate(.8) brightness(.75)}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,6,.92),rgba(5,5,6,.35))}
+.hero div{position:absolute;z-index:2;left:16px;top:14px}
+.hero h1{font:400 26px/1.05 var(--f-serif);margin-top:6px}
+.hero h1 i{color:var(--signal)}
+.hero p{font:500 12px/1 var(--f-ui);color:var(--text-2);margin-top:8px}
+.wit{position:absolute;top:208px;left:16px;right:16px;bottom:0}
+.hd{display:flex;justify-content:space-between;align-items:center}
+.chip{font:600 10.5px/1 var(--f-ui);letter-spacing:.4px;color:var(--text-2);display:flex;gap:5px;align-items:center;padding:6px 9px;border-radius:10px;background:var(--surface);border:.5px solid var(--line-2)}
+.chip svg{width:11px;height:11px;stroke:var(--signal);fill:none;stroke-width:2.2}
+.count{display:flex;align-items:flex-end;gap:12px;margin-top:10px}
+.count .n{font:800 76px/.84 var(--f-cond);letter-spacing:-1px;color:var(--text)}
+.count p{font:500 14px/1.3 var(--f-ui);color:var(--text-2);padding-bottom:3px}
+.count p b{color:var(--text);font-weight:600}
+.meter{margin-top:14px;height:6px;border-radius:3px;background:var(--high);position:relative}
+.meter i{position:absolute;left:0;top:0;bottom:0;width:7%;border-radius:3px;background:var(--signal);box-shadow:0 0 12px rgba(255,181,71,.6)}
+.mlab{display:flex;justify-content:space-between;margin-top:7px;font:500 11px/1 var(--f-ui);color:var(--text-3)}
+.badge{margin-top:16px;border-radius:22px;height:92px;position:relative;overflow:hidden;display:flex;align-items:center;padding:0 16px 0 14px;gap:14px;
+ background:linear-gradient(120deg,#2a1d08 0%,#15110a 55%,#1a1409 100%);border:1px solid rgba(255,181,71,.5)}
+.badge:before{content:"";position:absolute;inset:0;background:radial-gradient(120px 90px at 12% 20%,rgba(255,200,110,.28),transparent 70%)}
+.coin{position:relative;width:64px;height:64px;border-radius:50%;flex:none;display:grid;place-items:center;
+ background:conic-gradient(from 210deg,#ffe2a8,#ffb547,#b9701a,#ffd38a,#ffb547,#ffe2a8);box-shadow:0 0 22px rgba(255,181,71,.45),inset 0 0 0 2px rgba(255,255,255,.35)}
+.coin:after{content:"";position:absolute;inset:6px;border-radius:50%;background:#1b1308;box-shadow:inset 0 0 0 1px rgba(255,181,71,.7)}
+.coin span{position:relative;z-index:2;font:800 21px/1 var(--f-cond);color:var(--signal);letter-spacing:-.3px}
+.badge .t{position:relative;flex:1}
+.badge .t small{display:block;font:600 10.5px/1 var(--f-ui);letter-spacing:1.8px;color:var(--signal);text-transform:uppercase}
+.badge .t b{display:block;font:800 26px/1.05 var(--f-cond);margin-top:6px;letter-spacing:.2px}
+.badge .t span{display:block;font:500 12px/1.3 var(--f-ui);color:var(--text-2);margin-top:4px}
+.badge .go{position:relative;width:28px;height:28px;border-radius:14px;background:rgba(255,181,71,.16);display:grid;place-items:center}
+.badge .go svg{width:13px;height:13px;stroke:var(--signal);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.fr{margin-top:12px;border-radius:20px;background:var(--surface);border:.5px solid var(--line);padding:14px;display:flex;gap:12px;align-items:center}
+.avs{display:flex;flex:none}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:700 15px/1 var(--f-ui);color:#14110b;border:2.5px solid var(--surface)}
+.avs .av+.av{margin-left:-10px}
+.fr .t b{font:600 15px/1.25 var(--f-ui);display:block}
+.fr .t span{white-space:nowrap;font:500 12.5px/1.3 var(--f-ui);color:var(--text-2);display:block;margin-top:3px}
+.sec{margin-top:12px;border-radius:20px;background:var(--surface);border:.5px solid var(--line);padding:14px}
+.sec .row{display:flex;justify-content:space-between;align-items:baseline}
+.sec h3{font:600 14px/1 var(--f-ui)}
+.sec .row span{font:500 11px/1 var(--f-ui);color:var(--text-3)}
+.bar{display:flex;gap:3px;height:30px;margin-top:12px}
+.bar i{display:block;border-radius:7px}
+.leg{display:grid;grid-template-columns:612fr 438fr 234fr;gap:3px;margin-top:10px}
+.leg div{font:500 11.5px/1.3 var(--f-ui);color:var(--text-2)}
+.leg b{display:block;font:700 17px/1 var(--f-cond);color:var(--text);letter-spacing:.3px;margin-bottom:2px}
+.cta{margin-top:14px;height:50px;border-radius:25px;background:var(--signal);color:#1a1206;display:flex;align-items:center;justify-content:center;gap:8px;font:700 16px/1 var(--f-ui)}.cta svg{width:17px;height:17px;stroke:#1a1206;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.leg u{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:5px;text-decoration:none}
+</style></head>
+<body class="phone">
+<div class="nav">
+  <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="pill"><span>QAT</span><b class="tnum">1</b><i></i><span>BIH</span><b class="tnum">3</b><i></i><em>FINAL</em></div>
+  <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4M6 12v7h12v-7"/></svg></div>
+</div>
+<div class="hero"><img class="ph" src="../../../photos/soldier-soccer.jpg" alt="">
+  <div><span class="eyebrow" style="color:var(--text-2)">World Cup · Group stage</span><h1>Wed, Jun 24 <i>at Lumen Field</i></h1><p>Seattle · 66,925 in attendance</p></div></div>
+
+<div class="wit">
+  <div class="hd"><span class="eyebrow" style="color:var(--signal)">Witnesses</span>
+    <span class="chip"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Anonymous count</span></div>
+  <div class="count"><div class="n tnum">1,284</div><p><b>fans logged this game</b><br>out of 66,925</p></div>
+  <div class="meter"><i></i></div>
+  <div class="mlab"><span>1.9% of the crowd carries Witness</span><span>1 in 52</span></div>
+
+  <div class="badge">
+    <div class="coin"><span>#212</span></div>
+    <div class="t"><small>Your place</small><b>Witness #212</b><span>The 212th fan to log this game</span></div>
+    <div class="go"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div>
+  </div>
+
+  <div class="fr">
+    <div class="avs"><div class="av" style="background:#ffd36e">C</div><div class="av" style="background:#6fd3ff">J</div></div>
+    <div class="t"><b>Chris and Jordan were there too</b><span>Section 126 and 131 · you in 144</span></div>
+  </div>
+
+  <div class="sec">
+    <div class="row"><h3>Where the Witnesses sat</h3><span>By stand · no individuals</span></div>
+    <div class="bar"><i style="flex:612;background:var(--signal)"></i><i style="flex:438;background:#6b6a72"></i><i style="flex:234;background:#b79cff"></i></div>
+    <div class="leg">
+      <div><b class="tnum">612</b><u style="background:var(--signal)"></u>Bosnia end</div>
+      <div><b class="tnum">438</b><u style="background:#6b6a72"></u>Neutral</div>
+      <div><b class="tnum">234</b><u style="background:#b79cff"></u>Qatar</div>
+    </div>
+  </div>
+  <div class="cta"><svg viewBox="0 0 24 24"><path d="M12 15V4M8 8l4-4 4 4M6 12v7h12v-7"/></svg>Share my Witness #212</div>
+</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

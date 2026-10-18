@@ -1,0 +1,7 @@
+@import url("../../../kit/kit.css");
+.av{display:inline-grid;place-items:center;border-radius:50%;font:800 13px/1 var(--f-ui);color:#14100a;box-shadow:0 0 0 2px var(--ink)}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--live);box-shadow:0 0 0 3px rgba(255,77,61,.22)}
+.mb{position:absolute;display:grid;place-items:center;border-radius:30%;font:900 15px/1 var(--f-cond);color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.2)}
+.card{position:absolute;background:var(--surface);border:.5px solid var(--line-2);border-radius:20px}
+.stopbtn{font:700 13px/1 var(--f-ui);padding:9px 14px;border-radius:14px;background:rgba(255,77,61,.14);color:#ff8b7e;border:.5px solid rgba(255,77,61,.5)}
+svg.i{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}

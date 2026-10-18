@@ -1,0 +1,85 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Here with you</title>
+<link rel="stylesheet" href="common.css">
+<style>
+.hdr{position:absolute;top:58px;left:20px;right:20px;height:40px;display:flex;align-items:center;justify-content:space-between}
+.livepill{display:flex;align-items:center;gap:7px;font:700 11px/1 var(--f-ui);letter-spacing:1.8px;color:var(--live);}
+.venue{font:600 17px/1.1 var(--f-ui);letter-spacing:-.2px;margin-top:5px}
+.bug{position:absolute;top:106px;left:16px;right:16px;height:58px;border-radius:18px;background:var(--surface);border:.5px solid var(--line-2);display:flex;align-items:center;padding:0 16px;gap:0}
+.bug .t{display:flex;align-items:center;gap:9px;flex:1}
+.bug .n{font:800 34px/1 var(--f-cond);font-variant-numeric:tabular-nums}
+.bug .mid{width:96px;text-align:center;border-left:.5px solid var(--line-2);border-right:.5px solid var(--line-2);padding:0 6px;margin:0 10px}
+.bug .mid b{display:block;font:700 15px/1 var(--f-cond);letter-spacing:1.4px;color:var(--signal)}
+.bug .mid span{display:block;font:500 10.5px/1 var(--f-ui);color:var(--text-2);margin-top:5px}
+.in{left:16px;right:16px;top:176px;height:76px;border-color:rgba(255,181,71,.4);background:linear-gradient(100deg,rgba(255,181,71,.16),rgba(255,181,71,.03) 70%),var(--surface);display:flex;align-items:center;padding:0 16px;gap:14px}
+.in .chk{width:40px;height:40px;border-radius:50%;background:var(--signal);display:grid;place-items:center;color:#1a1204}
+.in h2{font:400 28px/1 var(--f-serif);letter-spacing:-.2px}
+.in h2 i{color:var(--signal)}
+.in p{font:500 12.5px/1.3 var(--f-ui);color:var(--text-2);margin-top:4px}
+.mapcard{left:16px;right:16px;top:264px;height:284px;overflow:hidden}
+.mapcard svg{position:absolute;left:0;top:30px}
+.mapcard .cap{position:absolute;left:16px;top:14px;font:600 10.5px/1 var(--f-ui);letter-spacing:1.6px;color:var(--text-3);text-transform:uppercase}
+.mapcard .leg{position:absolute;right:14px;top:12px;font:500 11px/1 var(--f-ui);color:var(--text-3);display:flex;gap:5px;align-items:center}
+.here{left:16px;right:16px;top:566px}
+.here .e{display:flex;justify-content:space-between;padding:0 4px 8px}
+.row2{display:flex;gap:10px}
+.fr{flex:1;height:60px;border-radius:18px;background:var(--surface);border:.5px solid var(--line-2);display:flex;align-items:center;gap:10px;padding:0 12px}
+.fr b{display:block;font:600 15px/1.1 var(--f-ui)}
+.fr div span{display:block;font:500 12px/1.2 var(--f-ui);color:var(--text-2);margin-top:3px}
+.fr em{font-style:normal;color:#8fe3a0}
+.priv{left:16px;right:16px;top:688px;height:64px;border-color:rgba(255,181,71,.55);background:rgba(255,181,71,.07);display:flex;align-items:center;padding:0 12px 0 14px;gap:11px}
+.priv .lock{color:var(--signal);flex:none}
+.priv p{flex:1;font:500 12.5px/1.3 var(--f-ui);color:var(--text)}
+.priv p b{font-weight:700;color:var(--signal)}
+.save{position:absolute;left:16px;right:16px;top:760px;height:52px;border-radius:26px;background:var(--text);color:#111;font:700 16px/1 var(--f-ui);display:flex;align-items:center;justify-content:center;gap:9px}
+</style></head>
+<body class="phone">
+<div class="hdr">
+  <div><div class="livepill"><span class="live-dot"></span>LIVE · TONIGHT</div><div class="venue">Wrigley Field</div></div>
+  <div class="btn-circle glass"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+</div>
+
+<div class="bug">
+  <div class="t"><div class="mono-badge" style="width:34px;height:34px;background:linear-gradient(135deg,#0e3386,#0e3386 55%,#cc3433);font:900 14px var(--f-cond)">CHC</div><span class="n">3</span></div>
+  <div class="mid"><b>TOP 6</b><span>1 out</span></div>
+  <div class="t" style="justify-content:flex-end"><span class="n">2</span><div class="mono-badge" style="width:34px;height:34px;background:linear-gradient(135deg,#12284c,#12284c 55%,#8a6d00);font:900 14px var(--f-cond)">MIL</div></div>
+</div>
+
+<div class="card in">
+  <div class="chk"><svg class="i" viewBox="0 0 24 24" style="width:22px;height:22px;stroke-width:2.8"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+  <div><h2>You're <i>in</i></h2><p>Checked in 7:05 PM · Section 124</p></div>
+</div>
+
+<div class="card mapcard">
+  <div class="cap">Wrigley Field · sections</div>
+  <div class="leg"><span style="width:7px;height:7px;border-radius:50%;background:var(--signal)"></span>You</div>
+  <svg id="m" width="361" height="244"></svg>
+</div>
+
+<div class="abs here">
+  <div class="e"><span class="eyebrow">Here with you</span><span style="font:500 12px var(--f-ui);color:var(--text-3)">2 of 3 friends going</span></div>
+  <div class="row2">
+    <div class="fr"><span class="av" style="width:36px;height:36px;background:#ffd36e">CD</span><div><b>Chris</b><span>Sec 214 · <em>close</em></span></div></div>
+    <div class="fr"><span class="av" style="width:36px;height:36px;background:#6fd3ff">JP</span><div><b>Jordan</b><span>Sec 131</span></div></div>
+  </div>
+</div>
+
+<div class="card priv">
+  <svg class="i lock" viewBox="0 0 24 24" style="width:22px;height:22px"><rect x="5" y="11" width="14" height="9" rx="2.5"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+  <p><b>Sharing your section</b> with 2 friends until the final whistle</p>
+  <span class="stopbtn">Stop</span>
+</div>
+
+<div class="save"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .8-4.4 4.2 1.1 6L12 16.7 6.7 19.6l1.1-6L3.4 9.4l6-.8z"/></svg>Save this moment</div>
+
+<script src="map.js"></script>
+<script>
+drawBowl(document.getElementById('m'),{w:361,h:244,cy:122,gate:null,
+ hi:{u:[{a:268,color:'#ffd36e'}],l:[{a:262,color:'#ffb547'},{a:108,color:'#6fd3ff'}]},
+ dots:[{ring:'l',a:262,color:'#ffb547',you:true,label:'You · 124',dx:44,dy:20},
+       {ring:'u',a:268,color:'#ffd36e',label:'Chris · 214',dx:46,dy:-30},
+       {ring:'l',a:108,color:'#6fd3ff',label:'Jordan · 131',dx:6,dy:24}],
+ text:[{x:180,y:34,s:'BLEACHERS'},{x:180,y:228,s:'HOME PLATE'}]});
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

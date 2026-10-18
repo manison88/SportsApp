@@ -1,0 +1,77 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>My People</title>
+<link rel="stylesheet" href="../../../kit/kit.css"><link rel="stylesheet" href="common.css">
+<style>
+.hd{position:absolute;top:58px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-end}
+.hd .cap{margin-bottom:8px}.hd h1{font:400 38px/1 var(--f-serif);letter-spacing:-.3px}.hd h1 em{color:var(--signal)}
+.inv{position:absolute;top:134px;left:16px;right:16px;border-radius:22px;background:linear-gradient(135deg,rgba(255,181,71,.16),rgba(255,181,71,.03)),var(--surface);border:1px solid rgba(255,181,71,.25);padding:14px}
+.link{display:flex;align-items:center;gap:10px;height:42px;border-radius:12px;background:rgba(0,0,0,.4);padding:0 6px 0 12px;font:500 13px/1 var(--f-mono);color:var(--text)}
+.link span{flex:1;white-space:nowrap}
+.cp{height:30px;padding:0 12px;border-radius:9px;background:var(--signal);color:#1a1205;font:700 12px/30px var(--f-ui)}
+.inv .r2{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font:500 12px/1.3 var(--f-ui);color:var(--text-2)}
+.inv .r2 b{color:var(--signal);font-weight:600}
+.inv .r2 svg{width:15px;height:15px;stroke:var(--signal);fill:none;stroke-width:2;vertical-align:-3px;margin-right:6px}
+.inv .lk{font:600 11px/1 var(--f-ui);color:var(--text-3);margin-bottom:10px;display:flex;gap:6px;align-items:center}
+.race{position:absolute;top:286px;left:16px;right:16px;border-radius:22px;background:var(--surface);border:1px solid var(--line);padding:14px 14px 6px}
+.race .top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.race .top h2{font:800 22px/1 var(--f-cond);letter-spacing:1px;text-transform:uppercase}
+.race .top h2 em{font-style:normal;color:var(--signal)}
+.race .top span{font:500 11px/1 var(--f-ui);color:var(--text-3)}
+.lb{display:flex;align-items:center;gap:10px;height:40px}
+.lb .rk{width:14px;font:800 17px/1 var(--f-cond);color:var(--text-3);text-align:center}
+.lb .av{width:28px;height:28px;font-size:11px}
+.lb .nm{width:52px;font:600 13px/1 var(--f-ui)}
+.lb .tr{flex:1;height:8px;border-radius:4px;background:var(--raised)}.lb .tr i{display:block;height:100%;border-radius:4px}
+.lb .ct{width:20px;text-align:right;font:800 20px/1 var(--f-cond)}
+.lb.me{background:rgba(255,181,71,.08);margin:0 -8px;padding:0 8px;border-radius:12px}
+.lb.first .rk{color:var(--signal)}
+.pl{position:absolute;top:516px;left:16px;right:16px}
+.pl h3{display:flex;justify-content:space-between;font:600 11px/1 var(--f-ui);letter-spacing:1.8px;text-transform:uppercase;color:var(--text-2);margin-bottom:10px}
+.pl h3 span+span{letter-spacing:.2px;text-transform:none;color:var(--text-3);font-weight:500}
+.fr{border-radius:20px;background:var(--surface);border:1px solid var(--line);margin-bottom:8px;overflow:hidden}
+.fr .m{display:flex;align-items:center;gap:12px;height:60px;padding:0 14px}
+.ring{position:relative;width:40px;height:40px;flex:none}.ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:800 12px/1 var(--f-tight);color:var(--text)}
+.fr .tx{flex:1;font:600 15px/1.2 var(--f-ui)}.fr .tx small{display:block;font:400 12px/1.3 var(--f-ui);color:var(--text-3);margin-top:2px}
+.fr .pk{font:800 20px/1 var(--f-cond);color:var(--text-2)}.fr .pk small{font:500 10px/1 var(--f-ui);color:var(--text-3);letter-spacing:.2px}
+.pv{border-top:1px solid var(--line);padding:12px 14px 14px;background:rgba(255,211,110,.04)}
+.pv .q{font:600 12px/1 var(--f-ui);margin-bottom:10px;display:flex;justify-content:space-between}.pv .q span{color:var(--text-3);font-weight:500}
+.tg{display:flex;gap:8px}
+.tg div{flex:1;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;padding:0 10px;font:600 12px/1 var(--f-ui)}
+.tg .on{background:rgba(143,227,160,.12);border:1px solid rgba(143,227,160,.35)}
+.tg .off{background:var(--raised);border:1px solid var(--line);color:var(--text-3)}
+.sw{width:28px;height:17px;border-radius:9px;position:relative;flex:none}
+.sw:after{content:"";position:absolute;top:2px;width:13px;height:13px;border-radius:50%;background:#fff}
+.on .sw{background:#34c759}.on .sw:after{right:2px}.off .sw{background:#3a3a40}.off .sw:after{left:2px;background:#a5a5ab}
+</style></head>
+<body class="phone">
+<div class="hd"><div><div class="cap">You</div><h1>My <em>people</em></h1></div>
+ <button class="btn-circle glass" style="margin-bottom:2px"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
+
+<div class="inv">
+ <div class="lk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Friends only. No public profiles, no search.</div>
+ <div class="link"><span>witness.app/i/sam-okafor</span><div class="cp">Copy</div></div>
+ <div class="r2"><div><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M17 8v6M14 11h6"/></svg>Invite from contacts</div><b>3 friends on Witness</b></div>
+</div>
+
+<div class="race">
+ <div class="top"><h2>Passport <em>race</em></h2><span>Most MLB parks in 2026</span></div>
+ <div class="lb first"><div class="rk">1</div><div class="av" style="background:var(--jordan)">JP</div><div class="nm">Jordan</div><div class="tr"><i style="width:100%;background:var(--jordan)"></i></div><div class="ct">5</div></div>
+ <div class="lb"><div class="rk">2</div><div class="av" style="background:var(--chris)">CD</div><div class="nm">Chris</div><div class="tr"><i style="width:80%;background:var(--chris)"></i></div><div class="ct">4</div></div>
+ <div class="lb me"><div class="rk">3</div><div class="av" style="background:var(--sam)">SO</div><div class="nm">You</div><div class="tr"><i style="width:60%;background:var(--sam)"></i></div><div class="ct">3</div></div>
+ <div class="lb"><div class="rk">4</div><div class="av" style="background:var(--dana)">DR</div><div class="nm">Dana</div><div class="tr"><i style="width:20%;background:var(--dana)"></i></div><div class="ct">1</div></div>
+</div>
+
+<div class="pl">
+ <h3><span>Friends</span><span>6 people</span></h3>
+ <div class="fr">
+  <div class="m"><div class="ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="#24242a" stroke-width="4"/><circle cx="20" cy="20" r="17" fill="none" stroke="#ffd36e" stroke-width="4" stroke-linecap="round" pathLength="100" stroke-dasharray="37 100"/></svg><b>CD</b></div>
+   <div class="tx">Chris Dunn<small>41 games &middot; 17 venues</small></div><div class="pk">11<small>/30</small></div></div>
+  <div class="pv"><div class="q">What Chris can see <span>Only you can change this</span></div>
+   <div class="tg"><div class="on">Games<i class="sw"></i></div><div class="on">Venues<i class="sw"></i></div><div class="off">Photos<i class="sw"></i></div></div></div>
+ </div>
+ <div class="fr"><div class="m"><div class="ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="#24242a" stroke-width="4"/><circle cx="20" cy="20" r="17" fill="none" stroke="#b79cff" stroke-width="4" stroke-linecap="round" pathLength="100" stroke-dasharray="30 100"/></svg><b>DR</b></div><div class="tx">Dana Reyes<small>Games, venues and photos</small></div><div class="pk">9<small>/30</small></div></div></div>
+ <div class="fr"><div class="m"><div class="ring"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="#24242a" stroke-width="4"/><circle cx="20" cy="20" r="17" fill="none" stroke="#8fe3a0" stroke-width="4" stroke-linecap="round" pathLength="100" stroke-dasharray="20 100"/></svg><b>RO</b></div><div class="tx">Ray Okafor<small>Games and venues</small></div><div class="pk">6<small>/30</small></div></div></div>
+</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

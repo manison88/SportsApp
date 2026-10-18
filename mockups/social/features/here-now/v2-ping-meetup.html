@@ -1,0 +1,80 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Meet up ping</title>
+<link rel="stylesheet" href="common.css">
+<style>
+.bgscore{position:absolute;top:60px;left:0;right:0;text-align:center;font:600 12px var(--f-ui);color:var(--text-3);letter-spacing:1.6px}
+.notif{position:absolute;top:84px;left:12px;right:12px;height:92px;border-radius:24px;padding:14px 16px;display:flex;gap:12px;z-index:5;box-shadow:0 12px 40px rgba(0,0,0,.6)}
+.notif .top{display:flex;justify-content:space-between;font:500 11.5px/1 var(--f-ui);color:var(--text-2);margin-bottom:7px}
+.notif .top b{font-weight:700;letter-spacing:1.2px;font-size:10.5px;color:var(--signal)}
+.notif h3{font:600 16px/1.2 var(--f-ui)}
+.notif p{font:500 13px/1.3 var(--f-ui);color:var(--text-2);margin-top:3px}
+.dim{position:absolute;inset:0;background:linear-gradient(#0b0b0e,#050506)}
+.dim svg{position:absolute;left:16px;top:200px;opacity:.35;filter:blur(1px)}
+.sheet{position:absolute;left:0;right:0;top:196px;bottom:0;background:var(--surface);border-radius:32px 32px 0 0;border-top:.5px solid var(--line-2);box-shadow:0 -20px 60px rgba(0,0,0,.7)}
+.grab{position:absolute;top:8px;left:50%;margin-left:-18px;width:36px;height:5px;border-radius:3px;background:rgba(255,255,255,.22)}
+.q{position:absolute;left:20px;right:20px;top:30px}
+.q .e{display:flex;align-items:center;gap:8px}
+.q h1{font:400 34px/1.04 var(--f-serif);letter-spacing:-.4px;margin-top:10px}
+.q h1 i{color:var(--signal)}
+.q .sub{font:500 13px/1.35 var(--f-ui);color:var(--text-2);margin-top:8px}
+.opts{position:absolute;left:20px;right:20px;top:176px;display:flex;flex-direction:column;gap:8px}
+.o{height:50px;border-radius:16px;background:var(--raised);border:.5px solid var(--line-2);display:flex;align-items:center;justify-content:space-between;padding:0 16px;font:600 15px var(--f-ui)}
+.o small{font:500 12px var(--f-ui);color:var(--text-3)}
+.o.sel{background:rgba(255,181,71,.14);border-color:var(--signal);color:var(--text)}
+.o.sel small{color:var(--signal)}
+.send{position:absolute;left:20px;right:20px;top:352px;height:50px;border-radius:25px;background:var(--text);color:#111;font:700 16px/1 var(--f-ui);display:flex;align-items:center;justify-content:center;gap:8px}
+.tg{position:absolute;left:20px;right:20px;top:424px;height:158px;border-radius:22px;border:.5px solid rgba(255,181,71,.4);background:linear-gradient(120deg,rgba(255,181,71,.14),rgba(255,181,71,.02) 75%)}
+.tg .e{position:absolute;left:16px;top:14px;display:flex;align-items:center;gap:7px}
+.tg h2{position:absolute;left:16px;top:34px;font:400 25px/1.1 var(--f-serif)}
+.tg p{position:absolute;left:16px;top:66px;right:16px;font:500 12.5px/1.3 var(--f-ui);color:var(--text-2)}
+.tg .btn{position:absolute;left:16px;right:16px;bottom:14px;height:48px;border-radius:24px;background:var(--signal);color:#1a1204;font:700 15px/1 var(--f-ui);display:flex;align-items:center;justify-content:center;gap:8px}
+.tl{position:absolute;left:20px;right:20px;top:600px}
+.tl .e{margin-bottom:8px;display:flex;justify-content:space-between}
+.chipt{height:62px;border-radius:18px;background:var(--raised);border:.5px solid var(--line-2);display:flex;align-items:center;gap:12px;padding:0 12px 0 10px;position:relative;overflow:hidden}
+.chipt:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(#ffb547,#ffd36e)}
+.thumb{width:42px;height:42px;border-radius:11px;overflow:hidden;flex:none}
+.chipt b{display:block;font:600 14.5px/1.15 var(--f-ui)}
+.chipt span.s{display:block;font:500 12px/1.2 var(--f-ui);color:var(--text-2);margin-top:3px}
+.pair{display:flex;margin-left:auto}
+.pair .av{margin-left:-8px}
+.foot{position:absolute;left:20px;right:20px;top:760px;font:500 11.5px/1.35 var(--f-ui);color:var(--text-3);display:flex;gap:8px;align-items:flex-start}
+</style></head>
+<body class="phone">
+<div class="dim"></div>
+<div class="notif glass">
+  <span class="av" style="width:42px;height:42px;background:#ffd36e;font-size:15px;flex:none;box-shadow:none">CD</span>
+  <div style="flex:1"><div class="top"><b>PING · HERE NOW</b><span>now</span></div>
+  <h3>Chris · Sec 214</h3><p>Meet at the bleachers gate?</p></div>
+</div>
+<div class="sheet">
+  <div class="grab"></div>
+  <div class="q">
+    <div class="e"><span class="live-dot"></span><span class="eyebrow">Replying to Chris</span></div>
+    <h1>Meet at the <i>bleachers gate?</i></h1>
+    <div class="sub">Chris sees your reply, not your seat. Your section is only shared with friends you chose.</div>
+  </div>
+  <div class="opts">
+    <div class="o sel">On my way <small>Sends: “On my way”</small></div>
+    <div class="o">Give me five minutes <small>Sends: “5 min”</small></div>
+    <div class="o">Can't, see you after <small>Sends: “Later”</small></div>
+  </div>
+  <div class="send"><svg class="i" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-3-7z"/></svg>Send reply</div>
+
+  <div class="tg">
+    <div class="e"><span class="eyebrow" style="color:var(--signal)">When you meet</span></div>
+    <h2>Save this moment together</h2>
+    <p>Photos stay on your phones. Only a shared moment marker is saved for you and Chris.</p>
+    <div class="btn"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .8-4.4 4.2 1.1 6L12 16.7 6.7 19.6l1.1-6L3.4 9.4l6-.8z"/></svg>Save this moment together</div>
+  </div>
+
+  <div class="tl">
+    <div class="e"><span class="eyebrow">Shows on your timeline as</span></div>
+    <div class="chipt">
+      <div class="thumb"><img class="ph graded" src="../../../photos/wrigley-bleachers.jpg"></div>
+      <div><b>Together at the gate</b><span class="s">Top 6 · Chicago 3, Milwaukee 2</span></div>
+      <div class="pair"><span class="av" style="width:26px;height:26px;background:#ffb547;font-size:10px">SO</span><span class="av" style="width:26px;height:26px;background:#ffd36e;font-size:10px">CD</span></div>
+    </div>
+  </div>
+</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

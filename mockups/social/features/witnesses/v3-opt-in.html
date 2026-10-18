@@ -1,0 +1,56 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Opt In</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+.x{position:absolute;top:54px;left:16px}
+.skip{position:absolute;top:66px;right:20px;font:500 15px/1 var(--f-ui);color:var(--text-2)}
+.hero{position:absolute;top:100px;left:0;right:0;height:224px;text-align:center;overflow:hidden}
+.hero:before{content:"";position:absolute;left:50%;top:-40px;width:420px;height:420px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,181,71,.2),transparent)}
+.ring{position:relative;width:104px;height:104px;margin:18px auto 0;border-radius:50%;border:2px dashed rgba(255,181,71,.7);display:grid;place-items:center}
+.ring span{font:800 46px/1 var(--f-cond);color:var(--signal);letter-spacing:-.5px}
+.hero h1{position:relative;font:400 33px/1 var(--f-serif);margin-top:16px}
+.hero h1 i{color:var(--signal)}
+.hero p{position:relative;font:500 13.5px/1.4 var(--f-ui);color:var(--text-2);margin:8px 36px 0}
+.priv{position:absolute;top:340px;left:16px;right:16px;border-radius:20px;background:var(--surface);border:.5px solid var(--line);padding:14px 16px}
+.priv .h{display:flex;gap:12px;align-items:center}
+.sh{width:36px;height:36px;border-radius:18px;background:rgba(255,181,71,.14);display:grid;place-items:center;flex:none}
+.sh svg{width:18px;height:18px;stroke:var(--signal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.priv h2{font:700 16px/1.25 var(--f-ui)}
+.priv ul{list-style:none;margin-top:10px;display:grid;gap:6px}
+.priv li{font:500 13px/1.3 var(--f-ui);color:var(--text-2);display:flex;gap:8px;align-items:center}
+.priv li:before{content:"";width:5px;height:5px;border-radius:50%;background:var(--signal);flex:none}
+.set{position:absolute;top:510px;left:16px;right:16px;border-radius:20px;background:var(--surface);border:.5px solid var(--line);padding:14px 16px}
+.set .l{font:600 10.5px/1 var(--f-ui);letter-spacing:1.6px;text-transform:uppercase;color:var(--text-3)}
+.fld{display:flex;align-items:center;gap:12px;margin-top:10px}
+.av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 17px/1 var(--f-ui);color:#14110b;background:var(--signal);flex:none;box-shadow:0 0 0 3px rgba(255,181,71,.25)}
+.in{flex:1;height:44px;border-radius:12px;background:var(--raised);border:.5px solid var(--line-2);padding:0 14px;font:500 16px/44px var(--f-ui)}
+.sw{display:flex;justify-content:space-between;margin-top:12px}
+.sw i{width:38px;height:38px;border-radius:50%;display:block}
+.sw i.s{box-shadow:0 0 0 2.5px var(--surface),0 0 0 4.5px #fff}
+.set .n{font:500 11.5px/1.3 var(--f-ui);color:var(--text-3);margin-top:12px}
+.apple{position:absolute;left:16px;right:16px;top:732px;height:54px;border-radius:27px;background:#fff;color:#000;display:flex;align-items:center;justify-content:center;gap:8px;font:600 18px/1 var(--f-ui)}
+.apple svg{width:20px;height:20px;fill:#000}
+.fine{position:absolute;left:0;right:0;top:796px;text-align:center;font:500 12px/1 var(--f-ui);color:var(--text-3)}
+</style></head>
+<body class="phone">
+<div class="btn-circle glass x"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+<div class="skip">Not now</div>
+<div class="hero">
+  <div class="ring"><span>#1</span></div>
+  <h1>You're Witness #1: <i>be the first</i></h1>
+  <p>Nobody has logged Chicago 24, Green Bay 22 at Lambeau Field yet. Your number is yours to keep.</p>
+</div>
+<div class="priv">
+  <div class="h"><div class="sh"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+  <h2>Only a count leaves your phone. Never photos, never location.</h2></div>
+  <ul><li>Matching stays on your phone</li><li>Everyone else sees a number, never you</li><li>Friends see you only by invite</li></ul>
+</div>
+<div class="set">
+  <div class="l">Your name and color</div>
+  <div class="fld"><div class="av">S</div><div class="in">Sam O.</div></div>
+  <div class="sw"><i class="s" style="background:#ffb547"></i><i style="background:#ffd36e"></i><i style="background:#8fe3a0"></i><i style="background:#6fd3ff"></i><i style="background:#b79cff"></i><i style="background:#ff7a8a"></i></div>
+</div>
+<div class="apple"><svg viewBox="0 0 24 24"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.600-2.800-1.800-3.400-1.800-1.400-.1-2.800.9-3.500.9-.7 0-1.800-.8-3-.8-1.500 0-3 .9-3.800 2.300-1.600 2.800-.4 7 1.200 9.300.8 1.100 1.700 2.400 2.900 2.300 1.200 0 1.600-.8 3-.8s1.800.8 3 .7c1.300 0 2.100-1.100 2.800-2.200.9-1.300 1.300-2.500 1.300-2.600 0 0-2.500-1-2.500-3.800zM14.200 5.900c.6-.8 1.100-1.900.9-3-1 0-2.100.6-2.800 1.400-.6.700-1.100 1.800-1 2.900 1.100.1 2.200-.5 2.900-1.300z"/></svg>Sign in with Apple</div>
+<div class="fine">Witness still works without it. No account needed to browse.</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>
