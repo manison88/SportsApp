@@ -51,7 +51,7 @@ struct TimelineView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink(value: Route.bigGames) {
-                    Image(systemName: "trophy")
+                    Image(systemName: "flame")
                 }
                 .accessibilityLabel("Big games")
                 .accessibilityIdentifier("timeline-big-games")
