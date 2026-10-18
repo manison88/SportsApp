@@ -1,0 +1,22 @@
+<!doctype html><html><head><meta charset="utf-8"><title>New: a globe with the country in yellow</title><link rel="stylesheet" href="../../../kit/kit.css"><style>
+body{margin:0;background:#050506}
+.nav{position:absolute;left:0;right:0;top:54px;height:44px;display:flex;align-items:center;padding:0 16px;color:#fff;font:600 17px -apple-system,Inter,sans-serif}
+.nav .t{position:absolute;left:0;right:0;text-align:center}
+.nav svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.list{position:absolute;left:20px;right:20px;top:112px;display:flex;flex-direction:column;gap:10px}
+.tile{display:flex;align-items:center;gap:12px;background:#121215;border-radius:14px;min-height:64px;padding:0 14px;color:#fff}
+.lead{width:44px;display:flex;justify-content:center;align-items:center}
+.mid{flex:1;min-width:0}
+.h{font:800 17px/1.1 "Barlow Condensed",sans-serif;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d{font:400 12.5px -apple-system,Inter,sans-serif;color:#b9b5ac;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr{text-align:right}.tr .a{font:800 15px "Barlow Condensed",sans-serif}.tr .b{font:400 11.5px -apple-system,Inter,sans-serif;color:#b9b5ac;margin-top:2px}
+.ch{width:11px;height:11px;stroke:#8a867e;fill:none;stroke-width:2.6;stroke-linecap:round}
+.bld{width:24px;height:24px;stroke:#ffb547;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.code{font:800 15px "Barlow Condensed",sans-serif;letter-spacing:.06em;color:#ffb547}
+.cap{position:absolute;left:20px;bottom:40px;font:600 13px -apple-system,Inter,sans-serif;color:#8a867e}
+</style></head><body class="phone">
+<div class="nav"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg><div class="t">Countries</div></div>
+<div class="list"><div class="tile"><div class="lead"><canvas id="c0"></canvas></div><div class="mid"><div class="h">United States</div><div class="d">9 venues</div></div><div class="tr"><div class="a">52 games</div><div class="b">Last 2026</div></div><svg class="ch" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div><div class="tile"><div class="lead"><canvas id="c1"></canvas></div><div class="mid"><div class="h">Spain</div><div class="d">3 venues</div></div><div class="tr"><div class="a">4 games</div><div class="b">Last 2020</div></div><svg class="ch" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div><div class="tile"><div class="lead"><canvas id="c2"></canvas></div><div class="mid"><div class="h">Germany</div><div class="d">1 venue</div></div><div class="tr"><div class="a">1 game</div><div class="b">Last 2017</div></div><svg class="ch" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div><div class="tile"><div class="lead"><canvas id="c3"></canvas></div><div class="mid"><div class="h">Canada</div><div class="d">1 venue</div></div><div class="tr"><div class="a">2 games</div><div class="b">Last 2023</div></div><svg class="ch" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div><div class="tile"><div class="lead"><canvas id="c4"></canvas></div><div class="mid"><div class="h">United Kingdom</div><div class="d">2 venues</div></div><div class="tr"><div class="a">2 games</div><div class="b">Last 2022</div></div><svg class="ch" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div><div class="tile"><div class="lead"><canvas id="c5"></canvas></div><div class="mid"><div class="h">Bosnia and Herzegovina</div><div class="d">1 venue</div></div><div class="tr"><div class="a">1 game</div><div class="b">Last 2024</div></div><svg class="ch" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></div></div><div class="cap">New: a globe with the country in yellow</div>
+<script src="shapes.js"></script><script src="glyphs.js"></script>
+<script>globe(document.getElementById('c0'),'US',40);globe(document.getElementById('c1'),'ES',40);globe(document.getElementById('c2'),'DE',40);globe(document.getElementById('c3'),'CA',40);globe(document.getElementById('c4'),'GB',40);globe(document.getElementById('c5'),'BA',40);</script>
+<script src="../../../kit/kit.js"></script></body></html>

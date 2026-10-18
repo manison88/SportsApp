@@ -329,13 +329,23 @@ struct CountryGlobe: View {
             ctx.fill(globe, with: .color(Color.panelRaised))
             let center = CountryShapes.center(code) ?? CGPoint(x: 0, y: 20)
             let lon0 = center.x * .pi / 180, lat0 = center.y * .pi / 180
+            // Small countries are magnified so the yellow is readable: the country fills about half the globe.
+            var extent = 0.0
+            for ring in CountryShapes.all[code] ?? [] {
+                for p in ring {
+                    let lam = p.x * .pi / 180 - lon0, phi = p.y * .pi / 180
+                    extent = max(extent, acos(min(1, max(-1, sin(lat0) * sin(phi) + cos(lat0) * cos(phi) * cos(lam)))))
+                }
+            }
+            let zoom = CountryShapes.all[code] == nil ? 1 : min(max(0.55 / max(sin(min(extent, 1.4)), 0.01), 1), 7)
+            ctx.clip(to: globe)
             func project(_ p: CGPoint) -> CGPoint? {
                 let lam = p.x * .pi / 180 - lon0, phi = p.y * .pi / 180
                 let visible = sin(lat0) * sin(phi) + cos(lat0) * cos(phi) * cos(lam)
                 guard visible > 0 else { return nil }
                 let x = cos(phi) * sin(lam)
                 let y = cos(lat0) * sin(phi) - sin(lat0) * cos(phi) * cos(lam)
-                return CGPoint(x: c.x + x * r, y: c.y - y * r)
+                return CGPoint(x: c.x + x * r * zoom, y: c.y - y * r * zoom)
             }
             // A light grid of latitude and longitude lines.
             var grid = Path()
