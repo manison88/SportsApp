@@ -24,6 +24,11 @@ struct AlbumImportView: View {
     @State private var phase: Phase = .loading
     @State private var albums: [PhotoAlbum] = []
     @State private var album: PhotoAlbum?
+    /// 0 = the fan's albums, 1 = trips found by where and when photos were taken.
+    @State private var source = 0
+    @State private var trips: [PhotoAlbum] = []
+    @State private var findingTrips = false
+    @State private var triedTrips = false
     @State private var items: [Item] = []
     @State private var unplaced: [DayPile] = []
     @State private var skippedDays = 0
@@ -44,7 +49,7 @@ struct AlbumImportView: View {
             content
                 .scrollContentBackground(.hidden)
                 .background(Color.ink.ignoresSafeArea())
-                .navigationTitle(album?.title ?? "Import an album")
+                .navigationTitle(album?.title ?? "Album or trip")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
@@ -77,16 +82,39 @@ struct AlbumImportView: View {
             ContentUnavailableView("Witness can't see your albums", systemImage: "photo.on.rectangle",
                                    description: Text("Allow photo access in Settings to import an album."))
         case .choose:
-            List(albums) { a in
-                Button { Task { await scan(a) } } label: { albumRow(a) }
-                    .listRowBackground(Color.panel)
-                    .accessibilityIdentifier("album-\(a.title)")
-            }
-            .overlay {
-                if albums.isEmpty {
-                    ContentUnavailableView("No albums yet", systemImage: "rectangle.stack",
-                                           description: Text("Make an album in Photos for a trip, then import it here."))
+            VStack(spacing: 0) {
+                Picker("Import from", selection: $source) {
+                    Text("Albums").tag(0)
+                    Text("Trips").tag(1)
                 }
+                .pickerStyle(.segmented)
+                .padding(.horizontal, Spacing.gutter)
+                .padding(.vertical, 12)
+                .accessibilityIdentifier("album-source")
+
+                List(source == 0 ? albums : trips) { a in
+                    Button { Task { await scan(a) } } label: { albumRow(a) }
+                        .listRowBackground(Color.panel)
+                        .accessibilityIdentifier("album-\(a.title)")
+                }
+                .overlay {
+                    if source == 0 && albums.isEmpty {
+                        ContentUnavailableView("No albums yet", systemImage: "rectangle.stack",
+                                               description: Text("Make an album in Photos for a trip, or switch to Trips."))
+                    } else if source == 1 && findingTrips {
+                        VStack(spacing: Spacing.inner) {
+                            ProgressView().controlSize(.large).tint(.white)
+                            Text("Looking for trips in your photos")
+                                .font(.condensed(.headline)).foregroundStyle(Color.textSecondary)
+                        }
+                    } else if source == 1 && trips.isEmpty {
+                        ContentUnavailableView("No trips found", systemImage: "airplane",
+                                               description: Text("Trips are stretches of photos taken far from home. Photos need a location."))
+                    }
+                }
+            }
+            .onChange(of: source) { _, new in
+                if new == 1 && !triedTrips { Task { await loadTrips() } }
             }
         case .review:
             review
@@ -360,20 +388,35 @@ struct AlbumImportView: View {
         phase = .choose
     }
 
+    /// Trips from where and when photos were taken, for people who keep a trip in Photos instead of an album.
+    private func loadTrips() async {
+        findingTrips = true
+        let home = library.profile.homeLocation
+        let venues = library.venues
+        trips = await Task.detached { TripFinder.find(home: home, venues: venues) }.value
+        findingTrips = false
+        triedTrips = true
+    }
+
     private func scan(_ a: PhotoAlbum) async {
         album = a
         phase = .scanning
         progress = "Reading \(photoCount(a.count))"
         let venues = library.venues
-        let found = await Task.detached { VisitGrouping.group(AlbumImporter.points(in: a.id), venues: venues) }.value
+        let found = await Task.detached { VisitGrouping.group(AlbumImporter.points(in: a), venues: venues) }.value
         undated = found.undated
         items = found.visits.map { Item(cluster: $0) }
         var days = found.unplacedDays
 
         // Ticket screenshots in the album pin their game even when the night's photos have no GPS.
         progress = "Looking for tickets"
-        let anchors = await TicketAnchors.find(in: TicketAnchors.screenshots(limit: 500, inAlbum: a.id),
-                                               teams: library.allTeams, venues: venues)
+        let found2 = await TicketAnchors.find(in: TicketAnchors.screenshots(limit: 500, inAlbum: a.range == nil ? a.id : nil),
+                                              teams: library.allTeams, venues: venues)
+        // A trip has no album to look in: keep the tickets dated within a day of it.
+        let anchors = found2.filter { anchor in
+            guard let range = a.range else { return true }
+            return (range.lowerBound.addingTimeInterval(-86_400)...range.upperBound.addingTimeInterval(86_400)).contains(anchor.date)
+        }
         for anchor in anchors {
             let key = VisitGrouping.key(venueId: anchor.venue.id, date: anchor.date, tz: anchor.venue.tz)
             if let i = items.firstIndex(where: { $0.id == key }) {
