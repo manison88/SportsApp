@@ -1,0 +1,5 @@
+Query chain:
+ →Find: Target Application 'app.witness.ios'
+  ↪︎Find: Descendants matching type Any
+    ↪︎Find: Elements matching predicate 'identifier BEGINSWITH "game-card-"'
+      ↪︎Find: First Match
