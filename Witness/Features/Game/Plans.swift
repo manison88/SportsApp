@@ -126,15 +126,33 @@ struct PlanGameView: View {
         guard let team = library.team(teamId) else { return }
         loading = true
         defer { loading = false }
-        guard let source = await TeamDirectory.shared.resolve(team) else { noSource = true; return }
+        guard let source = await TeamDirectory.shared.resolve(team) else {
+            noSource = true
+            library.recordScheduleSearch(team, found: 0, noSource: true)
+            return
+        }
         teamEspnId = source.id
         if team.sport == .soccer, team.id.hasPrefix("nat-") || team.league.lowercased().contains("national") {
             // A country plays in many competitions: World Cup and its qualifying, Euros, Nations League, friendlies.
-            games = await GameLookup.upcomingNational(espnId: source.id)
+            // ESPN's lists are late for some, so UEFA's own feed adds the Nations League with later dates.
+            async let espn = GameLookup.upcomingNational(espnId: source.id)
+            async let uefa = UEFASchedule.upcoming(for: team)
+            games = Self.merged(await espn, await uefa)
         } else {
             games = await GameLookup.upcoming(league: source.league, teamEspnId: source.id)
         }
         empty = games.isEmpty
+        library.recordScheduleSearch(team, found: games.count)
+    }
+
+    /// One list, soonest first. The same match from both feeds (same day, same two sides) is kept once, UEFA's version.
+    static func merged(_ espn: [FoundGame], _ uefa: [FoundGame]) -> [FoundGame] {
+        func key(_ g: FoundGame) -> String {
+            let day = Calendar(identifier: .gregorian).dateComponents(in: .gmt, from: g.start)
+            return "\(day.year ?? 0)-\(day.month ?? 0)-\(day.day ?? 0)|" + [g.home.abbreviation, g.away.abbreviation].sorted().joined(separator: "-")
+        }
+        let uefaKeys = Set(uefa.map(key))
+        return (uefa + espn.filter { !uefaKeys.contains(key($0)) }).sorted { $0.start < $1.start }
     }
 
     private func isPlanned(_ game: FoundGame) -> Bool {
@@ -142,7 +160,8 @@ struct PlanGameView: View {
     }
 
     private func row(_ game: FoundGame) -> some View {
-        let isHome = game.home.espnId == teamEspnId
+        let mine = library.team(teamId)?.abbreviation
+        let isHome = game.home.espnId == teamEspnId || (mine != nil && game.home.abbreviation == mine)
         let other = isHome ? game.away : game.home
         let tz = GameLookup.venue(of: game, in: library.venues)?.tz ?? .current
         let planned = isPlanned(game)

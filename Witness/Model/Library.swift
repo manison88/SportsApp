@@ -31,6 +31,8 @@ final class Library {
     private(set) var plans: [GameEntry] = []
     /// Where the fan lives, picked by them. Miles traveled and the map's arcs start here.
     private(set) var customHome: HomePlace?
+    /// Every team asked for in Plan a game, with how often nothing was found.
+    private(set) var scheduleLog: [ScheduleSearch] = []
     private(set) var customVenues: [Venue] = []
     private(set) var customPeople: [Person] = []
     /// Teams learned from real schedules (any league, any country).
@@ -51,6 +53,20 @@ final class Library {
         var favoriteTeamIds: [String]? = nil
         var plans: [GameEntry]? = nil
         var home: HomePlace? = nil
+        var scheduleLog: [ScheduleSearch]? = nil
+    }
+
+    /// What happened when a team's schedule was asked for: kept on this device so the teams with no schedule are known.
+    struct ScheduleSearch: Codable, Hashable, Identifiable {
+        var teamId: String
+        var teamName: String
+        var league: String
+        var searches = 0
+        var misses = 0
+        var lastSearched: Date
+        /// "5 games", "no games", "no schedule source".
+        var lastOutcome: String
+        var id: String { teamId }
     }
 
     struct HomePlace: Codable, Hashable {
@@ -295,13 +311,42 @@ final class Library {
     func addPlan(_ found: FoundGame) -> GameEntry? {
         if let existing = plans.first(where: { $0.source?.eventId == found.eventId && $0.source?.league == found.league }) { return existing }
         guard let venue = GameLookup.venue(of: found, in: venues)
-                ?? team(GameLookup.team(from: found.home, game: found).id).flatMap({ $0.homeVenueId }).flatMap({ self.venue($0) }) else { return nil }
+                ?? team(GameLookup.team(from: found.home, game: found).id).flatMap({ $0.homeVenueId }).flatMap({ self.venue($0) })
+                ?? addVenue(from: found) else { return nil }
         var entry = GameEntry(sport: found.sport, date: found.start, venueId: venue.id, origin: .manual)
         GameLookup.apply(found, detail: nil, to: &entry, library: self)
         plans.append(entry)
         plans.sort { $0.date < $1.date }
         save()
         return entry
+    }
+
+    /// A stadium the schedule names and the catalog lacks, added from the coordinates the schedule gives.
+    private func addVenue(from found: FoundGame) -> Venue? {
+        guard let lat = found.venueLatitude, let lon = found.venueLongitude, !found.venueName.isEmpty else { return nil }
+        let zone = found.utcOffsetSeconds.flatMap { TimeZone(secondsFromGMT: $0) } ?? .current
+        let venue = Venue(id: "custom-\(UUID().uuidString)", name: found.venueName, city: found.venueCity ?? "", region: nil,
+                          country: "", countryCode: found.venueCountryCode ?? "", latitude: lat, longitude: lon, sports: [found.sport],
+                          timeZone: zone.identifier, capacity: found.venueCapacity, opened: nil, isCustom: true)
+        return addVenue(venue)
+    }
+
+    /// Notes that a team's schedule was asked for, and whether anything came back.
+    func recordScheduleSearch(_ team: Team, found: Int, noSource: Bool = false) {
+        var entry = scheduleLog.first { $0.teamId == team.id }
+            ?? ScheduleSearch(teamId: team.id, teamName: "\(team.locationName) \(team.teamName)", league: team.league, lastSearched: .now, lastOutcome: "")
+        entry.searches += 1
+        if found == 0 { entry.misses += 1 }
+        entry.lastSearched = .now
+        entry.lastOutcome = noSource ? "no schedule source" : (found == 0 ? "no games" : "\(found) \(found == 1 ? "game" : "games")")
+        scheduleLog.removeAll { $0.teamId == team.id }
+        scheduleLog.append(entry)
+        save()
+    }
+
+    func clearScheduleLog() {
+        scheduleLog = []
+        save()
     }
 
     func updatePlan(_ plan: GameEntry) {
@@ -433,6 +478,12 @@ final class Library {
     /// Scores and plays for a game that has since been played, found again on its schedule.
     func refreshFromSchedule(_ id: String) async {
         guard let g = game(id), let source = g.source, let venue = venue(g.venueId) else { return }
+        if source.eventId.hasPrefix("uefa-") {
+            guard let match = await UEFASchedule.match(eventId: source.eventId), match.completed, var current = game(id) else { return }
+            GameLookup.apply(match, detail: nil, to: &current, library: self)
+            update(current)
+            return
+        }
         let found = await GameLookup.games(at: venue, from: g.date.addingTimeInterval(-6 * 3600), to: g.date.addingTimeInterval(8 * 3600))
         guard let match = found.first(where: { $0.eventId == source.eventId }), match.completed else { return }
         let detail = await GameLookup.detail(match)
@@ -654,6 +705,11 @@ final class Library {
             && $0.locationName.caseInsensitiveCompare(team.locationName) == .orderedSame }) {
             return known
         }
+        // A national side from the UEFA feed: its FIFA code is the abbreviation of the catalog's national team.
+        if team.leagueKey?.hasSuffix("uefa.nations") == true,
+           let known = allTeams.first(where: { $0.sport == .soccer && $0.league == "National teams" && $0.abbreviation == team.abbreviation }) {
+            return known
+        }
         // ESPN and the catalog can code a team differently (GS and GSW), so city plus name matches too.
         if let known = allTeams.first(where: { $0.sport == team.sport && $0.teamName.caseInsensitiveCompare(team.teamName) == .orderedSame
             && $0.locationName.caseInsensitiveCompare(team.locationName) == .orderedSame }) {
@@ -714,7 +770,8 @@ final class Library {
         hasLibrary = true
         let stored = Stored(games: games, customVenues: customVenues, customPeople: customPeople, customTeams: customTeams, customTrips: customTrips,
                         favoriteTeamIds: chosenFavoriteTeamIds.isEmpty ? nil : chosenFavoriteTeamIds,
-                        plans: plans.isEmpty ? nil : plans, home: customHome)
+                        plans: plans.isEmpty ? nil : plans, home: customHome,
+                        scheduleLog: scheduleLog.isEmpty ? nil : scheduleLog)
         do {
             let data = try Self.encoder.encode(stored)
             try FileManager.default.createDirectory(at: storeURL.deletingLastPathComponent(), withIntermediateDirectories: true)
@@ -735,6 +792,7 @@ final class Library {
         chosenFavoriteTeamIds = stored.favoriteTeamIds ?? []
         plans = (stored.plans ?? []).sorted { $0.date < $1.date }
         customHome = stored.home
+        scheduleLog = stored.scheduleLog ?? []
         hasLibrary = true
     }
 

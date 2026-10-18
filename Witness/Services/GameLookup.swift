@@ -31,6 +31,12 @@ struct FoundGame: Identifiable, Hashable {
     var seasonType: Int? = nil
     /// Set when this "game" is a Formula 1 race weekend.
     var race: F1Race? = nil
+    /// What the source says about the ground, when it gives coordinates: enough to add a stadium the catalog lacks.
+    var venueLatitude: Double? = nil
+    var venueLongitude: Double? = nil
+    var venueCapacity: Int? = nil
+    var venueCountryCode: String? = nil
+    var utcOffsetSeconds: Int? = nil
 
     /// Finals, playoffs, tournaments: what makes this one a big game.
     var stage: GameEntry.Stage? {

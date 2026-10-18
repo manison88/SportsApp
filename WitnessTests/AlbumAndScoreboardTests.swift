@@ -301,6 +301,38 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(library.game(game.id)?.venueId, "united-center", "A home team's own arena replaces a ground that cannot host the sport")
     }
 
+    func testUEFANationsLeagueMatchIsParsed() throws {
+        let json = """
+        [{"id":"2047929","status":"UPCOMING","kickOffTime":{"date":"2026-11-17","dateTime":"2026-11-17T19:45:00Z","utcOffsetInHours":1},
+          "homeTeam":{"teamCode":"BIH","internationalName":"Bosnia and Herzegovina","countryCode":"BIH"},
+          "awayTeam":{"teamCode":"ROU","internationalName":"Romania","countryCode":"ROU"},
+          "stadium":{"capacity":13000,"countryCode":"BIH","geolocation":{"latitude":44.2,"longitude":17.9},
+                     "translations":{"name":{"EN":"Stadion Bilino Polje"}},"city":{"translations":{"name":{"EN":"Zenica"}}}},
+          "group":{"league":{"metaData":{"leagueName":"League B"}},"metaData":{"groupName":"Group B2"}},
+          "matchday":{"longName":"Matchday 6"},"round":{"metaData":{"name":"League phase"}}}]
+        """
+        let list = try XCTUnwrap(try JSONSerialization.jsonObject(with: Data(json.utf8)) as? [[String: Any]])
+        let game = try XCTUnwrap(UEFASchedule.parse(list).first)
+        XCTAssertEqual(game.home.abbreviation, "BIH")
+        XCTAssertEqual(game.away.abbreviation, "ROU")
+        XCTAssertEqual(game.venueName, "Stadion Bilino Polje")
+        XCTAssertEqual(game.venueCity, "Zenica")
+        XCTAssertEqual(game.note, "League B \u{00B7} Group B2 \u{00B7} Matchday 6")
+        XCTAssertEqual(game.start, ISO8601DateFormatter().date(from: "2026-11-17T19:45:00Z"))
+        XCTAssertFalse(game.completed)
+        XCTAssertEqual(game.venueLatitude, 44.2)
+    }
+
+    func testUEFANationalSideMapsToTheCatalogTeam() throws {
+        let side = FoundGame.Side(espnId: "uefa-BIH", abbreviation: "BIH", location: "Bosnia and Herzegovina", name: "Bosnia and Herzegovina",
+                                  color: nil, altColor: nil, score: nil, line: [])
+        let game = FoundGame(league: "soccer/uefa.nations", leagueName: "UEFA Nations League", eventId: "uefa-1", sport: .soccer, start: Date(),
+                             venueName: "Stadion Bilino Polje", venueCity: "Zenica", home: side, away: side, completed: false, note: nil)
+        let made = GameLookup.team(from: side, game: game)
+        let known = library.addTeam(made)
+        XCTAssertEqual(known.league, "National teams", "The UEFA side is the catalog's national team, not a second Bosnia")
+    }
+
     func testYourTeamsDecideWhoYouWereRootingFor() throws {
         let cubs = try XCTUnwrap(library.team("mlb-chc"))
         let brewers = try XCTUnwrap(library.team("mlb-mil"))

@@ -25,6 +25,7 @@
 		2A1B4249B8E285AC96DDCC6C /* EventTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F48A3DC2D47231C6E56B7 /* EventTheme.swift */; };
 		2FB08C6E1D9C2F5F821BFEA3 /* GameLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8BFCA25D2EAB73580B35B /* GameLookup.swift */; };
 		547DB64A0EF8485C8FD2DC45 /* F1Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F27DBC4958B4E48B5BA0D77 /* F1Calendar.swift */; };
+		2F79484B07C141D2ABB335EB /* UEFASchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D13FB67C824BFAAFCE1636 /* UEFASchedule.swift */; };
 		EE613D09F1784245897CA7D6 /* BackgroundPhotoCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833A6AAA7A248529EAE4685 /* BackgroundPhotoCheck.swift */; };
 		33986E7A0BDD5EAC7B8E13D7 /* TicketOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903443890581343B7B39B754 /* TicketOCRTests.swift */; };
 		36CECB56088ADBB858CA2A45 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89965E1544CBDB43E6EC2FE2 /* TimelineView.swift */; };
@@ -66,6 +67,7 @@
 		BED863E726CE333896659B1A /* AlbumImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BE7A67E02B803D6070CA3E /* AlbumImportView.swift */; };
 		C81F6A142E090EADB2D8F432 /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BEB516D31165D21C006E /* TextRecognizer.swift */; };
 		C969C27B55763B17CA718E21 /* LuckyCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */; };
+		5591DCFD6A7646B4ABA8F54A /* ScheduleGapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151339EA90CA4F2FA8522632 /* ScheduleGapsView.swift */; };
 		CC00A63D66FA2073A5D2C456 /* LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF7F7EAD209867041DEF5 /* LibraryTests.swift */; };
 		CD5342E7131026E858E6D978 /* AlbumImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F836BE70D81FF166D6EFD6A /* AlbumImporter.swift */; };
 		CFBFBA9DB68338AEE808C225 /* SharedPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C6F4096980A62A376DA6A /* SharedPassportView.swift */; };
@@ -133,6 +135,7 @@
 		8007189AFB335F74AD2F2242 /* Sample */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sample; path = Witness/Resources/Sample; sourceTree = SOURCE_ROOT; };
 		81F8BFCA25D2EAB73580B35B /* GameLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLookup.swift; sourceTree = "<group>"; };
 		6F27DBC4958B4E48B5BA0D77 /* F1Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1Calendar.swift; sourceTree = "<group>"; };
+		B9D13FB67C824BFAAFCE1636 /* UEFASchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEFASchedule.swift; sourceTree = "<group>"; };
 		1833A6AAA7A248529EAE4685 /* BackgroundPhotoCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPhotoCheck.swift; sourceTree = "<group>"; };
 		82C4FEF32607AF617D75F825 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		89965E1544CBDB43E6EC2FE2 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 		DEDE9AC79A998536F4025B92 /* GameMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMemoryView.swift; sourceTree = "<group>"; };
 		E1D759FA400F64646D4F0E01 /* YouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView.swift; sourceTree = "<group>"; };
 		EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuckyCharmView.swift; sourceTree = "<group>"; };
+		151339EA90CA4F2FA8522632 /* ScheduleGapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleGapsView.swift; sourceTree = "<group>"; };
 		F0886E427272EE4FBED88DB5 /* TicketImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketImportView.swift; sourceTree = "<group>"; };
 		F3389D60FD9A2CDD994777AC /* TeamPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPickerView.swift; sourceTree = "<group>"; };
 		F4C48F08394BC610EA16614E /* VenuePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuePickerView.swift; sourceTree = "<group>"; };
@@ -264,6 +268,7 @@
 				DA0A2D620B0AF02229035D47 /* CoverPicker.swift */,
 				81F8BFCA25D2EAB73580B35B /* GameLookup.swift */,
 				6F27DBC4958B4E48B5BA0D77 /* F1Calendar.swift */,
+				B9D13FB67C824BFAAFCE1636 /* UEFASchedule.swift */,
 				1833A6AAA7A248529EAE4685 /* BackgroundPhotoCheck.swift */,
 				94EF1E486EA6D3C38019482C /* LocationService.swift */,
 				6B31653ED86394E9918FE2C1 /* PhotoMatcher.swift */,
@@ -430,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */,
+				151339EA90CA4F2FA8522632 /* ScheduleGapsView.swift */,
 				1A98C3EEF90E39F6F90FB5F1 /* WrappedView.swift */,
 				E1D759FA400F64646D4F0E01 /* YouView.swift */,
 			);
@@ -607,6 +613,7 @@
 				2A1B4249B8E285AC96DDCC6C /* EventTheme.swift in Sources */,
 				2FB08C6E1D9C2F5F821BFEA3 /* GameLookup.swift in Sources */,
 				547DB64A0EF8485C8FD2DC45 /* F1Calendar.swift in Sources */,
+				2F79484B07C141D2ABB335EB /* UEFASchedule.swift in Sources */,
 				EE613D09F1784245897CA7D6 /* BackgroundPhotoCheck.swift in Sources */,
 				B77AD38956434C4AE7F0517B /* GameMemoryView.swift in Sources */,
 				6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */,
@@ -617,6 +624,7 @@
 				7C481B3216C5EA8C05CD1E47 /* LiveCheckInView.swift in Sources */,
 				F61374DE999DCBA79E8FDEAC /* LocationService.swift in Sources */,
 				C969C27B55763B17CA718E21 /* LuckyCharmView.swift in Sources */,
+				5591DCFD6A7646B4ABA8F54A /* ScheduleGapsView.swift in Sources */,
 				6B98A0B4A7CAA2D8F2034974 /* Models.swift in Sources */,
 				00FBD37F25C6CD2BE47DD619 /* OnboardingView.swift in Sources */,
 				90B450D0203B4D0EA299E59C /* ScanProgressView.swift in Sources */,

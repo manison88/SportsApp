@@ -104,6 +104,22 @@ struct YouView: View {
                 .foregroundStyle(.white)
                 .accessibilityIdentifier("you-big-games")
             }
+            if !library.scheduleLog.isEmpty {
+                NavigationLink { ScheduleGapsView() } label: {
+                    HStack {
+                        Text("Schedule gaps").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+                        Spacer()
+                        Text("\(library.scheduleLog.filter { $0.misses > 0 }.count)").foregroundStyle(Color.textSecondary)
+                        Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
+                            .accessibilityHidden(true)
+                    }
+                    .frame(minHeight: 56)
+                    .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(.white)
+                .accessibilityIdentifier("you-schedule-gaps")
+            }
             // Wrapped is off for now: its row returns when the redesign is built (WrappedView and Modal.wrapped stay in place).
             ForEach(stats.companions.prefix(3)) { c in
                 NavigationLink(value: Route.person(c.person.id)) {
