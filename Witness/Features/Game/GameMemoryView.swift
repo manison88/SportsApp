@@ -80,55 +80,56 @@ struct GameMemoryView: View {
     private func hero(_ game: GameEntry) -> some View {
         let venue = library.venue(game.venueId)
         let tz = venue?.tz ?? .current
-        return ZStack(alignment: .bottomLeading) {
-            GameBackdrop(game: game)
-                .frame(maxWidth: .infinity)
-                .frame(height: heroHeight)
-                .clipped()
-            Scrim()
-            if game.bigGame?.kind == .championship {
-                // A warm floor of light under title-game headlines.
-                LinearGradient(colors: [Color.trophy.opacity(0.22), .clear], startPoint: .bottom, endPoint: .center)
-                    .allowsHitTesting(false)
+        // The photo is the hero's background, never a sibling above or below its buttons, so nothing can sit in front
+        // of the stadium link or You were there.
+        return VStack(alignment: .leading, spacing: 20) {
+            if let stage = game.bigGame {
+                EventMark(game: game, stage: stage)
             }
-            VStack(alignment: .leading, spacing: 20) {
-                if let stage = game.bigGame {
-                    EventMark(game: game, stage: stage)
-                }
-                ScoreLinesTitle(game: game)
-                    .accessibilityIdentifier("game-title")
-                    .accessibilityAddTraits(.isHeader)
-                HStack(alignment: .center, spacing: 12) {
-                    VStack(alignment: .leading, spacing: 6) {
-                        venueLine(venue, game: game, tz: tz)
-                        if let kickoff = Fmt.kickoff(game, in: tz) {
-                            Label(kickoff, systemImage: game.weather?.symbol ?? "clock")
-                                .font(.subheadline)
-                                .foregroundStyle(Color.textSecondary)
-                                .accessibilityIdentifier("game-kickoff")
-                        }
-                    }
-                    Spacer(minLength: 8)
-                    if hasDetail(game) {
-                        NavigationLink(value: Route.youWereThere(game.id)) {
-                            Image(systemName: "waveform.path.ecg")
-                                .font(.system(size: 22, weight: .semibold))
-                                .foregroundStyle(Color.signal)
-                                .frame(width: 48, height: 48)
-                                .contentShape(.rect)
-                        }
-                        .buttonStyle(.plain)
-                        .accessibilityLabel("You were there")
-                        .accessibilityHint("Opens the moments you were there for")
-                        .accessibilityIdentifier("hero-you-were-there")
+            ScoreLinesTitle(game: game)
+                .accessibilityIdentifier("game-title")
+                .accessibilityAddTraits(.isHeader)
+            HStack(alignment: .center, spacing: 12) {
+                VStack(alignment: .leading, spacing: 6) {
+                    venueLine(venue, game: game, tz: tz)
+                    if let kickoff = Fmt.kickoff(game, in: tz) {
+                        Label(kickoff, systemImage: game.weather?.symbol ?? "clock")
+                            .font(.subheadline)
+                            .foregroundStyle(Color.textSecondary)
+                            .accessibilityIdentifier("game-kickoff")
                     }
                 }
+                Spacer(minLength: 8)
+                if hasDetail(game) {
+                    NavigationLink(value: Route.youWereThere(game.id)) {
+                        Image(systemName: "waveform.path.ecg")
+                            .font(.system(size: 22, weight: .semibold))
+                            .foregroundStyle(Color.signal)
+                            .frame(width: 48, height: 48)
+                            .contentShape(.rect)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("You were there")
+                    .accessibilityHint("Opens the moments you were there for")
+                    .accessibilityIdentifier("hero-you-were-there")
+                }
             }
-            .gutter()
-            .padding(.bottom, 8)
         }
-        .frame(height: heroHeight)
-        .contentShape(.rect)
+        .gutter()
+        .padding(.bottom, 8)
+        .frame(maxWidth: .infinity, minHeight: heroHeight, maxHeight: heroHeight, alignment: .bottomLeading)
+        .background {
+            ZStack {
+                GameBackdrop(game: game)
+                Scrim()
+                if game.bigGame?.kind == .championship {
+                    // A warm floor of light under title-game headlines.
+                    LinearGradient(colors: [Color.trophy.opacity(0.22), .clear], startPoint: .bottom, endPoint: .center)
+                }
+            }
+            .allowsHitTesting(false)
+        }
+        .clipped()
     }
 
     /// The stadium, tappable, then the date: "Wrigley Field, Oct 30, 2016".
