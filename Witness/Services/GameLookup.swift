@@ -29,6 +29,8 @@ struct FoundGame: Identifiable, Hashable {
     /// Season phase: "post-season", "final", "semifinals", "group-stage"...
     var seasonSlug: String? = nil
     var seasonType: Int? = nil
+    /// Set when this "game" is a Formula 1 race weekend.
+    var race: F1Race? = nil
 
     /// Finals, playoffs, tournaments: what makes this one a big game.
     var stage: GameEntry.Stage? {
@@ -54,10 +56,13 @@ enum GameLookup {
 
     /// Games on the venue's league schedules that started in the window and were played at this venue.
     static func games(at venue: Venue, from: Date, to: Date) async -> [FoundGame] {
-        let leagues = leagues(for: venue)
-        guard !leagues.isEmpty else { return [] }
+        let leagues = leagues(for: venue).filter { !$0.hasPrefix("racing/") }
         let windowStart = from.addingTimeInterval(-5 * 3600)
         let windowEnd = to.addingTimeInterval(1 * 3600)
+        // A circuit's race weekends come from the bundled calendar, with no network call.
+        let races = venue.sports.contains(.motorsport)
+            ? F1Calendar.races(at: venue, from: from, to: to).map { F1Calendar.found($0, venue: venue) } : []
+        guard !leagues.isEmpty else { return races }
         let days = dayStrings(from: windowStart, to: windowEnd, tz: venue.tz)
 
         // Past games of a league whose seasons are downloaded come from the phone: no network, nothing leaves the device.
@@ -79,9 +84,9 @@ enum GameLookup {
             for await batch in group { found.append(contentsOf: batch) }
         }
         var seen = Set<String>()
-        return found
+        return (races + found
             .filter { $0.start >= windowStart && $0.start <= windowEnd }
-            .filter { venueMatches($0, venue: venue) }
+            .filter { venueMatches($0, venue: venue) })
             .filter { seen.insert($0.id).inserted }
             .sorted { abs($0.start.timeIntervalSince(from)) < abs($1.start.timeIntervalSince(from)) }
     }
@@ -104,6 +109,7 @@ enum GameLookup {
 
     /// Plays, win probability and attendance for a found game.
     static func detail(_ game: FoundGame) async -> FoundDetail? {
+        if game.race != nil { return nil }
         guard let url = URL(string: "\(base)\(game.league)/summary?event=\(game.eventId)"),
               let data = await fetch(url) else { return nil }
         return parseDetail(data, game: game)
@@ -184,6 +190,7 @@ enum GameLookup {
     /// Fills a game with what the schedule knows, learning any teams the app hasn't seen.
     @MainActor
     static func apply(_ game: FoundGame, detail: FoundDetail?, to entry: inout GameEntry, library: Library) {
+        if let race = game.race { F1Calendar.apply(race, to: &entry); return }
         let home = library.addTeam(team(from: game.home, game: game))
         let away = library.addTeam(team(from: game.away, game: game))
         entry.sport = game.sport

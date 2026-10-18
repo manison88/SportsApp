@@ -72,6 +72,9 @@ struct Team: Codable, Hashable, Identifiable {
     var externalIds: ExternalIds?
     /// The league path teams are matched on ("baseball/mlb"), with `externalIds.espn`.
     var leagueKey: String? = nil
+    var countryCode: String? = nil
+    /// The ground the team calls home, a catalog venue id.
+    var homeVenueId: String? = nil
 
     /// UI shows city names and codes only, never marks or nicknames.
     var displayName: String { locationName }
@@ -102,6 +105,8 @@ struct Venue: Codable, Hashable, Identifiable {
     var leagues: [String]?
     /// Current primary tenants, full names.
     var homeTeams: [String]?
+    /// Set for circuits and other grounds where the default 200 m would miss the grandstands.
+    var geofenceMeters: Double?
 
     var coordinate: CLLocationCoordinate2D { .init(latitude: latitude, longitude: longitude) }
 
@@ -109,6 +114,7 @@ struct Venue: Codable, Hashable, Identifiable {
     /// biggest bowls so their upper decks count (Michigan Stadium is ~300 m across). Tight enough to leave out
     /// the bar across the street.
     var geofence: Double {
+        if let geofenceMeters { return geofenceMeters }
         switch capacity ?? 0 {
         case 90_000...: 300
         case 65_000..<90_000: 260

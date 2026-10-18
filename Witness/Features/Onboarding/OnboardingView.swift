@@ -583,12 +583,7 @@ private struct ResultScreen: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(c.venue.name).displayFont(30).textCase(.uppercase).foregroundStyle(.white).lineLimit(2).minimumScaleFactor(0.6)
                     if let g = scan.newest {
-                        HStack(spacing: 8) {
-                            TeamTile(team: GameLookup.team(from: g.away, game: g), compact: true)
-                            Text(g.away.score.map(String.init) ?? "").font(.condensed(.headline, weight: .heavy))
-                            Text(g.home.score.map(String.init) ?? "").font(.condensed(.headline, weight: .heavy))
-                            TeamTile(team: GameLookup.team(from: g.home, game: g), compact: true)
-                        }
+                        FoundGameChip(game: g, font: .condensed(.headline, weight: .heavy))
                         .foregroundStyle(.white)
                     }
                     Text("\(Fmt.dayTitle(c.start, in: c.venue.tz)) · \(c.assetIds.count) photos")

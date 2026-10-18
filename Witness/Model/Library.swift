@@ -11,7 +11,10 @@ final class Library {
     // Catalog, read-only, bundled.
     private(set) var teams: [String: Team] = [:]
     private(set) var allTeams: [Team] = []
-    private(set) var catalogVenues: [Venue] = []
+    private(set) var catalogVenues: [Venue] = [] {
+        didSet { catalogVenueIndex = Dictionary(catalogVenues.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a }) }
+    }
+    private var catalogVenueIndex: [String: Venue] = [:]
     private(set) var ballparks: [Ballpark] = []
     private var sampleTrips: [Trip] = []
     /// Trips the fan made, e.g. from an imported album.
@@ -55,7 +58,7 @@ final class Library {
     // MARK: Lookups
 
     var venues: [Venue] { catalogVenues + customVenues }
-    func venue(_ id: String) -> Venue? { venues.first { $0.id == id } }
+    func venue(_ id: String) -> Venue? { customVenues.first { $0.id == id } ?? catalogVenueIndex[id] }
     func team(_ id: String?) -> Team? {
         guard let id else { return nil }
         return teams[id] ?? customTeams.first { $0.id == id }
@@ -394,11 +397,28 @@ final class Library {
         var teamList: [Team] = decode("teams", subdirectory: "Catalog") ?? []
         // Countries from the World Cup, Euros, Copa América, Gold Cup and qualifiers.
         let nationals: [Team] = decode("national-teams", subdirectory: "Catalog") ?? []
-        let have = Set(teamList.map(\.id))
+        var have = Set(teamList.map(\.id))
         teamList += nationals.filter { !have.contains($0.id) }
+        // Every club and national side the research found: ~4,000 more across the leagues the app supports.
+        have = Set(teamList.map(\.id))
+        let more: [Lossy<Team>] = decode("teams-more", subdirectory: "Catalog") ?? []
+        teamList += more.compactMap(\.value).filter { !have.contains($0.id) }
         allTeams = teamList
         teams = Dictionary(teamList.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
-        catalogVenues = decode("venues", subdirectory: "Catalog") ?? []
+        rebuildTeamIndex()
+        var venueList: [Venue] = decode("venues", subdirectory: "Catalog") ?? []
+        // Formula 1 circuits: grandstand-sized geofences, and they join (or fill in) the catalog's venues.
+        let circuits: [Venue] = decode("f1-circuits", subdirectory: "Catalog") ?? []
+        for circuit in circuits {
+            if let i = venueList.firstIndex(where: { $0.id == circuit.id }) {
+                venueList[i].geofenceMeters = circuit.geofenceMeters
+                venueList[i].sports = Array(Set(venueList[i].sports + circuit.sports))
+                venueList[i].leagues = Array(Set((venueList[i].leagues ?? []) + (circuit.leagues ?? [])))
+            } else {
+                venueList.append(circuit)
+            }
+        }
+        catalogVenues = venueList
         ballparks = decode("ballparks", subdirectory: "Catalog") ?? []
         sampleTrips = decode("trips", subdirectory: "Sample") ?? []
         samplePeople = decode("people", subdirectory: "Sample") ?? []
@@ -420,7 +440,7 @@ final class Library {
     }
 
     /// Decodes an element or skips it, so one unreadable record never loses the whole pack.
-    private struct Lossy<T: Decodable>: Decodable {
+    struct Lossy<T: Decodable>: Decodable {
         let value: T?
         init(from decoder: Decoder) throws { value = try? T(from: decoder) }
     }
@@ -442,11 +462,7 @@ final class Library {
             let known = Set(allTeams.map(\.id))
             allTeams += pack.teams.compactMap(\.value).filter { !known.contains($0.id) }
             teams = Dictionary(allTeams.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
-            espnIndex = [:]
-            for team in allTeams {
-                guard let espn = team.externalIds?.espn, let league = team.externalIds?.espnLeague ?? team.leagueKey else { continue }
-                espnIndex["\(league)#\(espn)"] = espnIndex["\(league)#\(espn)"] ?? team
-            }
+            rebuildTeamIndex()
         }
         if let data = await PackStore.shared.data("catalog/venues"),
            let extra = try? Self.decoder.decode([Lossy<Venue>].self, from: data) {
@@ -454,6 +470,15 @@ final class Library {
             catalogVenues += extra.compactMap(\.value).filter { !known.contains($0.id) }
         }
         await ScheduleCache.shared.reset()
+    }
+
+    private func rebuildTeamIndex() {
+        espnIndex = [:]
+        // Current franchises first: ESPN names today's team, and a relocated club's old record shares its id.
+        for team in allTeams.filter({ !$0.id.hasPrefix("hist-") }) + allTeams.filter({ $0.id.hasPrefix("hist-") }) {
+            guard let espn = team.externalIds?.espn, let league = team.externalIds?.espnLeague ?? team.leagueKey else { continue }
+            espnIndex["\(league)#\(espn)"] = espnIndex["\(league)#\(espn)"] ?? team
+        }
     }
 
     /// The team the app has for an ESPN team in a league, if any.

@@ -236,6 +236,45 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(again.id, usa.id, "A found game reuses the catalog country")
     }
 
+    func testF1RaceWeekendIsFoundAtTheCircuit() async throws {
+        let monaco = try XCTUnwrap(library.venue("monaco"))
+        let race = try XCTUnwrap(F1Calendar.races.first { $0.id == "2024-monaco" })
+        XCTAssertEqual(race.results?.winner?.code, "LEC")
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = monaco.tz
+        let friday = try XCTUnwrap(cal.date(from: DateComponents(year: 2024, month: 5, day: 24, hour: 14)))
+        let sunday = try XCTUnwrap(cal.date(from: DateComponents(year: 2024, month: 5, day: 26, hour: 15)))
+        let found = await GameLookup.games(at: monaco, from: sunday, to: sunday.addingTimeInterval(3600))
+        XCTAssertEqual(found.first?.race?.id, "2024-monaco")
+        var entry = GameEntry(sport: .motorsport, date: sunday, venueId: monaco.id, origin: .manual)
+        GameLookup.apply(try XCTUnwrap(found.first), detail: nil, to: &entry, library: library)
+        XCTAssertEqual(entry.competition, "2024 Monaco Grand Prix")
+        XCTAssertTrue(entry.podium.first?.hasPrefix("P1 LEC") == true, "\(entry.podium)")
+        XCTAssertEqual(entry.source?.league, "racing/f1")
+
+        // Friday and Sunday photos are one race weekend.
+        let a = PhotoCluster(id: "fri", venue: monaco, start: friday, end: friday.addingTimeInterval(1800), assetIds: ["a"], times: [friday])
+        let b = PhotoCluster(id: "sun", venue: monaco, start: sunday, end: sunday.addingTimeInterval(1800), assetIds: ["b"], times: [sunday])
+        var matched: [String: FoundGame] = [:]
+        for c in [a, b] { matched[c.id] = await GameLookup.games(at: monaco, from: c.start, to: c.end).first }
+        let merged = ScanModel.mergeRaceWeekends([a, b], matched: &matched)
+        XCTAssertEqual(merged.count, 1)
+        XCTAssertEqual(merged.first?.assetIds.sorted(), ["a", "b"])
+        XCTAssertEqual(matched.count, 1)
+    }
+
+    func testCatalogHasEveryResearchedTeamAndVenue() throws {
+        XCTAssertGreaterThan(library.allTeams.count, 4_000)
+        XCTAssertGreaterThan(library.venues.count, 3_000)
+        for name in ["Real Madrid", "Hajduk Split", "Partizan"] {
+            XCTAssertTrue(library.allTeams.contains { $0.teamName.contains(name) }, "\(name) is in the picker")
+        }
+        XCTAssertEqual(library.venue("monza")?.geofence, 1200, "A circuit's grandstands are inside its geofence")
+        XCTAssertEqual(library.venue("cota")?.sports.contains(.motorsport), true)
+        // The current franchise wins the ESPN lookup over a relocated one's old record.
+        XCTAssertEqual(library.catalogTeam(league: "football/nfl", espnId: "13")?.id, "nfl-lv")
+    }
+
     func testWorldCupGameIsFoundAtAFootballStadium() throws {
         let library = self.library!
         let levis = try XCTUnwrap(library.venues.first { $0.id == "levis-stadium" })

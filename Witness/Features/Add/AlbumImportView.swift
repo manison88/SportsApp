@@ -293,10 +293,7 @@ struct AlbumImportView: View {
                     .font(.footnote).foregroundStyle(Color.textSecondary)
                 if let game = i.game {
                     HStack(spacing: 6) {
-                        TeamTile(team: GameLookup.team(from: game.away, game: game), compact: true)
-                        Text(game.away.score.map(String.init) ?? "").font(.condensed(.subheadline, weight: .heavy))
-                        TeamTile(team: GameLookup.team(from: game.home, game: game), compact: true)
-                        Text(game.home.score.map(String.init) ?? "").font(.condensed(.subheadline, weight: .heavy))
+                        FoundGameChip(game: game)
                         if i.onScoreboard {
                             Image(systemName: "checkmark.seal.fill").foregroundStyle(Color.trophy)
                                 .accessibilityLabel(i.foundByScoreboard ? "Found from the scoreboard" : "Seen on the scoreboard")

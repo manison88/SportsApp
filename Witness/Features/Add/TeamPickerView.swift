@@ -32,13 +32,27 @@ struct TeamPickerView: View {
                 Section("Your teams") { rows(custom) }
                     .listRowBackground(Color.panel)
             }
-            if !sameSport.isEmpty {
-                Section(sport.name) { rows(sameSport) }
+            if searching {
+                Section("\(results.count.formatted()) \(results.count == 1 ? "team" : "teams")") { rows(Array(results.prefix(300))) }
                     .listRowBackground(Color.panel)
-            }
-            if !others.isEmpty {
-                Section("Other sports") { rows(others) }
+            } else {
+                ForEach(leagueSections, id: \.sport) { section in
+                    Section(section.sport == sport ? "\(section.sport.name) leagues" : section.sport.name) {
+                        ForEach(section.leagues, id: \.name) { league in
+                            NavigationLink {
+                                LeagueTeamsView(league: league.name, teams: league.teams, selection: $selection) { dismiss() }
+                            } label: {
+                                HStack {
+                                    Text(league.name).font(.condensed(.headline)).foregroundStyle(.white)
+                                    Spacer()
+                                    Text("\(league.teams.count)").font(.footnote).foregroundStyle(Color.textSecondary)
+                                }
+                            }
+                            .accessibilityIdentifier("team-league-\(league.name)")
+                        }
+                    }
                     .listRowBackground(Color.panel)
+                }
             }
         }
         .scrollContentBackground(.hidden)
@@ -58,27 +72,77 @@ struct TeamPickerView: View {
     }
 
     private var trimmedQuery: String { query.trimmingCharacters(in: .whitespacesAndNewlines) }
+    private var searching: Bool { !trimmedQuery.isEmpty }
 
-    private var everyTeam: [Team] {
+    private var customIds: Set<String> { Set(library.customTeams.map(\.id)) }
+    private func sorted(_ teams: [Team]) -> [Team] { teams.sorted { $0.locationName < $1.locationName } }
+    private var custom: [Team] {
         let q = TicketParser.normalize(trimmedQuery)
-        let all = library.allTeams + library.customTeams
-        guard !q.isEmpty else { return all }
-        return all.filter {
-            TicketParser.normalize($0.locationName).contains(q) || TicketParser.normalize($0.teamName).contains(q)
-                || TicketParser.normalize($0.abbreviation).contains(q) || TicketParser.normalize($0.league).contains(q)
+        return sorted(library.customTeams.filter { q.isEmpty || Self.matches($0, q) })
+    }
+
+    private static func matches(_ t: Team, _ q: String) -> Bool {
+        TicketParser.normalize(t.locationName).contains(q) || TicketParser.normalize(t.teamName).contains(q)
+            || TicketParser.normalize(t.abbreviation).contains(q) || TicketParser.normalize(t.league).contains(q)
+    }
+
+    /// Search across every sport; the current sport's teams first.
+    private var results: [Team] {
+        let q = TicketParser.normalize(trimmedQuery)
+        let found = library.allTeams.filter { Self.matches($0, q) }
+        return sorted(found.filter { $0.sport == sport }) + sorted(found.filter { $0.sport != sport })
+    }
+
+    struct LeagueGroup { let name: String; let teams: [Team] }
+    struct SportGroup { let sport: Sport; let leagues: [LeagueGroup] }
+
+    /// Leagues by sport, the current sport first; the biggest leagues lead each sport.
+    private var leagueSections: [SportGroup] {
+        let bySport = Dictionary(grouping: library.allTeams, by: \.sport)
+        let order = [sport] + Sport.allCases.filter { $0 != sport }
+        return order.compactMap { s in
+            guard let teams = bySport[s], !teams.isEmpty else { return nil }
+            let leagues = Dictionary(grouping: teams, by: \.league).map { LeagueGroup(name: $0.key, teams: $0.value) }
+                .sorted { $0.teams.count != $1.teams.count ? $0.teams.count > $1.teams.count : $0.name < $1.name }
+            return SportGroup(sport: s, leagues: leagues)
         }
     }
 
-    private func sorted(_ teams: [Team]) -> [Team] { teams.sorted { $0.locationName < $1.locationName } }
-    private var custom: [Team] { sorted(everyTeam.filter { library.customTeams.contains($0) }) }
-    private var sameSport: [Team] { sorted(everyTeam.filter { $0.sport == sport && !library.customTeams.contains($0) }) }
-    private var others: [Team] { sorted(everyTeam.filter { $0.sport != sport && !library.customTeams.contains($0) }) }
-
     private func rows(_ teams: [Team]) -> some View {
+        TeamRows(teams: teams, selection: $selection) { dismiss() }
+    }
+}
+
+/// One league's teams, A to Z.
+struct LeagueTeamsView: View {
+    let league: String
+    let teams: [Team]
+    @Binding var selection: String?
+    /// Closes the whole picker, not just this league.
+    let done: () -> Void
+
+    var body: some View {
+        List {
+            Section { TeamRows(teams: teams.sorted { $0.locationName < $1.locationName }, selection: $selection, done: done) }
+                .listRowBackground(Color.panel)
+        }
+        .scrollContentBackground(.hidden)
+        .background(Color.ink.ignoresSafeArea())
+        .navigationTitle(league)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct TeamRows: View {
+    let teams: [Team]
+    @Binding var selection: String?
+    let done: () -> Void
+
+    var body: some View {
         ForEach(teams) { t in
             Button {
                 selection = t.id
-                dismiss()
+                done()
             } label: {
                 HStack(spacing: 12) {
                     TeamTile(team: t, compact: true)

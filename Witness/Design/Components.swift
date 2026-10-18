@@ -119,7 +119,7 @@ struct ScoreBug: View {
     var body: some View {
         HStack(spacing: 6) {
             if game.sport == .motorsport {
-                Text(game.podium.first ?? "Race")
+                Text(game.podium.first.map { $0.split(separator: " ").prefix(2).joined(separator: " ") } ?? "Race")
                     .font(.condensed(.subheadline, weight: .heavy))
             } else {
                 side(game.awayTeamId, game.awayScore)
@@ -898,5 +898,32 @@ struct ShareCardSheetLink<Label: View>: View {
     var body: some View {
         Button { showing = true } label: { label }
             .shareCardSheet(isPresented: $showing, title: title, format: format, key: key, variants: variants)
+    }
+}
+
+/// What a found game shows in a review card: both teams and the score, or for a Formula 1 race its name and winner.
+struct FoundGameChip: View {
+    let game: FoundGame
+    var font: Font = .condensed(.subheadline, weight: .heavy)
+
+    var body: some View {
+        if let race = game.race {
+            HStack(spacing: 6) {
+                Image(systemName: "flag.checkered").accessibilityHidden(true)
+                Text(race.shortName).lineLimit(1)
+                if let winner = race.results?.winner?.code { Text(winner).foregroundStyle(Color.textSecondary) }
+            }
+            .font(font)
+            .accessibilityElement(children: .combine)
+        } else {
+            HStack(spacing: 5) {
+                TeamTile(team: GameLookup.team(from: game.away, game: game), compact: true)
+                Text(game.away.score.map(String.init) ?? "").font(font).monospacedDigit()
+                TeamTile(team: GameLookup.team(from: game.home, game: game), compact: true)
+                Text(game.home.score.map(String.init) ?? "").font(font).monospacedDigit()
+            }
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel("\(game.away.location) \(game.away.score ?? 0), \(game.home.location) \(game.home.score ?? 0)")
+        }
     }
 }

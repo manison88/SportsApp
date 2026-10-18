@@ -162,7 +162,7 @@ struct PassportView: View {
         let homes = games.filter { $0.venueId == venueId }.compactMap(\.homeTeamId)
         let top = Dictionary(grouping: homes, by: { $0 }).max { $0.value.count < $1.value.count }?.key
         let team = library.team(top)
-        let code = team?.abbreviation ?? String(venue.name.filter(\.isLetter).prefix(3)).uppercased()
+        let code = team?.abbreviation ?? (venue.sports.contains(.motorsport) ? venue.countryCode : String(venue.name.filter(\.isLetter).prefix(3)).uppercased())
         return Stamp(venueId: venueId, code: code, color: team?.accent ?? Color(hex: "3A4150"), date: date)
     }
 }

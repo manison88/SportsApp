@@ -153,6 +153,16 @@ struct GameMemoryView: View {
                     }
                 }
             }
+            if let circuit = F1Calendar.circuits[game.venueId] {
+                let facts = [circuit.lengthKm.map { "\($0.formatted()) km" }, circuit.turns.map { "\($0) turns" },
+                             circuit.lapRecord.flatMap { r in r.time.map { "Lap record \($0)" + (r.year.map { " (\($0))" } ?? "") } }]
+                    .compactMap { $0 }
+                if !facts.isEmpty {
+                    Text(facts.joined(separator: " \u{00B7} ")).unitLabel()
+                        .padding(.top, 8)
+                        .accessibilityIdentifier("circuit-facts")
+                }
+            }
         } else if !game.lineHome.isEmpty || !game.lineAway.isEmpty {
             LineScoreTable(game: game)
         } else if game.hasScore {

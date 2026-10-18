@@ -254,6 +254,37 @@ final class WitnessUITests: XCTestCase {
         snap("add-game-custom-teams")
     }
 
+    /// The full catalog: a club from a league the app has never heard of by hand, found by search; and a Formula 1 race
+    /// chosen from the calendar, which sets the circuit and names the race.
+    func testPickClubFromCatalogAndRaceFromCalendar() {
+        launch(["-empty"])
+        tap("empty-add")
+        tap("add-away-team")
+        let search = app.searchFields.firstMatch
+        XCTAssertTrue(search.waitForExistence(timeout: 5))
+        search.tap()
+        search.typeText("Hajduk")
+        tap("team-row-cro1-haj")
+        XCTAssertTrue(el("add-away-team").label.contains("Split"), "Away should show Hajduk Split: \(el("add-away-team").label)")
+
+        tap("add-sport")
+        app.buttons["Motorsport"].tap()
+        tap("add-race-calendar")
+        let races = app.searchFields.firstMatch
+        XCTAssertTrue(races.waitForExistence(timeout: 5))
+        races.tap()
+        races.typeText("Monaco")
+        let row = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'race-row-'")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5), "The calendar lists Monaco")
+        snap("add-race-calendar")
+        row.tap()
+        XCTAssertTrue(el("add-venue-name").waitForExistence(timeout: 5))
+        XCTAssertTrue(el("add-venue-name").label.contains("Monaco"), "The circuit is set: \(el("add-venue-name").label)")
+        snap("add-race-picked")
+        tap("add-save")
+        XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'game-card-'")).firstMatch.waitForExistence(timeout: 5))
+    }
+
     /// A venue that isn't in the catalog: created by hand with a pin.
     func testAddCustomVenue() {
         launch(["-empty"])

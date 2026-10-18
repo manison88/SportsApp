@@ -69,6 +69,12 @@ struct AddGameView: View {
                 if sport == .motorsport {
                     TextField("Race", text: $raceName)
                         .accessibilityIdentifier("add-race")
+                    NavigationLink {
+                        RacePickerView { race in pickRace(race) }
+                    } label: {
+                        Label("Choose from the race calendar", systemImage: "calendar")
+                    }
+                    .accessibilityIdentifier("add-race-calendar")
                 } else {
                     teamPicker("Away", selection: $awayTeamId, id: "add-away-team")
                     teamPicker("Home", selection: $homeTeamId, id: "add-home-team")
@@ -95,6 +101,31 @@ struct AddGameView: View {
                     .accessibilityIdentifier("add-date")
             }
             .listRowBackground(Color.panel)
+
+            if sport == .motorsport, let venue = venueId.flatMap({ library.venue($0) }), !F1Calendar.races(at: venue.id).isEmpty {
+                Section {
+                    Button {
+                        Task { await lookup() }
+                    } label: {
+                        HStack {
+                            Label(isMatched ? "Found on the calendar" : "Find this race",
+                                  systemImage: isMatched ? "checkmark.seal.fill" : "sparkle.magnifyingglass")
+                            Spacer()
+                            if lookingUp { ProgressView() }
+                        }
+                    }
+                    .disabled(lookingUp)
+                    .accessibilityIdentifier("add-lookup")
+                    if let line = matchLine {
+                        Text(line).font(.footnote).foregroundStyle(Color.textSecondary)
+                            .accessibilityIdentifier("add-lookup-result")
+                    }
+                    if lookupFailed {
+                        Text("No race weekend at this circuit on that day.").font(.footnote).foregroundStyle(Color.textSecondary)
+                    }
+                }
+                .listRowBackground(Color.panel)
+            }
 
             if sport != .motorsport {
                 Section {
@@ -368,6 +399,9 @@ struct AddGameView: View {
     /// What was matched, so it is plain whether the automatic lookup worked.
     private var matchLine: String? {
         let tz = venueId.flatMap { library.venue($0)?.tz } ?? .current
+        if let race = found?.race {
+            return "\(race.title) \u{00B7} Round \(race.round)" + (race.results?.winner?.name.map { " \u{00B7} Won by \($0)" } ?? "")
+        }
         if let found {
             return "\(found.away.abbreviation) at \(found.home.abbreviation) \u{00B7} \(found.leagueName) \u{00B7} "
                 + "\(Fmt.dayTitle(found.start, in: tz)), \(Fmt.time(found.start, in: tz))"
@@ -418,7 +452,7 @@ struct AddGameView: View {
     /// Looks the game up as soon as a venue and day are set, but only on a new game with no teams picked yet, so
     /// nothing the fan typed is overwritten. "Find this game" stays for everything else.
     private func autoLookup() {
-        guard found == nil, !lookingUp, sport != .motorsport,
+        guard found == nil, !lookingUp,
               let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty else { return }
         let noTeamsYet = homeTeamId == nil && awayTeamId == nil
         if let editing {
@@ -440,6 +474,19 @@ struct AddGameView: View {
         Task { await lookup() }
     }
 
+    /// A race chosen from the calendar sets the circuit, the date and the name in one go.
+    private func pickRace(_ race: F1Race) {
+        sport = .motorsport
+        venueId = race.circuitId
+        date = race.start
+        raceName = race.title
+        homeTeamId = nil
+        awayTeamId = nil
+        found = F1Calendar.found(race, venue: library.venue(race.circuitId))
+        foundTeams = [nil, nil]
+        lookupFailed = false
+    }
+
     /// Finds the real game at this venue on this day and fills the form from it.
     private func lookup() async {
         guard let venue = venueId.flatMap({ library.venue($0) }) else { return }
@@ -456,6 +503,13 @@ struct AddGameView: View {
         found = game
         sport = game.sport
         date = game.start
+        if let race = game.race {
+            raceName = race.title
+            homeTeamId = nil
+            awayTeamId = nil
+            foundTeams = [nil, nil]
+            return
+        }
         homeTeamId = library.addTeam(GameLookup.team(from: game.home, game: game)).id
         awayTeamId = library.addTeam(GameLookup.team(from: game.away, game: game)).id
         foundTeams = [homeTeamId, awayTeamId]
@@ -540,6 +594,68 @@ struct AddGameView: View {
         } else {
             presenter.modal = nil
             dismiss()
+        }
+    }
+}
+
+/// Every race on the calendar, newest season first. Picking one fills the circuit, the date and the race.
+struct RacePickerView: View {
+    let onPick: (F1Race) -> Void
+
+    @Environment(Library.self) private var library
+    @Environment(\.dismiss) private var dismiss
+    @State private var query = ""
+
+    var body: some View {
+        List {
+            ForEach(sections, id: \.season) { section in
+                Section(String(section.season)) {
+                    ForEach(section.races) { race in
+                        Button {
+                            onPick(race)
+                            dismiss()
+                        } label: {
+                            HStack(spacing: 12) {
+                                Text("R\(race.round)").font(.condensed(.subheadline, weight: .heavy))
+                                    .foregroundStyle(Color.textSecondary).frame(width: 34, alignment: .leading)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(race.shortName).font(.condensed(.headline)).foregroundStyle(.white)
+                                    Text([library.venue(race.circuitId)?.name, race.raceLocalDate].compactMap { $0 }.joined(separator: " \u{00B7} "))
+                                        .font(.footnote).foregroundStyle(Color.textSecondary)
+                                }
+                                Spacer()
+                                if race.status == "cancelled" {
+                                    Text("Cancelled").font(.footnote).foregroundStyle(Color.textTertiary)
+                                } else if let winner = race.results?.winner?.code {
+                                    Text(winner).font(.condensed(.subheadline, weight: .heavy)).foregroundStyle(Color.textSecondary)
+                                }
+                            }
+                            .contentShape(.rect)
+                        }
+                        .disabled(race.status == "cancelled")
+                        .accessibilityIdentifier("race-row-\(race.id)")
+                    }
+                }
+                .listRowBackground(Color.panel)
+            }
+        }
+        .scrollContentBackground(.hidden)
+        .background(Color.ink.ignoresSafeArea())
+        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search races and circuits")
+        .navigationTitle("Race calendar")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private var sections: [(season: Int, races: [F1Race])] {
+        let q = TicketParser.normalize(query.trimmingCharacters(in: .whitespacesAndNewlines))
+        return F1Calendar.seasons().compactMap { s in
+            let races = q.isEmpty ? s.races : s.races.filter {
+                TicketParser.normalize($0.name).contains(q) || TicketParser.normalize($0.shortName).contains(q)
+                    || TicketParser.normalize(library.venue($0.circuitId)?.name ?? "").contains(q)
+                    || TicketParser.normalize(library.venue($0.circuitId)?.city ?? "").contains(q)
+                    || String(s.season).contains(q)
+            }
+            return races.isEmpty ? nil : (s.season, races)
         }
     }
 }

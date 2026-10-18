@@ -110,7 +110,8 @@ final class ScanModel {
 
         // Ticket screenshots pin games on their own, even when none of the night's photos have GPS. Read them here, so
         // the review that follows has nothing left to wait for.
-        var visits = found
+        var visits = Self.mergeRaceWeekends(found, matched: &matched)
+        matches = matched
         var ticketed: [String: TicketDraft] = [:]
         let have = Set(library.games.compactMap { g in library.venue(g.venueId).map { VisitGrouping.key(venueId: $0.id, date: g.date, tz: $0.tz) } })
         let anchors = await TicketAnchors.find(in: TicketAnchors.screenshots(limit: 200), teams: library.allTeams, venues: venues)
@@ -147,7 +148,8 @@ final class ScanModel {
             } else {
                 inOther.append(cluster)
                 if let game = matched[cluster.id] {
-                    notes[cluster.id] = "There was a game here that day (\(game.away.abbreviation) at \(game.home.abbreviation)), but these photos don't look like it."
+                    notes[cluster.id] = game.race.map { "There was a race here (\($0.title)), but these photos don't look like it." }
+                        ?? "There was a game here that day (\(game.away.abbreviation) at \(game.home.abbreviation)), but these photos don't look like it."
                 }
             }
             verifiedVisits += 1
@@ -161,6 +163,26 @@ final class ScanModel {
         games = confirmed.sorted { $0.start > $1.start }
         others = inOther.sorted { $0.start > $1.start }
         state = games.isEmpty && others.isEmpty ? .empty : .done
+    }
+
+    /// A race weekend is one event over several days at the circuit: Friday, Saturday and Sunday photos become one visit.
+    nonisolated static func mergeRaceWeekends(_ clusters: [PhotoCluster], matched: inout [String: FoundGame]) -> [PhotoCluster] {
+        var out: [PhotoCluster] = []
+        var byRace: [String: Int] = [:]
+        for cluster in clusters {
+            guard let game = matched[cluster.id], let race = game.race else { out.append(cluster); continue }
+            if let at = byRace[race.id] {
+                let merged = out[at].combined(with: cluster)
+                matched[merged.id] = game
+                if merged.id != out[at].id { matched[out[at].id] = nil }
+                if merged.id != cluster.id { matched[cluster.id] = nil }
+                out[at] = merged
+            } else {
+                byRace[race.id] = out.count
+                out.append(cluster)
+            }
+        }
+        return out
     }
 
     /// The game on the schedule at this visit's stadium (or the arena next door) around the photos' times.

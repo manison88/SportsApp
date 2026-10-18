@@ -166,14 +166,7 @@ struct DiscoveryView: View {
                     .minimumScaleFactor(0.7)
                 Spacer(minLength: 8)
                 if let lookup, lookupFor == cluster.id {
-                    HStack(spacing: 5) {
-                        TeamTile(team: GameLookup.team(from: lookup.away, game: lookup), compact: true)
-                        Text(lookup.away.score.map(String.init) ?? "").font(.condensed(.subheadline, weight: .heavy)).monospacedDigit()
-                        TeamTile(team: GameLookup.team(from: lookup.home, game: lookup), compact: true)
-                        Text(lookup.home.score.map(String.init) ?? "").font(.condensed(.subheadline, weight: .heavy)).monospacedDigit()
-                    }
-                    .accessibilityElement(children: .combine)
-                    .accessibilityLabel("\(lookup.away.location) \(lookup.away.score ?? 0), \(lookup.home.location) \(lookup.home.score ?? 0), on the schedule")
+                    FoundGameChip(game: lookup)
                     .accessibilityIdentifier("discovery-verified")
                     if onScoreboard {
                         Image(systemName: "checkmark.seal.fill")
