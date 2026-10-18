@@ -158,6 +158,20 @@ enum PhotoMatcher {
         }.value
     }
 
+    /// Where a game's own photos were taken: the first of them that carries a location.
+    static func location(ofPhotos ids: [String]) async -> CLLocation? {
+        guard hasAccess, !ids.isEmpty else { return nil }
+        let some = Array(ids.prefix(24))
+        return await Task.detached(priority: .utility) { () -> CLLocation? in
+            let assets = PHAsset.fetchAssets(withLocalIdentifiers: some, options: nil)
+            var found: CLLocation?
+            assets.enumerateObjects { asset, _, stop in
+                if let l = asset.location { found = l; stop.pointee = true }
+            }
+            return found
+        }.value
+    }
+
     /// A drive-by snapshot isn't a game: ask for at least two photos taken
     /// at least 15 minutes apart, the shortest plausible stay in the stands.
     static func looksLikeAGame(_ times: [Date], minimumStay: TimeInterval = 15 * 60) -> Bool {

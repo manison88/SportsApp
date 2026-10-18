@@ -187,6 +187,77 @@ final class Library {
         return .none
     }
 
+    // MARK: Venue audit
+
+    /// Whether the audit has run in this launch.
+    private var venuesAudited = false
+
+    /// Checks each saved game's stadium against what is known for sure, and corrects the ones that cannot be right:
+    /// a ground that does not host the game's sport (a Welsh football pitch for an NBA game), or photos taken more
+    /// than 20 km from the stadium they were filed under. A wrong match's schedule details go with it, and the right
+    /// stadium's schedule is asked for the real game.
+    func auditVenues() async {
+        guard !venuesAudited else { return }
+        venuesAudited = true
+        for g in games where g.origin != .sample && g.sport != .motorsport {
+            guard let current = venue(g.venueId) else { continue }
+            var target: Venue?
+            if !hosts(current, g.sport) { target = homeGround(of: g) }
+            let libraryIds = g.photos.compactMap { ref -> String? in
+                if case .library(let id) = ref { return id }
+                return nil
+            }
+            if target == nil, let here = await PhotoMatcher.location(ofPhotos: libraryIds),
+               current.location.distance(from: here) > 20_000 {
+                target = venues.filter { hosts($0, g.sport) && $0.location.distance(from: here) <= 1_500 }
+                    .min { $0.location.distance(from: here) < $1.location.distance(from: here) }
+                // Photos taken at a ground that hosts nothing of this sport still say where the fan was.
+                    ?? VisitGrouping.nearestVenue(lat: here.coordinate.latitude, lon: here.coordinate.longitude, in: venues)
+            }
+            guard let target, target.id != g.venueId, var fixed = game(g.id) else { continue }
+            fixed.venueId = target.id
+            fixed.weather = nil
+            if fixed.source != nil {
+                // The schedule match belonged to the wrong stadium: its teams, score and plays do too.
+                fixed.source = nil
+                fixed.homeTeamId = nil
+                fixed.awayTeamId = nil
+                fixed.homeScore = nil
+                fixed.awayScore = nil
+                fixed.lineHome = []
+                fixed.lineAway = []
+                fixed.plays = []
+                fixed.winProbability = []
+                fixed.stage = nil
+                fixed.attendance = nil
+                fixed.competition = nil
+                fixed.rootingForTeamId = nil
+                fixed.kind = .visit
+            }
+            update(fixed)
+            await rematchSchedule(fixed.id)
+        }
+    }
+
+    /// The ground a game's home team calls home, when the catalog lists it for that sport.
+    private func homeGround(of g: GameEntry) -> Venue? {
+        guard let team = team(g.homeTeamId) else { return nil }
+        if let id = team.homeVenueId, let v = venue(id), hosts(v, g.sport) { return v }
+        let full = "\(team.locationName) \(team.teamName)".lowercased()
+        return venues.first { v in hosts(v, g.sport) && (v.homeTeams ?? []).contains { $0.lowercased() == full } }
+    }
+
+    /// A visit at a stadium that had exactly one game on its schedule that day is that game.
+    private func rematchSchedule(_ id: String) async {
+        guard let g = game(id), g.source == nil, let venue = venue(g.venueId) else { return }
+        let found = await GameLookup.games(at: venue, from: g.date.addingTimeInterval(-4 * 3600), to: g.date.addingTimeInterval(4 * 3600))
+            .filter { $0.sport == g.sport }
+        guard found.count == 1, let only = found.first, var current = game(id) else { return }
+        GameLookup.apply(only, detail: await GameLookup.detail(only), to: &current, library: self)
+        current.kind = nil
+        update(current)
+    }
+
     // MARK: Plans
 
     /// A planned game from the schedule. Nothing happens if that event is already planned or its ground is unknown.

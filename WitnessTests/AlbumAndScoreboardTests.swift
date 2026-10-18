@@ -292,6 +292,15 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(GameLookup.venue(of: game, in: library.venues)?.id, "united-center")
     }
 
+    func testAuditMovesAnNbaGameOffAWelshFootballGround() async throws {
+        var game = GameEntry(sport: .basketball, date: Date(), venueId: "cambrian-united-ground", origin: .manual)
+        game.homeTeamId = "nba-chi"
+        game.awayTeamId = "nba-bos"
+        library.add(game)
+        await library.auditVenues()
+        XCTAssertEqual(library.game(game.id)?.venueId, "united-center", "A home team's own arena replaces a ground that cannot host the sport")
+    }
+
     func testYourTeamsDecideWhoYouWereRootingFor() throws {
         let cubs = try XCTUnwrap(library.team("mlb-chc"))
         let brewers = try XCTUnwrap(library.team("mlb-mil"))
