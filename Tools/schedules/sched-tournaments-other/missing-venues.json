@@ -154,7 +154,9 @@
  {
   "id": "azovmash-arena",
   "name": "Azovmash Arena",
-  "aliases": [],
+  "aliases": [
+   "Sports Complex Azovmash"
+  ],
   "city": "Mariupol",
   "region": null,
   "country": "Ukraine",
@@ -167,7 +169,7 @@
   "leagues": [],
   "homeTeams": [],
   "timeZone": "Europe/Kyiv",
-  "capacity": null,
+  "capacity": 3022,
   "opened": null
  },
  {
@@ -247,25 +249,6 @@
   "opened": null
  },
  {
-  "id": "la-meilleraie-cholet",
-  "name": "La Meilleraie",
-  "aliases": [],
-  "city": "Cholet",
-  "region": null,
-  "country": "France",
-  "countryCode": "FR",
-  "latitude": 47.05794,
-  "longitude": -0.89637,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Paris",
-  "capacity": 5000,
-  "opened": null
- },
- {
   "id": "sleuyter-arena",
   "name": "Sleuyter Arena",
   "aliases": [],
@@ -327,6 +310,28 @@
   "opened": null
  },
  {
+  "id": "basket-hall-krasnodar",
+  "name": "Basket Hall",
+  "aliases": [
+   "Basket Hall Kazan",
+   "Sport Complex Basket Hall"
+  ],
+  "city": "Krasnodar",
+  "region": null,
+  "country": "Russian Federation",
+  "countryCode": "RU",
+  "latitude": 45.11742,
+  "longitude": 38.98118,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Moscow",
+  "capacity": 7500,
+  "opened": null
+ },
+ {
   "id": "arena-armeec",
   "name": "Arena Armeec",
   "aliases": [],
@@ -383,27 +388,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Zagreb",
   "capacity": null,
-  "opened": null
- },
- {
-  "id": "paok-sports-arena-thessaloniki",
-  "name": "PAOK Sports Arena",
-  "aliases": [
-   "Paok Sports Arena"
-  ],
-  "city": "Thessaloniki",
-  "region": null,
-  "country": "Greece",
-  "countryCode": "GR",
-  "latitude": 40.56561,
-  "longitude": 22.98125,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Athens",
-  "capacity": 7800,
   "opened": null
  },
  {
@@ -526,27 +510,6 @@
   "opened": null
  },
  {
-  "id": "ergo-arena-sopot",
-  "name": "Ergo Arena",
-  "aliases": [
-   "ERGO Arena"
-  ],
-  "city": "Sopot",
-  "region": null,
-  "country": "Poland",
-  "countryCode": "PL",
-  "latitude": 54.42583,
-  "longitude": 18.58028,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Warsaw",
-  "capacity": 11400,
-  "opened": null
- },
- {
   "id": "spiroudome",
   "name": "RTL Spiroudome",
   "aliases": [],
@@ -585,6 +548,27 @@
   "homeTeams": [],
   "timeZone": "Europe/Kyiv",
   "capacity": 5800,
+  "opened": null
+ },
+ {
+  "id": "helliniko-olympic-arena",
+  "name": "Helliniko Olympic Arena",
+  "aliases": [
+   "Olympic Complex-Hellinikon"
+  ],
+  "city": "Athens",
+  "region": null,
+  "country": "Greece",
+  "countryCode": "GR",
+  "latitude": 37.89361,
+  "longitude": 23.72333,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Athens",
+  "capacity": null,
   "opened": null
  },
  {
@@ -628,6 +612,25 @@
   "leagues": [],
   "homeTeams": [],
   "timeZone": "Europe/Madrid",
+  "capacity": null,
+  "opened": null
+ },
+ {
+  "id": "palais-des-sports-orleans",
+  "name": "Palais Des Sports, Orleans",
+  "aliases": [],
+  "city": "Orleans",
+  "region": null,
+  "country": "France",
+  "countryCode": "FR",
+  "latitude": 47.90972,
+  "longitude": 1.91194,
+  "sports": [
+   "basketball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Paris",
   "capacity": null,
   "opened": null
  },
@@ -730,25 +733,6 @@
   "opened": null
  },
  {
-  "id": "helliniko-olympic-arena",
-  "name": "Helliniko Olympic Arena",
-  "aliases": [],
-  "city": "Athens",
-  "region": null,
-  "country": "Greece",
-  "countryCode": "GR",
-  "latitude": 37.89361,
-  "longitude": 23.72333,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Athens",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "karsiyaka-arena",
   "name": "Mustafa Kemal Atatürk Karsiyaka Spor Salonu",
   "aliases": [
@@ -767,29 +751,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Istanbul",
   "capacity": 5000,
-  "opened": null
- },
- {
-  "id": "ewe-arena-oldenburg",
-  "name": "EWE Arena",
-  "aliases": [
-   "Grosse Ewe Arena",
-   "Large EWE Arena"
-  ],
-  "city": "Oldenburg",
-  "region": null,
-  "country": "Germany",
-  "countryCode": "DE",
-  "latitude": 53.14694,
-  "longitude": 8.22667,
-  "sports": [
-   "basketball",
-   "handball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Berlin",
-  "capacity": 3150,
   "opened": null
  },
  {
@@ -833,9 +794,11 @@
   "opened": null
  },
  {
-  "id": "sportovni-centrum-nymburk",
-  "name": "Sportovni Centrum Nymburk",
-  "aliases": [],
+  "id": "cez-sportovni-hala-nymburk",
+  "name": "CEZ Sportovni Hala Nymburk",
+  "aliases": [
+   "Sportovni Centrum Nymburk"
+  ],
   "city": "Nymburk",
   "region": null,
   "country": "Czechia",
@@ -848,7 +811,7 @@
   "leagues": [],
   "homeTeams": [],
   "timeZone": "Europe/Prague",
-  "capacity": null,
+  "capacity": 2000,
   "opened": null
  },
  {
@@ -1010,25 +973,6 @@
   "opened": null
  },
  {
-  "id": "besiktas-arena",
-  "name": "Besiktas Arena",
-  "aliases": [],
-  "city": "Istanbul",
-  "region": null,
-  "country": "Türkiye",
-  "countryCode": "TR",
-  "latitude": 41.03917,
-  "longitude": 28.99417,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Istanbul",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "lietuvos-rytas-arena",
   "name": "Lietuvos Rytas Arena",
   "aliases": [],
@@ -1089,27 +1033,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Paris",
   "capacity": 6027,
-  "opened": null
- },
- {
-  "id": "basket-hall-krasnodar",
-  "name": "Basket Hall",
-  "aliases": [
-   "Sport Complex Basket Hall"
-  ],
-  "city": "Krasnodar",
-  "region": null,
-  "country": "Russian Federation",
-  "countryCode": "RU",
-  "latitude": 45.11742,
-  "longitude": 38.98118,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Moscow",
-  "capacity": 7500,
   "opened": null
  },
  {
@@ -1288,25 +1211,6 @@
   "opened": null
  },
  {
-  "id": "mhp-arena",
-  "name": "MHP Arena",
-  "aliases": [],
-  "city": "Ludwigsburg",
-  "region": null,
-  "country": "Germany",
-  "countryCode": "DE",
-  "latitude": 48.79222,
-  "longitude": 9.23194,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Berlin",
-  "capacity": 4500,
-  "opened": null
- },
- {
   "id": "maurice-thorez",
   "name": "Maurice Thorez",
   "aliases": [],
@@ -1326,25 +1230,6 @@
   "opened": null
  },
  {
-  "id": "palasport-taliercio",
-  "name": "Palasport Taliercio",
-  "aliases": [],
-  "city": "Venezia Mestre",
-  "region": null,
-  "country": "Italy",
-  "countryCode": "IT",
-  "latitude": 45.4885,
-  "longitude": 12.2785,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Rome",
-  "capacity": 3500,
-  "opened": null
- },
- {
   "id": "palapentassuglia",
   "name": "Palapentassuglia",
   "aliases": [],
@@ -1361,27 +1246,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Rome",
   "capacity": null,
-  "opened": null
- },
- {
-  "id": "forum-di-assago",
-  "name": "Forum di Assago",
-  "aliases": [
-   "Mediolanum Forum"
-  ],
-  "city": "Milan",
-  "region": null,
-  "country": "Italy",
-  "countryCode": "IT",
-  "latitude": 45.40111,
-  "longitude": 9.14222,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Rome",
-  "capacity": 12700,
   "opened": null
  },
  {
@@ -1602,27 +1466,6 @@
   "opened": null
  },
  {
-  "id": "palaleonessa-brescia",
-  "name": "Palaleonessa",
-  "aliases": [
-   "PalaLeonessa"
-  ],
-  "city": "Brescia",
-  "region": null,
-  "country": "Italy",
-  "countryCode": "IT",
-  "latitude": 45.52778,
-  "longitude": 10.17439,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Rome",
-  "capacity": 5200,
-  "opened": null
- },
- {
   "id": "palavela",
   "name": "Palavela",
   "aliases": [],
@@ -1677,25 +1520,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Athens",
   "capacity": 4150,
-  "opened": null
- },
- {
-  "id": "palau-blaugrana-badalona",
-  "name": "Palau Blaugrana",
-  "aliases": [],
-  "city": "Badalona",
-  "region": null,
-  "country": "Spain",
-  "countryCode": "ES",
-  "latitude": 41.38008,
-  "longitude": 2.12005,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Madrid",
-  "capacity": null,
   "opened": null
  },
  {
@@ -1780,25 +1604,6 @@
   "opened": null
  },
  {
-  "id": "centennial-hall",
-  "name": "Centennial Hall",
-  "aliases": [],
-  "city": "Wroclaw",
-  "region": null,
-  "country": "Poland",
-  "countryCode": "PL",
-  "latitude": 51.10694,
-  "longitude": 17.07722,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Warsaw",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "ovo-arena-wembley",
   "name": "OVO Arena Wembley ",
   "aliases": [],
@@ -1853,25 +1658,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Berlin",
   "capacity": 3500,
-  "opened": null
- },
- {
-  "id": "bts-arena",
-  "name": "BTS Arena",
-  "aliases": [],
-  "city": "Trento",
-  "region": null,
-  "country": "Italy",
-  "countryCode": "IT",
-  "latitude": 46.04102,
-  "longitude": 11.12274,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Rome",
-  "capacity": null,
   "opened": null
  },
  {
@@ -2111,15 +1897,15 @@
   "opened": null
  },
  {
-  "id": "stade-26-mars-bamako",
+  "id": "stade-du-26-mars-bamako",
   "name": "Stade 26 mars",
   "aliases": [],
   "city": "Bamako",
   "region": null,
   "country": "Mali",
   "countryCode": "ML",
-  "latitude": 12.60444,
-  "longitude": -7.92167,
+  "latitude": 12.604444,
+  "longitude": -7.921667,
   "sports": [
    "basketball"
   ],
@@ -2133,6 +1919,7 @@
   "id": "palais-des-sports-salamatou-maiga",
   "name": "Palais des Sports Salamatou Maïga",
   "aliases": [
+   "Palais des Sports Salamatou Maiga",
    "Pavillon des sports"
   ],
   "city": "Bamako",
@@ -2147,7 +1934,7 @@
   "leagues": [],
   "homeTeams": [],
   "timeZone": "Africa/Bamako",
-  "capacity": null,
+  "capacity": 5000,
   "opened": null
  },
  {
@@ -4616,25 +4403,6 @@
   "opened": null
  },
  {
-  "id": "palau-municipal-d-esports-de-badalona",
-  "name": "Palau Municipal d'Esports de Badalona",
-  "aliases": [],
-  "city": "Badalona",
-  "region": null,
-  "country": "Spain",
-  "countryCode": "ES",
-  "latitude": 41.44241,
-  "longitude": 2.23214,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Madrid",
-  "capacity": 12500,
-  "opened": null
- },
- {
   "id": "vejlby-risskov-hallen",
   "name": "Vejlby Risskov Hallen",
   "aliases": [],
@@ -4979,25 +4747,6 @@
   "opened": null
  },
  {
-  "id": "pais-arena-jerusalem",
-  "name": "Pais Arena",
-  "aliases": [],
-  "city": "Jerusalem",
-  "region": null,
-  "country": "Israel",
-  "countryCode": "IL",
-  "latitude": 31.75112,
-  "longitude": 35.19414,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Asia/Jerusalem",
-  "capacity": 11600,
-  "opened": null
- },
- {
   "id": "hala-mistrzow",
   "name": "Hala Mistrzów",
   "aliases": [],
@@ -5131,25 +4880,6 @@
   "opened": null
  },
  {
-  "id": "bilbao-arena-barakaldo",
-  "name": "Bilbao Arena",
-  "aliases": [],
-  "city": "Barakaldo",
-  "region": null,
-  "country": "Spain",
-  "countryCode": "ES",
-  "latitude": 43.25222,
-  "longitude": -2.92583,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Madrid",
-  "capacity": 8793,
-  "opened": null
- },
- {
   "id": "darussafaka-ayhan-sahenk-spor-salonu",
   "name": "Darussafaka Ayhan Sahenk Spor Salonu",
   "aliases": [],
@@ -5185,25 +4915,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Sofia",
   "capacity": 12490,
-  "opened": null
- },
- {
-  "id": "peace-and-friendship-stadium-athens",
-  "name": "Peace and Friendship Stadium",
-  "aliases": [],
-  "city": "Athens",
-  "region": null,
-  "country": "Greece",
-  "countryCode": "GR",
-  "latitude": 37.94248,
-  "longitude": 23.6673,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Athens",
-  "capacity": 14700,
   "opened": null
  },
  {
@@ -5340,25 +5051,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Madrid",
   "capacity": 5000,
-  "opened": null
- },
- {
-  "id": "hala-stulecia-wroclaw",
-  "name": "Hala Stulecia",
-  "aliases": [],
-  "city": "Wroclaw",
-  "region": null,
-  "country": "Poland",
-  "countryCode": "PL",
-  "latitude": 51.10694,
-  "longitude": 17.07722,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Warsaw",
-  "capacity": 6000,
   "opened": null
  },
  {
@@ -5884,25 +5576,6 @@
   "opened": null
  },
  {
-  "id": "pierre-mauroy-stadium",
-  "name": "Pierre Mauroy Stadium",
-  "aliases": [],
-  "city": "Lille",
-  "region": null,
-  "country": "France",
-  "countryCode": "FR",
-  "latitude": 50.61196,
-  "longitude": 3.13063,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Paris",
-  "capacity": 27000,
-  "opened": null
- },
- {
   "id": "veikkaus-arena-helsinki",
   "name": "Veikkaus Arena",
   "aliases": [],
@@ -5919,25 +5592,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Helsinki",
   "capacity": 12500,
-  "opened": null
- },
- {
-  "id": "lanxess-arena-koln",
-  "name": "Lanxess Arena",
-  "aliases": [],
-  "city": "Köln",
-  "region": null,
-  "country": "Germany",
-  "countryCode": "DE",
-  "latitude": 50.93843,
-  "longitude": 6.9829,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Berlin",
-  "capacity": 18000,
   "opened": null
  },
  {
@@ -6323,7 +5977,9 @@
  {
   "id": "rimi-olympic-centre",
   "name": "Rimi Olympic Centre",
-  "aliases": [],
+  "aliases": [
+   "Olympic Sports Centre"
+  ],
   "city": "Riga",
   "region": null,
   "country": "Latvia",
@@ -6331,7 +5987,8 @@
   "latitude": 56.9679,
   "longitude": 24.12429,
   "sports": [
-   "basketball"
+   "basketball",
+   "hockey"
   ],
   "leagues": [],
   "homeTeams": [],
@@ -7798,6 +7455,28 @@
   "opened": null
  },
  {
+  "id": "spc-vojvodina",
+  "name": "SPC Vojvodina",
+  "aliases": [
+   "SPC Vojvodina II"
+  ],
+  "city": "Novi Sad",
+  "region": null,
+  "country": "Serbia",
+  "countryCode": "RS",
+  "latitude": 45.2475,
+  "longitude": 19.84556,
+  "sports": [
+   "basketball",
+   "handball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Belgrade",
+  "capacity": 1030,
+  "opened": null
+ },
+ {
   "id": "sportska-dvorana-baldekin",
   "name": "Sportska Dvorana Baldekin",
   "aliases": [],
@@ -7931,25 +7610,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Zagreb",
   "capacity": 3700,
-  "opened": null
- },
- {
-  "id": "rapid-polyvalent-hall",
-  "name": "Rapid Polyvalent Hall",
-  "aliases": [],
-  "city": "Bucharest",
-  "region": null,
-  "country": "Romania",
-  "countryCode": "RO",
-  "latitude": 44.45681,
-  "longitude": 26.05591,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Bucharest",
-  "capacity": 1500,
   "opened": null
  },
  {
@@ -8301,6 +7961,28 @@
   "homeTeams": [],
   "timeZone": "Europe/Berlin",
   "capacity": 9000,
+  "opened": null
+ },
+ {
+  "id": "naestved-hallen",
+  "name": "Naestved Hallen",
+  "aliases": [
+   "Arena Naestved"
+  ],
+  "city": "Naestved",
+  "region": null,
+  "country": "Denmark",
+  "countryCode": "DK",
+  "latitude": 55.25684,
+  "longitude": 11.77092,
+  "sports": [
+   "basketball",
+   "handball"
+  ],
+  "leagues": [],
+  "homeTeams": [],
+  "timeZone": "Europe/Copenhagen",
+  "capacity": 3176,
   "opened": null
  },
  {
@@ -8988,25 +8670,6 @@
   "homeTeams": [],
   "timeZone": "Europe/Helsinki",
   "capacity": 2000,
-  "opened": null
- },
- {
-  "id": "stadthalle",
-  "name": "Stadthalle",
-  "aliases": [],
-  "city": "Vienna",
-  "region": null,
-  "country": "Austria",
-  "countryCode": "AT",
-  "latitude": 48.20231,
-  "longitude": 16.33244,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Vienna",
-  "capacity": 1500,
   "opened": null
  },
  {
@@ -11515,25 +11178,6 @@
   "opened": null
  },
  {
-  "id": "gateway-center-arena-atlanta",
-  "name": "Gateway Center Arena",
-  "aliases": [],
-  "city": "Atlanta",
-  "region": null,
-  "country": "United States",
-  "countryCode": "US",
-  "latitude": 33.6468,
-  "longitude": -84.45962,
-  "sports": [
-   "basketball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "America/New_York",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "mattamy-athletic-centre",
   "name": "Mattamy Athletic Centre",
   "aliases": [],
@@ -11979,44 +11623,6 @@
   "opened": null
  },
  {
-  "id": "spc-vojvodina",
-  "name": "SPC Vojvodina",
-  "aliases": [],
-  "city": "Novi Sad",
-  "region": null,
-  "country": "Serbia",
-  "countryCode": "RS",
-  "latitude": 45.2475,
-  "longitude": 19.84556,
-  "sports": [
-   "handball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Belgrade",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "audi-arena",
-  "name": "Audi Aréna",
-  "aliases": [],
-  "city": "Győr",
-  "region": null,
-  "country": "Hungary",
-  "countryCode": "HU",
-  "latitude": 47.6984,
-  "longitude": 17.6668,
-  "sports": [
-   "handball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Budapest",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "helsingborg-arena",
   "name": "Helsingborg Arena",
   "aliases": [],
@@ -12071,25 +11677,6 @@
   "leagues": [],
   "homeTeams": [],
   "timeZone": "Europe/Paris",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "tre-for-arena",
-  "name": "TRE-FOR arena",
-  "aliases": [],
-  "city": "Kolding",
-  "region": null,
-  "country": "Denmark",
-  "countryCode": "DK",
-  "latitude": 55.464,
-  "longitude": 9.4768,
-  "sports": [
-   "handball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Copenhagen",
   "capacity": null,
   "opened": null
  },
@@ -12285,25 +11872,6 @@
   "opened": null
  },
  {
-  "id": "telenor-arena",
-  "name": "Telenor Arena",
-  "aliases": [],
-  "city": "Baerum",
-  "region": null,
-  "country": "Norway",
-  "countryCode": "NO",
-  "latitude": 59.9037,
-  "longitude": 10.623,
-  "sports": [
-   "handball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Oslo",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "ginasio-adib-moyses-dib",
   "name": "Ginásio Adib Moyses Dib",
   "aliases": [],
@@ -12389,25 +11957,6 @@
   "countryCode": "DK",
   "latitude": 57.4419,
   "longitude": 10.5176,
-  "sports": [
-   "handball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Copenhagen",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "naestved-hallen",
-  "name": "Naestved Hallen",
-  "aliases": [],
-  "city": "Naestved",
-  "region": null,
-  "country": "Denmark",
-  "countryCode": "DK",
-  "latitude": 55.25684,
-  "longitude": 11.77092,
   "sports": [
    "handball"
   ],
@@ -12532,15 +12081,17 @@
   "opened": null
  },
  {
-  "id": "poliesportiu-pla-de-l-arc",
-  "name": "Poliesportiu Pla de L'Arc",
-  "aliases": [],
-  "city": "Llíria",
+  "id": "palacio-de-deportes-de-torrevieja",
+  "name": "Palacio de Deportes de Torrevieja",
+  "aliases": [
+   "Palacio de los Deportes de Torrevieja"
+  ],
+  "city": "Torrevieja",
   "region": null,
   "country": "Spain",
   "countryCode": "ES",
-  "latitude": 39.6324,
-  "longitude": -0.5922,
+  "latitude": 37.99557,
+  "longitude": -0.6754,
   "sports": [
    "handball"
   ],
@@ -12551,15 +12102,15 @@
   "opened": null
  },
  {
-  "id": "palacio-de-los-deportes-de-torrevieja",
-  "name": "Palacio de los Deportes de Torrevieja",
+  "id": "poliesportiu-pla-de-l-arc",
+  "name": "Poliesportiu Pla de L'Arc",
   "aliases": [],
-  "city": "Torrevieja",
+  "city": "Llíria",
   "region": null,
   "country": "Spain",
   "countryCode": "ES",
-  "latitude": 37.99557,
-  "longitude": -0.6754,
+  "latitude": 39.6324,
+  "longitude": -0.5922,
   "sports": [
    "handball"
   ],
@@ -12838,25 +12389,6 @@
   "opened": null
  },
  {
-  "id": "park-suites-arena",
-  "name": "Park&Suites Arena",
-  "aliases": [],
-  "city": "Montpellier",
-  "region": null,
-  "country": "France",
-  "countryCode": "FR",
-  "latitude": 43.57334,
-  "longitude": 3.95176,
-  "sports": [
-   "handball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Paris",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "borg-al-arab-sports-hall",
   "name": "Borg Al Arab Sports Hall",
   "aliases": [],
@@ -12929,25 +12461,6 @@
   "leagues": [],
   "homeTeams": [],
   "timeZone": "Europe/Stockholm",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "orlen-arena-plock",
-  "name": "Orlen Arena",
-  "aliases": [],
-  "city": "Plock",
-  "region": null,
-  "country": "Poland",
-  "countryCode": "PL",
-  "latitude": 52.56,
-  "longitude": 19.68361,
-  "sports": [
-   "handball"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/Warsaw",
   "capacity": null,
   "opened": null
  },
@@ -13391,7 +12904,9 @@
  {
   "id": "milano-santagiulia-ice-hockey-arena",
   "name": "Milano Santagiulia Ice Hockey Arena",
-  "aliases": [],
+  "aliases": [
+   "Milano Rho Ice Hockey Arena"
+  ],
   "city": "Milano",
   "region": null,
   "country": "Italy",
@@ -13674,25 +13189,6 @@
   "opened": null
  },
  {
-  "id": "brighton-community-stadium",
-  "name": "Brighton Community Stadium",
-  "aliases": [],
-  "city": "Brighton",
-  "region": null,
-  "country": "United Kingdom",
-  "countryCode": "GB",
-  "latitude": 50.86182,
-  "longitude": -0.08328,
-  "sports": [
-   "rugby"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/London",
-  "capacity": null,
-  "opened": null
- },
- {
   "id": "sandy-park",
   "name": "Sandy Park",
   "aliases": [],
@@ -13721,25 +13217,6 @@
   "countryCode": "GB",
   "latitude": 52.00962,
   "longitude": -0.73354,
-  "sports": [
-   "rugby"
-  ],
-  "leagues": [],
-  "homeTeams": [],
-  "timeZone": "Europe/London",
-  "capacity": null,
-  "opened": null
- },
- {
-  "id": "leicester-city-stadium",
-  "name": "Leicester City Stadium",
-  "aliases": [],
-  "city": "Leicester",
-  "region": null,
-  "country": "United Kingdom",
-  "countryCode": "GB",
-  "latitude": 52.62028,
-  "longitude": -1.14222,
   "sports": [
    "rugby"
   ],
