@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 2,
-      "passedTests" : 76,
+      "failedTests" : 0,
+      "passedTests" : 78,
       "skippedTests" : 0,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,39 +22,24 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 2,
-  "finishTime" : 1792293298.437,
-  "passedTests" : 76,
-  "result" : "Failed",
+  "failedTests" : 0,
+  "finishTime" : 1792296423.917,
+  "passedTests" : 78,
+  "result" : "Passed",
   "skippedTests" : 0,
-  "startTime" : 1792292495.812,
+  "startTime" : 1792295749.271,
   "statistics" : [
 
   ],
   "testFailures" : [
-    {
-      "failureText" : "XCTAssertEqual failed: (\"[\"football/nfl\", \"football/college-football\", \"soccer/fifa.world\", \"soccer/uefa.euro\", \"soccer/conmebol.america\", \"soccer/concacaf.gold\", \"soccer/fifa.cwc\", \"soccer/uefa.champions\", \"soccer/uefa.europa\", \"soccer/conmebol.libertadores\", \"soccer/fifa.friendly\", \"soccer/fifa.worldq.concacaf\"]\") is not equal to (\"[\"football/nfl\", \"football/college-football\"]\")",
-      "targetName" : "WitnessTests",
-      "testIdentifier" : 38,
-      "testIdentifierString" : "GameLookupTests/testLeagueGuessForVenuesWithoutLeagues()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessTests/GameLookupTests/testLeagueGuessForVenuesWithoutLeagues",
-      "testName" : "testLeagueGuessForVenuesWithoutLeagues()"
-    },
-    {
-      "failureText" : "XCTAssertTrue failed",
-      "targetName" : "WitnessUITests",
-      "testIdentifier" : 72,
-      "testIdentifierString" : "WitnessUITests/testImportAlbumWithScoreboardReading()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testImportAlbumWithScoreboardReading",
-      "testName" : "testImportAlbumWithScoreboardReading()"
-    }
+
   ],
   "title" : "Test - Witness",
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "28% of duration",
-      "text" : "2 longest test runs with outlier durations exceeding 1.96s (three standard deviations)"
+      "impact" : "34% of duration",
+      "text" : "2 longest test runs with outlier durations exceeding 2.79s (three standard deviations)"
     }
   ],
   "totalTestCount" : 78
