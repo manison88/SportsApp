@@ -43,6 +43,7 @@ struct TimelineView: View {
         .safeAreaInset(edge: .top, spacing: 0) {
             VStack(spacing: 0) {
                 DuplicateBanner()
+                VenueDoubtBanner()
                 ScanBanner()
             }
         }
@@ -102,6 +103,38 @@ private struct DuplicateBanner: View {
             } message: {
                 Text("Photos from each copy stay together on one game.")
             }
+        }
+    }
+}
+
+/// Games filed under a stadium that cannot host their sport: one tap to the first, to change its stadium.
+private struct VenueDoubtBanner: View {
+    @Environment(Library.self) private var library
+
+    var body: some View {
+        let ids = library.venueDoubts.filter { library.game($0) != nil }
+        if let first = ids.first {
+            NavigationLink(value: Route.game(first)) {
+                HStack(spacing: 12) {
+                    Image(systemName: "mappin.slash")
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(ids.count == 1 ? "1 game may be at the wrong stadium" : "\(ids.count) games may be at the wrong stadium")
+                            .font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
+                        Text("The stadium can\u{2019}t host that sport. Open it, then Edit to change the stadium.")
+                            .font(.footnote).foregroundStyle(Color.textSecondary)
+                    }
+                    Spacer()
+                    Text("Review").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase).foregroundStyle(Color.signal)
+                }
+                .foregroundStyle(.white)
+                .padding(14)
+                .background(Color.panel, in: .rect(cornerRadius: 14))
+                .gutter()
+                .padding(.vertical, 6)
+            }
+            .buttonStyle(.plain)
+            .simultaneousGesture(TapGesture().onEnded { library.clearDoubt(first) })
+            .accessibilityIdentifier("venue-doubt-banner")
         }
     }
 }

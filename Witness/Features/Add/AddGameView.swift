@@ -41,6 +41,7 @@ struct AddGameView: View {
     @State private var findingPhotos = false
     @State private var didPrefill = false
     @State private var didAutoLookup = false
+    @State private var photoDistanceMiles: Double?
 
     init(draft: TicketDraft? = nil, editing: GameEntry? = nil, embedded: Bool = false, onDone: (() -> Void)? = nil) {
         self.draft = draft
@@ -122,6 +123,13 @@ struct AddGameView: View {
 
                 DatePicker("Date", selection: $date)
                     .accessibilityIdentifier("add-date")
+
+                if let warning = venueWarning {
+                    Label(warning, systemImage: "exclamationmark.triangle")
+                        .font(.footnote)
+                        .foregroundStyle(Color.signal)
+                        .accessibilityIdentifier("add-venue-warning")
+                }
             }
             .listRowBackground(Color.panel)
 
@@ -290,6 +298,7 @@ struct AddGameView: View {
             // changing the sport keeps what was picked.
         }
         .onChange(of: venueId) { _, _ in autoLookup() }
+        .task(id: "\(venueId ?? "")-\(photoIds.count)") { await checkPhotoDistance() }
         .onChange(of: date) { _, _ in autoLookup() }
         .onChange(of: homeTeamId) { _, _ in verifyPicked() }
         .onChange(of: awayTeamId) { _, _ in verifyPicked() }
@@ -303,6 +312,18 @@ struct AddGameView: View {
     }
 
     // MARK: Pieces
+
+    /// A stadium that does not fit what was entered: it does not host the sport, or the photos were taken far from it.
+    private var venueWarning: String? {
+        guard let venue = venueId.flatMap({ library.venue($0) }), !isVisit, sport != .motorsport else { return nil }
+        if !library.hosts(venue, sport) {
+            return "\(venue.name) doesn\u{2019}t usually host \(sport.name.lowercased()). Is it the right stadium?"
+        }
+        if let miles = photoDistanceMiles, miles > 12 {
+            return "Your photos were taken about \(Int(miles)) miles from \(venue.name). Is it the right stadium?"
+        }
+        return nil
+    }
 
     private var venueName: String {
         if let v = venueId.flatMap({ library.venue($0) }) { return v.name }
@@ -399,6 +420,14 @@ struct AddGameView: View {
             seat = d.seatLine ?? ""
             fixRooting()
         }
+    }
+
+    /// How far the first located photo is from the chosen stadium.
+    private func checkPhotoDistance() async {
+        photoDistanceMiles = nil
+        guard let venue = venueId.flatMap({ library.venue($0) }), !photoIds.isEmpty,
+              let here = await PhotoMatcher.location(ofPhotos: photoIds) else { return }
+        photoDistanceMiles = venue.location.distance(from: here) / 1609.34
     }
 
     private func fixRooting() {

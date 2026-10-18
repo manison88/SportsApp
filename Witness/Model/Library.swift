@@ -139,16 +139,23 @@ final class Library {
     func searchVenues(_ query: String, sport: Sport?) -> [Venue] {
         let words = Self.words(query)
         guard !words.isEmpty else { return [] }
+        let visited = Set(games.map(\.venueId))
+        let typed = words.joined(separator: " ")
         var hits: [(venue: Venue, rank: Int)] = []
         for v in venues {
             let name = Self.words(v.name)
             let rest = Self.words(([v.city, v.region ?? "", v.country] + (v.aliases ?? []) + (v.homeTeams ?? [])).joined(separator: " "))
             let all = name + rest
             guard words.allSatisfy({ w in all.contains { $0.hasPrefix(w) } }) else { continue }
-            var rank = 2
+            var rank = 20
             if name.first?.hasPrefix(words[0]) == true { rank = 0 }
-            else if words.allSatisfy({ w in name.contains { $0.hasPrefix(w) } }) { rank = 1 }
-            if let sport, !hosts(v, sport) { rank += 4 }
+            else if words.allSatisfy({ w in name.contains { $0.hasPrefix(w) } }) { rank = 10 }
+            // The whole name, or one of its other names, typed out: that is the one.
+            if name.joined(separator: " ") == typed || (v.aliases ?? []).contains(where: { Self.words($0).joined(separator: " ") == typed }) { rank -= 20 }
+            // Grounds you have been to, then the big ones, before obscure lookalikes.
+            if visited.contains(v.id) { rank -= 5 }
+            if (v.capacity ?? 0) >= 15_000 { rank -= 2 }
+            if let sport, !hosts(v, sport) { rank += 40 }
             hits.append((v, rank))
         }
         return hits.sorted { $0.rank != $1.rank ? $0.rank < $1.rank : $0.venue.name < $1.venue.name }.map(\.venue)
@@ -191,6 +198,10 @@ final class Library {
 
     /// Whether the audit has run in this launch.
     private var venuesAudited = false
+    /// Games filed under a ground that cannot host their sport, with nothing to correct them from: the fan reviews these.
+    private(set) var venueDoubts: [String] = []
+
+    func clearDoubt(_ id: String) { venueDoubts.removeAll { $0 == id } }
 
     /// Checks each saved game's stadium against what is known for sure, and corrects the ones that cannot be right:
     /// a ground that does not host the game's sport (a Welsh football pitch for an NBA game), or photos taken more
@@ -214,6 +225,7 @@ final class Library {
                 // Photos taken at a ground that hosts nothing of this sport still say where the fan was.
                     ?? VisitGrouping.nearestVenue(lat: here.coordinate.latitude, lon: here.coordinate.longitude, in: venues)
             }
+            if target == nil, !hosts(current, g.sport), g.kind == nil { venueDoubts.append(g.id) }
             guard let target, target.id != g.venueId, var fixed = game(g.id) else { continue }
             fixed.venueId = target.id
             fixed.weather = nil
