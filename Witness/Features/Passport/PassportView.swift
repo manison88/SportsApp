@@ -117,7 +117,7 @@ struct PassportView: View {
         case .basketball: "NBA"
         case .hockey: "NHL"
         case .soccer: "SOCCER"
-        case .motorsport: "F1"
+        case .motorsport: "MOTOR"
         case .handball: "HANDBALL"
         }
     }
@@ -236,11 +236,6 @@ private struct StampTile: View {
                     .background(Color.ink.opacity(0.85), in: .circle)
                     .padding(8)
                     .accessibilityLabel(stamp.titles == 1 ? "Title game seen here" : "\(stamp.titles) title games seen here")
-            }
-        }
-        .overlay {
-            if isLatest {
-                RoundedRectangle(cornerRadius: 19).strokeBorder(.white, lineWidth: 2.5).padding(-4)
             }
         }
         .accessibilityElement(children: .combine)

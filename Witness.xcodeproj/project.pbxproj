@@ -37,6 +37,7 @@
 		9B3D8D7DF04F7AF84F9056D5 /* LocalSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394164A99C85F16E439299E8 /* LocalSchedule.swift */; };
 		D695CE379806D2766F6BFE81 /* PackStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE252F11ED2045452387B12 /* PackStore.swift */; };
 		5ECA51942472297977790DB9 /* LifeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF8E52CBD3AA88A2CCFCB6E /* LifeMapView.swift */; };
+		8BB42FE6C0064890AFA4AE69 /* MapListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97579FAB7D849C381D1100C /* MapListSheet.swift */; };
 		6122F26E5A1E6D6723B52578 /* RecapFilmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AAD768395210D8C4AC6920 /* RecapFilmView.swift */; };
 		685AAF44BE4BFFBD61949D73 /* WrappedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A98C3EEF90E39F6F90FB5F1 /* WrappedView.swift */; };
 		6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1EBE038CBF9E1D49805847 /* GamePhotosView.swift */; };
@@ -161,6 +162,7 @@
 		FA9A73F86BCDBA2E422921DE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		FEF398484DD3487B795AB540 /* TicketParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketParserTests.swift; sourceTree = "<group>"; };
 		FEF8E52CBD3AA88A2CCFCB6E /* LifeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeMapView.swift; sourceTree = "<group>"; };
+		E97579FAB7D849C381D1100C /* MapListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapListSheet.swift; sourceTree = "<group>"; };
 		FF2EE34983CD926C23F62BCF /* AlbumAndScoreboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAndScoreboardTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -391,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				FEF8E52CBD3AA88A2CCFCB6E /* LifeMapView.swift */,
+				E97579FAB7D849C381D1100C /* MapListSheet.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */,
 				E14EE3095355CC6B33297843 /* Library.swift in Sources */,
 				5ECA51942472297977790DB9 /* LifeMapView.swift in Sources */,
+				8BB42FE6C0064890AFA4AE69 /* MapListSheet.swift in Sources */,
 				7C481B3216C5EA8C05CD1E47 /* LiveCheckInView.swift in Sources */,
 				F61374DE999DCBA79E8FDEAC /* LocationService.swift in Sources */,
 				C969C27B55763B17CA718E21 /* LuckyCharmView.swift in Sources */,

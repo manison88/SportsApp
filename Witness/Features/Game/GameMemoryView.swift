@@ -114,11 +114,7 @@ struct GameMemoryView: View {
                 if let stage = game.bigGame {
                     EventMark(game: game, stage: stage)
                 }
-                Text(headlineText(game, library).uppercased().replacingOccurrences(of: ". ", with: ".\n"))
-                    .displayFont(52)
-                    .lineLimit(4)
-                    .minimumScaleFactor(0.5)
-                    .foregroundStyle(.white)
+                ScoreLinesTitle(game: game)
                     .accessibilityIdentifier("game-title")
                     .accessibilityAddTraits(.isHeader)
                 Text([venue?.name, Fmt.dayTitle(game.date, in: tz)].compactMap { $0 }.joined(separator: ", "))

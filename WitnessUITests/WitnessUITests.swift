@@ -90,6 +90,7 @@ final class WitnessUITests: XCTestCase {
     func testTabsTour() {
         launch(["-demo"])
         XCTAssertTrue(el("game-card-mlb-2026-0704").waitForExistence(timeout: 10))
+        XCTAssertTrue(el("timeline-big-games").exists, "Big games sits in the Timeline header beside Add")
         snap("04-timeline")
 
         tab("Map")
@@ -301,6 +302,30 @@ final class WitnessUITests: XCTestCase {
         tap("team-row-mlb-chc")
         XCTAssertTrue(el("favorite-mlb-chc").waitForExistence(timeout: 5), "The team is on Your teams")
         snap("you-teams")
+    }
+
+    /// The Map's Venues, Countries and Games numbers open a list of compact tiles; a tile opens the real page.
+    func testMapListsOpenVenueAndGamePages() {
+        launch(["-demo"])
+        tab("Map")
+        tap("stat-venues")
+        XCTAssertTrue(app.navigationBars["Venues"].waitForExistence(timeout: 8), "Venues opens a list")
+        tap("map-venue-wrigley")
+        XCTAssertTrue(el("venue-title").waitForExistence(timeout: 8), "A venue tile opens the venue page")
+        snap("map-list-venue")
+        back()
+        app.buttons["Done"].firstMatch.tap()
+        tap("stat-games")
+        XCTAssertTrue(app.navigationBars["Games"].waitForExistence(timeout: 8))
+        let game = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'map-game-'")).firstMatch
+        XCTAssertTrue(game.waitForExistence(timeout: 8))
+        game.tap()
+        XCTAssertTrue(el("game-title").waitForExistence(timeout: 8), "A game tile opens the game page")
+        back()
+        app.buttons["Done"].firstMatch.tap()
+        tap("stat-countries")
+        XCTAssertTrue(app.navigationBars["Countries"].waitForExistence(timeout: 8))
+        snap("map-list-countries")
     }
 
     /// A venue that isn't in the catalog: created by hand with a pin.

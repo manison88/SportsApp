@@ -49,6 +49,13 @@ struct TimelineView: View {
         .tabTitle("Timeline")
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Teams, places, years")
         .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink(value: Route.bigGames) {
+                    Image(systemName: "trophy")
+                }
+                .accessibilityLabel("Big games")
+                .accessibilityIdentifier("timeline-big-games")
+            }
             ToolbarItem(placement: .topBarTrailing) { AddMenu() }
         }
     }

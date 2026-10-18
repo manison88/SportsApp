@@ -6,6 +6,7 @@ struct LifeMapView: View {
     @Environment(Library.self) private var library
     @State private var sport: Sport?
     @State private var expanded = false
+    @State private var listing: MapList?
 
     private var games: [GameEntry] {
         guard let sport else { return library.games }
@@ -49,7 +50,7 @@ struct LifeMapView: View {
                         .init(value: "\(stats.venues)", label: "Venues"),
                         .init(value: "\(stats.countries)", label: stats.countries == 1 ? "Country" : "Countries"),
                         .init(value: "\(stats.games)", label: "Games"),
-                    ])
+                    ], onSelect: { i in listing = [MapList.venues, .countries, .games][i] })
                 }
                 .gutter()
             }
@@ -57,6 +58,7 @@ struct LifeMapView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .inkBackground()
+        .sheet(item: $listing) { kind in MapListSheet(kind: kind, games: games) }
         .tabTitle("Map")
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {

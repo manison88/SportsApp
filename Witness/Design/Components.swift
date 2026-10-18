@@ -191,22 +191,36 @@ struct StatRow: View {
     }
     let items: [Item]
     var size: CGFloat = 34
+    /// Makes each number a button (the Map's Venues, Countries and Games open their lists).
+    var onSelect: ((Int) -> Void)? = nil
 
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
             ForEach(Array(items.enumerated()), id: \.element.id) { i, item in
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(item.value).displayFont(size, relativeTo: .title)
-                        .lineLimit(1).minimumScaleFactor(0.6)
-                    Text(item.label).unitLabel()
-                }
+                cell(item, tappable: onSelect != nil) { onSelect?(i) }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, i == 0 ? 0 : 16)
                 .overlay(alignment: .leading) {
                     if i > 0 { Rectangle().fill(Color.hairline).frame(width: 1) }
                 }
                 .accessibilityElement(children: .combine)
+                .accessibilityIdentifier("stat-\(item.label.lowercased())")
             }
+        }
+    }
+
+    @ViewBuilder
+    private func cell(_ item: Item, tappable: Bool, action: @escaping () -> Void) -> some View {
+        let content = VStack(alignment: .leading, spacing: 6) {
+            Text(item.value).displayFont(size, relativeTo: .title)
+                .lineLimit(1).minimumScaleFactor(0.6)
+            Text(item.label).unitLabel()
+        }
+        if tappable {
+            Button(action: action) { content.contentShape(.rect) }
+                .buttonStyle(.plain)
+        } else {
+            content
         }
     }
 }
@@ -428,6 +442,53 @@ func headlineText(_ game: GameEntry, _ library: Library) -> String {
     return hs >= as_ ? "\(home) \(hs)\n\(away) \(as_)" : "\(away) \(as_)\n\(home) \(hs)"
 }
 
+/// The game page title: one line per team, name left and score right, the winner first. A long name scales down to fit
+/// instead of wrapping ("Bosnia and Herzegovina 3" stays on one line).
+struct ScoreLinesTitle: View {
+    let game: GameEntry
+    @Environment(Library.self) private var library
+
+    private struct Row: Identifiable { let id: String; let name: String; let score: Int }
+
+    private var rows: [Row]? {
+        guard game.headline?.isEmpty != false, let hs = game.homeScore, let a = game.awayScore,
+              let home = library.team(game.homeTeamId)?.locationName,
+              let away = library.team(game.awayTeamId)?.locationName else { return nil }
+        let h = Row(id: "home", name: home, score: hs), v = Row(id: "away", name: away, score: a)
+        return hs >= a ? [h, v] : [v, h]
+    }
+
+    var body: some View {
+        if let rows {
+            VStack(alignment: .leading, spacing: 0) {
+                ForEach(rows) { row in
+                    HStack(alignment: .firstTextBaseline, spacing: 14) {
+                        Text(row.name.uppercased())
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.3)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        Text("\(row.score)")
+                            .monospacedDigit()
+                            .lineLimit(1)
+                            .fixedSize()
+                            .frame(minWidth: 64, alignment: .trailing)
+                    }
+                    .displayFont(52)
+                }
+            }
+            .foregroundStyle(.white)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(rows.map { "\($0.name) \($0.score)" }.joined(separator: ", "))
+        } else {
+            Text(headlineText(game, library).uppercased().replacingOccurrences(of: ". ", with: ".\n"))
+                .displayFont(52)
+                .lineLimit(4)
+                .minimumScaleFactor(0.5)
+                .foregroundStyle(.white)
+        }
+    }
+}
+
 extension View {
     /// Tab-screen title, as in the mockups: compressed title left, one action right,
     /// on the same row. The system title still names the screen for back buttons.
@@ -611,6 +672,8 @@ struct PhotoPager: View {
     var onDelete: ((PhotoRef) -> Void)?
     @State var index: Int
     @State private var confirmDelete = false
+    @State private var reelPosition: Int?
+    @State private var zoomed = false
     @Environment(\.dismiss) private var dismiss
 
     init(photos: [PhotoRef], start: Int, cover: PhotoRef? = nil, onSetCover: ((PhotoRef) -> Void)? = nil,
@@ -637,13 +700,28 @@ struct PhotoPager: View {
     var body: some View {
         ZStack(alignment: .top) {
             Color.black.ignoresSafeArea().accessibilityIdentifier("photo-viewer")
-            TabView(selection: $index) {
-                ForEach(Array(photos.enumerated()), id: \.offset) { i, ref in
-                    ZoomablePhoto(ref: ref).tag(i)
+            // A camera-roll reel: swipe sideways from photo to photo; pinch to zoom, and while zoomed a drag pans.
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 0) {
+                    ForEach(Array(photos.enumerated()), id: \.offset) { i, ref in
+                        ZoomablePhoto(ref: ref, zoomed: $zoomed)
+                            .containerRelativeFrame(.horizontal)
+                            .id(i)
+                    }
                 }
+                .scrollTargetLayout()
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
+            .scrollTargetBehavior(.paging)
+            .scrollPosition(id: $reelPosition)
+            .scrollDisabled(zoomed)
             .ignoresSafeArea()
+            .onAppear { reelPosition = index }
+            .onChange(of: reelPosition) { _, new in
+                if let new, new != index { index = new; zoomed = false }
+            }
+            .onChange(of: index) { _, new in
+                if reelPosition != new { reelPosition = new }
+            }
             HStack {
                 CircleButton(systemName: "xmark", label: "Close") { dismiss() }
                     .accessibilityIdentifier("photo-viewer-close")
@@ -727,6 +805,7 @@ struct PhotoPager: View {
 
 private struct ZoomablePhoto: View {
     let ref: PhotoRef
+    @Binding var zoomed: Bool
     @State private var scale: CGFloat = 1
     @State private var base: CGFloat = 1
     @State private var offset: CGSize = .zero
@@ -744,7 +823,9 @@ private struct ZoomablePhoto: View {
                 })
             .simultaneousGesture(DragGesture()
                 .onChanged { if scale > 1 { offset = CGSize(width: dragStart.width + $0.translation.width, height: dragStart.height + $0.translation.height) } }
-                .onEnded { _ in dragStart = offset })
+                .onEnded { _ in dragStart = offset },
+                including: scale > 1 ? .all : .none)
+            .onChange(of: scale) { _, new in zoomed = new > 1.01 }
             .onTapGesture(count: 2) {
                 withAnimation(.smooth(duration: 0.25)) {
                     if scale > 1 { reset() } else { scale = 2.5; base = 2.5 }
