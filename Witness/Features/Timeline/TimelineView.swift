@@ -353,20 +353,19 @@ private struct TearOff: View {
         }
     }
 
+    /// A team tile and its score. Both tiles share one width, so the two codes sit centered above each other.
     private func side(_ id: String?, _ score: Int?) -> some View {
-        HStack(spacing: 8) {
-            if let team = library.team(id) {
-                TeamTile(team: team, compact: true)
+        HStack(spacing: 6) {
+            Group {
+                if let team = library.team(id) { TeamTile(team: team, compact: true) } else { Color.clear }
             }
-            Spacer(minLength: 0)
-            if let score {
-                // Three-digit basketball scores stay on one line.
-                Text("\(score)")
-                    .font(.condensed(.title3, weight: .heavy))
-                    .monospacedDigit()
-                    .lineLimit(1)
-                    .fixedSize(horizontal: true, vertical: false)
-            }
+            .frame(width: 62)
+            Text(score.map(String.init) ?? "")
+                .font(.condensed(.title3, weight: .heavy))
+                .monospacedDigit()
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
+                .frame(width: 44, alignment: .trailing)
         }
         .padding(.horizontal, 12)
     }
