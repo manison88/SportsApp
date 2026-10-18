@@ -1,0 +1,87 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Passport B · aerial behind the stamp</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../final/system/final.css">
+<style>
+  body.b { --b-text-3: rgba(255,255,255,.6); }
+  .b-body { font-size: 15px; }
+
+  .main { top: 112px; gap: 24px; }
+  .pills { display: flex; gap: 8px; }
+  .pills .b-pill { height: 36px; padding: 0 14px; border-radius: 8px; font-size: 14px; color: rgba(255,255,255,.72); }
+  .pills .b-pill.on { background: #fff; color: #000; }
+
+  .count { display: flex; align-items: flex-end; gap: 14px; }
+  .count .b-mega { font-size: 120px; letter-spacing: -3px; margin-left: -4px; }
+  .count .b-h1 { font-size: 34px; padding-bottom: 4px; }
+  .segs { display: grid; grid-template-columns: repeat(30, 1fr); gap: 3px; margin-top: 16px; }
+  .segs i { height: 6px; border-radius: 2px; background: rgba(255,255,255,.12); }
+  .segs i.on { background: #fff; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .st { position: relative; height: 74px; border-radius: 14px; background: var(--c); color: var(--fg, #fff); padding: 11px 13px; display: flex; flex-direction: column; justify-content: space-between; }
+  .st::after { content: ""; position: absolute; inset: 4px; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.28); pointer-events: none; }
+  .st.lt::after { box-shadow: inset 0 0 0 1px rgba(0,0,0,.22); }
+  .st b { font: 800 26px/.9 var(--b-cond); letter-spacing: .4px; }
+  .st span { font: 700 13px/1 var(--b-cond); letter-spacing: 1.2px; opacity: .85; font-variant-numeric: tabular-nums; }
+  .st.new { box-shadow: 0 0 0 2px var(--b-bg), 0 0 0 4px #fff; }
+  .st.ghost { background: transparent; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.14); }
+  .st.ghost::after { display: none; }
+  .st.ghost b { color: rgba(255,255,255,.3); }
+.st{overflow:hidden}
+.st .bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.55;mix-blend-mode:luminosity}
+.st .tint{position:absolute;inset:0;background:linear-gradient(100deg,var(--c) 18%,transparent 120%);opacity:.92}
+.st b,.st span{position:relative;z-index:1}
+</style></head>
+<body class="phone b">
+
+<div class="b-nav">
+  <div class="f-title">Passport</div>
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+
+<div class="f-col main">
+  <div class="pills">
+    <span class="b-pill on">MLB</span><span class="b-pill">NFL</span><span class="b-pill">NBA</span><span class="b-pill">NHL</span><span class="b-pill">Soccer</span>
+  </div>
+
+  <div>
+    <div class="count"><div class="b-mega">14</div><div class="b-h1">of 30<br>MLB parks</div></div>
+    <div class="segs" id="segs"></div>
+  </div>
+
+  <div class="grid">
+    <div class="st" style="--c:#2f6bff"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/wrigley.jpg)"></div><div class="tint"></div><b>CHC</b><span>JUN 14, 2014</span></div>
+    <div class="st" style="--c:#4a4f58"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/wrigley.jpg)"></div><div class="tint"></div><b>CWS</b><span>AUG 22, 2015</span></div>
+    <div class="st" style="--c:#c41e3a"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/soldier.jpg)"></div><div class="tint"></div><b>STL</b><span>APR 18, 2016</span></div>
+    <div class="st" style="--c:#0c2c56"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/lambeau.jpg)"></div><div class="tint"></div><b>DET</b><span>JUL 9, 2016</span></div>
+    <div class="st" style="--c:#e31937"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/united.jpg)"></div><div class="tint"></div><b>CLE</b><span>MAY 27, 2017</span></div>
+    <div class="st" style="--c:#bd3039"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/msg.jpg)"></div><div class="tint"></div><b>BOS</b><span>JUN 3, 2017</span></div>
+    <div class="st lt" style="--c:#fdb827;--fg:#000"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/soldier.jpg)"></div><div class="tint"></div><b>PIT</b><span>AUG 12, 2018</span></div>
+    <div class="st" style="--c:#c6011f"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/lambeau.jpg)"></div><div class="tint"></div><b>CIN</b><span>SEP 1, 2018</span></div>
+    <div class="st" style="--c:#1c2c5b"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/msg.jpg)"></div><div class="tint"></div><b>NYY</b><span>JUL 20, 2019</span></div>
+    <div class="st" style="--c:#004687"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/soldier.jpg)"></div><div class="tint"></div><b>KC</b><span>JUN 11, 2021</span></div>
+    <div class="st" style="--c:#005a9c"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/wrigley.jpg)"></div><div class="tint"></div><b>LAD</b><span>AUG 27, 2022</span></div>
+    <div class="st" style="--c:#fd5a1e"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/united.jpg)"></div><div class="tint"></div><b>SF</b><span>AUG 29, 2022</span></div>
+    <div class="st lt" style="--c:#ffc52f;--fg:#000"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/lambeau.jpg)"></div><div class="tint"></div><b>MIL</b><span>MAY 17, 2025</span></div>
+    <div class="st new" style="--c:#d31145"><div class="bg" style="background-image:url(../../../map-lists/features/venues/img/soldier.jpg)"></div><div class="tint"></div><b>MIN</b><span>AUG 9, 2025</span></div>
+    <div class="st ghost"><b>ATL</b></div>
+    <div class="st ghost"><b>AZ</b></div>
+    <div class="st ghost"><b>BAL</b></div>
+    <div class="st ghost"><b>COL</b></div>
+  </div>
+</div>
+
+<nav class="b-tabs">
+  <span><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="9" rx="2"/><path d="M4 17h16M4 21h10"/></svg>Timeline</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3.2 3.4 3.2 14.6 0 18M12 3c-3.2 3.4-3.2 14.6 0 18"/></svg>Map</span>
+  <span class="on"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="11" r="3.5"/><path d="M9 17.5h6"/></svg>Passport</span>
+  <span><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.4-4 4.4-6 8-6s6.6 2 8 6"/></svg>You</span>
+</nav>
+
+<script>
+  document.getElementById('segs').innerHTML = Array.from({ length: 30 }, (_, i) => `<i${i < 14 ? ' class="on"' : ''}></i>`).join('');
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

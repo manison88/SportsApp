@@ -1,0 +1,92 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Venue A · aerial badge above the name</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../final/system/final.css">
+<style>
+  .f-stats span { font-size: 12px; color: var(--b-text-2); }
+  .f-stats b { font-size: 28px; letter-spacing: .2px; text-transform: uppercase; white-space: nowrap; }
+
+  .f-hero { height: 470px; }
+  .f-hero img { object-position: 100% 38%; }
+
+  .head { top: 286px; gap: 14px; }
+  .head .b-display { font-size: 52px; }
+  .rec { display: flex; align-items: flex-end; gap: 16px; }
+  .rec .b-mega { margin-left: -4px; white-space: nowrap; }
+  .rec .b-h2 { padding-bottom: 8px; color: var(--b-text-2); }
+
+  #seats { position: absolute; left: 20px; top: 474px; width: 353px; height: 272px; }
+  .visits { top: 764px; }
+.vi{position:absolute;left:20px;top:214px;width:64px;height:64px;border-radius:50%;background:url(../../../map-lists/features/venues/img/wrigley.jpg) center/cover;box-shadow:0 0 0 3px #FF5A4F,0 0 0 5px rgba(0,0,0,.4);z-index:3}
+.vi i{position:absolute;right:-6px;bottom:-4px;width:26px;height:26px;border-radius:50%;background:#1b1b20;box-shadow:0 0 0 2px #000;display:flex;align-items:center;justify-content:center}
+.vi svg{width:15px;height:15px;fill:none;stroke:#FF5A4F;stroke-width:2}
+.head{top:300px!important}
+</style></head>
+<body class="phone b">
+
+<div class="f-hero"><img class="ph graded" src="../../../photos/wrigley-bleachers.jpg"></div>
+
+<div class="b-nav">
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="b-icon-btn"><svg viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></div>
+</div>
+
+<div class="vi"><i><svg viewBox="0 0 24 24"><path d="M12 3l2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6z"/></svg></i></div>
+<div class="f-col head">
+  <div class="b-display">Wrigley Field</div>
+  <div class="rec"><div class="b-mega">11–6</div><div class="b-h2">Your<br>record</div></div>
+</div>
+
+<svg id="seats"></svg>
+
+<div class="f-col visits">
+  <div class="f-stats">
+    <div><b>Jun 14, 2014</b><span>First visit</span></div>
+    <div><b>Jul 4, 2026</b><span>Last visit</span></div>
+  </div>
+</div>
+
+<script src="../../../kit/vendor/d3.min.js"></script>
+<script>
+(function () {
+  const W = 353, H = 272;
+  const svg = d3.select('#seats').attr('viewBox', `0 0 ${W} ${H}`);
+  const hx = W / 2, hy = 210;
+  const g = svg.append('g').attr('transform', `translate(${hx},${hy}) scale(1.15)`);
+  const rad = d => d * Math.PI / 180;
+  const arc = d3.arc();
+  const S2 = Math.SQRT1_2;
+  // fair territory + base paths
+  g.append('path').attr('d', arc({ innerRadius: 0, outerRadius: 132, startAngle: rad(-45), endAngle: rad(45) })).attr('fill', 'rgba(255,255,255,.035)');
+  g.append('path').attr('d', `M0 0 L${132 * S2} ${-132 * S2} M0 0 L${-132 * S2} ${-132 * S2}`).attr('stroke', 'rgba(255,255,255,.18)').attr('stroke-width', 1.2);
+  const b = 30;
+  g.append('path').attr('d', `M0 0 L${b * S2} ${-b * S2} L0 ${-b * Math.SQRT2} L${-b * S2} ${-b * S2} Z`).attr('fill', 'none').attr('stroke', 'rgba(255,255,255,.18)').attr('stroke-width', 1.2);
+
+  const S = [];
+  const ring = (a0, a1, r0, r1, ids) => { const st = (a1 - a0) / ids.length; ids.forEach((id, i) => S.push({ a0: a0 + i * st, a1: a0 + (i + 1) * st, r0, r1, id })); };
+  ring(-44, 44, 142, 166, ['301', '303', '306', '309', '314', '316', '318']);          // bleachers
+  ring(52, 118, 46, 74, ['104', '107', '112', '115']);                                // 100s, 1B side
+  ring(-118, -52, 46, 74, ['133', '130', '127', '124']);                              // 100s, 3B side
+  ring(52, 118, 82, 106, ['203', '206', '209', '213']);                               // 200s, 1B side
+  ring(-118, -52, 82, 106, ['236', '233', '230', '227']);                             // 200s, 3B side
+  const lit = { '314': 1, '209': .62, '112': .4 };
+  g.selectAll('path.s').data(S).enter().append('path')
+    .attr('d', d => arc.padAngle(rad(1.6))({ innerRadius: d.r0, outerRadius: d.r1, startAngle: rad(d.a0), endAngle: rad(d.a1) }))
+    .attr('fill', d => lit[d.id] ? `rgba(255,181,71,${lit[d.id]})` : 'rgba(255,255,255,.08)')
+    .attr('style', d => d.id === '314' ? 'filter: drop-shadow(0 0 10px rgba(255,181,71,.85))' : '');
+  const mid = (d, dr = 0) => { const a = rad((d.a0 + d.a1) / 2), r = (d.r0 + d.r1) / 2 + dr; return [Math.sin(a) * r, -Math.cos(a) * r]; };
+  ['314', '209', '112'].forEach(id => {
+    const d = S.find(s => s.id === id); const [x, y] = mid(d);
+    g.append('text').attr('x', x).attr('y', y + 5).attr('text-anchor', 'middle').attr('fill', id === '112' ? '#fff' : '#000')
+      .attr('font-family', 'Barlow Condensed').attr('font-weight', 800).attr('font-size', 15).attr('letter-spacing', .4).text(id);
+  });
+  // one callout: the usual seat
+  const d = S.find(s => s.id === '314'); const a = rad((d.a0 + d.a1) / 2);
+  const ox = Math.sin(a) * 167, oy = -Math.cos(a) * 167;
+  g.append('path').attr('d', `M${ox} ${oy} L${ox + 14} ${oy - 8} L${ox + 34} ${oy - 8}`).attr('fill', 'none').attr('stroke', '#ffb547').attr('stroke-width', 1.4);
+  g.append('text').attr('x', ox + 38).attr('y', oy - 3).attr('fill', '#fff').attr('font-family', 'Barlow Condensed').attr('font-weight', 800).attr('font-size', 16).attr('letter-spacing', .5).text('11 NIGHTS');
+})();
+</script>
+<script src="../../../kit/kit.js"></script>
+</body></html>
