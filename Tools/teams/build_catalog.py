@@ -51,13 +51,20 @@ for path in sorted(glob.glob(os.path.join(ROOT, "Tools/teams/*-missing-venues.js
         else:
             for k in ("aliases", "leagues", "homeTeams"): v[k] = v.get(k) or []
             venues.append(v); added += 1
+# The app has no volleyball or rugby yet: keep only the sports it knows, and drop grounds that served nothing else.
+for v in venues: v["sports"] = [x for x in v.get("sports") or [] if x in APP_SPORTS]
+venues = [v for v in venues if v["sports"]]
 venues.sort(key=lambda v: (v["countryCode"], v["city"], v["name"]))
 json.dump(venues, open(f"{CAT}/venues.json", "w"), ensure_ascii=False, indent=1)
 venue_ids = {v["id"] for v in venues}
 print(f"venues: +{added}, {merged} merged, total {len(venues)}")
 
 # ---- teams
-have_ids = {t["id"] for t in json.load(open(f"{CAT}/teams.json"))}
+seed = json.load(open(f"{CAT}/teams.json"))
+have_ids = {t["id"] for t in seed}
+norm = lambda x: re.sub(r"[^a-z0-9]", "", unicodedata.normalize("NFKD", x or "").encode("ascii", "ignore").decode().lower())
+seed_keys = {(t["sport"], norm(t["league"]), t["abbreviation"]) for t in seed}
+SAME_AS_SEED = {"esp2-eib"}   # Eibar: LaLiga in the seed, LaLiga 2 in the research
 nationals = json.load(open(f"{CAT}/national-teams.json"))
 have_ids |= {t["id"] for t in nationals}
 have_nat = {(t["sport"], t["abbreviation"]) for t in nationals}
@@ -67,6 +74,8 @@ for path in sorted(glob.glob(os.path.join(ROOT, "Tools/teams/*-teams.json"))):
     for t in json.load(open(path)):
         if t["sport"] not in APP_SPORTS: skipped["sport"] += 1; continue
         key = (t["sport"], t["abbreviation"])
+        if (t["sport"], norm(t["league"]), t["abbreviation"]) in seed_keys or t["id"] in SAME_AS_SEED:
+            skipped["dupe"] += 1; continue
         if t["id"] in have_ids or (t["kind"] == "national" and key in have_nat) \
            or (t["league"].endswith("national teams") and key in have_nat):
             skipped["dupe"] += 1; continue

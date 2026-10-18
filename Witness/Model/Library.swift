@@ -440,7 +440,9 @@ final class Library {
         allTeams = teamList
         teams = Dictionary(teamList.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
         rebuildTeamIndex()
-        var venueList: [Venue] = decode("venues", subdirectory: "Catalog") ?? []
+        // One unreadable record never loses the catalog.
+        let rawVenues: [Lossy<Venue>] = decode("venues", subdirectory: "Catalog") ?? []
+        var venueList: [Venue] = rawVenues.compactMap(\.value)
         // Formula 1 circuits: grandstand-sized geofences, and they join (or fill in) the catalog's venues.
         let circuits: [Venue] = decode("f1-circuits", subdirectory: "Catalog") ?? []
         for circuit in circuits {
