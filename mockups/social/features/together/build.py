@@ -10,7 +10,7 @@ def crop(tw,th,cx,cy,wf,p='soldier-soccer'):
     return f"background:url({K}photos/{p}.jpg) {x:.1f}px {y:.1f}px/{W:.1f}px {H:.1f}px no-repeat"
 # named crops (cx,cy,wf)
 C={'bowl':(.5,.38,.9),'bowlR':(.8,.42,.5),'bowlL':(.2,.4,.5),'crowd':(.45,.545,.45),'crowdR':(.85,.55,.4),
- 'play':(.6,.68,.35),'playR':(.92,.72,.25),'playL':(.4,.7,.3),'grass':(.5,.86,.5),'tunnel':(.92,.56,.25),
+ 'play':(.62,.735,.42),'playR':(.92,.72,.25),'playL':(.4,.7,.3),'grass':(.5,.86,.5),'tunnel':(.92,.56,.25),
  'wide':(.5,.62,.8),'pair':(.93,.71,.18),'mid':(.55,.7,.5),'crowdL':(.15,.55,.4),'seats':(.6,.45,.35),'sky':(.5,.5,.9)}
 def ph(tw,th,k,cls='',style='',extra=''):
     cx,cy,wf=C[k][:3]
@@ -44,7 +44,7 @@ i{font-style:normal}
 .bug b.dim{color:var(--text-3)}
 .bug .sep{width:1px;height:14px;background:var(--line-2)}
 .bug .fin{font:600 10.5px/1 var(--f-ui);letter-spacing:1.6px;color:var(--signal)}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:50px;border-radius:25px;font:600 16px/1 var(--f-ui);letter-spacing:-.1px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:25px;font:600 16px/1 var(--f-ui);letter-spacing:-.1px}
 .btn.pri{background:var(--signal);color:#1a1204;box-shadow:0 8px 28px rgba(255,181,71,.28)}
 .btn.sec{background:rgba(255,255,255,.08);color:var(--text);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.16)}
 %s
@@ -67,7 +67,7 @@ css1='''
 .gm .meta{font:500 11.5px/1.3 var(--f-ui);color:var(--text-2);margin-top:5px}
 .gm .found{margin-left:auto;font:600 9px/1 var(--f-ui);letter-spacing:1.3px;color:var(--text-3);text-align:right;line-height:1.5}
 .trio{position:absolute;left:16px;top:200px;display:flex}
-.trio .av{margin-right:-10px;box-shadow:0 0 0 3px #050506}
+.trio .av{margin-right:-6px;box-shadow:0 0 0 3px #050506}
 h1{position:absolute;left:16px;right:16px;top:268px;font:400 35px/1.04 var(--f-serif);letter-spacing:-.4px;color:var(--text)}
 h1 em{font-style:italic;color:var(--signal)}
 .lbl{position:absolute;left:16px;right:16px;display:flex;justify-content:space-between;align-items:baseline}
@@ -78,7 +78,7 @@ h1 em{font-style:italic;color:var(--signal)}
 .pr b{display:block;font:600 16px/1.1 var(--f-tight);letter-spacing:-.15px}
 .pr span.s{display:block;font:400 12px/1.25 var(--f-ui);color:var(--text-2);margin-top:3px}
 .pr .cb{margin-left:auto;width:24px;height:24px;border-radius:50%;background:var(--signal);display:flex;align-items:center;justify-content:center;flex:none}
-.opt{display:flex;align-items:center;gap:12px;padding:0 14px;height:68px;position:relative}
+.opt{display:flex;align-items:center;gap:12px;padding:0 14px;height:66px;position:relative}
 .opt+.opt{border-top:.5px solid var(--line)}
 .opt b{display:block;font:600 15.5px/1.1 var(--f-tight)}
 .opt span.s{display:block;font:400 12px/1.3 var(--f-ui);color:var(--text-2);margin-top:3px}
@@ -95,33 +95,33 @@ body1=f'''<div class="glow"></div>
 <div class="btn-circle glass close">{CLOSE}</div>
 <div class="gm">{ph(46,46,'wide',style='border-radius:12px')}<div><div class="sc">QAT <span>1</span> <span class="l">·</span> BIH <span>3</span></div><div class="meta">World Cup · Wed Jun 24 · Lumen Field</div></div><div class="found">104<br>PHOTOS</div></div>
 <div class="trio">{av('Sam',52,fs=18)}{av('Chris',52,fs=18)}{av('Jordan',52,fs=18)}</div>
-<h1>Chris and Jordan were at this game too. <em>Make it a Together memory?</em></h1>
-<div class="lbl" style="top:410px"><span class="eyebrow">Who was there</span><a>Add someone</a></div>
-<div class="card" style="top:432px;height:124px">
- <div class="pr">{av('Chris',34)}<div><b>Chris Dunn</b><span class="s">Your companion · at the 2021 US Grand Prix with you</span></div><span class="cb">{CHECK}</span></div>
+<h1>Chris and Jordan were at this game too.<br><em>Make it a Together memory?</em></h1>
+<div class="lbl" style="top:392px"><span class="eyebrow">Who was there</span><a>Add someone</a></div>
+<div class="card" style="top:414px;height:124px">
+ <div class="pr">{av('Chris',34)}<div><b>Chris Dunn</b><span class="s">Your companion · 2021 US Grand Prix</span></div><span class="cb">{CHECK}</span></div>
  <div class="pr">{av('Jordan',34)}<div><b>Jordan Park</b><span class="s">Opened your invite link · has this game too</span></div><span class="cb">{CHECK}</span></div>
 </div>
-<div class="lbl" style="top:576px"><span class="eyebrow">What you share</span></div>
-<div class="card" style="top:598px;height:137px;overflow:hidden;background:transparent;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.09)">
+<div class="lbl" style="top:558px"><span class="eyebrow">What you share</span></div>
+<div class="card" style="top:580px;height:133px;overflow:hidden;background:transparent;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.09)">
  <div class="opt sel"><span class="rad on"></span><div><b>Nothing yet</b><span class="s">You're in the memory. Your photos stay private.</span></div></div>
  <div class="opt" style="border:0"><span class="rad"></span><div><b>Pick photos to share</b><span class="s">Choose from your 104. Default is none.</span></div></div>
 </div>
 '''
 body1=body1.replace('top:714px','top:714px')
-body1+=f'''<div class="priv" style="top:744px">{LOCK}<div><b>Your photos never leave your phone</b> unless you pick them. Only Chris and Jordan can see what you share, and you can remove it any time.</div></div>
+body1+=f'''<div class="priv" style="top:724px">{LOCK}<div><b>Your photos never leave your phone</b> unless you pick them. Only Chris and Jordan see what you share.</div></div>
 <div class="cta"><div class="btn pri">Start Together memory</div></div>'''
 # adjust: layout vertical budget handled by css positions
-css1=css1.replace('.cta{position:absolute;left:16px;right:16px;top:770px}','.cta{position:absolute;left:16px;right:16px;top:782px}')
+css1=css1.replace('.cta{position:absolute;left:16px;right:16px;top:770px}','.cta{position:absolute;left:16px;right:16px;top:774px}')
 write('v1-invite.html','Together invite',css1,body1)
 
 # ============================================================ V2
-W=313; X0=64
+W=313; TW=307; X0=64
 def ticks(seed,col,clusters,n=34,hmax=15):
     r=random.Random(seed); out=[]; used=set()
     for f,spread,cnt,h in clusters:
         for _ in range(cnt):
-            x=round((f+(r.random()-.5)*spread)*W/3)*3
-            if x in used or x<0 or x>W: continue
+            x=round((f+(r.random()-.5)*spread)*TW/3)*3
+            if x in used or x<0 or x>TW: continue
             used.add(x); hh=max(4,round(h*(.45+r.random()*.6)))
             out.append(f'<i class="tk" style="left:{x}px;height:{hh}px;background:{col}"></i>')
     return ''.join(out)
@@ -132,7 +132,7 @@ jor=[(.05,.08,2,6),(.27,.1,3,8),(.43,.05,4,12),(.714,.04,3,9),(.76,.08,3,7)]
 PH=.428+.007
 css2='''
 .nav .tri{display:flex;align-items:center;height:36px;padding:0 10px 0 6px;border-radius:18px;background:rgba(30,30,36,.72);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14)}
-.nav .tri .av{margin-right:-7px;box-shadow:0 0 0 2px #1c1c22}
+.nav .tri .av{margin-right:-4px;box-shadow:0 0 0 2px #1c1c22}
 .nav .tri .av:last-child{margin-right:0}
 .pin{position:absolute;left:0;right:0;top:104px;height:136px;z-index:20;background:linear-gradient(#050506 86%,rgba(5,5,6,0))}
 .pin .rd{position:absolute;left:16px;right:16px;top:0;display:flex;justify-content:space-between;align-items:center}
@@ -141,15 +141,15 @@ css2='''
 .rd .sc{font:700 13px/1 var(--f-cond);letter-spacing:.8px;color:var(--text-2)}.rd .sc b{color:var(--text)}
 .trks{position:absolute;left:16px;right:16px;top:30px;height:98px}
 .tr{position:absolute;left:0;right:0;height:22px}
-.tr .nm{position:absolute;left:0;bottom:0;font:700 10.5px/1 var(--f-ui);letter-spacing:.2px;width:46px;display:flex;align-items:center;gap:5px}
+.tr .nm{position:absolute;left:0;bottom:0;font:700 10.5px/1 var(--f-ui);letter-spacing:.2px;width:52px;display:flex;align-items:center;gap:5px;white-space:nowrap}
 .tr .nm i{width:6px;height:6px;border-radius:50%}
-.tr .base{position:absolute;left:48px;width:__Wpx;bottom:3px;height:1.5px;background:var(--line-2);border-radius:1px}
-.tr .tk{position:absolute;bottom:4px;width:2px;border-radius:1px;margin-left:48px}
-.gl{position:absolute;top:0;width:9px;height:9px;margin-left:44px;border-radius:50%%;box-shadow:0 0 0 1.5px #050506}
-.gline{position:absolute;top:8px;bottom:14px;width:0;border-left:1px dashed rgba(255,255,255,.18);margin-left:48px}
-.head{position:absolute;top:2px;bottom:14px;width:1.5px;margin-left:48px;background:#fff;box-shadow:0 0 8px rgba(255,255,255,.5)}
-.knob{position:absolute;top:-3px;width:10px;height:10px;margin-left:44px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px #050506}
-.ph-l{position:absolute;bottom:0;font:600 8.5px/1 var(--f-ui);letter-spacing:1.2px;color:var(--text-3);transform:translateX(-50%%);margin-left:48px;white-space:nowrap}
+.tr .base{position:absolute;left:54px;width:__Wpx;bottom:3px;height:1.5px;background:var(--line-2);border-radius:1px}
+.tr .tk{position:absolute;bottom:4px;width:2px;border-radius:1px;margin-left:54px}
+.gl{position:absolute;top:0;width:9px;height:9px;margin-left:50px;border-radius:50%%;box-shadow:0 0 0 1.5px #050506}
+.gline{position:absolute;top:8px;bottom:14px;width:0;border-left:1px dashed rgba(255,255,255,.18);margin-left:54px}
+.head{position:absolute;top:2px;bottom:14px;width:1.5px;margin-left:54px;background:#fff;box-shadow:0 0 8px rgba(255,255,255,.5)}
+.knob{position:absolute;top:-3px;width:10px;height:10px;margin-left:50px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px #050506}
+.ph-l{position:absolute;bottom:0;font:600 8.5px/1 var(--f-ui);letter-spacing:1.2px;color:var(--text-3);transform:translateX(-50%%);margin-left:54px;white-space:nowrap}
 .feed{position:absolute;left:0;right:0;top:244px;bottom:0;overflow:hidden;z-index:5}
 .feed:after{content:"";position:absolute;left:0;right:0;bottom:0;height:60px;background:linear-gradient(rgba(5,5,6,0),#050506 92%);z-index:9}
 .spine{position:absolute;left:70px;top:0;bottom:0;width:1.5px;background:var(--line-2);margin-left:-.75px}
@@ -194,16 +194,16 @@ css2='''
 .www .c .d{font:500 10px/1.3 var(--f-ui);color:var(--text-3);margin-top:3px}
 .bowl{margin-top:10px;height:5px;border-radius:3px;background:linear-gradient(90deg,#1c1c22,#24242a);position:relative}
 .bowl i{position:absolute;top:-2px;width:9px;height:9px;border-radius:50%%;box-shadow:0 0 0 1.5px #121215}
-'''.replace('%%','%').replace('__W',str(W-48))
+'''.replace('%%','%').replace('__W',str(TW))
 CSS2=css2
 trk=''
 names=[('Sam',SAM,sam,1),('Chris',CHR,chr_,2),('Jordan',JOR,jor,3)]
 for i,(n,c,cl,sd) in enumerate(names):
     trk+=f'<div class="tr" style="top:{14+i*26}px"><div class="nm" style="color:{c}"><i style="background:{c}"></i>{n}</div><i class="base"></i>{ticks(sd*7,c,cl)}</div>'
-gl=''.join(f'<i class="gline" style="left:{round(g*W)}px"></i>' for g in G)
-gd=''.join(f'<i class="gl" style="left:{round(g*W)}px;background:{"#d8456b" if k==2 else "#2f6bff"}"></i>' for k,g in enumerate(G))
-phx=round(PH*W)
-labs=''.join(f'<span class="ph-l" style="left:{round(f*W)}px">{t}</span>' for f,t in [(.2,'1ST HALF'),(.5,'HT'),(.72,'2ND HALF'),(.95,'AFTER')])
+gl=''.join(f'<i class="gline" style="left:{round(g*TW)}px"></i>' for g in G)
+gd=''.join(f'<i class="gl" style="left:{round(g*TW)}px;background:{"#d8456b" if k==2 else "#2f6bff"}"></i>' for k,g in enumerate(G))
+phx=round(PH*TW)
+labs=''.join(f'<span class="ph-l" style="left:{round(f*TW)}px">{t}</span>' for f,t in [(.2,'1ST HALF'),(.5,'HT'),(.72,'2ND HALF'),(.95,'AFTER')])
 cl=lambda n:COL[n]
 def dt(n,k,t,sel=False):
     return f'<div class="it {"sel" if sel else ""}">{ph(40,44,k,extra=f"<i class=dot style=background:{COL[n]}></i>")}<div class="t">{t}</div></div>'
@@ -222,9 +222,9 @@ body2=f'''<div class="nav"><div class="btn-circle glass">{BACK}</div><div class=
  <div class="strip">{strip}</div>
  <div class="leg"><span><b>9 photos</b></span><span><i style="background:{SAM}"></i>Sam 4</span><span><i style="background:{CHR}"></i>Chris 3</span><span><i style="background:{JOR}"></i>Jordan 2</span></div></div></div>
 <div class="www" style="top:408px;height:104px"><div class="h"><span class="eyebrow">Who was where</span><span class="eyebrow" style="letter-spacing:1.2px">LUMEN FIELD</span></div>
- <div class="cols"><div class="c"><div class="p">{av('Sam',18,fs=7)}Sam</div><div class="s">Sec 121</div><div class="d">Row 14, near the goal</div></div>
- <div class="c"><div class="p">{av('Chris',18,fs=7)}Chris</div><div class="s">Sec 108</div><div class="d">Lower, by the corner</div></div>
- <div class="c"><div class="p">{av('Jordan',18,fs=7)}Jordan</div><div class="s">Sec 312</div><div class="d">Upper, halfway line</div></div></div>
+ <div class="cols"><div class="c"><div class="p">{av('Sam',18,fs=7)}Sam</div><div class="s">Sec 121</div><div class="d">Behind the goal</div></div>
+ <div class="c"><div class="p">{av('Chris',18,fs=7)}Chris</div><div class="s">Sec 108</div><div class="d">Lower corner</div></div>
+ <div class="c"><div class="p">{av('Jordan',18,fs=7)}Jordan</div><div class="s">Sec 312</div><div class="d">Upper, halfway</div></div></div>
 </div>
 <div class="row" style="top:536px"><div class="min"><b>HT</b><i>12:51</i></div><div class="node h"></div><div class="card" style="top:0;height:90px"><span class="tag" style="color:var(--text-2)">Halftime</span><h3 style="font-size:15px">Qatar 1, Bosnia and Herzegovina 3</h3></div></div>
 </div>'''
@@ -241,7 +241,7 @@ css3='''
 .sh .sub{font:400 12.5px/1.35 var(--f-ui);color:var(--text-2);margin-top:6px}
 .sh .x{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex:none}
 .vis{position:absolute;left:16px;right:16px;top:100px;display:flex;align-items:center;gap:8px;font:500 11.5px/1 var(--f-ui);color:var(--text-2)}
-.vis .a{display:flex}.vis .a .av{margin-right:-6px;box-shadow:0 0 0 2px #101014}
+.vis .a{display:flex}.vis .a .av{margin-right:-3px;box-shadow:0 0 0 2px #101014}
 .chips{position:absolute;left:16px;right:16px;top:132px;display:flex;gap:8px}
 .chip{height:30px;padding:0 12px;border-radius:15px;display:flex;align-items:center;gap:6px;font:600 12px/1 var(--f-ui);background:rgba(255,255,255,.07);color:var(--text-2)}
 .chip.on{background:var(--text);color:#111}
@@ -273,12 +273,12 @@ t1=''.join(tile(KS[i%len(KS)] if i!=0 else 'play',times[i],i not in offs) for i 
 KS2=['bowl','sky','grass','crowdL','seats','bowlL','tunnel','mid']
 t2=''.join(tile(KS2[i],['2:01:10','2:02:44','2:04:30','2:06:15','2:09:02','2:10:40','2:14:18','2:18:50'][i],False) for i in range(8))
 bg=''.join(f'<i class="abs" style="left:{x}px;top:{y}px;width:{w}px;height:{h}px;border-radius:14px;background:#17171c"></i>' for x,y,w,h in [(16,120,361,160),(16,300,361,200),(16,520,361,180)])
-body3=f'''<div class="bgfeed"><div class="abs" style="left:0;right:0;top:0;height:852px;background:#0b0b0d"></div>{ph(361,200,'wide',style='position:absolute;left:16px;top:300px;border-radius:14px')}{ph(361,160,'bowl',style='position:absolute;left:16px;top:120px;border-radius:14px')}{ph(361,180,'crowd',style='position:absolute;left:16px;top:520px;border-radius:14px')}</div><div class="dim"></div>
+body3=f'''<div class="bgfeed"><div class="abs" style="left:0;right:0;top:0;height:852px;background:#0b0b0d"></div>{ph(361,200,'wide',style='position:absolute;left:16px;top:300px;border-radius:14px')}{ph(393,150,'bowl',style='position:absolute;left:0;top:0;border-radius:0')}{ph(361,180,'crowd',style='position:absolute;left:16px;top:520px;border-radius:14px')}</div><div class="dim"></div>
 <div class="sheet"><div class="grab"></div>
 <div class="sh"><div><h2>Pick photos to share</h2><div class="sub">Qatar 1, Bosnia and Herzegovina 3 · 104 on your phone</div></div><span class="x">{CLOSE.replace('width="20" height="20"','width="14" height="14"')}</span></div>
 <div class="vis"><span class="a">{av('Chris',20,fs=8)}{av('Jordan',20,fs=8)}</span><span style="margin-left:6px">Visible to Chris and Jordan</span></div>
 <div class="chips"><span class="chip on">Suggested <small>16</small></span><span class="chip">During play <small>38</small></span><span class="chip">All <small>104</small></span></div>
-<div class="grid"><div class="gh"><span>Near the goals</span><em>12 selected</em></div><div class="gr">{t1}</div><div class="gh" style="margin-top:6px"><span>Second half</span><em>0 selected</em></div><div class="gr">{t2}</div></div>
+<div class="grid"><div class="gh"><span>Suggested · best of your night</span><em>12 selected</em></div><div class="gr">{t1}</div><div class="gh" style="margin-top:6px"><span>The rest of your night</span><em>0 selected</em></div><div class="gr">{t2}</div></div>
 <div class="bar"><div class="note">{LOCK}<div><b>Everyone sees only what each person shares.</b> Remove any time.</div></div><div class="btn pri">Share 12 of your 104 photos</div></div>
 </div>'''
 write('v3-pick-photos.html','Pick photos',css3,body3)
@@ -295,7 +295,7 @@ css4='''
 .ey b{color:var(--signal);font-weight:700}
 .card h1{font:400 33px/1 var(--f-serif);letter-spacing:-.4px;margin-top:12px}
 .card h1 em{font-style:italic;color:var(--signal)}
-.mos{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:4px;height:262px;margin-top:14px}
+.mos{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:4px;height:290px;margin-top:14px}
 .mos .t{position:relative;border-radius:10px;overflow:hidden}
 .mos .t .th{width:100%!important;height:100%!important;border-radius:0}
 .mos .big{grid-column:1/3;grid-row:1/3}
@@ -310,7 +310,7 @@ css4='''
 .tl .g{position:absolute;top:-2px;width:7px;height:7px;border-radius:50%;margin-left:-3px}
 .cap{font:500 10.5px/1.3 var(--f-ui);color:var(--text-2);margin-top:5px}
 .foot{position:absolute;left:18px;right:18px;bottom:0;height:98px;border-top:.5px solid var(--line-2);display:flex;align-items:center;gap:12px}
-.foot .a{display:flex}.foot .a .av{margin-right:-8px;box-shadow:0 0 0 2.5px #0d0c0b}
+.foot .a{display:flex}.foot .a .av{margin-right:-5px;box-shadow:0 0 0 2.5px #0d0c0b}
 .foot .n{font:600 13.5px/1.2 var(--f-tight);margin-left:6px}
 .foot .n span{display:block;font:400 11px/1.2 var(--f-ui);color:var(--text-2);margin-top:3px}
 .foot .st{margin-left:auto;text-align:right}
@@ -322,10 +322,11 @@ css4='''
 .fine{position:absolute;left:24px;right:24px;top:760px;text-align:center;font:400 11.5px/1.4 var(--f-ui);color:var(--text-3)}
 '''
 def mt(cls,k,n):
-    return f'<div class="t {cls}">{ph(10,10,k,extra=f"<i class=dot style=background:{COL[n]}></i>")}'+(f'<span class="by">{av(n,14,fs=6)}Chris, 12:45:31 PM</span>' if cls=='big' else '')+'</div>'
+    sz=(189,192) if cls=='big' else (92,94)
+    return f'<div class="t {cls}">{ph(sz[0],sz[1],k,extra=f"<i class=dot style=background:{COL[n]}></i>")}'+(f'<span class="by">{av(n,14,fs=6)}Chris, 12:45:31 PM</span>' if cls=='big' else '')+'</div>'
 tl=''
 for i,(n,c,cs,sd) in enumerate(names):
-    s=ticks(sd*7,c,cs).replace('margin-left:48px','')
+    s=ticks(sd*7,c,cs).replace('margin-left:54px','')
     tl+=f'<div class="tr" style="top:{8+i*14}px"><i class="base"></i>{s}</div>'
 def scale(html):
     return html
