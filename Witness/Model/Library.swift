@@ -391,7 +391,11 @@ final class Library {
     }
 
     private func loadCatalog() {
-        let teamList: [Team] = decode("teams", subdirectory: "Catalog") ?? []
+        var teamList: [Team] = decode("teams", subdirectory: "Catalog") ?? []
+        // Countries from the World Cup, Euros, Copa América, Gold Cup and qualifiers.
+        let nationals: [Team] = decode("national-teams", subdirectory: "Catalog") ?? []
+        let have = Set(teamList.map(\.id))
+        teamList += nationals.filter { !have.contains($0.id) }
         allTeams = teamList
         teams = Dictionary(teamList.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
         catalogVenues = decode("venues", subdirectory: "Catalog") ?? []

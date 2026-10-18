@@ -226,6 +226,16 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(library.game(game.id)?.heroPhoto, .bundled("a"), "Clearing goes back to the first photo")
     }
 
+    func testCountriesAreInTheTeamPicker() throws {
+        let usa = try XCTUnwrap(library.allTeams.first { $0.sport == .soccer && $0.abbreviation == "USA" })
+        XCTAssertEqual(usa.locationName, "United States")
+        XCTAssertNotNil(library.allTeams.first { $0.abbreviation == "BIH" }, "Bosnia is a pickable team")
+        XCTAssertGreaterThan(library.allTeams.filter { $0.league == "National teams" }.count, 100)
+        let again = library.addTeam(Team(id: "x", sport: .soccer, league: "FIFA World Cup", abbreviation: "USA", locationName: "United States",
+                                         teamName: "United States", monogram: "US", colors: usa.colors, externalIds: .init(espn: "660", espnLeague: "soccer/uefa.euro")))
+        XCTAssertEqual(again.id, usa.id, "A found game reuses the catalog country")
+    }
+
     func testWorldCupGameIsFoundAtAFootballStadium() throws {
         let library = self.library!
         let levis = try XCTUnwrap(library.venues.first { $0.id == "levis-stadium" })

@@ -239,6 +239,8 @@ struct AddGameView: View {
         }
         .onChange(of: venueId) { _, _ in autoLookup() }
         .onChange(of: date) { _, _ in autoLookup() }
+        .onChange(of: homeTeamId) { _, _ in verifyPicked() }
+        .onChange(of: awayTeamId) { _, _ in verifyPicked() }
         .onChange(of: homeTeamId) { _, _ in fixRooting() }
         .onChange(of: awayTeamId) { _, _ in fixRooting() }
         .onChange(of: pickerItems) { _, items in
@@ -374,12 +376,16 @@ struct AddGameView: View {
         return nil
     }
 
-    /// The venue's own calendar day for the form's date: games start after 5 AM there, and the day ends at midnight there.
+    /// The day the fan means: the venue's calendar day and the fan's own calendar day for the form's date, so a game
+    /// that starts in the evening at a stadium a few time zones away (or after midnight UTC) is still found.
     private func dayWindow(at venue: Venue) -> (Date, Date) {
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = venue.tz
-        let dayStart = calendar.startOfDay(for: date)
-        return (dayStart.addingTimeInterval(5 * 3600), dayStart.addingTimeInterval(24 * 3600))
+        var local = Calendar(identifier: .gregorian)
+        local.timeZone = venue.tz
+        var mine = Calendar(identifier: .gregorian)
+        mine.timeZone = .current
+        let venueDay = local.startOfDay(for: date)
+        let myDay = mine.startOfDay(for: date)
+        return (min(venueDay, myDay).addingTimeInterval(5 * 3600), max(venueDay, myDay).addingTimeInterval(24 * 3600))
     }
 
     /// A saved game that has teams but no schedule match: find the same game and attach it, leaving what the fan entered alone.
@@ -389,11 +395,24 @@ struct AddGameView: View {
               let home = library.team(homeTeamId), let away = library.team(awayTeamId) else { return }
         let window = dayWindow(at: venue)
         let games = await GameLookup.games(at: venue, from: window.0, to: window.1)
-        guard let game = games.first(where: { $0.home.abbreviation == home.abbreviation && $0.away.abbreviation == away.abbreviation })
+        guard let game = games.first(where: { Set([$0.home.abbreviation, $0.away.abbreviation]) == Set([home.abbreviation, away.abbreviation]) })
         else { return }
         found = game
+        if game.home.abbreviation != home.abbreviation {   // the schedule has them the other way round
+            homeTeamId = away.id
+            awayTeamId = home.id
+        }
+        date = game.start
         foundTeams = [homeTeamId, awayTeamId]
         foundDetail = await GameLookup.detail(game)
+    }
+
+    /// Teams picked by hand at a venue on a day: if the schedule has that game, attach it.
+    private func verifyPicked() {
+        guard found == nil, !lookingUp, sport != .motorsport, homeTeamId != nil, awayTeamId != nil,
+              let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty else { return }
+        lookingUp = true
+        Task { await verify() }
     }
 
     /// Looks the game up as soon as a venue and day are set, but only on a new game with no teams picked yet, so
