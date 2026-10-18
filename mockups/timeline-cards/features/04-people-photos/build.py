@@ -52,7 +52,7 @@ CARDS = {
    photo=lambda ph: f'<img class="ph graded" src="{P}wrigley-scoreboard.jpg" style="object-position:35% 50%">', bug=('MIL',4,'CHC',5,'CHC'),
    thumbs=[('wrigley-bleachers','60% 50%'),('wrigley-night-2','72% 66%','230%'),('wrigley-night','30% 62%','210%')]),
  2: dict(hl='Chicago 3,<br>Cleveland 2.', date='Oct 30, 2016', who=[DAD], n=63, badge='World Series',
-   photo=img('wrigley-night',.62,.60,.46), bug=('CLE',2,'CHC',3,'CHC'),
+   photo=img('wrigley-night',.70,.70,.40), bug=('CLE',2,'CHC',3,'CHC'),
    thumbs=[('wrigley-bleachers','30% 50%'),('wrigley-night-2','72% 66%','230%'),('wrigley-scoreboard-wide','25% 60%','240%')]),
  3: dict(hl='Los Angeles 118,<br>Chicago 104.', hs='font-size:46px', date='Jan 3, 2025', who=[], n=0,
    photo=lambda ph: '<canvas class="photo" data-style="arena" data-seed="11" data-accent="#e8213f" data-secondary="#552583" data-board="LAL 118|CHI 104"></canvas>', bug=('LAL',118,'CHI',104,'CHI')),

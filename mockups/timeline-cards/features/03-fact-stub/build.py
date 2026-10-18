@@ -45,7 +45,7 @@ CARDS = {
  1: dict(hl='Chicago 5,<br>Milwaukee 4.', date='Jul 4, 2026', seat='<b>Sec 314</b> · Row 8', wx='84°F', att='41,203', len='2h 58m', tk=True,
          photo=lambda ph: f'<img class="ph graded" src="{P}wrigley-scoreboard.jpg" style="object-position:35% 50%">', bug=('MIL',4,'CHC',5,'CHC','W')),
  2: dict(hl='Chicago 3,<br>Cleveland 2.', date='Oct 30, 2016', seat='<b>Sec 314</b> · Row 6', wx='63°F', att='41,711', len='3h 21m', tk=True, badge='World Series',
-         photo=img('wrigley-night',361,0,.62,.60,.46), bug=('CLE',2,'CHC',3,'CHC','W')),
+         photo=img('wrigley-night',361,0,.70,.70,.40), bug=('CLE',2,'CHC',3,'CHC','W')),
  3: dict(hl='<span style="font-size:46px">Los Angeles 118,<br>Chicago 104.</span>', date='Jan 3, 2025', seat='<b>Sec 105</b> · Row 14', wx=None, att='20,589', len='2h 21m', tk=False,
          photo=lambda ph: '<canvas class="photo" data-style="arena" data-seed="11" data-accent="#e8213f" data-secondary="#552583" data-board="LAL 118|CHI 104"></canvas>', bug=('LAL',118,'CHI',104,'CHI','L')),
 }
