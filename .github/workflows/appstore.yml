@@ -1,0 +1,69 @@
+name: App Store screenshots
+
+# Takes the screens for the App Store listing on the biggest iPhone, with a clean status bar.
+# Start it by changing ci/appstore.trigger, or run it by hand. The shots land on the appstore-shots branch.
+on:
+  push:
+    branches: [claude/witness-mockups-phase1]
+    paths: ['ci/appstore.trigger']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: appstore-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  shots:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: |
+          LATEST=$(ls -d /Applications/Xcode_16*.app | sort -V | tail -1)
+          sudo xcode-select -s "$LATEST"
+          xcodebuild -version
+
+      - name: Generate project
+        run: |
+          brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+          xcodegen generate
+
+      - name: Prepare simulator
+        env:
+          DEVICE: iPhone 16 Pro Max
+        run: |
+          bash ci/sim_setup.sh
+          xcrun simctl status_bar "$SIM_UDID" override --time "9:41" --dataNetwork wifi --wifiMode active --wifiBars 3 \
+            --cellularMode active --cellularBars 4 --batteryState charged --batteryLevel 100 || true
+
+      - name: Take the screens
+        id: test
+        run: |
+          mkdir -p build
+          set +e
+          TEST_RUNNER_APPSTORE=1 xcodebuild test \
+            -project Witness.xcodeproj -scheme Witness \
+            -destination "platform=iOS Simulator,id=$SIM_UDID" \
+            -only-testing:WitnessUITests/WitnessUITests/testAppStoreScreens \
+            -resultBundlePath build/Results.xcresult \
+            CODE_SIGNING_ALLOWED=NO > build/xcodebuild.log 2>&1
+          STATUS=$?
+          grep -E "error:|Test Case .*(passed|failed)|Executed|\*\* " build/xcodebuild.log | tail -60
+          exit $STATUS
+
+      - name: Collect results
+        if: always()
+        run: bash ci/collect.sh
+
+      - name: Publish to appstore-shots
+        if: always()
+        run: bash ci/publish.sh
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_OUTCOME: ${{ steps.test.outcome }}
+          RESULTS_BRANCH: appstore-shots

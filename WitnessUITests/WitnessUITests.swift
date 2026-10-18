@@ -468,5 +468,55 @@ final class WitnessUITests: XCTestCase {
         XCTAssertTrue(card.waitForExistence(timeout: 10))
         snap("album-timeline")
     }
+
+    // MARK: App Store screenshots
+
+    /// The eight screens for the App Store listing, shot on the biggest iPhone by the `appstore` workflow only.
+    func testAppStoreScreens() throws {
+        try XCTSkipUnless(ProcessInfo.processInfo.environment["APPSTORE"] == "1", "Only the App Store workflow takes these")
+        launch(["-demo"])
+        XCTAssertTrue(app.tabBars.buttons["Timeline"].waitForExistence(timeout: 10))
+        sleep(3)
+        snap("store-01-timeline")
+
+        openGame("mlb-2016-ws5", query: "World Series")
+        XCTAssertTrue(el("game-title").waitForExistence(timeout: 8))
+        sleep(3)
+        snap("store-02-game")
+
+        tap("hero-you-were-there")
+        XCTAssertTrue(el("ywt-hero").waitForExistence(timeout: 8))
+        sleep(3)
+        snap("store-03-match-report")
+        back()
+
+        tab("Passport")
+        sleep(3)
+        snap("store-04-passport")
+
+        tab("Map")
+        XCTAssertTrue(el("map-miles").waitForExistence(timeout: 8))
+        sleep(6)
+        snap("store-05-map")
+
+        tab("Passport")
+        tap("stamp-wrigley")
+        XCTAssertTrue(el("venue-title").waitForExistence(timeout: 8))
+        sleep(4)
+        snap("store-06-venue")
+        back()
+
+        tab("You")
+        sleep(3)
+        snap("store-07-you")
+
+        tab("Timeline")
+        tap("game-card-mlb-2016-ws5")
+        XCTAssertTrue(el("game-title").waitForExistence(timeout: 8))
+        tap("game-menu")
+        tap("game-share")
+        sleep(4)
+        snap("store-08-share")
+    }
 }
 

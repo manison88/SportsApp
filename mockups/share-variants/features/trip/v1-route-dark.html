@@ -35,7 +35,7 @@ body{background:#07080a;color:#fff;font-family:var(--f-ui);-webkit-font-smoothin
 const topo=window.__atlas['countries-110m'];
 const all=topojson.feature(topo,topo.objects.countries).features;
 const spain=all.find(f=>f.properties&&f.properties.name==='Spain');
-const proj=d3.geoMercator().center([-2.4,40.2]).scale(1420).translate([176,250]);
+const proj=d3.geoMercator().center([-1.6,40.4]).scale(2000).translate([176,235]);
 const path=d3.geoPath(proj);
 const svg=d3.select('#map');
 const P={"sea": "#0a0c10", "grat": "rgba(255,255,255,.05)", "spain": "#222836", "other": "#13161d", "coast": "#07080a", "flight": "rgba(255,255,255,.4)", "route": "#ffb547", "stop": "#fff", "t1": "#fff", "t2": "rgba(255,255,255,.7)"};
@@ -56,9 +56,9 @@ svg.append('circle').attr('cx',v[0]).attr('cy',v[1]).attr('r',5.5).attr('fill',P
 function lab(p,dx,dy,anchor,t1,t2){const g=svg.append('g').attr('transform',`translate(${p[0]+dx},${p[1]+dy})`);
  g.append('text').text(t1).attr('text-anchor',anchor).attr('font-family','Barlow Condensed').attr('font-weight',800).attr('font-size',22).attr('letter-spacing',.6).attr('fill',P.t1).style('text-transform','uppercase');
  g.append('text').text(t2).attr('y',20).attr('text-anchor',anchor).attr('font-family','Barlow Condensed').attr('font-weight',700).attr('font-size',17).attr('letter-spacing',.6).attr('fill',P.t2).style('text-transform','uppercase');}
-lab(b,-4,-40,'end','Camp Nou','Barcelona 5, Eibar 0');
-lab(m,-18,-52,'start','Bernabéu','Real Madrid 2, Barcelona 0');
-lab(v,16,34,'start','Valencia','');
+lab(b,-4,-44,'end','Camp Nou','Barcelona 5, Eibar 0');
+lab(m,60,40,'end','Bernabéu','Madrid 2, Barcelona 0');
+lab(v,16,10,'start','Valencia','');
 
 </script>
 <script src="../../../kit/kit.js"></script>

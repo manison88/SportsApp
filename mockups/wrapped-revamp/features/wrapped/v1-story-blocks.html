@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Story: color blocks</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<link rel="stylesheet" href="../../../round2/system/broadcast.css">
+<link rel="stylesheet" href="../../../final/system/final.css">
+<link rel="stylesheet" href="wr.css">
+<style>
+  .s1 { background: var(--orange); --fg:#fff; }
+  .s2 { background: var(--blue); }
+  .s3 { background: #07080a; }
+  .s4 { background: var(--navy); }
+  .s5 { background: var(--amber); --fg: var(--navy); --chip: rgba(11,22,42,.12); }
+  .s1 .strip { --chip: rgba(11,22,42,.16); --on-bg: var(--navy); --on-fg:#fff; }
+  .year { position: absolute; left: 16px; top: 142px; font: 800 172px/.8 var(--b-cond); letter-spacing: -3px; font-variant-numeric: tabular-nums; }
+  .line { position: absolute; left: 20px; right: 20px; font: 800 58px/.9 var(--b-cond); text-transform: uppercase; letter-spacing: -.5px; }
+  .s1 .line { top: 340px; color: var(--navy); }
+  .s1 .strip { position: absolute; left: 0; right: 0; top: 620px; padding-left: 20px; }
+  .s1 .strip { margin-left: 0; }
+  .big { position: absolute; left: 12px; top: 134px; font: 800 244px/.8 var(--b-cond); letter-spacing: -6px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .big em { font-style: normal; color: var(--navy); letter-spacing: -2px; }
+  .s2 .claim { position: absolute; left: 20px; width: 320px; top: 372px; font: 800 36px/.95 var(--b-cond); text-transform: uppercase; }
+  .wrow { position: absolute; left: 20px; right: 20px; top: 590px; display: flex; gap: 8px; }
+  .wrow div { flex: 1; text-align: center; }
+  .wrow .tile { height: 56px; border-radius: 10px; background: #fff; color: var(--blue); display: grid; place-items: center; font: 800 30px/1 var(--b-cond); }
+  .wrow span { display: block; margin-top: 8px; font: 700 13px/1 var(--b-cond); letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,.85); }
+  .s3 .big-line { position: absolute; left: 20px; right: 20px; top: 420px; font: 800 60px/.9 var(--b-cond); text-transform: uppercase; letter-spacing: -.5px; }
+  .s3 .meta { position: absolute; left: 20px; right: 20px; top: 620px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font: 500 15px/1.3 var(--b-ui); color: rgba(255,255,255,.72); }
+  .miles { position: absolute; left: 16px; top: 134px; font: 800 168px/.8 var(--b-cond); letter-spacing: -3px; font-variant-numeric: tabular-nums; }
+  .unit { position: absolute; left: 20px; top: 288px; font: 800 36px/1 var(--b-cond); letter-spacing: 4px; color: var(--amber); }
+  .route { position: absolute; left: 0; top: 340px; width: 393px; height: 260px; }
+  .route text { font: 700 17px var(--b-cond); letter-spacing: 1.5px; fill: #fff; text-transform: uppercase; }
+  .route .sub { font: 600 14px var(--b-ui); letter-spacing: 0; fill: rgba(255,255,255,.65); text-transform: none; }
+  .s5 .line { top: 150px; }
+  .s5 .strip { position: absolute; left: 0; right: 0; top: 384px; padding-left: 20px; --chip: rgba(11,22,42,.12); --on-bg: var(--navy); --on-fg:#fff; }
+  .s5 .nextcard { position: absolute; left: 20px; right: 20px; top: 260px; height: 96px; border-radius: 14px; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; }
+  .s5 .nextcard b { font: 800 54px/1 var(--b-cond); }
+  .s5 .nextcard span { font: 700 16px/1.2 var(--b-cond); letter-spacing: 1px; text-transform: uppercase; text-align: right; color: rgba(255,255,255,.8); }
+</style></head>
+<body class="phone b" data-year="2025">
+<div class="segs"></div>
+
+<section class="slide s1">
+  <div class="year">2025</div>
+  <div class="line">Five games.<br>Five wins.</div>
+  <div class="strip"><b style="margin-left:-40px">2022</b><b>2023</b><b>2024</b><b class="on">2025</b><b>2026</b></div>
+  <div class="sharebtn"><svg class="i" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share to story</div>
+</section>
+
+<section class="slide s2">
+  <div class="big">5<em>–</em>0</div>
+  <div class="claim">Chicago won every game you walked into.</div>
+  <div class="wrow">
+    <div><div class="tile">W</div><span>Jan 5</span></div><div><div class="tile">W</div><span>Mar 2</span></div><div><div class="tile">W</div><span>Jun 14</span></div><div><div class="tile">W</div><span>Aug 9</span></div><div><div class="tile">W</div><span>Nov 2</span></div>
+  </div>
+  <div class="sharebtn"><svg class="i" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share to story</div>
+</section>
+
+<section class="slide s3">
+  <img class="photo-fill" src="../../../photos/lambeau-concourse.jpg" style="width:1342px;height:900px;max-width:none;left:-380px;top:-300px;filter: contrast(1.05) saturate(.9)">
+  <div class="scrim-b" style="height:560px"></div>
+  <div class="big-line">The kick that went through the snow.</div>
+  <div class="meta"><span class="b-bug"><span class="team" style="--c:#f05a1a">CHI</span><span class="score">24</span></span><span class="b-bug"><span class="team" style="--c:#203731">GB</span><span class="score">22</span></span></div><div class="meta" style="top:668px"><span>Lambeau Field, 19°F, with Maya and Leo</span></div>
+  <div class="sharebtn"><svg class="i" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share to story</div>
+</section>
+
+<section class="slide s4">
+  <div class="miles">4,720</div>
+  <div class="unit">MILES</div>
+  <svg class="route" viewBox="0 0 393 260">
+    <path d="M60 190 Q 150 40 276 120" fill="none" stroke="#ffb547" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/>
+    <path d="M276 120 L 300 62" fill="none" stroke="#ffb547" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="60" cy="190" r="8" fill="#fff"/><circle cx="276" cy="120" r="8" fill="#ffb547"/><circle cx="300" cy="62" r="8" fill="#fff"/>
+    <text x="60" y="226">San Francisco</text><text class="sub" x="60" y="246">Jun 14, Oracle Park</text>
+    <text x="196" y="156">Chicago</text>
+    <text x="372" y="56" text-anchor="end" dx="-20">Green Bay</text><text class="sub" x="372" y="76" text-anchor="end" dx="-20">Jan 5</text>
+  </svg>
+  <div class="sharebtn"><svg class="i" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share to story</div>
+</section>
+
+<section class="slide s5">
+  <div class="line">That was 2025.</div>
+  <div class="nextcard"><b>2026</b><span>2 games so far<br>2–0</span></div>
+  <div class="strip"><b style="margin-left:-40px">2022</b><b>2023</b><b>2024</b><b class="on">2025</b><b>2026</b></div>
+  <div class="sharebtn dark"><svg class="i" viewBox="0 0 24 24"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Share the full year</div>
+</section>
+
+<script src="wr.js"></script>
+<script src="../../../kit/kit.js"></script>
+</body></html>

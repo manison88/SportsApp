@@ -12,8 +12,8 @@ body{background:#07080a;color:#fff;font-family:var(--f-ui);-webkit-font-smoothin
 .card{background:#f3ece0}
 .eyebrow{left:22px;top:22px;font:500 12px/1 var(--f-mono);letter-spacing:2px;text-transform:uppercase;color:rgba(27,23,18,.6)}
 .fade{left:0;right:0;bottom:0;height:300px;background:linear-gradient(180deg,rgba(243,236,224,0),#f3ece0 52%)}
-.big{left:22px;bottom:104px;font:400 112px/.8 var(--f-dm);color:#1b1712;letter-spacing:-3px}
-.dates{left:24px;bottom:78px;font:500 13px/1 var(--f-mono);letter-spacing:1px;color:rgba(27,23,18,.6)}
+.big{left:22px;bottom:112px;font:400 112px/.8 var(--f-dm);color:#1b1712;letter-spacing:-3px}
+.dates{left:24px;bottom:72px;font:500 13px/1 var(--f-mono);letter-spacing:1px;color:rgba(27,23,18,.6)}
 .stats{left:24px;right:24px;bottom:22px;display:flex;border-top:1.5px solid #1b1712;padding-top:10px;color:#1b1712}
 .stats div{flex:1}
 .stats b{font:400 30px/1 var(--f-dm)} .stats span{font:500 12px/1 var(--f-mono);letter-spacing:1px;text-transform:uppercase;color:rgba(27,23,18,.6);margin-left:6px}
@@ -35,7 +35,7 @@ body{background:#07080a;color:#fff;font-family:var(--f-ui);-webkit-font-smoothin
 const topo=window.__atlas['countries-110m'];
 const all=topojson.feature(topo,topo.objects.countries).features;
 const spain=all.find(f=>f.properties&&f.properties.name==='Spain');
-const proj=d3.geoMercator().center([-2.4,40.2]).scale(1420).translate([176,250]);
+const proj=d3.geoMercator().center([-1.6,40.4]).scale(2000).translate([176,235]);
 const path=d3.geoPath(proj);
 const svg=d3.select('#map');
 const P={"sea": "#f3ece0", "grat": "rgba(60,45,20,.12)", "spain": "#e6d9bf", "other": "#ece2cd", "coast": "#8a7650", "flight": "rgba(40,30,15,.5)", "route": "#d97a00", "stop": "#1b1712", "t1": "#1b1712", "t2": "rgba(27,23,18,.7)"};
@@ -56,9 +56,9 @@ svg.append('circle').attr('cx',v[0]).attr('cy',v[1]).attr('r',5.5).attr('fill',P
 function lab(p,dx,dy,anchor,t1,t2){const g=svg.append('g').attr('transform',`translate(${p[0]+dx},${p[1]+dy})`);
  g.append('text').text(t1).attr('text-anchor',anchor).attr('font-family','Barlow Condensed').attr('font-weight',800).attr('font-size',22).attr('letter-spacing',.6).attr('fill',P.t1).style('text-transform','uppercase');
  g.append('text').text(t2).attr('y',20).attr('text-anchor',anchor).attr('font-family','Barlow Condensed').attr('font-weight',700).attr('font-size',17).attr('letter-spacing',.6).attr('fill',P.t2).style('text-transform','uppercase');}
-lab(b,-4,-40,'end','Camp Nou','Barcelona 5, Eibar 0');
-lab(m,-18,-52,'start','Bernabéu','Real Madrid 2, Barcelona 0');
-lab(v,16,34,'start','Valencia','');
+lab(b,-4,-44,'end','Camp Nou','Barcelona 5, Eibar 0');
+lab(m,60,40,'end','Bernabéu','Madrid 2, Barcelona 0');
+lab(v,16,10,'start','Valencia','');
 
 </script>
 <script src="../../../kit/kit.js"></script>
