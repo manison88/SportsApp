@@ -6,14 +6,33 @@ struct LifeMapView: View {
     @Environment(Library.self) private var library
     @State private var sport: Sport?
     @State private var expanded = false
-    @State private var listing: MapList?
+    @State private var path = NavigationPath()
 
     private var games: [GameEntry] {
         guard let sport else { return library.games }
         return library.games.filter { $0.sport == sport }
     }
 
+    /// The tab owns its stack so the lists can be pushed by value and share one path with venue, game and country pages.
     var body: some View {
+        NavigationStack(path: $path) {
+            content
+                .routes()
+                .navigationDestination(for: MapListRoute.self) { route in
+                    MapListSheet(kind: route.kind, games: games(for: route.sport), sport: route.sport)
+                }
+                .navigationDestination(for: CountryRoute.self) { route in
+                    CountryGames(code: route.code, games: games(for: route.sport))
+                }
+        }
+    }
+
+    private func games(for sport: Sport?) -> [GameEntry] {
+        guard let sport else { return library.games }
+        return library.games.filter { $0.sport == sport }
+    }
+
+    private var content: some View {
         let stats = Stats(library: library, games: games)
         let home = library.profile.homeLocation.coordinate
         let venues = Set(games.map(\.venueId)).compactMap { library.venue($0) }
@@ -50,7 +69,7 @@ struct LifeMapView: View {
                         .init(value: "\(stats.venues)", label: "Venues"),
                         .init(value: "\(stats.countries)", label: stats.countries == 1 ? "Country" : "Countries"),
                         .init(value: "\(stats.games)", label: "Games"),
-                    ], onSelect: { i in listing = [MapList.venues, .countries, .games][i] })
+                    ], onSelect: { i in path.append(MapListRoute(kind: [MapList.venues, .countries, .games][i], sport: sport)) })
                 }
                 .gutter()
             }
@@ -58,8 +77,6 @@ struct LifeMapView: View {
         }
         .scrollBounceBehavior(.basedOnSize)
         .inkBackground()
-        .navigationDestination(item: $listing) { kind in MapListSheet(kind: kind, games: games) }
-        .navigationDestination(for: CountryRoute.self) { route in CountryGames(code: route.code, games: games) }
         .tabTitle("Map")
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {

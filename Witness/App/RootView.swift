@@ -40,7 +40,7 @@ struct RootView: View {
                 NavigationStack { TimelineView().routes() }
             }
             Tab("Map", systemImage: "globe.americas.fill", value: AppTab.map) {
-                NavigationStack { LifeMapView().routes() }
+                LifeMapView()
             }
             Tab("Passport", systemImage: "person.text.rectangle.fill", value: AppTab.passport) {
                 NavigationStack { PassportView().routes() }

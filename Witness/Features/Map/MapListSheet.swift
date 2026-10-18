@@ -3,7 +3,7 @@ import MapKit
 
 /// What the Map's Venues, Countries and Games numbers open, pushed (not a sheet, so the swipe back still works): every one of them as a compact tile. Tap a venue for its page,
 /// a game for its page, a country for the games played there.
-enum MapList: String, Identifiable {
+enum MapList: String, Identifiable, Hashable {
     case venues, countries, games
     var id: String { rawValue }
 
@@ -19,6 +19,7 @@ enum MapList: String, Identifiable {
 struct MapListSheet: View {
     let kind: MapList
     let games: [GameEntry]
+    var sport: Sport?
 
     @Environment(Library.self) private var library
 
@@ -76,7 +77,7 @@ struct MapListSheet: View {
             let code = row.code, list = row.games
             let venues = Set(list.map(\.venueId))
             let name = venues.compactMap { library.venue($0)?.country }.first ?? code
-            NavigationLink(value: CountryRoute(code: code)) {
+            NavigationLink(value: CountryRoute(code: code, sport: sport)) {
                 tile(lead: AnyView(CountryGlobe(code: code, size: 40)),
                      title: name,
                      detail: "\(venues.count) \(venues.count == 1 ? "venue" : "venues")",
@@ -161,7 +162,10 @@ private struct VenueRow: Identifiable {
 }
 
 /// A country picked from the list.
-struct CountryRoute: Hashable { let code: String }
+struct CountryRoute: Hashable { let code: String; var sport: Sport? }
+
+/// A Map list to push, remembering the sport filter it was opened under.
+struct MapListRoute: Hashable { let kind: MapList; var sport: Sport? }
 
 /// The games played in one country.
 struct CountryGames: View {
