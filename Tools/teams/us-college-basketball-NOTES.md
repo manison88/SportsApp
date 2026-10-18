@@ -1,0 +1,19 @@
+# us-college-basketball notes (NCAA Division I men's + women's basketball, 2026-27)
+Scope: every D-I program ESPN lists in conference standings (season 2027, groups=50). Ids `cmb-<school>` (men's) and `cwb-<school>` (women's).
+Counts: 728 teams (365 men's, 363 women's), 64 leagues (32 conferences x men's/women's, leagueKey `basketball/<mens|womens>-college-basketball/<conf slug>`), 269 missing-venues records, 385 distinct home venues. Validator: 0 errors.
+Membership = ESPN 2026-27 conference standings (Pac-12 = 9, Big 12 = 16, Big Ten 18, ACC 18, MWC 10, UAC 9, OVC 9 incl. Lindenwood + Southern Indiana).
+Men's only (no women's D-I program on ESPN): The Citadel, VMI. Teams missing from ESPN's teams endpoint but present in standings (Queens, Lindenwood, Southern Indiana men's; Mercyhurst women's) were added from standings plus per-team lookups.
+ESPN calls MAAC "Metro Conference" (id 13); recorded as MAAC (slug `maac`), Metro Atlantic Athletic Conference.
+Home venue = the arena with most non-neutral home games on ESPN's 2026-27 schedule (men's and women's picked separately; shared arenas share the venue id; UConn = Gampel Pavilion for both, women also use PeoplesBank Arena).
+Stretch (Division II/III, NAIA): not attempted.
+
+## Venues
+- 116 reused from the catalog, 253 new (`us-college-basketball-missing-venues.json`), plus 16 copies (same id) of venues other agents defined in us-minor-pro / us-pro-history / us-college-football missing files (allen-county-war-memorial-coliseum, carver-arena, chiles-center, f-m-bank-arena, ford-center, lee-penny-anderson-arena, resch-center, truist-arena, tu-arena, uwmilwaukee-panther-arena, credit-union-1-arena, college-park-center, walter-pyramid-long-beach, eaglebank-arena, charles-e-smith-center, j-lawrence-walkup-skydome) so the validator passes; build_seed should dedupe by id/place.
+- Coordinate sources: Wikipedia/DBpedia article coordinates, OSM (Nominatim + Photon), cross-checked: 160+ agree within 250 m across two sources, the rest single-source with a name match. 28 DBpedia-only points have 3-4 decimals (about 10-100 m).
+- APPROXIMATE (campus or adjacent-building level, probably within 100-500 m; no public coordinate found): eccu-center (Tarleton, uses Wisdom Gym point), hornet-pavilion (Sac State, uses Hornet Stadium point), james-t-morris-arena (IU Indianapolis, uses The Jungle), jeffery-p-hazell-athletics-center (New Haven), meeks-family-fieldhouse (Evansville), smith-hammond-middleton-memorial-center (SC State), uwf-field-house (West Florida).
+- Renamed/merged venues: Hammel Court = Lawler Arena (Merrimack, 11 m apart); Groniger Arena = Lantz Arena; ESPN's "The Barn" = existing williams-arena; Pavilion (UNLV) = Cox Pavilion; Kennedy Family Athletic Complex = Costello Athletic Center (UMass Lowell); Brooklyn Athletic Center uses the LIU Steinberg Wellness Center point (name change not verified).
+- capacity and opened are null for all new venues (not collected). `founded` and Wikidata ids are null for all teams.
+
+## Colors
+ESPN colors used for every team. ESPN placeholders (black with no alternate, or duplicate colors) were replaced from the school's known brand colors for 38 teams (Towson, St. Bonaventure, Austin Peay, Campbell, Eastern Illinois, Fairfield, Chicago State, Hampton, Houston Christian, Lamar, Le Moyne, UMass Lowell, Loyola Chicago, Monmouth, North Alabama, CSUN, Quinnipiac, Saint Peter's, Stony Brook, Tarleton State, Valparaiso, UC Riverside, Mercyhurst, Lindenwood, East Texas A&M, Stonehill, California Baptist, CSU Bakersfield, Jacksonville, Maine, Utah Tech, Bellarmine, UC San Diego, Incarnate Word, Southern Indiana, St. Thomas, San Diego, Wright State). Least certain: Southern Indiana, Mercyhurst, Stonehill, Le Moyne, East Texas A&M, Lindenwood.
+Abbreviations are ESPN's except L-MD->LMD, M-OH->MOH, TA&M->TAMU, W&M->WM (validator needs 2-4 letters/digits).
