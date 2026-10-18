@@ -331,7 +331,16 @@ private struct TearOff: View {
                 Text(game.podium.first.map { $0.split(separator: " ").prefix(2).joined(separator: " ") } ?? "\u{2014}")
                     .font(.condensed(.title3, weight: .heavy))
             } else if game.isVisit {
-                Text("VISIT").font(.condensed(.headline, weight: .heavy)).tracking(2)
+                Text((game.competition ?? "Visit").uppercased())
+                    .font(.condensed(.caption2, weight: .heavy)).tracking(2).foregroundStyle(Color.textSecondary)
+                    .lineLimit(2).multilineTextAlignment(.center).minimumScaleFactor(0.7)
+                if let team = library.team(game.homeTeamId) {
+                    TeamTile(team: team, compact: true)
+                    Text("\(team.locationName) home")
+                        .font(.caption2).foregroundStyle(Color.textSecondary).lineLimit(1).minimumScaleFactor(0.6)
+                } else {
+                    Image(systemName: "building.columns").font(.title2).foregroundStyle(Color.signal)
+                }
             } else {
                 Text(label).font(.condensed(.caption2, weight: .heavy)).tracking(2).foregroundStyle(Color.textSecondary)
                 side(game.awayTeamId, game.awayScore)

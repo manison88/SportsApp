@@ -13,6 +13,8 @@ struct AddGameView: View {
     var onDone: (() -> Void)?
 
     @State private var sport: Sport = .baseball
+    @State private var isVisit = false
+    @State private var visitType = Self.visitTypes[0]
     @State private var homeTeamId: String?
     @State private var awayTeamId: String?
     @State private var raceName = ""
@@ -55,8 +57,22 @@ struct AddGameView: View {
         }
     }
 
+    /// What a stadium visit can be tagged as, so it is a choice and not free text.
+    static let visitTypes = ["Stadium tour", "Walk past", "Museum or hall of fame", "Tailgate", "Other visit"]
+
     private var form: some View {
         Form {
+            Section {
+                Picker("What is it", selection: $isVisit) {
+                    Text("Game").tag(false)
+                    Text("Stadium visit").tag(true)
+                }
+                .pickerStyle(.segmented)
+                .listRowBackground(Color.clear)
+                .accessibilityIdentifier("add-kind")
+            }
+            .listRowBackground(Color.clear)
+
             Section {
                 Picker("Sport", selection: $sport) {
                     ForEach(Sport.allCases) { s in
@@ -66,7 +82,14 @@ struct AddGameView: View {
                 .pickerStyle(.menu)
                 .accessibilityIdentifier("add-sport")
 
-                if sport == .motorsport {
+                if isVisit {
+                    teamPicker("Whose stadium", selection: $homeTeamId, id: "add-home-team")
+                    Picker("Type", selection: $visitType) {
+                        ForEach(Self.visitTypes, id: \.self) { Text($0) }
+                    }
+                    .pickerStyle(.menu)
+                    .accessibilityIdentifier("add-visit-type")
+                } else if sport == .motorsport {
                     TextField("Race", text: $raceName)
                         .accessibilityIdentifier("add-race")
                     NavigationLink {
@@ -80,7 +103,7 @@ struct AddGameView: View {
                     teamPicker("Home", selection: $homeTeamId, id: "add-home-team")
                 }
 
-                if sport != .motorsport {
+                if sport != .motorsport, !isVisit {
                     TextField("Competition or event (optional)", text: $competition)
                         .textInputAutocapitalization(.words)
                         .accessibilityIdentifier("add-competition")
@@ -102,7 +125,7 @@ struct AddGameView: View {
             }
             .listRowBackground(Color.panel)
 
-            if sport == .motorsport, let venue = venueId.flatMap({ library.venue($0) }), !F1Calendar.races(at: venue.id).isEmpty {
+            if !isVisit, sport == .motorsport, let venue = venueId.flatMap({ library.venue($0) }), !F1Calendar.races(at: venue.id).isEmpty {
                 Section {
                     Button {
                         Task { await lookup() }
@@ -127,7 +150,7 @@ struct AddGameView: View {
                 .listRowBackground(Color.panel)
             }
 
-            if sport != .motorsport {
+            if sport != .motorsport, !isVisit {
                 Section {
                     scoreRow
                     if let home = homeTeamId, let away = awayTeamId {
@@ -222,7 +245,7 @@ struct AddGameView: View {
                     Task { await findPhotos() }
                 } label: {
                     HStack {
-                        Label("Find photos from this game", systemImage: "location.magnifyingglass")
+                        Label(isVisit ? "Find photos from this visit" : "Find photos from this game", systemImage: "location.magnifyingglass")
                         Spacer()
                         if findingPhotos { ProgressView() }
                     }
@@ -234,7 +257,7 @@ struct AddGameView: View {
         }
         .scrollContentBackground(.hidden)
         .background(Color.ink.ignoresSafeArea())
-        .navigationTitle(editing == nil ? "Add game" : "Edit game")
+        .navigationTitle(editing == nil ? (isVisit ? "Add visit" : "Add game") : (isVisit ? "Edit visit" : "Edit game"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(embedded)
         .toolbar {
@@ -343,6 +366,8 @@ struct AddGameView: View {
         didPrefill = true
         if let g = editing {
             sport = g.sport
+            isVisit = g.isVisit
+            if g.isVisit, let c = g.competition, Self.visitTypes.contains(c) { visitType = c }
             homeTeamId = g.homeTeamId
             awayTeamId = g.awayTeamId
             raceName = g.sport == .motorsport ? (g.competition ?? "") : ""
@@ -450,7 +475,7 @@ struct AddGameView: View {
     /// Looks the game up as soon as a venue and day are set, but only on a new game with no teams picked yet, so
     /// nothing the fan typed is overwritten. "Find this game" stays for everything else.
     private func autoLookup() {
-        guard found == nil, !lookingUp,
+        guard !isVisit, found == nil, !lookingUp,
               let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty else { return }
         let noTeamsYet = homeTeamId == nil && awayTeamId == nil
         if let editing {
@@ -535,7 +560,20 @@ struct AddGameView: View {
         g.sport = sport
         g.date = date
         g.venueId = venueId
-        if sport == .motorsport {
+        if isVisit {
+            // A visit needs a ground and, to say whose it is, a home team.
+            g.kind = .visit
+            g.homeTeamId = homeTeamId
+            g.awayTeamId = nil
+            g.homeScore = nil
+            g.awayScore = nil
+            g.rootingForTeamId = nil
+            g.competition = visitType
+            g.lineHome = []
+            g.lineAway = []
+            g.plays = []
+            g.winProbability = []
+        } else if sport == .motorsport {
             g.homeTeamId = nil
             g.awayTeamId = nil
             g.homeScore = nil
@@ -562,7 +600,7 @@ struct AddGameView: View {
             }
         }
         // Only keep the schedule's stats if the fan didn't change the teams afterwards.
-        if let found, foundTeams == [homeTeamId, awayTeamId] {
+        if !isVisit, let found, foundTeams == [homeTeamId, awayTeamId] {
             let keepScores = (g.homeScore, g.awayScore)
             GameLookup.apply(found, detail: foundDetail, to: &g, library: library)
             // What the fan typed wins over the schedule.
@@ -570,6 +608,8 @@ struct AddGameView: View {
             if keepScores.1 != nil { g.awayScore = keepScores.1 }
             g.rootingForTeamId = rootingForTeamId
             // A stadium visit that turned out to be a scheduled game is a game now.
+            g.kind = nil
+        } else if !isVisit {
             g.kind = nil
         }
         let seatText = seat.trimmingCharacters(in: .whitespacesAndNewlines)
