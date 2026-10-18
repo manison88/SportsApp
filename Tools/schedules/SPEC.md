@@ -43,7 +43,7 @@ OpenStreetMap Nominatim, within ~100 m; say in NOTES which are approximate). Ven
 record with the names that appeared; list renamed names in `aliases`. Demolished stadiums count: they are exactly what this is for.
 
 ## Sources, in order of preference
-ESPN's public site API: `https://site.api.espn.com/apis/site/v2/sports/<path>/scoreboard?dates=YYYYMMDD-YYYYMMDD&limit=1000`
+ESPN's public site API: `https://site.api.espn.com/apis/site/v2/sports/<path>/scoreboard?dates=YYYYMMDD-YYYYMMDD&limit=300` (a larger limit is silently cut to 25 events on some leagues from 2024)
 (ESPN now rejects date ranges with HTTP 400: query ONE day, `dates=YYYYMMDD`; college leagues may need
 `&groups=<id>` such as 80 for FBS, 50 for D1 basketball; check the response's event count). Event fields: `id`, `date`, `status.type.state`
 ("pre"/"in"/"post") and `completed`, `competitions[0].competitors[]` (`homeAway`, `team.id`, `team.abbreviation`, `score`),

@@ -56,7 +56,7 @@ def refresh(path, league, season, today, back=10, ahead=21):
     days = [today + timedelta(days=d) for d in range(-back, ahead + 1)]
 
     def fetch(day):
-        return get(f"{BASE}{league}/scoreboard?dates={day:%Y%m%d}&limit=1000")
+        return get(f"{BASE}{league}/scoreboard?dates={day:%Y%m%d}&limit=300")
 
     with ThreadPoolExecutor(max_workers=6) as pool:
         responses = list(pool.map(fetch, days))
