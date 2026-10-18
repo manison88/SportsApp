@@ -1,0 +1,36 @@
+Command line invocation:
+    /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/xcodebuild test -project Witness.xcodeproj -scheme Witness -destination "platform=iOS Simulator,id=291E4B86-C951-41A7-8327-84BF0304D0A9" -resultBundlePath build/Results.xcresult -IDEBuildingContinueBuildingAfterErrors=YES CODE_SIGNING_ALLOWED=NO
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+Writing result bundle at path:
+	/Users/runner/work/SportsApp/SportsApp/build/Results.xcresult
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:iOS Simulator, arch:arm64, id:291E4B86-C951-41A7-8327-84BF0304D0A9, OS:26.2, name:iPhone 16 Pro }
+{ platform:iOS Simulator, arch:x86_64, id:291E4B86-C951-41A7-8327-84BF0304D0A9, OS:26.2, name:iPhone 16 Pro }
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (3 targets)
+    Target 'WitnessUITests' in project 'Witness'
+        ➜ Explicit dependency on target 'Witness' in project 'Witness'
+    Target 'WitnessTests' in project 'Witness'
+        ➜ Explicit dependency on target 'Witness' in project 'Witness'
+    Target 'Witness' in project 'Witness' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode_16.4.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Users/runner/work/SportsApp/SportsApp/Witness/Assets.xcassets
