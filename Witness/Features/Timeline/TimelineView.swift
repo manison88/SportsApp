@@ -312,7 +312,7 @@ private struct DateBlock: View {
     }
 }
 
-/// The tear-off end of the stub: the score, stacked, behind a perforation. Your side is ringed.
+/// The tear-off end of the stub: the score, stacked, behind a perforation.
 private struct TearOff: View {
     @Environment(Library.self) private var library
     let game: GameEntry
@@ -331,7 +331,7 @@ private struct TearOff: View {
                 side(game.homeTeamId, game.homeScore)
             }
         }
-        .frame(width: 104)
+        .frame(width: 138)
         .frame(maxHeight: .infinity)
         .overlay(alignment: .leading) { Perforation() }
     }
@@ -347,16 +347,21 @@ private struct TearOff: View {
     }
 
     private func side(_ id: String?, _ score: Int?) -> some View {
-        let rooted = id != nil && id == library.rootingTeam(game)
-        return HStack(spacing: 8) {
+        HStack(spacing: 8) {
             if let team = library.team(id) {
                 TeamTile(team: team, compact: true)
-                    .overlay { if rooted { RoundedRectangle(cornerRadius: 6).stroke(Color.signal, lineWidth: 2).padding(-3) } }
             }
             Spacer(minLength: 0)
-            if let score { Text("\(score)").font(.condensed(.title3, weight: .heavy)).monospacedDigit() }
+            if let score {
+                // Three-digit basketball scores stay on one line.
+                Text("\(score)")
+                    .font(.condensed(.title3, weight: .heavy))
+                    .monospacedDigit()
+                    .lineLimit(1)
+                    .fixedSize(horizontal: true, vertical: false)
+            }
         }
-        .padding(.horizontal, 14)
+        .padding(.horizontal, 12)
     }
 
     /// A dashed line with a half-moon notch at each end.
