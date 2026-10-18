@@ -7,14 +7,6 @@ SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/Ti
     cd /Users/runner/work/SportsApp/SportsApp
     
 
-SwiftDriverJobDiscovery normal arm64 Compiling WitnessUITests.swift (in target 'WitnessUITests' from project 'Witness')
-
-SwiftDriver\ Compilation WitnessUITests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'WitnessUITests' from project 'Witness')
-    cd /Users/runner/work/SportsApp/SportsApp
-    builtin-Swift-Compilation -- /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name WitnessUITests -Onone -enforce-exclusivity\=checked @/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk -target arm64-apple-ios18.0-simulator -g -module-cache-path /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Index.noindex/DataStore -swift-version 5 -I /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -I /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk/Developer/Library/Frameworks -parse-as-library -c -j3 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphonesimulator18.5-22F76-96ae0914227b19deccb34b33ba7b5dea.sdkstatcache -output-file-map /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/runner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-generated-files.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-own-target-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests-project-headers.hmap -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources-normal/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources/arm64 -Xcc -I/Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests-Swift.h -working-directory /Users/runner/work/SportsApp/SportsApp -experimental-emit-module-separately -disable-cmo
-
-SwiftDriverJobDiscovery normal arm64 Compiling TicketOCRTests.swift, TicketParserTests.swift (in target 'WitnessTests' from project 'Witness')
-
 SwiftCompile normal arm64 Compiling\ AlbumAndScoreboardTests.swift,\ BigGameTests.swift,\ DetectionTuningTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/AlbumAndScoreboardTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/BigGameTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/DetectionTuningTests.swift (in target 'WitnessTests' from project 'Witness')
 
 SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/AlbumAndScoreboardTests.swift (in target 'WitnessTests' from project 'Witness')
@@ -29,9 +21,27 @@ SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/De
     cd /Users/runner/work/SportsApp/SportsApp
     
 
-SwiftDriverJobDiscovery normal arm64 Compiling GameLookupTests.swift, LibraryTests.swift, PhotoMatcherTests.swift (in target 'WitnessTests' from project 'Witness')
+SwiftDriverJobDiscovery normal arm64 Compiling TicketOCRTests.swift, TicketParserTests.swift (in target 'WitnessTests' from project 'Witness')
+
+SwiftCompile normal arm64 Compiling\ GameLookupTests.swift,\ LibraryTests.swift,\ PhotoMatcherTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/GameLookupTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/LibraryTests.swift /Users/runner/work/SportsApp/SportsApp/WitnessTests/PhotoMatcherTests.swift (in target 'WitnessTests' from project 'Witness')
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/GameLookupTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/LibraryTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
+
+SwiftCompile normal arm64 /Users/runner/work/SportsApp/SportsApp/WitnessTests/PhotoMatcherTests.swift (in target 'WitnessTests' from project 'Witness')
+    cd /Users/runner/work/SportsApp/SportsApp
+    
 
 SwiftDriverJobDiscovery normal arm64 Compiling AlbumAndScoreboardTests.swift, BigGameTests.swift, DetectionTuningTests.swift (in target 'WitnessTests' from project 'Witness')
+
+SwiftDriverJobDiscovery normal arm64 Compiling AddGameView.swift, AddVenueView.swift, AlbumImportView.swift, AlbumImporter.swift, BackgroundPhotoCheck.swift, BigGame.swift, BigGamesView.swift, Components.swift, CoverPicker.swift, DiscoveryView.swift, EventTheme.swift, F1Calendar.swift, GameLookup.swift, GameMemoryView.swift, GamePhotosView.swift, HomePickerView.swift, Library.swift, LifeMapView.swift, LiveCheckInView.swift (in target 'Witness' from project 'Witness')
+
+SwiftDriverJobDiscovery normal arm64 Compiling GameLookupTests.swift, LibraryTests.swift, PhotoMatcherTests.swift (in target 'WitnessTests' from project 'Witness')
 
 SwiftDriver\ Compilation WitnessTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'WitnessTests' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
@@ -59,8 +69,8 @@ Ld /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivv
 ExtractAppIntentsMetadata (in target 'Witness' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
     /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name Witness --sdk-root /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --xcode-version 16F6 --platform-family iOS --deployment-target 18.0 --bundle-identifier app.witness.ios --output /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app --target-triple arm64-apple-ios18.0-simulator --binary-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Witness --dependency-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness_dependency_info.dat --stringsdata-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.SwiftFileList --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness.DependencyMetadataFileList --static-metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Objects-normal/arm64/Witness.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
-2026-10-18 23:38:13.366 appintentsmetadataprocessor[29336:86178] Starting appintentsmetadataprocessor export
-2026-10-18 23:38:13.376 appintentsmetadataprocessor[29336:86178] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+2026-10-18 23:51:22.600 appintentsmetadataprocessor[22011:68440] Starting appintentsmetadataprocessor export
+2026-10-18 23:51:22.624 appintentsmetadataprocessor[22011:68440] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
 
 CopySwiftLibs /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app (in target 'Witness' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
@@ -70,8 +80,8 @@ Ignoring --strip-bitcode because --sign was not passed
 AppIntentsSSUTraining (in target 'Witness' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
     /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Info.plist --temp-dir-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/ssu --bundle-id app.witness.ios --product-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app --extracted-metadata-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/Metadata.appintents --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/Witness.build/Witness.DependencyMetadataFileList --archive-ssu-assets
-2026-10-18 23:38:13.439 appintentsnltrainingprocessor[29358:86235] Parsing options for appintentsnltrainingprocessor
-2026-10-18 23:38:13.440 appintentsnltrainingprocessor[29358:86235] No AppShortcuts found - Skipping.
+2026-10-18 23:51:22.707 appintentsnltrainingprocessor[22055:68541] Parsing options for appintentsnltrainingprocessor
+2026-10-18 23:51:22.710 appintentsnltrainingprocessor[22055:68541] No AppShortcuts found - Skipping.
 
 Ld /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/WitnessTests normal (in target 'WitnessTests' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
@@ -92,8 +102,8 @@ CpResource /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntl
 ExtractAppIntentsMetadata (in target 'WitnessTests' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
     /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name WitnessTests --sdk-root /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --xcode-version 16F6 --platform-family iOS --deployment-target 18.0 --bundle-identifier app.witness.WitnessTests --output /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest --target-triple arm64-apple-ios18.0-simulator --binary-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/WitnessTests --dependency-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests_dependency_info.dat --stringsdata-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.SwiftFileList --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests.DependencyMetadataFileList --static-metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/Objects-normal/arm64/WitnessTests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
-2026-10-18 23:38:14.118 appintentsmetadataprocessor[29393:86337] Starting appintentsmetadataprocessor export
-2026-10-18 23:38:14.120 appintentsmetadataprocessor[29393:86337] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+2026-10-18 23:51:23.774 appintentsmetadataprocessor[22061:68595] Starting appintentsmetadataprocessor export
+2026-10-18 23:51:23.778 appintentsmetadataprocessor[22061:68595] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
 
 CopySwiftLibs /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest (in target 'WitnessTests' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
@@ -103,8 +113,8 @@ Ignoring --strip-bitcode because --sign was not passed
 AppIntentsSSUTraining (in target 'WitnessTests' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
     /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/Info.plist --temp-dir-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/ssu --bundle-id app.witness.WitnessTests --product-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest --extracted-metadata-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest/Metadata.appintents --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessTests.build/WitnessTests.DependencyMetadataFileList --archive-ssu-assets
-2026-10-18 23:38:14.151 appintentsnltrainingprocessor[29394:86339] Parsing options for appintentsnltrainingprocessor
-2026-10-18 23:38:14.152 appintentsnltrainingprocessor[29394:86339] No AppShortcuts found - Skipping.
+2026-10-18 23:51:23.805 appintentsnltrainingprocessor[22062:68596] Parsing options for appintentsnltrainingprocessor
+2026-10-18 23:51:23.806 appintentsnltrainingprocessor[22062:68596] No AppShortcuts found - Skipping.
 
 RegisterExecutionPolicyException /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/Witness.app/PlugIns/WitnessTests.xctest (in target 'WitnessTests' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
@@ -137,8 +147,8 @@ ProcessInfoPlistFile /Users/runner/Library/Developer/Xcode/DerivedData/Witness-f
 ExtractAppIntentsMetadata (in target 'WitnessUITests' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
     /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name WitnessUITests --sdk-root /Applications/Xcode_16.4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator18.5.sdk --xcode-version 16F6 --platform-family iOS --deployment-target 18.0 --bundle-identifier app.witness.WitnessUITests --output /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest --target-triple arm64-apple-ios18.0-simulator --binary-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/WitnessUITests --dependency-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests_dependency_info.dat --stringsdata-file /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.SwiftFileList --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests.DependencyMetadataFileList --static-metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests.DependencyStaticMetadataFileList --swift-const-vals-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/Objects-normal/arm64/WitnessUITests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
-2026-10-18 23:38:14.570 appintentsmetadataprocessor[29420:86403] Starting appintentsmetadataprocessor export
-2026-10-18 23:38:14.571 appintentsmetadataprocessor[29420:86403] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+2026-10-18 23:51:24.377 appintentsmetadataprocessor[22067:68616] Starting appintentsmetadataprocessor export
+2026-10-18 23:51:24.382 appintentsmetadataprocessor[22067:68616] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
 
 CopySwiftLibs /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest (in target 'WitnessUITests' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
@@ -148,8 +158,8 @@ Ignoring --strip-bitcode because --sign was not passed
 AppIntentsSSUTraining (in target 'WitnessUITests' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
     /Applications/Xcode_16.4.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsnltrainingprocessor --infoplist-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/Info.plist --temp-dir-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/ssu --bundle-id app.witness.WitnessUITests --product-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest --extracted-metadata-path /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest/Metadata.appintents --metadata-file-list /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Intermediates.noindex/Witness.build/Debug-iphonesimulator/WitnessUITests.build/WitnessUITests.DependencyMetadataFileList --archive-ssu-assets
-2026-10-18 23:38:14.600 appintentsnltrainingprocessor[29426:86414] Parsing options for appintentsnltrainingprocessor
-2026-10-18 23:38:14.601 appintentsnltrainingprocessor[29426:86414] No AppShortcuts found - Skipping.
+2026-10-18 23:51:24.422 appintentsnltrainingprocessor[22068:68617] Parsing options for appintentsnltrainingprocessor
+2026-10-18 23:51:24.423 appintentsnltrainingprocessor[22068:68617] No AppShortcuts found - Skipping.
 
 MkDir /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app (in target 'WitnessUITests' from project 'Witness')
     cd /Users/runner/work/SportsApp/SportsApp
@@ -207,194 +217,184 @@ Touch /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmal
     cd /Users/runner/work/SportsApp/SportsApp
     /usr/bin/touch -c /Users/runner/Library/Developer/Xcode/DerivedData/Witness-fhrmsashntlogmalivvjupckybou/Build/Products/Debug-iphonesimulator/WitnessUITests-Runner.app/PlugIns/WitnessUITests.xctest
 
-2026-10-18 23:38:35.508902+0000 WitnessUITests-Runner[30748:89800] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
-2026-10-18 23:38:35.526977+0000 WitnessUITests-Runner[30748:89800] [Default] Running tests...
+2026-10-18 23:52:01.962199+0000 WitnessUITests-Runner[23451:72047] [UIKit App Config] `UIScene` lifecycle will soon be required. Failure to adopt will result in an assert in the future.
+2026-10-18 23:52:01.974595+0000 WitnessUITests-Runner[23451:72047] [Default] Running tests...
     t =      nans Interface orientation changed to Portrait
-Test Suite 'Selected tests' started at 2026-10-18 23:38:41.169.
-Test Suite 'WitnessUITests.xctest' started at 2026-10-18 23:38:41.176.
-Test Suite 'WitnessUITests' started at 2026-10-18 23:38:41.177.
+Test Suite 'Selected tests' started at 2026-10-18 23:52:11.423.
+Test Suite 'WitnessUITests.xctest' started at 2026-10-18 23:52:11.426.
+Test Suite 'WitnessUITests' started at 2026-10-18 23:52:11.427.
 Test Case '-[WitnessUITests.WitnessUITests testAppStoreScreens]' started.
-    t =     0.00s Start Test at 2026-10-18 23:38:41.178
-    t =     0.86s Set Up
-    t =     0.87s Open app.witness.ios
-    t =     0.87s     Launch app.witness.ios
-    t =    14.14s         Setting up automation session
-    t =    17.13s         Wait for app.witness.ios to idle
-    t =    20.43s Waiting 10.0s for "Timeline" Button to exist
-    t =    21.48s     Checking `Expect predicate `existsNoRetry == 1` for object "Timeline" Button`
-    t =    21.48s         Checking existence of `"Timeline" Button`
-    t =    25.15s Added attachment named 'store-01-timeline'
-    t =    25.16s Waiting 3.0s for SearchField (First Match) to exist
-    t =    26.24s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
-    t =    26.24s         Checking existence of `SearchField (First Match)`
-    t =    26.28s Waiting 5.0s for SearchField (First Match) to exist
-    t =    27.34s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
-    t =    27.34s         Checking existence of `SearchField (First Match)`
-    t =    27.43s Tap SearchField (First Match)
-    t =    27.43s     Wait for app.witness.ios to idle
-    t =    27.43s     Find the SearchField (First Match)
-    t =    27.50s     Check for interrupting elements affecting "Teams, places, years" SearchField
-    t =    27.62s     Synthesize event
-    t =    28.05s     Wait for app.witness.ios to idle
-    t =    30.56s Waiting 3.0s for Keyboard (First Match) to exist
-    t =    31.62s     Checking `Expect predicate `existsNoRetry == 1` for object Keyboard (First Match)`
-    t =    31.63s         Checking existence of `Keyboard (First Match)`
-    t =    31.66s Type 'World Series' into Target Application 'app.witness.ios'
-    t =    31.66s     Wait for app.witness.ios to idle
-    t =    31.66s     Find the Target Application 'app.witness.ios'
-    t =    31.77s     Check for interrupting elements affecting "Witness" Application
-    t =    31.82s     Synthesize event
-    t =    31.83s         Get number of matches for: Elements containing elements matching predicate 'hasKeyboardFocus == 1'
-    t =    32.44s     Wait for app.witness.ios to idle
-    t =    32.70s Waiting 8.0s for "game-card-mlb-2016-ws5" Any to exist
-    t =    33.74s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2016-ws5" Any`
-    t =    33.74s         Checking existence of `"game-card-mlb-2016-ws5" Any`
-    t =    34.14s Tap "game-card-mlb-2016-ws5" Any
-    t =    34.14s     Wait for app.witness.ios to idle
-    t =    34.15s     Find the "game-card-mlb-2016-ws5" Any
-    t =    34.78s     Check for interrupting elements affecting "game-card-mlb-2016-ws5" Button
-    t =    34.88s     Synthesize event
-    t =    35.19s     Wait for app.witness.ios to idle
-    t =    35.58s Waiting 8.0s for "game-title" Any to exist
-    t =    36.65s     Checking `Expect predicate `existsNoRetry == 1` for object "game-title" Any`
-    t =    36.65s         Checking existence of `"game-title" Any`
-    t =    40.15s Added attachment named 'store-02-game'
-    t =    40.16s Waiting 8.0s for "hero-you-were-there" Any to exist
-    t =    41.21s     Checking `Expect predicate `existsNoRetry == 1` for object "hero-you-were-there" Any`
-    t =    41.21s         Checking existence of `"hero-you-were-there" Any`
-    t =    41.63s Tap "hero-you-were-there" Any
-    t =    41.63s     Wait for app.witness.ios to idle
-    t =    41.64s     Find the "hero-you-were-there" Any
-    t =    41.94s     Check for interrupting elements affecting "hero-you-were-there" Button
-    t =    42.10s     Synthesize event
-    t =    42.43s     Wait for app.witness.ios to idle
-    t =    42.48s Waiting 8.0s for "ywt-hero" Any to exist
-    t =    43.54s     Checking `Expect predicate `existsNoRetry == 1` for object "ywt-hero" Any`
-    t =    43.54s         Checking existence of `"ywt-hero" Any`
-    t =    47.33s Added attachment named 'store-03-match-report'
-    t =    47.33s Tap Button (Element at index 0)
-    t =    47.33s     Wait for app.witness.ios to idle
-    t =    47.33s     Find the Button (Element at index 0)
-    t =    47.45s     Check for interrupting elements affecting "BackButton" Button
-    t =    47.55s     Synthesize event
-    t =    47.87s     Wait for app.witness.ios to idle
-    t =    47.88s Waiting 5.0s for "Passport" Button to exist
-    t =    48.94s     Checking `Expect predicate `existsNoRetry == 1` for object "Passport" Button`
-    t =    48.94s         Checking existence of `"Passport" Button`
-    t =    49.00s Tap "Passport" Button
-    t =    49.00s     Wait for app.witness.ios to idle
-    t =    49.01s     Find the "Passport" Button
-    t =    49.09s     Check for interrupting elements affecting "person.text.rectangle.fill" Button
-    t =    49.14s     Synthesize event
-    t =    49.46s     Wait for app.witness.ios to idle
-    t =    52.82s Added attachment named 'store-04-passport'
-    t =    52.82s Waiting 5.0s for "Map" Button to exist
-    t =    53.88s     Checking `Expect predicate `existsNoRetry == 1` for object "Map" Button`
-    t =    53.88s         Checking existence of `"Map" Button`
-    t =    53.98s Tap "Map" Button
-    t =    53.98s     Wait for app.witness.ios to idle
-    t =    53.98s     Find the "Map" Button
-    t =    54.09s     Check for interrupting elements affecting "globe.americas.fill" Button
-    t =    54.25s     Synthesize event
-    t =    54.67s     Wait for app.witness.ios to idle
-    t =    55.16s Waiting 8.0s for "map-miles" Any to exist
-    t =    56.26s     Checking `Expect predicate `existsNoRetry == 1` for object "map-miles" Any`
-    t =    56.26s         Checking existence of `"map-miles" Any`
-    t =    63.82s Added attachment named 'store-05-map'
-    t =    63.82s Waiting 5.0s for "Passport" Button to exist
-    t =    64.87s     Checking `Expect predicate `existsNoRetry == 1` for object "Passport" Button`
-    t =    64.87s         Checking existence of `"Passport" Button`
-    t =    65.02s Tap "Passport" Button
-    t =    65.02s     Wait for app.witness.ios to idle
-    t =    65.03s     Find the "Passport" Button
-    t =    65.17s     Check for interrupting elements affecting "person.text.rectangle.fill" Button
-    t =    65.26s     Synthesize event
-    t =    65.59s     Wait for app.witness.ios to idle
-    t =    65.59s Waiting 8.0s for "stamp-wrigley" Any to exist
-    t =    66.63s     Checking `Expect predicate `existsNoRetry == 1` for object "stamp-wrigley" Any`
-    t =    66.63s         Checking existence of `"stamp-wrigley" Any`
-    t =    66.77s Tap "stamp-wrigley" Any
-    t =    66.77s     Wait for app.witness.ios to idle
-    t =    66.77s     Find the "stamp-wrigley" Any
-    t =    66.90s     Check for interrupting elements affecting "stamp-wrigley" Button
-    t =    66.99s     Synthesize event
-    t =    67.28s     Wait for app.witness.ios to idle
-    t =    67.34s Waiting 8.0s for "venue-title" Any to exist
-    t =    68.36s     Checking `Expect predicate `existsNoRetry == 1` for object "venue-title" Any`
-    t =    68.36s         Checking existence of `"venue-title" Any`
-    t =    72.75s Added attachment named 'store-06-venue'
-    t =    72.75s Tap Button (Element at index 0)
-    t =    72.75s     Wait for app.witness.ios to idle
-    t =    72.75s     Find the Button (Element at index 0)
-    t =    72.82s     Check for interrupting elements affecting "BackButton" Button
-    t =    72.89s     Synthesize event
-    t =    73.19s     Wait for app.witness.ios to idle
-    t =    73.19s Waiting 5.0s for "You" Button to exist
-    t =    74.22s     Checking `Expect predicate `existsNoRetry == 1` for object "You" Button`
-    t =    74.22s         Checking existence of `"You" Button`
-    t =    74.32s Tap "You" Button
-    t =    74.32s     Wait for app.witness.ios to idle
-    t =    74.33s     Find the "You" Button
-    t =    74.38s     Check for interrupting elements affecting "person.crop.circle.fill" Button
-    t =    74.44s     Synthesize event
-    t =    74.76s     Wait for app.witness.ios to idle
-    t =    77.91s Added attachment named 'store-07-you'
-    t =    77.91s Waiting 5.0s for "Timeline" Button to exist
-    t =    78.96s     Checking `Expect predicate `existsNoRetry == 1` for object "Timeline" Button`
-    t =    78.97s         Checking existence of `"Timeline" Button`
-    t =    79.06s Tap "Timeline" Button
-    t =    79.06s     Wait for app.witness.ios to idle
-    t =    79.08s     Find the "Timeline" Button
-    t =    79.14s     Check for interrupting elements affecting "rectangle.stack.fill" Button
-    t =    79.26s     Synthesize event
-    t =    79.58s     Wait for app.witness.ios to idle
-    t =    79.59s Waiting 8.0s for "game-card-mlb-2016-ws5" Any to exist
-    t =    80.63s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2016-ws5" Any`
-    t =    80.63s         Checking existence of `"game-card-mlb-2016-ws5" Any`
-    t =    80.86s         Capturing element debug description
-    t =    81.60s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2016-ws5" Any`
-    t =    81.60s         Checking existence of `"game-card-mlb-2016-ws5" Any`
-    t =    81.87s         Capturing element debug description
-    t =    82.59s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2016-ws5" Any`
-    t =    82.59s         Checking existence of `"game-card-mlb-2016-ws5" Any`
-    t =    82.84s         Capturing element debug description
-    t =    83.68s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2016-ws5" Any`
-    t =    83.68s         Checking existence of `"game-card-mlb-2016-ws5" Any`
-    t =    84.22s         Capturing element debug description
-    t =    84.62s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2016-ws5" Any`
-    t =    84.62s         Checking existence of `"game-card-mlb-2016-ws5" Any`
-    t =    84.98s         Capturing element debug description
-    t =    85.61s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2016-ws5" Any`
-    t =    85.61s         Checking existence of `"game-card-mlb-2016-ws5" Any`
-    t =    85.85s         Capturing element debug description
-    t =    86.59s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2016-ws5" Any`
-    t =    86.59s         Checking existence of `"game-card-mlb-2016-ws5" Any`
-    t =    86.80s         Capturing element debug description
-    t =    87.59s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2016-ws5" Any`
-    t =    87.59s         Checking existence of `"game-card-mlb-2016-ws5" Any`
-    t =    87.81s         Capturing element debug description
-    t =    87.81s     Checking existence of `"game-card-mlb-2016-ws5" Any`
-    t =    88.03s Collecting debug information to assist test failure triage
-    t =    88.04s     Requesting snapshot of accessibility hierarchy for app with pid 31464
-/Users/runner/work/SportsApp/SportsApp/WitnessUITests/WitnessUITests.swift:514: error: -[WitnessUITests.WitnessUITests testAppStoreScreens] : XCTAssertTrue failed - Missing game-card-mlb-2016-ws5
-    t =    88.93s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testAppStoreScreens]' failed (89.441 seconds).
-Test Suite 'WitnessUITests' failed at 2026-10-18 23:40:10.619.
-	 Executed 1 test, with 1 failure (0 unexpected) in 89.441 (89.442) seconds
-Test Suite 'WitnessUITests.xctest' failed at 2026-10-18 23:40:10.620.
-	 Executed 1 test, with 1 failure (0 unexpected) in 89.441 (89.444) seconds
-Test Suite 'Selected tests' failed at 2026-10-18 23:40:10.620.
-	 Executed 1 test, with 1 failure (0 unexpected) in 89.441 (89.451) seconds
-2026-10-18 23:40:41.580 xcodebuild[24062:73381] [MT] IDETestOperationsObserverDebug: 146.557 elapsed -- Testing started completed.
-2026-10-18 23:40:41.581 xcodebuild[24062:73381] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
-2026-10-18 23:40:41.581 xcodebuild[24062:73381] [MT] IDETestOperationsObserverDebug: 146.557 sec, +146.557 sec -- end
+    t =     0.00s Start Test at 2026-10-18 23:52:11.428
+    t =     1.65s Set Up
+    t =     1.67s Open app.witness.ios
+    t =     1.67s     Launch app.witness.ios
+    t =    16.23s         Setting up automation session
+    t =    20.81s         Wait for app.witness.ios to idle
+    t =    24.83s Waiting 10.0s for "Timeline" Button to exist
+    t =    25.86s     Checking `Expect predicate `existsNoRetry == 1` for object "Timeline" Button`
+    t =    25.86s         Checking existence of `"Timeline" Button`
+    t =    29.67s Added attachment named 'store-01-timeline'
+    t =    29.67s Waiting 3.0s for SearchField (First Match) to exist
+    t =    30.72s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
+    t =    30.72s         Checking existence of `SearchField (First Match)`
+    t =    30.80s Waiting 5.0s for SearchField (First Match) to exist
+    t =    31.82s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
+    t =    31.82s         Checking existence of `SearchField (First Match)`
+    t =    31.89s Tap SearchField (First Match)
+    t =    31.89s     Wait for app.witness.ios to idle
+    t =    31.89s     Find the SearchField (First Match)
+    t =    31.95s     Check for interrupting elements affecting "Teams, places, years" SearchField
+    t =    32.11s     Synthesize event
+    t =    32.56s     Wait for app.witness.ios to idle
+    t =    35.08s Waiting 3.0s for Keyboard (First Match) to exist
+    t =    36.10s     Checking `Expect predicate `existsNoRetry == 1` for object Keyboard (First Match)`
+    t =    36.10s         Checking existence of `Keyboard (First Match)`
+    t =    36.43s Type 'World Series' into Target Application 'app.witness.ios'
+    t =    36.43s     Wait for app.witness.ios to idle
+    t =    36.44s     Find the Target Application 'app.witness.ios'
+    t =    36.66s     Check for interrupting elements affecting "Witness" Application
+    t =    36.75s     Synthesize event
+    t =    36.75s         Get number of matches for: Elements containing elements matching predicate 'hasKeyboardFocus == 1'
+    t =    37.28s     Wait for app.witness.ios to idle
+    t =    37.73s Waiting 8.0s for "game-card-mlb-2016-ws5" Any to exist
+    t =    38.74s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2016-ws5" Any`
+    t =    38.74s         Checking existence of `"game-card-mlb-2016-ws5" Any`
+    t =    40.36s Tap "game-card-mlb-2016-ws5" Any
+    t =    40.36s     Wait for app.witness.ios to idle
+    t =    40.36s     Find the "game-card-mlb-2016-ws5" Any
+    t =    42.09s     Check for interrupting elements affecting "game-card-mlb-2016-ws5" Button
+    t =    42.62s     Synthesize event
+    t =    42.96s     Wait for app.witness.ios to idle
+    t =    43.65s Waiting 8.0s for "game-title" Any to exist
+    t =    44.67s     Checking `Expect predicate `existsNoRetry == 1` for object "game-title" Any`
+    t =    44.67s         Checking existence of `"game-title" Any`
+    t =    48.53s Added attachment named 'store-02-game'
+    t =    48.53s Waiting 8.0s for "hero-you-were-there" Any to exist
+    t =    49.57s     Checking `Expect predicate `existsNoRetry == 1` for object "hero-you-were-there" Any`
+    t =    49.58s         Checking existence of `"hero-you-were-there" Any`
+    t =    50.00s Tap "hero-you-were-there" Any
+    t =    50.00s     Wait for app.witness.ios to idle
+    t =    50.00s     Find the "hero-you-were-there" Any
+    t =    50.24s     Check for interrupting elements affecting "hero-you-were-there" Button
+    t =    50.52s     Synthesize event
+    t =    50.91s     Wait for app.witness.ios to idle
+    t =    51.33s Waiting 8.0s for "ywt-hero" Any to exist
+    t =    52.34s     Checking `Expect predicate `existsNoRetry == 1` for object "ywt-hero" Any`
+    t =    52.35s         Checking existence of `"ywt-hero" Any`
+    t =    55.87s Added attachment named 'store-03-match-report'
+    t =    55.87s Tap Button (Element at index 0)
+    t =    55.87s     Wait for app.witness.ios to idle
+    t =    55.88s     Find the Button (Element at index 0)
+    t =    55.96s     Check for interrupting elements affecting "BackButton" Button
+    t =    56.08s     Synthesize event
+    t =    56.43s     Wait for app.witness.ios to idle
+    t =    56.50s Waiting 5.0s for "Passport" Button to exist
+    t =    57.51s     Checking `Expect predicate `existsNoRetry == 1` for object "Passport" Button`
+    t =    57.51s         Checking existence of `"Passport" Button`
+    t =    57.59s Tap "Passport" Button
+    t =    57.59s     Wait for app.witness.ios to idle
+    t =    57.61s     Find the "Passport" Button
+    t =    57.64s     Check for interrupting elements affecting "person.text.rectangle.fill" Button
+    t =    57.71s     Synthesize event
+    t =    58.08s     Wait for app.witness.ios to idle
+    t =    61.74s Added attachment named 'store-04-passport'
+    t =    61.74s Waiting 5.0s for "Map" Button to exist
+    t =    62.77s     Checking `Expect predicate `existsNoRetry == 1` for object "Map" Button`
+    t =    62.78s         Checking existence of `"Map" Button`
+    t =    63.05s Tap "Map" Button
+    t =    63.05s     Wait for app.witness.ios to idle
+    t =    63.06s     Find the "Map" Button
+    t =    63.12s     Check for interrupting elements affecting "globe.americas.fill" Button
+    t =    63.27s     Synthesize event
+    t =    63.61s     Wait for app.witness.ios to idle
+    t =    64.56s Waiting 8.0s for "map-miles" Any to exist
+    t =    65.62s     Checking `Expect predicate `existsNoRetry == 1` for object "map-miles" Any`
+    t =    65.65s         Checking existence of `"map-miles" Any`
+    t =    75.04s Added attachment named 'store-05-map'
+    t =    75.04s Waiting 5.0s for "Passport" Button to exist
+    t =    76.09s     Checking `Expect predicate `existsNoRetry == 1` for object "Passport" Button`
+    t =    76.09s         Checking existence of `"Passport" Button`
+    t =    76.22s Tap "Passport" Button
+    t =    76.22s     Wait for app.witness.ios to idle
+    t =    76.22s     Find the "Passport" Button
+    t =    76.30s     Check for interrupting elements affecting "person.text.rectangle.fill" Button
+    t =    76.37s     Synthesize event
+    t =    76.69s     Wait for app.witness.ios to idle
+    t =    76.72s Waiting 8.0s for "stamp-wrigley" Any to exist
+    t =    77.76s     Checking `Expect predicate `existsNoRetry == 1` for object "stamp-wrigley" Any`
+    t =    77.76s         Checking existence of `"stamp-wrigley" Any`
+    t =    77.88s Tap "stamp-wrigley" Any
+    t =    77.88s     Wait for app.witness.ios to idle
+    t =    77.89s     Find the "stamp-wrigley" Any
+    t =    78.03s     Check for interrupting elements affecting "stamp-wrigley" Button
+    t =    78.11s     Synthesize event
+    t =    78.41s     Wait for app.witness.ios to idle
+    t =    78.57s Waiting 8.0s for "venue-title" Any to exist
+    t =    79.59s     Checking `Expect predicate `existsNoRetry == 1` for object "venue-title" Any`
+    t =    79.59s         Checking existence of `"venue-title" Any`
+    t =    84.00s Added attachment named 'store-06-venue'
+    t =    84.01s Tap Button (Element at index 0)
+    t =    84.01s     Wait for app.witness.ios to idle
+    t =    84.01s     Find the Button (Element at index 0)
+    t =    84.12s     Check for interrupting elements affecting "BackButton" Button
+    t =    84.21s     Synthesize event
+    t =    84.52s     Wait for app.witness.ios to idle
+    t =    84.58s Waiting 5.0s for "You" Button to exist
+    t =    85.59s     Checking `Expect predicate `existsNoRetry == 1` for object "You" Button`
+    t =    85.59s         Checking existence of `"You" Button`
+    t =    85.72s Tap "You" Button
+    t =    85.72s     Wait for app.witness.ios to idle
+    t =    85.72s     Find the "You" Button
+    t =    85.81s     Check for interrupting elements affecting "person.crop.circle.fill" Button
+    t =    85.87s     Synthesize event
+    t =    86.17s     Wait for app.witness.ios to idle
+    t =    89.49s Added attachment named 'store-07-you'
+    t =    89.49s Waiting 5.0s for "Timeline" Button to exist
+    t =    90.50s     Checking `Expect predicate `existsNoRetry == 1` for object "Timeline" Button`
+    t =    90.50s         Checking existence of `"Timeline" Button`
+    t =    90.64s Tap "Timeline" Button
+    t =    90.64s     Wait for app.witness.ios to idle
+    t =    90.64s     Find the "Timeline" Button
+    t =    90.70s     Check for interrupting elements affecting "rectangle.stack.fill" Button
+    t =    90.76s     Synthesize event
+    t =    91.07s     Wait for app.witness.ios to idle
+    t =    91.12s Waiting 8.0s for "game-title" Any to exist
+    t =    92.17s     Checking `Expect predicate `existsNoRetry == 1` for object "game-title" Any`
+    t =    92.17s         Checking existence of `"game-title" Any`
+    t =    92.59s Waiting 8.0s for "game-menu" Any to exist
+    t =    93.63s     Checking `Expect predicate `existsNoRetry == 1` for object "game-menu" Any`
+    t =    93.63s         Checking existence of `"game-menu" Any`
+    t =    93.96s Tap "game-menu" Any
+    t =    93.96s     Wait for app.witness.ios to idle
+    t =    93.97s     Find the "game-menu" Any
+    t =    94.12s     Check for interrupting elements affecting "game-menu" Other
+    t =    94.25s     Synthesize event
+    t =    94.71s     Wait for app.witness.ios to idle
+    t =    95.50s Waiting 8.0s for "game-share" Any to exist
+    t =    96.52s     Checking `Expect predicate `existsNoRetry == 1` for object "game-share" Any`
+    t =    96.52s         Checking existence of `"game-share" Any`
+    t =    96.70s Tap "game-share" Any
+    t =    96.70s     Wait for app.witness.ios to idle
+    t =    96.70s     Find the "game-share" Any
+    t =    96.82s     Check for interrupting elements affecting "game-share" Button
+    t =    96.90s     Synthesize event
+    t =    97.21s     Wait for app.witness.ios to idle
+    t =   101.87s Added attachment named 'store-08-share'
+    t =   101.87s Tear Down
+Test Case '-[WitnessUITests.WitnessUITests testAppStoreScreens]' passed (102.427 seconds).
+Test Suite 'WitnessUITests' passed at 2026-10-18 23:53:53.855.
+	 Executed 1 test, with 0 failures (0 unexpected) in 102.427 (102.428) seconds
+Test Suite 'WitnessUITests.xctest' passed at 2026-10-18 23:53:53.855.
+	 Executed 1 test, with 0 failures (0 unexpected) in 102.427 (102.429) seconds
+Test Suite 'Selected tests' passed at 2026-10-18 23:53:53.856.
+	 Executed 1 test, with 0 failures (0 unexpected) in 102.427 (102.433) seconds
+2026-10-18 23:53:56.401 xcodebuild[16290:54907] [MT] IDETestOperationsObserverDebug: 151.495 elapsed -- Testing started completed.
+2026-10-18 23:53:56.404 xcodebuild[16290:54907] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-18 23:53:56.404 xcodebuild[16290:54907] [MT] IDETestOperationsObserverDebug: 151.495 sec, +151.495 sec -- end
 
 Test session results, code coverage, and logs:
 	/Users/runner/work/SportsApp/SportsApp/build/Results.xcresult
 
-Failing tests:
-	WitnessUITests.testAppStoreScreens()
-
-** TEST FAILED **
+** TEST SUCCEEDED **
 
 Testing started

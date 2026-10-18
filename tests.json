@@ -18,37 +18,30 @@
             {
               "children" : [
                 {
-                  "children" : [
-                    {
-                      "name" : "WitnessUITests.swift:514: XCTAssertTrue failed - Missing game-card-mlb-2016-ws5",
-                      "nodeType" : "Failure Message",
-                      "result" : "Failed"
-                    }
-                  ],
-                  "duration" : "1m 29s",
-                  "durationInSeconds" : 89.4408370256424,
+                  "duration" : "1m 42s",
+                  "durationInSeconds" : 102.42663204669952,
                   "name" : "testAppStoreScreens()",
                   "nodeIdentifier" : "WitnessUITests/testAppStoreScreens()",
                   "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testAppStoreScreens",
                   "nodeType" : "Test Case",
-                  "result" : "Failed"
+                  "result" : "Passed"
                 }
               ],
               "name" : "WitnessUITests",
               "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests",
               "nodeType" : "Test Suite",
-              "result" : "Failed"
+              "result" : "Passed"
             }
           ],
           "name" : "WitnessUITests",
           "nodeIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests",
           "nodeType" : "UI test bundle",
-          "result" : "Failed"
+          "result" : "Passed"
         }
       ],
       "name" : "Witness",
       "nodeType" : "Test Plan",
-      "result" : "Failed"
+      "result" : "Passed"
     }
   ],
   "testPlanConfigurations" : [

@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 1,
-      "passedTests" : 0,
+      "failedTests" : 0,
+      "passedTests" : 1,
       "skippedTests" : 0,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,24 +22,17 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 1,
-  "finishTime" : 1792366841.69,
-  "passedTests" : 0,
-  "result" : "Failed",
+  "failedTests" : 0,
+  "finishTime" : 1792367636.611,
+  "passedTests" : 1,
+  "result" : "Passed",
   "skippedTests" : 0,
-  "startTime" : 1792366571.815,
+  "startTime" : 1792367362.033,
   "statistics" : [
 
   ],
   "testFailures" : [
-    {
-      "failureText" : "XCTAssertTrue failed - Missing game-card-mlb-2016-ws5",
-      "targetName" : "WitnessUITests",
-      "testIdentifier" : 1,
-      "testIdentifierString" : "WitnessUITests/testAppStoreScreens()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testAppStoreScreens",
-      "testName" : "testAppStoreScreens()"
-    }
+
   ],
   "title" : "Test - Witness",
   "topInsights" : [
