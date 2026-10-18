@@ -77,20 +77,30 @@ struct TeamPickerView: View {
     private var customIds: Set<String> { Set(library.customTeams.map(\.id)) }
     private func sorted(_ teams: [Team]) -> [Team] { teams.sorted { $0.locationName < $1.locationName } }
     private var custom: [Team] {
-        let q = TicketParser.normalize(trimmedQuery)
+        let q = trimmedQuery
         return sorted(library.customTeams.filter { q.isEmpty || Self.matches($0, q) })
     }
 
-    private static func matches(_ t: Team, _ q: String) -> Bool {
-        TicketParser.normalize(t.locationName).contains(q) || TicketParser.normalize(t.teamName).contains(q)
-            || TicketParser.normalize(t.abbreviation).contains(q) || TicketParser.normalize(t.league).contains(q)
+    /// Letters and numbers only, accents folded, so "St. Louis" and "Levi's" match what people type.
+    private static func fold(_ s: String) -> String {
+        String(TicketParser.normalize(s).map { $0.isLetter || $0.isNumber ? $0 : " " })
+            .split(separator: " ").joined(separator: " ")
     }
 
-    /// Search across every sport; the current sport's teams first.
+    /// Every word typed must appear somewhere in the team's city, name, code, league or country, in any order:
+    /// "chicago bears", "bears chicago", "bears nfl" and "chi" all find the Chicago Bears.
+    private static func matches(_ t: Team, _ q: String) -> Bool {
+        let hay = fold([t.locationName, t.teamName, t.abbreviation, t.league, t.countryCode ?? ""].joined(separator: " "))
+        return fold(q).split(separator: " ").allSatisfy { hay.contains($0) }
+    }
+
+    /// Search across every sport; the current sport's teams first, the team named in full ahead of partial matches.
     private var results: [Team] {
-        let q = TicketParser.normalize(trimmedQuery)
+        let q = Self.fold(trimmedQuery)
         let found = library.allTeams.filter { Self.matches($0, q) }
-        return sorted(found.filter { $0.sport == sport }) + sorted(found.filter { $0.sport != sport })
+        func full(_ t: Team) -> Int { Self.fold("\(t.locationName) \(t.teamName)") == q || Self.fold(t.locationName) == q ? 0 : 1 }
+        func order(_ list: [Team]) -> [Team] { list.sorted { full($0) != full($1) ? full($0) < full($1) : $0.locationName < $1.locationName } }
+        return order(found.filter { $0.sport == sport }) + order(found.filter { $0.sport != sport })
     }
 
     struct LeagueGroup { let name: String; let teams: [Team] }
