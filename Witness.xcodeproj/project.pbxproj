@@ -12,6 +12,7 @@
 		039B28D15BD758C29D374F98 /* ScanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E49321B29793341AF81A22B /* ScanModel.swift */; };
 		0AC1CAEB1D96B24448CA97F9 /* PackStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 302F3BA2809104AA07A544F3 /* PackStore.swift */; };
 		0AE7B6A5CB64192CD96DA62B /* WeatherLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3C02570844ED9B793E2B02 /* WeatherLookup.swift */; };
+		0C31791A5B92BA9FD5FC041B /* BackgroundPhotoCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2F247B2D8B5DD97EF0D2F9 /* BackgroundPhotoCheck.swift */; };
 		0E12D046A277661BA11D667B /* AddVenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B224F7426AC04A827ABB7E /* AddVenueView.swift */; };
 		1063DE931F2D0F81A6578E96 /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5108FC517334D9D1A1F635 /* DiscoveryView.swift */; };
 		10A7E1C349037AD2CA7BE55A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4FEF32607AF617D75F825 /* RootView.swift */; };
@@ -153,6 +154,7 @@
 		BD0C6F4096980A62A376DA6A /* SharedPassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPassportView.swift; sourceTree = "<group>"; };
 		C2CF0E40DE18A5B2FEAC521A /* TicketAnchors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketAnchors.swift; sourceTree = "<group>"; };
 		CDE6698F9E68B2D6627DE240 /* Plans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plans.swift; sourceTree = "<group>"; };
+		CE2F247B2D8B5DD97EF0D2F9 /* BackgroundPhotoCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPhotoCheck.swift; sourceTree = "<group>"; };
 		D71EE3584F0C03FAE39B2955 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8B224F7426AC04A827ABB7E /* AddVenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVenueView.swift; sourceTree = "<group>"; };
 		DA0A2D620B0AF02229035D47 /* CoverPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPicker.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				7F836BE70D81FF166D6EFD6A /* AlbumImporter.swift */,
+				CE2F247B2D8B5DD97EF0D2F9 /* BackgroundPhotoCheck.swift */,
 				6573A4420FA4FE35D7CC37B3 /* BigGame.swift */,
 				DA0A2D620B0AF02229035D47 /* CoverPicker.swift */,
 				7883E63EE9CC483C1D8C9799 /* F1Calendar.swift */,
@@ -593,6 +596,7 @@
 				0E12D046A277661BA11D667B /* AddVenueView.swift in Sources */,
 				BED863E726CE333896659B1A /* AlbumImportView.swift in Sources */,
 				CD5342E7131026E858E6D978 /* AlbumImporter.swift in Sources */,
+				0C31791A5B92BA9FD5FC041B /* BackgroundPhotoCheck.swift in Sources */,
 				2255C527B132D1FCBC15EAAD /* BigGame.swift in Sources */,
 				9863B0DFED2996CA94B9B1B2 /* BigGamesView.swift in Sources */,
 				00FA15CED64001295EE46A94 /* Components.swift in Sources */,
@@ -684,6 +688,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/Witness-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Witness;
 				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "Witness uses the calendar only to add games you plan to attend.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Witness lets you capture a moment at the game.";
@@ -886,6 +891,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/Witness-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Witness;
 				INFOPLIST_KEY_NSCalendarsWriteOnlyAccessUsageDescription = "Witness uses the calendar only to add games you plan to attend.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Witness lets you capture a moment at the game.";
