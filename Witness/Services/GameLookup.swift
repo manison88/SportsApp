@@ -582,3 +582,36 @@ actor TeamDirectory {
         return out
     }
 }
+
+
+extension GameLookup {
+    /// Every competition a men's national side plays in, ESPN league paths: the World Cup and its qualifying by confederation,
+    /// the Euros and their qualifying, the Nations Leagues, the continental cups and friendlies.
+    static let nationalCompetitions = [
+        "soccer/fifa.world", "soccer/fifa.worldq.uefa", "soccer/fifa.worldq.conmebol", "soccer/fifa.worldq.concacaf",
+        "soccer/fifa.worldq.afc", "soccer/fifa.worldq.caf", "soccer/fifa.worldq.ofc",
+        "soccer/uefa.euro", "soccer/uefa.euroq", "soccer/uefa.nations",
+        "soccer/concacaf.nations.league", "soccer/concacaf.gold", "soccer/concacaf.gold_qual",
+        "soccer/conmebol.america", "soccer/caf.nations", "soccer/caf.nations_qual", "soccer/afc.asian.cup",
+        "soccer/fifa.friendly",
+    ]
+
+    /// A national team's coming games in every one of its competitions at once, soonest first. ESPN keeps one team id for a
+    /// country across all of them.
+    static func upcomingNational(espnId: String, limit: Int = 14) async -> [FoundGame] {
+        let now = Date()
+        var found: [FoundGame] = []
+        await withTaskGroup(of: [FoundGame].self) { group in
+            for league in nationalCompetitions {
+                group.addTask {
+                    guard let url = URL(string: "\(base)\(league)/teams/\(espnId)/schedule"), let data = await fetch(url) else { return [] }
+                    return parseScoreboard(data, league: league)
+                        .filter { ($0.home.espnId == espnId || $0.away.espnId == espnId) && $0.start >= now.addingTimeInterval(-3 * 3600) }
+                }
+            }
+            for await batch in group { found += batch }
+        }
+        var seen = Set<String>()
+        return Array(found.filter { seen.insert($0.id).inserted }.sorted { $0.start < $1.start }.prefix(limit))
+    }
+}

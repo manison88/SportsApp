@@ -114,7 +114,12 @@ struct PlanGameView: View {
         defer { loading = false }
         guard let source = await TeamDirectory.shared.resolve(team) else { noSource = true; return }
         teamEspnId = source.id
-        games = await GameLookup.upcoming(league: source.league, teamEspnId: source.id)
+        if team.sport == .soccer, team.id.hasPrefix("nat-") || team.league.lowercased().contains("national") {
+            // A country plays in many competitions: World Cup and its qualifying, Euros, Nations League, friendlies.
+            games = await GameLookup.upcomingNational(espnId: source.id)
+        } else {
+            games = await GameLookup.upcoming(league: source.league, teamEspnId: source.id)
+        }
         empty = games.isEmpty
     }
 
@@ -144,7 +149,7 @@ struct PlanGameView: View {
                 .frame(width: 46)
                 VStack(alignment: .leading, spacing: 3) {
                     Text("\(isHome ? "vs" : "at") \(other.location)").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).lineLimit(1)
-                    Text("\(Fmt.time(game.start, in: tz)) \u{00B7} \(game.venueName)").font(.footnote).foregroundStyle(Color.textSecondary).lineLimit(1)
+                    Text("\(game.leagueName) \u{00B7} \(Fmt.time(game.start, in: tz)) \u{00B7} \(game.venueName)").font(.footnote).foregroundStyle(Color.textSecondary).lineLimit(1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Text(planned ? "Planned" : "Plan it")
