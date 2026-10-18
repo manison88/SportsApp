@@ -1,0 +1,81 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Heartbeat · Sparse</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+:root{--bih:#2f6bff;--bih2:#f4e04d;--cle:#e8344a;--qat:#c8587a}
+body.phone{background:var(--ink)}
+.bg{position:absolute;inset:0;background:radial-gradient(120% 40% at 50% 0,rgba(47,107,255,.16),transparent 70%),var(--ink)}
+.bar{position:absolute;top:54px;left:0;right:0;height:46px}
+.bar .back,.bar .share{position:absolute;top:0;width:38px;height:38px;border-radius:19px}
+.bar .back{left:16px}.bar .share{right:16px}
+.bar svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.bug{position:absolute;left:50%;top:0;transform:translateX(-50%);height:28px;display:flex;align-items:stretch;border-radius:8px;overflow:hidden;background:#15151a;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.18);white-space:nowrap}
+.bug>div{display:flex;align-items:center;gap:6px;padding:0 9px;font:700 13px/1 var(--f-cond);letter-spacing:.8px;color:var(--text-2)}
+.bug b{font:800 17px/1 var(--f-cond);color:var(--text-2);font-variant-numeric:tabular-nums}
+.bug .me{background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 55%,#000));color:#fff;padding-left:10px}
+.bug .me b{color:#fff}
+.bug .fin{background:#0c0c0f;font:700 10px/1 var(--f-ui);letter-spacing:1.6px;color:var(--text-3)}
+.sub{position:absolute;top:33px;left:0;right:0;text-align:center;font:500 11.5px/1 var(--f-ui);color:var(--text-3);letter-spacing:.2px;padding-top:7px}
+.chart{position:absolute;left:0;width:393px}
+.chart text{font-family:var(--f-ui)}
+.t-cond{font-family:var(--f-cond)!important;font-weight:700}
+.moment{position:absolute;left:0;width:393px;overflow:hidden}
+.card{position:absolute;overflow:hidden;border-radius:18px;box-shadow:0 14px 30px rgba(0,0,0,.5),inset 0 0 0 .5px rgba(255,255,255,.14)}
+.card.side{border-radius:14px;opacity:.55}
+.card .ph{position:absolute;inset:0}
+.card .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.42) 0,transparent 28%,transparent 42%,rgba(0,0,0,.86) 100%)}
+.chip{position:absolute;top:10px;left:10px;display:flex;align-items:center;height:28px;border-radius:9px;overflow:hidden;background:rgba(14,14,18,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.22)}
+.chip .m{height:100%;padding:0 9px;display:grid;place-items:center;background:var(--signal);color:#1a1205;font:800 15px/1 var(--f-cond);letter-spacing:.3px}
+.chip .s{padding:0 10px;font:800 15px/1 var(--f-cond);letter-spacing:.6px;color:#fff;display:flex;gap:6px;align-items:center;font-variant-numeric:tabular-nums}
+.chip .s i{font-style:normal;font-weight:700;font-size:12px;color:rgba(255,255,255,.7);letter-spacing:1px}
+.chip .s b{color:#fff}
+.cap{position:absolute;left:14px;right:60px;bottom:12px}
+.cap h3{font:700 19px/1.1 var(--f-tight);letter-spacing:-.3px;color:#fff;margin-bottom:5px}
+.cap h3 em{font-style:normal;color:var(--signal)}
+.cap p{font:500 12.5px/1.3 var(--f-ui);color:rgba(255,255,255,.78)}
+.shr{position:absolute;right:12px;bottom:12px;width:38px;height:38px;border-radius:19px;background:rgba(255,255,255,.16);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:grid;place-items:center;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.3)}
+.shr svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dots{position:absolute;left:0;right:0;display:flex;justify-content:center;gap:5px}
+.dots i{width:5px;height:5px;border-radius:3px;background:rgba(255,255,255,.22)}
+.dots i.on{width:16px;background:var(--signal)}
+.stats{position:absolute;left:16px;right:16px;display:flex}
+.stats>div{flex:1;padding:0 0 0 14px;position:relative}
+.stats>div:first-child{padding-left:0}
+.stats>div+div:before{content:"";position:absolute;left:0;top:6px;bottom:4px;width:1px;background:var(--line-2)}
+.stats b{display:block;font:800 44px/.92 var(--f-cond);letter-spacing:-.5px;color:var(--text);font-variant-numeric:tabular-nums}
+.stats b.am{color:var(--signal)}
+.stats span{display:block;margin-top:5px;font:500 12px/1.25 var(--f-ui);color:var(--text-2)}
+.hd{position:absolute;left:16px;right:16px;display:flex;justify-content:space-between;align-items:baseline}
+.hd .eyebrow{color:var(--text-3)}
+.hd span.r{font:500 11.5px/1 var(--f-ui);color:var(--text-3)}
+.plays{position:absolute;left:10px;right:10px}
+.play{position:relative;display:flex;align-items:center;height:var(--rh);padding:0 6px 0 6px;border-radius:12px;gap:10px}
+.play+.play:before{content:"";position:absolute;top:0;left:6px;right:6px;height:1px;background:var(--line)}
+.play.sel{background:linear-gradient(90deg,rgba(255,181,71,.16),rgba(255,181,71,.05));box-shadow:inset 0 0 0 .5px rgba(255,181,71,.38)}
+.play.sel:before,.play.sel+.play:before{display:none}
+.play .mn{width:36px;font:800 20px/1 var(--f-cond);color:var(--text);text-align:left;padding-left:6px;font-variant-numeric:tabular-nums;letter-spacing:.2px}
+.play.sel .mn{color:var(--signal)}
+.play .tx{flex:1;min-width:0}
+.play .tx b{display:block;font:600 14px/1.2 var(--f-ui);color:var(--text);white-space:nowrap}
+.play .tx span{display:block;margin-top:3px;font:500 12px/1.2 var(--f-ui);color:var(--text-3);white-space:nowrap}
+.play .sc{font:800 20px/1 var(--f-cond);color:var(--text);letter-spacing:.4px;text-align:right;font-variant-numeric:tabular-nums;min-width:40px}
+.play .ph2{display:flex;align-items:center;justify-content:flex-end;gap:4px;width:26px;font:700 12px/1 var(--f-cond);color:var(--signal)}
+.play .ph2.z{color:var(--text-4)}
+.play .ph2 svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dot{width:9px;height:9px;border-radius:5px;flex:none}
+.pl{height:30px;padding:0 13px;border-radius:15px;display:inline-flex;align-items:center;font:600 12.5px/1 var(--f-ui);color:var(--signal);background:rgba(255,181,71,.12);box-shadow:inset 0 0 0 .5px rgba(255,181,71,.4)}</style></head>
+<body class="phone">
+<div class="bg"></div>
+<div class="bar" style="--accent:#2f6bff">
+  <div class="btn-circle glass back"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+  <div class="bug"><div class="">MAD<b>1</b></div><div class="me">CHI<b>2</b></div><div class="fin">FINAL</div></div>
+  <div class="sub">Sat Aug 9, 2025 · Lakeshore Field, Chicago · League Two</div>
+  <div class="btn-circle glass share"><svg viewBox="0 0 24 24"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M6 11H5.5A1.5 1.5 0 0 0 4 12.5v6A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-6a1.5 1.5 0 0 0-1.5-1.5H18"/></svg></div></div><svg class="chart" style="top:106px" width="393" height="206" viewBox="0 0 393 206"><defs><pattern id="hat" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="1" height="5" fill="rgba(255,255,255,.06)"/></pattern></defs><rect x="151.375" y="62" width="165.45833333333331" height="78" fill="url(#hat)"/><rect x="151.375" y="62" width="165.45833333333331" height="78" fill="none" stroke="rgba(255,255,255,.12)" stroke-dasharray="2 3"/><text x="234.10416666666666" y="102.0" text-anchor="middle" font-size="10.5" font-weight="500" fill="rgba(245,241,234,.55)">No play-by-play data</text><text x="234.10416666666666" y="118.0" text-anchor="middle" font-size="10.5" font-weight="500" fill="rgba(245,241,234,.34)">for this league</text><line x1="16" x2="377" y1="140" y2="140" stroke="rgba(245,241,234,.55)" stroke-width="2" stroke-linecap="round"/><line x1="16.0" x2="16.0" y1="140" y2="146" stroke="rgba(245,241,234,.45)" stroke-width="1.4"/><text x="16.0" y="159" text-anchor="start" font-size="9" font-weight="600" letter-spacing=".8" fill="rgba(245,241,234,.48)">5:30</text><line x1="151.375" x2="151.375" y1="140" y2="146" stroke="rgba(245,241,234,.45)" stroke-width="1.4"/><text x="151.375" y="159" text-anchor="middle" font-size="9" font-weight="600" letter-spacing=".8" fill="rgba(245,241,234,.48)">KO 7:00</text><line x1="316.8333333333333" x2="316.8333333333333" y1="140" y2="146" stroke="rgba(245,241,234,.45)" stroke-width="1.4"/><text x="316.8333333333333" y="159" text-anchor="middle" font-size="9" font-weight="600" letter-spacing=".8" fill="rgba(245,241,234,.48)">FT 8:50</text><line x1="377.0" x2="377.0" y1="140" y2="146" stroke="rgba(245,241,234,.45)" stroke-width="1.4"/><text x="377.0" y="159" text-anchor="end" font-size="9" font-weight="600" letter-spacing=".8" fill="rgba(245,241,234,.48)">9:30 PM</text><text x="83.6875" y="174" text-anchor="middle" font-size="8.5" font-weight="700" letter-spacing="1.3" fill="rgba(245,241,234,.4)">ARRIVAL</text><text x="346.91666666666663" y="174" text-anchor="middle" font-size="8.5" font-weight="700" letter-spacing="1.3" fill="rgba(245,241,234,.4)">AFTER</text><text x="234.10416666666666" y="174" text-anchor="middle" font-size="8.5" font-weight="700" letter-spacing="1.3" fill="rgba(245,241,234,.4)">MATCH · 2 TEAMS · 1 SCORE</text><line x1="121.29166666666667" x2="121.29166666666667" y1="126" y2="140" stroke="#ffb547" stroke-width="2"/><circle cx="121.29166666666667" cy="140" r="4" fill="#ffb547"/><line x1="337.89166666666665" x2="337.89166666666665" y1="126" y2="140" stroke="rgba(255,181,71,.6)" stroke-width="1.5"/><circle cx="337.89166666666665" cy="140" r="3" fill="#ffb547"/><line x1="121.29166666666667" x2="121.29166666666667" y1="0" y2="140" stroke="#fff" stroke-width="0" /></svg><div style="position:absolute;left:96.3px;top:182px;width:50px;height:50px;border-radius:50%;background:url(../../../photos/wrigley-bleachers.jpg) -5.0px -16.3px/100.0px 66.6px no-repeat;box-shadow:0 0 0 2.5px #ffb547,0 0 0 6px rgba(255,181,71,.22),0 8px 18px rgba(0,0,0,.5)"></div><div style="position:absolute;left:318.9px;top:194px;width:38px;height:38px;border-radius:50%;background:url(../../../photos/soldier-skyline.jpg) -8.1px -2.6px/54.3px 43.2px no-repeat;box-shadow:0 0 0 2px rgba(255,181,71,.75),0 6px 14px rgba(0,0,0,.5)"></div><div style="position:PRE-MATCHbsolute;left:69.29166666666667px;top:148px;width:104px;height:21px;border-rPRE-MATCHdius:11px;bPRE-MATCHckground:#fff;color:#111;font:800 11.5px/21px vPRE-MATCHr(--f-cond);letter-spPRE-MATCHcing:.4px;text-PRE-MATCHlign:center">6:52 PM · 8 MIN BEFORE KO</div><div class="card " style="left:16px;top:318px;width:361px;height:262px"><div class="ph" style="background:url(../../../photos/wrigley-bleachers.jpg) 0.0px -101.8px/582.3px 388.0px no-repeat"></div><div class="shade"></div>
+      <div class="chip"><div class="m">KO−20</div><div class="s">MAD <b>0</b> <i>–</i> <b>0</b> CHI</div></div>
+      <div class="cap" style="bottom:14px"><h3><em>20 minutes</em> before kickoff</h3><p>Scarves up in the south stand. Still goalless, everything ahead.</p></div>
+      <div class="shr"><svg viewBox="0 0 24 24"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5M6 11H5.5A1.5 1.5 0 0 0 4 12.5v6A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-6a1.5 1.5 0 0 0-1.5-1.5H18"/></svg></div></div><div class="dots" style="top:592px"><i class="on"></i><i></i></div><div class="stats" style="top:610px"><div><b>2</b><span>photos</span></div><div><b class="am">1</b><span>before kickoff</span></div><div><b class="am">1</b><span>after the whistle</span></div></div><div style="position:absolute;left:16px;right:16px;top:692px;border-radius:16px;background:var(--surface);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.1);padding:14px 16px">
+      <div style="font:600 14px/1.25 var(--f-ui);color:var(--text)">Add what you remember</div>
+      <div style="margin-top:3px;font:500 12.5px/1.35 var(--f-ui);color:var(--text-2)">Goals and moments you add show up on this line.</div>
+      <div style="display:flex;gap:8px;margin-top:11px"><span class="pl">+ Add a goal</span><span class="pl">+ Add a moment</span></div></div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

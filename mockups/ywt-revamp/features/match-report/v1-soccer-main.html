@@ -1,0 +1,109 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Match report</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+:root{--bih:#2f6bff;--bih-y:#f4e04d;--qat:#d8456b;--chi:#2f6bff;--cle:#e8344a}
+html,body{background:#050506}
+.abs{position:absolute}
+.nav{position:absolute;top:56px;left:16px;right:16px;height:40px;display:flex;align-items:center;justify-content:space-between;z-index:30}
+.bug{display:flex;align-items:center;height:36px;padding:0 14px;border-radius:18px;gap:10px;font:700 15px/1 var(--f-cond);letter-spacing:.6px;background:rgba(30,30,36,.72);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14)}
+.bug .t{color:var(--text-2);font-size:14px;letter-spacing:1px}
+.bug b{font:700 20px/1 var(--f-cond);color:var(--text);font-variant-numeric:tabular-nums}
+.bug b.dim{color:var(--text-3)}
+.bug .sep{width:1px;height:14px;background:var(--line-2)}
+.bug .fin{font:600 10.5px/1 var(--f-ui);letter-spacing:1.6px;color:var(--signal)}
+.hero{position:absolute;left:16px;right:16px;top:106px;height:124px;border-radius:20px;overflow:hidden;background:#101014;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.1)}
+.hero .ph{position:absolute;left:0;top:0;bottom:0;width:116px}
+.hero .ph:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,#101014 100%),linear-gradient(0deg,rgba(0,0,0,.35),transparent 40%)}
+.hero .best{position:absolute;left:8px;bottom:8px;font:700 8.5px/1 var(--f-ui);letter-spacing:1.4px;color:#1a1204;background:var(--signal);padding:4px 6px 3.5px;border-radius:6px}
+.hero .txt{position:absolute;left:126px;right:10px;top:12px;bottom:10px}
+.eyebrow{font:600 9.5px/1 var(--f-ui);letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3)}
+.hero h1{font:400 27px/1 var(--f-serif);letter-spacing:-.3px;margin-top:6px;color:var(--text)}
+.hero h1 em{color:var(--signal);font-style:italic}
+.stats{display:flex;gap:13px;margin-top:11px}
+.stats div{display:flex;flex-direction:column;gap:3px}
+.stats b{font:700 25px/.9 var(--f-cond);color:var(--text);font-variant-numeric:tabular-nums}
+.stats b.am{color:var(--signal)}
+.stats span{font:500 9.5px/1.15 var(--f-ui);color:var(--text-2)}
+.hero .rng{position:absolute;right:12px;top:12px;font:500 9.5px/1 var(--f-mono);color:var(--text-3)}
+.sticky{position:absolute;left:0;right:0;top:240px;height:76px;z-index:20;background:linear-gradient(#050506 78%,rgba(5,5,6,0));}
+.sticky:before{content:"";position:absolute;left:0;right:0;top:0;height:.5px}
+.rd{position:absolute;left:16px;right:16px;top:0;display:flex;justify-content:space-between;align-items:baseline}
+.rd .now{font:600 11px/1 var(--f-ui);color:var(--text);letter-spacing:.1px}
+.rd .now b{font:700 17px/1 var(--f-cond);color:var(--signal);margin-right:4px;letter-spacing:.3px}
+.rd .sc{font:700 13px/1 var(--f-cond);letter-spacing:.8px;color:var(--text-2)}
+.rd .sc b{color:var(--text)}
+.trk{position:absolute;left:16px;right:16px;top:20px;height:40px}
+.trk .tk{position:absolute;bottom:14px;width:2px;border-radius:1px;background:var(--signal);opacity:.9}
+.trk .base{position:absolute;left:0;right:0;bottom:12px;height:2px;border-radius:1px;background:var(--line-2)}
+.trk .seg{position:absolute;bottom:12px;height:2px;border-radius:1px;background:rgba(255,255,255,.34)}
+.trk .lab{position:absolute;bottom:-3px;font:600 8.5px/1 var(--f-ui);letter-spacing:1.2px;color:var(--text-3);transform:translateX(-50%)}
+.trk .lab.on{color:var(--text)}
+.trk .gl{position:absolute;bottom:8.5px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--bih);box-shadow:0 0 0 1.5px #050506}
+.trk .gl.q{background:var(--qat)}
+.trk .ph-head{position:absolute;bottom:0;top:0;width:1.5px;margin-left:-.75px;background:#fff}
+.trk .knob{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--signal);margin-left:-6px;bottom:7px;box-shadow:0 0 0 3px #050506,0 0 0 4px rgba(255,181,71,.55)}
+.feed{position:absolute;left:0;right:0;top:322px;bottom:0;overflow:hidden;z-index:5}
+.feed:after{content:"";position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(rgba(5,5,6,0),#050506 90%);pointer-events:none;z-index:9}
+.spine{position:absolute;left:70px;top:0;bottom:0;width:1.5px;background:linear-gradient(var(--line-2),var(--line-2));margin-left:-.75px}
+.row{position:absolute;left:0;right:0}
+.min{position:absolute;left:10px;width:46px;text-align:right;top:13px}
+.min b{display:block;font:700 22px/1 var(--f-cond);letter-spacing:.2px;color:var(--text)}
+.min i{display:block;font:500 9px/1 var(--f-mono);font-style:normal;color:var(--text-3);margin-top:4px}
+.node{position:absolute;left:64px;top:17px;width:13px;height:13px;margin-left:0;border-radius:50%;background:#050506;box-shadow:0 0 0 1.5px var(--text-3)}
+.node.g{background:var(--bih);box-shadow:0 0 0 3px #050506,0 0 0 4px rgba(47,107,255,.5)}
+.node.q{background:var(--qat);box-shadow:0 0 0 3px #050506,0 0 0 4px rgba(216,69,107,.5)}
+.node.s{width:9px;height:9px;left:66px;top:19px;box-shadow:0 0 0 3px #050506,0 0 0 4px var(--line-2);background:var(--text-3)}
+.card{position:absolute;left:90px;right:16px;border-radius:18px;background:var(--surface);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.09);padding:12px 12px 12px}
+.card .hd{display:flex;justify-content:space-between;align-items:flex-start}
+.tag{font:700 9.5px/1 var(--f-ui);letter-spacing:1.5px;text-transform:uppercase;color:var(--bih-y)}
+.tag.o{color:var(--text-2)}.tag.q{color:#ff8fa8}
+.card .sc{font:700 24px/.9 var(--f-cond);letter-spacing:.4px;color:var(--text);font-variant-numeric:tabular-nums;white-space:nowrap}
+.card .sc small{font:600 10px/1 var(--f-ui);letter-spacing:1.2px;color:var(--text-3);margin-right:5px;vertical-align:3px}
+.card .sc .l{color:var(--text-3)}
+.card h3{font:600 17px/1.15 var(--f-tight);letter-spacing:-.2px;margin-top:7px}
+.card p{font:400 12px/1.35 var(--f-ui);color:var(--text-2);margin-top:3px}
+.you{font:600 11.5px/1.2 var(--f-ui);color:var(--signal);margin-top:9px;display:flex;align-items:center;gap:6px}
+.you svg{flex:none}
+.you.n{color:var(--text-3);font-weight:500}
+.strip{display:flex;gap:6px;margin-top:8px}
+.strip .it{flex:1;min-width:0}
+.th{display:block;width:100%;border-radius:8px;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14)}
+.strip .t{font:500 8.5px/1 var(--f-mono);color:var(--text-2);margin-top:5px;text-align:center;letter-spacing:-.1px}
+.it.sel .th{box-shadow:0 0 0 1.5px #121215,0 0 0 3px var(--signal)}
+.it.sel .t{color:var(--signal);font-weight:600}
+.quiet{position:absolute;left:90px;right:16px;display:flex;align-items:center;gap:8px;font:500 11.5px/1 var(--f-ui);color:var(--text-3)}
+.quiet:before,.quiet:after{content:"";height:0;border-top:1px dashed var(--line-2);flex:0 0 12px}
+.quiet:after{flex:1}
+.fp{position:relative;border-radius:12px;overflow:hidden;margin-top:10px}
+.fp .th{height:100%;border-radius:0;box-shadow:none}
+.fp .scr{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.88),rgba(0,0,0,.25) 60%,transparent)}
+.fp .cap{position:absolute;left:10px;right:10px;bottom:9px;display:flex;justify-content:space-between;align-items:flex-end}
+.fp .cap b{display:block;font:700 15px/1 var(--f-cond);letter-spacing:.4px}
+.fp .cap span{display:block;font:500 10px/1.3 var(--f-ui);color:rgba(255,255,255,.82);margin-top:3px}
+.pill{display:flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:13px;font:600 10.5px/1 var(--f-ui);background:rgba(30,30,36,.7);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.22);color:#fff}
+</style></head>
+<body class="phone">
+<div class="nav"><div class="btn-circle glass"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg></div><div class="bug"><span class="t">QAT</span><b class="dim">1</b><i class="sep"></i><span class="t">BIH</span><b>3</b><i class="sep"></i><span class="fin">FINAL</span></div><div class="btn-circle glass"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3.5M7.5 8 12 3.5 16.5 8"/><path d="M6 11.5H5.5A1.5 1.5 0 0 0 4 13v6.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V13a1.5 1.5 0 0 0-1.5-1.5H18"/></svg></div></div>
+<div class="hero"><div class="ph abs" style="background:url(../../../photos/soldier-soccer.jpg) -24.9px -101.1px/165.7px 221.0px no-repeat;"></div><div class="best">BEST</div>
+<div class="txt"><div class="eyebrow">Match report · Jun 24</div><h1>You were <em>there</em></h1>
+<div class="stats"><div><b class="am">104</b><span>photos</span></div><div><b>38</b><span>during play</span></div><div><b>3</b><span>within a minute<br>of a goal</span></div></div></div></div>
+<div class="sticky"><div class="rd"><div class="now"><b>42'</b>12:46 PM PT · 42 s after the goal</div><div class="sc"><b>BIH 2</b> – QAT 1</div></div>
+<div class="trk"><i class="base"></i><i class="seg" style="left:72.2px;width:97.5px"></i><i class="seg" style="left:187.7px;width:93.9px"></i><i class="tk" style="left:9.0px;height:11px"></i><i class="tk" style="left:13.0px;height:7px"></i><i class="tk" style="left:17.1px;height:7px"></i><i class="tk" style="left:21.1px;height:7px"></i><i class="tk" style="left:29.1px;height:7px"></i><i class="tk" style="left:33.1px;height:22px"></i><i class="tk" style="left:37.1px;height:7px"></i><i class="tk" style="left:41.1px;height:15px"></i><i class="tk" style="left:45.1px;height:15px"></i><i class="tk" style="left:49.1px;height:11px"></i><i class="tk" style="left:53.1px;height:22px"></i><i class="tk" style="left:57.2px;height:7px"></i><i class="tk" style="left:61.2px;height:7px"></i><i class="tk" style="left:65.2px;height:15px"></i><i class="tk" style="left:69.2px;height:7px"></i><i class="tk" style="left:85.2px;height:11px"></i><i class="tk" style="left:97.3px;height:7px"></i><i class="tk" style="left:101.3px;height:7px"></i><i class="tk" style="left:109.3px;height:7px"></i><i class="tk" style="left:129.4px;height:19px"></i><i class="tk" style="left:133.4px;height:15px"></i><i class="tk" style="left:141.4px;height:7px"></i><i class="tk" style="left:149.4px;height:7px"></i><i class="tk" style="left:153.4px;height:7px"></i><i class="tk" style="left:157.4px;height:19px"></i><i class="tk" style="left:173.5px;height:15px"></i><i class="tk" style="left:177.5px;height:7px"></i><i class="tk" style="left:193.5px;height:7px"></i><i class="tk" style="left:197.6px;height:7px"></i><i class="tk" style="left:201.6px;height:7px"></i><i class="tk" style="left:213.6px;height:7px"></i><i class="tk" style="left:225.6px;height:15px"></i><i class="tk" style="left:233.7px;height:19px"></i><i class="tk" style="left:249.7px;height:7px"></i><i class="tk" style="left:253.7px;height:7px"></i><i class="tk" style="left:257.7px;height:7px"></i><i class="tk" style="left:261.7px;height:11px"></i><i class="tk" style="left:269.8px;height:11px"></i><i class="tk" style="left:273.8px;height:7px"></i><i class="tk" style="left:281.8px;height:11px"></i><i class="tk" style="left:285.8px;height:22px"></i><i class="tk" style="left:289.8px;height:19px"></i><i class="tk" style="left:293.8px;height:22px"></i><i class="tk" style="left:297.8px;height:11px"></i><i class="tk" style="left:301.8px;height:15px"></i><i class="tk" style="left:305.8px;height:15px"></i><i class="tk" style="left:317.9px;height:7px"></i><i class="tk" style="left:321.9px;height:7px"></i><i class="tk" style="left:329.9px;height:7px"></i><i class="tk" style="left:333.9px;height:11px"></i><i class="tk" style="left:354.0px;height:7px"></i><i class="gl" style="left:127.6px"></i><i class="gl" style="left:137.2px"></i><i class="gl q" style="left:152.5px"></i><i class="gl" style="left:257.6px"></i><i class="ph-head" style="left:154.6px;top:2px;bottom:12px"></i><i class="knob" style="left:154.6px"></i><span class="lab" style="left:36.1px">BEFORE</span><span class="lab on" style="left:120.9px">1ST HALF</span><span class="lab" style="left:178.7px">HT</span><span class="lab" style="left:234.7px">2ND HALF</span><span class="lab" style="left:321.3px">AFTER</span></div></div><div class="feed"><div class="spine"></div>
+<div class="row" style="top:2px"><div class="min"><b>29'</b><i>12:32</i></div><div class="node g"></div>
+ <div class="card" style="top:0;height:162px"><div class="hd"><span class="tag">Goal</span><span class="sc"><small>BIH</small>1<span class="l"> – 0</span></span></div>
+ <h3 style="margin-top:6px">Kerim Alajbegovic</h3><p>Right-footed shot from outside the box</p>
+ <div class="you"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H8l1.5-2h5L16 6h2.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.6"/></svg>You took 4 photos in the next 3 minutes</div><div class="strip"><div class="it"><i class="th" style="height:36px;background:url(../../../photos/soldier-soccer.jpg) -35.0px -97.8px/140.0px 186.7px no-repeat;"></i><div class="t">12:32:58</div></div><div class="it"><i class="th" style="height:36px;background:url(../../../photos/soldier-soccer.jpg) -68.3px -146.5px/166.7px 222.3px no-repeat;"></i><div class="t">12:33:40</div></div><div class="it"><i class="th" style="height:36px;background:url(../../../photos/soldier-soccer.jpg) -13.4px -66.9px/127.3px 169.7px no-repeat;"></i><div class="t">12:34:15</div></div><div class="it"><i class="th" style="height:36px;background:url(../../../photos/soldier-soccer.jpg) -35.0px -131.4px/140.0px 186.7px no-repeat;"></i><div class="t">12:34:51</div></div></div></div></div>
+<div class="row" style="top:176px"><div class="min"><b>34'</b><i>12:37</i></div><div class="node g"></div>
+ <div class="card" style="top:0;height:62px"><div class="hd"><span class="tag o">Own goal · Qatar</span><span class="sc"><small>BIH</small>2<span class="l"> – 0</span></span></div>
+ <h3 style="margin-top:7px;font-size:15px">Mahmoud Abunada</h3></div></div>
+<div class="quiet" style="top:252px;height:14px"><span>8 quiet minutes · no photos</span></div>
+<div class="row" style="top:278px"><div class="min"><b>42'</b><i>12:45</i></div><div class="node q"></div>
+ <div class="card" style="top:0;height:226px;box-shadow:inset 0 0 0 .5px rgba(255,181,71,.35)"><div class="hd"><span class="tag q">Goal · Qatar</span><span class="sc"><small>BIH</small>2<span class="l"> – </span>1<small style="margin:0 0 0 5px">QAT</small></span></div>
+ <h3 style="margin-top:6px">Hassan Al Haydos</h3><p>From very close range</p>
+ <div class="fp" style="height:74px"><i class="th" style="height:74px;background:url(../../../photos/soldier-soccer.jpg) -14.7px -198.6px/294.4px 392.7px no-repeat;"></i><div class="scr"></div>
+  <div class="cap"><div><b style="color:#ffc46b;text-shadow:0 1px 6px rgba(0,0,0,.6)">12:46:02 PM</b><span>42 seconds after the goal</span></div><div class="pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3.5M7.5 8 12 3.5 16.5 8"/><path d="M6 11.5H5.5A1.5 1.5 0 0 0 4 13v6.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V13a1.5 1.5 0 0 0-1.5-1.5H18"/></svg>Share</div></div></div>
+ <div class="strip"><div class="it"><i class="th" style="height:32px;background:url(../../../photos/soldier-soccer.jpg) -73.9px -129.2px/155.6px 207.4px no-repeat;"></i><div class="t">12:45:41</div></div><div class="it sel"><i class="th" style="height:32px;background:url(../../../photos/soldier-soccer.jpg) -8.8px -48.2px/87.5px 116.7px no-repeat;"></i><div class="t">12:46:02</div></div><div class="it"><i class="th" style="height:32px;background:url(../../../photos/soldier-soccer.jpg) -7.0px -96.0px/140.0px 186.7px no-repeat;"></i><div class="t">12:46:44</div></div><div class="it"><i class="th" style="height:32px;background:url(../../../photos/soldier-soccer.jpg) -42.8px -77.4px/155.6px 207.4px no-repeat;"></i><div class="t">12:47:30</div></div><div class="it"><i class="th" style="height:32px;background:url(../../../photos/soldier-soccer.jpg) -57.3px -72.3px/127.3px 169.7px no-repeat;"></i><div class="t">12:48:05</div></div></div></div></div>
+</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

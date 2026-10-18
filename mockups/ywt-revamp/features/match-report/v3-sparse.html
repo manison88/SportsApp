@@ -1,0 +1,121 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Match report</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+:root{--bih:#2f6bff;--bih-y:#f4e04d;--qat:#d8456b;--chi:#2f6bff;--cle:#e8344a}
+html,body{background:#050506}
+.abs{position:absolute}
+.nav{position:absolute;top:56px;left:16px;right:16px;height:40px;display:flex;align-items:center;justify-content:space-between;z-index:30}
+.bug{display:flex;align-items:center;height:36px;padding:0 14px;border-radius:18px;gap:10px;font:700 15px/1 var(--f-cond);letter-spacing:.6px;background:rgba(30,30,36,.72);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14)}
+.bug .t{color:var(--text-2);font-size:14px;letter-spacing:1px}
+.bug b{font:700 20px/1 var(--f-cond);color:var(--text);font-variant-numeric:tabular-nums}
+.bug b.dim{color:var(--text-3)}
+.bug .sep{width:1px;height:14px;background:var(--line-2)}
+.bug .fin{font:600 10.5px/1 var(--f-ui);letter-spacing:1.6px;color:var(--signal)}
+.hero{position:absolute;left:16px;right:16px;top:106px;height:124px;border-radius:20px;overflow:hidden;background:#101014;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.1)}
+.hero .ph{position:absolute;left:0;top:0;bottom:0;width:116px}
+.hero .ph:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,#101014 100%),linear-gradient(0deg,rgba(0,0,0,.35),transparent 40%)}
+.hero .best{position:absolute;left:8px;bottom:8px;font:700 8.5px/1 var(--f-ui);letter-spacing:1.4px;color:#1a1204;background:var(--signal);padding:4px 6px 3.5px;border-radius:6px}
+.hero .txt{position:absolute;left:126px;right:10px;top:12px;bottom:10px}
+.eyebrow{font:600 9.5px/1 var(--f-ui);letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3)}
+.hero h1{font:400 27px/1 var(--f-serif);letter-spacing:-.3px;margin-top:6px;color:var(--text)}
+.hero h1 em{color:var(--signal);font-style:italic}
+.stats{display:flex;gap:13px;margin-top:11px}
+.stats div{display:flex;flex-direction:column;gap:3px}
+.stats b{font:700 25px/.9 var(--f-cond);color:var(--text);font-variant-numeric:tabular-nums}
+.stats b.am{color:var(--signal)}
+.stats span{font:500 9.5px/1.15 var(--f-ui);color:var(--text-2)}
+.hero .rng{position:absolute;right:12px;top:12px;font:500 9.5px/1 var(--f-mono);color:var(--text-3)}
+.sticky{position:absolute;left:0;right:0;top:240px;height:76px;z-index:20;background:linear-gradient(#050506 78%,rgba(5,5,6,0));}
+.sticky:before{content:"";position:absolute;left:0;right:0;top:0;height:.5px}
+.rd{position:absolute;left:16px;right:16px;top:0;display:flex;justify-content:space-between;align-items:baseline}
+.rd .now{font:600 11px/1 var(--f-ui);color:var(--text);letter-spacing:.1px}
+.rd .now b{font:700 17px/1 var(--f-cond);color:var(--signal);margin-right:4px;letter-spacing:.3px}
+.rd .sc{font:700 13px/1 var(--f-cond);letter-spacing:.8px;color:var(--text-2)}
+.rd .sc b{color:var(--text)}
+.trk{position:absolute;left:16px;right:16px;top:20px;height:40px}
+.trk .tk{position:absolute;bottom:14px;width:2px;border-radius:1px;background:var(--signal);opacity:.9}
+.trk .base{position:absolute;left:0;right:0;bottom:12px;height:2px;border-radius:1px;background:var(--line-2)}
+.trk .seg{position:absolute;bottom:12px;height:2px;border-radius:1px;background:rgba(255,255,255,.34)}
+.trk .lab{position:absolute;bottom:-3px;font:600 8.5px/1 var(--f-ui);letter-spacing:1.2px;color:var(--text-3);transform:translateX(-50%)}
+.trk .lab.on{color:var(--text)}
+.trk .gl{position:absolute;bottom:8.5px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;background:var(--bih);box-shadow:0 0 0 1.5px #050506}
+.trk .gl.q{background:var(--qat)}
+.trk .ph-head{position:absolute;bottom:0;top:0;width:1.5px;margin-left:-.75px;background:#fff}
+.trk .knob{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--signal);margin-left:-6px;bottom:7px;box-shadow:0 0 0 3px #050506,0 0 0 4px rgba(255,181,71,.55)}
+.feed{position:absolute;left:0;right:0;top:322px;bottom:0;overflow:hidden;z-index:5}
+.feed:after{content:"";position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(rgba(5,5,6,0),#050506 90%);pointer-events:none;z-index:9}
+.spine{position:absolute;left:70px;top:0;bottom:0;width:1.5px;background:linear-gradient(var(--line-2),var(--line-2));margin-left:-.75px}
+.row{position:absolute;left:0;right:0}
+.min{position:absolute;left:10px;width:46px;text-align:right;top:13px}
+.min b{display:block;font:700 22px/1 var(--f-cond);letter-spacing:.2px;color:var(--text)}
+.min i{display:block;font:500 9px/1 var(--f-mono);font-style:normal;color:var(--text-3);margin-top:4px}
+.node{position:absolute;left:64px;top:17px;width:13px;height:13px;margin-left:0;border-radius:50%;background:#050506;box-shadow:0 0 0 1.5px var(--text-3)}
+.node.g{background:var(--bih);box-shadow:0 0 0 3px #050506,0 0 0 4px rgba(47,107,255,.5)}
+.node.q{background:var(--qat);box-shadow:0 0 0 3px #050506,0 0 0 4px rgba(216,69,107,.5)}
+.node.s{width:9px;height:9px;left:66px;top:19px;box-shadow:0 0 0 3px #050506,0 0 0 4px var(--line-2);background:var(--text-3)}
+.card{position:absolute;left:90px;right:16px;border-radius:18px;background:var(--surface);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.09);padding:12px 12px 12px}
+.card .hd{display:flex;justify-content:space-between;align-items:flex-start}
+.tag{font:700 9.5px/1 var(--f-ui);letter-spacing:1.5px;text-transform:uppercase;color:var(--bih-y)}
+.tag.o{color:var(--text-2)}.tag.q{color:#ff8fa8}
+.card .sc{font:700 24px/.9 var(--f-cond);letter-spacing:.4px;color:var(--text);font-variant-numeric:tabular-nums;white-space:nowrap}
+.card .sc small{font:600 10px/1 var(--f-ui);letter-spacing:1.2px;color:var(--text-3);margin-right:5px;vertical-align:3px}
+.card .sc .l{color:var(--text-3)}
+.card h3{font:600 17px/1.15 var(--f-tight);letter-spacing:-.2px;margin-top:7px}
+.card p{font:400 12px/1.35 var(--f-ui);color:var(--text-2);margin-top:3px}
+.you{font:600 11.5px/1.2 var(--f-ui);color:var(--signal);margin-top:9px;display:flex;align-items:center;gap:6px}
+.you svg{flex:none}
+.you.n{color:var(--text-3);font-weight:500}
+.strip{display:flex;gap:6px;margin-top:8px}
+.strip .it{flex:1;min-width:0}
+.th{display:block;width:100%;border-radius:8px;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.14)}
+.strip .t{font:500 8.5px/1 var(--f-mono);color:var(--text-2);margin-top:5px;text-align:center;letter-spacing:-.1px}
+.it.sel .th{box-shadow:0 0 0 1.5px #121215,0 0 0 3px var(--signal)}
+.it.sel .t{color:var(--signal);font-weight:600}
+.quiet{position:absolute;left:90px;right:16px;display:flex;align-items:center;gap:8px;font:500 11.5px/1 var(--f-ui);color:var(--text-3)}
+.quiet:before,.quiet:after{content:"";height:0;border-top:1px dashed var(--line-2);flex:0 0 12px}
+.quiet:after{flex:1}
+.fp{position:relative;border-radius:12px;overflow:hidden;margin-top:10px}
+.fp .th{height:100%;border-radius:0;box-shadow:none}
+.fp .scr{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.88),rgba(0,0,0,.25) 60%,transparent)}
+.fp .cap{position:absolute;left:10px;right:10px;bottom:9px;display:flex;justify-content:space-between;align-items:flex-end}
+.fp .cap b{display:block;font:700 15px/1 var(--f-cond);letter-spacing:.4px}
+.fp .cap span{display:block;font:500 10px/1.3 var(--f-ui);color:rgba(255,255,255,.82);margin-top:3px}
+.pill{display:flex;align-items:center;gap:5px;height:26px;padding:0 10px;border-radius:13px;font:600 10.5px/1 var(--f-ui);background:rgba(30,30,36,.7);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.22);color:#fff}
+
+.addb{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 13px;border-radius:16px;font:600 12px/1 var(--f-ui);color:#1a1204;background:var(--signal)}
+.addg{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 13px;border-radius:16px;font:600 12px/1 var(--f-ui);color:var(--text);box-shadow:inset 0 0 0 1px var(--line-2)}
+.dash{position:absolute;left:70px;top:0;bottom:0;border-left:1.5px dashed rgba(255,255,255,.22);margin-left:-.75px}
+.mk{position:absolute;bottom:14px;width:1px;height:14px;background:var(--text-3)}
+.mkl{position:absolute;bottom:-3px;font:600 8.5px/1 var(--f-ui);letter-spacing:1.2px;color:var(--text-3);transform:translateX(-50%);white-space:nowrap}
+.kt{position:absolute;bottom:38px;font:600 8.5px/1 var(--f-ui);letter-spacing:1.2px;color:var(--text-2);transform:translateX(-50%);white-space:nowrap}
+</style></head>
+<body class="phone">
+<div class="nav"><div class="btn-circle glass"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5 8 12l6.5 6.5"/></svg></div><div class="bug"><span class="t">CHI</span><b>2</b><i class="sep"></i><span class="t">RKF</span><b class="dim">1</b><i class="sep"></i><span class="fin">FINAL</span></div><div class="btn-circle glass"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3.5M7.5 8 12 3.5 16.5 8"/><path d="M6 11.5H5.5A1.5 1.5 0 0 0 4 13v6.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V13a1.5 1.5 0 0 0-1.5-1.5H18"/></svg></div></div>
+<div class="hero"><div class="ph abs" style="background:url(../../../photos/soldier-soccer.jpg) -14.5px -44.4px/145.0px 193.4px no-repeat;"></div>
+<div class="txt"><div class="eyebrow">Match report · May 17</div><h1>You were <em>there</em></h1>
+<div class="stats"><div><b class="am">2</b><span>photos</span></div><div><b>6:52</b><span>first</span></div><div><b>9:04</b><span>last</span></div></div></div></div>
+<div class="sticky"><div class="rd"><div class="now"><b>2</b>photos · 6:52 PM and 9:04 PM</div><div class="sc"><b>CHI 2</b> – RKF 1</div></div>
+<div class="trk"><i class="base"></i><i class="seg" style="left:60.2px;width:230.6px"></i>
+<i class="mk" style="left:60.2px"></i><i class="mk" style="left:290.8px"></i>
+<i class="tk" style="left:44.1px;height:22px;bottom:14px;width:3px"></i><i class="tk" style="left:308.9px;height:22px;bottom:14px;width:3px"></i>
+<span class="lab on" style="left:60.2px">KICKOFF 7:00</span><span class="lab on" style="left:290.8px">FINAL ~8:55</span></div></div><div class="feed" style="top:322px"><div class="dash" style="top:0;bottom:auto;height:360px"></div>
+<div class="row" style="top:6px"><div class="min"><b>6:52</b><i>PM</i></div><div class="node s" style="top:17px"></div>
+ <div class="card" style="top:0;height:164px;padding:10px"><div class="hd" style="padding:2px 2px 8px"><span class="tag o">Before the game</span><span class="tag o" style="color:var(--text-3)">Arrival</span></div>
+ <div class="fp" style="height:104px;margin-top:0"><i class="th" style="height:104px;background:url(../../../photos/soldier-skyline.jpg) -14.7px -65.2px/294.4px 234.4px no-repeat;"></i><div class="scr"></div>
+<div class="cap"><div><b style="color:#ffc46b">6:52 PM</b><span>Outside the gates, 68 minutes before kickoff</span></div></div></div>
+ <div class="you" style="margin:9px 2px 0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H8l1.5-2h5L16 6h2.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.6"/></svg>Your first photo of the night</div></div></div>
+<div class="row" style="top:184px">
+ <div class="min" style="top:12px"><b>7:00</b><i>KICKOFF</i></div><div class="node s" style="top:17px"></div>
+ <div class="card" style="top:0;height:140px;background:transparent;box-shadow:none;border:1px dashed rgba(255,255,255,.28);padding:11px 12px">
+ <div class="tag o" style="color:var(--text-2)">The match</div><h3 style="margin-top:6px;font-size:21px;font-family:var(--f-serif);font-weight:400;letter-spacing:-.1px;line-height:1.1">Chicago 2, Rockford 1</h3>
+ <p style="margin-top:4px">No play-by-play for this league, so the goals aren't on the clock.</p>
+ <div style="display:flex;gap:8px;margin-top:11px"><span class="addb">+ Add a goal</span><span class="addg">Add a note</span></div></div></div>
+<div class="row" style="top:338px"><div class="min"><b>9:04</b><i>PM</i></div><div class="node s" style="top:17px"></div>
+ <div class="card" style="top:0;height:164px;padding:10px"><div class="hd" style="padding:2px 2px 8px"><span class="tag" style="color:var(--bih-y);color:var(--signal)">After the whistle</span><span class="tag o" style="color:var(--text-3)">Final</span></div>
+ <div class="fp" style="height:104px;margin-top:0"><i class="th" style="height:104px;background:url(../../../photos/soldier-soccer.jpg) -23.4px -176.7px/311.8px 415.8px no-repeat;"></i><div class="scr"></div>
+<div class="cap"><div><b style="color:#ffc46b">9:04 PM</b><span>Nine minutes after the final whistle</span></div></div></div>
+ <div class="you" style="margin:9px 2px 0"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H8l1.5-2h5L16 6h2.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"/><circle cx="12" cy="13" r="3.6"/></svg>Your last photo, CHI 2–1</div></div></div>
+</div>
+<script src="../../../kit/kit.js"></script>
+</body></html>

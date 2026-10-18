@@ -1,0 +1,69 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Sparse ribbon</title>
+<link rel="stylesheet" href="../../../kit/kit.css">
+<style>
+:root{--blue:#2F6BFF;--blue-2:#6f97ff}
+body.phone{background:#050506}
+.hero{position:absolute;max-width:none;object-fit:fill;filter:contrast(1.07) saturate(.92) brightness(.95)}
+.scrimT{position:absolute;left:0;right:0;top:0;height:170px;background:linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,0))}
+.scrimB{position:absolute;left:0;right:0;top:330px;bottom:0;background:linear-gradient(rgba(5,5,6,0) 0,rgba(5,5,6,.62) 120px,rgba(5,5,6,.94) 190px,#050506 232px)}
+.a{position:absolute}
+.btn{position:absolute;top:58px}
+.bug{position:absolute;top:60px;left:50%;transform:translateX(-50%);height:36px;border-radius:18px;display:flex;align-items:center;gap:7px;padding:0 14px 0 6px;white-space:nowrap}
+.bug .t{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font:800 11px/1 var(--f-cond);letter-spacing:.2px;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}
+.bug b{font:700 20px/1 var(--f-cond);font-variant-numeric:tabular-nums}
+.bug .f{font:700 10px/1 var(--f-ui);letter-spacing:1.6px;color:var(--text-2);margin-left:3px}
+.bug .d{width:1px;height:16px;background:rgba(255,255,255,.2)}
+.ctx{position:absolute;top:104px;left:0;right:0;text-align:center;font:600 11px/1 var(--f-ui);letter-spacing:.2px;color:rgba(255,255,255,.82);text-shadow:0 1px 6px rgba(0,0,0,.7)}
+.cap1{position:absolute;left:20px;right:20px;display:flex;align-items:baseline;gap:12px;font:700 44px/1 var(--f-cond);letter-spacing:-.2px;font-variant-numeric:tabular-nums;color:#fff}
+.cap1 .sc{color:rgba(255,255,255,.96)}
+.cap1 .sc em{font-style:normal;font-size:22px;font-weight:600;letter-spacing:1.2px;color:var(--text-2);margin-right:6px}
+.cap1 .dot{width:4px;height:4px;border-radius:2px;background:var(--text-4);align-self:center}
+.cap2{position:absolute;left:20px;right:20px;font:500 15px/1.25 var(--f-ui);color:rgba(245,241,234,.86);letter-spacing:-.1px}
+.cap2 b{font-weight:600;color:#fff}
+.best{position:absolute;right:16px;height:30px;border-radius:15px;display:flex;align-items:center;gap:6px;padding:0 12px 0 9px;font:600 12px/1 var(--f-ui);color:#fff}
+.best svg{width:13px;height:13px;fill:var(--signal)}
+.lbl{position:absolute;font:700 9px/1 var(--f-ui);letter-spacing:1.5px;color:var(--text-3);white-space:nowrap}
+.band{position:absolute}
+.seg{position:absolute;height:18px;border-radius:4px;background:rgba(255,255,255,.07);font:700 12px/18px var(--f-cond);letter-spacing:.4px;color:var(--text-2);white-space:nowrap;overflow:hidden;font-variant-numeric:tabular-nums}
+.seg.on{background:rgba(255,181,71,.2);color:var(--signal);box-shadow:inset 0 0 0 .5px rgba(255,181,71,.5)}
+.strip{position:absolute;left:0;right:0;background:rgba(0,0,0,.58);border-top:.5px solid rgba(255,255,255,.14);border-bottom:.5px solid rgba(255,255,255,.14)}
+.perf{position:absolute;left:0;right:0;height:3px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.2) 0 4px,transparent 4px 9px)}
+.th{position:absolute;border-radius:3px;box-shadow:0 0 0 .5px rgba(255,255,255,.2);filter:saturate(.85) brightness(.82)}
+.th.on{border-radius:5px;box-shadow:0 0 0 2px var(--signal),0 6px 18px rgba(0,0,0,.6);filter:none;z-index:5}
+.th .n{position:absolute;right:2px;bottom:2px;min-width:13px;height:13px;border-radius:7px;background:rgba(0,0,0,.72);font:700 9px/13px var(--f-ui);text-align:center;color:#fff;padding:0 3px}
+.th .st{position:absolute;left:2px;top:2px;width:12px;height:12px}
+.th .st svg{width:12px;height:12px;fill:var(--signal);filter:drop-shadow(0 0 2px rgba(0,0,0,.8))}
+.mk{position:absolute;width:1px;background:rgba(255,255,255,.34)}
+.ball{position:absolute;width:14px;height:14px;border-radius:7px;box-shadow:0 0 0 1.5px rgba(5,5,6,.9),0 0 0 2.5px rgba(255,255,255,.5)}
+.mm{position:absolute;font:700 12px/14px var(--f-cond);letter-spacing:.3px;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tk{position:absolute;width:1px;height:4px;background:rgba(255,255,255,.28)}
+.tl{position:absolute;font:600 10px/1 var(--f-cond);letter-spacing:.5px;color:var(--text-3);transform:translateX(-50%);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ph-line{position:absolute;width:2px;margin-left:-1px;background:var(--signal);box-shadow:0 0 10px rgba(255,181,71,.7);z-index:8;border-radius:1px}
+.ph-cap{position:absolute;width:0;height:0;margin-left:-5px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--signal);z-index:8}
+.clock{position:absolute;margin-left:-31px;width:62px;height:16px;border-radius:8px;background:var(--signal);color:#1a1205;font:700 10.5px/16px var(--f-ui);text-align:center;letter-spacing:.2px;z-index:9;box-shadow:0 2px 8px rgba(0,0,0,.5)}
+.card{position:absolute;left:16px;right:16px;border-radius:14px;background:rgba(255,255,255,.065);border:.5px solid rgba(255,255,255,.13);display:flex;align-items:center;padding:0 12px 0 14px;gap:12px}
+.card .min{font:700 26px/1 var(--f-cond);color:#fff;width:42px;font-variant-numeric:tabular-nums;letter-spacing:-.2px}
+.card .tx{flex:1;min-width:0}
+.card .t1{font:600 14px/1.2 var(--f-ui);color:#fff;letter-spacing:-.1px}
+.card .t2{font:400 12px/1.3 var(--f-ui);color:var(--text-2);margin-top:2px}
+.card .rel{font:600 9px/1 var(--f-ui);letter-spacing:1.3px;color:var(--text-3);margin-bottom:4px;text-transform:uppercase}
+.allp{height:30px;border-radius:15px;display:flex;align-items:center;gap:5px;padding:0 10px 0 12px;background:rgba(255,255,255,.1);font:600 12px/1 var(--f-ui);color:#fff;white-space:nowrap}
+.allp i{font:700 10px/1 var(--f-ui);color:var(--text-2);font-style:normal}
+.allp svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.sum{position:absolute;left:20px;font:400 11.5px/1.36 var(--f-ui);color:var(--text-2)}
+.sum b{color:#fff;font-weight:600}
+.share{position:absolute;right:16px;height:44px;border-radius:22px;background:var(--signal);color:#1a1205;display:flex;align-items:center;gap:8px;padding:0 20px 0 16px;font:700 15px/1 var(--f-ui);letter-spacing:-.1px;box-shadow:0 8px 24px rgba(255,181,71,.25)}
+.share svg{width:18px;height:18px;stroke:#1a1205;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+</style></head>
+<body class="phone">
+<img class="ph graded hero" src="../../../photos/soldier-soccer.jpg" style="left:-74px;top:-644px;width:1152px;height:1536px"><div class="scrimB"></div><div class="scrimT"></div>
+<div class="btn btn-circle glass" style="left:16px"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></div>
+<div class="btn btn-circle glass" style="right:16px"><svg viewBox="0 0 24 24" style="fill:#fff;stroke:none"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg></div>
+<div class="bug glass"><span class="t" style="background:#14553a">NAP</span><b>2</b><span class="d"></span><span class="t" style="background:#7a1f2b">ROC</span><b>1</b><span class="f">FINAL</span></div>
+<div class="ctx">USL League Two · Community Park, Naperville · Jun 3</div><div class="cap1" style="top:452px"><span>7:22</span><span class="dot"></span><span class="sc" style="font-size:30px;color:var(--text-2)">22 min in</span></div><div class="cap2" style="top:504px"><b>About 22 minutes</b> after kickoff</div><div class="best glass" style="top:462px">Your 2 photos</div><div class="band" style="left:152.5px;top:556px;width:200.0px;height:88px;background:rgba(255,255,255,.04)"></div><div class="lbl" style="left:20px;top:562px">BEFORE KICKOFF</div><div class="lbl" style="left:160.5px;top:562px">THE MATCH</div><div class="lbl" style="left:360.5px;top:562px;display:none">AFTER</div><div class="seg" style="left:152.5px;top:576px;width:199.0px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 5px,transparent 5px 9px);color:var(--text-3);font:600 11px/18px var(--f-ui);text-indent:10px;letter-spacing:.2px">No minute-by-minute score</div><div class="strip" style="top:602px;height:64px"><div class="perf" style="top:3px"></div><div class="perf" style="bottom:3px"></div></div><div class="a" style="left:76.5px;top:610px;width:48px;height:48px;border-radius:4px;border:1px dashed rgba(255,255,255,.22);display:grid;place-items:center;color:var(--text-3);font:400 22px/1 var(--f-ui)">+</div><div class="th on" style="left:166.5px;top:598.0px;width:60px;height:72px;background:url(../../../photos/soldier-soccer.jpg) -38.0px -140.0px/200.0px 266.7px no-repeat"></div>
+<div class="th" style="left:330.5px;top:610.0px;width:48px;height:48px;background:url(../../../photos/soldier-soccer.jpg) -24.0px -40.0px/96.0px 128.0px no-repeat"></div>
+<div class="tk" style="left:32.5px;top:669px;height:5px"></div><div class="tk" style="left:52.5px;top:669px;height:3px"></div><div class="tk" style="left:72.5px;top:669px;height:3px"></div><div class="tk" style="left:92.5px;top:669px;height:5px"></div><div class="tk" style="left:112.5px;top:669px;height:3px"></div><div class="tk" style="left:132.5px;top:669px;height:3px"></div><div class="tk" style="left:152.5px;top:669px;height:5px"></div><div class="tk" style="left:172.5px;top:669px;height:3px"></div><div class="tk" style="left:192.5px;top:669px;height:3px"></div><div class="tk" style="left:212.5px;top:669px;height:5px"></div><div class="tk" style="left:232.5px;top:669px;height:3px"></div><div class="tk" style="left:252.5px;top:669px;height:3px"></div><div class="tk" style="left:272.5px;top:669px;height:5px"></div><div class="tk" style="left:292.5px;top:669px;height:3px"></div><div class="tk" style="left:312.5px;top:669px;height:3px"></div><div class="tk" style="left:332.5px;top:669px;height:5px"></div><div class="tk" style="left:352.5px;top:669px;height:3px"></div><div class="tk" style="left:372.5px;top:669px;height:3px"></div><div class="tk" style="left:392.5px;top:669px;height:5px"></div><div class="tl" style="left:32.5px;top:676px;">6 PM</div><div class="tl" style="left:152.5px;top:676px;">7 PM</div><div class="tl" style="left:272.5px;top:676px;">8 PM</div><div class="ph-cap" style="left:196.5px;top:567px"></div><div class="ph-line" style="left:196.5px;top:573px;height:102px"></div><div class="clock" style="left:196.5px;top:672px">7:22 PM</div><div class="card" style="top:688px;height:52px"><div class="min" style="width:34px;opacity:.5"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#f5f1ea" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h10M4 17h13"/></svg></div><div class="tx"><div class="t1">No play-by-play for this league</div><div class="t2">Your photos are the record.</div></div><div class="allp" style="background:rgba(255,181,71,.16);color:var(--signal)">+ Goal</div></div><div class="sum" style="top:747px;width:215px"><b>2 photos · both during the match</b><br>7:22 PM and 8:41 PM<br>Final score 2–1, Naperville</div><div class="share" style="top:750px"><svg viewBox="0 0 24 24"><path d="M12 15V3.5M7.5 8L12 3.5 16.5 8M6 11.5H5.5A1.5 1.5 0 004 13v6a1.5 1.5 0 001.5 1.5h13A1.5 1.5 0 0020 19v-6a1.5 1.5 0 00-1.5-1.5H18"/></svg>Share moment</div>
+<div class="grain" style="opacity:.16"></div>
+<script src="../../../kit/kit.js"></script>
+</body></html>
