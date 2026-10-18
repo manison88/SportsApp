@@ -238,19 +238,11 @@ private struct TimelineCard: View {
         } else if [.basketball, .hockey, .handball].contains(game.sport) {
             out.append(Fact(symbol: "building.2", text: "Indoors"))
         }
-        if let a = game.attendance, a > 0 { out.append(Fact(symbol: "person.2", text: Fmt.number(a))) }
-        if let length = Self.length(game) { out.append(Fact(symbol: "clock", text: length)) }
-        if game.origin == .ticket { out.append(Fact(symbol: "ticket", text: nil, tint: Color.signal)) }
-        if out.isEmpty, game.photos.count > 0 { out.append(Fact(symbol: "photo", text: "\(game.photos.count)")) }
+        // The crowd that night; the ground's capacity when the schedule has no attendance.
+        if let crowd = game.attendance.flatMap({ $0 > 0 ? $0 : nil }) ?? library.venue(game.venueId)?.capacity, crowd > 0 {
+            out.append(Fact(symbol: "person.2", text: Fmt.number(crowd)))
+        }
         return out
-    }
-
-    /// How long the game ran: kickoff to the last play, for sports whose play list reaches the end.
-    private static func length(_ game: GameEntry) -> String? {
-        guard [.baseball, .basketball, .hockey, .football].contains(game.sport), let last = game.plays.last?.time else { return nil }
-        let seconds = last.timeIntervalSince(game.date)
-        guard seconds > 3600, seconds < 6 * 3600 else { return nil }
-        return "\(Int(seconds) / 3600)h \(Int(seconds) % 3600 / 60)m"
     }
 
     /// "Bleachers \u{00B7} Section 314" -> "SEC 314"
