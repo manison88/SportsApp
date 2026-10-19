@@ -4,6 +4,8 @@ import SwiftUI
 struct PassportView: View {
     @Environment(Library.self) private var library
     @State private var sport: Sport = .baseball
+    /// "soccer" or "football", once the fan has said which; empty until then.
+    @AppStorage("soccerWord") private var soccerWord = ""
 
     struct Stamp: Identifiable {
         let venueId: String
@@ -30,6 +32,7 @@ struct PassportView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: Spacing.block) {
                 filter
+                if sport == .soccer && soccerWord.isEmpty { wordPrompt }
 
                 VStack(alignment: .leading, spacing: 18) {
                     HStack(alignment: .center, spacing: 14) {
@@ -111,6 +114,26 @@ struct PassportView: View {
         }
     }
 
+    /// Asked once, the first time the fan opens the soccer passport: it names the passport, its share card and the sport everywhere.
+    private var wordPrompt: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Soccer or football?").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+            Text("What do you call it? We\u{2019}ll use your word on your passport and when you share it.")
+                .font(.footnote).foregroundStyle(Color.textSecondary)
+            HStack(spacing: 10) {
+                Button("Soccer") { soccerWord = "soccer" }
+                    .buttonStyle(PrimaryButtonStyle(fill: SoccerWord.usesFootball ? .white : .signal))
+                    .accessibilityIdentifier("soccer-word-soccer")
+                Button("Football") { soccerWord = "football" }
+                    .buttonStyle(PrimaryButtonStyle(fill: SoccerWord.usesFootball ? .signal : .white))
+                    .accessibilityIdentifier("soccer-word-football")
+            }
+        }
+        .foregroundStyle(.white)
+        .padding(16)
+        .background(Color.panel, in: .rect(cornerRadius: 16))
+    }
+
     private var filter: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
@@ -140,7 +163,7 @@ struct PassportView: View {
         case .football: "NFL"
         case .basketball: "NBA"
         case .hockey: "NHL"
-        case .soccer: "SOCCER"
+        case .soccer: SoccerWord.usesFootball ? "FOOTBALL" : "SOCCER"
         case .motorsport: "MOTOR"
         case .handball: "HANDBALL"
         }
@@ -149,7 +172,8 @@ struct PassportView: View {
     private func heroLabel(earned: Int, sport: Sport) -> String {
         switch sport {
         case .baseball: earned == 1 ? "MLB\npark" : "MLB\nparks"
-        case .soccer: earned == 1 ? "football\nground" : "football\ngrounds"
+        case .soccer: SoccerWord.usesFootball ? (earned == 1 ? "football\nground" : "football\ngrounds")
+                                              : (earned == 1 ? "soccer\nstadium" : "soccer\nstadiums")
         case .motorsport: earned == 1 ? "circuit" : "circuits"
         case .handball: earned == 1 ? "handball\narena" : "handball\narenas"
         case .basketball, .hockey: earned == 1 ? "\(Self.league(sport))\narena" : "\(Self.league(sport))\narenas"

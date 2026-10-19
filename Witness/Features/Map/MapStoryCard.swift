@@ -92,15 +92,12 @@ struct MapShotView: View {
 /// The map as a story to share. Laid out at phone size (390 points wide) and scaled up to the story's pixels.
 struct MapStoryCard: View {
     enum Style: CaseIterable {
-        case globe, satellite, pins, miles, poster, grounds, countries
+        case globe, miles, grounds, countries
 
         var name: String {
             switch self {
             case .globe: "Globe"
-            case .satellite: "Satellite"
-            case .pins: "Pins"
             case .miles: Fmt.metric ? "Kilometers" : "Miles"
-            case .poster: "Poster"
             case .grounds: "Grounds"
             case .countries: "Countries"
             }
@@ -109,10 +106,8 @@ struct MapStoryCard: View {
         /// The map's size on the card, in points.
         var mapSize: CGSize {
             switch self {
-            case .globe, .pins: CGSize(width: 390, height: 540)
-            case .satellite: CGSize(width: 390, height: 400)
+            case .globe: CGSize(width: 390, height: 540)
             case .miles: CGSize(width: 354, height: 300)
-            case .poster: CGSize(width: 334, height: 300)
             case .grounds, .countries: CGSize(width: 390, height: 360)
             }
         }
@@ -141,7 +136,7 @@ struct MapStoryCard: View {
     var body: some View {
         content
             .frame(width: Self.width, height: height)
-            .background(style == .poster ? Color(hex: "F4F1EA") : Color.ink)
+            .background(Color.ink)
             .clipped()
             .environment(\.dynamicTypeSize, .large)
             .scaleEffect(scale, anchor: .topLeading)
@@ -153,10 +148,7 @@ struct MapStoryCard: View {
     private var content: some View {
         switch style {
         case .globe: globe
-        case .satellite: satellite
-        case .pins: pins
         case .miles: miles
-        case .poster: poster
         case .grounds: grounds
         case .countries: countries
         }
@@ -166,7 +158,7 @@ struct MapStoryCard: View {
 
     @ViewBuilder
     private var map: some View {
-        if let shot { MapShotView(shot: shot, arcs: style != .pins, lineColor: style == .poster ? .black : nil) }
+        if let shot { MapShotView(shot: shot) }
         else { Color.panel }
     }
 
@@ -239,46 +231,6 @@ struct MapStoryCard: View {
         .overlay(alignment: .topLeading) { wordmark().padding(.top, 50).padding(.leading, 18) }
     }
 
-    /// The ground from space on top, the numbers below.
-    private var satellite: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            map.overlay(alignment: .topLeading) { wordmark().padding(.top, 50).padding(.leading, 18) }
-            VStack(alignment: .leading, spacing: 10) {
-                if numbers.distance != nil {
-                    distanceLine(88)
-                    caption(fromHome)
-                }
-                Spacer(minLength: 0)
-                stats()
-            }
-            .padding(.horizontal, 18)
-            .padding(.bottom, 40)
-        }
-    }
-
-    /// Only the dots: every venue, and how many.
-    private var pins: some View {
-        ZStack(alignment: .topLeading) {
-            VStack(spacing: 0) { map; Spacer(minLength: 0) }
-            LinearGradient(stops: [.init(color: Color.ink.opacity(0.8), location: 0), .init(color: .clear, location: 0.2),
-                                   .init(color: .clear, location: 0.5), .init(color: Color.ink, location: 0.78)],
-                           startPoint: .top, endPoint: .bottom)
-            VStack(alignment: .leading, spacing: 4) {
-                wordmark()
-                Spacer(minLength: 0)
-                HStack(alignment: .lastTextBaseline, spacing: 10) {
-                    Text("\(numbers.venues)").font(.display(120))
-                    Text(numbers.venues == 1 ? "VENUE" : "VENUES").font(.display(40))
-                }
-                .foregroundStyle(.white)
-                caption("IN \(numbers.countries) \(numbers.countries == 1 ? "COUNTRY" : "COUNTRIES") \u{00B7} \(numbers.games) GAMES")
-            }
-            .padding(.horizontal, 18)
-            .padding(.top, 50)
-            .padding(.bottom, 40)
-        }
-    }
-
     /// The distance is the picture; the map is a card under it.
     private var miles: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -291,30 +243,6 @@ struct MapStoryCard: View {
                 .overlay(RoundedRectangle(cornerRadius: 22).strokeBorder(.white.opacity(0.12)))
             caption(numbers.homeCity.isEmpty ? "\(numbers.venues) VENUES" : "FROM \(numbers.homeCity.uppercased()) \u{00B7} \(numbers.venues) VENUES",
                     .white.opacity(0.7))
-        }
-        .padding(.horizontal, 18)
-        .padding(.top, 50)
-        .padding(.bottom, 40)
-    }
-
-    /// A travel poster: paper, a light map, black lines.
-    private var poster: some View {
-        let ink = Color(hex: "151515")
-        return VStack(alignment: .leading, spacing: 18) {
-            wordmark(ink: ink)
-            VStack(alignment: .leading, spacing: -6) {
-                Text("WHERE I\u{2019}VE").font(.display(64))
-                Text("WATCHED").font(.display(64))
-            }
-            .foregroundStyle(ink)
-            .fixedSize()
-            map
-                .overlay(Rectangle().strokeBorder(ink, lineWidth: 2))
-                .padding(10)
-                .overlay(Rectangle().strokeBorder(ink, lineWidth: 1))
-                .frame(maxWidth: .infinity)
-            Spacer(minLength: 0)
-            stats(ink: ink)
         }
         .padding(.horizontal, 18)
         .padding(.top, 50)

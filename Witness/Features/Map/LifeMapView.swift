@@ -157,8 +157,8 @@ struct LifeMapView: View {
         var shots: [String: MapShot] = [:]
         var out: [ShareCardVariant] = []
         for style in MapStoryCard.Style.allCases {
-            let type: MKMapType = style == .satellite ? .satellite : .mutedStandard
-            let dark = style != .poster
+            let type: MKMapType = .mutedStandard
+            let dark = true
             let key = "\(style.mapSize.width)x\(style.mapSize.height)-\(type.rawValue)-\(dark)"
             if shots[key] == nil, let shot = await MapShot.make(venues: venues, colors: colors, home: home, size: style.mapSize, type: type, dark: dark) {
                 shots[key] = shot

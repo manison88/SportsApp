@@ -133,6 +133,7 @@ struct YouView: View {
             .buttonStyle(.plain)
             .foregroundStyle(.white)
             .accessibilityIdentifier("you-backup")
+            SoccerWordRow()
             Toggle(isOn: Binding(get: { Analytics.shared.enabled }, set: { Analytics.shared.setEnabled($0) })) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Share anonymous usage").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
@@ -614,6 +615,28 @@ private struct LinkRow: View {
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
+        .foregroundStyle(.white)
+    }
+}
+
+/// "Soccer" or "football": the fan's word for the sport, used on the passport, its share card and sport names.
+private struct SoccerWordRow: View {
+    @AppStorage("soccerWord") private var soccerWord = ""
+
+    var body: some View {
+        HStack {
+            Text("Call it").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+            Spacer()
+            Picker("Call it", selection: Binding(get: { soccerWord.isEmpty ? (SoccerWord.usesFootball ? "football" : "soccer") : soccerWord },
+                                                 set: { soccerWord = $0 })) {
+                Text("Soccer").tag("soccer")
+                Text("Football").tag("football")
+            }
+            .pickerStyle(.segmented)
+            .frame(width: 190)
+            .accessibilityIdentifier("you-soccer-word")
+        }
+        .frame(minHeight: 56)
         .foregroundStyle(.white)
     }
 }

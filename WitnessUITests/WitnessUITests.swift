@@ -329,7 +329,7 @@ final class WitnessUITests: XCTestCase {
         sleep(3)
         tap("map-share")
         sleep(12)
-        for i in 0..<7 {
+        for i in 0..<4 {
             snap("map-share-\(i)")
             app.swipeLeft()
             sleep(2)
