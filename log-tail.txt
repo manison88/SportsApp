@@ -1,396 +1,396 @@
-    t =    22.18s     Wait for app.witness.ios to idle
-    t =    22.79s Find the "add-away-team" Any
-    t =    23.39s Waiting 8.0s for "add-sport" Any to exist
-    t =    24.44s     Checking `Expect predicate `existsNoRetry == 1` for object "add-sport" Any`
-    t =    24.44s         Checking existence of `"add-sport" Any`
-    t =    24.98s Tap "add-sport" Any
-    t =    24.98s     Wait for app.witness.ios to idle
-    t =    24.99s     Find the "add-sport" Any
-    t =    26.12s     Check for interrupting elements affecting "add-sport" Button
-    t =    26.30s     Synthesize event
-    t =    26.61s     Wait for app.witness.ios to idle
-    t =    26.79s Tap "Motorsport" Button
-    t =    26.79s     Wait for app.witness.ios to idle
-    t =    26.80s     Find the "Motorsport" Button
-    t =    26.95s     Check for interrupting elements affecting "Motorsport" Button
-    t =    27.05s     Synthesize event
-    t =    27.34s     Wait for app.witness.ios to idle
-    t =    27.43s Waiting 8.0s for "add-race-calendar" Any to exist
-    t =    28.45s     Checking `Expect predicate `existsNoRetry == 1` for object "add-race-calendar" Any`
-    t =    28.45s         Checking existence of `"add-race-calendar" Any`
-    t =    28.84s Tap "add-race-calendar" Any
-    t =    28.84s     Wait for app.witness.ios to idle
-    t =    28.85s     Find the "add-race-calendar" Any
-    t =    29.22s     Check for interrupting elements affecting "add-race-calendar" Button
-    t =    29.32s     Synthesize event
-    t =    29.61s     Wait for app.witness.ios to idle
-    t =    29.64s Waiting 5.0s for SearchField (First Match) to exist
-    t =    30.65s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
-    t =    30.65s         Checking existence of `SearchField (First Match)`
-    t =    30.68s Tap SearchField (First Match)
-    t =    30.68s     Wait for app.witness.ios to idle
-    t =    30.69s     Find the SearchField (First Match)
-    t =    30.72s     Check for interrupting elements affecting "Search races and circuits" SearchField
-    t =    30.83s     Synthesize event
-    t =    31.14s     Wait for app.witness.ios to idle
-    t =    31.23s Type 'Monaco' into "Search races and circuits" SearchField
-    t =    31.23s     Wait for app.witness.ios to idle
-    t =    31.24s     Find the "Search races and circuits" SearchField
-    t =    31.44s     Check for interrupting elements affecting "Search races and circuits" SearchField
-    t =    31.58s     Synthesize event
-    t =    31.88s     Wait for app.witness.ios to idle
-    t =    31.89s Waiting 5.0s for Button (First Match) to exist
-    t =    32.90s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
-    t =    32.90s         Checking existence of `Button (First Match)`
-    t =    33.62s Added attachment named 'add-race-calendar'
-    t =    33.62s Tap Button (First Match)
-    t =    33.62s     Wait for app.witness.ios to idle
-    t =    33.62s     Find the Button (First Match)
-    t =    34.16s     Check for interrupting elements affecting "race-row-2026-monaco" Button
-    t =    34.27s     Synthesize event
-    t =    34.59s     Wait for app.witness.ios to idle
-    t =    34.64s Waiting 5.0s for "add-venue-name" Any to exist
-    t =    35.68s     Checking `Expect predicate `existsNoRetry == 1` for object "add-venue-name" Any`
-    t =    35.68s         Checking existence of `"add-venue-name" Any`
-    t =    37.83s Find the "add-venue-name" Any
-    t =    39.33s Added attachment named 'add-race-picked'
-    t =    39.33s Waiting 8.0s for "add-save" Any to exist
-    t =    40.35s     Checking `Expect predicate `existsNoRetry == 1` for object "add-save" Any`
-    t =    40.35s         Checking existence of `"add-save" Any`
-    t =    40.59s Tap "add-save" Any
-    t =    40.59s     Wait for app.witness.ios to idle
-    t =    40.60s     Find the "add-save" Any
-    t =    40.98s     Check for interrupting elements affecting "add-save" Other
-    t =    41.14s     Synthesize event
-    t =    41.45s     Wait for app.witness.ios to idle
-    t =    41.75s Waiting 5.0s for Any (First Match) to exist
-    t =    42.77s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
-    t =    42.77s         Checking existence of `Any (First Match)`
-    t =    43.00s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testPickClubFromCatalogAndRaceFromCalendar]' passed (43.245 seconds).
+    t =    21.17s     Wait for app.witness.ios to idle
+    t =    21.85s Find the "add-away-team" Any
+    t =    22.29s Waiting 8.0s for "add-sport" Any to exist
+    t =    23.32s     Checking `Expect predicate `existsNoRetry == 1` for object "add-sport" Any`
+    t =    23.32s         Checking existence of `"add-sport" Any`
+    t =    23.75s Tap "add-sport" Any
+    t =    23.75s     Wait for app.witness.ios to idle
+    t =    23.75s     Find the "add-sport" Any
+    t =    24.30s     Check for interrupting elements affecting "add-sport" Button
+    t =    24.46s     Synthesize event
+    t =    24.76s     Wait for app.witness.ios to idle
+    t =    25.01s Tap "Motorsport" Button
+    t =    25.01s     Wait for app.witness.ios to idle
+    t =    25.02s     Find the "Motorsport" Button
+    t =    25.18s     Check for interrupting elements affecting "Motorsport" Button
+    t =    25.30s     Synthesize event
+    t =    25.62s     Wait for app.witness.ios to idle
+    t =    25.67s Waiting 8.0s for "add-race-calendar" Any to exist
+    t =    26.69s     Checking `Expect predicate `existsNoRetry == 1` for object "add-race-calendar" Any`
+    t =    26.69s         Checking existence of `"add-race-calendar" Any`
+    t =    27.01s Tap "add-race-calendar" Any
+    t =    27.01s     Wait for app.witness.ios to idle
+    t =    27.02s     Find the "add-race-calendar" Any
+    t =    27.44s     Check for interrupting elements affecting "add-race-calendar" Button
+    t =    27.67s     Synthesize event
+    t =    27.99s     Wait for app.witness.ios to idle
+    t =    28.18s Waiting 5.0s for SearchField (First Match) to exist
+    t =    29.21s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
+    t =    29.21s         Checking existence of `SearchField (First Match)`
+    t =    29.28s Tap SearchField (First Match)
+    t =    29.28s     Wait for app.witness.ios to idle
+    t =    29.28s     Find the SearchField (First Match)
+    t =    29.32s     Check for interrupting elements affecting "Search races and circuits" SearchField
+    t =    29.43s     Synthesize event
+    t =    29.74s     Wait for app.witness.ios to idle
+    t =    29.82s Type 'Monaco' into "Search races and circuits" SearchField
+    t =    29.82s     Wait for app.witness.ios to idle
+    t =    29.83s     Find the "Search races and circuits" SearchField
+    t =    29.94s     Check for interrupting elements affecting "Search races and circuits" SearchField
+    t =    30.05s     Synthesize event
+    t =    30.40s     Wait for app.witness.ios to idle
+    t =    30.40s Waiting 5.0s for Button (First Match) to exist
+    t =    31.46s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =    31.46s         Checking existence of `Button (First Match)`
+    t =    32.16s Added attachment named 'add-race-calendar'
+    t =    32.16s Tap Button (First Match)
+    t =    32.16s     Wait for app.witness.ios to idle
+    t =    32.16s     Find the Button (First Match)
+    t =    32.47s     Check for interrupting elements affecting "race-row-2026-monaco" Button
+    t =    32.61s     Synthesize event
+    t =    32.92s     Wait for app.witness.ios to idle
+    t =    33.13s Waiting 5.0s for "add-venue-name" Any to exist
+    t =    34.19s     Checking `Expect predicate `existsNoRetry == 1` for object "add-venue-name" Any`
+    t =    34.19s         Checking existence of `"add-venue-name" Any`
+    t =    34.59s Find the "add-venue-name" Any
+    t =    35.33s Added attachment named 'add-race-picked'
+    t =    35.33s Waiting 8.0s for "add-save" Any to exist
+    t =    36.40s     Checking `Expect predicate `existsNoRetry == 1` for object "add-save" Any`
+    t =    36.40s         Checking existence of `"add-save" Any`
+    t =    36.46s Tap "add-save" Any
+    t =    36.46s     Wait for app.witness.ios to idle
+    t =    36.47s     Find the "add-save" Any
+    t =    36.58s     Check for interrupting elements affecting "add-save" Other
+    t =    36.71s     Synthesize event
+    t =    37.02s     Wait for app.witness.ios to idle
+    t =    37.19s Waiting 5.0s for Any (First Match) to exist
+    t =    38.22s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =    38.22s         Checking existence of `Any (First Match)`
+    t =    38.30s Tear Down
+Test Case '-[WitnessUITests.WitnessUITests testPickClubFromCatalogAndRaceFromCalendar]' passed (38.536 seconds).
 Test Case '-[WitnessUITests.WitnessUITests testSelectYourTeams]' started.
-    t =     0.00s Start Test at 2026-10-19 02:53:50.234
-    t =     0.03s Set Up
+    t =     0.00s Start Test at 2026-10-19 03:22:07.503
+    t =     0.04s Set Up
     t =     0.04s Open app.witness.ios
     t =     0.04s     Launch app.witness.ios
-    t =     0.04s         Terminate app.witness.ios:67657
+    t =     0.04s         Terminate app.witness.ios:39654
     t =     1.66s         Setting up automation session
-    t =     3.43s         Wait for app.witness.ios to idle
-    t =     5.41s Waiting 5.0s for "You" Button to exist
-    t =     6.45s     Checking `Expect predicate `existsNoRetry == 1` for object "You" Button`
-    t =     6.45s         Checking existence of `"You" Button`
-    t =     6.63s Tap "You" Button
-    t =     6.63s     Wait for app.witness.ios to idle
-    t =     6.65s     Find the "You" Button
-    t =     6.74s     Check for interrupting elements affecting "You" Button
-    t =     6.84s     Synthesize event
-    t =     7.16s     Wait for app.witness.ios to idle
-    t =     7.44s Waiting 8.0s for "you-teams" Any to exist
-    t =     8.47s     Checking `Expect predicate `existsNoRetry == 1` for object "you-teams" Any`
-    t =     8.47s         Checking existence of `"you-teams" Any`
-    t =     8.69s Tap "you-teams" Any
-    t =     8.69s     Wait for app.witness.ios to idle
-    t =     8.69s     Find the "you-teams" Any
-    t =     8.91s     Check for interrupting elements affecting "you-teams" Button
-    t =     9.14s     Synthesize event
-    t =     9.44s     Wait for app.witness.ios to idle
-    t =     9.44s Waiting 8.0s for "favorites-add" Any to exist
-    t =    10.45s     Checking `Expect predicate `existsNoRetry == 1` for object "favorites-add" Any`
-    t =    10.45s         Checking existence of `"favorites-add" Any`
-    t =    10.68s Tap "favorites-add" Any
-    t =    10.68s     Wait for app.witness.ios to idle
-    t =    10.69s     Find the "favorites-add" Any
-    t =    10.84s     Check for interrupting elements affecting "favorites-add" Button
-    t =    10.93s     Synthesize event
-    t =    11.23s     Wait for app.witness.ios to idle
-    t =    11.33s Waiting 5.0s for SearchField (First Match) to exist
-    t =    12.35s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
-    t =    12.35s         Checking existence of `SearchField (First Match)`
-    t =    12.41s Tap SearchField (First Match)
-    t =    12.41s     Wait for app.witness.ios to idle
-    t =    12.41s     Find the SearchField (First Match)
-    t =    12.51s     Check for interrupting elements affecting "Search teams and countries" SearchField
-    t =    12.66s     Synthesize event
-    t =    12.98s     Wait for app.witness.ios to idle
-    t =    13.57s Type 'Cubs' into "Search teams and countries" SearchField
-    t =    13.57s     Wait for app.witness.ios to idle
-    t =    13.63s     Find the "Search teams and countries" SearchField
-    t =    14.07s     Check for interrupting elements affecting "Search teams and countries" SearchField
-    t =    14.24s     Synthesize event
-    t =    14.52s     Wait for app.witness.ios to idle
-    t =    20.30s Waiting 8.0s for "team-row-mlb-chc" Any to exist
-    t =    21.32s     Checking `Expect predicate `existsNoRetry == 1` for object "team-row-mlb-chc" Any`
-    t =    21.32s         Checking existence of `"team-row-mlb-chc" Any`
-    t =    21.89s Tap "team-row-mlb-chc" Any
-    t =    21.89s     Wait for app.witness.ios to idle
-    t =    21.89s     Find the "team-row-mlb-chc" Any
-    t =    22.43s     Check for interrupting elements affecting "team-row-mlb-chc" Button
-    t =    22.57s     Synthesize event
-    t =    22.91s     Wait for app.witness.ios to idle
-    t =    23.36s Waiting 5.0s for "favorite-mlb-chc" Any to exist
-    t =    24.38s     Checking `Expect predicate `existsNoRetry == 1` for object "favorite-mlb-chc" Any`
-    t =    24.38s         Checking existence of `"favorite-mlb-chc" Any`
-    t =    24.76s Added attachment named 'you-teams'
-    t =    24.76s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testSelectYourTeams]' passed (24.983 seconds).
+    t =    23.31s         Wait for app.witness.ios to idle
+    t =    25.84s Waiting 5.0s for "You" Button to exist
+    t =    26.85s     Checking `Expect predicate `existsNoRetry == 1` for object "You" Button`
+    t =    26.86s         Checking existence of `"You" Button`
+    t =    27.01s Tap "You" Button
+    t =    27.01s     Wait for app.witness.ios to idle
+    t =    27.02s     Find the "You" Button
+    t =    27.06s     Check for interrupting elements affecting "You" Button
+    t =    27.10s     Synthesize event
+    t =    27.40s     Wait for app.witness.ios to idle
+    t =    27.53s Waiting 8.0s for "you-teams" Any to exist
+    t =    28.54s     Checking `Expect predicate `existsNoRetry == 1` for object "you-teams" Any`
+    t =    28.54s         Checking existence of `"you-teams" Any`
+    t =    28.62s Tap "you-teams" Any
+    t =    28.62s     Wait for app.witness.ios to idle
+    t =    28.62s     Find the "you-teams" Any
+    t =    28.72s     Check for interrupting elements affecting "you-teams" Button
+    t =    28.78s     Synthesize event
+    t =    29.08s     Wait for app.witness.ios to idle
+    t =    29.08s Waiting 8.0s for "favorites-add" Any to exist
+    t =    30.12s     Checking `Expect predicate `existsNoRetry == 1` for object "favorites-add" Any`
+    t =    30.12s         Checking existence of `"favorites-add" Any`
+    t =    30.20s Tap "favorites-add" Any
+    t =    30.20s     Wait for app.witness.ios to idle
+    t =    30.21s     Find the "favorites-add" Any
+    t =    30.29s     Check for interrupting elements affecting "favorites-add" Button
+    t =    30.34s     Synthesize event
+    t =    30.64s     Wait for app.witness.ios to idle
+    t =    30.69s Waiting 5.0s for SearchField (First Match) to exist
+    t =    31.72s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
+    t =    31.72s         Checking existence of `SearchField (First Match)`
+    t =    31.75s Tap SearchField (First Match)
+    t =    31.75s     Wait for app.witness.ios to idle
+    t =    31.75s     Find the SearchField (First Match)
+    t =    31.80s     Check for interrupting elements affecting "Search teams and countries" SearchField
+    t =    31.90s     Synthesize event
+    t =    32.19s     Wait for app.witness.ios to idle
+    t =    32.59s Type 'Cubs' into "Search teams and countries" SearchField
+    t =    32.59s     Wait for app.witness.ios to idle
+    t =    32.60s     Find the "Search teams and countries" SearchField
+    t =    32.71s     Check for interrupting elements affecting "Search teams and countries" SearchField
+    t =    32.81s     Synthesize event
+    t =    33.07s     Wait for app.witness.ios to idle
+    t =    36.65s Waiting 8.0s for "team-row-mlb-chc" Any to exist
+    t =    37.69s     Checking `Expect predicate `existsNoRetry == 1` for object "team-row-mlb-chc" Any`
+    t =    37.69s         Checking existence of `"team-row-mlb-chc" Any`
+    t =    37.96s Tap "team-row-mlb-chc" Any
+    t =    37.96s     Wait for app.witness.ios to idle
+    t =    37.96s     Find the "team-row-mlb-chc" Any
+    t =    38.23s     Check for interrupting elements affecting "team-row-mlb-chc" Button
+    t =    38.33s     Synthesize event
+    t =    38.62s     Wait for app.witness.ios to idle
+    t =    38.91s Waiting 5.0s for "favorite-mlb-chc" Any to exist
+    t =    39.92s     Checking `Expect predicate `existsNoRetry == 1` for object "favorite-mlb-chc" Any`
+    t =    39.92s         Checking existence of `"favorite-mlb-chc" Any`
+    t =    40.21s Added attachment named 'you-teams'
+    t =    40.21s Tear Down
+Test Case '-[WitnessUITests.WitnessUITests testSelectYourTeams]' passed (40.436 seconds).
 Test Case '-[WitnessUITests.WitnessUITests testSpainTrip]' started.
-    t =     0.00s Start Test at 2026-10-19 02:54:15.217
-    t =     0.05s Set Up
-    t =     0.05s Open app.witness.ios
-    t =     0.05s     Launch app.witness.ios
-    t =     0.05s         Terminate app.witness.ios:69845
-    t =     2.12s         Setting up automation session
-    t =     5.13s         Wait for app.witness.ios to idle
-    t =     7.66s Waiting 3.0s for SearchField (First Match) to exist
-    t =     8.67s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
-    t =     8.67s         Checking existence of `SearchField (First Match)`
-    t =     8.79s Waiting 5.0s for SearchField (First Match) to exist
-    t =     9.80s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
-    t =     9.80s         Checking existence of `SearchField (First Match)`
-    t =     9.86s Tap SearchField (First Match)
-    t =     9.86s     Wait for app.witness.ios to idle
-    t =     9.87s     Find the SearchField (First Match)
-    t =     9.93s     Check for interrupting elements affecting "Teams, places, years" SearchField
-    t =    10.09s     Synthesize event
-    t =    10.43s     Wait for app.witness.ios to idle
-    t =    10.91s Waiting 3.0s for Keyboard (First Match) to exist
-    t =    11.94s     Checking `Expect predicate `existsNoRetry == 1` for object Keyboard (First Match)`
-    t =    11.94s         Checking existence of `Keyboard (First Match)`
-    t =    11.97s Type 'Madrid' into Target Application 'app.witness.ios'
-    t =    11.97s     Wait for app.witness.ios to idle
-    t =    11.98s     Find the Target Application 'app.witness.ios'
-    t =    12.08s     Check for interrupting elements affecting "Witness" Application
-    t =    12.16s     Synthesize event
-    t =    12.16s         Get number of matches for: Elements containing elements matching predicate 'hasKeyboardFocus == 1'
-    t =    12.52s     Wait for app.witness.ios to idle
-    t =    12.59s Waiting 8.0s for "game-card-lal-2020-clasico" Any to exist
-    t =    13.63s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-lal-2020-clasico" Any`
-    t =    13.63s         Checking existence of `"game-card-lal-2020-clasico" Any`
-    t =    14.07s Tap "game-card-lal-2020-clasico" Any
-    t =    14.08s     Wait for app.witness.ios to idle
-    t =    14.08s     Find the "game-card-lal-2020-clasico" Any
-    t =    14.89s     Check for interrupting elements affecting "game-card-lal-2020-clasico" Button
-    t =    15.02s     Synthesize event
-    t =    15.35s     Wait for app.witness.ios to idle
-    t =    15.74s Waiting 8.0s for "open-trip" Any to exist
-    t =    16.78s     Checking `Expect predicate `existsNoRetry == 1` for object "open-trip" Any`
-    t =    16.78s         Checking existence of `"open-trip" Any`
-    t =    16.99s Tap "open-trip" Any
-    t =    16.99s     Wait for app.witness.ios to idle
-    t =    17.00s     Find the "open-trip" Any
-    t =    17.21s     Check for interrupting elements affecting "open-trip" Button
-    t =    17.32s     Synthesize event
-    t =    17.63s     Wait for app.witness.ios to idle
-    t =    18.16s Waiting 5.0s for "trip-title" Any to exist
-    t =    19.25s     Checking `Expect predicate `existsNoRetry == 1` for object "trip-title" Any`
-    t =    19.25s         Checking existence of `"trip-title" Any`
-    t =    23.11s Added attachment named '14-trip-spain'
-    t =    23.11s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testSpainTrip]' passed (23.391 seconds).
+    t =     0.00s Start Test at 2026-10-19 03:22:47.940
+    t =     0.03s Set Up
+    t =     0.03s Open app.witness.ios
+    t =     0.03s     Launch app.witness.ios
+    t =     0.03s         Terminate app.witness.ios:42356
+    t =     1.96s         Setting up automation session
+    t =     4.18s         Wait for app.witness.ios to idle
+    t =     6.31s Waiting 3.0s for SearchField (First Match) to exist
+    t =     7.35s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
+    t =     7.35s         Checking existence of `SearchField (First Match)`
+    t =     7.45s Waiting 5.0s for SearchField (First Match) to exist
+    t =     8.48s     Checking `Expect predicate `existsNoRetry == 1` for object SearchField (First Match)`
+    t =     8.48s         Checking existence of `SearchField (First Match)`
+    t =     8.53s Tap SearchField (First Match)
+    t =     8.53s     Wait for app.witness.ios to idle
+    t =     8.55s     Find the SearchField (First Match)
+    t =     8.63s     Check for interrupting elements affecting "Teams, places, years" SearchField
+    t =     8.71s     Synthesize event
+    t =     9.02s     Wait for app.witness.ios to idle
+    t =     9.41s Waiting 3.0s for Keyboard (First Match) to exist
+    t =    10.44s     Checking `Expect predicate `existsNoRetry == 1` for object Keyboard (First Match)`
+    t =    10.44s         Checking existence of `Keyboard (First Match)`
+    t =    10.46s Type 'Madrid' into Target Application 'app.witness.ios'
+    t =    10.46s     Wait for app.witness.ios to idle
+    t =    10.46s     Find the Target Application 'app.witness.ios'
+    t =    10.58s     Check for interrupting elements affecting "Witness" Application
+    t =    10.63s     Synthesize event
+    t =    10.63s         Get number of matches for: Elements containing elements matching predicate 'hasKeyboardFocus == 1'
+    t =    10.98s     Wait for app.witness.ios to idle
+    t =    10.99s Waiting 8.0s for "game-card-lal-2020-clasico" Any to exist
+    t =    12.01s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-lal-2020-clasico" Any`
+    t =    12.02s         Checking existence of `"game-card-lal-2020-clasico" Any`
+    t =    12.37s Tap "game-card-lal-2020-clasico" Any
+    t =    12.37s     Wait for app.witness.ios to idle
+    t =    12.37s     Find the "game-card-lal-2020-clasico" Any
+    t =    12.68s     Check for interrupting elements affecting "game-card-lal-2020-clasico" Button
+    t =    12.80s     Synthesize event
+    t =    13.13s     Wait for app.witness.ios to idle
+    t =    13.38s Waiting 8.0s for "open-trip" Any to exist
+    t =    14.42s     Checking `Expect predicate `existsNoRetry == 1` for object "open-trip" Any`
+    t =    14.42s         Checking existence of `"open-trip" Any`
+    t =    14.55s Tap "open-trip" Any
+    t =    14.55s     Wait for app.witness.ios to idle
+    t =    14.55s     Find the "open-trip" Any
+    t =    14.65s     Check for interrupting elements affecting "open-trip" Button
+    t =    14.72s     Synthesize event
+    t =    15.02s     Wait for app.witness.ios to idle
+    t =    15.45s Waiting 5.0s for "trip-title" Any to exist
+    t =    16.50s     Checking `Expect predicate `existsNoRetry == 1` for object "trip-title" Any`
+    t =    16.50s         Checking existence of `"trip-title" Any`
+    t =    19.72s Added attachment named '14-trip-spain'
+    t =    19.73s Tear Down
+Test Case '-[WitnessUITests.WitnessUITests testSpainTrip]' passed (19.963 seconds).
 Test Case '-[WitnessUITests.WitnessUITests testTabsTour]' started.
-    t =     0.00s Start Test at 2026-10-19 02:54:38.609
-    t =     0.04s Set Up
-    t =     0.05s Open app.witness.ios
-    t =     0.05s     Launch app.witness.ios
-    t =     0.05s         Terminate app.witness.ios:70794
-    t =     1.89s         Setting up automation session
-    t =     6.19s         Wait for app.witness.ios to idle
-    t =     8.49s Waiting 10.0s for "game-card-mlb-2026-0704" Any to exist
-    t =     9.50s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2026-0704" Any`
-    t =     9.50s         Checking existence of `"game-card-mlb-2026-0704" Any`
-    t =     9.77s Checking existence of `"timeline-big-games" Any`
-    t =    10.21s Added attachment named '04-timeline'
-    t =    10.22s Waiting 5.0s for "Map" Button to exist
-    t =    11.27s     Checking `Expect predicate `existsNoRetry == 1` for object "Map" Button`
-    t =    11.28s         Checking existence of `"Map" Button`
-    t =    11.35s Tap "Map" Button
-    t =    11.35s     Wait for app.witness.ios to idle
-    t =    11.36s     Find the "Map" Button
-    t =    11.42s     Check for interrupting elements affecting "globe.americas.fill" Button
-    t =    11.49s     Synthesize event
-    t =    11.79s     Wait for app.witness.ios to idle
-    t =    12.54s Waiting 5.0s for "map-miles" Any to exist
-    t =    13.56s     Checking `Expect predicate `existsNoRetry == 1` for object "map-miles" Any`
-    t =    13.57s         Checking existence of `"map-miles" Any`
-    t =    13.71s Checking existence of `"map-legend" Any`
-    t =    13.86s Waiting 5.0s for "Expand map" Button to exist
-    t =    14.89s     Checking `Expect predicate `existsNoRetry == 1` for object "Expand map" Button`
-    t =    14.89s         Checking existence of `"Expand map" Button`
-    t =    14.96s Tap "Expand map" Button
-    t =    14.96s     Wait for app.witness.ios to idle
-    t =    14.96s     Find the "Expand map" Button
-    t =    15.04s     Check for interrupting elements affecting "map-expand" Button
-    t =    15.17s     Synthesize event
-    t =    15.57s     Wait for app.witness.ios to idle
-    t =    15.80s Waiting 5.0s for "life-map-expanded" Any to exist
-    t =    16.87s     Checking `Expect predicate `existsNoRetry == 1` for object "life-map-expanded" Any`
-    t =    16.88s         Checking existence of `"life-map-expanded" Any`
-    t =    16.95s Tap "Zoom in" Button
-    t =    16.95s     Wait for app.witness.ios to idle
-    t =    16.96s     Find the "Zoom in" Button
-    t =    17.06s     Check for interrupting elements affecting "map-zoom-in" Button
-    t =    17.29s     Synthesize event
-    t =    17.64s     Wait for app.witness.ios to idle
-    t =    19.47s Added attachment named '02b-map-expanded'
-    t =    19.47s Tap "Close map" Button
-    t =    19.47s     Wait for app.witness.ios to idle
-    t =    19.48s     Find the "Close map" Button
-    t =    19.85s     Check for interrupting elements affecting "map-close" Button
-    t =    20.24s     Synthesize event
-    t =    20.55s     Wait for app.witness.ios to idle
-    t =    23.76s Added attachment named '02-map'
-    t =    23.76s Waiting 5.0s for "Passport" Button to exist
-    t =    24.78s     Checking `Expect predicate `existsNoRetry == 1` for object "Passport" Button`
-    t =    24.78s         Checking existence of `"Passport" Button`
-    t =    24.90s Tap "Passport" Button
-    t =    24.90s     Wait for app.witness.ios to idle
-    t =    24.91s     Find the "Passport" Button
-    t =    25.02s     Check for interrupting elements affecting "person.text.rectangle.fill" Button
-    t =    25.09s     Synthesize event
-    t =    25.39s     Wait for app.witness.ios to idle
-    t =    25.64s Waiting 5.0s for "passport-count" Any to exist
-    t =    26.68s     Checking `Expect predicate `existsNoRetry == 1` for object "passport-count" Any`
-    t =    26.68s         Checking existence of `"passport-count" Any`
-    t =    27.40s Added attachment named '03-passport'
-    t =    27.40s Checking existence of `"CHASE FIELD" StaticText`
-    t =    27.54s Checking existence of `"Chase Field" StaticText`
-    t =    27.66s Checking existence of `StaticText (First Match)`
-    t =    27.98s Find the "stamp-wrigley" Any
-    t =    28.17s Waiting 8.0s for "stamp-wrigley" Any to exist
-    t =    29.21s     Checking `Expect predicate `existsNoRetry == 1` for object "stamp-wrigley" Any`
-    t =    29.21s         Checking existence of `"stamp-wrigley" Any`
-    t =    29.70s Tap "stamp-wrigley" Any
-    t =    29.70s     Wait for app.witness.ios to idle
-    t =    29.71s     Find the "stamp-wrigley" Any
-    t =    30.13s     Check for interrupting elements affecting "stamp-wrigley" Button
-    t =    30.48s     Synthesize event
-    t =    30.82s     Wait for app.witness.ios to idle
-    t =    31.04s Waiting 5.0s for "venue-title" Any to exist
-    t =    32.08s     Checking `Expect predicate `existsNoRetry == 1` for object "venue-title" Any`
-    t =    32.08s         Checking existence of `"venue-title" Any`
-    t =    32.46s Added attachment named '08-venue'
-    t =    32.46s Tap Button (Element at index 0)
-    t =    32.46s     Wait for app.witness.ios to idle
-    t =    32.47s     Find the Button (Element at index 0)
-    t =    32.57s     Check for interrupting elements affecting "BackButton" Button
-    t =    32.64s     Synthesize event
-    t =    32.94s     Wait for app.witness.ios to idle
-    t =    32.95s Waiting 5.0s for "You" Button to exist
-    t =    33.96s     Checking `Expect predicate `existsNoRetry == 1` for object "You" Button`
-    t =    33.96s         Checking existence of `"You" Button`
-    t =    34.06s Tap "You" Button
-    t =    34.06s     Wait for app.witness.ios to idle
-    t =    34.09s     Find the "You" Button
-    t =    34.17s     Check for interrupting elements affecting "person.crop.circle.fill" Button
-    t =    34.24s     Synthesize event
-    t =    34.58s     Wait for app.witness.ios to idle
-    t =    34.83s Waiting 5.0s for "you-lucky" Any to exist
-    t =    35.88s     Checking `Expect predicate `existsNoRetry == 1` for object "you-lucky" Any`
-    t =    35.88s         Checking existence of `"you-lucky" Any`
-    t =    36.48s Added attachment named '09-you'
-    t =    36.48s Checking existence of `"Points" StaticText`
-    t =    36.54s Checking existence of `"Runs" StaticText`
-    t =    36.60s Checking existence of `"RUNS" StaticText`
-    t =    36.65s Waiting 8.0s for "you-lucky" Any to exist
-    t =    37.67s     Checking `Expect predicate `existsNoRetry == 1` for object "you-lucky" Any`
-    t =    37.68s         Checking existence of `"you-lucky" Any`
-    t =    37.95s Tap "you-lucky" Any
-    t =    37.95s     Wait for app.witness.ios to idle
-    t =    37.95s     Find the "you-lucky" Any
-    t =    38.16s     Check for interrupting elements affecting "you-lucky" Button
-    t =    38.32s     Synthesize event
-    t =    38.65s     Wait for app.witness.ios to idle
-    t =    38.67s Waiting 5.0s for "lucky-title" Any to exist
-    t =    39.69s     Checking `Expect predicate `existsNoRetry == 1` for object "lucky-title" Any`
-    t =    39.69s         Checking existence of `"lucky-title" Any`
-    t =    40.12s Added attachment named '10-lucky'
-    t =    40.12s Tap Button (Element at index 0)
-    t =    40.12s     Wait for app.witness.ios to idle
-    t =    40.12s     Find the Button (Element at index 0)
-    t =    40.16s     Check for interrupting elements affecting "BackButton" Button
-    t =    40.19s     Synthesize event
-    t =    40.50s     Wait for app.witness.ios to idle
-    t =    40.50s Waiting 8.0s for "you-big-games" Any to exist
-    t =    41.54s     Checking `Expect predicate `existsNoRetry == 1` for object "you-big-games" Any`
-    t =    41.54s         Checking existence of `"you-big-games" Any`
-    t =    42.04s Tap "you-big-games" Any
-    t =    42.04s     Wait for app.witness.ios to idle
-    t =    42.05s     Find the "you-big-games" Any
-    t =    42.39s     Check for interrupting elements affecting "you-big-games" Button
-    t =    42.60s     Synthesize event
-    t =    42.65s         Scroll element to visible
-    t =    42.67s         Find the "you-big-games" Button
-    t =    43.06s         Computed hit point {201, 643.00000000000011} after scrolling to visible
-    t =    43.36s     Wait for app.witness.ios to idle
-    t =    43.37s Waiting 5.0s for "big-games-count" Any to exist
-    t =    44.41s     Checking `Expect predicate `existsNoRetry == 1` for object "big-games-count" Any`
-    t =    44.41s         Checking existence of `"big-games-count" Any`
-    t =    44.73s Added attachment named '15-big-games'
-    t =    44.73s Tap Button (Element at index 0)
-    t =    44.73s     Wait for app.witness.ios to idle
-    t =    44.74s     Find the Button (Element at index 0)
-    t =    44.78s     Check for interrupting elements affecting "BackButton" Button
-    t =    44.82s     Synthesize event
-    t =    45.12s     Wait for app.witness.ios to idle
-    t =    45.13s Waiting 8.0s for "person-row-maya" Any to exist
-    t =    46.14s     Checking `Expect predicate `existsNoRetry == 1` for object "person-row-maya" Any`
-    t =    46.14s         Checking existence of `"person-row-maya" Any`
-    t =    46.35s Tap "person-row-maya" Any
-    t =    46.35s     Wait for app.witness.ios to idle
-    t =    46.36s     Find the "person-row-maya" Any
-    t =    46.58s     Check for interrupting elements affecting "person-row-maya" Button
-    t =    46.74s     Synthesize event
-    t =    46.76s         Scroll element to visible
-    t =    46.77s         Find the "person-row-maya" Button
-    t =    47.04s         Computed hit point {201, 643} after scrolling to visible
-    t =    47.34s     Wait for app.witness.ios to idle
-    t =    47.38s Waiting 5.0s for "shared-count" Any to exist
-    t =    48.47s     Checking `Expect predicate `existsNoRetry == 1` for object "shared-count" Any`
-    t =    48.47s         Checking existence of `"shared-count" Any`
-    t =    48.91s Added attachment named '13-shared-passport'
-    t =    48.91s Tap Button (Element at index 0)
-    t =    48.91s     Wait for app.witness.ios to idle
-    t =    48.93s     Find the Button (Element at index 0)
-    t =    49.03s     Check for interrupting elements affecting "BackButton" Button
-    t =    49.09s     Synthesize event
-    t =    49.40s     Wait for app.witness.ios to idle
-    t =    49.40s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testTabsTour]' passed (49.742 seconds).
+    t =     0.00s Start Test at 2026-10-19 03:23:07.903
+    t =     0.03s Set Up
+    t =     0.03s Open app.witness.ios
+    t =     0.03s     Launch app.witness.ios
+    t =     0.03s         Terminate app.witness.ios:44533
+    t =     1.60s         Setting up automation session
+    t =     4.88s         Wait for app.witness.ios to idle
+    t =     6.93s Waiting 10.0s for "game-card-mlb-2026-0704" Any to exist
+    t =     7.96s     Checking `Expect predicate `existsNoRetry == 1` for object "game-card-mlb-2026-0704" Any`
+    t =     7.97s         Checking existence of `"game-card-mlb-2026-0704" Any`
+    t =     8.28s Checking existence of `"timeline-big-games" Any`
+    t =     8.59s Added attachment named '04-timeline'
+    t =     8.59s Waiting 5.0s for "Map" Button to exist
+    t =     9.65s     Checking `Expect predicate `existsNoRetry == 1` for object "Map" Button`
+    t =     9.65s         Checking existence of `"Map" Button`
+    t =     9.74s Tap "Map" Button
+    t =     9.74s     Wait for app.witness.ios to idle
+    t =     9.75s     Find the "Map" Button
+    t =     9.83s     Check for interrupting elements affecting "Map" Button
+    t =     9.89s     Synthesize event
+    t =    10.22s     Wait for app.witness.ios to idle
+    t =    10.85s Waiting 5.0s for "map-miles" Any to exist
+    t =    11.85s     Checking `Expect predicate `existsNoRetry == 1` for object "map-miles" Any`
+    t =    11.85s         Checking existence of `"map-miles" Any`
+    t =    12.06s Checking existence of `"map-legend" Any`
+    t =    12.21s Waiting 5.0s for "Expand map" Button to exist
+    t =    13.25s     Checking `Expect predicate `existsNoRetry == 1` for object "Expand map" Button`
+    t =    13.26s         Checking existence of `"Expand map" Button`
+    t =    13.35s Tap "Expand map" Button
+    t =    13.35s     Wait for app.witness.ios to idle
+    t =    13.35s     Find the "Expand map" Button
+    t =    13.40s     Check for interrupting elements affecting "map-expand" Button
+    t =    13.48s     Synthesize event
+    t =    13.79s     Wait for app.witness.ios to idle
+    t =    14.02s Waiting 5.0s for "life-map-expanded" Any to exist
+    t =    15.09s     Checking `Expect predicate `existsNoRetry == 1` for object "life-map-expanded" Any`
+    t =    15.09s         Checking existence of `"life-map-expanded" Any`
+    t =    15.16s Tap "Zoom in" Button
+    t =    15.16s     Wait for app.witness.ios to idle
+    t =    15.17s     Find the "Zoom in" Button
+    t =    15.20s     Check for interrupting elements affecting "map-zoom-in" Button
+    t =    15.40s     Synthesize event
+    t =    15.73s     Wait for app.witness.ios to idle
+    t =    16.80s Added attachment named '02b-map-expanded'
+    t =    16.80s Tap "Close map" Button
+    t =    16.80s     Wait for app.witness.ios to idle
+    t =    16.80s     Find the "Close map" Button
+    t =    16.85s     Check for interrupting elements affecting "map-close" Button
+    t =    16.99s     Synthesize event
+    t =    17.30s     Wait for app.witness.ios to idle
+    t =    20.49s Added attachment named '02-map'
+    t =    20.49s Waiting 5.0s for "Passport" Button to exist
+    t =    21.52s     Checking `Expect predicate `existsNoRetry == 1` for object "Passport" Button`
+    t =    21.52s         Checking existence of `"Passport" Button`
+    t =    21.62s Tap "Passport" Button
+    t =    21.62s     Wait for app.witness.ios to idle
+    t =    21.62s     Find the "Passport" Button
+    t =    21.69s     Check for interrupting elements affecting "Passport" Button
+    t =    21.77s     Synthesize event
+    t =    22.08s     Wait for app.witness.ios to idle
+    t =    22.20s Waiting 5.0s for "passport-count" Any to exist
+    t =    23.22s     Checking `Expect predicate `existsNoRetry == 1` for object "passport-count" Any`
+    t =    23.22s         Checking existence of `"passport-count" Any`
+    t =    23.66s Added attachment named '03-passport'
+    t =    23.66s Checking existence of `"CHASE FIELD" StaticText`
+    t =    23.76s Checking existence of `"Chase Field" StaticText`
+    t =    23.80s Checking existence of `StaticText (First Match)`
+    t =    24.01s Find the "stamp-wrigley" Any
+    t =    24.23s Waiting 8.0s for "stamp-wrigley" Any to exist
+    t =    25.26s     Checking `Expect predicate `existsNoRetry == 1` for object "stamp-wrigley" Any`
+    t =    25.26s         Checking existence of `"stamp-wrigley" Any`
+    t =    25.46s Tap "stamp-wrigley" Any
+    t =    25.46s     Wait for app.witness.ios to idle
+    t =    25.47s     Find the "stamp-wrigley" Any
+    t =    25.67s     Check for interrupting elements affecting "stamp-wrigley" Button
+    t =    25.78s     Synthesize event
+    t =    26.08s     Wait for app.witness.ios to idle
+    t =    26.12s Waiting 5.0s for "venue-title" Any to exist
+    t =    27.14s     Checking `Expect predicate `existsNoRetry == 1` for object "venue-title" Any`
+    t =    27.14s         Checking existence of `"venue-title" Any`
+    t =    27.40s Added attachment named '08-venue'
+    t =    27.41s Tap Button (Element at index 0)
+    t =    27.41s     Wait for app.witness.ios to idle
+    t =    27.41s     Find the Button (Element at index 0)
+    t =    27.47s     Check for interrupting elements affecting "BackButton" Button
+    t =    27.53s     Synthesize event
+    t =    27.82s     Wait for app.witness.ios to idle
+    t =    27.82s Waiting 5.0s for "You" Button to exist
+    t =    28.86s     Checking `Expect predicate `existsNoRetry == 1` for object "You" Button`
+    t =    28.86s         Checking existence of `"You" Button`
+    t =    28.94s Tap "You" Button
+    t =    28.94s     Wait for app.witness.ios to idle
+    t =    28.94s     Find the "You" Button
+    t =    28.99s     Check for interrupting elements affecting "You" Button
+    t =    29.04s     Synthesize event
+    t =    29.33s     Wait for app.witness.ios to idle
+    t =    29.42s Waiting 5.0s for "you-lucky" Any to exist
+    t =    30.45s     Checking `Expect predicate `existsNoRetry == 1` for object "you-lucky" Any`
+    t =    30.45s         Checking existence of `"you-lucky" Any`
+    t =    30.73s Added attachment named '09-you'
+    t =    30.73s Checking existence of `"Points" StaticText`
+    t =    30.79s Checking existence of `"Runs" StaticText`
+    t =    30.92s Checking existence of `"RUNS" StaticText`
+    t =    30.99s Waiting 8.0s for "you-lucky" Any to exist
+    t =    32.01s     Checking `Expect predicate `existsNoRetry == 1` for object "you-lucky" Any`
+    t =    32.01s         Checking existence of `"you-lucky" Any`
+    t =    32.11s Tap "you-lucky" Any
+    t =    32.11s     Wait for app.witness.ios to idle
+    t =    32.11s     Find the "you-lucky" Any
+    t =    32.21s     Check for interrupting elements affecting "you-lucky" Button
+    t =    32.33s     Synthesize event
+    t =    32.64s     Wait for app.witness.ios to idle
+    t =    32.64s Waiting 5.0s for "lucky-title" Any to exist
+    t =    33.65s     Checking `Expect predicate `existsNoRetry == 1` for object "lucky-title" Any`
+    t =    33.65s         Checking existence of `"lucky-title" Any`
+    t =    33.91s Added attachment named '10-lucky'
+    t =    33.91s Tap Button (Element at index 0)
+    t =    33.91s     Wait for app.witness.ios to idle
+    t =    33.91s     Find the Button (Element at index 0)
+    t =    33.93s     Check for interrupting elements affecting "BackButton" Button
+    t =    33.97s     Synthesize event
+    t =    34.27s     Wait for app.witness.ios to idle
+    t =    34.28s Waiting 8.0s for "you-big-games" Any to exist
+    t =    35.33s     Checking `Expect predicate `existsNoRetry == 1` for object "you-big-games" Any`
+    t =    35.33s         Checking existence of `"you-big-games" Any`
+    t =    35.46s Tap "you-big-games" Any
+    t =    35.46s     Wait for app.witness.ios to idle
+    t =    35.46s     Find the "you-big-games" Any
+    t =    35.58s     Check for interrupting elements affecting "you-big-games" Button
+    t =    35.65s     Synthesize event
+    t =    35.68s         Scroll element to visible
+    t =    35.69s         Find the "you-big-games" Button
+    t =    35.87s         Computed hit point {201, 643.00000000000011} after scrolling to visible
+    t =    36.16s     Wait for app.witness.ios to idle
+    t =    36.16s Waiting 5.0s for "big-games-count" Any to exist
+    t =    37.20s     Checking `Expect predicate `existsNoRetry == 1` for object "big-games-count" Any`
+    t =    37.20s         Checking existence of `"big-games-count" Any`
+    t =    37.42s Added attachment named '15-big-games'
+    t =    37.42s Tap Button (Element at index 0)
+    t =    37.42s     Wait for app.witness.ios to idle
+    t =    37.42s     Find the Button (Element at index 0)
+    t =    37.46s     Check for interrupting elements affecting "BackButton" Button
+    t =    37.51s     Synthesize event
+    t =    37.81s     Wait for app.witness.ios to idle
+    t =    37.81s Waiting 8.0s for "person-row-maya" Any to exist
+    t =    38.84s     Checking `Expect predicate `existsNoRetry == 1` for object "person-row-maya" Any`
+    t =    38.84s         Checking existence of `"person-row-maya" Any`
+    t =    38.96s Tap "person-row-maya" Any
+    t =    38.96s     Wait for app.witness.ios to idle
+    t =    38.96s     Find the "person-row-maya" Any
+    t =    39.09s     Check for interrupting elements affecting "person-row-maya" Button
+    t =    39.16s     Synthesize event
+    t =    39.17s         Scroll element to visible
+    t =    39.18s         Find the "person-row-maya" Button
+    t =    39.35s         Computed hit point {201, 643} after scrolling to visible
+    t =    39.71s     Wait for app.witness.ios to idle
+    t =    39.71s Waiting 5.0s for "shared-count" Any to exist
+    t =    40.75s     Checking `Expect predicate `existsNoRetry == 1` for object "shared-count" Any`
+    t =    40.75s         Checking existence of `"shared-count" Any`
+    t =    40.96s Added attachment named '13-shared-passport'
+    t =    40.96s Tap Button (Element at index 0)
+    t =    40.96s     Wait for app.witness.ios to idle
+    t =    40.96s     Find the Button (Element at index 0)
+    t =    40.99s     Check for interrupting elements affecting "BackButton" Button
+    t =    41.03s     Synthesize event
+    t =    41.34s     Wait for app.witness.ios to idle
+    t =    41.35s Tear Down
+Test Case '-[WitnessUITests.WitnessUITests testTabsTour]' passed (41.699 seconds).
 Test Case '-[WitnessUITests.WitnessUITests testWelcome]' started.
-    t =     0.00s Start Test at 2026-10-19 02:55:28.351
-    t =     0.06s Set Up
-    t =     0.07s Open app.witness.ios
-    t =     0.07s     Launch app.witness.ios
-    t =     0.07s         Terminate app.witness.ios:71670
-    t =     2.38s         Setting up automation session
-    t =     6.44s         Wait for app.witness.ios to idle
-    t =     8.31s Waiting 8.0s for "welcome-sample" Any to exist
-    t =     9.33s     Checking `Expect predicate `existsNoRetry == 1` for object "welcome-sample" Any`
-    t =     9.33s         Checking existence of `"welcome-sample" Any`
-    t =     9.73s Added attachment named '01-welcome'
-    t =     9.74s Waiting 8.0s for "welcome-sample" Any to exist
-    t =    10.76s     Checking `Expect predicate `existsNoRetry == 1` for object "welcome-sample" Any`
-    t =    10.76s         Checking existence of `"welcome-sample" Any`
-    t =    10.79s Tap "welcome-sample" Any
-    t =    10.79s     Wait for app.witness.ios to idle
-    t =    10.80s     Find the "welcome-sample" Any
-    t =    10.83s     Check for interrupting elements affecting "welcome-sample" Button
-    t =    10.91s     Synthesize event
-    t =    11.23s     Wait for app.witness.ios to idle
-    t =    13.67s Waiting 8.0s for "Timeline" Button to exist
-    t =    14.70s     Checking `Expect predicate `existsNoRetry == 1` for object "Timeline" Button`
-    t =    14.70s         Checking existence of `"Timeline" Button`
-    t =    15.05s Tear Down
-Test Case '-[WitnessUITests.WitnessUITests testWelcome]' passed (15.299 seconds).
-Test Suite 'WitnessUITests' passed at 2026-10-19 02:55:43.653.
-	 Executed 16 tests, with 1 test skipped and 0 failures (0 unexpected) in 527.159 (527.172) seconds
-Test Suite 'WitnessUITests.xctest' passed at 2026-10-19 02:55:43.656.
-	 Executed 16 tests, with 1 test skipped and 0 failures (0 unexpected) in 527.159 (527.175) seconds
-Test Suite 'All tests' passed at 2026-10-19 02:55:43.657.
-	 Executed 16 tests, with 1 test skipped and 0 failures (0 unexpected) in 527.159 (527.177) seconds
-2026-10-19 02:55:46.914 xcodebuild[40343:107754] [MT] IDETestOperationsObserverDebug: 614.717 elapsed -- Testing started completed.
-2026-10-19 02:55:46.915 xcodebuild[40343:107754] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
-2026-10-19 02:55:46.915 xcodebuild[40343:107754] [MT] IDETestOperationsObserverDebug: 614.717 sec, +614.717 sec -- end
+    t =     0.00s Start Test at 2026-10-19 03:23:49.603
+    t =     0.09s Set Up
+    t =     0.09s Open app.witness.ios
+    t =     0.09s     Launch app.witness.ios
+    t =     0.09s         Terminate app.witness.ios:46001
+    t =     2.24s         Setting up automation session
+    t =     5.00s         Wait for app.witness.ios to idle
+    t =     6.53s Waiting 8.0s for "welcome-sample" Any to exist
+    t =     7.58s     Checking `Expect predicate `existsNoRetry == 1` for object "welcome-sample" Any`
+    t =     7.58s         Checking existence of `"welcome-sample" Any`
+    t =     7.80s Added attachment named '01-welcome'
+    t =     7.80s Waiting 8.0s for "welcome-sample" Any to exist
+    t =     8.84s     Checking `Expect predicate `existsNoRetry == 1` for object "welcome-sample" Any`
+    t =     8.84s         Checking existence of `"welcome-sample" Any`
+    t =     8.89s Tap "welcome-sample" Any
+    t =     8.89s     Wait for app.witness.ios to idle
+    t =     8.89s     Find the "welcome-sample" Any
+    t =     8.94s     Check for interrupting elements affecting "welcome-sample" Button
+    t =     8.97s     Synthesize event
+    t =     9.28s     Wait for app.witness.ios to idle
+    t =    10.89s Waiting 8.0s for "Timeline" Button to exist
+    t =    11.89s     Checking `Expect predicate `existsNoRetry == 1` for object "Timeline" Button`
+    t =    11.89s         Checking existence of `"Timeline" Button`
+    t =    12.02s Tear Down
+Test Case '-[WitnessUITests.WitnessUITests testWelcome]' passed (12.277 seconds).
+Test Suite 'WitnessUITests' passed at 2026-10-19 03:24:01.881.
+	 Executed 16 tests, with 1 test skipped and 0 failures (0 unexpected) in 578.041 (578.057) seconds
+Test Suite 'WitnessUITests.xctest' passed at 2026-10-19 03:24:01.882.
+	 Executed 16 tests, with 1 test skipped and 0 failures (0 unexpected) in 578.041 (578.058) seconds
+Test Suite 'All tests' passed at 2026-10-19 03:24:01.882.
+	 Executed 16 tests, with 1 test skipped and 0 failures (0 unexpected) in 578.041 (578.059) seconds
+2026-10-19 03:24:03.630 xcodebuild[6927:27250] [MT] IDETestOperationsObserverDebug: 699.390 elapsed -- Testing started completed.
+2026-10-19 03:24:03.631 xcodebuild[6927:27250] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-19 03:24:03.631 xcodebuild[6927:27250] [MT] IDETestOperationsObserverDebug: 699.390 sec, +699.390 sec -- end
 
 Test session results, code coverage, and logs:
 	/Users/runner/work/SportsApp/SportsApp/build/Results.xcresult
