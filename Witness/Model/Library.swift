@@ -576,6 +576,8 @@ final class Library {
         if let x = a.source, let y = b.source {
             return x.provider == y.provider && x.league == y.league && x.eventId == y.eventId
         }
+        // A stadium visit saved before its game was found, and that game from the same photos, perhaps at the ground next door.
+        if a.isVisit != b.isVisit, !Set(a.photos).isDisjoint(with: b.photos) { return true }
         guard a.venueId == b.venueId else { return false }
         return abs(a.date.timeIntervalSince(b.date)) < 8 * 3600
     }
@@ -586,9 +588,16 @@ final class Library {
         var seen = Set(g.photos)
         for ref in other.photos where seen.insert(ref).inserted { g.photos.append(ref) }
         if g.kind == .visit && other.kind != .visit {
+            // The visit was a game after all: where, who and what it was come from the game, not from the visit's guesses.
             g.kind = nil
             g.sport = other.sport
             g.date = other.date
+            g.venueId = other.venueId
+            if other.source != nil {
+                g.homeTeamId = other.homeTeamId
+                g.competition = other.competition
+                g.weather = nil
+            }
         }
         if g.source == nil { g.source = other.source }
         if g.homeTeamId == nil { g.homeTeamId = other.homeTeamId }
