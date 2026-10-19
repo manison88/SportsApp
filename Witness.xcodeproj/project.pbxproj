@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00A18AB96E3FAB46259A750C /* HomePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82A7CA8F442DDC304678250 /* HomePickerView.swift */; };
+		00F26CCF0838E1FA236E6A34 /* GameSuggester.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AAEF065E19C5B92CD56D63 /* GameSuggester.swift */; };
 		00FA15CED64001295EE46A94 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = A051A1837F2F1411136520EB /* Components.swift */; };
 		00FBD37F25C6CD2BE47DD619 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67381837ED335A8DC3A8AB2 /* OnboardingView.swift */; };
 		039B28D15BD758C29D374F98 /* ScanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E49321B29793341AF81A22B /* ScanModel.swift */; };
@@ -174,6 +175,7 @@
 		DA0A2D620B0AF02229035D47 /* CoverPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPicker.swift; sourceTree = "<group>"; };
 		DEDE9AC79A998536F4025B92 /* GameMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMemoryView.swift; sourceTree = "<group>"; };
 		E1D759FA400F64646D4F0E01 /* YouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView.swift; sourceTree = "<group>"; };
+		E8AAEF065E19C5B92CD56D63 /* GameSuggester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSuggester.swift; sourceTree = "<group>"; };
 		EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuckyCharmView.swift; sourceTree = "<group>"; };
 		F0886E427272EE4FBED88DB5 /* TicketImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketImportView.swift; sourceTree = "<group>"; };
 		F3389D60FD9A2CDD994777AC /* TeamPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPickerView.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				DA0A2D620B0AF02229035D47 /* CoverPicker.swift */,
 				7883E63EE9CC483C1D8C9799 /* F1Calendar.swift */,
 				81F8BFCA25D2EAB73580B35B /* GameLookup.swift */,
+				E8AAEF065E19C5B92CD56D63 /* GameSuggester.swift */,
 				873BADEA2FBDB111EADA8449 /* LocalSchedule.swift */,
 				94EF1E486EA6D3C38019482C /* LocationService.swift */,
 				302F3BA2809104AA07A544F3 /* PackStore.swift */,
@@ -630,6 +633,7 @@
 				2FB08C6E1D9C2F5F821BFEA3 /* GameLookup.swift in Sources */,
 				B77AD38956434C4AE7F0517B /* GameMemoryView.swift in Sources */,
 				6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */,
+				00F26CCF0838E1FA236E6A34 /* GameSuggester.swift in Sources */,
 				00A18AB96E3FAB46259A750C /* HomePickerView.swift in Sources */,
 				7B27E405891225F28D7399BA /* LegalContent.swift in Sources */,
 				DDBE27D9C6E1E1F4093932DD /* LegalView.swift in Sources */,
