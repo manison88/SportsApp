@@ -1,5 +1,6 @@
 import XCTest
 import UIKit
+import CoreLocation
 @testable import Witness
 
 @MainActor
@@ -555,6 +556,94 @@ final class AlbumAndScoreboardTests: XCTestCase {
         // A real game: most photos show the ground or the crowd in a stadium.
         XCTAssertTrue(SceneCheck.DayLook(classified: 12, venue: 7, elsewhere: 1).isGame())
         XCTAssertTrue(GameSuggester.isAppAlbum("Meta AI"))
+    }
+
+    func testVenueLabelsAreWholeIdentifiers() {
+        // "rink" is inside "drink", "baseball" inside "baseball_hat": neither is a game.
+        XCTAssertEqual(SceneCheck.venueSign([("drink", 0.9), ("drinking_glass", 0.8), ("baseball_hat", 0.8), ("baseball_bat", 0.7)]), 0)
+        // A real stadium photo (Wrigley, as the classifier reads it).
+        XCTAssertEqual(SceneCheck.kind([("stadium", 0.87), ("arena", 0.87), ("crowd", 0.83), ("scoreboard", 0.32)]), .venue(structure: true))
+        // A ball on the beach reads "soccer" too, but the beach is stronger.
+        XCTAssertEqual(SceneCheck.kind([("beach", 0.8), ("sand", 0.7), ("soccer", 0.4)]), .elsewhere)
+        // A kid's game: a sport, but no stadium.
+        XCTAssertEqual(SceneCheck.kind([("soccer", 0.6), ("grass", 0.8)]), .venue(structure: false))
+        XCTAssertEqual(SceneCheck.kind([("people", 0.9), ("sunbathing", 0.5)]), .elsewhere)
+        XCTAssertEqual(SceneCheck.kind([("people", 0.9), ("crowd", 0.6)]), .neither)
+    }
+
+    private func times(_ start: Date, minutes: [Double]) -> [Date] { minutes.map { start.addingTimeInterval($0 * 60) } }
+
+    func testTimeShapeOfAGameDay() throws {
+        let evening = Date(timeIntervalSince1970: 1_560_000_000)
+        // An evening at the ballpark: a dozen photos over three hours.
+        let game = try XCTUnwrap(GameSuggester.DayShape.of(times(evening, minutes: [0, 10, 25, 40, 60, 75, 90, 110, 130, 150, 170, 180])))
+        XCTAssertTrue(game.looksLikeAnOuting)
+        XCTAssertEqual(game.inside, 12)
+        // Photos from morning to night, an hour or two apart: no one stretch holds most of them.
+        let spread = try XCTUnwrap(GameSuggester.DayShape.of(times(evening, minutes: [0, 120, 240, 360, 480, 600, 720, 840])))
+        XCTAssertFalse(spread.looksLikeAnOuting)
+        // A two-minute burst is not a game either.
+        let burst = try XCTUnwrap(GameSuggester.DayShape.of(times(evening, minutes: [0, 0.5, 1, 1.5, 2])))
+        XCTAssertFalse(burst.looksLikeAnOuting)
+        // Breakfast photos do not hide an evening game: the busiest stretch is the game.
+        let mixed = try XCTUnwrap(GameSuggester.DayShape.of(times(evening, minutes: [-600, -590] + [0, 20, 45, 70, 100, 140])))
+        XCTAssertTrue(mixed.looksLikeAnOuting)
+        XCTAssertEqual(mixed.first, evening)
+        // A game that started 30 minutes before the first photo fits; one twelve hours later does not.
+        XCTAssertTrue(game.covers(evening.addingTimeInterval(-30 * 60)))
+        XCTAssertFalse(game.covers(evening.addingTimeInterval(12 * 3600)))
+        XCTAssertFalse(game.covers(evening.addingTimeInterval(-6 * 3600)))
+    }
+
+    func testLongRunningAlbumsAreCollections() {
+        let start = Date(timeIntervalSince1970: 1_500_000_000)
+        let months = (0..<40).map { start.addingTimeInterval(Double($0) * 5 * 86_400) }
+        XCTAssertTrue(GameSuggester.isCollection(months, title: "Favorites"))
+        XCTAssertFalse(GameSuggester.isCollection(months, title: "Baseball"), "A sport album is read even when it runs for months")
+        let weekend = (0..<40).map { start.addingTimeInterval(Double($0) * 3600) }
+        XCTAssertFalse(GameSuggester.isCollection(weekend, title: "Chicago weekend"))
+    }
+
+    func testPhotosWithALocationFarFromAnyStadiumWereElsewhere() throws {
+        let wrigley = try XCTUnwrap(library.venue("wrigley"))
+        let index = VenueIndex(library.venues)
+        // The middle of Lake Michigan, nowhere near a stadium.
+        let lake = CLLocation(latitude: 42.2, longitude: -87.2)
+        XCTAssertEqual(GameSuggester.whereabouts([lake, lake, lake], total: 4, index: index), .elsewhere)
+        // Most photos have no location: nothing to go on.
+        XCTAssertEqual(GameSuggester.whereabouts([lake], total: 10, index: index), .unknown)
+        // A kilometer from Wrigley: the fix may have drifted, so Wrigley is checked.
+        let close = CLLocation(latitude: wrigley.latitude + 0.009, longitude: wrigley.longitude)
+        guard case .near(let near) = GameSuggester.whereabouts([close, lake], total: 2, index: index) else { return XCTFail("near") }
+        XCTAssertTrue(near.contains { $0.id == "wrigley" })
+    }
+
+    func testTheScheduleDecides() throws {
+        let start = Date(timeIntervalSince1970: 1_560_000_000)
+        let shape = try XCTUnwrap(GameSuggester.DayShape.of(times(start, minutes: [0, 20, 40, 60, 90, 120, 150])))
+        let wrigley = try XCTUnwrap(library.venue("wrigley"))
+        let side = { (name: String) in FoundGame.Side(espnId: "", abbreviation: "", location: "", name: name, color: nil, altColor: nil, score: nil, line: []) }
+        let game = FoundGame(league: "baseball/mlb", leagueName: "MLB", eventId: "1", sport: .baseball, start: start,
+                             venueName: "Wrigley Field", venueCity: "Chicago", home: side("Cubs"), away: side("Cardinals"),
+                             completed: true, note: nil)
+        let great = SceneCheck.DayLook(classified: 12, venue: 9, elsewhere: 0, structure: 6)
+        let few = SceneCheck.DayLook(classified: 12, venue: 3, elsewhere: 1, structure: 1)
+        let beach = SceneCheck.DayLook(classified: 12, venue: 3, elsewhere: 6, structure: 0)
+
+        // No game at any stadium the day could be at: never offered, however much it looks like one.
+        XCTAssertNil(GameSuggester.confidence(look: great, shape: shape, schedule: .none, titled: true))
+        // A game near where the photos were taken: a few clear photos are enough, a beach day is not.
+        XCTAssertNotNil(GameSuggester.confidence(look: few, shape: shape, schedule: .game(game, wrigley, specific: true), titled: false))
+        XCTAssertNil(GameSuggester.confidence(look: beach, shape: shape, schedule: .game(game, wrigley, specific: true), titled: false))
+        // Only a game somewhere in the fan's city: the photos must show the ground itself.
+        XCTAssertNil(GameSuggester.confidence(look: SceneCheck.DayLook(classified: 12, venue: 4, elsewhere: 0, structure: 0), shape: shape,
+                                              schedule: .game(game, wrigley, specific: false), titled: false))
+        // Nothing to check against: only a day that is plainly a stadium.
+        XCTAssertNil(GameSuggester.confidence(look: few, shape: shape, schedule: .unknown, titled: false))
+        let strong = try XCTUnwrap(GameSuggester.confidence(look: great, shape: shape, schedule: .unknown, titled: false))
+        let confirmed = try XCTUnwrap(GameSuggester.confidence(look: great, shape: shape, schedule: .game(game, wrigley, specific: true), titled: false))
+        XCTAssertGreaterThan(confirmed, strong, "A game on the schedule ranks above photos alone")
+        XCTAssertEqual(GameSuggester.describe(game, at: wrigley), "Cardinals at Cubs, Wrigley Field, that day")
     }
 
     func testIndoorOutdoorIsASecondOpinion() throws {

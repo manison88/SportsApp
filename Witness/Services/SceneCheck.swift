@@ -36,9 +36,15 @@ enum SceneCheck {
     static let sportsWords = ["stadium", "arena", "sport", "baseball", "basketball", "football", "soccer", "hockey",
                               "athlet", "ballpark", "field", "court", "crowd", "scoreboard", "bleacher", "racing", "rink",
                               "tennis", "rugby", "cricket", "jersey", "team", "goal", "pitch", "audience"]
-    /// What only a real game venue or sport produces. "crowd", "field", "court", "team", "audience", "goal" are not here on purpose.
-    static let venueWords = ["stadium", "arena", "ballpark", "scoreboard", "bleacher", "baseball", "basketball", "football", "soccer",
-                             "hockey", "rink", "racing", "rugby", "cricket", "tennis"]
+    /// What only a real game venue or sport produces, as the classifier's exact identifiers. Matched whole, not as substrings:
+    /// "rink" is inside "drink" and "baseball" inside "baseball_hat". "crowd", "people" and "grass" are not here on purpose
+    /// (the taxonomy has no "field", "court", "pitch", "team" or "audience").
+    static let venueLabels: Set<String> = ["stadium", "arena", "scoreboard", "bleachers", "baseball", "basketball", "football", "soccer",
+                                           "hockey", "rink", "rugby", "cricket_sport", "tennis", "softball", "motorsport", "nascar",
+                                           "formula_one_car"]
+    /// The ground itself rather than a sport, which a park, a schoolyard or a beach can show too. Real stadium photos carry
+    /// "stadium" and "arena" together (0.8 to 0.9), and often "scoreboard".
+    static let structureLabels: Set<String> = ["stadium", "arena", "scoreboard", "bleachers"]
     static let indoorWords = ["indoor", "arena", "court", "rink", "ceiling", "gym", "hall", "stage"]
     static let outdoorWords = ["outdoor", "sky", "grass", "field", "cloud", "lawn", "sunset", "daytime", "stadium", "ballpark"]
     static let eventWords = ["concert", "stage", "stadium", "arena", "crowd", "audience", "festival", "fireworks", "spotlight"]
@@ -46,7 +52,8 @@ enum SceneCheck {
                                  "concert", "stage", "dancing", "wedding", "kitchen", "living_room", "bedroom", "office",
                                  "bathroom", "nursery", "playroom", "toy", "document", "bed", "desk", "furniture",
                                  "beach", "sand", "shore", "ocean", "sea", "seascape", "lake", "waterfront", "swimming_pool", "pool",
-                                 "swimming", "picnic", "camping", "food", "meal", "dessert", "cake", "dog", "cat", "pet"]
+                                 "swimming", "swimsuit", "sunbathing", "surfing", "surfboard", "sandcastle", "water_body", "seafood", "museum",
+                                 "hiking", "skiing", "screenshot", "picnic", "camping", "food", "meal", "dessert", "cake", "dog", "cat", "pet"]
 
     /// Scores a visit from a sample of its photos. Nil when the classifier isn't available (some simulators),
     /// so callers treat the visit as unknown rather than doubtful.
@@ -74,7 +81,21 @@ enum SceneCheck {
 
     /// Pure: the strongest label that names a stadium, arena, scoreboard or sport.
     static func venueSign(_ labels: [(String, Float)]) -> Double {
-        labels.filter { id, _ in venueWords.contains { id.lowercased().contains($0) } }.map { Double($0.1) }.max() ?? 0
+        labels.filter { venueLabels.contains($0.0.lowercased()) }.map { Double($0.1) }.max() ?? 0
+    }
+
+    /// What one photo shows, for counting a day.
+    enum PhotoKind: Equatable { case venue(structure: Bool), elsewhere, neither }
+
+    /// Pure: a photo is at a game when a venue or sport label is clear and beats every beach, party or meal label (a beach with
+    /// a ball reads "soccer" too); somewhere else when one of those is clear and no game is.
+    static func kind(_ labels: [(String, Float)]) -> PhotoKind {
+        let v = venueSign(labels), e = score(labels).elsewhere
+        if v >= 0.3 && v > e {
+            let s = labels.filter { structureLabels.contains($0.0.lowercased()) }.map { Double($0.1) }.max() ?? 0
+            return .venue(structure: s >= 0.3)
+        }
+        return e >= 0.3 ? .elsewhere : .neither
     }
 
     /// A day's photos counted one by one: how many show a stadium, arena, scoreboard or sport, and how many show somewhere
@@ -83,6 +104,8 @@ enum SceneCheck {
         var classified = 0
         var venue = 0
         var elsewhere = 0
+        /// Venue photos that show the ground itself (stadium, arena, scoreboard, bleachers), not only a sport.
+        var structure = 0
         var venueShare: Double { classified == 0 ? 0 : Double(venue) / Double(classified) }
         var elsewhereShare: Double { classified == 0 ? 0 : Double(elsewhere) / Double(classified) }
         /// Several photos of the day clearly at a game, and the day not mostly somewhere else. One stray "soccer pitch" is not enough.
@@ -101,9 +124,11 @@ enum SceneCheck {
             guard let image = await PhotoLoader.load(ref, size: CGSize(width: 384, height: 384)),
                   let labels = await labels(for: image) else { continue }
             out.classified += 1
-            let v = venueSign(labels)
-            if v >= 0.3 { out.venue += 1 }
-            else if score(labels).elsewhere >= 0.3 { out.elsewhere += 1 }
+            switch kind(labels) {
+            case .venue(let structure): out.venue += 1; if structure { out.structure += 1 }
+            case .elsewhere: out.elsewhere += 1
+            case .neither: break
+            }
         }
         return out
     }

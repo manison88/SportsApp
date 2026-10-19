@@ -45,6 +45,9 @@ final class DetectionTuningTests: XCTestCase {
         print("SCENE sports labels (\(sports.count)):", sports.joined(separator: ", "))
         print("SCENE elsewhere labels (\(elsewhere.count)):", elsewhere.joined(separator: ", "))
         XCTAssertGreaterThan(sports.count, 3)
+        // Venue labels are matched whole, so each must be a real identifier.
+        let known = Set(ids)
+        for label in SceneCheck.venueLabels.union(SceneCheck.structureLabels) { XCTAssertTrue(known.contains(label), label) }
     }
 
     func testTicketScreenshotBecomesAnAnchor() {
