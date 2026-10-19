@@ -85,16 +85,15 @@ struct PassportView: View {
                     let label = heroLabel(earned: earned.count)
                     let league = Self.league(sport)
                     let count = earned.count
-                    // The page itself: the same tiles, each with its ground from above (loaded before drawing).
+                    // The page itself: every tile, each with its ground from above (loaded before drawing), sized to fit.
                     var page: [PassportShareTile] = []
-                    for stamp in earned.suffix(9) {
+                    for stamp in earned {
                         let venue = library.venue(stamp.venueId)
                         let aerial: UIImage? = if let venue { await AerialCache.shared.image(for: venue, points: 120) } else { nil }
                         page.append(PassportShareTile(code: stamp.code, color: stamp.color, name: venue?.name, date: stamp.date,
                                                       titles: stamp.titles, aerial: aerial))
                     }
-                    let older = earned.dropLast(9).map { PassportShareTile(code: $0.code, color: $0.color) }
-                    let pageTiles = older + page
+                    let pageTiles = page
                     let planned = plannedStamps(excluding: Set(earned.map(\.venueId)))
                     let styles: [(String, PassportShareCard.Style)] = [
                         ("Giant", .giant), ("Stamps", .stamps), ("Color", .color), ("Paper", .paper), ("Ledger", .ledger),
@@ -333,11 +332,29 @@ private struct PassportPageCard: View {
     private static let width: CGFloat = 390
     private var scale: CGFloat { ShareCardFormat.story.size.width / Self.width }
     private var height: CGFloat { ShareCardFormat.story.size.height / scale }
-    /// Three rows of three fit a story: up to three planned grounds, then the latest earned ones, and how many more.
-    private var plannedShown: [PassportView.Stamp] { Array(planned.prefix(3)) }
-    private var shown: [PassportShareTile] {
-        let room = 9 - plannedShown.count
-        return tiles.count > room ? Array(tiles.suffix(room - 1)) : tiles
+    private static let pad: CGFloat = 18
+    private static let gap: CGFloat = 10
+    /// A tile as drawn on the Passport page (three to a row on a phone); the card scales it to fit.
+    private static let tileW: CGFloat = (width - 2 * pad - 2 * gap) / 3
+    private static let tileH: CGFloat = 148
+    /// Room for the grid: the card less its margins, the count and the footer.
+    private var gridH: CGFloat { height - 36 - 30 - 110 - 24 - 2 * 14 }
+    private var all: Int { tiles.count + planned.count }
+
+    /// The fewest columns that fit every tile, so tiles stay as large as they can.
+    private var columns: Int {
+        let w = Self.width - 2 * Self.pad
+        for c in 3...12 {
+            let cell = (w - CGFloat(c - 1) * Self.gap) / CGFloat(c)
+            let rows = (all + c - 1) / c
+            let h = CGFloat(rows) * Self.tileH * cell / Self.tileW + CGFloat(max(rows - 1, 0)) * Self.gap
+            if h <= gridH { return c }
+        }
+        return 12
+    }
+    private var tileScale: CGFloat {
+        let c = CGFloat(columns)
+        return ((Self.width - 2 * Self.pad - (c - 1) * Self.gap) / c) / Self.tileW
     }
 
     var body: some View {
@@ -347,24 +364,19 @@ private struct PassportPageCard: View {
                 Text(label.uppercased()).font(.display(32)).lineLimit(2).fixedSize()
             }
             .foregroundStyle(.white)
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 3), spacing: 10) {
-                ForEach(Array(shown.enumerated()), id: \.offset) { _, t in
-                    StampFace(code: t.code, name: t.name, date: t.date, color: t.color, titles: t.titles, aerial: t.aerial)
+            .frame(height: 110, alignment: .leading)
+            LazyVGrid(columns: Array(repeating: GridItem(.fixed(Self.tileW * tileScale), spacing: Self.gap), count: columns),
+                      alignment: .leading, spacing: Self.gap) {
+                ForEach(Array(tiles.enumerated()), id: \.offset) { _, t in
+                    fitted(StampFace(code: t.code, name: t.name, date: t.date, color: t.color, titles: t.titles, aerial: t.aerial))
                 }
-                if tiles.count > shown.count {
-                    Text("+\(tiles.count - shown.count)")
-                        .font(.display(40))
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity, minHeight: 148)
-                        .background(Color.panel, in: .rect(cornerRadius: 16))
-                }
-                ForEach(plannedShown) { PlannedStampTile(stamp: $0) }
+                ForEach(planned) { fitted(PlannedStampTile(stamp: $0)) }
             }
             Spacer(minLength: 0)
             HStack(alignment: .bottom) {
-                // The wordmark with the sport in yellow tucked under it, nudged aside so the two overlap a little.
+                // The wordmark with "SPORTS" in yellow tucked under it, nudged aside so the two overlap a little.
                 ZStack(alignment: .topLeading) {
-                    Text(league.uppercased())
+                    Text("SPORTS")
                         .font(.system(size: 16, weight: .heavy).width(.compressed))
                         .tracking(5)
                         .foregroundStyle(Color.signal)
@@ -375,13 +387,13 @@ private struct PassportPageCard: View {
                         .foregroundStyle(.white.opacity(0.9))
                 }
                 Spacer()
-                Text("PASSPORT")
+                Text("\(league) PASSPORT")
                     .font(.system(size: 12, weight: .heavy).width(.condensed))
                     .tracking(3)
                     .foregroundStyle(Color.signal)
             }
         }
-        .padding(.horizontal, 18)
+        .padding(.horizontal, Self.pad)
         .padding(.top, 36)
         .padding(.bottom, 30)
         .frame(width: Self.width, height: height, alignment: .topLeading)
@@ -390,6 +402,13 @@ private struct PassportPageCard: View {
         .scaleEffect(scale, anchor: .topLeading)
         .frame(width: ShareCardFormat.story.size.width, height: ShareCardFormat.story.size.height, alignment: .topLeading)
         .environment(\.colorScheme, .dark)
+    }
+
+    /// A tile drawn at its page size, then scaled down to its cell.
+    private func fitted<V: View>(_ tile: V) -> some View {
+        tile.frame(width: Self.tileW, height: Self.tileH)
+            .scaleEffect(tileScale, anchor: .topLeading)
+            .frame(width: Self.tileW * tileScale, height: Self.tileH * tileScale, alignment: .topLeading)
     }
 }
 
