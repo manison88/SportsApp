@@ -12,7 +12,7 @@
       },
       "expectedFailures" : 0,
       "failedTests" : 2,
-      "passedTests" : 114,
+      "passedTests" : 116,
       "skippedTests" : 1,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -23,11 +23,11 @@
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
   "failedTests" : 2,
-  "finishTime" : 1792436301.884,
-  "passedTests" : 114,
+  "finishTime" : 1792438359.75,
+  "passedTests" : 116,
   "result" : "Failed",
   "skippedTests" : 1,
-  "startTime" : 1792435225.866,
+  "startTime" : 1792436986.151,
   "statistics" : [
 
   ],
@@ -35,7 +35,7 @@
     {
       "failureText" : "XCTAssertTrue failed - Expected the scan to find the seeded stadium photos",
       "targetName" : "WitnessUITests",
-      "testIdentifier" : 99,
+      "testIdentifier" : 100,
       "testIdentifierString" : "WitnessUITests/testDiscoveryFromPhotos()",
       "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testDiscoveryFromPhotos",
       "testName" : "testDiscoveryFromPhotos()"
@@ -43,7 +43,7 @@
     {
       "failureText" : "XCTAssertTrue failed - The seeded album should be listed",
       "targetName" : "WitnessUITests",
-      "testIdentifier" : 102,
+      "testIdentifier" : 103,
       "testIdentifierString" : "WitnessUITests/testImportAlbumWithScoreboardReading()",
       "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testImportAlbumWithScoreboardReading",
       "testName" : "testImportAlbumWithScoreboardReading()"
@@ -53,9 +53,14 @@
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "47% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 9.12s (three standard deviations)"
+      "impact" : "11% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 98.54s (three standard deviations)"
+    },
+    {
+      "category" : "Longest Test Runs",
+      "impact" : "49% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 10.86s (three standard deviations)"
     }
   ],
-  "totalTestCount" : 117
+  "totalTestCount" : 119
 }

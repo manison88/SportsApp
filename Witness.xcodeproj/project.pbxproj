@@ -46,6 +46,7 @@
 		685AAF44BE4BFFBD61949D73 /* WrappedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A98C3EEF90E39F6F90FB5F1 /* WrappedView.swift */; };
 		6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1EBE038CBF9E1D49805847 /* GamePhotosView.swift */; };
 		6B98A0B4A7CAA2D8F2034974 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4551DB23A001CFF2C2646420 /* Models.swift */; };
+		6CB2794DA1C7B4EF73B11B06 /* VenueStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171ED91658CFE966DBAB5E82 /* VenueStoryCard.swift */; };
 		6DC43D2E7100F33C18BAE3A5 /* F1Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7883E63EE9CC483C1D8C9799 /* F1Calendar.swift */; };
 		73C196CCFCF30A1C99B80D91 /* SceneCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47731D7AFF619393565B668F /* SceneCheck.swift */; };
 		7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */; };
@@ -75,6 +76,7 @@
 		CC00A63D66FA2073A5D2C456 /* LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF7F7EAD209867041DEF5 /* LibraryTests.swift */; };
 		CD5342E7131026E858E6D978 /* AlbumImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F836BE70D81FF166D6EFD6A /* AlbumImporter.swift */; };
 		CFBFBA9DB68338AEE808C225 /* SharedPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C6F4096980A62A376DA6A /* SharedPassportView.swift */; };
+		D24E8C543F8BC64986662AB4 /* NeighborGroundsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFC5F9860F3546A944C599 /* NeighborGroundsTests.swift */; };
 		D26B177823A3F0DD02688F08 /* Sample in Resources */ = {isa = PBXBuildFile; fileRef = 8007189AFB335F74AD2F2242 /* Sample */; };
 		DDBE27D9C6E1E1F4093932DD /* LegalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042080070A6B9628760341C3 /* LegalView.swift */; };
 		E14EE3095355CC6B33297843 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA0327CBD34799EB421705D /* Library.swift */; };
@@ -118,6 +120,7 @@
 		0F19D32DC278C4AA996AD53E /* nfl-summary-401671844.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "nfl-summary-401671844.json"; sourceTree = "<group>"; };
 		1050A3828D9B3F0417A1D29D /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		153022015CA2DB30C970B946 /* PassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportView.swift; sourceTree = "<group>"; };
+		171ED91658CFE966DBAB5E82 /* VenueStoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueStoryCard.swift; sourceTree = "<group>"; };
 		18A8BA68B9A721AEDADF5A2E /* ScheduleGapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleGapsView.swift; sourceTree = "<group>"; };
 		1A98C3EEF90E39F6F90FB5F1 /* WrappedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedView.swift; sourceTree = "<group>"; };
 		1CDEDDEB3372D49CD437F4B5 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 		EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuckyCharmView.swift; sourceTree = "<group>"; };
 		F0886E427272EE4FBED88DB5 /* TicketImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketImportView.swift; sourceTree = "<group>"; };
 		F3389D60FD9A2CDD994777AC /* TeamPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPickerView.swift; sourceTree = "<group>"; };
+		F3BFC5F9860F3546A944C599 /* NeighborGroundsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborGroundsTests.swift; sourceTree = "<group>"; };
 		F4C48F08394BC610EA16614E /* VenuePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenuePickerView.swift; sourceTree = "<group>"; };
 		FA9A73F86BCDBA2E422921DE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		FEF398484DD3487B795AB540 /* TicketParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketParserTests.swift; sourceTree = "<group>"; };
@@ -269,6 +273,7 @@
 		48224303168D906DC14CDE93 /* Venue */ = {
 			isa = PBXGroup;
 			children = (
+				171ED91658CFE966DBAB5E82 /* VenueStoryCard.swift */,
 				A857D75ED272F933EF88177E /* VenueView.swift */,
 			);
 			path = Venue;
@@ -338,6 +343,7 @@
 				0EBB3E2CA6352B5C2EB2E15D /* DetectionTuningTests.swift */,
 				73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */,
 				746EF7F7EAD209867041DEF5 /* LibraryTests.swift */,
+				F3BFC5F9860F3546A944C599 /* NeighborGroundsTests.swift */,
 				BAD292282DB6DC3BCC066881 /* PhotoMatcherTests.swift */,
 				903443890581343B7B39B754 /* TicketOCRTests.swift */,
 				FEF398484DD3487B795AB540 /* TicketParserTests.swift */,
@@ -612,6 +618,7 @@
 				1307844B2E7EAB4CDD54E487 /* DetectionTuningTests.swift in Sources */,
 				7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */,
 				CC00A63D66FA2073A5D2C456 /* LibraryTests.swift in Sources */,
+				D24E8C543F8BC64986662AB4 /* NeighborGroundsTests.swift in Sources */,
 				4FA66493F78992F852961E30 /* PhotoMatcherTests.swift in Sources */,
 				33986E7A0BDD5EAC7B8E13D7 /* TicketOCRTests.swift in Sources */,
 				29A2F767CE1F9907F6F16402 /* TicketParserTests.swift in Sources */,
@@ -678,6 +685,7 @@
 				15F1090C95B0CA0B6E0F53B9 /* TripView.swift in Sources */,
 				65B0468A13F02793ABF33165 /* UEFASchedule.swift in Sources */,
 				37B16E29C9D27A66D480E00D /* VenuePickerView.swift in Sources */,
+				6CB2794DA1C7B4EF73B11B06 /* VenueStoryCard.swift in Sources */,
 				7C6E91ACD12F0F59F05E9A15 /* VenueView.swift in Sources */,
 				F9727740E7129812AB9CE2F3 /* VisitGrouping.swift in Sources */,
 				0AE7B6A5CB64192CD96DA62B /* WeatherLookup.swift in Sources */,
