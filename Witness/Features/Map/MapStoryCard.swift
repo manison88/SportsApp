@@ -292,11 +292,7 @@ struct MapStoryCard: View {
                 .foregroundStyle(.white)
                 ForEach(Array(numbers.countryCounts.prefix(5).enumerated()), id: \.offset) { _, c in
                     HStack(spacing: 12) {
-                        Text(CountryCodes.iso3(c.code) ?? c.code)
-                            .font(.system(size: 13, weight: .heavy).width(.condensed)).tracking(1.5)
-                            .foregroundStyle(.black)
-                            .frame(width: 46, height: 26)
-                            .background(Color.signal, in: .rect(cornerRadius: 6))
+                        CountryGlobe(code: c.code, size: 36)
                         Text((Locale.current.localizedString(forRegionCode: c.code) ?? c.code).uppercased())
                             .font(.display(26)).foregroundStyle(.white).lineLimit(1)
                         Spacer()
