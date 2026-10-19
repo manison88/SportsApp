@@ -47,6 +47,7 @@
 		6DC43D2E7100F33C18BAE3A5 /* F1Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7883E63EE9CC483C1D8C9799 /* F1Calendar.swift */; };
 		73C196CCFCF30A1C99B80D91 /* SceneCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47731D7AFF619393565B668F /* SceneCheck.swift */; };
 		7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */; };
+		7B27E405891225F28D7399BA /* LegalContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3927624E070DF7A5F2C592AD /* LegalContent.swift */; };
 		7C481B3216C5EA8C05CD1E47 /* LiveCheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5D16DF8526A09EE94F3B5C /* LiveCheckInView.swift */; };
 		7C6E91ACD12F0F59F05E9A15 /* VenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857D75ED272F933EF88177E /* VenueView.swift */; };
 		7CC194ACCCEFAF5ED14CE814 /* LocalSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873BADEA2FBDB111EADA8449 /* LocalSchedule.swift */; };
@@ -72,6 +73,7 @@
 		CD5342E7131026E858E6D978 /* AlbumImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F836BE70D81FF166D6EFD6A /* AlbumImporter.swift */; };
 		CFBFBA9DB68338AEE808C225 /* SharedPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C6F4096980A62A376DA6A /* SharedPassportView.swift */; };
 		D26B177823A3F0DD02688F08 /* Sample in Resources */ = {isa = PBXBuildFile; fileRef = 8007189AFB335F74AD2F2242 /* Sample */; };
+		DDBE27D9C6E1E1F4093932DD /* LegalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042080070A6B9628760341C3 /* LegalView.swift */; };
 		E14EE3095355CC6B33297843 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA0327CBD34799EB421705D /* Library.swift */; };
 		E6419B75864FC1DFA5ED08F1 /* WitnessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E5222772FB0C38016D430A /* WitnessUITests.swift */; };
 		E669D62EF7D7D9DD19FCDFAB /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDEDDEB3372D49CD437F4B5 /* Stats.swift */; };
@@ -101,6 +103,7 @@
 
 /* Begin PBXFileReference section */
 		003C9498EA506F48F2E4ECF9 /* Witness.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Witness.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		042080070A6B9628760341C3 /* LegalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalView.swift; sourceTree = "<group>"; };
 		080F09ACBEB9945779CC3D9E /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
 		08AAD768395210D8C4AC6920 /* RecapFilmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapFilmView.swift; sourceTree = "<group>"; };
 		08C11AF682C23D055AB16995 /* nfl-scoreboard-20250105.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "nfl-scoreboard-20250105.json"; sourceTree = "<group>"; };
@@ -118,6 +121,7 @@
 		1F7F27F82CA290482A72741B /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		281972298861717804A0CBFD /* PhotoCredits.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PhotoCredits.md; sourceTree = "<group>"; };
 		302F3BA2809104AA07A544F3 /* PackStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackStore.swift; sourceTree = "<group>"; };
+		3927624E070DF7A5F2C592AD /* LegalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalContent.swift; sourceTree = "<group>"; };
 		39A71CEDC65654D5367E4E1C /* UEFASchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEFASchedule.swift; sourceTree = "<group>"; };
 		4551DB23A001CFF2C2646420 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		464F11516C93F27989521E89 /* VisitGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitGrouping.swift; sourceTree = "<group>"; };
@@ -437,6 +441,8 @@
 		FCD40D08228399A2665F87C7 /* You */ = {
 			isa = PBXGroup;
 			children = (
+				3927624E070DF7A5F2C592AD /* LegalContent.swift */,
+				042080070A6B9628760341C3 /* LegalView.swift */,
 				EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */,
 				18A8BA68B9A721AEDADF5A2E /* ScheduleGapsView.swift */,
 				1A98C3EEF90E39F6F90FB5F1 /* WrappedView.swift */,
@@ -621,6 +627,8 @@
 				B77AD38956434C4AE7F0517B /* GameMemoryView.swift in Sources */,
 				6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */,
 				00A18AB96E3FAB46259A750C /* HomePickerView.swift in Sources */,
+				7B27E405891225F28D7399BA /* LegalContent.swift in Sources */,
+				DDBE27D9C6E1E1F4093932DD /* LegalView.swift in Sources */,
 				E14EE3095355CC6B33297843 /* Library.swift in Sources */,
 				5ECA51942472297977790DB9 /* LifeMapView.swift in Sources */,
 				7C481B3216C5EA8C05CD1E47 /* LiveCheckInView.swift in Sources */,
