@@ -1,0 +1,52 @@
+name: Deploy analytics Worker
+
+# Puts analytics/worker.js on Cloudflare. It needs three repository secrets (Settings, Secrets and variables, Actions):
+#   CLOUDFLARE_API_TOKEN   a token with "Edit Cloudflare Workers" permission
+#   CLOUDFLARE_ACCOUNT_ID  the account id shown on the Workers overview
+#   ANALYTICS_DASH_PASSWORD  the password for the dashboard page
+# Until they exist this workflow does nothing. The Worker's address lands on the analytics-deploy branch (URL.txt).
+on:
+  push:
+    branches: [claude/witness-mockups-phase1]
+    paths: ['analytics/**', '.github/workflows/analytics.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HAS_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN != '' && secrets.CLOUDFLARE_ACCOUNT_ID != '' && secrets.ANALYTICS_DASH_PASSWORD != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Skip until the secrets are set
+        if: env.HAS_TOKEN != 'true'
+        run: echo "Add CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID and ANALYTICS_DASH_PASSWORD to deploy." 
+
+      - name: Deploy the Worker
+        if: env.HAS_TOKEN == 'true'
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: analytics
+          command: deploy
+          secrets: |
+            DASH_PASSWORD
+        env:
+          DASH_PASSWORD: ${{ secrets.ANALYTICS_DASH_PASSWORD }}
+
+      - name: Record the address
+        if: env.HAS_TOKEN == 'true'
+        run: |
+          mkdir -p out
+          echo "${{ steps.deploy.outputs.deployment-url }}" > out/URL.txt
+          bash ci/publish.sh
+        env:
+          RUN_ID: ${{ github.run_id }}
+          RUN_OUTCOME: ${{ steps.deploy.outcome }}
+          RESULTS_BRANCH: analytics-deploy

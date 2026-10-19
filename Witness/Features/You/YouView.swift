@@ -120,6 +120,16 @@ struct YouView: View {
                 .foregroundStyle(.white)
                 .accessibilityIdentifier("you-schedule-gaps")
             }
+            Toggle(isOn: Binding(get: { Analytics.shared.enabled }, set: { Analytics.shared.setEnabled($0) })) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Share anonymous usage").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+                    Text("Which features get used, never your photos, places or names.").font(.footnote).foregroundStyle(Color.textSecondary)
+                }
+            }
+            .tint(Color.signal)
+            .frame(minHeight: 56)
+            .foregroundStyle(.white)
+            .accessibilityIdentifier("you-analytics")
             // Wrapped is off for now: its row returns when the redesign is built (WrappedView and Modal.wrapped stay in place).
             ForEach(stats.companions.prefix(3)) { c in
                 NavigationLink(value: Route.person(c.person.id)) {
@@ -178,7 +188,7 @@ struct YouView: View {
             }
         }
         let key = "\(s.games)|\(s.record.text)|\(s.venues)|\(s.miles)|\(s.countries)|\(favoriteCity ?? "")"
-        return ShareCardSheetLink(title: "My numbers", format: .story, key: key, variants: { variants }) {
+        return ShareCardSheetLink(kind: "numbers", title: "My numbers", format: .story, key: key, variants: { variants }) {
             Image(systemName: "square.and.arrow.up").fontWeight(.bold)
         }
         .accessibilityLabel("Share your numbers")

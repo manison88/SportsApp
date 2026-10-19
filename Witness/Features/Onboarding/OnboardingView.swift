@@ -26,6 +26,8 @@ struct OnboardingView: View {
                 }
             }
         }
+        .onChange(of: started) { _, now in if now { Analytics.shared.track(.onboardingStep, ["step": "welcome_done"]) } }
+        .onChange(of: page) { _, now in Analytics.shared.track(.onboardingStep, ["step": "page_\(now)"]) }
         .animation(.smooth, value: presenter.scan.state)
         .animation(.smooth, value: presenter.scan.shown)
         .onChange(of: scenePhase) { _, phase in

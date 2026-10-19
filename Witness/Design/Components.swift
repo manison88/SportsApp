@@ -1014,6 +1014,8 @@ struct ShareCardVariant: Identifiable {
 
 /// The sheet behind every Share button: swipe through the variations, then share the one you like as an image.
 struct ShareCardSheet: View {
+    /// Which share this is (game, passport, venue...), for the usage events.
+    var kind: String = "card"
     let title: String
     let format: ShareCardFormat
     var key: String = ""
@@ -1080,11 +1082,15 @@ struct ShareCardSheet: View {
                 .buttonStyle(.primary)
                 .padding(.horizontal, Spacing.gutter)
                 .padding(.bottom, 12)
+                .simultaneousGesture(TapGesture().onEnded {
+                    Analytics.shared.track(.shareTapped, ["kind": kind, "style": current.name])
+                })
                 .accessibilityIdentifier("share-card-share")
             }
         }
         .background(Color.ink.ignoresSafeArea())
         .presentationDetents([.large])
+        .onAppear { Analytics.shared.track(.shareOpened, ["kind": kind]) }
         .task(id: key) {
             var out: [(name: String, image: Image)] = []
             for v in await variants() {
@@ -1100,16 +1106,17 @@ struct ShareCardSheet: View {
 extension View {
     /// Presents the share sheet (a swipeable set of variations) when `isPresented` is true.
     /// Use this when the Share button lives inside a Menu: set a @State flag from the button, attach this to the screen.
-    func shareCardSheet(isPresented: Binding<Bool>, title: String, format: ShareCardFormat, key: String = "",
+    func shareCardSheet(isPresented: Binding<Bool>, kind: String = "card", title: String, format: ShareCardFormat, key: String = "",
                         variants: @escaping () async -> [ShareCardVariant]) -> some View {
         sheet(isPresented: isPresented) {
-            ShareCardSheet(title: title, format: format, key: key, variants: variants)
+            ShareCardSheet(kind: kind, title: title, format: format, key: key, variants: variants)
         }
     }
 }
 
 /// A Share button that opens the variations sheet. For a toolbar or any place that is not inside a Menu.
 struct ShareCardSheetLink<Label: View>: View {
+    var kind: String = "card"
     let title: String
     let format: ShareCardFormat
     var key: String = ""
@@ -1120,7 +1127,7 @@ struct ShareCardSheetLink<Label: View>: View {
 
     var body: some View {
         Button { showing = true } label: { label }
-            .shareCardSheet(isPresented: $showing, title: title, format: format, key: key, variants: variants)
+            .shareCardSheet(isPresented: $showing, kind: kind, title: title, format: format, key: key, variants: variants)
     }
 }
 

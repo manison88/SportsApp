@@ -35,7 +35,7 @@ struct WrappedView: View {
 
                 Spacer(minLength: Spacing.inner)
 
-                ShareCardSheetLink(title: "Wrapped \(String(shownYear))", format: .story, key: String(shownYear), variants: { await shareVariants(shownYear) }) {
+                ShareCardSheetLink(kind: "wrapped", title: "Wrapped \(String(shownYear))", format: .story, key: String(shownYear), variants: { await shareVariants(shownYear) }) {
                     Label("Share to story", systemImage: "square.and.arrow.up")
                 }
                 .buttonStyle(.primary)

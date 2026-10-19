@@ -64,7 +64,7 @@ struct TripView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ShareCardSheetLink(title: trip.title, format: .story, key: "\(trip.id)-\(games.count)",
+                ShareCardSheetLink(kind: "trip", title: trip.title, format: .story, key: "\(trip.id)-\(games.count)",
                                    variants: { shareVariants(trip, games: games) }) {
                     Image(systemName: "square.and.arrow.up")
                 }

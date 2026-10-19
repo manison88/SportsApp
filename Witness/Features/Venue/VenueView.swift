@@ -48,9 +48,11 @@ struct VenueView: View {
         .inkBackground()
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
+        .onAppear { Analytics.shared.track(.venueOrListOpened, ["kind": "venue"]) }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 ShareCardSheetLink(
+                    kind: "venue",
                     title: venue.name,
                     format: .story,
                     key: "\(venue.id)-\(games.count)",

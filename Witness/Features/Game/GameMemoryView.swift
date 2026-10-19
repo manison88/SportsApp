@@ -53,12 +53,13 @@ struct GameMemoryView: View {
             })
         }
         .task(id: game.id) {
+            Analytics.shared.track(.gameOpened, ["sport": game.sport.rawValue, "photos": Analytics.bucket(game.photos.count)])
             if !ProcessInfo.processInfo.arguments.contains("-uitest") { await library.autoCover(game.id) }
         }
         .sheet(isPresented: $editing) {
             AddGameView(editing: game)
         }
-        .shareCardSheet(isPresented: $sharing, title: headlineText(game, library).replacingOccurrences(of: "\n", with: " "), format: .story, key: game.id) {
+        .shareCardSheet(isPresented: $sharing, kind: "game", title: headlineText(game, library).replacingOccurrences(of: "\n", with: " "), format: .story, key: game.id) {
             await shareVariants(game)
         }
         .confirmationDialog("Delete this game?", isPresented: $confirmDelete, titleVisibility: .visible) {
@@ -350,7 +351,10 @@ struct GameMemoryView: View {
 
     /// The slideshow, one tap from the cover, beside the menu.
     private func playButton(_ game: GameEntry) -> some View {
-        Button { presenter.modal = .recap(game.id) } label: {
+        Button {
+            Analytics.shared.track(.photosAction, ["action": "slideshow"])
+            presenter.modal = .recap(game.id)
+        } label: {
             Image(systemName: "play.fill")
                 .font(.body.weight(.bold))
                 .foregroundStyle(.black)

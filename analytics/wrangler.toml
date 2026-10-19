@@ -1,0 +1,13 @@
+name = "witness-analytics"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "witness-analytics"
+database_id = "09f1ee9b-c1df-4523-a536-28ec9bceae21"
+
+# The app sends this key with every batch. It ships inside the app, so it only keeps casual junk out; the Worker also
+# checks every event's name and size and limits how much one phone can send.
+[vars]
+INGEST_KEY = "5ujo3n8yQh1uI6jbaVIoUucWMvja2S-9"

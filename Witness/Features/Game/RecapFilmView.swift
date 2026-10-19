@@ -236,7 +236,7 @@ struct RecapFilmView: View {
             .accessibilityLabel(playing ? "Pause" : "Play")
             .accessibilityIdentifier("recap-pause")
 
-            ShareCardSheetLink(title: "Recap", format: .story, key: gameId, variants: { await storyVariants(game) }) {
+            ShareCardSheetLink(kind: "recap", title: "Recap", format: .story, key: gameId, variants: { await storyVariants(game) }) {
                 Label("Share story", systemImage: "square.and.arrow.up")
             }
             .buttonStyle(.primary)

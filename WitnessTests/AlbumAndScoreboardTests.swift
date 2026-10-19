@@ -333,6 +333,15 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(known.league, "National teams", "The UEFA side is the catalog's national team, not a second Bosnia")
     }
 
+    func testAnalyticsBucketsCountsAndNamesEvents() {
+        XCTAssertEqual(Analytics.bucket(0), "0")
+        XCTAssertEqual(Analytics.bucket(5), "1-5")
+        XCTAssertEqual(Analytics.bucket(60), "51+")
+        // The Worker accepts exactly these names, so a rename here must be made in analytics/worker.js too.
+        XCTAssertEqual(AnalyticsEvent.planTeamSearch.rawValue, "plan_team_search")
+        XCTAssertEqual(AnalyticsEvent.shareTapped.rawValue, "share_tapped")
+    }
+
     func testYourTeamsDecideWhoYouWereRootingFor() throws {
         let cubs = try XCTUnwrap(library.team("mlb-chc"))
         let brewers = try XCTUnwrap(library.team("mlb-mil"))

@@ -45,7 +45,10 @@ struct LiveCheckInView: View {
                 // No fix (indoors, or location is slow): stop spinning and say so.
                 Task {
                     try? await Task.sleep(for: .seconds(12))
-                    if !searchedNearby && location.location == nil && !location.denied { searchedNearby = true }
+                    if !searchedNearby && location.location == nil && !location.denied {
+                        searchedNearby = true
+                        Analytics.shared.track(.checkinStarted, ["result": "no_location"])
+                    }
                 }
             }
         }
@@ -78,6 +81,7 @@ struct LiveCheckInView: View {
                     Button {
                         startedAt = .now
                         started = true
+                        Analytics.shared.track(.checkinStarted, ["result": chosen != nil ? "started_from_list" : "started_manual"])
                     } label: { Image(systemName: "checkmark") }
                     .buttonStyle(.borderedProminent)
                     .disabled(!canStart || (!manual && chosen == nil))
@@ -286,6 +290,7 @@ struct LiveCheckInView: View {
         let order = LiveGames.ordered(found.map(\.game), now: now).map(\.id)
         nearbyGames = found.sorted { (order.firstIndex(of: $0.id) ?? 0) < (order.firstIndex(of: $1.id) ?? 0) }
         searchedNearby = true
+        Analytics.shared.track(.checkinStarted, ["result": nearbyGames.isEmpty ? (nearbyPlaces.isEmpty ? "no_stadium" : "no_games") : "found_games", "games": nearbyGames.count])
         // One game on and not over: that's the one.
         let open = nearbyGames.filter { !$0.game.completed }
         if open.count == 1, let only = open.first { nearbyVenue = only.venue; select(only.game) }

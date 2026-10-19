@@ -67,6 +67,7 @@ struct GamePhotosView: View {
                     Button {
                         selecting.toggle()
                         selected = []
+                        if selecting { Analytics.shared.track(.photosAction, ["action": "select"]) }
                     } label: {
                         if selecting { Text("Done") } else { Image(systemName: "checkmark.circle") }
                     }

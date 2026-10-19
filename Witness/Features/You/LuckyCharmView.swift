@@ -118,7 +118,7 @@ struct LuckyCharmView: View {
             }
         }
         let key = "\(heroText)|\(rate?.percentText ?? "-")|\(baselineText)|\(usesOdds)"
-        return ShareCardSheetLink(title: "Lucky charm", format: .story, key: key, variants: { variants }) {
+        return ShareCardSheetLink(kind: "lucky_charm", title: "Lucky charm", format: .story, key: key, variants: { variants }) {
             Label("Share", systemImage: "square.and.arrow.up")
         }
         .buttonStyle(.primary)

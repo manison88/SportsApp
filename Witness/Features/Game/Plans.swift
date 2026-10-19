@@ -295,6 +295,7 @@ struct PlanView: View {
                     Toggle(isOn: Binding(get: { plan.planAutoPhotos ?? true }, set: { value in
                         guard var p = library.plan(plan.id) else { return }
                         p.planAutoPhotos = value
+                        Analytics.shared.track(.settingChanged, ["setting": "plan_auto_photos", "value": value ? "on" : "off"])
                         library.updatePlan(p)
                     })) {
                         HStack(spacing: 12) {

@@ -26,7 +26,11 @@ struct WitnessApp: App {
                 .preferredColorScheme(.dark)
                 .tint(.white)
                 .onChange(of: scenePhase) { _, phase in
-                    if phase == .background { BackgroundPhotoCheck.schedule() }
+                    if phase == .background {
+                        BackgroundPhotoCheck.schedule()
+                        Task { await Analytics.shared.flush() }
+                    }
+                    if phase == .active { Analytics.shared.opened(games: library.games.count) }
                 }
                 .task {
                     // Packs already on the phone first (instant), then ask the host for anything new.

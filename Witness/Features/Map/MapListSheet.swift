@@ -39,6 +39,7 @@ struct MapListSheet: View {
         .inkBackground()
         .navigationTitle(kind.title)
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear { Analytics.shared.track(.venueOrListOpened, ["kind": kind.rawValue]) }
     }
 
     // MARK: Venues

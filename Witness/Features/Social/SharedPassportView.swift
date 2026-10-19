@@ -73,6 +73,7 @@ struct SharedPassportView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 ShareCardSheetLink(
+                    kind: "shared_passport",
                     title: "\(together.count) games with \(person.name)",
                     format: .story,
                     key: "\(person.id)-\(together.count)-\(theirs.record.text)-\(recentLine)-\(photoRefs.count)"

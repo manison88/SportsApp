@@ -32,7 +32,7 @@ struct YouWereThereView: View {
             }
             .withoutGlass()
             ToolbarItem(placement: .topBarTrailing) {
-                ShareCardSheetLink(title: "You were there",
+                ShareCardSheetLink(kind: "you_were_there", title: "You were there",
                                    format: .story,
                                    key: shareKey(game, moments: moments),
                                    variants: { await shareVariants(shareInfo(game, moments: moments)) }) {

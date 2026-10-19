@@ -14,6 +14,9 @@ struct RootView: View {
             }
         }
         .background(Color.ink.ignoresSafeArea())
+        .onChange(of: presenter.tab) { _, tab in
+            Analytics.shared.track(.tabViewed, ["tab": "\(tab)"])
+        }
         .sheet(item: sheetBinding) { modal in
             switch modal {
             case .addGame: AddGameView()

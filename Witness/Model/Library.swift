@@ -115,6 +115,7 @@ final class Library {
     var hasHome: Bool { isSample || customHome != nil }
 
     func setHome(city: String, latitude: Double, longitude: Double) {
+        Analytics.shared.track(.settingChanged, ["setting": "home", "value": customHome == nil ? "set" : "changed"])
         customHome = HomePlace(city: city, latitude: latitude, longitude: longitude)
         save()
     }
@@ -318,6 +319,7 @@ final class Library {
         plans.append(entry)
         plans.sort { $0.date < $1.date }
         save()
+        Analytics.shared.track(.planCreated, ["source": "schedule", "days_ahead": max(0, Int(found.start.timeIntervalSinceNow / 86_400)), "sport": found.sport.rawValue])
         return entry
     }
 
@@ -326,6 +328,7 @@ final class Library {
         plans.append(plan)
         plans.sort { $0.date < $1.date }
         save()
+        Analytics.shared.track(.planCreated, ["source": "by_hand", "days_ahead": max(0, Int(plan.date.timeIntervalSinceNow / 86_400)), "sport": plan.sport.rawValue])
     }
 
     /// A stadium the schedule names and the catalog lacks, added from the coordinates the schedule gives.
@@ -346,6 +349,7 @@ final class Library {
         if found == 0 { entry.misses += 1 }
         entry.lastSearched = .now
         entry.lastOutcome = noSource ? "no schedule source" : (found == 0 ? "no games" : "\(found) \(found == 1 ? "game" : "games")")
+        Analytics.shared.track(.planTeamSearch, ["team": "\(team.locationName) \(team.teamName)", "league": team.league, "found": found, "no_source": noSource])
         scheduleLog.removeAll { $0.teamId == team.id }
         scheduleLog.append(entry)
         save()
@@ -376,6 +380,7 @@ final class Library {
         entry.planReminder = nil
         entry.planAutoPhotos = nil
         entry.origin = .manual
+        Analytics.shared.track(.planAttended, ["sport": entry.sport.rawValue, "auto_photos": entry.autoPhotosUntil != nil])
         entry.kind = nil
         games.append(entry)
         sortAndSave()
@@ -513,6 +518,7 @@ final class Library {
         }
         games.append(game)
         sortAndSave()
+        Analytics.shared.track(.gameAdded, ["source": game.origin.rawValue, "sport": game.sport.rawValue, "visit": game.isVisit])
         let id = game.id
         Task { await fillWeather(id) }
     }
@@ -649,6 +655,7 @@ final class Library {
     /// Takes photos off a game. They stay in the Photos library; only this game's link to them goes.
     func removePhotos(_ gameId: String, _ refs: Set<PhotoRef>) {
         guard var g = game(gameId), !refs.isEmpty else { return }
+        Analytics.shared.track(.photosAction, ["action": "delete", "count": refs.count])
         g.photos.removeAll { refs.contains($0) }
         if let cover = g.coverPhoto, refs.contains(cover) {
             g.coverPhoto = nil
@@ -660,6 +667,7 @@ final class Library {
     /// Sets a game's cover photo (nil clears it so it can be picked again).
     func setCover(_ id: String, to ref: PhotoRef?, byFan: Bool) {
         guard var g = game(id) else { return }
+        if byFan, ref != nil { Analytics.shared.track(.photosAction, ["action": "set_cover"]) }
         g.coverPhoto = ref
         g.coverChosenByFan = ref == nil ? nil : byFan
         update(g)

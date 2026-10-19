@@ -25,6 +25,7 @@
 		2A1B4249B8E285AC96DDCC6C /* EventTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F48A3DC2D47231C6E56B7 /* EventTheme.swift */; };
 		2FB08C6E1D9C2F5F821BFEA3 /* GameLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8BFCA25D2EAB73580B35B /* GameLookup.swift */; };
 		547DB64A0EF8485C8FD2DC45 /* F1Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F27DBC4958B4E48B5BA0D77 /* F1Calendar.swift */; };
+		48D70AD16AFA4D8D9D7E5E36 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6516D6DD6F814EAF9F70E81A /* Analytics.swift */; };
 		2F79484B07C141D2ABB335EB /* UEFASchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D13FB67C824BFAAFCE1636 /* UEFASchedule.swift */; };
 		EE613D09F1784245897CA7D6 /* BackgroundPhotoCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833A6AAA7A248529EAE4685 /* BackgroundPhotoCheck.swift */; };
 		33986E7A0BDD5EAC7B8E13D7 /* TicketOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903443890581343B7B39B754 /* TicketOCRTests.swift */; };
@@ -135,6 +136,7 @@
 		8007189AFB335F74AD2F2242 /* Sample */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sample; path = Witness/Resources/Sample; sourceTree = SOURCE_ROOT; };
 		81F8BFCA25D2EAB73580B35B /* GameLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLookup.swift; sourceTree = "<group>"; };
 		6F27DBC4958B4E48B5BA0D77 /* F1Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1Calendar.swift; sourceTree = "<group>"; };
+		6516D6DD6F814EAF9F70E81A /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		B9D13FB67C824BFAAFCE1636 /* UEFASchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEFASchedule.swift; sourceTree = "<group>"; };
 		1833A6AAA7A248529EAE4685 /* BackgroundPhotoCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPhotoCheck.swift; sourceTree = "<group>"; };
 		82C4FEF32607AF617D75F825 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				DA0A2D620B0AF02229035D47 /* CoverPicker.swift */,
 				81F8BFCA25D2EAB73580B35B /* GameLookup.swift */,
 				6F27DBC4958B4E48B5BA0D77 /* F1Calendar.swift */,
+				6516D6DD6F814EAF9F70E81A /* Analytics.swift */,
 				B9D13FB67C824BFAAFCE1636 /* UEFASchedule.swift */,
 				1833A6AAA7A248529EAE4685 /* BackgroundPhotoCheck.swift */,
 				94EF1E486EA6D3C38019482C /* LocationService.swift */,
@@ -613,6 +616,7 @@
 				2A1B4249B8E285AC96DDCC6C /* EventTheme.swift in Sources */,
 				2FB08C6E1D9C2F5F821BFEA3 /* GameLookup.swift in Sources */,
 				547DB64A0EF8485C8FD2DC45 /* F1Calendar.swift in Sources */,
+				48D70AD16AFA4D8D9D7E5E36 /* Analytics.swift in Sources */,
 				2F79484B07C141D2ABB335EB /* UEFASchedule.swift in Sources */,
 				EE613D09F1784245897CA7D6 /* BackgroundPhotoCheck.swift in Sources */,
 				B77AD38956434C4AE7F0517B /* GameMemoryView.swift in Sources */,

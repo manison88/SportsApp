@@ -80,7 +80,7 @@ struct PassportView: View {
         .tabTitle("Passport")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ShareCardSheetLink(title: "My \(Self.league(sport)) passport", format: .story, key: "\(sport.rawValue)-\(earned.count)", variants: {
+                ShareCardSheetLink(kind: "passport", title: "My \(Self.league(sport)) passport", format: .story, key: "\(sport.rawValue)-\(earned.count)", variants: {
                     let tiles = earned.map { PassportShareTile(code: $0.code, color: $0.color) }
                     let label = heroLabel(earned: earned.count)
                     let league = Self.league(sport)

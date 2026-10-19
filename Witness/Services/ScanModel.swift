@@ -69,7 +69,13 @@ final class ScanModel {
     }
 
     private func run(library: Library) async {
-        guard await PhotoMatcher.requestAccess() else { state = .denied; return }
+        let began = Date()
+        guard await PhotoMatcher.requestAccess() else {
+            state = .denied
+            Analytics.shared.track(.onboardingStep, ["step": "photo_access", "granted": false])
+            return
+        }
+        Analytics.shared.track(.onboardingStep, ["step": "photo_access", "granted": true])
         progress = .init()
         games = []; others = []; matches = [:]; tickets = [:]; notes = [:]
         checkedVisits = 0; totalVisits = 0; verifiedVisits = 0; verifyTotal = 0; skippedVisits = 0
@@ -163,6 +169,8 @@ final class ScanModel {
         games = confirmed.sorted { $0.start > $1.start }
         others = inOther.sorted { $0.start > $1.start }
         state = games.isEmpty && others.isEmpty ? .empty : .done
+        Analytics.shared.track(.scanFinished, ["games": games.count, "others": others.count, "photos": progress.scanned,
+                                               "seconds": Int(Date().timeIntervalSince(began))])
     }
 
     /// A race weekend is one event over several days at the circuit: Friday, Saturday and Sunday photos become one visit.
