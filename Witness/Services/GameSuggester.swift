@@ -15,7 +15,7 @@ struct PossibleDay: Identifiable, Hashable {
 }
 
 /// Looks past the photos that carry a stadium location: albums the fan made, trips, and days with no location at all.
-/// A scoreboard in the photos names the game outright; otherwise the day is only a possible game, and the fan picks the stadium.
+/// Nothing here is added on its own: a scoreboard could be a kid's game, so every day is only a possible game and the fan picks the stadium.
 enum GameSuggester {
     static let minPhotos = 3
     static let maxDays = 150
@@ -67,10 +67,10 @@ enum GameSuggester {
         let hints: [Venue]
     }
 
-    /// Games a scoreboard named (strong enough to add with the rest) and the days that are only possible games.
+    /// The days that are only possible games.
     /// `claimed` holds "yyyy-MM-dd" days a visit or a saved game already covers.
     static func find(venues: [Venue], teams: [Team], home: CLLocation, hasHome: Bool, claimed: Set<String>,
-                     progress: @escaping @MainActor (_ done: Int, _ total: Int) -> Void) async -> (games: [(PhotoCluster, FoundGame)], possible: [PossibleDay]) {
+                     progress: @escaping @MainActor (_ done: Int, _ total: Int) -> Void) async -> [PossibleDay] {
         // Everything that touches the photo library runs off the main thread.
         let sources: [Source] = await Task.detached(priority: .utility) {
             var out: [Source] = []
@@ -96,7 +96,7 @@ enum GameSuggester {
             return out
         }.value
 
-        // The unplaced days of every source, then the cheapest filter first: only days that look like a game cost a scoreboard read.
+        // The unplaced days of every source, then the cheapest filter first: only days that look like a game are kept.
         var work: [(DayPile, Source)] = []
         var claimed = claimed
         for source in sources {
@@ -108,7 +108,6 @@ enum GameSuggester {
         work = Array(work.sorted { $0.0.day > $1.0.day }.prefix(maxDays))
         await progress(0, work.count)
 
-        var games: [(PhotoCluster, FoundGame)] = []
         var possible: [PossibleDay] = []
         for (n, (pile, source)) in work.enumerated() {
             defer { Task { await progress(n + 1, work.count) } }
@@ -118,22 +117,11 @@ enum GameSuggester {
             let sporty = verdict?.looksLikeGame ?? false
             guard sporty || !source.hints.isEmpty else { continue }
             if let verdict, verdict.clearlyElsewhere, source.hints.isEmpty { continue }
-            if sporty {
-                let readings = await ScoreboardReader.read(refs)
-                if let game = await ScoreboardReader.findGame(around: pile.times, boards: readings),
-                   let venue = GameLookup.venue(of: game, in: venues) {
-                    let cluster = PhotoCluster(id: VisitGrouping.key(venueId: venue.id, date: game.start, tz: venue.tz), venue: venue,
-                                               start: pile.times.min() ?? pile.day, end: pile.times.max() ?? pile.day,
-                                               assetIds: pile.assetIds, times: pile.times)
-                    games.append((cluster, game))
-                    continue
-                }
-            }
             let middle = pile.times.sorted()[pile.times.count / 2]
             possible.append(PossibleDay(id: "possible-" + pile.id, day: middle, assetIds: pile.assetIds, times: pile.times,
                                         reason: source.hints.isEmpty && sporty ? "\(source.reason) \u{00B7} the photos look like a game" : source.reason,
                                         suggestions: source.hints))
         }
-        return (games, possible.sorted { $0.day > $1.day })
+        return possible.sorted { $0.day > $1.day }
     }
 }

@@ -202,7 +202,7 @@ final class ScanModel {
             verifiedVisits += 1
         }
 
-        // Albums, trips and days with no location: a scoreboard names the game; anything else is a day to ask about.
+        // Albums, trips and days with no location: every one is a day to ask about, never added on its own.
         var claimed = Set<String>()
         var keyer = DayKeyer()
         for g in library.games { claimed.insert(keyer.day(g.date, tz: .current)) }
@@ -214,12 +214,8 @@ final class ScanModel {
             self?.verifyTotal = baseTotal + total
             self?.verifiedVisits = base + done
         }
-        for (cluster, game) in extra.games where !confirmed.contains(where: { $0.id == cluster.id }) {
-            confirmed.append(cluster)
-            matched[cluster.id] = game
-        }
         matches = matched
-        maybe += extra.possible
+        maybe += extra
 
         skippedVisits = skipped
         games = confirmed.sorted { $0.start > $1.start }
