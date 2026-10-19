@@ -308,6 +308,16 @@ final class WitnessUITests: XCTestCase {
         }
     }
 
+    func testSharePassportPage() {
+        launch([])
+        tap("welcome-sample")
+        tab("Passport")
+        sleep(3)
+        app.buttons["Share passport"].firstMatch.tap()
+        sleep(6)
+        snap("passport-share")
+    }
+
     /// "Select your teams" on You: pick a team once and it is on the list.
     func testSelectYourTeams() {
         launch(["-empty"])

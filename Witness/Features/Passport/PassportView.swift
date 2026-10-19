@@ -85,10 +85,22 @@ struct PassportView: View {
                     let label = heroLabel(earned: earned.count)
                     let league = Self.league(sport)
                     let count = earned.count
+                    // The page itself: the same tiles, each with its ground from above (loaded before drawing).
+                    var page: [PassportShareTile] = []
+                    for stamp in earned.suffix(9) {
+                        let venue = library.venue(stamp.venueId)
+                        let aerial: UIImage? = if let venue { await AerialCache.shared.image(for: venue, points: 120) } else { nil }
+                        page.append(PassportShareTile(code: stamp.code, color: stamp.color, name: venue?.name, date: stamp.date,
+                                                      titles: stamp.titles, aerial: aerial))
+                    }
+                    let older = earned.dropLast(9).map { PassportShareTile(code: $0.code, color: $0.color) }
+                    let pageTiles = older + page
                     let styles: [(String, PassportShareCard.Style)] = [
                         ("Giant", .giant), ("Stamps", .stamps), ("Color", .color), ("Paper", .paper), ("Ledger", .ledger),
                     ]
-                    return styles.map { entry in
+                    return [ShareCardVariant("Passport") {
+                        PassportPageCard(count: count, label: label, league: league, tiles: pageTiles)
+                    }] + styles.map { entry in
                         ShareCardVariant(entry.0) {
                             PassportShareCard(style: entry.1, count: count, label: label, league: league, tiles: tiles)
                         }
@@ -236,13 +248,31 @@ private struct StampTile: View {
     let isLatest: Bool
 
     var body: some View {
-        let ink = stamp.color.readableInk
+        let venue = library.venue(stamp.venueId)
+        StampFace(code: stamp.code, name: venue?.name, date: stamp.date, color: stamp.color, titles: stamp.titles, venue: venue)
+    }
+}
+
+/// A stamp as drawn: the code, the ground's name and the date over the ground from above in the team's color.
+/// Plain values only, so the share card draws the very same tile. `aerial` is given when the snapshot is already loaded
+/// (the share card); otherwise the tile loads it.
+struct StampFace: View {
+    let code: String
+    let name: String?
+    let date: Date?
+    let color: Color
+    var titles = 0
+    var venue: Venue?
+    var aerial: UIImage?
+
+    var body: some View {
+        let ink = color.readableInk
         VStack(alignment: .leading, spacing: 6) {
-            Text(stamp.code)
+            Text(code)
                 .displayFont(34, relativeTo: .title)
                 .foregroundStyle(ink)
             // The code is the team's; the stadium is the stamp's real name.
-            if let name = library.venue(stamp.venueId)?.name {
+            if let name {
                 Text(name)
                     .font(.condensed(.caption, weight: .heavy))
                     .textCase(.uppercase)
@@ -252,7 +282,7 @@ private struct StampTile: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
-            Text(stamp.date.map { Fmt.day($0) } ?? "")
+            Text(date.map { Fmt.day($0) } ?? "")
                 .font(.condensed(.caption2, weight: .heavy))
                 .tracking(1.2)
                 .foregroundStyle(ink.opacity(0.85))
@@ -261,17 +291,17 @@ private struct StampTile: View {
         }
         .frame(maxWidth: .infinity, minHeight: 124, alignment: .topLeading)
         .padding(12)
-        .background { StampBackdrop(venue: library.venue(stamp.venueId), color: stamp.color) }
+        .background { StampBackdrop(venue: venue, color: color, given: aerial) }
         .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(ink.opacity(0.22), lineWidth: 1.5).padding(5))
         .overlay(alignment: .topTrailing) {
-            if stamp.titles > 0 {
+            if titles > 0 {
                 Image(systemName: "star.fill")
                     .font(.caption.weight(.heavy))
                     .foregroundStyle(Color.trophy)
                     .padding(6)
                     .background(Color.ink.opacity(0.85), in: .circle)
                     .padding(8)
-                    .accessibilityLabel(stamp.titles == 1 ? "Title game seen here" : "\(stamp.titles) title games seen here")
+                    .accessibilityLabel(titles == 1 ? "Title game seen here" : "\(titles) title games seen here")
             }
         }
         .accessibilityElement(children: .combine)
@@ -283,6 +313,68 @@ private struct StampTile: View {
 private struct PassportShareTile {
     let code: String
     let color: Color
+    var name: String? = nil
+    var date: Date? = nil
+    var titles = 0
+    var aerial: UIImage? = nil
+}
+
+/// The passport page itself, as a story: the same count, the same tiles with the grounds from above. Laid out at
+/// phone size (390 points wide) and scaled up to the story's pixels, so every tile is exactly the one on screen.
+private struct PassportPageCard: View {
+    let count: Int
+    let label: String
+    let league: String
+    let tiles: [PassportShareTile]
+
+    private static let width: CGFloat = 390
+    private var scale: CGFloat { ShareCardFormat.story.size.width / Self.width }
+    private var height: CGFloat { ShareCardFormat.story.size.height / scale }
+    /// Three rows of three fit a story; more than that shows the latest eight and how many more.
+    private var shown: [PassportShareTile] { tiles.count > 9 ? Array(tiles.suffix(8)) : tiles }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .center, spacing: 12) {
+                Text("\(count)").font(.display(100)).lineLimit(1).fixedSize()
+                Text(label.uppercased()).font(.display(32)).lineLimit(2).fixedSize()
+            }
+            .foregroundStyle(.white)
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 3), spacing: 10) {
+                ForEach(Array(shown.enumerated()), id: \.offset) { _, t in
+                    StampFace(code: t.code, name: t.name, date: t.date, color: t.color, titles: t.titles, aerial: t.aerial)
+                }
+                if tiles.count > shown.count {
+                    Text("+\(tiles.count - shown.count)")
+                        .font(.display(40))
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity, minHeight: 148)
+                        .background(Color.panel, in: .rect(cornerRadius: 16))
+                }
+            }
+            Spacer(minLength: 0)
+            HStack {
+                Text("WITNESS")
+                    .font(.system(size: 16, weight: .heavy).width(.compressed))
+                    .tracking(5)
+                    .foregroundStyle(.white.opacity(0.9))
+                Spacer()
+                Text("\(league) PASSPORT")
+                    .font(.system(size: 12, weight: .heavy).width(.condensed))
+                    .tracking(3)
+                    .foregroundStyle(Color.signal)
+            }
+        }
+        .padding(.horizontal, 18)
+        .padding(.top, 36)
+        .padding(.bottom, 30)
+        .frame(width: Self.width, height: height, alignment: .topLeading)
+        .background(Color.ink)
+        .environment(\.dynamicTypeSize, .large)
+        .scaleEffect(scale, anchor: .topLeading)
+        .frame(width: ShareCardFormat.story.size.width, height: ShareCardFormat.story.size.height, alignment: .topLeading)
+        .environment(\.colorScheme, .dark)
+    }
 }
 
 /// 1080x1920 story card in five looks. Plain values only, no @Environment.
@@ -553,7 +645,9 @@ private struct PassportShareCard: View {
 private struct StampBackdrop: View {
     let venue: Venue?
     let color: Color
-    @State private var image: UIImage?
+    var given: UIImage?
+    @State private var loaded: UIImage?
+    private var image: UIImage? { given ?? loaded }
 
     var body: some View {
         // Overlays, so the photo's fill size can never grow the tile past its grid cell.
@@ -570,7 +664,7 @@ private struct StampBackdrop: View {
             }
             .clipShape(.rect(cornerRadius: 16))
         .task(id: venue?.id) {
-            if let venue { image = await AerialCache.shared.image(for: venue, points: 120) }
+            if given == nil, let venue { loaded = await AerialCache.shared.image(for: venue, points: 120) }
         }
     }
 }
