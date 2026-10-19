@@ -1,12 +1,11 @@
 import SwiftUI
 
-/// First run: the welcome, then three pages (the problem, the fix, photo access), then the scan and its first result.
+/// First run: the welcome (thousands of photos counted down to the games in them), photo access, then the scan and its first result.
 struct OnboardingView: View {
     @Environment(Library.self) private var library
     @Environment(Presenter.self) private var presenter
     @Environment(\.scenePhase) private var scenePhase
     @State private var started = false
-    @State private var page = 0
     @State private var legal: LegalDocument?
 
     var body: some View {
@@ -28,7 +27,6 @@ struct OnboardingView: View {
             }
         }
         .onChange(of: started) { _, now in if now { Analytics.shared.track(.onboardingStep, ["step": "welcome_done"]) } }
-        .onChange(of: page) { _, now in Analytics.shared.track(.onboardingStep, ["step": "page_\(now)"]) }
         .sheet(item: $legal) { doc in
             NavigationStack { LegalView(document: doc, online: doc.title == LegalContent.terms.title ? LegalLinks.terms : LegalLinks.privacy) }
         }
@@ -44,35 +42,12 @@ struct OnboardingView: View {
 
     // MARK: Pages
 
+    /// After the welcome, one page: what Witness reads, and the ask for photo access.
     private func pages(denied: Bool) -> some View {
         ZStack {
-            TabView(selection: $page) {
-                ProblemPage().tag(0)
-                SolutionPage().tag(1)
-                AccessPage().tag(2)
-            }
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .ignoresSafeArea()
-
+            AccessPage()
             VStack(spacing: Spacing.inner) {
-                HStack {
-                    Spacer()
-                    if page < 2 {
-                        Button { withAnimation(.smooth) { page = 2 } } label: {
-                            Text("Skip")
-                                .font(.condensed(.subheadline, weight: .heavy))
-                                .textCase(.uppercase)
-                                .tracking(1.2)
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 14)
-                                .frame(minHeight: 44)
-                                .background(.black.opacity(0.5), in: .rect(cornerRadius: 10))
-                        }
-                        .accessibilityIdentifier("onboarding-skip")
-                    }
-                }
                 Spacer()
-                PageDots(count: 3, current: page)
                 controls
             }
             .gutter()
@@ -82,41 +57,29 @@ struct OnboardingView: View {
         }
     }
 
-    @ViewBuilder
     private var controls: some View {
-        switch page {
-        case 0:
-            Button("Next") { withAnimation(.smooth) { page = 1 } }
+        VStack(spacing: Spacing.inner) {
+            Button("Allow photo access") { presenter.scan.start(library: library) }
                 .buttonStyle(.primary)
-                .accessibilityIdentifier("onboarding-next")
-        case 1:
-            Button("Continue") { withAnimation(.smooth) { page = 2 } }
-                .buttonStyle(.primary)
-                .accessibilityIdentifier("onboarding-next")
-        default:
-            VStack(spacing: Spacing.inner) {
-                Button("Allow photo access") { presenter.scan.start(library: library) }
-                    .buttonStyle(.primary)
-                    .accessibilityIdentifier("onboarding-allow")
-                Button("Choose an album instead") { presenter.modal = .importAlbum }
-                    .buttonStyle(.secondary)
-                    .accessibilityIdentifier("onboarding-album")
-                Button("Not now") { library.loadSample() }
-                    .font(.condensed(.headline, weight: .bold))
-                    .textCase(.uppercase)
-                    .tracking(1.2)
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .accessibilityIdentifier("onboarding-notnow")
-                HStack(spacing: 18) {
-                    Button("Privacy policy") { legal = LegalContent.privacy }
-                        .accessibilityIdentifier("onboarding-privacy")
-                    Button("Terms of use") { legal = LegalContent.terms }
-                        .accessibilityIdentifier("onboarding-terms")
-                }
-                .font(.footnote)
-                .foregroundStyle(Color.textSecondary)
+                .accessibilityIdentifier("onboarding-allow")
+            Button("Choose an album instead") { presenter.modal = .importAlbum }
+                .buttonStyle(.secondary)
+                .accessibilityIdentifier("onboarding-album")
+            Button("Not now") { library.loadSample() }
+                .font(.condensed(.headline, weight: .bold))
+                .textCase(.uppercase)
+                .tracking(1.2)
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity, minHeight: 44)
+                .accessibilityIdentifier("onboarding-notnow")
+            HStack(spacing: 18) {
+                Button("Privacy policy") { legal = LegalContent.privacy }
+                    .accessibilityIdentifier("onboarding-privacy")
+                Button("Terms of use") { legal = LegalContent.terms }
+                    .accessibilityIdentifier("onboarding-terms")
             }
+            .font(.footnote)
+            .foregroundStyle(Color.textSecondary)
         }
     }
 
@@ -129,237 +92,11 @@ struct OnboardingView: View {
     }
 }
 
-// MARK: - Dots
-
-private struct PageDots: View {
-    let count: Int
-    let current: Int
-
-    var body: some View {
-        HStack(spacing: 6) {
-            ForEach(0..<count, id: \.self) { i in
-                Capsule()
-                    .fill(i == current ? Color.white : Color.panelRaised)
-                    .frame(width: i == current ? 28 : 8, height: 8)
-            }
-        }
-        .animation(.smooth, value: current)
-        .accessibilityElement()
-        .accessibilityLabel("Page \(current + 1) of \(count)")
-    }
-}
-
-// MARK: - Page 1: the problem
-
-private struct ProblemPage: View {
-    fileprivate static let names = ["wrigley-night", "fenway-day", "lambeau-exterior", "united-center-court", "soldier-skyline",
-                                "wrigley-bleachers", "fenway-night", "camp-nou-aerial", "soldier-aerial", "lambeau-concourse",
-                                "wrigley-scoreboard", "soldier-soccer", "fenway-postcard", "wrigley-night-2"]
-
-    var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            roll
-            LinearGradient(colors: [Color.ink.opacity(0.35), Color.ink.opacity(0.92)], startPoint: .top, endPoint: .center)
-                .ignoresSafeArea()
-                .allowsHitTesting(false)
-            VStack(alignment: .leading, spacing: 14) {
-                Text("Your camera roll").unitLabel().foregroundStyle(Color.textSecondary)
-                VStack(alignment: .leading, spacing: -4) {
-                    Text("40,000\nPhotos.")
-                        .displayFont(104)
-                        .foregroundStyle(.white)
-                    Text("How many\ngames?")
-                        .displayFont(64)
-                        .foregroundStyle(Color.signal)
-                }
-                .textCase(.uppercase)
-                .lineLimit(4)
-                .minimumScaleFactor(0.5)
-                .accessibilityElement(children: .combine)
-                .accessibilityAddTraits(.isHeader)
-                Text("Somewhere in there is every game you went to. Nothing in it says which.")
-                    .font(.title3)
-                    .foregroundStyle(Color.textSecondary)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .gutter()
-            .padding(.bottom, 190)
-        }
-        .accessibilityIdentifier("onboarding-problem")
-    }
-
-    /// A dimmed grid of real photos, the camera roll the problem is about.
-    private var roll: some View {
-        GeometryReader { geo in
-            let cols = 6
-            let side = geo.size.width / CGFloat(cols)
-            let rows = Int(ceil(geo.size.height * 0.62 / side))
-            VStack(spacing: 0) {
-                ForEach(0..<rows, id: \.self) { r in
-                    HStack(spacing: 0) {
-                        ForEach(0..<cols, id: \.self) { c in
-                            let i = r * cols + c
-                            Color.panel
-                                .frame(width: side, height: side)
-                                .overlay {
-                                    if (i * 7) % 5 != 0 {
-                                        Image(Self.names[(i * 3) % Self.names.count])
-                                            .resizable().scaledToFill()
-                                            .opacity(0.45)
-                                    }
-                                }
-                                .clipped()
-                        }
-                    }
-                }
-            }
-            .frame(maxHeight: .infinity, alignment: .top)
-        }
-        .ignoresSafeArea()
-        .accessibilityHidden(true)
-    }
-}
-
-// MARK: - Page 2: the fix
-
-private struct SolutionPage: View {
-    @Environment(Library.self) private var library
-    @State private var tile: CGFloat = 46
-
-    private let cols = 7
-    private let rows = 3
-
-    var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                VStack(alignment: .leading, spacing: 0) {
-                    pile
-                        .onGeometryChange(for: CGFloat.self) { $0.size.width } action: { w in
-                            tile = max(24, (w - CGFloat(cols - 1) * 4) / CGFloat(cols))
-                        }
-                    Rectangle().fill(Color.signal).frame(width: 2, height: 18).padding(.leading, tile / 2 - 1)
-                    gameCard
-                }
-                .padding(.top, 60)
-
-                Spacer(minLength: 16)
-
-                VStack(alignment: .leading, spacing: 12) {
-                    VStack(alignment: .leading, spacing: -4) {
-                        Text("One photo.").foregroundStyle(.white)
-                        Text("One game.").foregroundStyle(Color.signal)
-                    }
-                    .displayFont(58)
-                    .textCase(.uppercase)
-                    .accessibilityElement(children: .combine)
-                    .accessibilityAddTraits(.isHeader)
-                    Text("Witness reads each photo's date and place, matches it to the real schedule, and you confirm.")
-                        .font(.body)
-                        .foregroundStyle(Color.textSecondary)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-                .padding(.bottom, 170)
-            }
-            .gutter()
-            .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .scrollBounceBehavior(.basedOnSize)
-        .scrollIndicators(.hidden)
-        .accessibilityIdentifier("onboarding-solution")
-    }
-
-    /// A few rows of the camera roll, dimmed and gray, with one photo in color and ringed: one among many.
-    private var pile: some View {
-        VStack(spacing: 4) {
-            ForEach(0..<rows, id: \.self) { r in
-                HStack(spacing: 4) {
-                    ForEach(0..<cols, id: \.self) { c in cell(r, c) }
-                }
-            }
-        }
-        .overlay(alignment: .bottomLeading) {
-            VStack(alignment: .leading, spacing: 6) {
-                chip("calendar", "Jul 4, 2026 \u{00B7} 7:02 PM")
-                chip("mappin.and.ellipse", "Near Wrigley Field")
-            }
-            .padding(.leading, tile + 10)
-        }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("One photo picked out of many, taken Jul 4, 2026 near Wrigley Field")
-    }
-
-    private func cell(_ r: Int, _ c: Int) -> some View {
-        let picked = r == rows - 1 && c == 0
-        let names = ProblemPage.names
-        return Color.panel
-            .aspectRatio(1, contentMode: .fit)
-            .overlay {
-                Image(picked ? "wrigley-night-2" : names[(r * cols + c) * 3 % names.count])
-                    .resizable()
-                    .scaledToFill()
-                    .saturation(picked ? 1 : 0)
-                    .opacity(picked ? 1 : 0.3)
-            }
-            .clipShape(.rect(cornerRadius: 6))
-            .overlay {
-                if picked { RoundedRectangle(cornerRadius: 6).strokeBorder(Color.signal, lineWidth: 2) }
-            }
-            .shadow(color: picked ? Color.signal.opacity(0.55) : .clear, radius: 8)
-            .zIndex(picked ? 1 : 0)
-    }
-
-    private func chip(_ symbol: String, _ text: String) -> some View {
-        Label(text, systemImage: symbol)
-            .font(.condensed(.caption, weight: .heavy))
-            .textCase(.uppercase)
-            .tracking(1)
-            .foregroundStyle(.white)
-            .padding(.horizontal, 10)
-            .frame(minHeight: 26)
-            .background(Color.panelRaised, in: .rect(cornerRadius: 8))
-    }
-
-    /// A made-up example, labelled as one.
-    private var gameCard: some View {
-        let chc = library.allTeams.first { $0.sport == .baseball && $0.abbreviation == "CHC" }
-        let mil = library.allTeams.first { $0.sport == .baseball && $0.abbreviation == "MIL" }
-        return ZStack(alignment: .bottomLeading) {
-            Color.panel
-            PhotoView(ref: .bundled("wrigley-bleachers"))
-            Scrim()
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Wrigley Field").displayFont(30).textCase(.uppercase).foregroundStyle(.white)
-                HStack(spacing: 8) {
-                    TeamTile(team: chc, compact: true)
-                    Text("4").font(.condensed(.headline, weight: .heavy))
-                    Text("3").font(.condensed(.headline, weight: .heavy))
-                    TeamTile(team: mil, compact: true)
-                }
-                .foregroundStyle(.white)
-                Text("Jul 4, 2026 · Bleachers 314").font(.footnote).foregroundStyle(Color.textSecondary)
-            }
-            .padding(14)
-        }
-        .frame(height: 176)
-        .clipShape(.rect(cornerRadius: 18))
-        .overlay(alignment: .topLeading) {
-            Text("Example").font(.condensed(.caption, weight: .heavy)).textCase(.uppercase).tracking(1.2)
-                .foregroundStyle(.white)
-                .padding(.horizontal, 8).frame(minHeight: 24)
-                .background(.black.opacity(0.55), in: .capsule)
-                .padding(10)
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("Example: a photo from Wrigley Field matched to Cubs 4, Brewers 3")
-    }
-}
-
-// MARK: - Page 3: access
+// MARK: - Photo access
 
 private struct AccessPage: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Spacing.block) {
-            Text("Step 3 of 3").unitLabel().foregroundStyle(Color.textTertiary)
             VStack(alignment: .leading, spacing: -4) {
                 Text("Dates and\nplaces.").foregroundStyle(.white)
                 Text("Nothing else.").foregroundStyle(Color.signal)

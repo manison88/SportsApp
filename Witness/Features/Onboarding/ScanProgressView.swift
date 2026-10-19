@@ -243,9 +243,12 @@ struct ScanProgressView: View {
     private enum StepState { case pending, active, done }
 }
 
-/// The last photos that landed inside a stadium, lit; the rest of the strip stays dim.
+/// Photos found inside stadiums, five at a time. Slots trade one photo for another at random moments, so the strip keeps
+/// moving through every game found so far instead of freezing on the first five.
 private struct ThumbStrip: View {
     let ids: [String]
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var shown: [String?] = Array(repeating: nil, count: 5)
 
     var body: some View {
         HStack(spacing: 8) {
@@ -253,15 +256,41 @@ private struct ThumbStrip: View {
                 Color.panel
                     .aspectRatio(1, contentMode: .fit)
                     .overlay {
-                        if i < ids.count {
-                            PhotoView(ref: .library(ids[i]))
+                        if let id = shown[i] {
+                            PhotoView(ref: .library(id))
+                                .id(id)
+                                .transition(.opacity)
                         }
                     }
                     .clipShape(.rect(cornerRadius: 8))
-                    .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(i < ids.count ? Color.signal : Color.hairline, lineWidth: 2))
+                    .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(shown[i] != nil ? Color.signal : Color.hairline, lineWidth: 2))
             }
         }
         .accessibilityHidden(true)
+        .onChange(of: ids, initial: true) { _, now in fillEmpty(now) }
+        .task {
+            guard !reduceMotion else { return }
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .milliseconds(Int.random(in: 450...1_100)))
+                swapOne()
+            }
+        }
+    }
+
+    /// New finds go into empty slots straight away.
+    private func fillEmpty(_ pool: [String]) {
+        for i in shown.indices where shown[i] == nil {
+            guard let next = pool.first(where: { !shown.contains($0) }) else { return }
+            withAnimation(.easeInOut(duration: 0.6)) { shown[i] = next }
+        }
+    }
+
+    /// One random slot fades to a photo not already showing.
+    private func swapOne() {
+        let free = ids.filter { !shown.contains($0) }
+        guard let next = free.randomElement() else { return }
+        let slot = shown.indices.randomElement() ?? 0
+        withAnimation(.easeInOut(duration: 0.7)) { shown[slot] = next }
     }
 }
 
