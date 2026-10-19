@@ -10,6 +10,9 @@ struct TeamPickerView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var query = ""
     @State private var showNew = false
+    /// A team was picked inside a league's list: that list pops itself, and this picker closes once it is back on top.
+    /// Dismissing this picker from under the league's list closed the whole sheet instead.
+    @State private var closeOnReturn = false
 
     var body: some View {
         List {
@@ -40,7 +43,7 @@ struct TeamPickerView: View {
                     Section(section.sport == sport ? "\(section.sport.name) leagues" : section.sport.name) {
                         ForEach(section.leagues, id: \.name) { league in
                             NavigationLink {
-                                LeagueTeamsView(league: league.name, teams: league.teams, selection: $selection) { dismiss() }
+                                LeagueTeamsView(league: league.name, teams: league.teams, selection: $selection) { closeOnReturn = true }
                             } label: {
                                 HStack {
                                     Text(league.name).font(.condensed(.headline)).foregroundStyle(.white)
@@ -60,6 +63,11 @@ struct TeamPickerView: View {
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search teams and countries")
         .navigationTitle("Team")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            guard closeOnReturn else { return }
+            closeOnReturn = false
+            dismiss()
+        }
         .sheet(isPresented: $showNew) {
             NavigationStack {
                 AddTeamView(initialName: trimmedQuery, sport: sport) { team in
@@ -128,12 +136,13 @@ struct LeagueTeamsView: View {
     let league: String
     let teams: [Team]
     @Binding var selection: String?
-    /// Closes the whole picker, not just this league.
+    /// Tells the picker to close once this list has popped.
     let done: () -> Void
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         List {
-            Section { TeamRows(teams: teams.sorted { $0.locationName < $1.locationName }, selection: $selection, done: done) }
+            Section { TeamRows(teams: teams.sorted { $0.locationName < $1.locationName }, selection: $selection) { done(); dismiss() } }
                 .listRowBackground(Color.panel)
         }
         .scrollContentBackground(.hidden)

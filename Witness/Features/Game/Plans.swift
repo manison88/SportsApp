@@ -50,6 +50,8 @@ struct PlanGameView: View {
     @State private var pickerShown = false
     @State private var addingByHand = false
     @State private var openedPicker = false
+    /// The plan just made (or already made) from a row, opened on top of the list.
+    @State private var openPlanId: String?
 
     var body: some View {
         NavigationStack {
@@ -120,6 +122,7 @@ struct PlanGameView: View {
                 AddGameView(planning: true, presetTeamId: teamId, onPlanned: { _ in dismiss() }, onDone: { addingByHand = false })
             }
             // Everyone starts by choosing a team, so go straight to that list. Backing out with nothing chosen closes this.
+            .navigationDestination(item: $openPlanId) { id in PlanView(planId: id) }
             .navigationDestination(isPresented: $pickerShown) {
                 TeamPickerView(selection: $teamId, sport: .baseball)
             }
@@ -170,6 +173,13 @@ struct PlanGameView: View {
         return (uefa + espn.filter { !uefaKeys.contains(key($0)) }).sorted { $0.start < $1.start }
     }
 
+    /// ESPN sometimes leaves the league's name out and only the path is left ("basketball/nba"): show "NBA".
+    static func leagueLabel(_ game: FoundGame) -> String {
+        guard game.leagueName.contains("/") else { return game.leagueName }
+        let code = game.leagueName.split(separator: "/").last.map(String.init) ?? game.leagueName
+        return code.replacingOccurrences(of: ".", with: " ").uppercased()
+    }
+
     private func isPlanned(_ game: FoundGame) -> Bool {
         library.plans.contains { $0.source?.eventId == game.eventId && $0.source?.league == game.league }
     }
@@ -186,7 +196,7 @@ struct PlanGameView: View {
         let weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
         let months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
         return Button {
-            if !planned { library.addPlan(game) }
+            if let entry = library.addPlan(game) { openPlanId = entry.id }
         } label: {
             HStack(spacing: 12) {
                 VStack(spacing: 0) {
@@ -197,7 +207,7 @@ struct PlanGameView: View {
                 .frame(width: 46)
                 VStack(alignment: .leading, spacing: 3) {
                     Text("\(isHome ? "vs" : "at") \(other.location)").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).lineLimit(1)
-                    Text("\(game.leagueName) \u{00B7} \(Fmt.time(game.start, in: tz)) \u{00B7} \(game.venueName)").font(.footnote).foregroundStyle(Color.textSecondary).lineLimit(1)
+                    Text("\(Self.leagueLabel(game)) \u{00B7} \(Fmt.time(game.start, in: tz)) \u{00B7} \(game.venueName)").font(.footnote).foregroundStyle(Color.textSecondary).lineLimit(1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Text(planned ? "Planned" : "Plan it")
@@ -265,7 +275,7 @@ struct PlanView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 VStack(spacing: 8) {
-                    infoRow("sun.max", "Forecast", forecast.map { "\($0.condition) \u{00B7} \(Fmt.temperature($0.temperatureF))" } ?? "Shows up within about two weeks of the game")
+                    infoRow("sun.max", "Forecast", forecast.map { "\($0.condition) \u{00B7} \(Fmt.temperature($0.temperatureF))" } ?? (days < WeatherLookup.forecastDays ? "Not available right now" : "Shows up within about two weeks of the game"))
                     HStack(spacing: 12) {
                         Image(systemName: "ticket").foregroundStyle(Color.signal).frame(width: 24)
                         TextField("Section, row, seat", text: $seat)
@@ -364,7 +374,7 @@ struct PlanView: View {
         }
         .task(id: plan.id) {
             seat = plan.seat ?? ""
-            if let venue { forecast = await WeatherLookup.at(venue: venue, date: plan.date) }
+            if let venue { forecast = await WeatherLookup.forecast(venue: venue, date: plan.date) }
         }
         .onDisappear { save(plan) }
     }

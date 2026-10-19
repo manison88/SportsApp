@@ -8,6 +8,19 @@ enum WeatherLookup {
     /// or when the service cannot be reached (the caller tries again another time).
     static func at(venue: Venue, date: Date, now: Date = .now) async -> Weather? {
         guard !venue.likelyIndoor, date < now else { return nil }
+        return await fetch(venue: venue, date: date, now: now)
+    }
+
+    /// How far ahead the forecast service answers.
+    static let forecastDays = 15
+
+    /// The forecast for a planned game, indoors or out (the trip there is outside), once it is within the forecast's reach.
+    static func forecast(venue: Venue, date: Date, now: Date = .now) async -> Weather? {
+        guard date > now.addingTimeInterval(-6 * 3600), date.timeIntervalSince(now) < Double(forecastDays) * 86_400 else { return nil }
+        return await fetch(venue: venue, date: date, now: now)
+    }
+
+    private static func fetch(venue: Venue, date: Date, now: Date) async -> Weather? {
         guard let url = requestURL(latitude: venue.latitude, longitude: venue.longitude, date: date, now: now) else { return nil }
         var request = URLRequest(url: url)
         request.timeoutInterval = 15

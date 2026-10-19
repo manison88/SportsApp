@@ -286,6 +286,28 @@ final class WitnessUITests: XCTestCase {
         XCTAssertTrue(app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'game-card-'")).firstMatch.waitForExistence(timeout: 5))
     }
 
+    /// Plan a game: a team picked inside any league lands back on the plan, never closes it.
+    func testPlanPickTeamFromLeagues() {
+        launch(["-empty"])
+        for n in 0..<6 {
+            if n == 0 {
+                tap("add-menu")
+                app.buttons["Plan a game"].tap()
+            } else {
+                tap("plan-team")
+            }
+            let leagues = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'team-league-'"))
+            XCTAssertTrue(leagues.firstMatch.waitForExistence(timeout: 8))
+            let league = leagues.element(boundBy: n)
+            let name = league.identifier
+            league.tap()
+            let row = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'team-row-'")).firstMatch
+            XCTAssertTrue(row.waitForExistence(timeout: 5), "Teams in \(name)")
+            row.tap()
+            XCTAssertTrue(el("plan-team").waitForExistence(timeout: 5), "Still planning after picking a team in \(name)")
+        }
+    }
+
     /// "Select your teams" on You: pick a team once and it is on the list.
     func testSelectYourTeams() {
         launch(["-empty"])
