@@ -41,6 +41,12 @@ final class ScanModel {
     private(set) var deepState: DeepState = .idle
     private(set) var deepDone = 0
     private(set) var deepTotal = 0
+    private(set) var deepStep: GameSuggester.Step = .reading
+    /// The whole search as 0...1, each step a quarter: stadium visits, reading albums, sorting them, the days.
+    var deepFraction: Double {
+        let part = deepTotal > 0 ? Double(deepDone) / Double(deepTotal) : 0
+        return min(1, (Double(deepStep.rawValue) + part) / 4)
+    }
     /// Set once the fan has seen the second pass's results.
     private(set) var deepReviewed = true
     /// The fan said no to the second pass; it is not offered again.
@@ -51,6 +57,8 @@ final class ScanModel {
 
     @ObservationIgnored private var task: Task<Void, Never>?
     @ObservationIgnored private var deepTask: Task<Void, Never>?
+    /// Stadium visits from the first pass with no game on the schedule, looked at only in the background search.
+    @ObservationIgnored private var pendingVisits: [PhotoCluster] = []
 
     var matchedCount: Int { matches.count }
     var inProgress: Bool { state == .scanning || state == .matching || state == .verifying }
@@ -70,7 +78,7 @@ final class ScanModel {
     func startDeepScan(library: Library) {
         guard deepState != .running else { return }
         deepState = .running
-        deepDone = 0; deepTotal = 0
+        deepDone = 0; deepTotal = 0; deepStep = .visits
         var claimed = Set<String>()
         var keyer = DayKeyer()
         for g in library.games { claimed.insert(keyer.day(g.date, tz: .current)) }
@@ -79,13 +87,32 @@ final class ScanModel {
         let venues = library.venues, teams = library.allTeams
         let home = library.profile.homeLocation, hasHome = library.hasHome
         Analytics.shared.track(.onboardingStep, ["step": "deep_scan_started"])
+        let pending = pendingVisits
+        let claimedBefore = claimed
         deepTask = Task { [weak self] in
-            let found = await GameSuggester.find(venues: venues, teams: teams, home: home, hasHome: hasHome, claimed: claimed) { done, total in
+            var claimed = claimedBefore
+            var keyer = DayKeyer()
+            // First the stadium visits with no game on the schedule: a possible game when the photos look like one
+            // (a league the schedules do not cover), and the fan confirms the stadium.
+            var atStadiums: [PossibleDay] = []
+            for (n, cluster) in pending.enumerated() {
+                if Task.isCancelled { return }
+                self?.deepStep = .visits; self?.deepDone = n; self?.deepTotal = pending.count
+                let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 3)
+                guard let look, look.looksLikeGame, PhotoMatcher.looksLikeAGame(cluster.times) else { continue }
+                let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
+                atStadiums.append(PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
+                                              reason: "Photos at \(cluster.venue.name) that look like a game, but none is on the schedule",
+                                              suggestions: [cluster.venue]))
+            }
+            for day in atStadiums { claimed.insert(keyer.day(day.day, tz: .current)) }
+            let found = await GameSuggester.find(venues: venues, teams: teams, home: home, hasHome: hasHome, claimed: claimed) { step, done, total in
+                self?.deepStep = step
                 self?.deepTotal = total
                 self?.deepDone = done
             }
             guard let self, !Task.isCancelled else { return }
-            possible = (possible + found).sorted { $0.day > $1.day }
+            possible = (possible + atStadiums + found).sorted { $0.day > $1.day }
             deepReviewed = false
             deepState = .done
             Analytics.shared.track(.scanFinished, ["deep": true, "possible": found.count])
@@ -212,38 +239,15 @@ final class ScanModel {
         matches = matched
         tickets = [:]
 
-        state = .verifying
-        let candidates = visits.filter { matched[$0.id] != nil }
-        let unmatched = visits.filter { matched[$0.id] == nil }
-        verifyTotal = unmatched.count
-        var confirmed: [PhotoCluster] = []
-        var maybe: [PossibleDay] = []
-        var skipped = 0
-        func makePossible(_ cluster: PhotoCluster, _ reason: String) -> PossibleDay {
-            let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
-            return PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
-                               reason: reason, suggestions: [cluster.venue])
-        }
-        // A game on the schedule at the stadium that day stands; the stadium and the date decide, so these are not scene-checked.
-        confirmed = candidates
-        // A visit with no game on the schedule is not shown, unless the photos themselves look like a game (a league the
-        // schedules do not cover): then it is a possible game, and the fan confirms the stadium.
-        for cluster in unmatched {
-            let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 3)
-            if let look, look.looksLikeGame, PhotoMatcher.looksLikeAGame(cluster.times) {
-                maybe.append(makePossible(cluster, "Photos at \(cluster.venue.name) that look like a game, but none is on the schedule"))
-            } else {
-                skipped += 1
-            }
-            verifiedVisits += 1
-        }
-
+        // Onboarding shows only games: a game on the schedule at the stadium that day. Stadium visits with no game on the
+        // schedule wait for the background search the fan can start from the Timeline, with the albums and trips.
+        let confirmed = visits.filter { matched[$0.id] != nil }
+        pendingVisits = visits.filter { matched[$0.id] == nil }
         matches = matched
-
-        skippedVisits = skipped
+        skippedVisits = 0
         games = confirmed.sorted { $0.start > $1.start }
         others = []
-        possible = maybe.sorted { $0.day > $1.day }
+        possible = []
         state = games.isEmpty && possible.isEmpty ? .empty : .done
         Analytics.shared.track(.scanFinished, ["games": games.count, "possible": possible.count, "photos": progress.scanned,
                                                "seconds": Int(Date().timeIntervalSince(began))])

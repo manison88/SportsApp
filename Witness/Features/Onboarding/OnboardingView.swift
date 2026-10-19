@@ -636,13 +636,17 @@ struct ScanBanner: View {
         let scan = presenter.scan
         if scan.deepState == .running {
             card {
-                ProgressView().tint(.white)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("Searching albums and trips").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
-                    Text(scan.deepTotal > 0 ? "\(scan.deepDone) of \(scan.deepTotal) days. You can keep using the app." : "Looking for days that might be games")
-                        .font(.footnote).foregroundStyle(Color.textSecondary)
+                VStack(alignment: .leading, spacing: 8) {
+                    HStack {
+                        Text("Searching albums and trips").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
+                        Spacer()
+                        Text("\(Int((scan.deepFraction * 100).rounded()))%")
+                            .font(.condensed(.subheadline, weight: .heavy)).monospacedDigit().foregroundStyle(Color.signal)
+                    }
+                    ProgressView(value: scan.deepFraction).tint(Color.signal)
+                        .animation(.smooth, value: scan.deepFraction)
+                    Text(deepLine(scan)).font(.footnote).foregroundStyle(Color.textSecondary)
                 }
-                Spacer()
             }
             .accessibilityIdentifier("deep-scan-running")
         } else if scan.deepState == .done && !scan.deepReviewed {
@@ -672,6 +676,17 @@ struct ScanBanner: View {
             }
         } else {
             firstPass(scan)
+        }
+    }
+
+    /// What the background search is doing right now, with a count, so a long search never looks stuck.
+    private func deepLine(_ scan: ScanModel) -> String {
+        let count = scan.deepTotal > 0 ? " \(min(scan.deepDone + 1, scan.deepTotal)) of \(scan.deepTotal)" : ""
+        switch scan.deepStep {
+        case .visits: return "Checking stadium visits\(count). You can keep using the app."
+        case .reading: return "Reading your albums\(count)"
+        case .sorting: return "Looking for stadium photos\(count)"
+        case .days: return scan.deepTotal > 0 ? "Checking days that might be games\(count)" : "Checking days that might be games"
         }
     }
 

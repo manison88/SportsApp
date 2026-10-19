@@ -17,6 +17,10 @@ struct PossibleDay: Identifiable, Hashable {
 /// Looks past the photos that carry a stadium location: albums the fan made, trips, and days with no location at all.
 /// Nothing here is added on its own: a scoreboard could be a kid's game, so every day is only a possible game and the fan picks the stadium.
 enum GameSuggester {
+    /// Where a search is: the stadium visits with no game on the schedule, reading the albums and trips, keeping the ones
+    /// with stadium photos, then looking at each day.
+    enum Step: Int, Sendable { case visits, reading, sorting, days }
+
     static let minPhotos = 3
     static let maxDays = 150
     static let maxAlbums = 60
@@ -85,11 +89,13 @@ enum GameSuggester {
     /// The days that are only possible games.
     /// `claimed` holds "yyyy-MM-dd" days a visit or a saved game already covers.
     static func find(venues: [Venue], teams: [Team], home: CLLocation, hasHome: Bool, claimed: Set<String>,
-                     progress: @escaping @MainActor (_ done: Int, _ total: Int) -> Void) async -> [PossibleDay] {
+                     progress: @escaping @MainActor (_ step: Step, _ done: Int, _ total: Int) -> Void) async -> [PossibleDay] {
         // Everything that touches the photo library runs off the main thread.
         let sources: [Source] = await Task.detached(priority: .utility) {
             var out: [Source] = []
-            for album in AlbumImporter.albums().filter({ $0.count >= minPhotos && $0.count <= 3000 && !isAppAlbum($0.title) }).prefix(maxAlbums) {
+            let albums = Array(AlbumImporter.albums().filter({ $0.count >= minPhotos && $0.count <= 3000 && !isAppAlbum($0.title) }).prefix(maxAlbums))
+            for (n, album) in albums.enumerated() {
+                Task { @MainActor in progress(.reading, n, albums.count) }
                 let hints = Self.venues(named: album.title, teams: teams, venues: venues) { id in venues.first { $0.id == id } }
                 out.append(Source(reason: "In your album \u{201C}\(album.title)\u{201D}", points: AlbumImporter.points(in: album), hints: hints, titled: !hints.isEmpty))
             }
@@ -114,7 +120,8 @@ enum GameSuggester {
         // The unplaced days of every source, then the cheapest filter first: only days that look like a game are kept.
         var work: [(DayPile, Source)] = []
         var claimed = claimed
-        for source in sources {
+        for (n, source) in sources.enumerated() {
+            await progress(.sorting, n, sources.count)
             // An album or trip counts only if some of its photos show a stadium, arena, scoreboard or sport (or its title names
             // a team or stadium). A crowd alone is a wedding, a party or a school event.
             if !source.titled {
@@ -128,11 +135,11 @@ enum GameSuggester {
             }
         }
         work = Array(work.sorted { $0.0.day > $1.0.day }.prefix(maxDays))
-        await progress(0, work.count)
+        await progress(.days, 0, work.count)
 
         var possible: [PossibleDay] = []
         for (n, (pile, source)) in work.enumerated() {
-            defer { Task { await progress(n + 1, work.count) } }
+            defer { Task { await progress(.days, n + 1, work.count) } }
             if Task.isCancelled { break }
             let refs = pile.assetIds.map { PhotoRef.library($0) }
             let verdict = await SceneCheck.verdict(for: refs, sample: 3)
