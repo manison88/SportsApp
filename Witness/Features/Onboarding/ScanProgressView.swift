@@ -249,6 +249,9 @@ private struct ThumbStrip: View {
     let ids: [String]
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var shown: [String?] = Array(repeating: nil, count: 5)
+    /// The finds so far, kept in state: the timer below runs in a task that started with the view, and a plain `ids` read
+    /// there would stay the (empty) list it began with, so nothing would ever fade in.
+    @State private var pool: [String] = []
 
     var body: some View {
         HStack(spacing: 8) {
@@ -267,7 +270,10 @@ private struct ThumbStrip: View {
             }
         }
         .accessibilityHidden(true)
-        .onChange(of: ids, initial: true) { _, now in fillEmpty(now) }
+        .onChange(of: ids, initial: true) { _, now in
+            pool = now
+            fillEmpty(now)
+        }
         .task {
             guard !reduceMotion else { return }
             while !Task.isCancelled {
@@ -287,7 +293,7 @@ private struct ThumbStrip: View {
 
     /// One random slot fades to a photo not already showing.
     private func swapOne() {
-        let free = ids.filter { !shown.contains($0) }
+        let free = pool.filter { !shown.contains($0) }
         guard let next = free.randomElement() else { return }
         let slot = shown.indices.randomElement() ?? 0
         withAnimation(.easeInOut(duration: 0.7)) { shown[slot] = next }
