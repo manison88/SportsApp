@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 0,
-      "passedTests" : 112,
+      "failedTests" : 2,
+      "passedTests" : 113,
       "skippedTests" : 1,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,25 +22,40 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 0,
-  "finishTime" : 1792432983.876,
-  "passedTests" : 112,
-  "result" : "Passed",
+  "failedTests" : 2,
+  "finishTime" : 1792434625.704,
+  "passedTests" : 113,
+  "result" : "Failed",
   "skippedTests" : 1,
-  "startTime" : 1792432287.547,
+  "startTime" : 1792433561.985,
   "statistics" : [
 
   ],
   "testFailures" : [
-
+    {
+      "failureText" : "XCTAssertTrue failed - Expected the scan to find the seeded stadium photos",
+      "targetName" : "WitnessUITests",
+      "testIdentifier" : 98,
+      "testIdentifierString" : "WitnessUITests/testDiscoveryFromPhotos()",
+      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testDiscoveryFromPhotos",
+      "testName" : "testDiscoveryFromPhotos()"
+    },
+    {
+      "failureText" : "XCTAssertTrue failed - The seeded album should be listed",
+      "targetName" : "WitnessUITests",
+      "testIdentifier" : 101,
+      "testIdentifierString" : "WitnessUITests/testImportAlbumWithScoreboardReading()",
+      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testImportAlbumWithScoreboardReading",
+      "testName" : "testImportAlbumWithScoreboardReading()"
+    }
   ],
   "title" : "Test - Witness",
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
       "impact" : "49% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 6.99s (three standard deviations)"
+      "text" : "1 longest test run with outlier durations exceeding 8.67s (three standard deviations)"
     }
   ],
-  "totalTestCount" : 113
+  "totalTestCount" : 116
 }
