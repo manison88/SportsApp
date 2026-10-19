@@ -97,10 +97,16 @@ struct WelcomeView: View {
                     .accessibilityIdentifier("welcome-sample")
             }
             .padding(.top, 20)
+            // Shown once the countdown has made its point; a tap anywhere gets there sooner.
+            .opacity(settled ? 1 : 0)
+            .offset(y: settled ? 0 : 16)
+            .allowsHitTesting(settled)
         }
         .gutter()
         .padding(.bottom, 12)
         .background(Color.ink.ignoresSafeArea())
+        .contentShape(.rect)
+        .onTapGesture { if !settled { skip() } }
         .task { await play() }
     }
 
@@ -114,14 +120,25 @@ struct WelcomeView: View {
         }
         try? await Task.sleep(for: .milliseconds(900))
         for next in 1..<Self.steps.count {
+            guard !settled else { return }
             withAnimation(.smooth(duration: 0.6)) { stage = next }
             try? await Task.sleep(for: .milliseconds(next == Self.steps.count - 1 ? 900 : 1_050))
         }
         for i in 1...Self.examples.count {
+            guard !settled else { return }
             withAnimation(.spring(duration: 0.5, bounce: 0.2)) { cards = i }
             try? await Task.sleep(for: .milliseconds(160))
         }
         withAnimation(.smooth(duration: 0.6)) { settled = true }
+    }
+
+    /// Straight to the end: the count at the games, the cards in place, the buttons shown.
+    private func skip() {
+        withAnimation(.smooth(duration: 0.4)) {
+            stage = Self.steps.count - 1
+            cards = Self.examples.count
+            settled = true
+        }
     }
 
     private func card(_ e: (photo: String, venue: String, line: String, sport: String)) -> some View {
