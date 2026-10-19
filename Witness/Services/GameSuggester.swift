@@ -113,7 +113,7 @@ enum GameSuggester {
             defer { Task { await progress(n + 1, work.count) } }
             if Task.isCancelled { break }
             let refs = pile.assetIds.map { PhotoRef.library($0) }
-            let verdict = await SceneCheck.verdict(for: refs)
+            let verdict = await SceneCheck.verdict(for: refs, sample: 3)
             let sporty = verdict?.looksLikeGame ?? false
             guard sporty || !source.hints.isEmpty else { continue }
             if let verdict, verdict.clearlyElsewhere, source.hints.isEmpty { continue }

@@ -170,7 +170,7 @@ final class ScanModel {
         state = .verifying
         let candidates = visits.filter { matched[$0.id] != nil }
         let unmatched = visits.filter { matched[$0.id] == nil }
-        verifyTotal = candidates.count + unmatched.count
+        verifyTotal = unmatched.count
         var confirmed: [PhotoCluster] = []
         var maybe: [PossibleDay] = []
         var skipped = 0
@@ -179,21 +179,12 @@ final class ScanModel {
             return PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
                                reason: reason, suggestions: [cluster.venue])
         }
-        for cluster in candidates {
-            let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 8)
-            // A game on the schedule at the stadium that day stands, unless the photos clearly show somewhere else and the
-            // setting (indoors for an arena, outdoors for a ballpark) does not fit the stadium either.
-            if let look, look.clearlyElsewhere, !look.fits(cluster.venue) {
-                maybe.append(makePossible(cluster, "Photos near \(cluster.venue.name) on a game day, but they don't look like a game"))
-            } else {
-                confirmed.append(cluster)
-            }
-            verifiedVisits += 1
-        }
+        // A game on the schedule at the stadium that day stands; the stadium and the date decide, so these are not scene-checked.
+        confirmed = candidates
         // A visit with no game on the schedule is not shown, unless the photos themselves look like a game (a league the
         // schedules do not cover): then it is a possible game, and the fan confirms the stadium.
         for cluster in unmatched {
-            let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 8)
+            let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 3)
             if let look, look.looksLikeGame, PhotoMatcher.looksLikeAGame(cluster.times) {
                 maybe.append(makePossible(cluster, "Photos at \(cluster.venue.name) that look like a game, but none is on the schedule"))
             } else {
