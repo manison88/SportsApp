@@ -351,15 +351,19 @@ enum PhotoLoader {
             if let hit = cache.object(forKey: key) { return hit }
             // A request can come back empty while Photos is busy (a big scan) or while the original is still in
             // iCloud, so ask again a couple of times before giving up.
+            var standIn: UIImage?
             for attempt in 0..<3 {
-                if let image = await request(id, size: size) {
+                let got = await request(id, size: size)
+                if let image = got.image, !got.standIn {
                     cache.setObject(image, forKey: key)
                     return image
                 }
-                if Task.isCancelled { return nil }
+                standIn = got.image ?? standIn
+                // A stalled request still gave a low-quality picture: show it now (uncached, so the next look tries again).
+                if standIn != nil || Task.isCancelled { return standIn }
                 try? await Task.sleep(for: .milliseconds(500 * (attempt + 1)))
             }
-            return nil
+            return standIn
         }
     }
 
@@ -375,19 +379,38 @@ enum PhotoLoader {
         }
     }
 
-    private static func request(_ id: String, size: CGSize) async -> UIImage? {
-        guard let asset = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil).firstObject else { return nil }
+    /// A low-quality stand-in kept until the real image arrives, so a stalled request still has something to show.
+    private final class Stand: @unchecked Sendable {
+        private let lock = NSLock()
+        private var image: UIImage?
+        func set(_ i: UIImage) { lock.lock(); image = i; lock.unlock() }
+        func get() -> UIImage? { lock.lock(); defer { lock.unlock() }; return image }
+    }
+
+    /// Asks Photos for one image. Photos can sit on a request indefinitely (a stalled iCloud download, or a queue full of
+    /// scan requests), so after `timeout` the request is cancelled and the low-quality stand-in, if any, is used instead.
+    private static func request(_ id: String, size: CGSize, timeout: TimeInterval = 8) async -> (image: UIImage?, standIn: Bool) {
+        guard let asset = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil).firstObject else { return (nil, false) }
         let options = PHImageRequestOptions()
-        options.deliveryMode = .highQualityFormat
+        options.deliveryMode = .opportunistic
         options.resizeMode = .fast
         options.isNetworkAccessAllowed = true
-        return await withCheckedContinuation { (cont: CheckedContinuation<UIImage?, Never>) in
-            let once = Once()
-            PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { image, info in
-                // A low-quality stand-in is followed by the real image; wait for that one.
-                if (info?[PHImageResultIsDegradedKey] as? Bool) == true, image != nil { return }
+        let once = Once()
+        let stand = Stand()
+        return await withCheckedContinuation { (cont: CheckedContinuation<(UIImage?, Bool), Never>) in
+            let requestId = PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { image, info in
+                // A low-quality stand-in is followed by the real image; keep it, and wait for that one.
+                if (info?[PHImageResultIsDegradedKey] as? Bool) == true {
+                    if let image { stand.set(image) }
+                    return
+                }
                 guard once.take() else { return }
-                cont.resume(returning: image)
+                if let image { cont.resume(returning: (image, false)) } else { cont.resume(returning: (stand.get(), true)) }
+            }
+            DispatchQueue.global().asyncAfter(deadline: .now() + timeout) {
+                guard once.take() else { return }
+                PHImageManager.default().cancelImageRequest(requestId)
+                cont.resume(returning: (stand.get(), true))
             }
         }
     }
