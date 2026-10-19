@@ -149,7 +149,9 @@ enum GameSuggester {
             let games = await GameLookup.games(at: venue, from: shape.first, to: shape.last)
             if let game = games.first(where: { shape.covers($0.start) }) { return .game(game, venue, specific: specific) }
         }
-        return .none
+        // Only a stadium the photos or the title point at can rule a day out. Checking the fan's home stadiums finds
+        // nothing for a game abroad or at a ground the schedules miss, and that is no reason to drop it.
+        return specific ? .none : .unknown
     }
 
     /// Albums that apps and the system make (saved from Instagram, WhatsApp, screenshots...) are never a day out.
@@ -177,11 +179,15 @@ enum GameSuggester {
         var out: [Venue] = []
         func add(_ v: Venue?) { if let v, !out.contains(where: { $0.id == v.id }) { out.append(v) } }
         var byTeam: [Venue] = []
+        // A matchup title ("BiH v Qatar", "Cubs vs Cards", "CHI @ GB") may name a side by its code.
+        let matchup = words.contains("v") || words.contains("vs") || title.contains("@")
         for team in teams {
             let name = fold(team.teamName).split(separator: " ").map(String.init)
             let city = fold(team.locationName).split(separator: " ").map(String.init)
+            let code = fold(team.abbreviation)
             // "Cubs" alone is enough only when the nickname is a distinctive word; "Chicago Bears" matches on city plus name.
             guard !name.isEmpty, name.allSatisfy({ $0.count >= 4 && words.contains($0) }) || (!city.isEmpty && Set(city + name).isSubset(of: words))
+                || (matchup && code.count >= 3 && words.contains(code))
             else { continue }
             if let home = team.homeVenueId.flatMap(lookup) {
                 byTeam.append(home)

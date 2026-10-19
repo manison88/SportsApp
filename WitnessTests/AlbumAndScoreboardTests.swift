@@ -646,6 +646,14 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(GameSuggester.describe(game, at: wrigley), "Cardinals at Cubs, Wrigley Field, that day")
     }
 
+    func testMatchupTitleNamesTeamsByCode() {
+        let teams = library.allTeams
+        let byCode = GameSuggester.venues(named: "CHC vs MIL", teams: teams, venues: library.venues) { self.library.venue($0) }
+        XCTAssertTrue(byCode.contains { $0.name == "Wrigley Field" }, "A matchup title can name a side by its code: \(byCode.map(\.name))")
+        let plain = GameSuggester.venues(named: "CHC summer", teams: teams, venues: library.venues) { self.library.venue($0) }
+        XCTAssertFalse(plain.contains { $0.name == "Wrigley Field" }, "Codes only count in a matchup title")
+    }
+
     func testIndoorOutdoorIsASecondOpinion() throws {
         let setting = SceneCheck.setting([("indoor_arena", 0.8), ("sky", 0.1)])
         XCTAssertGreaterThan(setting.indoor, 0.5)

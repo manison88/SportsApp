@@ -321,7 +321,8 @@ struct AlbumImportView: View {
                 }
             }
             Spacer(minLength: 8)
-            Toggle("Include", isOn: item.included).labelsHidden().tint(.white)
+            // Amber when on: a white track with a white knob read as a blank button.
+            Toggle("Include", isOn: item.included).labelsHidden().tint(Color.signal)
         }
         .frame(minHeight: 76)
         .overlay(alignment: .bottom) { Rectangle().fill(Color.hairline).frame(height: 1) }
