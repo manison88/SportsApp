@@ -316,6 +316,9 @@ final class WitnessUITests: XCTestCase {
         app.buttons["Share passport"].firstMatch.tap()
         sleep(6)
         snap("passport-share")
+        app.swipeLeft()
+        sleep(3)
+        snap("passport-share-full")
     }
 
     /// "Select your teams" on You: pick a team once and it is on the list.

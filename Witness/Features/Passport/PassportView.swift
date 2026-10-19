@@ -24,10 +24,7 @@ struct PassportView: View {
     }
 
     var body: some View {
-        let all = stamps()
-        let titleVenues = Dictionary(grouping: library.games.filter { $0.sport == sport && $0.bigGame?.kind == .championship },
-                                     by: \.venueId).mapValues(\.count)
-        let earned = all.0.map { s -> Stamp in var s = s; s.titles = titleVenues[s.venueId] ?? 0; return s }
+        let earned = earnedStamps(sport)
         let latest = earned.max { ($0.date ?? .distantPast) < ($1.date ?? .distantPast) }
 
         ScrollView {
@@ -39,7 +36,7 @@ struct PassportView: View {
                         Text("\(earned.count)")
                             .displayFont(150)
                             .accessibilityIdentifier("passport-count")
-                        Text(heroLabel(earned: earned.count))
+                        Text(heroLabel(earned: earned.count, sport: sport))
                             .displayFont(40, relativeTo: .title)
                             .textCase(.uppercase)
                             .lineLimit(2)
@@ -48,7 +45,7 @@ struct PassportView: View {
                     .foregroundStyle(.white)
                     .accessibilityElement(children: .combine)
 
-                    if let next = plannedStamps(excluding: Set(earned.map(\.venueId))).first, let date = next.date {
+                    if let next = plannedStamps(excluding: Set(earned.map(\.venueId)), sport: sport).first, let date = next.date {
                         Text("+ \(library.venue(next.venueId)?.name ?? next.code) planned for \(Fmt.day(date).capitalized)")
                             .font(.subheadline).foregroundStyle(Color.signal)
                             .accessibilityIdentifier("passport-planned-caption")
@@ -63,7 +60,7 @@ struct PassportView: View {
                         .buttonStyle(.plain)
                         .accessibilityIdentifier("stamp-\(stamp.venueId)")
                     }
-                    ForEach(plannedStamps(excluding: Set(earned.map(\.venueId)))) { stamp in
+                    ForEach(plannedStamps(excluding: Set(earned.map(\.venueId)), sport: sport)) { stamp in
                         NavigationLink(value: Route.plan(stamp.planId)) {
                             PlannedStampTile(stamp: stamp)
                         }
@@ -80,31 +77,32 @@ struct PassportView: View {
         .tabTitle("Passport")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
-                ShareCardSheetLink(kind: "passport", title: "My \(Self.league(sport)) passport", format: .story, key: "\(sport.rawValue)-\(earned.count)", variants: {
-                    let tiles = earned.map { PassportShareTile(code: $0.code, color: $0.color) }
-                    let label = heroLabel(earned: earned.count)
+                ShareCardSheetLink(kind: "passport", title: "Share passport", format: .story, key: "\(sport.rawValue)-\(earned.count)", variants: {
+                    // This sport's page, then every sport together: the same tiles, each with its ground from above, sized to fit.
+                    let page = await shareTiles(earned)
+                    let planned = plannedStamps(excluding: Set(earned.map(\.venueId)), sport: sport)
+                    var everyEarned: [Stamp] = [], everyPlanned: [Stamp] = []
+                    var seen = Set<String>()
+                    for s in sports {
+                        for stamp in earnedStamps(s) where seen.insert(stamp.venueId).inserted { everyEarned.append(stamp) }
+                    }
+                    everyEarned.sort { ($0.date ?? .distantPast) < ($1.date ?? .distantPast) }
+                    for s in sports {
+                        for stamp in plannedStamps(excluding: seen, sport: s) where seen.insert(stamp.venueId).inserted { everyPlanned.append(stamp) }
+                    }
+                    let full = sports.count > 1 ? await shareTiles(everyEarned) : []
+                    let label = heroLabel(earned: earned.count, sport: sport)
                     let league = Self.league(sport)
-                    let count = earned.count
-                    // The page itself: every tile, each with its ground from above (loaded before drawing), sized to fit.
-                    var page: [PassportShareTile] = []
-                    for stamp in earned {
-                        let venue = library.venue(stamp.venueId)
-                        let aerial: UIImage? = if let venue { await AerialCache.shared.image(for: venue, points: 120) } else { nil }
-                        page.append(PassportShareTile(code: stamp.code, color: stamp.color, name: venue?.name, date: stamp.date,
-                                                      titles: stamp.titles, aerial: aerial))
+                    var variants = [ShareCardVariant("\(league) passport") {
+                        PassportPageCard(count: page.count, label: label, league: league, tiles: page, planned: planned)
+                    }]
+                    if sports.count > 1 {
+                        variants.append(ShareCardVariant("Full passport") {
+                            PassportPageCard(count: full.count, label: full.count == 1 ? "venue\nvisited" : "venues\nvisited",
+                                             league: "FULL", tiles: full, planned: everyPlanned)
+                        })
                     }
-                    let pageTiles = page
-                    let planned = plannedStamps(excluding: Set(earned.map(\.venueId)))
-                    let styles: [(String, PassportShareCard.Style)] = [
-                        ("Giant", .giant), ("Stamps", .stamps), ("Color", .color), ("Paper", .paper), ("Ledger", .ledger),
-                    ]
-                    return [ShareCardVariant("Passport") {
-                        PassportPageCard(count: count, label: label, league: league, tiles: pageTiles, planned: planned)
-                    }] + styles.map { entry in
-                        ShareCardVariant(entry.0) {
-                            PassportShareCard(style: entry.1, count: count, label: label, league: league, tiles: tiles)
-                        }
-                    }
+                    return variants
                 }, label: {
                     Image(systemName: "square.and.arrow.up").fontWeight(.bold)
                 })
@@ -148,7 +146,7 @@ struct PassportView: View {
         }
     }
 
-    private func heroLabel(earned: Int) -> String {
+    private func heroLabel(earned: Int, sport: Sport) -> String {
         switch sport {
         case .baseball: earned == 1 ? "MLB\npark" : "MLB\nparks"
         case .soccer: earned == 1 ? "football\nground" : "football\ngrounds"
@@ -159,8 +157,27 @@ struct PassportView: View {
         }
     }
 
+    /// Earned stamps, oldest first, with their title-game stars.
+    private func earnedStamps(_ sport: Sport) -> [Stamp] {
+        let titleVenues = Dictionary(grouping: library.games.filter { $0.sport == sport && $0.bigGame?.kind == .championship },
+                                     by: \.venueId).mapValues(\.count)
+        return stamps(sport).0.map { s -> Stamp in var s = s; s.titles = titleVenues[s.venueId] ?? 0; return s }
+    }
+
+    /// Share tiles with each ground from above, loaded before drawing.
+    private func shareTiles(_ stamps: [Stamp]) async -> [PassportShareTile] {
+        var out: [PassportShareTile] = []
+        for stamp in stamps {
+            let venue = library.venue(stamp.venueId)
+            let aerial: UIImage? = if let venue { await AerialCache.shared.image(for: venue, points: 120) } else { nil }
+            out.append(PassportShareTile(code: stamp.code, color: stamp.color, name: venue?.name, date: stamp.date,
+                                         titles: stamp.titles, aerial: aerial))
+        }
+        return out
+    }
+
     /// Earned stamps (oldest first) and the parks still to visit.
-    private func stamps() -> ([Stamp], [Stamp]) {
+    private func stamps(_ sport: Sport) -> ([Stamp], [Stamp]) {
         let games = library.games.filter { $0.sport == sport }
         var firstVisit: [String: Date] = [:]
         for g in games { firstVisit[g.venueId] = min(firstVisit[g.venueId] ?? g.date, g.date) }
@@ -183,7 +200,7 @@ struct PassportView: View {
     }
 
     /// Dashed stamps for grounds you plan to visit and haven't yet, soonest first.
-    private func plannedStamps(excluding earnedVenues: Set<String>) -> [Stamp] {
+    private func plannedStamps(excluding earnedVenues: Set<String>, sport: Sport) -> [Stamp] {
         var seen = Set<String>()
         return PlanText.coming(library).filter { $0.sport == sport && !earnedVenues.contains($0.venueId) && seen.insert($0.venueId).inserted }
             .compactMap { plan in
@@ -411,270 +428,6 @@ private struct PassportPageCard: View {
             .frame(width: Self.tileW * tileScale, height: Self.tileH * tileScale, alignment: .topLeading)
     }
 }
-
-/// 1080x1920 story card in five looks. Plain values only, no @Environment.
-private struct PassportShareCard: View {
-    enum Style { case giant, stamps, color, paper, ledger }
-
-    let style: Style
-    let count: Int
-    let label: String
-    let league: String
-    let tiles: [PassportShareTile]
-
-    private let gap: CGFloat = 16
-    private let paperBg = Color(hex: "F4F1EA")
-
-    var body: some View {
-        switch style {
-        case .giant: giant
-        case .stamps: stamps
-        case .color: colorField
-        case .paper: paper
-        case .ledger: ledger
-        }
-    }
-
-    // MARK: Styles
-
-    /// Pure type: an enormous count on ink.
-    private var giant: some View {
-        ShareCardFrame(format: .story) {
-            VStack(alignment: .leading, spacing: 0) {
-                Spacer(minLength: 0)
-                Text("\(count)")
-                    .font(.display(760))
-                    .foregroundStyle(.white)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.3)
-                Text(label.uppercased())
-                    .font(.system(size: 88, weight: .heavy).width(.compressed))
-                    .foregroundStyle(.white.opacity(0.92))
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.5)
-                Text("\(league) PASSPORT")
-                    .font(.system(size: 40, weight: .bold).width(.condensed))
-                    .tracking(8)
-                    .foregroundStyle(Color.signal)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                    .padding(.top, 36)
-                Spacer(minLength: 0)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        }
-    }
-
-    /// Hero count over a grid of stamp tiles.
-    private var stamps: some View {
-        ShareCardFrame(format: .story) {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("\(league) PASSPORT")
-                    .font(.system(size: 40, weight: .bold).width(.condensed))
-                    .tracking(8)
-                    .foregroundStyle(Color.signal)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                Text("\(count)")
-                    .font(.display(420))
-                    .foregroundStyle(.white)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.4)
-                    .padding(.top, 8)
-                Text(label.uppercased())
-                    .font(.system(size: 64, weight: .heavy).width(.compressed))
-                    .foregroundStyle(.white.opacity(0.9))
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.5)
-                Spacer(minLength: 40)
-                stampGrid(tileText: nil, moreFill: Color.panelRaised, moreInk: .white)
-                    .padding(.bottom, 60)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        }
-    }
-
-    /// A solid field in the color of the latest stamp.
-    private var colorField: some View {
-        let bg = tiles.last?.color ?? Color.signal
-        let ink = bg.readableInk
-        return ZStack(alignment: .topLeading) {
-            bg
-            VStack(alignment: .leading, spacing: 0) {
-                Text("\(league) PASSPORT")
-                    .font(.system(size: 40, weight: .bold).width(.condensed))
-                    .tracking(8)
-                    .foregroundStyle(ink.opacity(0.8))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                Spacer(minLength: 0)
-                Text("\(count)")
-                    .font(.display(560))
-                    .foregroundStyle(ink)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.3)
-                Text(label.uppercased())
-                    .font(.system(size: 72, weight: .heavy).width(.compressed))
-                    .foregroundStyle(ink)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.5)
-                Text(tiles.suffix(12).map { $0.code }.joined(separator: "  "))
-                    .font(.system(size: 40, weight: .bold).width(.condensed))
-                    .tracking(4)
-                    .foregroundStyle(ink.opacity(0.75))
-                    .lineLimit(3)
-                    .minimumScaleFactor(0.5)
-                    .padding(.top, 40)
-                Spacer(minLength: 0)
-                Text("WITNESS")
-                    .font(.system(size: 40, weight: .heavy).width(.compressed))
-                    .tracking(10)
-                    .foregroundStyle(ink)
-            }
-            .padding(.horizontal, 84)
-            .padding(.top, 230)
-            .padding(.bottom, 250)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        }
-        .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
-    }
-
-    /// Light inverse: off-white paper, black type, colored stamps.
-    private var paper: some View {
-        ZStack(alignment: .topLeading) {
-            paperBg
-            VStack(alignment: .leading, spacing: 0) {
-                Text("\(league) PASSPORT")
-                    .font(.system(size: 40, weight: .bold).width(.condensed))
-                    .tracking(8)
-                    .foregroundStyle(Color.black.opacity(0.55))
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                Text("\(count)")
-                    .font(.display(420))
-                    .foregroundStyle(Color.black)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.4)
-                    .padding(.top, 8)
-                Text(label.uppercased())
-                    .font(.system(size: 64, weight: .heavy).width(.compressed))
-                    .foregroundStyle(Color.black.opacity(0.85))
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.5)
-                Spacer(minLength: 40)
-                stampGrid(tileText: nil, moreFill: Color.black.opacity(0.08), moreInk: .black)
-                    .padding(.bottom, 60)
-                Text("WITNESS")
-                    .font(.system(size: 40, weight: .heavy).width(.compressed))
-                    .tracking(10)
-                    .foregroundStyle(Color.black)
-            }
-            .padding(.horizontal, 84)
-            .padding(.top, 230)
-            .padding(.bottom, 250)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        }
-        .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .light)
-    }
-
-    /// Data-forward list: numbered rows, latest first, each with a bar of the stamp's color.
-    private var ledger: some View {
-        let rows: [PassportShareTile] = Array(tiles.suffix(9).reversed())
-        return ShareCardFrame(format: .story) {
-            VStack(alignment: .leading, spacing: 0) {
-                HStack(alignment: .firstTextBaseline, spacing: 24) {
-                    Text("\(count)")
-                        .font(.display(240))
-                        .foregroundStyle(.white)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.4)
-                    Text(label.uppercased())
-                        .font(.system(size: 52, weight: .heavy).width(.compressed))
-                        .foregroundStyle(.white.opacity(0.9))
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.5)
-                }
-                Text("LATEST STAMPS")
-                    .font(.system(size: 36, weight: .bold).width(.condensed))
-                    .tracking(8)
-                    .foregroundStyle(Color.signal)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
-                    .padding(.top, 40)
-                    .padding(.bottom, 20)
-                VStack(alignment: .leading, spacing: 0) {
-                    ForEach(0..<rows.count, id: \.self) { k in
-                        HStack(spacing: 28) {
-                            Text(String(format: "%02d", tiles.count - k))
-                                .font(.system(size: 40, weight: .bold).width(.condensed))
-                                .foregroundStyle(.white.opacity(0.5))
-                                .frame(width: 70, alignment: .leading)
-                            Text(rows[k].code)
-                                .font(.display(84))
-                                .foregroundStyle(.white)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
-                                .frame(width: 220, alignment: .leading)
-                            Capsule()
-                                .fill(rows[k].color)
-                                .frame(height: 18)
-                        }
-                        .frame(height: 112)
-                        .overlay(alignment: .bottom) {
-                            Rectangle().fill(Color.white.opacity(0.12)).frame(height: 1)
-                        }
-                    }
-                }
-                Spacer(minLength: 0)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        }
-    }
-
-    // MARK: Pieces
-
-    /// Up to 20 tiles, 5 columns; the latest 19 plus a "+N" tile when there are more.
-    private func stampGrid(tileText: String?, moreFill: Color, moreInk: Color) -> some View {
-        let columns = 5
-        let maxTiles = 20
-        let overflow = tiles.count > maxTiles
-        let shown: [PassportShareTile] = overflow ? Array(tiles.suffix(maxTiles - 1)) : tiles
-        let extra = tiles.count - shown.count
-        let slots = shown.count + (overflow ? 1 : 0)
-        let rowCount = (slots + columns - 1) / columns
-        let side = (912 - gap * CGFloat(columns - 1)) / CGFloat(columns)
-        return VStack(alignment: .leading, spacing: gap) {
-            ForEach(0..<rowCount, id: \.self) { row in
-                HStack(spacing: gap) {
-                    ForEach(0..<columns, id: \.self) { col in
-                        let i = row * columns + col
-                        if i < shown.count {
-                            tile(shown[i].code, fill: shown[i].color, ink: shown[i].color.readableInk, side: side)
-                        } else if i == shown.count && overflow {
-                            tile("+\(extra)", fill: moreFill, ink: moreInk, side: side)
-                        } else {
-                            Color.clear.frame(width: side, height: side)
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private func tile(_ text: String, fill: Color, ink: Color, side: CGFloat) -> some View {
-        Text(text)
-            .font(.display(64))
-            .foregroundStyle(ink)
-            .lineLimit(1)
-            .minimumScaleFactor(0.5)
-            .padding(.horizontal, 8)
-            .frame(width: side, height: side)
-            .background(fill, in: .rect(cornerRadius: 22))
-    }
-}
-
 
 /// The stamp's team color over a faded satellite view of its ground.
 private struct StampBackdrop: View {
