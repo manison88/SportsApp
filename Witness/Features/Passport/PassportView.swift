@@ -190,7 +190,7 @@ struct PassportView: View {
             .filter { Self.isTenant($0, of: venue) }.map(\.id)
         let top = Dictionary(grouping: homes, by: { $0 }).max { $0.value.count < $1.value.count }?.key
         // No tenant in the games seen here (a national side at a club's ground, Netherlands at the Philips Stadion): the stamp
-        // still wears the club that calls it home. A ground with no club of its own (a World Cup venue) stays neutral.
+        // still wears the colors of the club that calls it home, under the city's code. A ground with no club of its own (a World Cup venue) stays neutral.
         let neutral = games.contains { $0.venueId == venueId && (BigGame.tournamentLeagues[$0.source?.league ?? ""] != nil || Self.isNeutralTournament($0.competition)) }
         let club = neutral ? nil : library.allTeams.first { $0.homeVenueId == venueId && $0.sport == venue.sports.first && Self.isTenant($0, of: venue) }
             ?? library.allTeams.first { $0.homeVenueId == venueId && Self.isTenant($0, of: venue) }
@@ -199,7 +199,7 @@ struct PassportView: View {
         let fallback = venue.sports.contains(.motorsport)
             ? (CountryCodes.iso3(venue.countryCode) ?? Self.cityCode(venue.city))
             : Self.cityCode(venue.city.isEmpty ? venue.name : venue.city)
-        return Stamp(venueId: venueId, code: team?.abbreviation ?? fallback, color: team?.accent ?? Color(hex: "3A4150"), date: date)
+        return Stamp(venueId: venueId, code: library.team(top)?.abbreviation ?? fallback, color: team?.accent ?? Color(hex: "3A4150"), date: date)
     }
 
     /// A short code for a city: the first three letters of one word ("Seattle" is SEA), else the initials ("San Francisco" is SF).
