@@ -176,6 +176,8 @@ struct TimelineCard: View {
     let game: GameEntry
     /// The cover, already loaded: the share card draws the card without waiting on Photos.
     var photo: UIImage? = nil
+    /// The ground from above, shown beside its name (the share card).
+    var aerial: UIImage? = nil
 
     var body: some View {
         let venue = library.venue(game.venueId)
@@ -189,7 +191,7 @@ struct TimelineCard: View {
                     }
                     .clipped()
                 Scrim()
-                DateBlock(date: game.date, tz: tz, venue: venue, championship: title)
+                DateBlock(date: game.date, tz: tz, venue: venue, championship: title, aerial: aerial, sport: game.sport)
                     .padding(.horizontal, 24)
                     .padding(.bottom, 22)
             }
@@ -324,6 +326,9 @@ struct DateBlock: View {
     let tz: TimeZone
     let venue: Venue?
     let championship: Bool
+    /// When given, the ground from above sits beside its name, as in the Map's venue list.
+    var aerial: UIImage? = nil
+    var sport: Sport = .baseball
 
     var body: some View {
         let parts = Self.parts(date, tz)
@@ -347,6 +352,7 @@ struct DateBlock: View {
             .fixedSize()
             if let venue {
                 Rectangle().fill(.white.opacity(0.35)).frame(width: 1, height: 52)
+                if let aerial { AerialVenueIcon(venue: venue, sport: sport, size: 46, given: aerial) }
                 VStack(alignment: .leading, spacing: 5) {
                     Text(venue.name)
                         .font(.condensed(.subheadline, weight: .heavy))

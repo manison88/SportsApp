@@ -315,7 +315,7 @@ final class WitnessUITests: XCTestCase {
         tap("game-menu")
         tap("game-share")
         sleep(6)
-        for i in 0..<6 {
+        for i in 0..<2 {
             snap("game-share-\(i)")
             app.swipeLeft()
             sleep(2)

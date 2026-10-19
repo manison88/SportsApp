@@ -222,8 +222,11 @@ struct AerialVenueIcon: View {
     let venue: Venue
     let sport: Sport
     var size: CGFloat = 44
+    /// The snapshot, already loaded (a share card draws without waiting).
+    var given: UIImage? = nil
 
-    @State private var image: UIImage?
+    @State private var loaded: UIImage?
+    private var image: UIImage? { given ?? loaded }
 
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -246,7 +249,7 @@ struct AerialVenueIcon: View {
                 .offset(x: size * 0.1, y: size * 0.1)
         }
         .frame(width: size + 6, height: size + 6)
-        .task(id: venue.id) { image = await AerialCache.shared.image(for: venue, points: size) }
+        .task(id: venue.id) { if given == nil { loaded = await AerialCache.shared.image(for: venue, points: size) } }
         .accessibilityHidden(true)
     }
 }
