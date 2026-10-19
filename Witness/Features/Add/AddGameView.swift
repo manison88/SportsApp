@@ -332,7 +332,7 @@ struct AddGameView: View {
             return "\(venue.name) doesn\u{2019}t usually host \(sport.name.lowercased()). Is it the right stadium?"
         }
         if let miles = photoDistanceMiles, miles > 12 {
-            return "Your photos were taken about \(Int(miles)) miles from \(venue.name). Is it the right stadium?"
+            return "Your photos were taken about \(Fmt.distance(meters: miles * 1609.344)) from \(venue.name). Is it the right stadium?"
         }
         return nil
     }

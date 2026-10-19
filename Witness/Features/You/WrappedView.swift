@@ -108,7 +108,7 @@ struct WrappedView: View {
 
         // 3 Miles
         if stats.miles > 0 {
-            let miles = Fmt.number(stats.miles)
+            let miles = Fmt.number(stats.distance)
             let farName = stats.farthestVenue?.name ?? ""
             let farCity = stats.farthestVenue?.cityLine ?? ""
             let route = Array(cities.prefix(6))
@@ -576,7 +576,7 @@ private struct MilesShareCard: View {
                 WrapKicker(text: "Wrapped \(year)", color: Color.white.opacity(0.85))
                 Spacer(minLength: 20)
                 wrapNumeral(miles, size: 440)
-                wrapText("miles traveled", size: 56, color: Color.signal, tracking: 8, weight: .heavy)
+                wrapText("\(Fmt.distanceWord) traveled", size: 56, color: Color.signal, tracking: 8, weight: .heavy)
                     .textCase(.uppercase)
                 Spacer(minLength: 48)
                 if !farName.isEmpty {

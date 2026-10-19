@@ -219,8 +219,7 @@ struct LiveCheckInView: View {
         if location.location == nil { return "We couldn\u{2019}t get your location. Check that Location is on for Witness." }
         if nearbyPlaces.isEmpty {
             guard let near = nearestStadium else { return "We couldn\u{2019}t find a stadium near you." }
-            let miles = near.1 / 1609.344
-            return "No stadium within 5 miles of you. The closest is \(near.0.name), \(miles < 10 ? String(format: "%.1f", miles) : "\(Int(miles))") miles away."
+            return "No stadium within \(Fmt.metric ? "8 km" : "5 miles") of you. The closest is \(near.0.name), \(Fmt.distance(meters: near.1)) away."
         }
         return "No games on the schedule at \(nearbyVenueNames) right now."
     }

@@ -41,6 +41,19 @@ enum Fmt {
         n.formatted(.number.grouping(.automatic))
     }
 
+    /// Kilometers where the phone's region uses the metric system, miles elsewhere (the US and the UK keep miles).
+    static var metric: Bool { Locale.current.measurementSystem == .metric }
+    /// "Miles" or "Km", for a stat label.
+    static var distanceUnit: String { metric ? "Km" : "Miles" }
+    /// "miles" or "kilometers", for a sentence.
+    static var distanceWord: String { metric ? "kilometers" : "miles" }
+    /// A distance in meters as a short sentence part: "3.2 miles" or "5.1 km".
+    static func distance(meters: Double) -> String {
+        let value = metric ? meters / 1000 : meters / 1609.344
+        let unit = metric ? "km" : "miles"
+        return (value < 10 ? String(format: "%.1f", value) : "\(Int(value))") + " " + unit
+    }
+
     static func year(_ date: Date) -> Int { Calendar.current.component(.year, from: date) }
 }
 

@@ -55,11 +55,11 @@ struct LifeMapView: View {
                 VStack(alignment: .leading, spacing: Spacing.block) {
                     if library.hasHome {
                         HStack(alignment: .lastTextBaseline, spacing: 10) {
-                            Text(Fmt.number(stats.miles))
+                            Text(Fmt.number(stats.distance))
                                 .displayFont(96)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.5)
-                            Text("Miles")
+                            Text(Fmt.distanceUnit)
                                 .font(.condensed(.title2, weight: .heavy))
                                 .textCase(.uppercase)
                         }
@@ -70,7 +70,7 @@ struct LifeMapView: View {
                         Button { settingHome = true } label: {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Set home").displayFont(56).textCase(.uppercase).lineLimit(1).minimumScaleFactor(0.5)
-                                Text("to see the miles you\u{2019}ve traveled").font(.subheadline).foregroundStyle(Color.textSecondary)
+                                Text("to see the \(Fmt.distanceWord) you\u{2019}ve traveled").font(.subheadline).foregroundStyle(Color.textSecondary)
                             }
                             .foregroundStyle(Color.signal)
                             .frame(maxWidth: .infinity, alignment: .leading)

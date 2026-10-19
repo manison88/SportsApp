@@ -31,6 +31,8 @@ struct Stats {
     let venues: Int
     let countries: Int
     let miles: Int
+    /// The distance in the unit this phone's region uses, to the nearest hundred.
+    var distance: Int { Fmt.metric ? Int((Double(miles) * 1.609344 / 100).rounded()) * 100 : miles }
     let record: Record
     /// Average pre-game win probability of the side you were there for, 0...1.
     let expectedRate: Double?

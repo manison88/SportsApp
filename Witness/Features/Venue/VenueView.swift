@@ -97,7 +97,7 @@ struct VenueView: View {
                         .minimumScaleFactor(0.5)
                         .accessibilityIdentifier("venue-title")
                         .accessibilityAddTraits(.isHeader)
-                    Text(venue.cityLine)
+                    Text(venue.cityLine + (venue.closed.map { " \u{00B7} closed \($0)" } ?? ""))
                         .font(.subheadline)
                         .foregroundStyle(Color.textSecondary)
                 }

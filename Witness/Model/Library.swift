@@ -796,6 +796,74 @@ final class Library {
         }
     }
 
+    // MARK: Backup and export
+
+    /// The whole library as one file the fan can keep: games, plans, custom places and people. Photos stay in their own library.
+    func backupFile() throws -> URL {
+        let stored = Stored(games: games, customVenues: customVenues, customPeople: customPeople, customTeams: customTeams, customTrips: customTrips,
+                            favoriteTeamIds: chosenFavoriteTeamIds.isEmpty ? nil : chosenFavoriteTeamIds,
+                            plans: plans.isEmpty ? nil : plans, home: customHome, scheduleLog: nil)
+        let data = try Self.encoder.encode(stored)
+        let url = FileManager.default.temporaryDirectory.appending(path: "Witness-backup-\(Self.fileDay(.now)).json")
+        try data.write(to: url, options: .atomic)
+        return url
+    }
+
+    /// Every game as a spreadsheet row.
+    func csvFile() throws -> URL {
+        func cell(_ text: String?) -> String {
+            let t = text ?? ""
+            return t.contains(where: { ",\"\n".contains($0) }) ? "\"" + t.replacingOccurrences(of: "\"", with: "\"\"") + "\"" : t
+        }
+        var rows = ["date,sport,kind,venue,city,country,home,away,home score,away score,rooting for,competition,seat,photos,note"]
+        for g in games.sorted(by: { $0.date < $1.date }) {
+            let v = venue(g.venueId)
+            let day = Self.fileDay(g.date, in: v?.tz ?? .current)
+            let cols: [String?] = [day, g.sport.name, g.isVisit ? "stadium visit" : "game", v?.name, v?.city, v?.country,
+                                   team(g.homeTeamId)?.displayName, team(g.awayTeamId)?.displayName,
+                                   g.homeScore.map(String.init), g.awayScore.map(String.init),
+                                   team(g.rootingForTeamId)?.displayName, g.competition, g.seat, String(g.photos.count), g.note]
+            rows.append(cols.map(cell).joined(separator: ","))
+        }
+        let url = FileManager.default.temporaryDirectory.appending(path: "Witness-games-\(Self.fileDay(.now)).csv")
+        try rows.joined(separator: "\n").write(to: url, atomically: true, encoding: .utf8)
+        return url
+    }
+
+    /// Adds what a backup holds to this library. Nothing already here is replaced; returns how many games were new.
+    @discardableResult
+    func restore(from url: URL) throws -> Int {
+        let scoped = url.startAccessingSecurityScopedResource()
+        defer { if scoped { url.stopAccessingSecurityScopedResource() } }
+        let stored = try Self.decoder.decode(Stored.self, from: Data(contentsOf: url))
+        let have = Set(games.map(\.id))
+        let fresh = stored.games.filter { !have.contains($0.id) }
+        games += fresh
+        let planIds = Set(plans.map(\.id))
+        plans += (stored.plans ?? []).filter { !planIds.contains($0.id) }
+        plans.sort { $0.date < $1.date }
+        let venueIds = Set(customVenues.map(\.id))
+        customVenues += stored.customVenues.filter { !venueIds.contains($0.id) }
+        let peopleIds = Set(customPeople.map(\.id))
+        customPeople += stored.customPeople.filter { !peopleIds.contains($0.id) }
+        let teamIds = Set(customTeams.map(\.id))
+        customTeams += (stored.customTeams ?? []).filter { !teamIds.contains($0.id) }
+        let tripIds = Set(customTrips.map(\.id))
+        customTrips += (stored.customTrips ?? []).filter { !tripIds.contains($0.id) }
+        if chosenFavoriteTeamIds.isEmpty { chosenFavoriteTeamIds = stored.favoriteTeamIds ?? [] }
+        if customHome == nil { customHome = stored.home }
+        sortAndSave()
+        return fresh.count
+    }
+
+    private static func fileDay(_ date: Date, in tz: TimeZone = .current) -> String {
+        let f = DateFormatter()
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.timeZone = tz
+        f.dateFormat = "yyyy-MM-dd"
+        return f.string(from: date)
+    }
+
     private func loadStore() {
         guard let data = try? Data(contentsOf: storeURL),
               let stored = try? Self.decoder.decode(Stored.self, from: data) else { return }
@@ -821,6 +889,10 @@ final class Library {
         have = Set(teamList.map(\.id))
         let more: [Lossy<Team>] = decode("teams-more", subdirectory: "Catalog") ?? []
         teamList += more.compactMap(\.value).filter { !have.contains($0.id) }
+        // Earlier names, so a search for "Seattle SuperSonics" or "Cleveland Indians" still finds the club.
+        if let former: [String: [String]] = decode("former-names", subdirectory: "Catalog") {
+            for i in teamList.indices { if let names = former[teamList[i].id] { teamList[i].formerNames = names } }
+        }
         allTeams = teamList
         teams = Dictionary(teamList.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
         rebuildTeamIndex()

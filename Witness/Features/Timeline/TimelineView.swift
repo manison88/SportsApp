@@ -1,9 +1,11 @@
 import SwiftUI
+import StoreKit
 
 /// 04 · Timeline, the home screen. Every game as a photo card with a ticket stub.
 struct TimelineView: View {
     @Environment(Library.self) private var library
     @Environment(Presenter.self) private var presenter
+    @Environment(\.requestReview) private var requestReview
     @State private var query = ""
 
     private var games: [GameEntry] {
@@ -53,6 +55,13 @@ struct TimelineView: View {
             await library.sweepPlans()
             await library.gameDayPhotoCheck()
             await library.scanVideos()
+        }
+        .onChange(of: library.games.filter { $0.origin != .sample && !$0.isVisit }.count) { _, count in
+            // Once, right after the third real game: that is when the app has shown what it does.
+            let key = "WitnessAskedForReview"
+            guard count >= 3, !UserDefaults.standard.bool(forKey: key), !ProcessInfo.processInfo.arguments.contains("-uitest") else { return }
+            UserDefaults.standard.set(true, forKey: key)
+            requestReview()
         }
         .tabTitle("Timeline")
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Teams, places, years")

@@ -29,7 +29,7 @@ struct YouView: View {
                 VStack(spacing: Spacing.block) {
                     StatRow(items: [
                         .init(value: "\(stats.games)", label: "Games"),
-                        .init(value: Fmt.number(stats.miles), label: "Miles"),
+                        .init(value: Fmt.number(stats.distance), label: Fmt.distanceUnit),
                         .init(value: "\(stats.venues)", label: "Venues"),
                     ])
                     StatRow(items: [
@@ -120,6 +120,19 @@ struct YouView: View {
                 .foregroundStyle(.white)
                 .accessibilityIdentifier("you-schedule-gaps")
             }
+            NavigationLink { BackupView() } label: {
+                HStack {
+                    Text("Back up & export").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+                    Spacer()
+                    Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
+                        .accessibilityHidden(true)
+                }
+                .frame(minHeight: 56)
+                .contentShape(.rect)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.white)
+            .accessibilityIdentifier("you-backup")
             Toggle(isOn: Binding(get: { Analytics.shared.enabled }, set: { Analytics.shared.setEnabled($0) })) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Share anonymous usage").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
@@ -176,9 +189,9 @@ struct YouView: View {
         let rows: [YouShareStat] = hasRecord
             ? [YouShareStat(label: "Games", value: "\(s.games)"),
                YouShareStat(label: "Venues", value: "\(s.venues)"),
-               YouShareStat(label: "Miles", value: Fmt.number(s.miles))]
+               YouShareStat(label: Fmt.distanceUnit, value: Fmt.number(s.distance))]
             : [YouShareStat(label: "Venues", value: "\(s.venues)"),
-               YouShareStat(label: "Miles", value: Fmt.number(s.miles)),
+               YouShareStat(label: Fmt.distanceUnit, value: Fmt.number(s.distance)),
                YouShareStat(label: "Countries", value: "\(s.countries)")]
         let heroValue = hasRecord ? s.record.text : "\(s.games)"
         let heroLabel = hasRecord ? "My record when I'm there" : "Games I've witnessed"

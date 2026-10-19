@@ -90,7 +90,7 @@ struct TeamPickerView: View {
     /// Every word typed must appear somewhere in the team's city, name, code, league or country, in any order:
     /// "chicago bears", "bears chicago", "bears nfl" and "chi" all find the Chicago Bears.
     private static func matches(_ t: Team, _ q: String) -> Bool {
-        let hay = fold([t.locationName, t.teamName, t.abbreviation, t.league, t.countryCode ?? ""].joined(separator: " "))
+        let hay = fold(([t.locationName, t.teamName, t.abbreviation, t.league, t.countryCode ?? ""] + (t.formerNames ?? [])).joined(separator: " "))
         return fold(q).split(separator: " ").allSatisfy { hay.contains($0) }
     }
 

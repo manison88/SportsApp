@@ -5,7 +5,7 @@ from datetime import datetime
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 STATUSES = {"F", "S", "P", "C", "O"}
-FIRST, LAST = 2011, 2026
+FIRST, LAST = 2006, 2026
 
 def main(scope):
     base = os.path.join(ROOT, scope)

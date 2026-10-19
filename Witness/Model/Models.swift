@@ -75,6 +75,8 @@ struct Team: Codable, Hashable, Identifiable {
     var countryCode: String? = nil
     /// The ground the team calls home, a catalog venue id.
     var homeVenueId: String? = nil
+    /// Earlier names of the club (Cleveland Indians, Seattle SuperSonics), so searching the old name still finds it.
+    var formerNames: [String]? = nil
 
     /// UI shows city names and codes only, never marks or nicknames.
     var displayName: String { locationName }
@@ -97,6 +99,8 @@ struct Venue: Codable, Hashable, Identifiable {
     var timeZone: String
     var capacity: Int?
     var opened: Int?
+    /// The year the ground stopped hosting games, for demolished or replaced stadiums. Nil while it is in use.
+    var closed: Int? = nil
     /// Set for venues the user created or found through Apple Maps.
     var isCustom: Bool?
     /// Other names the venue goes by (former sponsors, local language), for matching schedules and tickets.
