@@ -22,7 +22,7 @@ Another Claude session pushes to this branch: `git pull --no-rebase` before push
 
 ## Fixed today, to confirm on device
 
-- BiH v Qatar at Lumen Field: photos were filed at T-Mobile Park (440 m away); neighbours now 1 km, same-game visits merge. A saved stadium visit no longer hides its day from the scan (it is matched again and becomes the game); waiting visits and the background search ask the ground next door. Run Find in photos (no need to delete anything). If it is still missing: Back up & export, tap the note at the top three times, Scan check, pick Jun 24 2026, share the report.
+- BiH v Qatar at Lumen Field: photos were filed at T-Mobile Park (440 m away); neighbours now 1 km, same-game visits merge. A saved stadium visit no longer hides its day from the scan (it is matched again and becomes the game); waiting visits and the background search ask the ground next door. Run Find in photos (no need to delete anything). If it is still missing: Back up & export, Scan check, pick Jun 24 2026, share the report.
 - Schedule lookups: 6 at a time, retries on throttling, finished days cached, second pass for unmatched visits.
 - Scan screen photo strip now really cross-fades (the timer read an empty list).
 - Covers: picked at add time, preloaded, cross-faded.

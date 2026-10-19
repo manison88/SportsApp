@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Picks a day and shows what the photo scan makes of it (see `ScanCheck`), to share when a game was not found.
-/// Reached by tapping the note at the top of Back up & export three times.
+/// Reached from Back up & export.
 struct ScanCheckView: View {
     @Environment(Library.self) private var library
     @State private var day = Date()
