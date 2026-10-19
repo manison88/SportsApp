@@ -114,8 +114,9 @@ final class ScanModel {
             for (n, cluster) in pending.enumerated() {
                 if Task.isCancelled { return }
                 self?.deepStep = .visits; self?.deepDone = n; self?.deepTotal = pending.count
-                let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 3)
-                guard let look, look.looksLikeGame, PhotoMatcher.looksLikeAGame(cluster.times) else { continue }
+                // At a stadium already, so one clear photo of a game will do; the day must not be mostly somewhere else.
+                let look = await SceneCheck.look(at: cluster.assetIds.map { PhotoRef.library($0) })
+                guard look.isGame(minVenue: 1, minShare: 0.2), PhotoMatcher.looksLikeAGame(cluster.times) else { continue }
                 let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
                 atStadiums.append(PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
                                               reason: "Photos at \(cluster.venue.name) that look like a game, but none is on the schedule",

@@ -547,6 +547,16 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertGreaterThan(SceneCheck.venueSign([("scoreboard", 0.5)]), 0.3)
     }
 
+    func testOneStrayPitchIsNotAGameDay() {
+        // A beach day: one photo the classifier calls a pitch, the rest sand and sea.
+        XCTAssertFalse(SceneCheck.DayLook(classified: 9, venue: 1, elsewhere: 7).isGame())
+        // Two pitch photos are still too few next to a day at the beach.
+        XCTAssertFalse(SceneCheck.DayLook(classified: 9, venue: 2, elsewhere: 5).isGame())
+        // A real game: most photos show the ground or the crowd in a stadium.
+        XCTAssertTrue(SceneCheck.DayLook(classified: 12, venue: 7, elsewhere: 1).isGame())
+        XCTAssertTrue(GameSuggester.isAppAlbum("Meta AI"))
+    }
+
     func testIndoorOutdoorIsASecondOpinion() throws {
         let setting = SceneCheck.setting([("indoor_arena", 0.8), ("sky", 0.1)])
         XCTAssertGreaterThan(setting.indoor, 0.5)

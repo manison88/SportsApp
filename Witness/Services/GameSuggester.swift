@@ -28,7 +28,7 @@ enum GameSuggester {
     /// Albums that apps and the system make (saved from Instagram, WhatsApp, screenshots...) are never a day out.
     static let appAlbums = ["instagram", "whatsapp", "facebook", "messenger", "snapchat", "tiktok", "telegram", "twitter", "pinterest",
                             "reddit", "youtube", "discord", "wechat", "viber", "slack", "gmail", "google photos",
-                            "screenshot", "screen recording", "saved", "downloads", "imported", "received", "shared", "memes", "meme",
+                            "screenshot", "screen recording", "meta ai", "chatgpt", "gemini", "midjourney", "generated", "ai", "saved", "downloads", "imported", "received", "shared", "memes", "meme",
                             "camera roll", "recents", "snapseed", "lightroom", "vsco", "photoshop", "capcut", "inshot", "canva"]
 
     /// Pure: whether an album's title names an app or a system collection rather than an occasion.
@@ -125,9 +125,8 @@ enum GameSuggester {
             // An album or trip counts only if some of its photos show a stadium, arena, scoreboard or sport (or its title names
             // a team or stadium). A crowd alone is a wedding, a party or a school event.
             if !source.titled {
-                let ids = source.points.map(\.id)
-                let verdict = await SceneCheck.verdict(for: ids.map { PhotoRef.library($0) }, sample: 16)
-                guard verdict?.showsAVenue == true else { continue }
+                let look = await SceneCheck.look(at: source.points.map { PhotoRef.library($0.id) }, max: 20)
+                guard look.isGame(minVenue: 2, minShare: 0.05) else { continue }
             }
             let scan = await Task.detached { VisitGrouping.group(source.points, venues: venues) }.value
             for pile in candidates(scan.unplacedDays, skipping: claimed) where claimed.insert(pile.id).inserted {
@@ -141,14 +140,14 @@ enum GameSuggester {
         for (n, (pile, source)) in work.enumerated() {
             defer { Task { await progress(.days, n + 1, work.count) } }
             if Task.isCancelled { break }
-            let refs = pile.assetIds.map { PhotoRef.library($0) }
-            let verdict = await SceneCheck.verdict(for: refs, sample: 3)
-            let sporty = verdict?.looksLikeGame ?? false
-            guard sporty || !source.hints.isEmpty else { continue }
-            if let verdict, verdict.clearlyElsewhere, source.hints.isEmpty { continue }
+            // No time pressure here, so most of the day is looked at. A day needs several photos clearly at a game; an album
+            // whose title names a team or stadium only needs the day not to be mostly somewhere else (a beach, a party).
+            let look = await SceneCheck.look(at: pile.assetIds.map { PhotoRef.library($0) })
+            let keep = source.titled ? (!look.mostlyElsewhere && look.venue >= 1) : look.isGame()
+            guard keep, PhotoMatcher.looksLikeAGame(pile.times) else { continue }
             let middle = pile.times.sorted()[pile.times.count / 2]
             possible.append(PossibleDay(id: "possible-" + pile.id, day: middle, assetIds: pile.assetIds, times: pile.times,
-                                        reason: source.hints.isEmpty && sporty ? "\(source.reason) \u{00B7} the photos look like a game" : source.reason,
+                                        reason: "\(source.reason) \u{00B7} \(look.venue) of \(look.classified) photos show a game",
                                         suggestions: source.hints))
         }
         return possible.sorted { $0.day > $1.day }

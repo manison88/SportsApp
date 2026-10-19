@@ -44,7 +44,9 @@ enum SceneCheck {
     static let eventWords = ["concert", "stage", "stadium", "arena", "crowd", "audience", "festival", "fireworks", "spotlight"]
     static let elsewhereWords = ["bar", "pub", "nightclub", "party", "cocktail", "wine", "restaurant", "dining", "dinner",
                                  "concert", "stage", "dancing", "wedding", "kitchen", "living_room", "bedroom", "office",
-                                 "bathroom", "nursery", "playroom", "toy", "document", "bed", "desk", "furniture"]
+                                 "bathroom", "nursery", "playroom", "toy", "document", "bed", "desk", "furniture",
+                                 "beach", "sand", "shore", "ocean", "sea", "seascape", "lake", "waterfront", "swimming_pool", "pool",
+                                 "swimming", "picnic", "camping", "food", "meal", "dessert", "cake", "dog", "cat", "pet"]
 
     /// Scores a visit from a sample of its photos. Nil when the classifier isn't available (some simulators),
     /// so callers treat the visit as unknown rather than doubtful.
@@ -73,6 +75,37 @@ enum SceneCheck {
     /// Pure: the strongest label that names a stadium, arena, scoreboard or sport.
     static func venueSign(_ labels: [(String, Float)]) -> Double {
         labels.filter { id, _ in venueWords.contains { id.lowercased().contains($0) } }.map { Double($0.1) }.max() ?? 0
+    }
+
+    /// A day's photos counted one by one: how many show a stadium, arena, scoreboard or sport, and how many show somewhere
+    /// else (a beach, a party, a meal). For the background search, which has time to look at most of a day.
+    struct DayLook {
+        var classified = 0
+        var venue = 0
+        var elsewhere = 0
+        var venueShare: Double { classified == 0 ? 0 : Double(venue) / Double(classified) }
+        var elsewhereShare: Double { classified == 0 ? 0 : Double(elsewhere) / Double(classified) }
+        /// Several photos of the day clearly at a game, and the day not mostly somewhere else. One stray "soccer pitch" is not enough.
+        func isGame(minVenue: Int = 2, minShare: Double = 0.25) -> Bool {
+            venue >= minVenue && venueShare >= minShare && elsewhereShare < 0.35
+        }
+        var mostlyElsewhere: Bool { elsewhereShare >= 0.5 }
+    }
+
+    static func look(at refs: [PhotoRef], max: Int = 24) async -> DayLook {
+        var out = DayLook()
+        guard !refs.isEmpty else { return out }
+        let step = Swift.max(1, refs.count / max)
+        for ref in stride(from: 0, to: refs.count, by: step).prefix(max).map({ refs[$0] }) {
+            if Task.isCancelled { break }
+            guard let image = await PhotoLoader.load(ref, size: CGSize(width: 384, height: 384)),
+                  let labels = await labels(for: image) else { continue }
+            out.classified += 1
+            let v = venueSign(labels)
+            if v >= 0.3 { out.venue += 1 }
+            else if score(labels).elsewhere >= 0.3 { out.elsewhere += 1 }
+        }
+        return out
     }
 
     /// Pure: how indoors and how outdoors the labels say the photo is.
