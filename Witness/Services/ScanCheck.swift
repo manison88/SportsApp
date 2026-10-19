@@ -106,6 +106,127 @@ enum ScanCheck {
         return "left out"
     }
 
+    /// How an album with the day's photos reads: whether its title names two teams, which, and the game between them while
+    /// its photos were taken. `offered` says whether the review would show each day found.
+    static func albumLines(_ outcome: MatchupAlbums.Outcome, inDay: Int, venues: [Venue], offered: (PossibleDay) -> Bool,
+                           zone: TimeZone = .current) -> [String] {
+        let time = DateFormatter()
+        time.dateFormat = "MMM d HH:mm"
+        time.timeZone = zone
+        let album = outcome.album, parsed = outcome.parsed
+        var out = ["  \u{201C}\(album.title)\u{201D}: \(album.count) photos, \(inDay) of them from this day"]
+        if GameSuggester.isAppAlbum(album.title) {
+            out.append("    an app's album (skipped)")
+            return out
+        }
+        func names(_ teams: [Team]) -> String { teams.isEmpty ? "no team" : teams.map { "\($0.locationName) (\($0.abbreviation), \($0.league))" }.joined(separator: " or ") }
+        if parsed.sides.isEmpty {
+            out.append("    title: no \"v\", \"vs\", \"-\" or \"@\" between two sides")
+        } else {
+            out.append("    title: \"\(parsed.sides[0])\" \u{2192} \(names(parsed.home)) \u{00B7} \"\(parsed.sides[1])\" \u{2192} \(names(parsed.away))")
+        }
+        guard parsed.isMatchup else {
+            out.append("    not a matchup: read like any album (its photos must show a game, and a stadium it names must have one)")
+            return out
+        }
+        if outcome.outings.isEmpty { out.append("    no run of \(GameSuggester.minPhotos)+ dated photos to look up") }
+        for o in outcome.outings {
+            var line = "    photos \(time.string(from: o.first))\u{2013}\(time.string(from: o.last)) (\(o.count)): "
+            if let game = o.game {
+                let at = GameLookup.venue(of: game, in: venues)
+                let local = DateFormatter()
+                local.dateFormat = "MMM d HH:mm zzz"
+                local.timeZone = at?.tz ?? zone
+                line += "\(game.away.name) at \(game.home.name), \(at?.name ?? game.venueName + " (not in the catalog)"), \(local.string(from: game.start)) (\(game.league) \(game.eventId))"
+                if let day = outcome.days.first(where: { $0.id.hasSuffix("|" + game.id) && Set($0.times).contains(o.first) }) {
+                    line += offered(day) ? " \u{2192} offered as a possible game" : " \u{2192} left out: already added or skipped"
+                } else {
+                    line += " \u{2192} left out: already in the library"
+                }
+            } else {
+                line += "no game between these teams on any of their schedules then (6 h either side)"
+            }
+            out.append(line)
+        }
+        return out
+    }
+
+    /// The photos with no location: how many, by hour, each stretch of them, where the located photos around it say the fan
+    /// was, and the stadiums whose schedules that city's day asks. `day` is the phone's calendar day; `points` reach twelve
+    /// hours either side, for the evening before and the next morning.
+    static func cityLines(points: [PhotoPoint], day: Range<Date>, venues: [Venue], taken: Set<String>, existing: [GameEntry],
+                          zone: TimeZone = .current) -> [String] {
+        let located = CityDays.located(points)
+        let big = CityDays.bigGrounds(venues)
+        let runs = CityDays.runs(points, taken: taken).filter { r in r.contains { day.contains($0.date!) } }
+        let verdicts = runs.map { CityDays.judge($0, located: located, grounds: big, existing: existing) }
+        // Hours in the city's time zone once one is known, else the phone's.
+        let cityZone = verdicts.lazy.compactMap { v -> TimeZone? in if case .day(let d) = v { return d.venues.first?.tz } else { return nil } }.first
+        let time = DateFormatter()
+        time.dateFormat = "HH:mm"
+        time.timeZone = zone
+        let hour = DateFormatter()
+        hour.dateFormat = "HH"
+        hour.timeZone = cityZone ?? zone
+        let loose = points.filter { $0.latitude == nil && $0.date.map(day.contains) == true }
+        var out = ["", "Photos with no location (a possible game when the located photos around them place you in one city and its schedule had a game then):"]
+        let shots = loose.filter(\.screenshot).count
+        out.append("  \(loose.count) this day\(shots > 0 ? ", \(shots) of them screenshots (left out)" : "")\(taken.isEmpty ? "" : " \u{00B7} photos on a visit or a day around a stadium are left out")")
+        var counts: [String: Int] = [:]
+        for p in loose where !p.screenshot { counts[hour.string(from: p.date!), default: 0] += 1 }
+        if !counts.isEmpty {
+            out.append("  by hour (\((cityZone ?? zone).identifier)): " + counts.keys.sorted().map { "\($0)h \(counts[$0]!)" }.joined(separator: " \u{00B7} "))
+        }
+        if runs.isEmpty { out.append("  no stretch of photos with no location") }
+        func spot(_ p: PhotoPoint, _ span: ClosedRange<Date>) -> String {
+            let when = p.date! < span.lowerBound ? "before" : p.date! > span.upperBound ? "after" : "during"
+            return "\(time.string(from: p.date!)) \(String(format: "%.5f,%.5f", p.latitude!, p.longitude!)) (\(when))"
+        }
+        for (run, verdict) in zip(runs, verdicts) {
+            let span = run.first!.date!...run.last!.date!
+            var line = "  \(time.string(from: span.lowerBound))\u{2013}\(time.string(from: span.upperBound)) (\(run.count) photos): "
+            switch verdict {
+            case .day(let d):
+                line += "in \(d.city), from \(d.anchors.map { spot($0, span) }.joined(separator: ", ")) \u{00B7} schedules asked: "
+                    + d.venues.map(\.name).joined(separator: ", ")
+            case .noGrounds(let anchors):
+                line += verdict.why + " (" + anchors.map { spot($0, span) }.joined(separator: ", ") + ")"
+            default:
+                line += verdict.why
+            }
+            out.append(line)
+        }
+        return out
+    }
+
+    /// What a city day's schedules and photos said, and whether the review shows it.
+    static func cityLines(_ eval: CityDays.Evaluation, offered: (PossibleDay) -> Bool) -> [String] {
+        let day = eval.day
+        let zone = day.venues.first?.tz ?? .current
+        let time = DateFormatter()
+        time.dateFormat = "HH:mm"
+        time.timeZone = zone
+        var out = ["  \(day.city), \(time.string(from: day.start))\u{2013}\(time.string(from: day.end)) \(zone.abbreviation(for: day.start) ?? zone.identifier):"]
+        if eval.games.isEmpty { out.append("    no game at these stadiums then") }
+        for fit in eval.games {
+            let k = fit.game.start
+            out.append("    \(fit.game.away.name) at \(fit.game.home.name), \(fit.venue.name), kickoff \(time.string(from: k)) (\(fit.game.league) \(fit.game.eventId)): "
+                       + "window \(time.string(from: k.addingTimeInterval(-CityDays.before)))\u{2013}\(time.string(from: k.addingTimeInterval(CityDays.after))), "
+                       + (fit.photos.isEmpty ? "no stay in it (\(CityDays.minPhotos)+ photos over \(Int(CityDays.minSpan / 60))+ min)" : "\(fit.photos.count) photos in it"))
+        }
+        if let look = eval.look {
+            out.append("    scene check of the window's photos: \(look.classified) classified, \(look.venue) stadium or sport, \(look.structure) the ground itself, "
+                       + "\(look.elsewhere) somewhere else \u{2192} looks like a stadium: \(CityDays.looksLikeTheGround(look) ? "yes" : "no") "
+                       + "(needs 3+ stadium or sport and 30%+, 2+ the ground, under 25% somewhere else)")
+        }
+        if let offer = eval.offer {
+            out.append("    \u{2192} " + (offered(offer) ? "offered as a possible game: \(offer.reason)" : "left out: already added or skipped"))
+        } else {
+            out.append("    \u{2192} not offered: " + (eval.games.isEmpty ? "no game" : eval.best.isEmpty ? "no game's window holds a stay" : "the photos don't look like a stadium"))
+        }
+        return out
+    }
+
     private static func describe(_ v: PhotoCluster, time: DateFormatter) -> String {
         "\(v.venue.name) [\(v.id)]: \(v.assetIds.count) photos, \(time.string(from: v.start))\u{2013}\(time.string(from: v.end))"
     }
@@ -151,6 +272,32 @@ enum ScanCheck {
             let match = await ScanModel.match(visit, venues: venues)
             out.append("    scan match: \(match.map { "\($0.away.name) at \($0.home.name) (\($0.league) \($0.eventId))" } ?? "none")")
         }
+        // The albums holding the day's photos: a title naming the game finds it with no located photo.
+        let albums = await Task.detached(priority: .userInitiated) { AlbumImporter.albums(containing: points.map(\.id)) }.value
+        out.append("")
+        out.append("Albums with this day's photos (a title naming two teams asks their schedules for a game while the photos were taken):")
+        if albums.isEmpty { out.append("  none") }
+        let reader = MatchupAlbums.Reader(teams: library.allTeams)
+        for (album, inDay) in albums.prefix(12) {
+            let parsed = reader.parse(album.title)
+            let albumPoints = parsed.isMatchup ? await Task.detached { AlbumImporter.points(in: album) }.value : []
+            let outcome = await MatchupAlbums.check(album, points: albumPoints, parsed: parsed, venues: venues, existing: library.games)
+            out += albumLines(outcome, inDay: inDay, venues: venues, offered: {
+                !ReviewQueue.possible([$0], alongside: [], library: library.games, ledger: ledger).isEmpty
+            })
+        }
+
+        // Photos with no location: the located photos around them (the evening before, the next morning) say which city.
+        let reach = CityDays.anchorReach
+        let wide = await PhotoMatcher.points(from: start.addingTimeInterval(-reach), to: end.addingTimeInterval(reach))
+        let wideScan = PhotoMatcher.found(in: wide, venues: venues, existing: library.games)
+        let taken = Set(wideScan.visits.flatMap(\.assetIds) + wideScan.nearby.flatMap(\.assetIds))
+        out += cityLines(points: wide, day: start..<end, venues: venues, taken: taken, existing: library.games)
+        for day in wideScan.cityDays where day.end >= start && day.start < end {
+            let eval = await CityDays.evaluate(day) { await SceneCheck.look(at: $0, max: CityDays.sample) }
+            out += cityLines(eval) { !ReviewQueue.possible([$0], alongside: [], library: library.games, ledger: ledger).isEmpty }
+        }
+
         // What the scan itself makes of the day, with the library's saved games and the skips: what the review would show.
         let scanned = PhotoMatcher.found(in: points, venues: venues, existing: library.games)
         out.append("")

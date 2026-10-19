@@ -112,6 +112,9 @@ enum PhotoMatcher {
         /// Cup crowd photographs the day outside and the phone may place few photos, or none, inside the bowl. Only ever a
         /// possible game, when the schedule has one there.
         var nearby: [PhotoCluster] = []
+        /// Stretches of photos with no location on a day the located ones place in a city with big stadiums, newest first.
+        /// Only ever a possible game, when the city's schedule had one then and the photos look like a stadium.
+        var cityDays: [CityDay] = []
     }
 
     /// How far outside the fence a day of photos can be and still be offered as a possible game when the schedule has one there:
@@ -137,8 +140,10 @@ enum PhotoMatcher {
                     skipping.contains("\(v.id)|\(key)") || visits.contains { $0.venue.id == v.id && keyer.day($0.start, tz: v.tz) == key }
                 }
             }
-        return Found(visits: visits.sorted { $0.start > $1.start },
-                     nearby: Array(nearby.sorted { $0.start > $1.start }.prefix(maxNearby)))
+        let kept = Array(nearby.sorted { $0.start > $1.start }.prefix(maxNearby))
+        let taken = Set(visits.flatMap(\.assetIds) + kept.flatMap(\.assetIds))
+        return Found(visits: visits.sorted { $0.start > $1.start }, nearby: kept,
+                     cityDays: CityDays.candidates(points, venues: venues, taken: taken, existing: existing))
     }
 
     /// Finds visits in the whole library, newest first. Photos near a stadium on a visit's day count toward it
@@ -160,7 +165,8 @@ enum PhotoMatcher {
             result.enumerateObjects { asset, i, _ in
                 let loc = asset.location
                 points.append(PhotoPoint(id: asset.localIdentifier, date: asset.creationDate,
-                                         latitude: loc?.coordinate.latitude, longitude: loc?.coordinate.longitude))
+                                         latitude: loc?.coordinate.latitude, longitude: loc?.coordinate.longitude,
+                                         screenshot: asset.mediaSubtypes.contains(.photoScreenshot)))
                 if let loc {
                     state.located += 1
                     if let v = index.nearest(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude, radius: radius) {
@@ -230,7 +236,8 @@ enum PhotoMatcher {
             var out: [PhotoPoint] = []
             PHAsset.fetchAssets(with: .image, options: options).enumerateObjects { asset, _, _ in
                 out.append(PhotoPoint(id: asset.localIdentifier, date: asset.creationDate,
-                                      latitude: asset.location?.coordinate.latitude, longitude: asset.location?.coordinate.longitude))
+                                      latitude: asset.location?.coordinate.latitude, longitude: asset.location?.coordinate.longitude,
+                                      screenshot: asset.mediaSubtypes.contains(.photoScreenshot)))
             }
             return out
         }.value

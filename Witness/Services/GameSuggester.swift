@@ -224,6 +224,8 @@ enum GameSuggester {
         let hints: [Venue]
         /// The title names a team or stadium, which is evidence on its own. A trip's nearby stadiums are not.
         var titled = false
+        /// The fan's album behind it (nil for a trip).
+        var album: PhotoAlbum? = nil
     }
 
     /// How a game's teams read in a reason: "Cardinals at Cubs", or the stadium when the schedule has no sides (a race).
@@ -246,7 +248,8 @@ enum GameSuggester {
                 let points = AlbumImporter.points(in: album)
                 // "Favorites", "Family", "2019": an album that runs for months is a collection, not a day out.
                 if hints.isEmpty && isCollection(points.compactMap(\.date), title: album.title) { continue }
-                out.append(Source(reason: "In your album \u{201C}\(album.title)\u{201D}", points: points, hints: hints, titled: !hints.isEmpty))
+                out.append(Source(reason: "In your album \u{201C}\(album.title)\u{201D}", points: points, hints: hints, titled: !hints.isEmpty,
+                                  album: album))
             }
             if hasHome {
                 for trip in TripFinder.find(home: home, venues: venues).prefix(20) {
@@ -273,9 +276,29 @@ enum GameSuggester {
             : []
         let index = VenueIndex(venues)
 
-        // The unplaced days of every source, then the cheapest filter first: only days that look like a game are kept.
-        var work: [(DayPile, Source)] = []
+        // An album titled for a game ("BiH v Qatar") names both sides: the schedule is asked for a game between them on the
+        // photos' dates, in every competition they play, and the stadium comes from the schedule. National sides have no home
+        // ground, so before this the title pointed at no stadium, the album counted as untitled, and only the fan's home
+        // stadiums were asked: a World Cup game abroad was never found.
+        var possible: [(PossibleDay, Double)] = []
         var claimed = claimed
+        var keyer = DayKeyer()
+        let reader = MatchupAlbums.Reader(teams: teams)
+        for source in sources {
+            guard let album = source.album else { continue }
+            let parsed = reader.parse(album.title)
+            guard parsed.isMatchup else { continue }
+            for day in await MatchupAlbums.check(album, points: source.points, parsed: parsed, venues: venues, existing: []).days
+            where !claimed.contains(keyer.day(day.day, tz: .current)) {
+                claimed.formUnion(day.times.map { keyer.day($0, tz: .current) })
+                possible.append((day, 10))
+            }
+        }
+
+        // The unplaced days of every source, then the cheapest filter first: only days that look like a game are kept. A day
+        // is looked at once per source: an album that fails on a day does not keep the trip from looking at it.
+        var work: [(DayPile, Source)] = []
+        var queued = Set<String>()
         for (n, source) in sources.enumerated() {
             await progress(.sorting, n, sources.count)
             // An album or trip counts only if some of its photos show a stadium, arena, scoreboard or sport (or its title names
@@ -285,14 +308,13 @@ enum GameSuggester {
                 guard look.isGame(minVenue: 2, minShare: 0.05) else { continue }
             }
             let scan = await Task.detached { VisitGrouping.group(source.points, venues: venues) }.value
-            for pile in candidates(scan.unplacedDays, skipping: claimed) where claimed.insert(pile.id).inserted {
+            for pile in candidates(scan.unplacedDays, skipping: claimed) where queued.insert("\(n)|\(pile.id)").inserted {
                 work.append((pile, source))
             }
         }
         work = Array(work.sorted { $0.0.day > $1.0.day }.prefix(maxDays))
         await progress(.days, 0, work.count)
 
-        var possible: [(PossibleDay, Double)] = []
         for (n, (pile, source)) in work.enumerated() {
             defer { Task { await progress(.days, n + 1, work.count) } }
             if Task.isCancelled { break }
@@ -335,7 +357,9 @@ enum GameSuggester {
             possible.append((PossibleDay(id: "possible-" + pile.id, day: middle, assetIds: pile.assetIds, times: pile.times,
                                          reason: "\(source.reason) \u{00B7} \(why)", suggestions: Array(suggestions.prefix(3))), score))
         }
-        // The surest handful, newest first.
-        return possible.sorted { $0.1 > $1.1 }.prefix(maxOffered).map(\.0).sorted { $0.day > $1.day }
+        // The surest handful, newest first, each day once (the album or the trip, whichever is surer).
+        var days = Set<String>()
+        return possible.sorted { $0.1 > $1.1 }.filter { days.insert(keyer.day($0.0.day, tz: .current)).inserted }
+            .prefix(maxOffered).map(\.0).sorted { $0.day > $1.day }
     }
 }

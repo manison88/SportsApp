@@ -7,6 +7,8 @@ struct PhotoPoint: Hashable, Sendable {
     let date: Date?
     let latitude: Double?
     let longitude: Double?
+    /// A screenshot carries no location and was not taken anywhere: never a photo of a day out.
+    var screenshot = false
 }
 
 /// Photos from one day that we couldn't place at a stadium (no GPS, or GPS nowhere near one).

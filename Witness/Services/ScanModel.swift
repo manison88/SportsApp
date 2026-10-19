@@ -81,6 +81,9 @@ final class ScanModel {
         /// The album and trip step of the background search.
         var suggest: (_ venues: [Venue], _ teams: [Team], _ home: CLLocation, _ hasHome: Bool, _ claimed: Set<String>,
                       _ progress: @escaping @MainActor (GameSuggester.Step, Int, Int) -> Void) async -> [PossibleDay]
+        /// Albums whose title names a game ("BiH v Qatar"): the schedule is asked for a game between the two teams while the
+        /// photos were taken, so the stadium comes from the schedule and no photo needs a location.
+        var matchups: (_ venues: [Venue], _ teams: [Team], _ existing: [GameEntry]) async -> [PossibleDay] = { _, _, _ in [] }
 
         static let library = Photos(
             access: { await PhotoMatcher.requestAccess() },
@@ -88,7 +91,8 @@ final class ScanModel {
             look: { refs, max in await SceneCheck.look(at: refs, max: max) },
             suggest: { venues, teams, home, hasHome, claimed, progress in
                 await GameSuggester.find(venues: venues, teams: teams, home: home, hasHome: hasHome, claimed: claimed, progress: progress)
-            })
+            },
+            matchups: { venues, teams, existing in await MatchupAlbums.inLibrary(teams: teams, venues: venues, existing: existing) })
     }
 
     init(ledgerURL: URL = ScanModel.ledgerURL, pendingURL: URL = ScanModel.pendingURL, photos: Photos = .library) {
@@ -387,7 +391,19 @@ final class ScanModel {
             if Task.isCancelled { break }
             if let day = await Self.nearbyDay(cluster, venues: venues) { aroundGrounds.append(day) }
         }
-        settleDeep(aroundGrounds, library: library)
+        // Albums titled for a game: cheap (a title read per album; only a matchup title asks the schedules), and a game between
+        // the two named teams on the photos' dates is strong enough to ask about without a single located photo.
+        let titled = Task.isCancelled ? [] : await photos.matchups(venues, library.allTeams, library.games)
+        // Photos with no location on a day the located ones place in one city: a possible game only when that city's schedule
+        // had one while they were taken and the sampled photos look like a stadium. At most `CityDays.maxDays` days, and a
+        // scene check only for a day a game fits.
+        var inCity: [PossibleDay] = []
+        let see = photos.look
+        for day in scanned.cityDays {
+            if Task.isCancelled { break }
+            if let offer = await CityDays.evaluate(day, look: { await see($0, CityDays.sample) }).offer { inCity.append(offer) }
+        }
+        settleDeep(aroundGrounds + titled + inCity, library: library)
         state = games.isEmpty && others.isEmpty && possible.isEmpty ? .empty : .done
         Analytics.shared.track(.scanFinished, ["games": games.count, "visits": others.count, "photos": progress.scanned,
                                                "seconds": Int(Date().timeIntervalSince(began))])

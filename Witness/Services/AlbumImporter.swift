@@ -35,6 +35,16 @@ enum AlbumImporter {
         return out.sorted { ($0.end ?? .distantPast) > ($1.end ?? .distantPast) }
     }
 
+    /// The fan's albums holding any of these photos, with how many of them each holds (for the scan check).
+    static func albums(containing ids: [String]) -> [(album: PhotoAlbum, count: Int)] {
+        let wanted = Set(ids)
+        guard !wanted.isEmpty else { return [] }
+        return albums().compactMap { album in
+            let n = points(in: album.id).filter { wanted.contains($0.id) }.count
+            return n > 0 ? (album, n) : nil
+        }
+    }
+
     /// The photos of an album, or of a trip's time window.
     static func points(in album: PhotoAlbum) -> [PhotoPoint] {
         if let range = album.range { return points(from: range.lowerBound, to: range.upperBound) }

@@ -311,7 +311,7 @@ private struct ResultScreen: View {
             }
             if !scan.possible.isEmpty {
                 // Days just outside a stadium on a game's day: the fan says where they were.
-                Label("Plus \(scan.possible.count) possible \(scan.possible.count == 1 ? "game" : "games") from photos around a stadium while a game was on. Pick the stadium next.",
+                Label("Plus \(scan.possible.count) possible \(scan.possible.count == 1 ? "game" : "games") from your albums and photos taken while a game was on nearby. Pick the stadium next.",
                       systemImage: "questionmark.circle")
                     .font(.footnote)
                     .foregroundStyle(Color.textSecondary)

@@ -108,6 +108,12 @@ enum GameLookup {
         return out.filter { $0.start >= from.addingTimeInterval(-6 * 3600) && $0.start <= to }
     }
 
+    /// One league's scoreboard for one day ("20260624"), at every ground.
+    static func scoreboard(league: String, day: String) async -> [FoundGame] {
+        guard let data = await fetch(scoreboardURL(league: league, day: day)) else { return [] }
+        return parseScoreboard(data, league: league)
+    }
+
     /// The catalog venue a schedule's game was played at, by name, alias, or city plus home team.
     static func venue(of game: FoundGame, in venues: [Venue]) -> Venue? {
         let matches = venues.filter { venueMatches(game, venue: $0) }

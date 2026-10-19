@@ -63,6 +63,8 @@
 		90B450D0203B4D0EA299E59C /* ScanProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA64AFCCCD04D0FA8C3AB27 /* ScanProgressView.swift */; };
 		9863B0DFED2996CA94B9B1B2 /* BigGamesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635372BC75571E082E042DED /* BigGamesView.swift */; };
 		9A317C05D603405286EB368F /* GameSuggester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17463A9523844154A609AA96 /* GameSuggester.swift */; };
+		B9C75BD7904248479E81D284 /* CityDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9409C3DFF39546D2A5E788FB /* CityDays.swift */; };
+		552AC22318134FC4B2347D7D /* MatchupAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFAB9083BCD478EA75899A1 /* MatchupAlbums.swift */; };
 		9B3D8D7DF04F7AF84F9056D5 /* LocalSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394164A99C85F16E439299E8 /* LocalSchedule.swift */; };
 		9B4532F2E8F9A71114DAE408 /* YouView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D759FA400F64646D4F0E01 /* YouView.swift */; };
 		9E944FAAA2B99623DAC8A56B /* TeamPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3389D60FD9A2CDD994777AC /* TeamPickerView.swift */; };
@@ -96,6 +98,8 @@
 		37AE837711CD4841A1C8F45C /* ReviewQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */; };
 		B35E9BE98F85478A9F99BF7A /* WorldCupSeattleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */; };
 		D0E00A8C14204C00B3519C8C /* ScanEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */; };
+		5FAF894E69244EC7BD9363C2 /* CityDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85F7A38250A42C0B83A7467 /* CityDayTests.swift */; };
+		4E545CC7F1CE4A09ADD8E641 /* MatchupAlbumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BE31FCD43E4130982C9AE7 /* MatchupAlbumTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +135,8 @@
 		42F69FBBFDA74C32A46C3D9D /* ScanCheckView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanCheckView.swift; sourceTree = "<group>"; };
 		153022015CA2DB30C970B946 /* PassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportView.swift; sourceTree = "<group>"; };
 		17463A9523844154A609AA96 /* GameSuggester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSuggester.swift; sourceTree = "<group>"; };
+		9409C3DFF39546D2A5E788FB /* CityDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDays.swift; sourceTree = "<group>"; };
+		EEFAB9083BCD478EA75899A1 /* MatchupAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchupAlbums.swift; sourceTree = "<group>"; };
 		1833A6AAA7A248529EAE4685 /* BackgroundPhotoCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundPhotoCheck.swift; sourceTree = "<group>"; };
 		1A98C3EEF90E39F6F90FB5F1 /* WrappedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedView.swift; sourceTree = "<group>"; };
 		1CDEDDEB3372D49CD437F4B5 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
@@ -208,6 +214,8 @@
 		A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQueueTests.swift; sourceTree = "<group>"; };
 		4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCupSeattleTests.swift; sourceTree = "<group>"; };
 		5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanEndToEndTests.swift; sourceTree = "<group>"; };
+		F85F7A38250A42C0B83A7467 /* CityDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDayTests.swift; sourceTree = "<group>"; };
+		41BE31FCD43E4130982C9AE7 /* MatchupAlbumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchupAlbumTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -313,6 +321,8 @@
 				FAB2D82783934847BBD938CF /* ScanCheck.swift */,
 				47731D7AFF619393565B668F /* SceneCheck.swift */,
 				17463A9523844154A609AA96 /* GameSuggester.swift */,
+				9409C3DFF39546D2A5E788FB /* CityDays.swift */,
+				EEFAB9083BCD478EA75899A1 /* MatchupAlbums.swift */,
 				1F5F7CEAB6296502544C0B9F /* ScoreboardReader.swift */,
 				E1F5DF75DFFEA5C37DFAA35A /* WeatherLookup.swift */,
 				394164A99C85F16E439299E8 /* LocalSchedule.swift */,
@@ -361,6 +371,8 @@
 				A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */,
 				4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */,
 				5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */,
+				F85F7A38250A42C0B83A7467 /* CityDayTests.swift */,
+				41BE31FCD43E4130982C9AE7 /* MatchupAlbumTests.swift */,
 				7B48F99FC296122C6C846961 /* BigGameTests.swift */,
 				0EBB3E2CA6352B5C2EB2E15D /* DetectionTuningTests.swift */,
 				73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */,
@@ -641,6 +653,8 @@
 				37AE837711CD4841A1C8F45C /* ReviewQueueTests.swift in Sources */,
 				B35E9BE98F85478A9F99BF7A /* WorldCupSeattleTests.swift in Sources */,
 				D0E00A8C14204C00B3519C8C /* ScanEndToEndTests.swift in Sources */,
+				5FAF894E69244EC7BD9363C2 /* CityDayTests.swift in Sources */,
+				4E545CC7F1CE4A09ADD8E641 /* MatchupAlbumTests.swift in Sources */,
 				BB3F51B6F1750A2ECB5E0479 /* BigGameTests.swift in Sources */,
 				1307844B2E7EAB4CDD54E487 /* DetectionTuningTests.swift in Sources */,
 				7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */,
@@ -698,6 +712,8 @@
 				6621D8E745F14B43BD225B49 /* ScanCheck.swift in Sources */,
 				73C196CCFCF30A1C99B80D91 /* SceneCheck.swift in Sources */,
 				9A317C05D603405286EB368F /* GameSuggester.swift in Sources */,
+				B9C75BD7904248479E81D284 /* CityDays.swift in Sources */,
+				552AC22318134FC4B2347D7D /* MatchupAlbums.swift in Sources */,
 				5B7AF8406D59899769065BD7 /* ScoreboardReader.swift in Sources */,
 				7FEDA5B54469C015E32EA656 /* WeatherLookup.swift in Sources */,
 				9B3D8D7DF04F7AF84F9056D5 /* LocalSchedule.swift in Sources */,
