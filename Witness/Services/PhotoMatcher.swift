@@ -3,7 +3,7 @@ import Photos
 import CoreLocation
 
 /// A run of photos taken inside one stadium on one day: probably a game.
-struct PhotoCluster: Identifiable, Hashable {
+struct PhotoCluster: Identifiable, Hashable, Codable {
     let id: String
     let venue: Venue
     let start: Date

@@ -10,7 +10,10 @@ struct WitnessApp: App {
         Appearance.apply()
         let args = ProcessInfo.processInfo.arguments
         let library = Library()
-        if args.contains("-reset") { library.reset() }
+        if args.contains("-reset") {
+            library.reset()
+            try? FileManager.default.removeItem(at: URL.applicationSupportDirectory.appending(path: "pending-visits.json"))
+        }
         if args.contains("-demo") { library.loadSample() }
         if args.contains("-empty") { library.startEmpty() }
         if args.contains("-uitest") { UIView.setAnimationsEnabled(false) }

@@ -58,7 +58,23 @@ final class ScanModel {
     @ObservationIgnored private var task: Task<Void, Never>?
     @ObservationIgnored private var deepTask: Task<Void, Never>?
     /// Stadium visits from the first pass with no game on the schedule, looked at only in the background search.
-    @ObservationIgnored private var pendingVisits: [PhotoCluster] = []
+    /// Kept on disk, so the search still covers them after the app is closed; cleared once it has run.
+    @ObservationIgnored private var pendingVisits: [PhotoCluster] = ScanModel.loadPending() {
+        didSet { Self.savePending(pendingVisits) }
+    }
+
+    private static var pendingURL: URL { URL.applicationSupportDirectory.appending(path: "pending-visits.json") }
+
+    private static func loadPending() -> [PhotoCluster] {
+        guard let data = try? Data(contentsOf: pendingURL) else { return [] }
+        return (try? JSONDecoder().decode([PhotoCluster].self, from: data)) ?? []
+    }
+
+    private static func savePending(_ visits: [PhotoCluster]) {
+        if visits.isEmpty { try? FileManager.default.removeItem(at: pendingURL); return }
+        try? FileManager.default.createDirectory(at: URL.applicationSupportDirectory, withIntermediateDirectories: true)
+        try? JSONEncoder().encode(visits).write(to: pendingURL, options: .atomic)
+    }
 
     var matchedCount: Int { matches.count }
     var inProgress: Bool { state == .scanning || state == .matching || state == .verifying }
@@ -113,6 +129,7 @@ final class ScanModel {
             }
             guard let self, !Task.isCancelled else { return }
             possible = (possible + atStadiums + found).sorted { $0.day > $1.day }
+            pendingVisits = []
             deepReviewed = false
             deepState = .done
             Analytics.shared.track(.scanFinished, ["deep": true, "possible": found.count])
