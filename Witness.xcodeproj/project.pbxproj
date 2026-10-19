@@ -29,6 +29,7 @@
 		2C04CCBC8A87B9A2E1328A35 /* MapListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B587E65EAF454E7F2872C /* MapListSheet.swift */; };
 		2FB08C6E1D9C2F5F821BFEA3 /* GameLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F8BFCA25D2EAB73580B35B /* GameLookup.swift */; };
 		33986E7A0BDD5EAC7B8E13D7 /* TicketOCRTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903443890581343B7B39B754 /* TicketOCRTests.swift */; };
+		36A1FC7C0C1281E834CEACD8 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050A3828D9B3F0417A1D29D /* Analytics.swift */; };
 		36CECB56088ADBB858CA2A45 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89965E1544CBDB43E6EC2FE2 /* TimelineView.swift */; };
 		37B16E29C9D27A66D480E00D /* VenuePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C48F08394BC610EA16614E /* VenuePickerView.swift */; };
 		41282078C6400EAF3917D94E /* YouWereThereView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704303482A7331087EFF150 /* YouWereThereView.swift */; };
@@ -108,6 +109,7 @@
 		0E7F44B24D67E6093141226E /* WitnessTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WitnessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EBB3E2CA6352B5C2EB2E15D /* DetectionTuningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectionTuningTests.swift; sourceTree = "<group>"; };
 		0F19D32DC278C4AA996AD53E /* nfl-summary-401671844.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "nfl-summary-401671844.json"; sourceTree = "<group>"; };
+		1050A3828D9B3F0417A1D29D /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		153022015CA2DB30C970B946 /* PassportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassportView.swift; sourceTree = "<group>"; };
 		18A8BA68B9A721AEDADF5A2E /* ScheduleGapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleGapsView.swift; sourceTree = "<group>"; };
 		1A98C3EEF90E39F6F90FB5F1 /* WrappedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappedView.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				7F836BE70D81FF166D6EFD6A /* AlbumImporter.swift */,
+				1050A3828D9B3F0417A1D29D /* Analytics.swift */,
 				CE2F247B2D8B5DD97EF0D2F9 /* BackgroundPhotoCheck.swift */,
 				6573A4420FA4FE35D7CC37B3 /* BigGame.swift */,
 				DA0A2D620B0AF02229035D47 /* CoverPicker.swift */,
@@ -605,6 +608,7 @@
 				0E12D046A277661BA11D667B /* AddVenueView.swift in Sources */,
 				BED863E726CE333896659B1A /* AlbumImportView.swift in Sources */,
 				CD5342E7131026E858E6D978 /* AlbumImporter.swift in Sources */,
+				36A1FC7C0C1281E834CEACD8 /* Analytics.swift in Sources */,
 				0C31791A5B92BA9FD5FC041B /* BackgroundPhotoCheck.swift in Sources */,
 				2255C527B132D1FCBC15EAAD /* BigGame.swift in Sources */,
 				9863B0DFED2996CA94B9B1B2 /* BigGamesView.swift in Sources */,
