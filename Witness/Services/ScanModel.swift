@@ -1,5 +1,6 @@
 import UIKit
 import Observation
+import CoreLocation
 
 /// The scan of the photo library, started from onboarding or "Find in photos". It is owned by the app, not by a screen.
 /// It finishes only when everything is done: every photo read, then every stadium visit checked against the real
@@ -59,31 +60,60 @@ final class ScanModel {
     @ObservationIgnored private var deepTask: Task<Void, Never>?
     /// Stadium visits from the first pass with no game on the schedule, looked at only in the background search.
     /// Kept on disk, so the search still covers them after the app is closed; cleared once it has run.
-    @ObservationIgnored private var pendingVisits: [PhotoCluster] = ScanModel.loadPending() {
-        didSet { Self.savePending(pendingVisits) }
+    @ObservationIgnored private(set) var pendingVisits: [PhotoCluster] {
+        didSet { Self.savePending(pendingVisits, to: pendingURL) }
     }
 
-    private static var pendingURL: URL { URL.applicationSupportDirectory.appending(path: "pending-visits.json") }
+    nonisolated static var pendingURL: URL { URL.applicationSupportDirectory.appending(path: "pending-visits.json") }
     nonisolated static var ledgerURL: URL { URL.applicationSupportDirectory.appending(path: "review-ledger.json") }
 
     /// What the fan skipped in any review, so no later pass offers it again. Added visits are in the library.
     @ObservationIgnored private(set) var ledger: ReviewLedger
     @ObservationIgnored private let ledgerURL: URL
+    @ObservationIgnored private let pendingURL: URL
+    @ObservationIgnored private let photos: Photos
 
-    init(ledgerURL: URL = ScanModel.ledgerURL) {
-        self.ledgerURL = ledgerURL
-        ledger = ReviewLedger.load(from: ledgerURL)
+    /// Where a scan reads the photos and what it sees in them: the photo library on the phone, or photos a test hands in.
+    struct Photos {
+        var access: () async -> Bool
+        var discover: (_ venues: [Venue], _ existing: [GameEntry], _ progress: @escaping @Sendable (PhotoMatcher.ScanProgress) -> Void) async -> PhotoMatcher.Found
+        var look: (_ refs: [PhotoRef], _ max: Int) async -> SceneCheck.DayLook
+        /// The album and trip step of the background search.
+        var suggest: (_ venues: [Venue], _ teams: [Team], _ home: CLLocation, _ hasHome: Bool, _ claimed: Set<String>,
+                      _ progress: @escaping @MainActor (GameSuggester.Step, Int, Int) -> Void) async -> [PossibleDay]
+
+        static let library = Photos(
+            access: { await PhotoMatcher.requestAccess() },
+            discover: { venues, existing, progress in await PhotoMatcher.discover(venues: venues, existing: existing, progress: progress) },
+            look: { refs, max in await SceneCheck.look(at: refs, max: max) },
+            suggest: { venues, teams, home, hasHome, claimed, progress in
+                await GameSuggester.find(venues: venues, teams: teams, home: home, hasHome: hasHome, claimed: claimed, progress: progress)
+            })
     }
 
-    private static func loadPending() -> [PhotoCluster] {
-        guard let data = try? Data(contentsOf: pendingURL) else { return [] }
+    init(ledgerURL: URL = ScanModel.ledgerURL, pendingURL: URL = ScanModel.pendingURL, photos: Photos = .library) {
+        self.ledgerURL = ledgerURL
+        self.pendingURL = pendingURL
+        self.photos = photos
+        ledger = ReviewLedger.load(from: ledgerURL)
+        pendingVisits = Self.loadPending(from: pendingURL)
+    }
+
+    private static func loadPending(from url: URL) -> [PhotoCluster] {
+        guard let data = try? Data(contentsOf: url) else { return [] }
         return (try? JSONDecoder().decode([PhotoCluster].self, from: data)) ?? []
     }
 
-    private static func savePending(_ visits: [PhotoCluster]) {
-        if visits.isEmpty { try? FileManager.default.removeItem(at: pendingURL); return }
-        try? FileManager.default.createDirectory(at: URL.applicationSupportDirectory, withIntermediateDirectories: true)
-        try? JSONEncoder().encode(visits).write(to: pendingURL, options: .atomic)
+    private static func savePending(_ visits: [PhotoCluster], to url: URL) {
+        if visits.isEmpty { try? FileManager.default.removeItem(at: url); return }
+        try? FileManager.default.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try? JSONEncoder().encode(visits).write(to: url, options: .atomic)
+    }
+
+    /// Waits for the first pass (and the background search, when one is running) to finish. For tests and the scan check.
+    func finished() async {
+        await task?.value
+        await deepTask?.value
     }
 
     var matchedCount: Int { matches.count }
@@ -125,9 +155,10 @@ final class ScanModel {
     }
 
     /// The fan skipped this visit or day: it is not offered again, by this pass or any later one, after a relaunch too.
-    func dismiss(_ assetIds: [String], on day: Date) {
+    /// `asGame` when it was offered as a game on the schedule; a skipped stadium visit still lets a game found later for its photos through.
+    func dismiss(_ assetIds: [String], on day: Date, asGame: Bool = false) {
         var keyer = DayKeyer()
-        ledger.dismiss(assetIds, day: keyer.day(day, tz: .current))
+        ledger.dismiss(assetIds, day: keyer.day(day, tz: .current), game: asGame)
         ledger.save(to: ledgerURL)
         let ids = Set(assetIds)
         games.removeAll { $0.assetIds.contains(where: ids.contains) }
@@ -155,6 +186,7 @@ final class ScanModel {
         Analytics.shared.track(.onboardingStep, ["step": "deep_scan_started"])
         let pending = pendingVisits.filter { !$0.assetIds.contains(where: ledger.dismissedAssets.contains) }
         let claimedBefore = claimed
+        let photos = photos
         deepTask = Task { [weak self] in
             var claimed = claimedBefore
             var keyer = DayKeyer()
@@ -164,12 +196,12 @@ final class ScanModel {
             for (n, cluster) in pending.enumerated() {
                 if Task.isCancelled { return }
                 self?.deepStep = .visits; self?.deepDone = n; self?.deepTotal = pending.count
-                if let day = await Self.waitingDay(cluster, venues: venues, look: { await SceneCheck.look(at: $0.assetIds.map { PhotoRef.library($0) }) }) {
+                if let day = await Self.waitingDay(cluster, venues: venues, look: { await photos.look($0.assetIds.map { PhotoRef.library($0) }, 24) }) {
                     atStadiums.append(day)
                 }
             }
             for day in atStadiums { claimed.insert(keyer.day(day.day, tz: .current)) }
-            let found = await GameSuggester.find(venues: venues, teams: teams, home: home, hasHome: hasHome, claimed: claimed) { step, done, total in
+            let found = await photos.suggest(venues, teams, home, hasHome, claimed) { step, done, total in
                 self?.deepStep = step
                 self?.deepTotal = total
                 self?.deepDone = done
@@ -256,7 +288,7 @@ final class ScanModel {
 
     private func run(library: Library) async {
         let began = Date()
-        guard await PhotoMatcher.requestAccess() else {
+        guard await photos.access() else {
             state = .denied
             Analytics.shared.track(.onboardingStep, ["step": "photo_access", "granted": false])
             return
@@ -272,12 +304,13 @@ final class ScanModel {
         UIApplication.shared.isIdleTimerDisabled = true
         defer { UIApplication.shared.isIdleTimerDisabled = false }
 
-        let found = await PhotoMatcher.discover(venues: library.venues, existing: library.games) { p in
+        let scanned = await photos.discover(library.venues, library.games) { p in
             Task { @MainActor [weak self] in
                 guard let self, self.state == .scanning else { return }
                 self.progress = p
             }
         }
+        let found = scanned.visits
         progress.scanned = progress.total
 
         state = .matching
@@ -339,7 +372,7 @@ final class ScanModel {
         var pending: [PhotoCluster] = []
         for cluster in unmatched {
             if Task.isCancelled { break }
-            let look = await SceneCheck.look(at: cluster.assetIds.map { PhotoRef.library($0) }, max: 6)
+            let look = await photos.look(cluster.assetIds.map { PhotoRef.library($0) }, 6)
             if look.venue >= 1, !look.mostlyElsewhere { tours.append(cluster) } else { pending.append(cluster) }
             verifiedVisits += 1
         }
@@ -348,7 +381,14 @@ final class ScanModel {
         skippedVisits = pending.count
         possible = []
         settleFirstPass(games: confirmed, others: tours, library: library)
-        state = games.isEmpty && others.isEmpty ? .empty : .done
+        // Days spent just outside a stadium's fence, offered as possible games when the schedule had one there then.
+        var aroundGrounds: [PossibleDay] = []
+        for cluster in scanned.nearby {
+            if Task.isCancelled { break }
+            if let day = await Self.nearbyDay(cluster, venues: venues) { aroundGrounds.append(day) }
+        }
+        settleDeep(aroundGrounds, library: library)
+        state = games.isEmpty && others.isEmpty && possible.isEmpty ? .empty : .done
         Analytics.shared.track(.scanFinished, ["games": games.count, "visits": others.count, "photos": progress.scanned,
                                                "seconds": Int(Date().timeIntervalSince(began))])
     }
@@ -375,6 +415,19 @@ final class ScanModel {
                            reason: game ? "Photos at \(cluster.venue.name) that look like a game, but none is on the schedule"
                                         : "Photos inside \(cluster.venue.name) with no game that day \u{00B7} a stadium visit?",
                            suggestions: [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: venues).prefix(2))
+    }
+
+    /// A possible game for a day of photos just outside a stadium's fence: only when the schedule had a game there (or next door)
+    /// while the photos were taken, from two hours before kickoff to three after.
+    nonisolated static func nearbyDay(_ cluster: PhotoCluster, venues: [Venue]) async -> PossibleDay? {
+        guard let game = await match(cluster, venues: venues),
+              cluster.times.contains(where: { $0 >= game.start.addingTimeInterval(-2 * 3600) && $0 <= game.start.addingTimeInterval(3 * 3600) })
+        else { return nil }
+        let at = GameLookup.venue(of: game, in: venues) ?? cluster.venue
+        let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
+        return PossibleDay(id: "possible-near-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
+                           reason: "Photos around \(cluster.venue.name) \u{00B7} \(GameSuggester.describe(game, at: at))",
+                           suggestions: [at] + [cluster.venue].filter { $0.id != at.id })
     }
 
     /// A race weekend is one event over several days at the circuit: Friday, Saturday and Sunday photos become one visit.

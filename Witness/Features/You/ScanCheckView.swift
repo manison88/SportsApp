@@ -4,6 +4,7 @@ import SwiftUI
 /// Reached by tapping the note at the top of Back up & export three times.
 struct ScanCheckView: View {
     @Environment(Library.self) private var library
+    @Environment(Presenter.self) private var presenter
     @State private var day = Date()
     @State private var report: String?
     @State private var checking = false
@@ -22,7 +23,7 @@ struct ScanCheckView: View {
                 Button {
                     Task {
                         checking = true
-                        report = await ScanCheck.report(day: day, library: library)
+                        report = await ScanCheck.report(day: day, library: library, scan: presenter.scan)
                         checking = false
                     }
                 } label: {
