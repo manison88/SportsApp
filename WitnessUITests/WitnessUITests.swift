@@ -365,6 +365,21 @@ final class WitnessUITests: XCTestCase {
         }
     }
 
+    func testShareVenueLooks() {
+        launch([])
+        tap("welcome-sample")
+        tab("Passport")
+        tap("stamp-wrigley")
+        XCTAssertTrue(el("venue-title").waitForExistence(timeout: 8))
+        tap("venue-share")
+        sleep(8)
+        for i in 0..<2 {
+            snap("venue-share-\(i)")
+            app.swipeLeft()
+            sleep(2)
+        }
+    }
+
     func testSharePassportPage() {
         launch([])
         tap("welcome-sample")
