@@ -1,11 +1,10 @@
 import SwiftUI
 
-/// Where the app's legal links point. The pages are served by the analytics Worker (/privacy and /terms), so they share its address.
+/// Where the app's legal links point: the pages on 312itconsulting.com, which do not depend on the analytics Worker being live.
 enum LegalLinks {
-    private static var base: String { Backend.base }
-    static var isOnline: Bool { Backend.isOnline }
-    static var privacy: URL? { isOnline ? URL(string: base + "/privacy") : nil }
-    static var terms: URL? { isOnline ? URL(string: base + "/terms") : nil }
+    static var isOnline: Bool { true }
+    static var privacy: URL? { URL(string: "https://312itconsulting.com/witness/privacy") }
+    static var terms: URL? { URL(string: "https://312itconsulting.com/witness/terms") }
 }
 
 /// The privacy policy or the terms of use, read inside the app, so they are always available, even offline.
