@@ -168,15 +168,27 @@ struct DotWall: View {
                 let isGold = Self.gold.contains(i) && stage == WelcomeView.steps.count - 1
                 let stands = Self.gold.contains(i) || Self.lives(i, at: stage)
                 RoundedRectangle(cornerRadius: 2)
-                    .fill(isGold ? Color.signal : Color.panelRaised)
+                    .fill(isGold ? Color.signal : (stands ? Self.survivor(stage) : Color.panelRaised))
                     .aspectRatio(1, contentMode: .fit)
-                    .opacity(stands ? 1 : 0.07)
-                    .scaleEffect(isGold ? 1.15 : (stands ? 1 : 0.55))
-                    .shadow(color: isGold ? Color.signal.opacity(0.8) : .clear, radius: 6)
-                    .animation(.easeIn(duration: 0.45).delay(Double((i * 37) % 23) * 0.015), value: stage)
+                    .opacity(stands ? 1 : 0.35)
+                    .scaleEffect(isGold ? 1.15 : (stands ? 1 : 0.5))
+                    .shadow(color: isGold ? Color.signal.opacity(0.8) : (stands && stage == 3 ? Color.signal.opacity(0.35) : .clear),
+                            radius: isGold ? 6 : 3)
+                    .animation(.easeInOut(duration: 0.45).delay(Double((i * 37) % 23) * 0.015), value: stage)
             }
         }
         .accessibilityHidden(true)
+    }
+
+    /// The photos still in the running get brighter and warmer at every step, so the wall narrows visibly toward the games.
+    private static func survivor(_ stage: Int) -> Color {
+        switch stage {
+        case 0: Color(white: 0.30)
+        case 1: Color(white: 0.45)
+        case 2: Color(white: 0.62)
+        case 3: Color.signal.opacity(0.55)
+        default: Color.signal
+        }
     }
 
     /// Which dots still stand at a step: about 45% go at the first, 30% at the second, 18% at the third, the rest at the last.

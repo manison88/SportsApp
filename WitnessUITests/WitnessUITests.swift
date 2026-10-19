@@ -96,6 +96,18 @@ final class WitnessUITests: XCTestCase {
         XCTAssertTrue(app.tabBars.buttons["Timeline"].waitForExistence(timeout: 8))
     }
 
+    func testWelcomeSteps() {
+        app = XCUIApplication()
+        app.launchArguments = ["-reset"]
+        app.launch()
+        for i in 0..<5 {
+            XCTAssertTrue(el("welcome-start").waitForExistence(timeout: 5))
+            sleep(2)
+            snap("welcome-step-\(i)")
+            if i < 4 { tap("welcome-start") }
+        }
+    }
+
     func testOnboardingAccessPage() {
         launch([])
         tap("welcome-start")
