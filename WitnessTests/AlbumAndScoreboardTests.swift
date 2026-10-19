@@ -517,4 +517,29 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(Fmt.temperature(32, fahrenheit: false), "0\u{00B0}C")
         XCTAssertEqual(Fmt.temperature(5, fahrenheit: false), "-15\u{00B0}C")
     }
+
+    func testAlbumTitleNamesTheStadium() {
+        let hit = GameSuggester.venues(named: "Cubs game with Dad", teams: library.allTeams, venues: library.venues) { self.library.venue($0) }
+        XCTAssertTrue(hit.contains { $0.name == "Wrigley Field" }, "A team nickname points at its home ground: \(hit.map(\.name))")
+        let byName = GameSuggester.venues(named: "Wrigley 2019", teams: library.allTeams, venues: library.venues) { self.library.venue($0) }
+        XCTAssertTrue(byName.contains { $0.name == "Wrigley Field" }, "A stadium named outright: \(byName.map(\.name))")
+        XCTAssertTrue(GameSuggester.venues(named: "Summer 2019", teams: library.allTeams, venues: library.venues) { self.library.venue($0) }.isEmpty)
+    }
+
+    func testPossibleDaysNeedPhotosAndSkipCoveredDays() {
+        let day = { (id: String, n: Int) in DayPile(id: id, day: Date(), assetIds: (0..<n).map { "\($0)" }, times: (0..<n).map { _ in Date() }) }
+        let kept = GameSuggester.candidates([day("2020-06-01", 5), day("2020-06-02", 2), day("2020-06-03", 4)], skipping: ["2020-06-03"])
+        XCTAssertEqual(kept.map(\.id), ["2020-06-01"], "Too few photos and already-covered days are left out")
+    }
+
+    func testIndoorOutdoorIsASecondOpinion() throws {
+        let setting = SceneCheck.setting([("indoor_arena", 0.8), ("sky", 0.1)])
+        XCTAssertGreaterThan(setting.indoor, 0.5)
+        let arena = try XCTUnwrap(library.venues.first { $0.name == "United Center" })
+        let ballpark = try XCTUnwrap(library.venues.first { $0.name == "Wrigley Field" })
+        XCTAssertTrue(arena.isIndoor)
+        XCTAssertFalse(ballpark.isIndoor)
+        XCTAssertTrue(SceneVerdict(sports: 0.1, elsewhere: 0.3, indoor: 0.7, outdoor: 0).fits(arena))
+        XCTAssertFalse(SceneVerdict(sports: 0.1, elsewhere: 0.3, indoor: 0.7, outdoor: 0).fits(ballpark))
+    }
 }

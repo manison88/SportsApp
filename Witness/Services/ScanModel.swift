@@ -15,6 +15,8 @@ final class ScanModel {
     private(set) var games: [PhotoCluster] = []
     /// Visits at or near a stadium with no game on the schedule, newest first.
     private(set) var others: [PhotoCluster] = []
+    /// Days that might be games where the stadium is not known: the fan picks it and the photos' date finds the game. Never added in bulk.
+    private(set) var possible: [PossibleDay] = []
     /// The schedule match for each game, by visit id.
     private(set) var matches: [String: FoundGame] = [:]
     /// Ticket screenshots that pinned a game, by visit id. A ticket makes its visit a game even without a schedule match.
@@ -101,6 +103,7 @@ final class ScanModel {
         progress = .init()
         games = []
         others = []
+        possible = []
         matches = [:]
         tickets = [:]
         notes = [:]
@@ -122,7 +125,7 @@ final class ScanModel {
         }
         Analytics.shared.track(.onboardingStep, ["step": "photo_access", "granted": true])
         progress = .init()
-        games = []; others = []; matches = [:]; tickets = [:]; notes = [:]
+        games = []; others = []; possible = []; matches = [:]; tickets = [:]; notes = [:]
         checkedVisits = 0; totalVisits = 0; verifiedVisits = 0; verifyTotal = 0; skippedVisits = 0
         reviewed = false
         shown = false
@@ -159,62 +162,71 @@ final class ScanModel {
             checkedVisits = min(start + chunk.count, found.count)
         }
 
-        // Ticket screenshots pin games on their own, even when none of the night's photos have GPS. Read them here, so
-        // the review that follows has nothing left to wait for.
-        var visits = Self.mergeRaceWeekends(found, matched: &matched)
+        // The stadium and the date decide. Tickets are digital and are not read here; a scene check is only a second opinion.
+        let visits = Self.mergeRaceWeekends(found, matched: &matched)
         matches = matched
-        var ticketed: [String: TicketDraft] = [:]
-        let have = Set(library.games.compactMap { g in library.venue(g.venueId).map { VisitGrouping.key(venueId: $0.id, date: g.date, tz: $0.tz) } })
-        let anchors = await TicketAnchors.find(in: TicketAnchors.screenshots(limit: 200), teams: library.allTeams, venues: venues)
-        for anchor in anchors {
-            let key = VisitGrouping.key(venueId: anchor.venue.id, date: anchor.date, tz: anchor.venue.tz)
-            guard !have.contains(key) else { continue }
-            ticketed[key] = anchor.draft
-            if visits.contains(where: { $0.id == key }) { continue }
-            let ids = await PhotoMatcher.photos(at: anchor.venue, around: anchor.date) + [anchor.id]
-            let cluster = PhotoCluster(id: key, venue: anchor.venue, start: anchor.date, end: anchor.date,
-                                       assetIds: ids, times: ids.map { _ in anchor.date })
-            visits.append(cluster)
-            if let game = await Self.match(cluster, venues: venues) { matched[key] = game }
-        }
-        matches = matched
-        tickets = ticketed
+        tickets = [:]
 
-        // Location and a game on that date are not enough: a home near the stadium puts photos there on game day too.
-        // A game needs photos that look like one. A ticket is proof on its own.
         state = .verifying
-        let ticketBacked = visits.filter { ticketed[$0.id] != nil }
-        let candidates = visits.filter { matched[$0.id] != nil && ticketed[$0.id] == nil }
-        let unmatched = visits.filter { matched[$0.id] == nil && ticketed[$0.id] == nil }
+        let candidates = visits.filter { matched[$0.id] != nil }
+        let unmatched = visits.filter { matched[$0.id] == nil }
         verifyTotal = candidates.count + unmatched.count
-        var confirmed = ticketBacked
-        var inOther: [PhotoCluster] = []
+        var confirmed: [PhotoCluster] = []
+        var maybe: [PossibleDay] = []
         var skipped = 0
+        func makePossible(_ cluster: PhotoCluster, _ reason: String) -> PossibleDay {
+            let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
+            return PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
+                               reason: reason, suggestions: [cluster.venue])
+        }
         for cluster in candidates {
             let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 8)
-            // Only a clear sign of somewhere else (a bedroom, a restaurant) overrides the schedule match. Without the
-            // classifier, or when it is unsure, the match stands.
-            if look == nil || !look!.clearlyElsewhere {
-                confirmed.append(cluster)
+            // A game on the schedule at the stadium that day stands, unless the photos clearly show somewhere else and the
+            // setting (indoors for an arena, outdoors for a ballpark) does not fit the stadium either.
+            if let look, look.clearlyElsewhere, !look.fits(cluster.venue) {
+                maybe.append(makePossible(cluster, "Photos near \(cluster.venue.name) on a game day, but they don't look like a game"))
             } else {
-                inOther.append(cluster)
-                if let game = matched[cluster.id] {
-                    notes[cluster.id] = game.race.map { "There was a race here (\($0.title)), but these photos don't look like it." }
-                        ?? "There was a game here that day (\(game.away.abbreviation) at \(game.home.abbreviation)), but these photos don't look like it."
-                }
+                confirmed.append(cluster)
             }
             verifiedVisits += 1
         }
+        // A visit with no game on the schedule is not shown, unless the photos themselves look like a game (a league the
+        // schedules do not cover): then it is a possible game, and the fan confirms the stadium.
         for cluster in unmatched {
             let look = await SceneCheck.verdict(for: cluster.assetIds.map { PhotoRef.library($0) }, sample: 8)
-            if look == nil || !look!.clearlyElsewhere { inOther.append(cluster) } else { skipped += 1 }
+            if let look, look.looksLikeGame, PhotoMatcher.looksLikeAGame(cluster.times) {
+                maybe.append(makePossible(cluster, "Photos at \(cluster.venue.name) that look like a game, but none is on the schedule"))
+            } else {
+                skipped += 1
+            }
             verifiedVisits += 1
         }
+
+        // Albums, trips and days with no location: a scoreboard names the game; anything else is a day to ask about.
+        var claimed = Set<String>()
+        var keyer = DayKeyer()
+        for g in library.games { claimed.insert(keyer.day(g.date, tz: .current)) }
+        for c in confirmed { claimed.insert(keyer.day(c.start, tz: .current)) }
+        for m in maybe { claimed.insert(keyer.day(m.day, tz: .current)) }
+        let base = verifiedVisits, baseTotal = verifyTotal
+        let extra = await GameSuggester.find(venues: library.venues, teams: library.allTeams, home: library.profile.homeLocation,
+                                             hasHome: library.hasHome, claimed: claimed) { [weak self] done, total in
+            self?.verifyTotal = baseTotal + total
+            self?.verifiedVisits = base + done
+        }
+        for (cluster, game) in extra.games where !confirmed.contains(where: { $0.id == cluster.id }) {
+            confirmed.append(cluster)
+            matched[cluster.id] = game
+        }
+        matches = matched
+        maybe += extra.possible
+
         skippedVisits = skipped
         games = confirmed.sorted { $0.start > $1.start }
-        others = inOther.sorted { $0.start > $1.start }
-        state = games.isEmpty && others.isEmpty ? .empty : .done
-        Analytics.shared.track(.scanFinished, ["games": games.count, "others": others.count, "photos": progress.scanned,
+        others = []
+        possible = maybe.sorted { $0.day > $1.day }
+        state = games.isEmpty && possible.isEmpty ? .empty : .done
+        Analytics.shared.track(.scanFinished, ["games": games.count, "possible": possible.count, "photos": progress.scanned,
                                                "seconds": Int(Date().timeIntervalSince(began))])
     }
 

@@ -17,6 +17,13 @@ struct DiscoveryView: View {
     @State private var addedOther = 0
     @State private var otherKind = "Concert"
     @State private var otherTitle = ""
+    /// Days that might be games: the fan selects the stadium, then the photos' date finds the game.
+    @State private var possible: [PossibleDay] = []
+    @State private var possibleIndex = 0
+    @State private var possibleVenue: Venue?
+    @State private var possibleMatch: (game: FoundGame?, shift: Int)?
+    @State private var pickedVenueId: String?
+    @State private var pickingVenue = false
     @State private var clusters: [PhotoCluster] = []
     @State private var index = 0
     @State private var confirmed = 0
@@ -61,11 +68,12 @@ struct DiscoveryView: View {
                     body: "Allow photo access in Settings and Witness will match them to stadiums on this iPhone.",
                     showSettings: true, id: "discovery-denied")
         case .results:
-            if clusters.isEmpty && others.isEmpty {
+            if clusters.isEmpty && others.isEmpty && possible.isEmpty {
                 message(title: "No games found in your photos yet.", body: nil, showSettings: false, id: "discovery-empty")
             } else if index >= clusters.count {
                 // Games first; then the visits that were near a stadium but not a game.
-                if otherIndex < others.count { otherReview(others[otherIndex]) } else { done }
+                if possibleIndex < possible.count { possibleReview(possible[possibleIndex]) }
+                else if otherIndex < others.count { otherReview(others[otherIndex]) } else { done }
             } else {
                 results(clusters[index])
             }
@@ -278,6 +286,138 @@ struct DiscoveryView: View {
         }
     }
 
+    // MARK: Possible
+
+    /// A day that might be a game. Instead of asking who you rooted for, ask which stadium: the date of the photos then
+    /// finds the game there, or says there was none.
+    private func possibleReview(_ day: PossibleDay) -> some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: Spacing.block) {
+                VStack(alignment: .leading, spacing: Spacing.inner) {
+                    Text("Possible\ngame").displayFont(80).textCase(.uppercase)
+                        .accessibilityIdentifier("discovery-possible-title")
+                    Text(day.reason).font(.subheadline).foregroundStyle(Color.textSecondary)
+                    Text("\(possibleIndex + 1) of \(possible.count)").unitLabel()
+                }
+
+                VStack(alignment: .leading, spacing: Spacing.inner) {
+                    Text("\(Fmt.dayTitle(day.day)) \u{00B7} \(day.assetIds.count) \(day.assetIds.count == 1 ? "photo" : "photos")")
+                        .font(.condensed(.title3, weight: .heavy)).textCase(.uppercase)
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
+                        ForEach(day.assetIds.prefix(6), id: \.self) { id in
+                            Color.panel.aspectRatio(1, contentMode: .fit)
+                                .overlay { PhotoView(ref: .library(id)) }
+                                .clipShape(.rect(cornerRadius: 8))
+                        }
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: Spacing.inner) {
+                    Text("Which stadium?").unitLabel()
+                    ForEach(day.suggestions) { venue in
+                        Button { Task { await choosePossible(venue, for: day) } } label: {
+                            HStack {
+                                Text(venue.name).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+                                Spacer()
+                                Text(venue.cityLine).font(.footnote).foregroundStyle(Color.textSecondary)
+                            }
+                            .foregroundStyle(possibleVenue?.id == venue.id ? Color.black : Color.white)
+                            .padding(.horizontal, 14).frame(minHeight: 52)
+                            .background(possibleVenue?.id == venue.id ? Color.white : Color.panelRaised, in: .rect(cornerRadius: 12))
+                        }
+                        .accessibilityIdentifier("discovery-possible-suggest-\(venue.id)")
+                    }
+                    Button { pickingVenue = true } label: {
+                        Label(day.suggestions.isEmpty ? "Select stadium" : "Another stadium", systemImage: "mappin.and.ellipse")
+                    }
+                    .buttonStyle(.secondary)
+                    .accessibilityIdentifier("discovery-possible-select")
+                }
+
+                if let venue = possibleVenue {
+                    VStack(alignment: .leading, spacing: Spacing.inner) {
+                        if let result = possibleMatch {
+                            if let game = result.game {
+                                if result.shift != 0 {
+                                    Text("Nearest game: \(Fmt.dayTitle(game.start, in: venue.tz)), a day \(result.shift < 0 ? "before" : "after") your photos")
+                                        .font(.footnote.weight(.semibold)).foregroundStyle(Color.signal)
+                                }
+                                FoundGameChip(game: game).accessibilityIdentifier("discovery-possible-match")
+                            } else {
+                                Label("No game at \(venue.name) on that date. Save it as a stadium visit?", systemImage: "calendar.badge.exclamationmark")
+                                    .font(.footnote).foregroundStyle(Color.textSecondary)
+                                    .accessibilityIdentifier("discovery-possible-none")
+                            }
+                        } else {
+                            HStack(spacing: 8) { ProgressView().tint(.white); Text("Checking the schedule").font(.footnote).foregroundStyle(Color.textSecondary) }
+                        }
+                    }
+                }
+
+                HStack(spacing: Spacing.inner) {
+                    Button("Skip") { advancePossible() }
+                        .buttonStyle(.secondary)
+                        .frame(maxWidth: 120)
+                        .accessibilityIdentifier("discovery-possible-skip")
+                    if let venue = possibleVenue, let result = possibleMatch {
+                        Button { addPossible(day, venue: venue, game: result.game) } label: {
+                            Label(result.game == nil ? "Save visit" : "Add game", systemImage: "plus")
+                        }
+                        .buttonStyle(.primary)
+                        .accessibilityIdentifier("discovery-possible-add")
+                    }
+                }
+            }
+            .gutter()
+            .padding(.top, 8)
+            .padding(.bottom, 24)
+        }
+        .scrollIndicators(.hidden)
+        .sheet(isPresented: $pickingVenue) {
+            NavigationStack { VenuePickerView(venueId: $pickedVenueId, sport: nil) }
+        }
+        .onChange(of: pickedVenueId) { _, id in
+            guard let id, let venue = library.venue(id) else { return }
+            pickedVenueId = nil
+            Task { await choosePossible(venue, for: day) }
+        }
+    }
+
+    /// The stadium is chosen: the photos' date finds the game there.
+    private func choosePossible(_ venue: Venue, for day: PossibleDay) async {
+        possibleVenue = venue
+        possibleMatch = nil
+        let result = await GameLookup.gameNear(day.day, at: venue)
+        guard possibleVenue?.id == venue.id, possible.indices.contains(possibleIndex), possible[possibleIndex].id == day.id else { return }
+        possibleMatch = result
+    }
+
+    private func addPossible(_ day: PossibleDay, venue: Venue, game: FoundGame?) {
+        var entry = GameEntry(sport: game?.sport ?? venue.sports.first ?? .baseball, date: game?.start ?? day.day, venueId: venue.id,
+                              photos: day.assetIds.map { PhotoRef.library($0) }, origin: .photos)
+        if let game {
+            GameLookup.apply(game, detail: nil, to: &entry, library: library)
+            let id = entry.id
+            Task {
+                guard let detail = await GameLookup.detail(game), var saved = library.game(id) else { return }
+                GameLookup.apply(game, detail: detail, to: &saved, library: library)
+                library.update(saved)
+            }
+        } else {
+            entry.kind = .visit
+            entry.competition = "Stadium visit"
+        }
+        library.add(entry)
+        confirmed += 1
+        advancePossible()
+    }
+
+    private func advancePossible() {
+        possibleIndex += 1
+        possibleVenue = nil
+        possibleMatch = nil
+    }
+
     // MARK: Other
 
     private static let otherKinds = ["Concert", "Stadium tour", "Tailgate", "Other event"]
@@ -487,6 +627,7 @@ struct DiscoveryView: View {
         tickets = scan.tickets
         clusters = scan.games
         others = scan.others
+        possible = scan.possible
         phase = .results
     }
 

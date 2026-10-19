@@ -537,21 +537,13 @@ private struct ResultScreen: View {
             newestCard
                 .opacity(beat >= 2 ? 1 : 0)
                 .offset(y: beat >= 2 ? 0 : 18)
-            if scan.skippedVisits > 0 {
-                Label("\(scan.skippedVisits) \(scan.skippedVisits == 1 ? "visit" : "visits") near a stadium left out: the photos didn't look like a game or an event.",
-                      systemImage: "eye.slash")
-                    .font(.footnote)
-                    .foregroundStyle(Color.textTertiary)
-                    .opacity(beat >= 3 ? 1 : 0)
-                    .accessibilityIdentifier("onboarding-skipped-note")
-            }
-            if !scan.others.isEmpty {
-                Label("\(scan.others.count) other \(scan.others.count == 1 ? "visit" : "visits") near a stadium to look at after your games: a concert, a tour, a tailgate.",
-                      systemImage: "ticket")
+            if !scan.possible.isEmpty {
+                Label("\(scan.possible.count) more \(scan.possible.count == 1 ? "day" : "days") might be games, from your albums, trips and photos. You pick the stadium and we match the date.",
+                      systemImage: "mappin.and.ellipse")
                     .font(.footnote)
                     .foregroundStyle(Color.textSecondary)
                     .opacity(beat >= 3 ? 1 : 0)
-                    .accessibilityIdentifier("onboarding-other-note")
+                    .accessibilityIdentifier("onboarding-possible-note")
             }
             Spacer(minLength: 0)
             VStack(spacing: 8) {
@@ -559,16 +551,16 @@ private struct ResultScreen: View {
                     Button("Add all \(scan.games.count) games") {
                         scan.commit(scan.games, into: library)
                         scan.markReviewed()
-                        if scan.others.isEmpty { return }
+                        if scan.possible.isEmpty { return }
                         onReview()
                     }
                     .buttonStyle(.primary)
                     .accessibilityIdentifier("onboarding-add-all")
-                    Button(scan.games.isEmpty ? "Review other visits" : "Review one by one", action: onReview)
+                    Button(scan.games.isEmpty ? "Review possible games" : "Review one by one", action: onReview)
                         .buttonStyle(.secondary)
                         .accessibilityIdentifier("onboarding-review")
                 } else {
-                    Button(scan.games.isEmpty ? "Review other visits" : "Review games", action: onReview)
+                    Button(scan.games.isEmpty ? "Review possible games" : "Review games", action: onReview)
                         .buttonStyle(.primary)
                         .accessibilityIdentifier("onboarding-review")
                 }

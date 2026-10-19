@@ -10,6 +10,13 @@ struct SceneVerdict: Hashable {
     var elsewhere: Double
     /// Strongest sign of a live event of any kind (stage, concert, arena, crowd), 0...1.
     var event: Double = 0
+    /// Strongest sign of being indoors (arena, court, rink, ceiling) and outdoors (sky, grass, field), 0...1.
+    var indoor: Double = 0
+    var outdoor: Double = 0
+
+    /// The photos' setting fits the ground: an arena should look indoors, a ballpark or stadium outdoors. A second opinion only:
+    /// the place and the date already found the game.
+    func fits(_ venue: Venue) -> Bool { venue.isIndoor ? indoor >= 0.3 : outdoor >= 0.3 }
 
     /// Clearly not a game: no sign of sport, and a clear sign of somewhere else.
     var doubtful: Bool { sports < 0.15 && elsewhere >= 0.3 }
@@ -25,6 +32,8 @@ enum SceneCheck {
     static let sportsWords = ["stadium", "arena", "sport", "baseball", "basketball", "football", "soccer", "hockey",
                               "athlet", "ballpark", "field", "court", "crowd", "scoreboard", "bleacher", "racing", "rink",
                               "tennis", "rugby", "cricket", "jersey", "team", "goal", "pitch", "audience"]
+    static let indoorWords = ["indoor", "arena", "court", "rink", "ceiling", "gym", "hall", "stage"]
+    static let outdoorWords = ["outdoor", "sky", "grass", "field", "cloud", "lawn", "sunset", "daytime", "stadium", "ballpark"]
     static let eventWords = ["concert", "stage", "stadium", "arena", "crowd", "audience", "festival", "fireworks", "spotlight"]
     static let elsewhereWords = ["bar", "pub", "nightclub", "party", "cocktail", "wine", "restaurant", "dining", "dinner",
                                  "concert", "stage", "dancing", "wedding", "kitchen", "living_room", "bedroom", "office",
@@ -36,7 +45,7 @@ enum SceneCheck {
         guard !refs.isEmpty else { return nil }
         let step = max(1, refs.count / sample)
         let picked = stride(from: 0, to: refs.count, by: step).prefix(sample).map { refs[$0] }
-        var verdict = SceneVerdict(sports: 0, elsewhere: 0, event: 0)
+        var verdict = SceneVerdict(sports: 0, elsewhere: 0, event: 0, indoor: 0, outdoor: 0)
         var classified = false
         for ref in picked {
             guard let image = await PhotoLoader.load(ref, size: CGSize(width: 512, height: 512)),
@@ -46,8 +55,22 @@ enum SceneCheck {
             verdict.sports = max(verdict.sports, s.sports)
             verdict.elsewhere = max(verdict.elsewhere, s.elsewhere)
             verdict.event = max(verdict.event, s.event)
+            let setting = Self.setting(labels)
+            verdict.indoor = max(verdict.indoor, setting.indoor)
+            verdict.outdoor = max(verdict.outdoor, setting.outdoor)
         }
         return classified ? verdict : nil
+    }
+
+    /// Pure: how indoors and how outdoors the labels say the photo is.
+    static func setting(_ labels: [(String, Float)]) -> (indoor: Double, outdoor: Double) {
+        var indoor = 0.0, outdoor = 0.0
+        for (id, confidence) in labels {
+            let l = id.lowercased()
+            if indoorWords.contains(where: { l.contains($0) }) { indoor = max(indoor, Double(confidence)) }
+            if outdoorWords.contains(where: { l.contains($0) }) { outdoor = max(outdoor, Double(confidence)) }
+        }
+        return (indoor, outdoor)
     }
 
     /// Pure scoring of classifier labels, unit tested.

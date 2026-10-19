@@ -621,3 +621,25 @@ extension GameLookup {
         return Array(found.filter { seen.insert($0.id).inserted }.sorted { $0.start < $1.start }.prefix(limit))
     }
 }
+
+extension GameLookup {
+    /// The game at a stadium on the calendar day the fan picked, whatever the sport or competition. The day is the stadium's own
+    /// day, from midnight to midnight (a 5 pm kickoff is that day, wherever the phone is). When that day has no game, the day
+    /// before and the day after are checked, since a remembered date is often a day off; the shift says which one matched.
+    static func gameNear(_ date: Date, at venue: Venue) async -> (game: FoundGame?, shift: Int) {
+        let parts = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = venue.tz
+        guard let picked = cal.date(from: parts) else { return (nil, 0) }
+        for shift in [0, -1, 1] {
+            guard let start = cal.date(byAdding: .day, value: shift, to: picked),
+                  let end = cal.date(byAdding: .day, value: 1, to: start) else { continue }
+            let games = await GameLookup.games(at: venue, from: start, to: end).filter { $0.start >= start && $0.start < end }
+            let evening = start.addingTimeInterval(19 * 3600)
+            if let best = games.min(by: { abs($0.start.timeIntervalSince(evening)) < abs($1.start.timeIntervalSince(evening)) }) {
+                return (best, shift)
+            }
+        }
+        return (nil, 0)
+    }
+}

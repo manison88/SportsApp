@@ -113,6 +113,8 @@ struct Venue: Codable, Hashable, Identifiable {
     var geofenceMeters: Double?
 
     var coordinate: CLLocationCoordinate2D { .init(latitude: latitude, longitude: longitude) }
+    /// An arena: only indoor sports are played here. Domed stadiums count as outdoors, which is only a second opinion.
+    var isIndoor: Bool { !sports.isEmpty && sports.allSatisfy { [.basketball, .hockey, .handball].contains($0) } }
 
     /// How far from the venue's center a photo can be and still count as inside: 200 m, a little more for the
     /// biggest bowls so their upper decks count (Michigan Stadium is ~300 m across). Tight enough to leave out

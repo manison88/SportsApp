@@ -48,6 +48,7 @@
 		6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D1EBE038CBF9E1D49805847 /* GamePhotosView.swift */; };
 		6B98A0B4A7CAA2D8F2034974 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4551DB23A001CFF2C2646420 /* Models.swift */; };
 		73C196CCFCF30A1C99B80D91 /* SceneCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47731D7AFF619393565B668F /* SceneCheck.swift */; };
+		9A317C05D603405286EB368F /* GameSuggester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17463A9523844154A609AA96 /* GameSuggester.swift */; };
 		7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */; };
 		7C481B3216C5EA8C05CD1E47 /* LiveCheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5D16DF8526A09EE94F3B5C /* LiveCheckInView.swift */; };
 		7C6E91ACD12F0F59F05E9A15 /* VenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857D75ED272F933EF88177E /* VenueView.swift */; };
@@ -124,6 +125,7 @@
 		4551DB23A001CFF2C2646420 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		464F11516C93F27989521E89 /* VisitGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitGrouping.swift; sourceTree = "<group>"; };
 		47731D7AFF619393565B668F /* SceneCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCheck.swift; sourceTree = "<group>"; };
+		17463A9523844154A609AA96 /* GameSuggester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSuggester.swift; sourceTree = "<group>"; };
 		4DE49130D83B8D5B5C8CD63A /* Catalog */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Catalog; path = Witness/Resources/Catalog; sourceTree = SOURCE_ROOT; };
 		5E5108FC517334D9D1A1F635 /* DiscoveryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryView.swift; sourceTree = "<group>"; };
 		5E82BEB516D31165D21C006E /* TextRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizer.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				6B31653ED86394E9918FE2C1 /* PhotoMatcher.swift */,
 				8E49321B29793341AF81A22B /* ScanModel.swift */,
 				47731D7AFF619393565B668F /* SceneCheck.swift */,
+				17463A9523844154A609AA96 /* GameSuggester.swift */,
 				1F5F7CEAB6296502544C0B9F /* ScoreboardReader.swift */,
 				E1F5DF75DFFEA5C37DFAA35A /* WeatherLookup.swift */,
 				394164A99C85F16E439299E8 /* LocalSchedule.swift */,
@@ -650,6 +653,7 @@
 				10A7E1C349037AD2CA7BE55A /* RootView.swift in Sources */,
 				039B28D15BD758C29D374F98 /* ScanModel.swift in Sources */,
 				73C196CCFCF30A1C99B80D91 /* SceneCheck.swift in Sources */,
+				9A317C05D603405286EB368F /* GameSuggester.swift in Sources */,
 				5B7AF8406D59899769065BD7 /* ScoreboardReader.swift in Sources */,
 				7FEDA5B54469C015E32EA656 /* WeatherLookup.swift in Sources */,
 				9B3D8D7DF04F7AF84F9056D5 /* LocalSchedule.swift in Sources */,
