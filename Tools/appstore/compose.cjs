@@ -10,7 +10,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '../..');
 const RAW = path.join(ROOT, 'AppStore/raw');
 const OUT = path.join(ROOT, 'AppStore/out');
-const SIZES = [{ dir: '6.9in', w: 1320, h: 2868 }, { dir: '6.5in', w: 1284, h: 2778 }];
+const SIZES = [{ dir: '6.9in', w: 1320, h: 2868 }, { dir: '6.5in', w: 1284, h: 2778 }, { dir: '6.3in', w: 1206, h: 2622 }];
 
 // [file prefix, headline (a [..] span is amber), sub line]
 const COPY = [
