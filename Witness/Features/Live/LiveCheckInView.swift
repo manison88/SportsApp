@@ -13,7 +13,6 @@ struct LiveCheckInView: View {
     @State private var sport: Sport = .baseball
     @State private var homeId: String = ""
     @State private var awayId: String = ""
-    @State private var companionId: String = ""
     @State private var seat = ""
 
     @State private var homeScore = 0
@@ -120,22 +119,11 @@ struct LiveCheckInView: View {
                 teamPicker("Away", selection: $awayId).accessibilityIdentifier("live-away")
             }
             Section {
-                withAndSeat
+                TextField("Seat", text: $seat)
+                    .textInputAutocapitalization(.words)
             }
         }
         .scrollContentBackground(.hidden)
-    }
-
-    @ViewBuilder
-    private var withAndSeat: some View {
-        Picker("With", selection: $companionId) {
-            Text("Nobody").tag("")
-            ForEach(library.people) { p in
-                Text(p.name).tag(p.id)
-            }
-        }
-        TextField("Seat", text: $seat)
-            .textInputAutocapitalization(.words)
     }
 
     // MARK: Games near you
@@ -193,21 +181,9 @@ struct LiveCheckInView: View {
         }
     }
 
-    /// With and Seat for the chosen game: a label on the left, the answer on the right, like the rows of the manual form.
+    /// Seat for the chosen game: the label on the left, the answer on the right, like the rows of the manual form.
     private var chosenDetails: some View {
         VStack(spacing: 0) {
-            HStack {
-                Text("With").font(.body)
-                Spacer()
-                Picker("With", selection: $companionId) {
-                    Text("Nobody").tag("")
-                    ForEach(library.people) { p in Text(p.name).tag(p.id) }
-                }
-                .labelsHidden()
-                .tint(Color.textSecondary)
-            }
-            .frame(minHeight: 50)
-            Rectangle().fill(Color.hairline).frame(height: 1)
             HStack {
                 Text("Seat").font(.body)
                 TextField("Section, row", text: $seat)
@@ -378,7 +354,6 @@ struct LiveCheckInView: View {
 
                 if let pill = pillText {
                     HStack(spacing: 10) {
-                        if let p = library.person(companionId) { Avatar(person: p, size: 30) }
                         Text(pill)
                             .font(.condensed(.subheadline, weight: .heavy))
                             .textCase(.uppercase)
@@ -573,11 +548,7 @@ struct LiveCheckInView: View {
     private var pillText: String? {
         guard let venue = library.venue(venueId) else { return nil }
         let visit = library.games(at: venueId).count + 1
-        var text = "\(ordinal(visit)) \(shortName(venue)) visit"
-        if let p = library.person(companionId) {
-            text += " · \(ordinal(library.games(with: p.id).count + 1)) game with \(p.name)"
-        }
-        return text
+        return "\(ordinal(visit)) \(shortName(venue)) visit"
     }
 
     private func shortName(_ v: Venue) -> String {
@@ -636,7 +607,6 @@ struct LiveCheckInView: View {
         entry.homeScore = homeScore
         entry.awayScore = awayScore
         entry.seat = seat.isEmpty ? nil : seat
-        entry.companionIds = companionId.isEmpty ? [] : [companionId]
         entry.savedMoments = moments
         if let game = chosen {
             // The schedule fills in the competition, big-game stage and source; your own live score stands unless the game is over.
