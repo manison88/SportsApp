@@ -555,9 +555,23 @@ private struct ResultScreen: View {
             }
             Spacer(minLength: 0)
             VStack(spacing: 8) {
-                Button(scan.games.isEmpty ? "Review other visits" : "Review games", action: onReview)
+                if scan.games.count > 1 {
+                    Button("Add all \(scan.games.count) games") {
+                        scan.commit(scan.games, into: library)
+                        scan.markReviewed()
+                        if scan.others.isEmpty { return }
+                        onReview()
+                    }
                     .buttonStyle(.primary)
-                    .accessibilityIdentifier("onboarding-review")
+                    .accessibilityIdentifier("onboarding-add-all")
+                    Button(scan.games.isEmpty ? "Review other visits" : "Review one by one", action: onReview)
+                        .buttonStyle(.secondary)
+                        .accessibilityIdentifier("onboarding-review")
+                } else {
+                    Button(scan.games.isEmpty ? "Review other visits" : "Review games", action: onReview)
+                        .buttonStyle(.primary)
+                        .accessibilityIdentifier("onboarding-review")
+                }
                 Label("Found on this iPhone. Nothing was uploaded.", systemImage: "lock.fill")
                     .font(.footnote)
                     .foregroundStyle(Color.textSecondary)

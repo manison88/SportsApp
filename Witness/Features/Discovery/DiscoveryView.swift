@@ -97,6 +97,12 @@ struct DiscoveryView: View {
 
                 joinPrompt(cluster)
 
+                if clusters.count - index > 1 {
+                    Button("Add all \(clusters.count - index) games") { addAll() }
+                        .buttonStyle(.secondary)
+                        .accessibilityIdentifier("discovery-add-all")
+                }
+
                 HStack(spacing: Spacing.inner) {
                     Button("Skip") { advance() }
                         .buttonStyle(.secondary)
@@ -340,6 +346,12 @@ struct DiscoveryView: View {
                         .accessibilityIdentifier("discovery-other-name")
                 }
 
+                if others.count - otherIndex > 1 {
+                    Button("Add all \(others.count - otherIndex) as stadium visits") { addAllOthers() }
+                        .buttonStyle(.secondary)
+                        .accessibilityIdentifier("discovery-other-add-all")
+                }
+
                 HStack(spacing: Spacing.inner) {
                     Button("Skip") { advanceOther() }
                         .buttonStyle(.secondary)
@@ -552,6 +564,27 @@ struct DiscoveryView: View {
         library.add(entry)
         confirmed += 1
         advance()
+    }
+
+    /// Adds every game still waiting, each as the scan matched it, without asking about each one. A card the fan combined
+    /// has no scan match yet, so its game is looked up first.
+    private func addAll() {
+        let rest = Array(clusters[index...])
+        index = clusters.count
+        Task {
+            var found: [String: FoundGame] = [:]
+            for cluster in rest where presenter.scan.matches[cluster.id] == nil && tickets[cluster.id] == nil {
+                if let game = await ScanModel.match(cluster, venues: library.venues) { found[cluster.id] = game }
+            }
+            confirmed += presenter.scan.commit(rest, tickets: tickets, matches: found, into: library)
+        }
+    }
+
+    /// Adds every visit still waiting as a stadium visit.
+    private func addAllOthers() {
+        let rest = Array(others[otherIndex...])
+        addedOther += presenter.scan.commit(rest, asVisits: true, into: library)
+        otherIndex = others.count
     }
 
     private func advance() {

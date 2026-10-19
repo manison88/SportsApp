@@ -48,6 +48,51 @@ final class ScanModel {
     }
 
     func markReviewed() { reviewed = true }
+
+    /// Adds visits to the library in one go, without asking about each: games with their schedule match (or ticket seat), or
+    /// every visit as a stadium visit. Plays and win probability arrive afterwards. Added visits leave the lists, so the review
+    /// screen only shows what is left. Returns how many were added.
+    @discardableResult
+    func commit(_ clusters: [PhotoCluster], asVisits: Bool = false, tickets extraTickets: [String: TicketDraft] = [:],
+                matches extraMatches: [String: FoundGame] = [:], into library: Library) -> Int {
+        var details: [(String, FoundGame)] = []
+        let tickets = self.tickets.merging(extraTickets) { _, new in new }
+        let matches = self.matches.merging(extraMatches) { _, new in new }
+        for cluster in clusters {
+            let venue = cluster.venue
+            var entry = GameEntry(sport: venue.sports.first ?? .baseball, date: cluster.start, venueId: venue.id,
+                                  photos: cluster.assetIds.map { PhotoRef.library($0) }, origin: .photos)
+            if let draft = tickets[cluster.id] {
+                entry.seat = draft.seatLine
+                entry.origin = .ticket
+            }
+            if asVisits {
+                entry.kind = .visit
+                entry.competition = "Stadium visit"
+            } else if let game = matches[cluster.id] {
+                entry.date = game.start
+                if let at = GameLookup.venue(of: game, in: library.venues) { entry.venueId = at.id }
+                GameLookup.apply(game, detail: nil, to: &entry, library: library)
+                details.append((entry.id, game))
+            } else if tickets[cluster.id] == nil && !GameLookup.leagues(for: venue).isEmpty {
+                entry.kind = .visit
+                entry.competition = "Stadium visit"
+            }
+            library.add(entry)
+        }
+        let ids = Set(clusters.map(\.id))
+        games.removeAll { ids.contains($0.id) }
+        others.removeAll { ids.contains($0.id) }
+        Analytics.shared.track(.gameAdded, ["source": asVisits ? "scan_add_all_visits" : "scan_add_all", "count": clusters.count])
+        Task {
+            for (id, game) in details {
+                guard let detail = await GameLookup.detail(game), var saved = library.game(id) else { continue }
+                GameLookup.apply(game, detail: detail, to: &saved, library: library)
+                library.update(saved)
+            }
+        }
+        return clusters.count
+    }
     func markShown() { shown = true }
 
     func reset() {
