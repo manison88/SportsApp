@@ -215,6 +215,8 @@ struct GameMemoryView: View {
                 photoGrid(game)
                     .gutter()
             }
+            // A container: its identifier must not replace the identifiers of the photos inside it.
+            .accessibilityElement(children: .contain)
             .accessibilityIdentifier("game-photos")
         }
     }
