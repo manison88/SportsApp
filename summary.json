@@ -12,7 +12,7 @@
       },
       "expectedFailures" : 0,
       "failedTests" : 1,
-      "passedTests" : 89,
+      "passedTests" : 91,
       "skippedTests" : 1,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -23,11 +23,11 @@
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
   "failedTests" : 1,
-  "finishTime" : 1792367764.588,
-  "passedTests" : 89,
+  "finishTime" : 1792369174.654,
+  "passedTests" : 91,
   "result" : "Failed",
   "skippedTests" : 1,
-  "startTime" : 1792366855.713,
+  "startTime" : 1792368291.983,
   "statistics" : [
 
   ],
@@ -35,7 +35,7 @@
     {
       "failureText" : "XCTAssertTrue failed - Missing game-photo-0",
       "targetName" : "WitnessUITests",
-      "testIdentifier" : 81,
+      "testIdentifier" : 83,
       "testIdentifierString" : "WitnessUITests/testGameMemoryRecapAndYouWereThere()",
       "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testGameMemoryRecapAndYouWereThere",
       "testName" : "testGameMemoryRecapAndYouWereThere()"
@@ -45,9 +45,9 @@
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "52% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 10.65s (three standard deviations)"
+      "impact" : "48% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 11.04s (three standard deviations)"
     }
   ],
-  "totalTestCount" : 91
+  "totalTestCount" : 93
 }
