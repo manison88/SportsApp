@@ -44,6 +44,7 @@ struct TimelineView: View {
         }
         .safeAreaInset(edge: .top, spacing: 0) {
             VStack(spacing: 0) {
+                SampleBanner()
                 DuplicateBanner()
                 VenueDoubtBanner()
                 ScanBanner()
@@ -79,6 +80,41 @@ struct TimelineView: View {
 }
 
 /// Entries that look like the same game (a scan and an album both added it): offer to combine their photos.
+/// While the sample games are showing, a way back to the start to find the fan's own.
+private struct SampleBanner: View {
+    @Environment(Library.self) private var library
+
+    var body: some View {
+        if library.isSample {
+            HStack(spacing: 12) {
+                Image(systemName: "sparkles").foregroundStyle(Color.signal)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Sample games").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
+                    Text("A made-up fan\u{2019}s games, to look around.").font(.footnote).foregroundStyle(Color.textSecondary)
+                }
+                Spacer()
+                Button("Exit") { withAnimation(.smooth) { library.exitSample() } }
+                    .font(.condensed(.subheadline, weight: .heavy))
+                    .textCase(.uppercase)
+                    .tracking(1.2)
+                    .foregroundStyle(.black)
+                    .padding(.horizontal, 14)
+                    .frame(minHeight: 36)
+                    .background(Color.signal, in: .capsule)
+                    .accessibilityHint("Removes the sample games and goes back to the start")
+                    .accessibilityIdentifier("sample-exit")
+            }
+            .foregroundStyle(.white)
+            .padding(14)
+            .background(Color.panel, in: .rect(cornerRadius: 14))
+            .gutter()
+            .padding(.vertical, 6)
+            .accessibilityElement(children: .contain)
+            .accessibilityIdentifier("sample-banner")
+        }
+    }
+}
+
 private struct DuplicateBanner: View {
     @Environment(Library.self) private var library
     @State private var confirming = false

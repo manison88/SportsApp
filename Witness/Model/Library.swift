@@ -763,6 +763,13 @@ final class Library {
         save()
     }
 
+    /// Leaves the sample: its games go, and with nothing of the fan's own left, the app is back at the first screen.
+    func exitSample() {
+        let own = games.contains { $0.origin != .sample } || !customVenues.isEmpty || !customTeams.isEmpty || !plans.isEmpty
+        if own { removeSample() } else { reset() }
+        Analytics.shared.track(.onboardingStep, ["step": "sample_exit"])
+    }
+
     /// Starts an empty library (the fan will add games themselves).
     func startEmpty() {
         hasLibrary = true

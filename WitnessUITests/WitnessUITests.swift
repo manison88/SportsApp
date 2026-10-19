@@ -79,6 +79,15 @@ final class WitnessUITests: XCTestCase {
 
     // MARK: Flows
 
+    /// The sample can be left from the Timeline: Exit goes back to the first screen.
+    func testExitSampleGoesBackToTheStart() {
+        launch([])
+        tap("welcome-sample")
+        XCTAssertTrue(el("sample-banner").waitForExistence(timeout: 8))
+        tap("sample-exit")
+        XCTAssertTrue(el("welcome-start").waitForExistence(timeout: 8), "Exit returns to the welcome")
+    }
+
     func testWelcome() {
         launch([])
         XCTAssertTrue(el("welcome-sample").waitForExistence(timeout: 8))
@@ -554,7 +563,7 @@ final class WitnessUITests: XCTestCase {
 
         tab("Passport")
         sleep(1)
-        let soccer = app.buttons.matching(NSPredicate(format: "label ==[c] 'SOCCER' OR label ==[c] 'FOOTBALL'")).firstMatch
+        let soccer = app.buttons.matching(NSPredicate(format: "label ==[c] 'SOCCER' OR label ==[c] 'FUDBAL'")).firstMatch
         if soccer.waitForExistence(timeout: 3) { soccer.tap() }
         if el("soccer-word-soccer").waitForExistence(timeout: 2) { tap("soccer-word-soccer") }
         sleep(6)

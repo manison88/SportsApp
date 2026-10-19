@@ -21,12 +21,12 @@ struct WelcomeView: View {
     ]
 
     /// Examples from the sample library, one per sport.
-    static let examples: [(photo: String, venue: String, line: String, sport: String)] = [
+    static var examples: [(photo: String, venue: String, line: String, sport: String)] { [
         ("united-center-court", "United Center", "Feb 14, 2026 · CHI 112–109 MIA", "Basketball"),
-        ("soldier-soccer", "Soldier Field", "Oct 4, 2025 · CHI 2–1 MIA", "Soccer"),
+        ("soldier-soccer", "Soldier Field", "Oct 4, 2025 · CHI 2–1 MIA", SoccerWord.name),
         ("lambeau-concourse", "Lambeau Field", "Jan 5, 2025 · CHI 24–22 GB", "NFL"),
         ("wrigley-night-2", "Wrigley Field", "Oct 30, 2016 · CHC 3–2 CLE", "Baseball"),
-    ]
+    ] }
 
     var body: some View {
         let step = Self.steps[stage]

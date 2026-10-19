@@ -619,7 +619,7 @@ private struct LinkRow: View {
     }
 }
 
-/// "Soccer" or "football": the fan's word for the sport, used on the passport, its share card and sport names.
+/// "Soccer" or "fudbal": the fan's word for the sport, used on the passport, its share card and sport names.
 private struct SoccerWordRow: View {
     @AppStorage("soccerWord") private var soccerWord = ""
 
@@ -627,10 +627,10 @@ private struct SoccerWordRow: View {
         HStack {
             Text("Call it").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
             Spacer()
-            Picker("Call it", selection: Binding(get: { soccerWord.isEmpty ? (SoccerWord.usesFootball ? "football" : "soccer") : soccerWord },
+            Picker("Call it", selection: Binding(get: { soccerWord.isEmpty ? (SoccerWord.usesFudbal ? "fudbal" : "soccer") : (soccerWord == "football" ? "fudbal" : soccerWord) },
                                                  set: { soccerWord = $0 })) {
                 Text("Soccer").tag("soccer")
-                Text("Football").tag("football")
+                Text("Fudbal").tag("fudbal")
             }
             .pickerStyle(.segmented)
             .frame(width: 190)

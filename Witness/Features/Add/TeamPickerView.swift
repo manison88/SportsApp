@@ -13,6 +13,9 @@ struct TeamPickerView: View {
 
     @Environment(Library.self) private var library
     @Environment(\.dismiss) private var dismiss
+    /// What the field shows, and the search it settles into once typing pauses: filtering thousands of teams on every
+    /// letter made typing lag.
+    @State private var typed = ""
     @State private var query = ""
     @State private var showNew = false
     /// A team was picked inside a league's list: that list pops itself, and this picker closes once it is back on top.
@@ -65,7 +68,12 @@ struct TeamPickerView: View {
         }
         .scrollContentBackground(.hidden)
         .background(Color.ink.ignoresSafeArea())
-        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search teams and countries")
+        .searchable(text: $typed, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search teams and countries")
+        .task(id: typed) {
+            // Cleared at once; otherwise wait for a pause in typing.
+            if !typed.isEmpty { try? await Task.sleep(for: .milliseconds(250)) }
+            if !Task.isCancelled { query = typed }
+        }
         .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
@@ -102,9 +110,19 @@ struct TeamPickerView: View {
 
     /// Every word typed must appear somewhere in the team's city, name, code, league or country, in any order:
     /// "chicago bears", "bears chicago", "bears nfl" and "chi" all find the Chicago Bears.
-    private static func matches(_ t: Team, _ q: String) -> Bool {
-        let hay = fold(([t.locationName, t.teamName, t.abbreviation, t.league, t.countryCode ?? ""] + (t.formerNames ?? [])).joined(separator: " "))
+    @MainActor private static func matches(_ t: Team, _ q: String) -> Bool {
+        let hay = haystack(t)
         return fold(q).split(separator: " ").allSatisfy { hay.contains($0) }
+    }
+
+    /// Each team's searchable text, folded once and kept: folding thousands of names on every search was the slow part.
+    @MainActor private static var haystacks: [String: String] = [:]
+    @MainActor private static func haystack(_ t: Team) -> String {
+        let key = t.id + "|" + t.locationName + "|" + t.teamName
+        if let hit = haystacks[key] { return hit }
+        let hay = fold(([t.locationName, t.teamName, t.abbreviation, t.league, t.countryCode ?? ""] + (t.formerNames ?? [])).joined(separator: " "))
+        haystacks[key] = hay
+        return hay
     }
 
     /// Search across every sport; the current sport's teams first, the team named in full ahead of partial matches.
