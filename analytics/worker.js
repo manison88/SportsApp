@@ -3,6 +3,8 @@
 //   GET  /         the dashboard (HTTP basic auth, password in the DASH_PASSWORD secret)
 // No IP address is kept, only Cloudflare's country code. Events carry no photos, locations or names of people.
 
+import { PRIVACY_HTML, TERMS_HTML } from './legal.js';
+
 const EVENTS = new Set([
   'app_opened', 'onboarding_step', 'scan_finished', 'game_added', 'game_opened', 'photos_action', 'plan_team_search',
   'plan_created', 'plan_attended', 'checkin_started', 'share_opened', 'share_tapped', 'tab_viewed',
@@ -18,10 +20,24 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === '/e' && request.method === 'POST') return ingest(request, env);
     if (url.pathname === '/health') return new Response('ok');
+    // The privacy policy and terms the App Store listing and the app link to: public, no sign-in.
+    if (url.pathname === '/privacy') return page(PRIVACY_HTML);
+    if (url.pathname === '/terms') return page(TERMS_HTML);
     if (url.pathname === '/' && request.method === 'GET') return dashboard(request, env);
     return new Response('Not found', { status: 404 });
   },
+
+  // Daily: events older than the retention the privacy policy promises are deleted.
+  async scheduled(_event, env, ctx) {
+    ctx.waitUntil(env.DB.prepare('DELETE FROM events WHERE ts < ?').bind(Date.now() - RETENTION_MONTHS * 30 * 86400 * 1000).run());
+  },
 };
+
+const RETENTION_MONTHS = 24;
+
+function page(html) {
+  return new Response(html, { headers: { 'content-type': 'text/html;charset=utf-8', 'cache-control': 'public, max-age=3600' } });
+}
 
 // MARK: Ingest
 

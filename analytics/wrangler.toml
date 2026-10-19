@@ -11,3 +11,6 @@ database_id = "09f1ee9b-c1df-4523-a536-28ec9bceae21"
 # checks every event's name and size and limits how much one phone can send.
 [vars]
 INGEST_KEY = "5ujo3n8yQh1uI6jbaVIoUucWMvja2S-9"
+
+[triggers]
+crons = ["17 3 * * *"]

@@ -7,6 +7,7 @@ struct OnboardingView: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var started = false
     @State private var page = 0
+    @State private var legal: LegalDocument?
 
     var body: some View {
         let scan = presenter.scan
@@ -28,6 +29,9 @@ struct OnboardingView: View {
         }
         .onChange(of: started) { _, now in if now { Analytics.shared.track(.onboardingStep, ["step": "welcome_done"]) } }
         .onChange(of: page) { _, now in Analytics.shared.track(.onboardingStep, ["step": "page_\(now)"]) }
+        .sheet(item: $legal) { doc in
+            NavigationStack { LegalView(document: doc, online: doc.title == LegalContent.terms.title ? LegalLinks.terms : LegalLinks.privacy) }
+        }
         .animation(.smooth, value: presenter.scan.state)
         .animation(.smooth, value: presenter.scan.shown)
         .onChange(of: scenePhase) { _, phase in
@@ -104,6 +108,14 @@ struct OnboardingView: View {
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity, minHeight: 44)
                     .accessibilityIdentifier("onboarding-notnow")
+                HStack(spacing: 18) {
+                    Button("Privacy policy") { legal = LegalContent.privacy }
+                        .accessibilityIdentifier("onboarding-privacy")
+                    Button("Terms of use") { legal = LegalContent.terms }
+                        .accessibilityIdentifier("onboarding-terms")
+                }
+                .font(.footnote)
+                .foregroundStyle(Color.textSecondary)
             }
         }
     }

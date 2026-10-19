@@ -130,6 +130,7 @@ struct YouView: View {
             .frame(minHeight: 56)
             .foregroundStyle(.white)
             .accessibilityIdentifier("you-analytics")
+            LegalLinksRows()
             // Wrapped is off for now: its row returns when the redesign is built (WrappedView and Modal.wrapped stay in place).
             ForEach(stats.companions.prefix(3)) { c in
                 NavigationLink(value: Route.person(c.person.id)) {

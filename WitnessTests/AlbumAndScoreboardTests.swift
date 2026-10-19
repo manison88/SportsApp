@@ -342,6 +342,13 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(AnalyticsEvent.shareTapped.rawValue, "share_tapped")
     }
 
+    func testLegalPagesExistAndNameTheAnalytics() {
+        XCTAssertFalse(LegalContent.privacy.sections.isEmpty)
+        XCTAssertFalse(LegalContent.terms.sections.isEmpty)
+        let text = LegalContent.privacy.sections.flatMap(\.paragraphs).joined(separator: " ")
+        XCTAssertTrue(text.contains("Share anonymous usage"), "The policy points to the switch that exists in You")
+    }
+
     func testYourTeamsDecideWhoYouWereRootingFor() throws {
         let cubs = try XCTUnwrap(library.team("mlb-chc"))
         let brewers = try XCTUnwrap(library.team("mlb-mil"))
