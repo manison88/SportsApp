@@ -48,6 +48,7 @@
 		7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */; };
 		7C481B3216C5EA8C05CD1E47 /* LiveCheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5D16DF8526A09EE94F3B5C /* LiveCheckInView.swift */; };
 		7C6E91ACD12F0F59F05E9A15 /* VenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A857D75ED272F933EF88177E /* VenueView.swift */; };
+		76EB787403E245EE80245C08 /* VenueStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026BC44F5308460A978EB351 /* VenueStoryCard.swift */; };
 		7DA367C7B6D9B013F8B8D6C3 /* WitnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E49C234DD8C079A4C4FE0D /* WitnessApp.swift */; };
 		7FEDA5B54469C015E32EA656 /* WeatherLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F5DF75DFFEA5C37DFAA35A /* WeatherLookup.swift */; };
 		84C801D6B99226B93E4E4AAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D71EE3584F0C03FAE39B2955 /* Assets.xcassets */; };
@@ -163,6 +164,7 @@
 		A2E5222772FB0C38016D430A /* WitnessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitnessUITests.swift; sourceTree = "<group>"; };
 		A704303482A7331087EFF150 /* YouWereThereView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouWereThereView.swift; sourceTree = "<group>"; };
 		A857D75ED272F933EF88177E /* VenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueView.swift; sourceTree = "<group>"; };
+		026BC44F5308460A978EB351 /* VenueStoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueStoryCard.swift; sourceTree = "<group>"; };
 		AD30B8B75E6C4D489D4D368D /* HomePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePickerView.swift; sourceTree = "<group>"; };
 		B2487206229E4ED59D3FD656 /* MatchReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchReport.swift; sourceTree = "<group>"; };
 		B67381837ED335A8DC3A8AB2 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				A857D75ED272F933EF88177E /* VenueView.swift */,
+				026BC44F5308460A978EB351 /* VenueStoryCard.swift */,
 			);
 			path = Venue;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				15F1090C95B0CA0B6E0F53B9 /* TripView.swift in Sources */,
 				37B16E29C9D27A66D480E00D /* VenuePickerView.swift in Sources */,
 				7C6E91ACD12F0F59F05E9A15 /* VenueView.swift in Sources */,
+				76EB787403E245EE80245C08 /* VenueStoryCard.swift in Sources */,
 				F9727740E7129812AB9CE2F3 /* VisitGrouping.swift in Sources */,
 				24825EBA9F0FC0B1BF80D2ED /* WelcomeView.swift in Sources */,
 				7DA367C7B6D9B013F8B8D6C3 /* WitnessApp.swift in Sources */,

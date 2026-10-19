@@ -165,18 +165,11 @@ struct VenueView: View {
     }
 
     private func shareVariants(_ venue: Venue, games: [GameEntry]) async -> [ShareCardVariant] {
-        // The stamp's look: the home side's color and code, else the city's.
+        // The stamp's color: the home side's, else a neutral slate.
         let team = library.homeTeam(at: venue, sport: venue.sports.first ?? .baseball)
-        let code = team?.abbreviation ?? String(venue.city.filter(\.isLetter).prefix(3)).uppercased()
         let color = team?.accent ?? Color(hex: "3A4150")
-        let latest = games.reversed().compactMap(\.heroPhoto).first
-        let earliest = games.compactMap(\.heroPhoto).first
-        let photo: UIImage? = if let latest { await PhotoLoader.load(latest) } else { nil }
-        let firstPhoto: UIImage? = if let earliest, earliest != latest { await PhotoLoader.load(earliest) } else { photo }
         let aerial = await VenueStoryCard.aerial(for: venue)
-        let sections = Self.sections(in: games)
-        let data = VenueStoryCard.Data(venue: venue, games: games, color: color, code: code, aerial: aerial, photo: photo,
-                                       firstPhoto: firstPhoto, sections: sections)
+        let data = VenueStoryCard.Data(venue: venue, games: games, color: color, aerial: aerial)
         let library = library
         return VenueStoryCard.Style.allCases.map { style in
             ShareCardVariant(style.name) { VenueStoryCard(style: style, data: data).environment(library) }

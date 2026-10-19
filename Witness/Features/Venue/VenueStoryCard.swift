@@ -2,10 +2,10 @@ import SwiftUI
 import MapKit
 
 /// A ground as a story to share, in the passport's language: the ground from above in its team's color, your record and
-/// nights there, your seats, your photos. Laid out at phone size (390 points wide) and scaled up to the story's pixels.
+/// every night there. Laid out at phone size (390 points wide) and scaled up to the story's pixels.
 /// Needs `Library` in the environment; images come in already loaded.
 struct VenueStoryCard: View {
-    /// Kept from seven tried: the ground from above, and every night there. The other looks stay below for now.
+    /// Kept from seven tried: the ground from above, and every night there.
     enum Style: CaseIterable {
         case aerial, nights
 
@@ -21,11 +21,7 @@ struct VenueStoryCard: View {
         let venue: Venue
         let games: [GameEntry]
         let color: Color
-        let code: String
         let aerial: UIImage?
-        let photo: UIImage?
-        let firstPhoto: UIImage?
-        let sections: [Int]
     }
 
     @Environment(Library.self) private var library
@@ -108,11 +104,6 @@ struct VenueStoryCard: View {
         }
     }
 
-    @ViewBuilder
-    private func image(_ ui: UIImage?) -> some View {
-        if let ui { Image(uiImage: ui).resizable().scaledToFill() } else { data.color.opacity(0.6) }
-    }
-
     /// The ground from above in its team's color, as on a passport stamp.
     private var tinted: some View {
         data.color
@@ -138,79 +129,6 @@ struct VenueStoryCard: View {
             .padding(.bottom, 40)
         }
         .overlay(alignment: .topLeading) { wordmark().padding(.top, 52).padding(.leading, 22) }
-    }
-
-    /// The passport stamp, big, as if just pressed.
-    private var stampCard: some View {
-        VStack(alignment: .leading, spacing: 26) {
-            wordmark()
-            Spacer(minLength: 0)
-            StampFace(code: data.code, name: venue.name, date: data.games.first?.date, color: data.color, aerial: data.aerial)
-                .frame(width: 112, height: 148)
-                .scaleEffect(2.6)
-                .rotationEffect(.degrees(-4))
-                .frame(width: 290, height: 385)
-                .frame(maxWidth: .infinity)
-                .shadow(color: .black.opacity(0.5), radius: 20, y: 10)
-            Spacer(minLength: 0)
-            Text("STAMPED IN MY PASSPORT").font(.system(size: 13, weight: .heavy).width(.condensed)).tracking(3)
-                .foregroundStyle(Color.signal)
-            stats
-        }
-        .padding(.horizontal, 22)
-        .padding(.top, 52)
-        .padding(.bottom, 40)
-    }
-
-    /// The record is the picture.
-    private var recordCard: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            wordmark()
-            Spacer(minLength: 0)
-            HStack(spacing: 12) {
-                AerialVenueIcon(venue: venue, sport: venue.sports.first ?? .baseball, size: 56, given: data.aerial)
-                Text("MY RECORD AT").font(.system(size: 15, weight: .heavy).width(.condensed)).tracking(3)
-                    .foregroundStyle(.white.opacity(0.7))
-            }
-            title(46)
-            Text(record.decided > 0 ? record.text : "\(nights)")
-                .font(.display(170)).foregroundStyle(Color.signal).lineLimit(1).minimumScaleFactor(0.4)
-            Text(record.decided > 0 ? "WINS – LOSSES\(record.draws > 0 ? " – DRAWS" : "")" : (nights == 1 ? "NIGHT HERE" : "NIGHTS HERE"))
-                .font(.system(size: 14, weight: .heavy).width(.condensed)).tracking(3).foregroundStyle(.white.opacity(0.7))
-            Spacer(minLength: 0)
-            if let first = data.games.first, let last = data.games.last {
-                HStack(spacing: 0) {
-                    stat(Fmt.day(first.date, in: tz), "First visit", size: 26)
-                    stat(Fmt.day(last.date, in: tz), "Last visit", size: 26)
-                }
-            }
-        }
-        .padding(.horizontal, 22)
-        .padding(.top, 52)
-        .padding(.bottom, 40)
-        .background {
-            LinearGradient(colors: [data.color.opacity(0.5), Color.ink.opacity(0)], startPoint: .top, endPoint: .center)
-        }
-    }
-
-    /// Where you sit: the bowl with your sections lit.
-    private var seatsCard: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            wordmark()
-            title(48)
-            if data.sections.isEmpty {
-                tinted.frame(height: 330).clipShape(.rect(cornerRadius: 22))
-            } else {
-                SeatMap(sections: Array(data.sections.prefix(3))).frame(height: 330)
-                Text(data.sections.count == 1 ? "SECTION \(data.sections[0])" : "SECTIONS " + data.sections.prefix(3).map(String.init).joined(separator: " · "))
-                    .font(.display(34)).foregroundStyle(Color.signal)
-            }
-            Spacer(minLength: 0)
-            stats
-        }
-        .padding(.horizontal, 22)
-        .padding(.top, 52)
-        .padding(.bottom, 40)
     }
 
     /// Every game here, a line each, like a ticket stub book.
@@ -263,58 +181,6 @@ struct VenueStoryCard: View {
         .foregroundStyle(.white)
         .frame(height: 38)
         .overlay(alignment: .bottom) { Rectangle().fill(.white.opacity(0.08)).frame(height: 1) }
-    }
-
-    /// Your best photo there, full bleed, with the ground's numbers on a stub.
-    private var photoCard: some View {
-        ZStack(alignment: .bottomLeading) {
-            image(data.photo).frame(width: Self.width, height: height).clipped()
-            Scrim()
-            VStack(alignment: .leading, spacing: 18) {
-                HStack(alignment: .bottom, spacing: 12) {
-                    AerialVenueIcon(venue: venue, sport: venue.sports.first ?? .baseball, size: 54, given: data.aerial)
-                    title(46)
-                }
-                stats
-                    .padding(16)
-                    .background(Color.panelRaised.opacity(0.92), in: .rect(cornerRadius: 18))
-            }
-            .padding(.horizontal, 22)
-            .padding(.bottom, 40)
-        }
-        .overlay(alignment: .topLeading) { wordmark().padding(.top, 52).padding(.leading, 22) }
-    }
-
-    /// The first visit and the latest, side by side.
-    private var thenNowCard: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            wordmark()
-            title(48)
-            HStack(spacing: 8) {
-                frame(data.firstPhoto, data.games.first)
-                frame(data.photo, data.games.last)
-            }
-            .frame(height: 330)
-            Spacer(minLength: 0)
-            stats
-        }
-        .padding(.horizontal, 22)
-        .padding(.top, 52)
-        .padding(.bottom, 40)
-    }
-
-    private func frame(_ ui: UIImage?, _ g: GameEntry?) -> some View {
-        Color.panel
-            .overlay { image(ui) }
-            .overlay(alignment: .bottomLeading) {
-                ZStack(alignment: .bottomLeading) {
-                    LinearGradient(colors: [.clear, Color.ink.opacity(0.85)], startPoint: .center, endPoint: .bottom)
-                    Text(g.map { String(Calendar(identifier: .gregorian).component(.year, from: $0.date)) } ?? "")
-                        .font(.display(44)).foregroundStyle(.white).padding(12)
-                }
-            }
-            .frame(width: (Self.width - 44 - 8) / 2, height: 330)
-            .clipShape(.rect(cornerRadius: 18))
     }
 
     // MARK: Loading
