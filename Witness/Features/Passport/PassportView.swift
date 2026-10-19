@@ -189,7 +189,12 @@ struct PassportView: View {
         let homes = games.filter { $0.venueId == venueId }.compactMap(\.homeTeamId).compactMap { library.team($0) }
             .filter { Self.isTenant($0, of: venue) }.map(\.id)
         let top = Dictionary(grouping: homes, by: { $0 }).max { $0.value.count < $1.value.count }?.key
-        let team = library.team(top)
+        // No tenant in the games seen here (a national side at a club's ground, Netherlands at the Philips Stadion): the stamp
+        // still wears the club that calls it home. A ground with no club of its own (a World Cup venue) stays neutral.
+        let neutral = games.contains { $0.venueId == venueId && (BigGame.tournamentLeagues[$0.source?.league ?? ""] != nil || Self.isNeutralTournament($0.competition)) }
+        let club = neutral ? nil : library.allTeams.first { $0.homeVenueId == venueId && $0.sport == venue.sports.first && Self.isTenant($0, of: venue) }
+            ?? library.allTeams.first { $0.homeVenueId == venueId && Self.isTenant($0, of: venue) }
+        let team = library.team(top) ?? club
         // A circuit wears its country (USA, ITA); any other neutral ground wears its city (SEA, SF, KC).
         let fallback = venue.sports.contains(.motorsport)
             ? (CountryCodes.iso3(venue.countryCode) ?? Self.cityCode(venue.city))
@@ -207,6 +212,12 @@ struct PassportView: View {
     }
 
     /// True when the venue is the team's own ground: the catalog says so, or the venue lists the team as a tenant.
+    /// A tournament played on neutral grounds (a World Cup, a Euro, a Copa América), not its qualifiers.
+    static func isNeutralTournament(_ competition: String?) -> Bool {
+        guard let c = competition?.lowercased(), !c.contains("qualif") else { return false }
+        return ["world cup", "european championship", "euro 20", "copa am", "gold cup"].contains { c.contains($0) }
+    }
+
     static func isTenant(_ team: Team, of venue: Venue) -> Bool {
         if team.homeVenueId == venue.id { return true }
         // Tenants unknown: any club counts, but a national side never owns a club's ground.
