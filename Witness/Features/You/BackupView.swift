@@ -9,14 +9,31 @@ struct BackupView: View {
     @State private var message: String?
     @State private var backup: URL?
     @State private var sheet: URL?
+    /// Three taps on the note show the scan check, for tracing a game the photo scan missed.
+    @State private var showsScanCheck = false
 
     var body: some View {
         List {
             Section {
                 Text("Your games live on this phone. A backup file keeps them safe if you change or lose it. Photos stay in your Photos library and are not copied.")
                     .font(.footnote).foregroundStyle(Color.textSecondary)
+                    .onTapGesture(count: 3) { showsScanCheck = true }
             }
             .listRowBackground(Color.clear)
+            if showsScanCheck {
+                Section {
+                    NavigationLink { ScanCheckView() } label: {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text("Scan check").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+                            Text("Why a day\u{2019}s photos did or did not find a game").font(.footnote).foregroundStyle(Color.textSecondary)
+                        }
+                        .foregroundStyle(.white)
+                        .frame(minHeight: 56)
+                    }
+                        .accessibilityIdentifier("backup-scan-check")
+                }
+                .listRowBackground(Color.panel)
+            }
             Section {
                 if let backup {
                     ShareLink(item: backup) { row("Save a backup", "\(library.games.count) games, plans, places and people", "square.and.arrow.up") }

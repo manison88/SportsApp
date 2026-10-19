@@ -374,8 +374,8 @@ enum GameLookup {
             }
         }
         // Tournaments use neutral grounds, often under a tournament name ("San Francisco Bay Area Stadium"),
-        // so the city is enough.
-        if neutralTournaments.contains(game.league), let city = game.venueCity, !tokens(city).isEmpty,
+        // so the city is enough, for a ground that can host the game (Lumen Field's World Cup games were not at T-Mobile Park).
+        if neutralTournaments.contains(game.league), canHostSoccer(venue), let city = game.venueCity, !tokens(city).isEmpty,
            !tokens(venue.city).isEmpty, tokens(venue.city).isSubset(of: tokens(city)) { return true }
         if let city = game.venueCity, tokens(city) == tokens(venue.city) {
             let homeName = tokens("\(game.home.location) \(game.home.name)")
@@ -476,10 +476,14 @@ enum GameLookup {
     /// Schedule pages for days already over don't change, so each is fetched once per launch.
     nonisolated(unsafe) private static let pages = NSCache<NSURL, NSData>()
 
+    /// Tests answer schedule requests from saved responses instead of the network.
+    nonisolated(unsafe) static var responder: (@Sendable (URL) -> Data?)?
+
     /// A scan matches dozens of visits, each asking several competitions about two days. Fired all at once, the schedule
     /// server throttles or times out some of them, and a game that was there reads as "no game". So requests wait their
     /// turn, a failure is tried again, and a finished day is kept.
     private static func fetch(_ url: URL) async -> Data? {
+        if let responder { return responder(url) }
         if let hit = pages.object(forKey: url as NSURL) { return hit as Data }
         await RequestGate.shared.enter()
         defer { Task { await RequestGate.shared.leave() } }

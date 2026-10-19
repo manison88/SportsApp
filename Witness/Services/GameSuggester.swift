@@ -140,9 +140,16 @@ enum GameSuggester {
         return base + (titled ? 0.5 : 0) + look.venueShare + structureShare * 0.5 - look.elsewhereShare + (shape.isPrime(calendar) ? 0.2 : 0)
     }
 
-    /// The first game at these stadiums whose time fits the photos, from the downloaded seasons or the schedules.
-    static func scheduled(at candidates: [Venue], shape: DayShape, specific: Bool) async -> Schedule {
-        let checkable = candidates.filter { !GameLookup.leagues(for: $0).isEmpty || $0.sports.contains(.motorsport) }
+    /// The first game at these stadiums whose time fits the photos, from the downloaded seasons or the schedules. Each stadium's
+    /// neighbours in `venues` are asked too (photos placed at T-Mobile Park on a World Cup day were at Lumen Field, 440 m away).
+    static func scheduled(at candidates: [Venue], shape: DayShape, specific: Bool, venues: [Venue] = []) async -> Schedule {
+        var grounds: [Venue] = []
+        for venue in candidates {
+            for v in [venue] + PhotoMatcher.neighbors(of: venue, in: venues) where !grounds.contains(where: { $0.id == v.id }) {
+                grounds.append(v)
+            }
+        }
+        let checkable = grounds.filter { !GameLookup.leagues(for: $0).isEmpty || $0.sports.contains(.motorsport) }
         guard !checkable.isEmpty else { return .unknown }
         for venue in checkable {
             if Task.isCancelled { return .unknown }
@@ -308,9 +315,9 @@ enum GameSuggester {
             // The schedule: some stadium the day could be at had a game while the photos were taken.
             let schedule: Schedule
             if case .near(let near) = place {
-                schedule = await scheduled(at: near, shape: shape, specific: true)
+                schedule = await scheduled(at: near, shape: shape, specific: true, venues: venues)
             } else if source.titled {
-                schedule = await scheduled(at: source.hints, shape: shape, specific: true)
+                schedule = await scheduled(at: source.hints, shape: shape, specific: true, venues: venues)
             } else {
                 schedule = await scheduled(at: source.hints.isEmpty ? local : source.hints, shape: shape, specific: false)
             }

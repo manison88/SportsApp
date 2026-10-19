@@ -164,17 +164,9 @@ final class ScanModel {
             for (n, cluster) in pending.enumerated() {
                 if Task.isCancelled { return }
                 self?.deepStep = .visits; self?.deepDone = n; self?.deepTotal = pending.count
-                // At a stadium already, so one clear photo of the ground or a game will do, as long as the day was not mostly
-                // somewhere else (a bar across the street). A day with no game is offered too: a stadium tour is a visit worth
-                // keeping, and the review saves it as one when no game turns up for the date.
-                let look = await SceneCheck.look(at: cluster.assetIds.map { PhotoRef.library($0) })
-                guard look.venue >= 1, !look.mostlyElsewhere else { continue }
-                let game = look.isGame(minVenue: 1, minShare: 0.2) && PhotoMatcher.looksLikeAGame(cluster.times)
-                let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
-                atStadiums.append(PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
-                                              reason: game ? "Photos at \(cluster.venue.name) that look like a game, but none is on the schedule"
-                                                           : "Photos inside \(cluster.venue.name) with no game that day \u{00B7} a stadium visit?",
-                                              suggestions: [cluster.venue]))
+                if let day = await Self.waitingDay(cluster, venues: venues, look: { await SceneCheck.look(at: $0.assetIds.map { PhotoRef.library($0) }) }) {
+                    atStadiums.append(day)
+                }
             }
             for day in atStadiums { claimed.insert(keyer.day(day.day, tz: .current)) }
             let found = await GameSuggester.find(venues: venues, teams: teams, home: home, hasHome: hasHome, claimed: claimed) { step, done, total in
@@ -337,7 +329,9 @@ final class ScanModel {
                 confirmed.append(cluster)
             }
         }
-        let unmatched = visits.filter { matched[$0.id] == nil }
+        // A saved stadium visit is scanned again only to find its game: still without one, it stays as it was and is not asked about again.
+        let savedVisits = PhotoMatcher.savedVisitKeys(library.games, venues: venues)
+        let unmatched = visits.filter { matched[$0.id] == nil && !savedVisits.contains($0.id) }
         state = .verifying
         verifiedVisits = 0
         verifyTotal = unmatched.count
@@ -357,6 +351,30 @@ final class ScanModel {
         state = games.isEmpty && others.isEmpty ? .empty : .done
         Analytics.shared.track(.scanFinished, ["games": games.count, "visits": others.count, "photos": progress.scanned,
                                                "seconds": Int(Date().timeIntervalSince(began))])
+    }
+
+    /// What the background search offers for a stadium visit the first pass left without a game.
+    nonisolated static func waitingDay(_ cluster: PhotoCluster, venues: [Venue],
+                                       look see: (PhotoCluster) async -> SceneCheck.DayLook) async -> PossibleDay? {
+        let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
+        // The schedule first, the ground next door too: the visit may be waiting from a scan that never looked there, or whose
+        // lookup failed. A game on it is offered whatever the photos look like, with the ground it was played at first.
+        if let game = await match(cluster, venues: venues) {
+            let at = GameLookup.venue(of: game, in: venues) ?? cluster.venue
+            return PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
+                               reason: "Photos at \(cluster.venue.name) \u{00B7} \(GameSuggester.describe(game, at: at))",
+                               suggestions: [at] + [cluster.venue].filter { $0.id != at.id })
+        }
+        // At a stadium already, so one clear photo of the ground or a game will do, as long as the day was not mostly
+        // somewhere else (a bar across the street). A day with no game is offered too: a stadium tour is a visit worth
+        // keeping, and the review saves it as one when no game turns up for the date.
+        let look = await see(cluster)
+        guard look.venue >= 1, !look.mostlyElsewhere else { return nil }
+        let game = look.isGame(minVenue: 1, minShare: 0.2) && PhotoMatcher.looksLikeAGame(cluster.times)
+        return PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
+                           reason: game ? "Photos at \(cluster.venue.name) that look like a game, but none is on the schedule"
+                                        : "Photos inside \(cluster.venue.name) with no game that day \u{00B7} a stadium visit?",
+                           suggestions: [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: venues).prefix(2))
     }
 
     /// A race weekend is one event over several days at the circuit: Friday, Saturday and Sunday photos become one visit.

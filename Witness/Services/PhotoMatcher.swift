@@ -100,10 +100,7 @@ enum PhotoMatcher {
     /// `progress` is called about every thousand photos, from a background thread.
     static func discover(venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil,
                          progress: (@Sendable (ScanProgress) -> Void)? = nil) async -> [PhotoCluster] {
-        let existingKeys: Set<String> = Set(existing.compactMap { g -> String? in
-            guard let v = venues.first(where: { $0.id == g.venueId }) else { return nil }
-            return VisitGrouping.key(venueId: v.id, date: g.date, tz: v.tz)
-        })
+        let existingKeys = settledKeys(existing, venues: venues)
         return await Task.detached(priority: .userInitiated) { () -> [PhotoCluster] in
             let options = PHFetchOptions()
             options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
@@ -151,6 +148,24 @@ enum PhotoMatcher {
         }.value
     }
 
+    /// "venue|day" keys of the saved games a scan leaves alone. A stadium visit is not settled: it was saved because no game
+    /// turned up that day (perhaps by a scan that did not look next door, or a lookup that failed), so its photos are checked
+    /// again, and a game found for them replaces the visit.
+    static func settledKeys(_ existing: [GameEntry], venues: [Venue]) -> Set<String> {
+        Set(existing.compactMap { g -> String? in
+            guard !(g.isVisit && g.source == nil), let v = venues.first(where: { $0.id == g.venueId }) else { return nil }
+            return VisitGrouping.key(venueId: v.id, date: g.date, tz: v.tz)
+        })
+    }
+
+    /// "venue|day" keys of saved stadium visits: checked again for a game, but not offered again as visits.
+    static func savedVisitKeys(_ existing: [GameEntry], venues: [Venue]) -> Set<String> {
+        Set(existing.compactMap { g -> String? in
+            guard g.isVisit, let v = venues.first(where: { $0.id == g.venueId }) else { return nil }
+            return VisitGrouping.key(venueId: v.id, date: g.date, tz: v.tz)
+        })
+    }
+
     static func photos(at venue: Venue, around date: Date, hours: Double = 6, radius: CLLocationDistance? = nil) async -> [String] {
         let from = date.addingTimeInterval(-hours * 3600 / 2)
         let to = date.addingTimeInterval(hours * 3600)
@@ -158,6 +173,21 @@ enum PhotoMatcher {
             locatedAssets(from: from, to: to)
                 .filter { self.venue(for: $0, in: [venue], radius: radius) != nil }
                 .map(\.id)
+        }.value
+    }
+
+    /// Every photo taken in the window, with its place when it has one, oldest first (for the scan check).
+    static func points(from: Date, to: Date) async -> [PhotoPoint] {
+        await Task.detached(priority: .userInitiated) { () -> [PhotoPoint] in
+            let options = PHFetchOptions()
+            options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+            options.predicate = NSPredicate(format: "creationDate >= %@ AND creationDate < %@", from as NSDate, to as NSDate)
+            var out: [PhotoPoint] = []
+            PHAsset.fetchAssets(with: .image, options: options).enumerateObjects { asset, _, _ in
+                out.append(PhotoPoint(id: asset.localIdentifier, date: asset.creationDate,
+                                      latitude: asset.location?.coordinate.latitude, longitude: asset.location?.coordinate.longitude))
+            }
+            return out
         }.value
     }
 
