@@ -130,9 +130,10 @@ enum PhotoMatcher {
                         }
                         if let when = asset.creationDate, visitKeys.insert("\(v.id)|\(days.day(when, tz: v.tz))").inserted {
                             state.visits += 1
+                            // One photo per visit, so the strip on the scan screen shows many games, not one game many times.
+                            state.recentIds.insert(asset.localIdentifier, at: 0)
+                            if state.recentIds.count > 40 { state.recentIds.removeLast() }
                         }
-                        state.recentIds.insert(asset.localIdentifier, at: 0)
-                        if state.recentIds.count > 5 { state.recentIds.removeLast() }
                     }
                 }
                 if i % 1000 == 999 {
