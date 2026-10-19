@@ -30,3 +30,8 @@ Open items before building: Bears at Soldier Field is 6-3 in the sample data (th
 
 ## Wrapped revamp (parked Oct 18, 2026)
 Ten mockups with a way to reach every previous year (story slides, scroll reports, year hubs, poster, calendar, versus last year). Source: `mockups/wrapped-revamp/` (`BRIEF.md`, `features/wrapped/`, renders in `png/`). The Wrapped entry was removed from the You tab; `WrappedView` and `Modal.wrapped` are still in the code. Pick: the swipe-deck hub into the color-block story, with the poster as the share card. Sample numbers for 2025 (5 games, 5-0) and the miles are estimates.
+
+## Printed keepsakes (parked Oct 19, 2026)
+Three rounds of print mockups: the passport book, hard tickets and a yearly edition (round 1), thirteen framed prints the owner rejected (round 2), and seven formats for the book itself (round 3), all rendered from the sample library with the app's own stamps. Source: `mockups/print/` (`BRIEF.md`, renders in `png/`).
+
+Pick if it is picked up again: round 3, the **scratch-off passport** or the **sticker album** (they sell before the fan has a history; the album has recurring revenue), with the full-page aerial stamp inside. Vendor: Prodigi for books and prints, a 32 pt card printer in weekly batches for tickets. Blocker: the aerial views are Apple Maps and cannot be printed for sale; a print-licensed map source is needed first.
