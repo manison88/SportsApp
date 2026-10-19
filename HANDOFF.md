@@ -14,7 +14,7 @@ Another Claude session pushes to this branch: `git pull --no-rebase` before push
   - Game: Ticket and Full bleed, aerial icon beside the venue (`Witness/Features/Game/GameStoryCard.swift`).
   - Passport: the page itself (tiles sized to fit, planned included) + Full passport (all sports).
   - Map: Globe, Miles, Grounds, Countries (globe icons) (`Witness/Features/Map/MapStoryCard.swift`).
-  - **Venue: From above (#1) and Every night (#5)** (`Witness/Features/Venue/VenueStoryCard.swift`; the other five looks were removed, see d974b4f1 to bring one back).
+  - **Venue: From above (#1) and Every game (#5)** (`Witness/Features/Venue/VenueStoryCard.swift`; the other five looks were removed, see d974b4f1 to bring one back).
   - All shares use the WITNESS / SPORTS wordmark (SPORTS amber, offset under).
 - **Soccer naming**: Soccer or Fudbal (asked on the soccer passport, changeable on You). American football is always "Football".
 - **Sample games**: Timeline banner with Exit back to the welcome.

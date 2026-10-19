@@ -2,17 +2,17 @@ import SwiftUI
 import MapKit
 
 /// A ground as a story to share, in the passport's language: the ground from above in its team's color, your record and
-/// every night there. Laid out at phone size (390 points wide) and scaled up to the story's pixels.
+/// every game there. Laid out at phone size (390 points wide) and scaled up to the story's pixels.
 /// Needs `Library` in the environment; images come in already loaded.
 struct VenueStoryCard: View {
-    /// Kept from seven tried: the ground from above, and every night there.
+    /// Kept from seven tried: the ground from above, and every game there.
     enum Style: CaseIterable {
-        case aerial, nights
+        case aerial, games
 
         var name: String {
             switch self {
             case .aerial: "From above"
-            case .nights: "Every night"
+            case .games: "Every game"
             }
         }
     }
@@ -35,7 +35,7 @@ struct VenueStoryCard: View {
     private var venue: Venue { data.venue }
     private var tz: TimeZone { venue.tz }
     private var record: Stats.Record { data.games.reduce(into: Stats.Record()) { $0.add(library.outcome($1)) } }
-    private var nights: Int { data.games.count }
+    private var count: Int { data.games.count }
     private var years: String {
         let cal = Calendar(identifier: .gregorian)
         guard let a = data.games.first, let b = data.games.last else { return "" }
@@ -58,7 +58,7 @@ struct VenueStoryCard: View {
     private var content: some View {
         switch style {
         case .aerial: aerialCard
-        case .nights: nightsCard
+        case .games: gamesCard
         }
     }
 
@@ -98,7 +98,7 @@ struct VenueStoryCard: View {
 
     private var stats: some View {
         HStack(spacing: 0) {
-            stat("\(nights)", nights == 1 ? "Night" : "Nights")
+            stat("\(count)", count == 1 ? "Game" : "Games")
             if record.decided > 0 { stat(record.text, "Your record", accent: true) }
             stat(years, years.contains("–") ? "Years" : "Year")
         }
@@ -132,13 +132,13 @@ struct VenueStoryCard: View {
     }
 
     /// Every game here, a line each, like a ticket stub book.
-    private var nightsCard: some View {
+    private var gamesCard: some View {
         VStack(alignment: .leading, spacing: 16) {
             wordmark()
             HStack(spacing: 12) {
                 AerialVenueIcon(venue: venue, sport: venue.sports.first ?? .baseball, size: 52, given: data.aerial)
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("\(nights) \(nights == 1 ? "NIGHT" : "NIGHTS") AT").font(.system(size: 13, weight: .heavy).width(.condensed)).tracking(2.6)
+                    Text("\(count) \(count == 1 ? "GAME" : "GAMES") AT").font(.system(size: 13, weight: .heavy).width(.condensed)).tracking(2.6)
                         .foregroundStyle(Color.signal)
                     Text(venue.name.uppercased()).font(.display(34)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
                 }
