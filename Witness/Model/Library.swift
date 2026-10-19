@@ -321,6 +321,13 @@ final class Library {
         return entry
     }
 
+    /// A game the fan entered by hand for a team the schedules do not list.
+    func addManualPlan(_ plan: GameEntry) {
+        plans.append(plan)
+        plans.sort { $0.date < $1.date }
+        save()
+    }
+
     /// A stadium the schedule names and the catalog lacks, added from the coordinates the schedule gives.
     private func addVenue(from found: FoundGame) -> Venue? {
         guard let lat = found.venueLatitude, let lon = found.venueLongitude, !found.venueName.isEmpty else { return nil }

@@ -48,6 +48,7 @@ struct PlanGameView: View {
     @State private var noSource = false
     @State private var teamEspnId: String?
     @State private var pickerShown = false
+    @State private var addingByHand = false
     @State private var openedPicker = false
 
     var body: some View {
@@ -89,6 +90,17 @@ struct PlanGameView: View {
                         Text("No upcoming games on this team\u{2019}s schedule right now. In the off-season the schedule comes out later.")
                             .font(.footnote).foregroundStyle(Color.textSecondary)
                     }
+
+                    if teamId != nil, !loading {
+                        Button { addingByHand = true } label: {
+                            Label(games.isEmpty ? "Add the game yourself" : "Not listed? Add it yourself", systemImage: "square.and.pencil")
+                                .font(.subheadline.weight(.semibold))
+                                .frame(maxWidth: .infinity, minHeight: 50)
+                                .foregroundStyle(games.isEmpty ? Color.black : Color.signal)
+                                .background(games.isEmpty ? Color.white : Color.clear, in: .rect(cornerRadius: 14))
+                        }
+                        .accessibilityIdentifier("plan-add-by-hand")
+                    }
                 }
                 .gutter()
                 .padding(.top, 8)
@@ -104,6 +116,9 @@ struct PlanGameView: View {
                 }
             }
             .onChange(of: teamId) { _, _ in Task { await load() } }
+            .sheet(isPresented: $addingByHand) {
+                AddGameView(planning: true, presetTeamId: teamId, onPlanned: { _ in dismiss() }, onDone: { addingByHand = false })
+            }
             // Everyone starts by choosing a team, so go straight to that list. Backing out with nothing chosen closes this.
             .navigationDestination(isPresented: $pickerShown) {
                 TeamPickerView(selection: $teamId, sport: .baseball)

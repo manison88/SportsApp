@@ -11,6 +11,10 @@ struct AddGameView: View {
     let editing: GameEntry?
     var embedded: Bool
     var onDone: (() -> Void)?
+    /// Planning a game that is coming up (one the schedules don't list): saved as a plan, with no score or photos.
+    var planning = false
+    var presetTeamId: String?
+    var onPlanned: ((String) -> Void)?
 
     @State private var sport: Sport = .baseball
     @State private var isVisit = false
@@ -43,10 +47,14 @@ struct AddGameView: View {
     @State private var didAutoLookup = false
     @State private var photoDistanceMiles: Double?
 
-    init(draft: TicketDraft? = nil, editing: GameEntry? = nil, embedded: Bool = false, onDone: (() -> Void)? = nil) {
+    init(draft: TicketDraft? = nil, editing: GameEntry? = nil, embedded: Bool = false, planning: Bool = false, presetTeamId: String? = nil,
+         onPlanned: ((String) -> Void)? = nil, onDone: (() -> Void)? = nil) {
         self.draft = draft
         self.editing = editing
         self.embedded = embedded
+        self.planning = planning
+        self.presetTeamId = presetTeamId
+        self.onPlanned = onPlanned
         self.onDone = onDone
     }
 
@@ -63,16 +71,18 @@ struct AddGameView: View {
 
     private var form: some View {
         Form {
-            Section {
-                Picker("What is it", selection: $isVisit) {
-                    Text("Game").tag(false)
-                    Text("Stadium visit").tag(true)
+            if !planning {
+                Section {
+                    Picker("What is it", selection: $isVisit) {
+                        Text("Game").tag(false)
+                        Text("Stadium visit").tag(true)
+                    }
+                    .pickerStyle(.segmented)
+                    .listRowBackground(Color.clear)
+                    .accessibilityIdentifier("add-kind")
                 }
-                .pickerStyle(.segmented)
                 .listRowBackground(Color.clear)
-                .accessibilityIdentifier("add-kind")
             }
-            .listRowBackground(Color.clear)
 
             Section {
                 Picker("Sport", selection: $sport) {
@@ -158,7 +168,7 @@ struct AddGameView: View {
                 .listRowBackground(Color.panel)
             }
 
-            if sport != .motorsport, !isVisit {
+            if sport != .motorsport, !isVisit, !planning {
                 Section {
                     scoreRow
                     if let home = homeTeamId, let away = awayTeamId {
@@ -233,6 +243,7 @@ struct AddGameView: View {
             }
             .listRowBackground(Color.panel)
 
+            if !planning {
             Section {
                 if !allPhotos.isEmpty {
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -262,10 +273,11 @@ struct AddGameView: View {
                 .accessibilityIdentifier("add-find-photos")
             }
             .listRowBackground(Color.panel)
+            }
         }
         .scrollContentBackground(.hidden)
         .background(Color.ink.ignoresSafeArea())
-        .navigationTitle(editing == nil ? (isVisit ? "Add visit" : "Add game") : (isVisit ? "Edit visit" : "Edit game"))
+        .navigationTitle(planning ? "Plan a game" : (editing == nil ? (isVisit ? "Add visit" : "Add game") : (isVisit ? "Edit visit" : "Edit game")))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(embedded)
         .toolbar {
@@ -411,6 +423,12 @@ struct AddGameView: View {
                 if case .library = ref { return false }
                 return true
             }
+        } else if planning {
+            if let id = presetTeamId, let team = library.team(id) {
+                sport = team.sport
+                homeTeamId = id
+            }
+            date = Calendar.current.date(byAdding: .day, value: 1, to: date) ?? date
         } else if let d = draft {
             if let s = d.sport { sport = s }
             homeTeamId = d.homeTeamId
@@ -495,6 +513,7 @@ struct AddGameView: View {
 
     /// Teams picked by hand at a venue on a day: if the schedule has that game, attach it.
     private func verifyPicked() {
+        guard !planning else { return }
         guard found == nil, !lookingUp, sport != .motorsport, homeTeamId != nil, awayTeamId != nil,
               let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty else { return }
         lookingUp = true
@@ -504,7 +523,7 @@ struct AddGameView: View {
     /// Looks the game up as soon as a venue and day are set, but only on a new game with no teams picked yet, so
     /// nothing the fan typed is overwritten. "Find this game" stays for everything else.
     private func autoLookup() {
-        guard !isVisit, found == nil, !lookingUp,
+        guard !planning, !isVisit, found == nil, !lookingUp,
               let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty else { return }
         let noTeamsYet = homeTeamId == nil && awayTeamId == nil
         if let editing {
@@ -585,6 +604,22 @@ struct AddGameView: View {
 
     private func save() {
         guard let venueId else { return }
+        if planning {
+            var plan = GameEntry(sport: sport, date: date, venueId: venueId, origin: .manual)
+            plan.homeTeamId = sport == .motorsport ? nil : homeTeamId
+            plan.awayTeamId = sport == .motorsport ? nil : awayTeamId
+            let title = (sport == .motorsport ? raceName : competition).trimmingCharacters(in: .whitespacesAndNewlines)
+            plan.competition = title.isEmpty ? nil : title
+            let seatText = seat.trimmingCharacters(in: .whitespacesAndNewlines)
+            plan.seat = seatText.isEmpty ? nil : seatText
+            let noteText = note.trimmingCharacters(in: .whitespacesAndNewlines)
+            plan.note = noteText.isEmpty ? nil : noteText
+            plan.companionIds = companionIds.sorted()
+            library.addManualPlan(plan)
+            onPlanned?(plan.id)
+            finish()
+            return
+        }
         var g = editing ?? GameEntry(sport: sport, date: date, venueId: venueId, origin: draft == nil ? .manual : .ticket)
         g.sport = sport
         g.date = date
