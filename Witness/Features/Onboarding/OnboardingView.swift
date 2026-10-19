@@ -300,9 +300,9 @@ private struct ResultScreen: View {
             newestCard
                 .opacity(beat >= 2 ? 1 : 0)
                 .offset(y: beat >= 2 ? 0 : 18)
-            if !scan.possible.isEmpty {
-                Label("\(scan.possible.count) more \(scan.possible.count == 1 ? "visit" : "visits") near stadiums might be games. You confirm the stadium and we match the date.",
-                      systemImage: "mappin.and.ellipse")
+            if !scan.others.isEmpty {
+                Label("Plus \(scan.others.count) stadium \(scan.others.count == 1 ? "visit" : "visits") with no game that day, like a tour. Keep the ones you want.",
+                      systemImage: "building.columns")
                     .font(.footnote)
                     .foregroundStyle(Color.textSecondary)
                     .opacity(beat >= 3 ? 1 : 0)
@@ -313,16 +313,16 @@ private struct ResultScreen: View {
                 if scan.games.count > 1 {
                     Button("Add all \(scan.games.count) games") {
                         scan.commit(scan.games, into: library)
-                        if scan.possible.isEmpty { scan.markReviewed(); return }
+                        if scan.possible.isEmpty && scan.others.isEmpty { scan.markReviewed(); return }
                         onReview()
                     }
                     .buttonStyle(.primary)
                     .accessibilityIdentifier("onboarding-add-all")
-                    Button(scan.games.isEmpty ? "Review possible games" : "Review one by one", action: onReview)
+                    Button("Review one by one", action: onReview)
                         .buttonStyle(.secondary)
                         .accessibilityIdentifier("onboarding-review")
                 } else {
-                    Button(scan.games.isEmpty ? "Review possible games" : "Review games", action: onReview)
+                    Button(scan.games.isEmpty ? "Review stadium visits" : "Review games", action: onReview)
                         .buttonStyle(.primary)
                         .accessibilityIdentifier("onboarding-review")
                 }

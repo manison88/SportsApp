@@ -509,12 +509,15 @@ final class WitnessUITests: XCTestCase {
         snap("01-discovery")
         tap("discovery-confirm")
         snap("01-discovery-after-confirm")
-        // Only schedule-matched games are reviewed here; the Soldier Field visit with no game waits for the background search.
+        // Games come first. Then the visits near a stadium with no game that day are reviewed as stadium visits.
         for _ in 0..<6 {
-            if el("discovery-done").exists { break }
+            if el("discovery-other-title").exists || el("discovery-done").exists { break }
             if el("discovery-skip").waitForExistence(timeout: 4) { tap("discovery-skip") }
         }
-        XCTAssertFalse(el("discovery-other-title").exists, "Visits with no game are not reviewed during onboarding")
+        if el("discovery-other-title").waitForExistence(timeout: 15) {
+            snap("01-discovery-other")
+            tap("discovery-other-add")
+        }
         XCTAssertTrue(el("discovery-done").waitForExistence(timeout: 8))
         tap("discovery-done")
         XCTAssertTrue(app.tabBars.buttons["Timeline"].waitForExistence(timeout: 8))

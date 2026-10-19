@@ -13,7 +13,7 @@ final class ScanPacing {
             case .reading: "Reading dates and places"
             case .stadiums: "Finding stadiums"
             case .matching: "Matching to the real schedule"
-            case .verifying: "Checking the photos look like a game"
+            case .verifying: "Spotting stadium visits"
             case .building: "Building your timeline"
             }
         }

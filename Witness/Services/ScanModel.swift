@@ -268,17 +268,29 @@ final class ScanModel {
         matches = matched
         tickets = [:]
 
-        // Onboarding shows only games: a game on the schedule at the stadium that day. Stadium visits with no game on the
-        // schedule wait for the background search the fan can start from the Timeline, with the albums and trips.
+        // Games: a game on the schedule at the stadium that day. A visit with no game is a stadium visit (a tour, a walk
+        // around the ground) when a few of its photos clearly show the stadium; the rest wait for the background search.
         let confirmed = visits.filter { matched[$0.id] != nil }
-        pendingVisits = visits.filter { matched[$0.id] == nil }
+        let unmatched = visits.filter { matched[$0.id] == nil }
+        state = .verifying
+        verifiedVisits = 0
+        verifyTotal = unmatched.count
+        var tours: [PhotoCluster] = []
+        var pending: [PhotoCluster] = []
+        for cluster in unmatched {
+            if Task.isCancelled { break }
+            let look = await SceneCheck.look(at: cluster.assetIds.map { PhotoRef.library($0) }, max: 6)
+            if look.venue >= 1, !look.mostlyElsewhere { tours.append(cluster) } else { pending.append(cluster) }
+            verifiedVisits += 1
+        }
+        pendingVisits = pending
         matches = matched
-        skippedVisits = 0
+        skippedVisits = pending.count
         games = confirmed.sorted { $0.start > $1.start }
-        others = []
+        others = tours.sorted { $0.start > $1.start }
         possible = []
-        state = games.isEmpty && possible.isEmpty ? .empty : .done
-        Analytics.shared.track(.scanFinished, ["games": games.count, "possible": possible.count, "photos": progress.scanned,
+        state = games.isEmpty && others.isEmpty ? .empty : .done
+        Analytics.shared.track(.scanFinished, ["games": games.count, "visits": others.count, "photos": progress.scanned,
                                                "seconds": Int(Date().timeIntervalSince(began))])
     }
 
