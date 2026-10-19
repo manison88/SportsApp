@@ -81,6 +81,7 @@
 		C969C27B55763B17CA718E21 /* LuckyCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */; };
 		CC00A63D66FA2073A5D2C456 /* LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF7F7EAD209867041DEF5 /* LibraryTests.swift */; };
 		CD5342E7131026E858E6D978 /* AlbumImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F836BE70D81FF166D6EFD6A /* AlbumImporter.swift */; };
+		CEAB0170AF803B34F15CA153 /* ScanEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F7BDC9B0762F2AD2EFA07A /* ScanEndToEndTests.swift */; };
 		CFBFBA9DB68338AEE808C225 /* SharedPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C6F4096980A62A376DA6A /* SharedPassportView.swift */; };
 		D24E8C543F8BC64986662AB4 /* NeighborGroundsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BFC5F9860F3546A944C599 /* NeighborGroundsTests.swift */; };
 		D26B177823A3F0DD02688F08 /* Sample in Resources */ = {isa = PBXBuildFile; fileRef = 8007189AFB335F74AD2F2242 /* Sample */; };
@@ -138,6 +139,7 @@
 		281972298861717804A0CBFD /* PhotoCredits.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PhotoCredits.md; sourceTree = "<group>"; };
 		2E2BB9052C4C70B0DC345E10 /* GameStoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStoryCard.swift; sourceTree = "<group>"; };
 		302F3BA2809104AA07A544F3 /* PackStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackStore.swift; sourceTree = "<group>"; };
+		36F7BDC9B0762F2AD2EFA07A /* ScanEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanEndToEndTests.swift; sourceTree = "<group>"; };
 		3927624E070DF7A5F2C592AD /* LegalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalContent.swift; sourceTree = "<group>"; };
 		39A71CEDC65654D5367E4E1C /* UEFASchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEFASchedule.swift; sourceTree = "<group>"; };
 		41E1FB35D0C7B4BA594FF979 /* ReviewQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQueue.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				F3BFC5F9860F3546A944C599 /* NeighborGroundsTests.swift */,
 				BAD292282DB6DC3BCC066881 /* PhotoMatcherTests.swift */,
 				B0ACCE2144B8B5D7125D5F38 /* ReviewQueueTests.swift */,
+				36F7BDC9B0762F2AD2EFA07A /* ScanEndToEndTests.swift */,
 				903443890581343B7B39B754 /* TicketOCRTests.swift */,
 				FEF398484DD3487B795AB540 /* TicketParserTests.swift */,
 				E92A0F4AD480434C06900655 /* WorldCupSeattleTests.swift */,
@@ -644,6 +647,7 @@
 				D24E8C543F8BC64986662AB4 /* NeighborGroundsTests.swift in Sources */,
 				4FA66493F78992F852961E30 /* PhotoMatcherTests.swift in Sources */,
 				5B40E1068A193DF3A4A47343 /* ReviewQueueTests.swift in Sources */,
+				CEAB0170AF803B34F15CA153 /* ScanEndToEndTests.swift in Sources */,
 				33986E7A0BDD5EAC7B8E13D7 /* TicketOCRTests.swift in Sources */,
 				29A2F767CE1F9907F6F16402 /* TicketParserTests.swift in Sources */,
 				66AE1AD937BB114E91B80E57 /* WorldCupSeattleTests.swift in Sources */,
