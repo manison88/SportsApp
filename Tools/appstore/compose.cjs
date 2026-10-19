@@ -14,14 +14,14 @@ const SIZES = [{ dir: '6.9in', w: 1320, h: 2868 }, { dir: '6.5in', w: 1284, h: 2
 
 // [file prefix, headline (a [..] span is amber), sub line]
 const COPY = [
-  ['store-01', "EVERY GAME YOU'VE [BEEN TO.]", 'Your whole fan life on one timeline.'],
-  ['store-02', 'RELIVE [THE NIGHT.]', 'Your photos, the score and the weather, together.'],
-  ['store-03', 'SEE THE MOMENT [IT HAPPENED.]', "Your photos placed on the game's own clock."],
-  ['store-04', 'COLLECT [EVERY STADIUM.]', 'A stamp for every ground you visit.'],
-  ['store-05', 'COUNT [THE MILES.]', 'Every venue, mapped from home.'],
-  ['store-06', 'KNOW [YOUR GROUND.]', 'Your record, your seats and every visit.'],
-  ['store-07', 'YOUR WHOLE [FAN RECORD.]', 'Every win, loss and number in one place.'],
-  ['store-08', '[SHARE] THE NIGHT.', 'Story cards made from your own game.'],
+  ['store-01', 'NEVER FORGET [A GAME.]', 'Witness finds every game you’ve been to in your photos.'],
+  ['store-02', 'RELIVE [THE BIG NIGHTS.]', 'The score, the weather and your photos, together.'],
+  ['store-03', 'KNOW WHAT [YOU SAW.]', 'Your photos lined up with the moments that mattered.'],
+  ['store-04', 'COLLECT [EVERY STADIUM.]', 'A stamp for every ground, park and arena you visit.'],
+  ['store-05', 'SEE HOW FAR [YOU’VE GONE.]', 'Every trip for the game, mapped from home.'],
+  ['store-06', 'OWN YOUR [HOME GROUND.]', 'Your record, your seats and every visit.'],
+  ['store-07', 'ARE YOU A [LUCKY CHARM?]', 'See how your teams do when you’re there.'],
+  ['store-08', '[SHARE] THE NIGHT.', 'Story cards made from your own photos.'],
 ];
 
 const page = (w, h, shot, head, sub) => {

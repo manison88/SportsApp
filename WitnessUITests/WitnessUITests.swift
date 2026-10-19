@@ -535,21 +535,38 @@ final class WitnessUITests: XCTestCase {
         launch(["-demo"])
         XCTAssertTrue(app.tabBars.buttons["Timeline"].waitForExistence(timeout: 10))
         sleep(3)
+        // Past the first card, so the shot shows several sports.
+        app.swipeUp()
+        sleep(3)
         snap("store-01-timeline")
+        app.swipeDown()
+        sleep(1)
 
-        openGame("mlb-2016-ws5", query: "World Series")
+        openGame("nfl-2025-w18-gb", query: "Lambeau")
         XCTAssertTrue(el("game-title").waitForExistence(timeout: 8))
         sleep(3)
         snap("store-02-game")
 
-        tap("hero-you-were-there")
-        XCTAssertTrue(el("ywt-hero").waitForExistence(timeout: 8))
-        sleep(3)
-        snap("store-03-match-report")
-        back()
+        if el("hero-you-were-there").waitForExistence(timeout: 3) {
+            tap("hero-you-were-there")
+            XCTAssertTrue(el("ywt-hero").waitForExistence(timeout: 8))
+            sleep(3)
+            snap("store-03-match-report")
+            back()
+        }
+
+        tap("game-menu")
+        tap("game-share")
+        sleep(5)
+        snap("store-08-share")
+        app.buttons["Close"].firstMatch.tap()
 
         tab("Passport")
-        sleep(3)
+        sleep(1)
+        let soccer = app.buttons.matching(NSPredicate(format: "label ==[c] 'SOCCER' OR label ==[c] 'FOOTBALL'")).firstMatch
+        if soccer.waitForExistence(timeout: 3) { soccer.tap() }
+        if el("soccer-word-soccer").waitForExistence(timeout: 2) { tap("soccer-word-soccer") }
+        sleep(6)
         snap("store-04-passport")
 
         tab("Map")
@@ -558,7 +575,7 @@ final class WitnessUITests: XCTestCase {
         snap("store-05-map")
 
         tab("Passport")
-        tap("stamp-wrigley")
+        tap("stamp-soldier")
         XCTAssertTrue(el("venue-title").waitForExistence(timeout: 8))
         sleep(4)
         snap("store-06-venue")
@@ -567,14 +584,7 @@ final class WitnessUITests: XCTestCase {
         tab("You")
         sleep(3)
         snap("store-07-you")
-
-        // The Timeline tab still has the game open, so the menu is right there.
-        tab("Timeline")
-        XCTAssertTrue(el("game-title").waitForExistence(timeout: 8))
-        tap("game-menu")
-        tap("game-share")
-        sleep(4)
-        snap("store-08-share")
     }
+
 }
 
