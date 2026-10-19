@@ -1,4 +1,5 @@
 import SwiftUI
+import PhotosUI
 
 /// 05 · Game memory. A tall photo hero carries the headline; under it the
 /// line score, who you were with, and one action: Play recap.
@@ -11,6 +12,7 @@ struct GameMemoryView: View {
     @State private var editing = false
     @State private var confirmDelete = false
     @State private var sharing = false
+    @State private var adding: [PhotosPickerItem] = []
     @State private var viewer: PhotoViewerItem?
 
     /// Short enough that the photos section sits above the tab bar on a normal phone.
@@ -43,6 +45,7 @@ struct GameMemoryView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) { playButton(game) }
+            ToolbarItem(placement: .topBarTrailing) { addPhotosButton }
             ToolbarItem(placement: .topBarTrailing) { menu(game) }
         }
         .fullScreenCover(item: $viewer) { item in
@@ -365,6 +368,26 @@ struct GameMemoryView: View {
         }
         .accessibilityLabel("Play recap")
         .accessibilityIdentifier("play-recap")
+    }
+
+    /// Adds photos and videos from the library to this game, by hand.
+    private var addPhotosButton: some View {
+        PhotosPicker(selection: $adding, matching: .any(of: [.images, .videos]), photoLibrary: .shared()) {
+            Image(systemName: "plus")
+                .font(.body.weight(.bold))
+                .foregroundStyle(.white)
+                .frame(width: 36, height: 36)
+                .background(.ultraThinMaterial, in: .circle)
+                .frame(width: 44, height: 44)
+                .contentShape(.circle)
+        }
+        .accessibilityLabel("Add photos")
+        .accessibilityIdentifier("game-add-photos")
+        .onChange(of: adding) { _, items in
+            guard !items.isEmpty else { return }
+            library.addPhotos(gameId, items.compactMap(\.itemIdentifier).map { PhotoRef.library($0) })
+            adding = []
+        }
     }
 
     private func menu(_ game: GameEntry) -> some View {

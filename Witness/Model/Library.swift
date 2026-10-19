@@ -655,6 +655,17 @@ final class Library {
     }
 
     /// Takes photos off a game. They stay in the Photos library; only this game's link to them goes.
+    /// Photos the fan adds to a game by hand, after the ones it has; a photo already on the game is not added twice.
+    func addPhotos(_ gameId: String, _ refs: [PhotoRef]) {
+        guard var g = game(gameId) else { return }
+        let new = refs.filter { !g.photos.contains($0) }
+        guard !new.isEmpty else { return }
+        Analytics.shared.track(.photosAction, ["action": "add", "count": new.count])
+        g.photos.append(contentsOf: new)
+        update(g)
+        pickCoverSoon(gameId)
+    }
+
     func removePhotos(_ gameId: String, _ refs: Set<PhotoRef>) {
         guard var g = game(gameId), !refs.isEmpty else { return }
         Analytics.shared.track(.photosAction, ["action": "delete", "count": refs.count])
