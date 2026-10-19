@@ -176,7 +176,7 @@ struct WrappedView: View {
         if let wg = weatherGame, let w = wg.weather {
             let venue = library.venue(wg.venueId)
             let tz = venue?.tz ?? TimeZone.current
-            let temp = "\(Int(w.temperatureF.rounded()))°F"
+            let temp = Fmt.temperature(w.temperatureF)
             let condition = w.condition
             let name = venue?.name ?? ""
             let city = venue?.cityLine ?? ""

@@ -265,7 +265,7 @@ struct PlanView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 VStack(spacing: 8) {
-                    infoRow("sun.max", "Forecast", forecast.map { "\($0.condition) \u{00B7} \(Int($0.temperatureF.rounded()))\u{00B0}F" } ?? "Shows up within about two weeks of the game")
+                    infoRow("sun.max", "Forecast", forecast.map { "\($0.condition) \u{00B7} \(Fmt.temperature($0.temperatureF))" } ?? "Shows up within about two weeks of the game")
                     HStack(spacing: 12) {
                         Image(systemName: "ticket").foregroundStyle(Color.signal).frame(width: 24)
                         TextField("Section, row, seat", text: $seat)

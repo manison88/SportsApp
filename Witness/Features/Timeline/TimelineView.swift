@@ -281,7 +281,7 @@ private struct TimelineCard: View {
     private var factItems: [Fact] {
         var out: [Fact] = []
         if let w = game.weather {
-            out.append(Fact(symbol: w.symbol, text: "\(Int(w.temperatureF.rounded()))\u{00B0}F"))
+            out.append(Fact(symbol: w.symbol, text: Fmt.temperature(w.temperatureF)))
         } else if [.basketball, .hockey, .handball].contains(game.sport) {
             out.append(Fact(symbol: "building.2", text: "Indoors"))
         }

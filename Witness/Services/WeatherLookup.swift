@@ -83,7 +83,7 @@ enum WeatherLookup {
 
 extension Weather {
     /// "54°F · Clear", the reading at the game's start time.
-    var summary: String { "\(Int(temperatureF.rounded()))°F · \(condition)" }
+    var summary: String { "\(Fmt.temperature(temperatureF)) · \(condition)" }
 }
 
 extension Venue {

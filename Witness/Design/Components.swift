@@ -41,6 +41,13 @@ enum Fmt {
         n.formatted(.number.grouping(.automatic))
     }
 
+    /// Fahrenheit only where the phone's region uses US units; Celsius everywhere else (including the UK, which keeps miles).
+    static var fahrenheit: Bool { Locale.current.measurementSystem == .us }
+    /// A temperature stored in Fahrenheit, shown in the unit this phone's region uses: "54°F" or "12°C".
+    static func temperature(_ f: Double, fahrenheit: Bool = Fmt.fahrenheit) -> String {
+        fahrenheit ? "\(Int(f.rounded()))\u{00B0}F" : "\(Int(((f - 32) * 5 / 9).rounded()))\u{00B0}C"
+    }
+
     /// Kilometers where the phone's region uses the metric system, miles elsewhere (the US and the UK keep miles).
     static var metric: Bool { Locale.current.measurementSystem == .metric }
     /// "Miles" or "Km", for a stat label.

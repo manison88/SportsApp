@@ -34,7 +34,7 @@ struct YouView: View {
                     ])
                     StatRow(items: [
                         .init(value: Fmt.number(stats.points), label: "Points"),
-                        .init(value: stats.coldestF.map { "\(Int($0.rounded()))°F" } ?? "–", label: "Coldest"),
+                        .init(value: stats.coldestF.map { Fmt.temperature($0) } ?? "–", label: "Coldest"),
                         .init(value: "\(stats.countries)", label: stats.countries == 1 ? "Country" : "Countries"),
                     ])
                 }

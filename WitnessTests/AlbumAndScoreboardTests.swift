@@ -510,4 +510,11 @@ final class AlbumAndScoreboardTests: XCTestCase {
         let team = try XCTUnwrap(library.allTeams.first { $0.id == "nba-okc" })
         XCTAssertEqual(team.formerNames, ["Seattle SuperSonics"])
     }
+
+    func testTemperatureAndDistanceUnits() {
+        XCTAssertEqual(Fmt.temperature(54, fahrenheit: true), "54\u{00B0}F")
+        XCTAssertEqual(Fmt.temperature(54, fahrenheit: false), "12\u{00B0}C")
+        XCTAssertEqual(Fmt.temperature(32, fahrenheit: false), "0\u{00B0}C")
+        XCTAssertEqual(Fmt.temperature(5, fahrenheit: false), "-15\u{00B0}C")
+    }
 }
