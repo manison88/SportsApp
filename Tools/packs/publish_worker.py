@@ -23,14 +23,14 @@ def main():
     def call(method, path, data=None, retries=4):
         for attempt in range(retries):
             req = urllib.request.Request(f"{base}/packs-admin/{path}", data=data, method=method,
-                                         headers={"authorization": auth, "content-type": "application/json"})
+                                         headers={"authorization": auth, "content-type": "application/json", "user-agent": "witness-pack-publisher/1.0"})
             try:
                 with urllib.request.urlopen(req, timeout=60) as r:
                     return r.read()
             except urllib.error.HTTPError as e:
                 if e.code < 500 and e.code != 429:
                     raise
-            except urllib.error.URLError:
+            except OSError:
                 pass
             import time; time.sleep(2 ** attempt)
         raise RuntimeError(f"{method} {path} kept failing")
@@ -47,7 +47,7 @@ def main():
         call("PUT", p["path"], open(os.path.join(args.dir, p["path"]), "rb").read())
         return p["path"]
 
-    with ThreadPoolExecutor(8) as pool:
+    with ThreadPoolExecutor(6) as pool:
         for i, _ in enumerate(pool.map(put, new), 1):
             if i % 200 == 0:
                 print(f"  {i}/{len(new)}")

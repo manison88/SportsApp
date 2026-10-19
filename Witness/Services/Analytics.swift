@@ -28,7 +28,7 @@ enum AnalyticsEvent: String {
 /// The one Cloudflare Worker the app talks to: anonymous usage numbers (/e), the privacy and terms pages, and the data packs (/packs).
 /// Fill in the address printed by the Worker deploy (the analytics-deploy branch, URL.txt) and all three switch on together.
 enum Backend {
-    static let base = "https://witness-analytics.SUBDOMAIN.workers.dev"
+    static let base = "https://witness-api.312itconsulting.com"
     static var isOnline: Bool { !base.contains("SUBDOMAIN") }
 }
 

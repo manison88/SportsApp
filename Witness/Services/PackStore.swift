@@ -7,7 +7,7 @@ enum PackConfig {
     /// Public, read-only host for `manifest.json` and the packs: the Worker's /packs path. Empty (until the Worker is live) turns downloading off.
     static var baseURL: String { Backend.isOnline ? Backend.base + "/packs" : "" }
     /// Base64 Ed25519 public key that signs `manifest.json`. Empty accepts unsigned manifests (development only).
-    static let publicKey = "Di9c9bdxUI6yJQ1d5cQ4dvS0H9zxvMds3jjbAn567eU="
+    static let publicKey = "yoJIaBAEm+IEGrADftCC3Zt+SJR81W0ceBeTBcu81dc="
 
     /// `-WitnessPackBaseURL <url>` on the command line (or the defaults key) overrides the built-in host, for testing.
     static var resolvedBaseURL: URL? {

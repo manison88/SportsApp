@@ -1,5 +1,8 @@
 name = "witness-analytics"
 main = "worker.js"
+
+# The app talks to this address (Backend.base in the app), on the 312itconsulting.com zone.
+routes = [{ pattern = "witness-api.312itconsulting.com", custom_domain = true }]
 compatibility_date = "2024-11-01"
 
 [[d1_databases]]
