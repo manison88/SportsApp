@@ -270,7 +270,21 @@ final class ScanModel {
 
         // Games: a game on the schedule at the stadium that day. A visit with no game is a stadium visit (a tour, a walk
         // around the ground) when a few of its photos clearly show the stadium; the rest wait for the background search.
-        let confirmed = visits.filter { matched[$0.id] != nil }
+        // One game, one card: photos split between two neighbouring grounds (the walk in by the ballpark, the match next
+        // door) that found the same game become one visit.
+        var confirmed: [PhotoCluster] = []
+        var byGame: [String: Int] = [:]
+        for cluster in visits {
+            guard let game = matched[cluster.id] else { continue }
+            if let at = byGame[game.id] {
+                let merged = confirmed[at].combined(with: cluster)
+                matched[merged.id] = game
+                confirmed[at] = merged
+            } else {
+                byGame[game.id] = confirmed.count
+                confirmed.append(cluster)
+            }
+        }
         let unmatched = visits.filter { matched[$0.id] == nil }
         state = .verifying
         verifiedVisits = 0

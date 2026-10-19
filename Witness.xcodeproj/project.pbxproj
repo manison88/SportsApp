@@ -86,6 +86,7 @@
 		F61374DE999DCBA79E8FDEAC /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EF1E486EA6D3C38019482C /* LocationService.swift */; };
 		F9727740E7129812AB9CE2F3 /* VisitGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464F11516C93F27989521E89 /* VisitGrouping.swift */; };
 		FD6F7B578E5D5610C7F4C564 /* AlbumAndScoreboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2EE34983CD926C23F62BCF /* AlbumAndScoreboardTests.swift */; };
+		3FEB031AE0994BFC9587347E /* NeighborGroundsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,6 +189,7 @@
 		FEF398484DD3487B795AB540 /* TicketParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketParserTests.swift; sourceTree = "<group>"; };
 		FEF8E52CBD3AA88A2CCFCB6E /* LifeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeMapView.swift; sourceTree = "<group>"; };
 		FF2EE34983CD926C23F62BCF /* AlbumAndScoreboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAndScoreboardTests.swift; sourceTree = "<group>"; };
+		30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborGroundsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -334,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				FF2EE34983CD926C23F62BCF /* AlbumAndScoreboardTests.swift */,
+				30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */,
 				7B48F99FC296122C6C846961 /* BigGameTests.swift */,
 				0EBB3E2CA6352B5C2EB2E15D /* DetectionTuningTests.swift */,
 				73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */,
@@ -605,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD6F7B578E5D5610C7F4C564 /* AlbumAndScoreboardTests.swift in Sources */,
+				3FEB031AE0994BFC9587347E /* NeighborGroundsTests.swift in Sources */,
 				BB3F51B6F1750A2ECB5E0479 /* BigGameTests.swift in Sources */,
 				1307844B2E7EAB4CDD54E487 /* DetectionTuningTests.swift in Sources */,
 				7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */,

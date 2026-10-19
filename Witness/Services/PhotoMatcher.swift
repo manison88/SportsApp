@@ -61,7 +61,9 @@ enum PhotoMatcher {
     }
 
     /// Other venues close enough that the same photos could belong to them.
-    static func neighbors(of venue: Venue, in venues: [Venue], within radius: CLLocationDistance = 400) -> [Venue] {
+    /// Other grounds close enough that a fan's photos on the way in can land at either: Lumen Field and T-Mobile Park are
+    /// 440 m apart, the United Center and its practice rinks closer still.
+    static func neighbors(of venue: Venue, in venues: [Venue], within radius: CLLocationDistance = 1_000) -> [Venue] {
         venues.filter { $0.id != venue.id && $0.location.distance(from: venue.location) <= radius }
             .sorted { $0.location.distance(from: venue.location) < $1.location.distance(from: venue.location) }
     }
