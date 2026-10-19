@@ -10,6 +10,7 @@
 		00FA15CED64001295EE46A94 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = A051A1837F2F1411136520EB /* Components.swift */; };
 		00FBD37F25C6CD2BE47DD619 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67381837ED335A8DC3A8AB2 /* OnboardingView.swift */; };
 		039B28D15BD758C29D374F98 /* ScanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E49321B29793341AF81A22B /* ScanModel.swift */; };
+		8A18826A7B6B40F8B5F3CDCB /* ReviewQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EA637F3E10456AB9BFB372 /* ReviewQueue.swift */; };
 		0CB8D1C3F3B14C6783C4CE4B /* MapStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E163484B906847D0B387FE2A /* MapStoryCard.swift */; };
 		0E12D046A277661BA11D667B /* AddVenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B224F7426AC04A827ABB7E /* AddVenueView.swift */; };
 		0F93BE106B7E45D588FECF53 /* GameStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC438604B64906AEB1BAAE /* GameStoryCard.swift */; };
@@ -88,6 +89,7 @@
 		F9727740E7129812AB9CE2F3 /* VisitGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464F11516C93F27989521E89 /* VisitGrouping.swift */; };
 		FD6F7B578E5D5610C7F4C564 /* AlbumAndScoreboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2EE34983CD926C23F62BCF /* AlbumAndScoreboardTests.swift */; };
 		3FEB031AE0994BFC9587347E /* NeighborGroundsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */; };
+		37AE837711CD4841A1C8F45C /* ReviewQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +157,7 @@
 		89965E1544CBDB43E6EC2FE2 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		8B4E3555851D41D7A58F0243 /* BackupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupView.swift; sourceTree = "<group>"; };
 		8E49321B29793341AF81A22B /* ScanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanModel.swift; sourceTree = "<group>"; };
+		B9EA637F3E10456AB9BFB372 /* ReviewQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQueue.swift; sourceTree = "<group>"; };
 		903443890581343B7B39B754 /* TicketOCRTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketOCRTests.swift; sourceTree = "<group>"; };
 		94EF1E486EA6D3C38019482C /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		99BE7A67E02B803D6070CA3E /* AlbumImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImportView.swift; sourceTree = "<group>"; };
@@ -192,6 +195,7 @@
 		FEF8E52CBD3AA88A2CCFCB6E /* LifeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeMapView.swift; sourceTree = "<group>"; };
 		FF2EE34983CD926C23F62BCF /* AlbumAndScoreboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAndScoreboardTests.swift; sourceTree = "<group>"; };
 		30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborGroundsTests.swift; sourceTree = "<group>"; };
+		A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQueueTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -293,6 +297,7 @@
 				94EF1E486EA6D3C38019482C /* LocationService.swift */,
 				6B31653ED86394E9918FE2C1 /* PhotoMatcher.swift */,
 				8E49321B29793341AF81A22B /* ScanModel.swift */,
+				B9EA637F3E10456AB9BFB372 /* ReviewQueue.swift */,
 				47731D7AFF619393565B668F /* SceneCheck.swift */,
 				17463A9523844154A609AA96 /* GameSuggester.swift */,
 				1F5F7CEAB6296502544C0B9F /* ScoreboardReader.swift */,
@@ -340,6 +345,7 @@
 			children = (
 				FF2EE34983CD926C23F62BCF /* AlbumAndScoreboardTests.swift */,
 				30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */,
+				A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */,
 				7B48F99FC296122C6C846961 /* BigGameTests.swift */,
 				0EBB3E2CA6352B5C2EB2E15D /* DetectionTuningTests.swift */,
 				73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */,
@@ -612,6 +618,7 @@
 			files = (
 				FD6F7B578E5D5610C7F4C564 /* AlbumAndScoreboardTests.swift in Sources */,
 				3FEB031AE0994BFC9587347E /* NeighborGroundsTests.swift in Sources */,
+				37AE837711CD4841A1C8F45C /* ReviewQueueTests.swift in Sources */,
 				BB3F51B6F1750A2ECB5E0479 /* BigGameTests.swift in Sources */,
 				1307844B2E7EAB4CDD54E487 /* DetectionTuningTests.swift in Sources */,
 				7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */,
@@ -664,6 +671,7 @@
 				6122F26E5A1E6D6723B52578 /* RecapFilmView.swift in Sources */,
 				10A7E1C349037AD2CA7BE55A /* RootView.swift in Sources */,
 				039B28D15BD758C29D374F98 /* ScanModel.swift in Sources */,
+				8A18826A7B6B40F8B5F3CDCB /* ReviewQueue.swift in Sources */,
 				73C196CCFCF30A1C99B80D91 /* SceneCheck.swift in Sources */,
 				9A317C05D603405286EB368F /* GameSuggester.swift in Sources */,
 				5B7AF8406D59899769065BD7 /* ScoreboardReader.swift in Sources */,

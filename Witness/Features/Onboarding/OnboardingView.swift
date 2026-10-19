@@ -301,7 +301,8 @@ private struct ResultScreen: View {
                 .opacity(beat >= 2 ? 1 : 0)
                 .offset(y: beat >= 2 ? 0 : 18)
             if !scan.others.isEmpty {
-                Label("Plus \(scan.others.count) stadium \(scan.others.count == 1 ? "visit" : "visits") with no game that day, like a tour. Keep the ones you want.",
+                // Not part of the count above, and not added with the games: they are asked about next, one by one.
+                Label("Plus \(scan.others.count) stadium \(scan.others.count == 1 ? "visit" : "visits") with no game that day, like a tour, not counted above. Keep the ones you want next.",
                       systemImage: "building.columns")
                     .font(.footnote)
                     .foregroundStyle(Color.textSecondary)

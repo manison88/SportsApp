@@ -112,7 +112,7 @@ struct DiscoveryView: View {
                 }
 
                 HStack(spacing: Spacing.inner) {
-                    Button("Skip") { advance() }
+                    Button("Skip") { presenter.scan.dismiss(cluster.assetIds, on: cluster.start); advance() }
                         .buttonStyle(.secondary)
                         .frame(maxWidth: 120)
                         .accessibilityIdentifier("discovery-skip")
@@ -355,7 +355,7 @@ struct DiscoveryView: View {
                 }
 
                 HStack(spacing: Spacing.inner) {
-                    Button("Skip") { advancePossible() }
+                    Button("Skip") { presenter.scan.dismiss(day.assetIds, on: day.day); advancePossible() }
                         .buttonStyle(.secondary)
                         .frame(maxWidth: 120)
                         .accessibilityIdentifier("discovery-possible-skip")
@@ -493,7 +493,7 @@ struct DiscoveryView: View {
                 }
 
                 HStack(spacing: Spacing.inner) {
-                    Button("Skip") { advanceOther() }
+                    Button("Skip") { presenter.scan.dismiss(cluster.assetIds, on: cluster.start); advanceOther() }
                         .buttonStyle(.secondary)
                         .frame(maxWidth: 120)
                         .accessibilityIdentifier("discovery-other-skip")
@@ -625,11 +625,13 @@ struct DiscoveryView: View {
             }
             if scan.state == .denied { phase = .denied; return }
         }
-        scan.markReviewed()
+        // Each result is reviewed once: what this screen takes leaves the scan, so a later search shows only its own finds,
+        // and anything already added or skipped is left out.
         tickets = scan.tickets
-        clusters = scan.games
-        others = scan.others
-        possible = scan.possible
+        let review = scan.takeForReview(library: library)
+        clusters = review.games
+        others = review.others
+        possible = review.possible
         phase = .results
     }
 
