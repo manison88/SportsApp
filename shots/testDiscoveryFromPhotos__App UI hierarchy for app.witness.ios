@@ -1,77 +1,77 @@
-Application, 0x106864ee0, pid: 27814, label: 'Witness' <App element pid: 27814>
-  Window (Main), 0x104f102f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4350783872.4>
-    Other, 0x104f6d520, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4362435968.5>
-      Other, 0x104f665b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4363220320.6>
-        Other, 0x104f6dda0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4350791104.7>
-          Other, 0x104f68e60, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4363380928.8>
-            Other, 0x104f6d940, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4363458592.273>
-              Other, 0x104f6e180, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4541528240.274>
-                Other, 0x104f68a40, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4363854048.280>
-                  Other, 0x104f6e5a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4363994864.294>
-                    Other, 0x104f6e6c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4757893872.304>
-                      Other, 0x104f6e7e0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4757893088.305>
-                        Other, 0x104f6e900, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4987215408.306>
-                          NavigationBar, 0x104f6ea20, {{0.0, 56.3}, {402.0, 96.0}}, identifier: 'Timeline' <AX element pid: 27814, elementOrHash.elementID: 4363791504.307>
-                            Other, 0x104f6eb40, {{16.0, 60.3}, {96.0, 36.0}}, label: 'TIMELINE' <AX element pid: 27814, elementOrHash.elementID: 4417880064.309>
-                              Other, 0x104f6ec60, {{16.0, 60.3}, {96.0, 36.0}} <AX element pid: 27814, elementOrHash.elementID: 4542030272.315>
-                                StaticText, 0x104f6ed80, {{16.0, 60.3}, {96.0, 36.0}}, label: 'TIMELINE' <AX element pid: 27814, elementOrHash.elementID: 4542029040.321>
-                            StaticText, 0x104f6eea0, {{200.7, 78.0}, {1.0, 1.0}}, label: 'Timeline' <AX element pid: 27814, elementOrHash.elementID: 4414914560.310>
-                              Other, 0x104f6efc0, {{200.7, 78.0}, {1.0, 1.0}} <AX element pid: 27814, elementOrHash.elementID: 4362937200.316>
-                                Other, 0x104f6f0e0, {{200.7, 78.0}, {1.0, 1.0}} <AX element pid: 27814, elementOrHash.elementID: 4362637728.322>
-                            Other, 0x104f6f200, {{308.0, 61.0}, {38.0, 35.0}}, identifier: 'timeline-big-games', label: 'Big games' <AX element pid: 27814, elementOrHash.elementID: 4417481728.311>
-                              Other, 0x104f6f320, {{308.0, 61.0}, {38.0, 35.0}} <AX element pid: 27814, elementOrHash.elementID: 4541935616.317>
-                                Button, 0x104f6f440, {{308.0, 61.0}, {38.0, 35.0}}, identifier: 'timeline-big-games', label: 'Big games' <AX element pid: 27814, elementOrHash.elementID: 4541933568.323>
-                            Other, 0x104f6f560, {{354.0, 63.3}, {32.0, 30.3}}, identifier: 'add-menu', label: 'Add' <AX element pid: 27814, elementOrHash.elementID: 4417529344.312>
-                              Other, 0x104f6f680, {{354.0, 63.3}, {32.0, 30.3}} <AX element pid: 27814, elementOrHash.elementID: 4542015136.318>
-                                Button, 0x104f6f7a0, {{354.0, 63.3}, {32.0, 30.3}}, identifier: 'add-menu', label: 'Add' <AX element pid: 27814, elementOrHash.elementID: 4542013968.324>
-                                  Button, 0x104f6f8c0, {{354.0, 63.3}, {32.0, 30.3}} <AX element pid: 27814, elementOrHash.elementID: 4541944048.326>
-                                    Other, 0x104f6f9e0, {{354.0, 63.3}, {32.0, 30.3}} <AX element pid: 27814, elementOrHash.elementID: 4542013536.332>
-                                      Image, 0x104f6fb00, {{354.0, 63.3}, {32.0, 30.3}}, identifier: 'plus', label: 'Add' <AX element pid: 27814, elementOrHash.elementID: 4542012272.335>
-                            SearchField, 0x104f6fc20, {{16.0, 101.3}, {370.0, 36.0}}, label: 'Teams, places, years', placeholderValue: 'Teams, places, years' <AX element pid: 27814, elementOrHash.elementID: 4417252864.313>
-                              Image, 0x104f6fd40, {{22.0, 109.7}, {20.3, 18.7}}, identifier: 'magnifyingglass', label: 'Search' <AX element pid: 27814, elementOrHash.elementID: 4541698336.319>
-                          Other, 0x104f6fe60, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4477542864.308>
-                            Other, 0x104f6ff80, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4758086768.314>
-                              Other, 0x104f700a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4541763568.320>
-                                Other, 0x104f701c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4757979696.325>
-                                  ScrollView, 0x104f702e0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4357524992.327>
-                                    Other, 0x104f70400, {{0.0, 336.0}, {402.0, 556.0}} <AX element pid: 27814, elementOrHash.elementID: 4363952288.333>
-                                      Other, 0x104f70520, {{20.0, 344.0}, {362.0, 529.0}} <AX element pid: 27814, elementOrHash.elementID: 4757975808.336>
-                                        Button, 0x104f70640, {{20.0, 344.0}, {362.0, 529.0}}, identifier: 'game-card-AD899209-2589-44E0-8EB9-B571B8A512BC', label: 'Boston 5
-Detroit 3, Detroit at Boston, Fenway Park, Jun 9, 2017' <AX element pid: 27814, elementOrHash.elementID: 4757973040.338>
-                                          Image, 0x104f70760, {{20.0, 344.0}, {362.0, 420.0}} <AX element pid: 27814, elementOrHash.elementID: 4758085664.339>
-                                          StaticText, 0x104f70880, {{44.0, 561.7}, {45.3, 124.3}}, label: '9' <AX element pid: 27814, elementOrHash.elementID: 4758086096.340>
-                                          StaticText, 0x104f709a0, {{44.0, 690.0}, {53.3, 26.3}}, label: 'JUN' <AX element pid: 27814, elementOrHash.elementID: 4757908176.341>
-                                          StaticText, 0x104f70ac0, {{44.0, 726.3}, {75.0, 15.7}}, label: 'FRI · 2017' <AX element pid: 27814, elementOrHash.elementID: 4757919568.342>
-                                          StaticText, 0x104f70be0, {{161.0, 701.3}, {118.0, 18.0}}, label: 'Fenway Park' <AX element pid: 27814, elementOrHash.elementID: 4757920352.343>
-                                          StaticText, 0x104f70d00, {{161.0, 724.3}, {57.7, 15.7}}, label: 'Boston' <AX element pid: 27814, elementOrHash.elementID: 4757910320.344>
-                                          StaticText, 0x104f70e20, {{42.0, 781.5}, {61.0, 24.0}}, label: '7:10 PM' <AX element pid: 27814, elementOrHash.elementID: 4757911104.345>
-                                          Image, 0x104f70f40, {{41.7, 830.0}, {18.3, 13.3}}, identifier: 'cloud.sun.fill', label: 'Partly Cloudy' <AX element pid: 27814, elementOrHash.elementID: 4757911888.346>
-                                          StaticText, 0x104f71060, {{64.3, 827.5}, {28.3, 18.0}}, label: '69°F' <AX element pid: 27814, elementOrHash.elementID: 4757913520.347>
-                                          Image, 0x104f71180, {{115.0, 830.7}, {17.7, 12.0}}, identifier: 'person.2', label: 'person.2' <AX element pid: 27814, elementOrHash.elementID: 4757914304.348>
-                                          StaticText, 0x104f712a0, {{138.3, 827.5}, {44.7, 18.0}}, label: '37,755' <AX element pid: 27814, elementOrHash.elementID: 4757915088.349>
-                                          StaticText, 0x104f713c0, {{282.2, 777.3}, {61.7, 13.3}}, label: 'FINAL · W' <AX element pid: 27814, elementOrHash.elementID: 4757916720.350>
-                                          StaticText, 0x104f714e0, {{271.7, 797.7}, {33.0, 22.0}}, label: 'Detroit' <AX element pid: 27814, elementOrHash.elementID: 4757917504.351>
-                                          StaticText, 0x104f71600, {{358.3, 796.7}, {10.7, 24.0}}, label: '3' <AX element pid: 27814, elementOrHash.elementID: 4757922256.352>
-                                          StaticText, 0x104f71720, {{271.0, 827.7}, {34.3, 22.0}}, label: 'Boston' <AX element pid: 27814, elementOrHash.elementID: 4757918288.353>
-                                          StaticText, 0x104f71840, {{358.3, 826.7}, {10.7, 24.0}}, label: '5' <AX element pid: 27814, elementOrHash.elementID: 4757972608.354>
-                                    Other, 0x104f71960, {{369.0, 336.0}, {30.0, 455.0}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 27814, elementOrHash.elementID: 4542050576.334>
-                                      Other, 0x104f71a80, {{396.0, 339.0}, {3.0, 402.3}} <AX element pid: 27814, elementOrHash.elementID: 4542051040.337>
-                                    Other, 0x104f71ba0, {{369.0, 336.0}, {30.0, 455.0}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 27814, elementOrHash.elementID: 4542050576.334>
-                                      Other, 0x104f71cc0, {{396.0, 339.0}, {3.0, 402.3}} <AX element pid: 27814, elementOrHash.elementID: 4542051040.337>
-                                  StaticText, 0x104f71de0, {{34.0, 172.3}, {147.7, 18.0}}, label: 'LOOK FOR MORE GAMES?' <AX element pid: 27814, elementOrHash.elementID: 4757977376.328>
-                                  StaticText, 0x104f71f00, {{34.0, 200.3}, {328.3, 51.7}}, label: 'Search your albums, trips and less obvious photos for games without a stadium location. It runs in the background and you pick the stadium for each one.' <AX element pid: 27814, elementOrHash.elementID: 4757983360.329>
-                                  Button, 0x104f72020, {{34.0, 262.0}, {162.0, 54.0}}, identifier: 'deep-scan-start', label: 'SEARCH' <AX element pid: 27814, elementOrHash.elementID: 4757984144.330>
-                                  Button, 0x104f72140, {{206.0, 262.0}, {162.0, 54.0}}, identifier: 'deep-scan-decline', label: 'NOT NOW' <AX element pid: 27814, elementOrHash.elementID: 4757984576.331>
-              TabBar, 0x104f72260, {{0.0, 791.0}, {402.0, 83.0}}, label: 'Tab Bar' <AX element pid: 27814, elementOrHash.elementID: 4363990992.275>
-                Button, 0x104f72380, {{2.0, 792.0}, {97.0, 48.0}}, identifier: 'rectangle.stack.fill', label: 'Timeline', Selected <AX element pid: 27814, elementOrHash.elementID: 4362641808.281>
-                  Image, 0x104f724a0, {{35.0, 794.7}, {30.0, 31.3}}, identifier: 'rectangle.stack.fill', label: 'Album' <AX element pid: 27814, elementOrHash.elementID: 4363428016.295>
-                Button, 0x104f725c0, {{103.0, 792.0}, {96.0, 48.0}}, identifier: 'globe.americas.fill', label: 'Map' <AX element pid: 27814, elementOrHash.elementID: 4987168240.282>
-                Button, 0x104f726e0, {{203.0, 792.0}, {97.0, 48.0}}, identifier: 'person.text.rectangle.fill', label: 'Passport' <AX element pid: 27814, elementOrHash.elementID: 4987184192.283>
-                Button, 0x104f72800, {{304.0, 792.0}, {96.0, 48.0}}, identifier: 'person.crop.circle.fill', label: 'You' <AX element pid: 27814, elementOrHash.elementID: 4987202544.284>
-    Other, 0x104f72920, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4363674880.231>
-      Other, 0x104f72a40, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4351247344.232>
-        Other, 0x104f72b60, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 27814, elementOrHash.elementID: 4363188480.233>
-          StaticText, 0x104f72c80, {{20.0, 331.2}, {52.7, 143.3}}, label: '1' <AX element pid: 27814, elementOrHash.elementID: 4363780304.357>
-          StaticText, 0x104f72da0, {{20.0, 502.5}, {112.3, 26.3}}, label: 'GAME ADDED' <AX element pid: 27814, elementOrHash.elementID: 4363647488.358>
-          Button, 0x104f72ec0, {{20.0, 770.0}, {362.0, 54.0}}, identifier: 'discovery-done', label: 'DONE' <AX element pid: 27814, elementOrHash.elementID: 4364104672.359>
-          Button, 0x104f72fe0, {{16.0, 62.0}, {44.0, 44.0}}, identifier: 'discovery-close', label: 'Close' <AX element pid: 27814, elementOrHash.elementID: 4363525088.235>
+Application, 0x10546a9d0, pid: 28583, label: 'Witness' <App element pid: 28583>
+  Window (Main), 0x105461590, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4342425104.4>
+    Other, 0x10545bca0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4339144928.5>
+      Other, 0x105463560, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4341407056.6>
+        Other, 0x105461170, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4341399648.7>
+          Other, 0x1054521a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4339262672.8>
+            Other, 0x105463680, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4452642464.274>
+              Other, 0x1054637a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4339478720.275>
+                Other, 0x1054638c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4342585856.281>
+                  Other, 0x1054639e0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4342062848.295>
+                    Other, 0x10545a890, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4453042848.305>
+                      Other, 0x10545a9b0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4453042064.306>
+                        Other, 0x10545aad0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4776217520.307>
+                          NavigationBar, 0x10545abf0, {{0.0, 56.3}, {402.0, 96.0}}, identifier: 'Timeline' <AX element pid: 28583, elementOrHash.elementID: 4339974384.308>
+                            Other, 0x10545ad10, {{16.0, 60.3}, {96.0, 36.0}}, label: 'TIMELINE' <AX element pid: 28583, elementOrHash.elementID: 4350322688.310>
+                              Other, 0x10545ae30, {{16.0, 60.3}, {96.0, 36.0}} <AX element pid: 28583, elementOrHash.elementID: 5103726896.316>
+                                StaticText, 0x10545af50, {{16.0, 60.3}, {96.0, 36.0}}, label: 'TIMELINE' <AX element pid: 28583, elementOrHash.elementID: 5103725664.322>
+                            StaticText, 0x105463e00, {{200.7, 78.0}, {1.0, 1.0}}, label: 'Timeline' <AX element pid: 28583, elementOrHash.elementID: 4345537024.311>
+                              Other, 0x105463f20, {{200.7, 78.0}, {1.0, 1.0}} <AX element pid: 28583, elementOrHash.elementID: 4453126416.317>
+                                Other, 0x105464040, {{200.7, 78.0}, {1.0, 1.0}} <AX element pid: 28583, elementOrHash.elementID: 4453125632.323>
+                            Other, 0x105464160, {{308.0, 61.0}, {38.0, 35.0}}, identifier: 'timeline-big-games', label: 'Big games' <AX element pid: 28583, elementOrHash.elementID: 4349314048.312>
+                              Other, 0x105464280, {{308.0, 61.0}, {38.0, 35.0}} <AX element pid: 28583, elementOrHash.elementID: 5103617584.318>
+                                Button, 0x1054643a0, {{308.0, 61.0}, {38.0, 35.0}}, identifier: 'timeline-big-games', label: 'Big games' <AX element pid: 28583, elementOrHash.elementID: 5103615104.324>
+                            Other, 0x1054644c0, {{354.0, 63.3}, {32.0, 30.3}}, identifier: 'add-menu', label: 'Add' <AX element pid: 28583, elementOrHash.elementID: 4349988864.313>
+                              Other, 0x1054645e0, {{354.0, 63.3}, {32.0, 30.3}} <AX element pid: 28583, elementOrHash.elementID: 5103713200.319>
+                                Button, 0x105464700, {{354.0, 63.3}, {32.0, 30.3}}, identifier: 'add-menu', label: 'Add' <AX element pid: 28583, elementOrHash.elementID: 5103710496.325>
+                                  Button, 0x105464820, {{354.0, 63.3}, {32.0, 30.3}} <AX element pid: 28583, elementOrHash.elementID: 5103626112.327>
+                                    Other, 0x105464940, {{354.0, 63.3}, {32.0, 30.3}} <AX element pid: 28583, elementOrHash.elementID: 5103709824.333>
+                                      Image, 0x105464a60, {{354.0, 63.3}, {32.0, 30.3}}, identifier: 'plus', label: 'Add' <AX element pid: 28583, elementOrHash.elementID: 5103708560.336>
+                            SearchField, 0x105464b80, {{16.0, 101.3}, {370.0, 36.0}}, label: 'Teams, places, years', placeholderValue: 'Teams, places, years' <AX element pid: 28583, elementOrHash.elementID: 4348333056.314>
+                              Image, 0x105464ca0, {{22.0, 109.7}, {20.3, 18.7}}, identifier: 'magnifyingglass', label: 'Search' <AX element pid: 28583, elementOrHash.elementID: 5103593168.320>
+                          Other, 0x105464dc0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4776218448.309>
+                            Other, 0x105275640, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4453132992.315>
+                              Other, 0x10526c7a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4339944480.321>
+                                Other, 0x105273360, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4453106640.326>
+                                  ScrollView, 0x1052702e0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4349216768.328>
+                                    Other, 0x10527b570, {{0.0, 336.0}, {402.0, 556.0}} <AX element pid: 28583, elementOrHash.elementID: 4776206864.334>
+                                      Other, 0x10527bdd0, {{20.0, 344.0}, {362.0, 529.0}} <AX element pid: 28583, elementOrHash.elementID: 4452562656.337>
+                                        Button, 0x10527ebf0, {{20.0, 344.0}, {362.0, 529.0}}, identifier: 'game-card-BE50ADA4-D516-4599-9FA9-50E45A048234', label: 'Boston 5
+Detroit 3, Detroit at Boston, Fenway Park, Jun 9, 2017' <AX element pid: 28583, elementOrHash.elementID: 4452561760.339>
+                                          Image, 0x10527ed10, {{20.0, 344.0}, {362.0, 420.0}} <AX element pid: 28583, elementOrHash.elementID: 4453021584.340>
+                                          StaticText, 0x10527ee30, {{44.0, 561.7}, {45.3, 124.3}}, label: '9' <AX element pid: 28583, elementOrHash.elementID: 4453022016.341>
+                                          StaticText, 0x10527ef50, {{44.0, 690.0}, {53.3, 26.3}}, label: 'JUN' <AX element pid: 28583, elementOrHash.elementID: 4453085408.342>
+                                          StaticText, 0x10527f070, {{44.0, 726.3}, {75.0, 15.7}}, label: 'FRI · 2017' <AX element pid: 28583, elementOrHash.elementID: 4453086192.343>
+                                          StaticText, 0x10527f190, {{161.0, 701.3}, {118.0, 18.0}}, label: 'Fenway Park' <AX element pid: 28583, elementOrHash.elementID: 4453086976.344>
+                                          StaticText, 0x10527f2b0, {{161.0, 724.3}, {57.7, 15.7}}, label: 'Boston' <AX element pid: 28583, elementOrHash.elementID: 4453017712.345>
+                                          StaticText, 0x10527f3d0, {{42.0, 781.5}, {61.0, 24.0}}, label: '7:10 PM' <AX element pid: 28583, elementOrHash.elementID: 4453018496.346>
+                                          Image, 0x10527f4f0, {{41.7, 830.0}, {18.3, 13.3}}, identifier: 'cloud.sun.fill', label: 'Partly Cloudy' <AX element pid: 28583, elementOrHash.elementID: 4453019280.347>
+                                          StaticText, 0x10527f610, {{64.3, 827.5}, {28.3, 18.0}}, label: '69°F' <AX element pid: 28583, elementOrHash.elementID: 4453066640.348>
+                                          Image, 0x10527f730, {{115.0, 830.7}, {17.7, 12.0}}, identifier: 'person.2', label: 'person.2' <AX element pid: 28583, elementOrHash.elementID: 4453067424.349>
+                                          StaticText, 0x10527f850, {{138.3, 827.5}, {44.7, 18.0}}, label: '37,755' <AX element pid: 28583, elementOrHash.elementID: 4453068208.350>
+                                          StaticText, 0x10527f970, {{282.2, 777.3}, {61.7, 13.3}}, label: 'FINAL · W' <AX element pid: 28583, elementOrHash.elementID: 4453068992.351>
+                                          StaticText, 0x10527fa90, {{271.7, 797.7}, {33.0, 22.0}}, label: 'Detroit' <AX element pid: 28583, elementOrHash.elementID: 4452282112.352>
+                                          StaticText, 0x10527fbb0, {{358.3, 796.7}, {10.7, 24.0}}, label: '3' <AX element pid: 28583, elementOrHash.elementID: 4452282544.353>
+                                          StaticText, 0x10527fcd0, {{271.0, 827.7}, {34.3, 22.0}}, label: 'Boston' <AX element pid: 28583, elementOrHash.elementID: 4452579744.354>
+                                          StaticText, 0x10527fdf0, {{358.3, 826.7}, {10.7, 24.0}}, label: '5' <AX element pid: 28583, elementOrHash.elementID: 4452580176.355>
+                                    Other, 0x1052757e0, {{369.0, 336.0}, {30.0, 455.0}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 28583, elementOrHash.elementID: 5103746048.335>
+                                      Other, 0x105275900, {{396.0, 339.0}, {3.0, 402.3}} <AX element pid: 28583, elementOrHash.elementID: 5103746512.338>
+                                    Other, 0x105275a20, {{369.0, 336.0}, {30.0, 455.0}}, label: 'Vertical scroll bar, 2 pages', value: 0% <AX element pid: 28583, elementOrHash.elementID: 5103746048.335>
+                                      Other, 0x105275b40, {{396.0, 339.0}, {3.0, 402.3}} <AX element pid: 28583, elementOrHash.elementID: 5103746512.338>
+                                  StaticText, 0x105275c60, {{34.0, 172.3}, {147.7, 18.0}}, label: 'LOOK FOR MORE GAMES?' <AX element pid: 28583, elementOrHash.elementID: 4452781808.329>
+                                  StaticText, 0x105275d80, {{34.0, 200.3}, {328.3, 51.7}}, label: 'Search your albums, trips and less obvious photos for games without a stadium location. It runs in the background and you pick the stadium for each one.' <AX element pid: 28583, elementOrHash.elementID: 4452782592.330>
+                                  Button, 0x105275ea0, {{34.0, 262.0}, {162.0, 54.0}}, identifier: 'deep-scan-start', label: 'SEARCH' <AX element pid: 28583, elementOrHash.elementID: 4452537776.331>
+                                  Button, 0x105275fc0, {{206.0, 262.0}, {162.0, 54.0}}, identifier: 'deep-scan-decline', label: 'NOT NOW' <AX element pid: 28583, elementOrHash.elementID: 4453105744.332>
+              TabBar, 0x1052760e0, {{0.0, 791.0}, {402.0, 83.0}}, label: 'Tab Bar' <AX element pid: 28583, elementOrHash.elementID: 4341569024.276>
+                Button, 0x105276200, {{2.0, 792.0}, {97.0, 48.0}}, identifier: 'rectangle.stack.fill', label: 'Timeline', Selected <AX element pid: 28583, elementOrHash.elementID: 4342135440.282>
+                  Image, 0x105276320, {{35.0, 794.7}, {30.0, 31.3}}, identifier: 'rectangle.stack.fill', label: 'Album' <AX element pid: 28583, elementOrHash.elementID: 4776142240.296>
+                Button, 0x105276440, {{103.0, 792.0}, {96.0, 48.0}}, identifier: 'globe.americas.fill', label: 'Map' <AX element pid: 28583, elementOrHash.elementID: 4341806336.283>
+                Button, 0x105276560, {{203.0, 792.0}, {97.0, 48.0}}, identifier: 'person.text.rectangle.fill', label: 'Passport' <AX element pid: 28583, elementOrHash.elementID: 4341767856.284>
+                Button, 0x105276680, {{304.0, 792.0}, {96.0, 48.0}}, identifier: 'person.crop.circle.fill', label: 'You' <AX element pid: 28583, elementOrHash.elementID: 4342131488.285>
+    Other, 0x1052767a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4339623120.232>
+      Other, 0x1052768c0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4342072224.233>
+        Other, 0x1052769e0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 28583, elementOrHash.elementID: 4775951216.234>
+          StaticText, 0x105276b00, {{20.0, 331.2}, {52.7, 143.3}}, label: '1' <AX element pid: 28583, elementOrHash.elementID: 4342116688.358>
+          StaticText, 0x105276c20, {{20.0, 502.5}, {112.3, 26.3}}, label: 'GAME ADDED' <AX element pid: 28583, elementOrHash.elementID: 4748193680.359>
+          Button, 0x105276d40, {{20.0, 770.0}, {362.0, 54.0}}, identifier: 'discovery-done', label: 'DONE' <AX element pid: 28583, elementOrHash.elementID: 4341749056.360>
+          Button, 0x105276e60, {{16.0, 62.0}, {44.0, 44.0}}, identifier: 'discovery-close', label: 'Close' <AX element pid: 28583, elementOrHash.elementID: 4775950112.236>
