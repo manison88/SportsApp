@@ -12,7 +12,7 @@ const shade = (a = .35) => `linear-gradient(rgba(5,5,6,${a}),rgba(5,5,6,${a}))`;
 const ticketMask = (r, w, h) => `-webkit-mask:radial-gradient(circle ${r}px at 0 50%,#0000 98%,#000) left/51% 100% no-repeat,radial-gradient(circle ${r}px at 100% 50%,#0000 98%,#000) right/51% 100% no-repeat`;
 
 const ICONS = [
-  ['01-full-w', 'Aerial + cream W', `<div style="position:absolute;inset:0;${photo('', '45% 50%', '135%')}"></div><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.55),rgba(5,5,6,.2) 40%,rgba(5,5,6,.7))"></div>
+  ['01-full-w', 'Aerial + cream W', `<div style="position:absolute;inset:0;${photo('', '50% 50%', '100%')}"></div><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,5,6,.5),rgba(5,5,6,.2) 40%,rgba(5,5,6,.7))"></div>
    <div style="position:absolute;left:0;right:0;top:130px;text-align:center;${font};font-size:820px;line-height:1;color:${CREAM}">W</div>
    <div style="position:absolute;left:690px;top:150px;width:130px;height:130px;border-radius:50%;background:${A};box-shadow:0 0 90px 30px rgba(255,181,71,.6)"></div>`],
   ['02-w-knockout', 'Aerial seen through the W', `<div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,#16161b,${INK} 80%)"></div>
