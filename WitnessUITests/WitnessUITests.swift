@@ -322,6 +322,20 @@ final class WitnessUITests: XCTestCase {
         }
     }
 
+    func testShareMapLooks() {
+        launch([])
+        tap("welcome-sample")
+        tab("Map")
+        sleep(3)
+        tap("map-share")
+        sleep(12)
+        for i in 0..<7 {
+            snap("map-share-\(i)")
+            app.swipeLeft()
+            sleep(2)
+        }
+    }
+
     func testSharePassportPage() {
         launch([])
         tap("welcome-sample")

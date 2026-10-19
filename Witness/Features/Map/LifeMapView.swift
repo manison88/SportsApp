@@ -96,6 +96,14 @@ struct LifeMapView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
+                ShareCardSheetLink(kind: "map", title: "Share map", format: .story, key: "\(sport?.rawValue ?? "all")-\(venues.count)",
+                                   variants: { await shareVariants(venues: venues, stats: stats) }, label: {
+                    Image(systemName: "square.and.arrow.up").fontWeight(.bold)
+                })
+                .accessibilityLabel("Share map")
+                .accessibilityIdentifier("map-share")
+            }
+            ToolbarItem(placement: .topBarTrailing) {
                 Menu {
                     Picker("Sport", selection: $sport) {
                         Text("All sports").tag(Sport?.none)
@@ -121,6 +129,44 @@ struct LifeMapView: View {
             ExpandedMap(legs: legs, venues: venues, home: home, homeCity: library.profile.homeCity, labeled: labeled,
                         initialCamera: Self.camera(home: home, venues: venues))
         }
+    }
+
+    // MARK: Share
+
+    private func shareVariants(venues: [Venue], stats: Stats) async -> [ShareCardVariant] {
+        let games = games
+        // Each venue wears the color of the sport seen there most, as on the map.
+        var colors: [String: Color] = [:]
+        for v in venues {
+            let top = Dictionary(grouping: games.filter { $0.venueId == v.id }, by: \.sport).max { $0.value.count < $1.value.count }?.key
+            colors[v.id] = top?.lineColor ?? .white
+        }
+        var newest: [(venue: Venue, sport: Sport, aerial: UIImage?)] = []
+        var seen = Set<String>()
+        for g in games.sorted(by: { $0.date > $1.date }) where seen.insert(g.venueId).inserted {
+            guard let v = library.venue(g.venueId), newest.count < 10 else { continue }
+            newest.append((v, g.sport, await AerialCache.shared.image(for: v, points: 52)))
+        }
+        let byCountry = Dictionary(grouping: venues, by: \.countryCode).map { (code: $0.key, venues: $0.value.count) }
+            .sorted { $0.venues != $1.venues ? $0.venues > $1.venues : $0.code < $1.code }
+        let numbers = MapStoryCard.Numbers(distance: library.hasHome ? stats.distance : nil, venues: stats.venues,
+                                           countries: stats.countries, games: stats.games,
+                                           homeCity: library.hasHome ? library.profile.homeCity : "",
+                                           countryCounts: byCountry, grounds: newest)
+        let home = library.hasHome ? library.profile.homeLocation.coordinate : nil
+        var shots: [String: MapShot] = [:]
+        var out: [ShareCardVariant] = []
+        for style in MapStoryCard.Style.allCases {
+            let type: MKMapType = style == .satellite ? .satellite : .mutedStandard
+            let dark = style != .poster
+            let key = "\(style.mapSize.width)x\(style.mapSize.height)-\(type.rawValue)-\(dark)"
+            if shots[key] == nil, let shot = await MapShot.make(venues: venues, colors: colors, home: home, size: style.mapSize, type: type, dark: dark) {
+                shots[key] = shot
+            }
+            let shot = shots[key]
+            out.append(ShareCardVariant(style.name) { MapStoryCard(style: style, shot: shot, numbers: numbers) })
+        }
+        return out
     }
 
     // MARK: Legend
