@@ -1,6 +1,6 @@
 # Rebuilds the downloadable data packs and publishes them through the analytics Worker (stored in R2), so teams, venues and schedules
 # update without an app release. Secrets (repo settings): PACKS_SIGNING_KEY (from Tools/packs/make_keys.py) and ANALYTICS_DASH_PASSWORD.
-# The Worker's address comes from the analytics-deploy branch (URL.txt), so deploy the Worker first.
+# The Worker lives at witness-api.312itconsulting.com (deployed with wrangler from analytics/).
 name: Publish data packs
 
 on:
@@ -40,7 +40,5 @@ jobs:
         if: env.HAS_KEYS == 'true'
         env:
           PACKS_PASSWORD: ${{ secrets.ANALYTICS_DASH_PASSWORD }}
-        run: |
-          git fetch --depth=1 origin analytics-deploy
-          export PACKS_BASE_URL="$(git show origin/analytics-deploy:URL.txt | tr -d '[:space:]')"
-          python3 Tools/packs/publish_worker.py
+          PACKS_BASE_URL: https://witness-api.312itconsulting.com
+        run: python3 Tools/packs/publish_worker.py
