@@ -5,6 +5,11 @@ import SwiftUI
 struct TeamPickerView: View {
     @Binding var selection: String?
     let sport: Sport
+    var title = "Team"
+    /// Set when the picker is the first step of a flow: a pick moves forward (the caller pushes the next page) instead of closing.
+    var onPick: ((String) -> Void)? = nil
+    /// Set alongside `onPick`: opening a league is a step on the caller's navigation path, so every page is pushed the same way.
+    var onLeague: ((String) -> Void)? = nil
 
     @Environment(Library.self) private var library
     @Environment(\.dismiss) private var dismiss
@@ -42,13 +47,13 @@ struct TeamPickerView: View {
                 ForEach(leagueSections, id: \.sport) { section in
                     Section(section.sport == sport ? "\(section.sport.name) leagues" : section.sport.name) {
                         ForEach(section.leagues, id: \.name) { league in
-                            NavigationLink {
-                                LeagueTeamsView(league: league.name, teams: league.teams, selection: $selection) { closeOnReturn = true }
-                            } label: {
-                                HStack {
-                                    Text(league.name).font(.condensed(.headline)).foregroundStyle(.white)
-                                    Spacer()
-                                    Text("\(league.teams.count)").font(.footnote).foregroundStyle(Color.textSecondary)
+                            Group {
+                                if let onLeague {
+                                    Button { onLeague(league.name) } label: { leagueLabel(league) }
+                                } else {
+                                    NavigationLink {
+                                        LeagueTeamsView(league: league.name, teams: league.teams, selection: $selection, popsSelf: onPick == nil) { picked() }
+                                    } label: { leagueLabel(league) }
                                 }
                             }
                             .accessibilityIdentifier("team-league-\(league.name)")
@@ -61,7 +66,7 @@ struct TeamPickerView: View {
         .scrollContentBackground(.hidden)
         .background(Color.ink.ignoresSafeArea())
         .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search teams and countries")
-        .navigationTitle("Team")
+        .navigationTitle(title)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             guard closeOnReturn else { return }
@@ -73,7 +78,7 @@ struct TeamPickerView: View {
                 AddTeamView(initialName: trimmedQuery, sport: sport) { team in
                     selection = team.id
                     showNew = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { dismiss() }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { finish() }
                 }
             }
         }
@@ -126,8 +131,30 @@ struct TeamPickerView: View {
         }
     }
 
+    private func leagueLabel(_ league: LeagueGroup) -> some View {
+        HStack {
+            Text(league.name).font(.condensed(.headline)).foregroundStyle(.white)
+            Spacer()
+            Text("\(league.teams.count)").font(.footnote).foregroundStyle(Color.textSecondary)
+            if onLeague != nil {
+                Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(Color.textTertiary)
+            }
+        }
+        .contentShape(.rect)
+    }
+
     private func rows(_ teams: [Team]) -> some View {
-        TeamRows(teams: teams, selection: $selection) { dismiss() }
+        TeamRows(teams: teams, selection: $selection) { finish() }
+    }
+
+    /// A team was picked on this page: move forward, or close.
+    private func finish() {
+        if let onPick, let selection { onPick(selection) } else { dismiss() }
+    }
+
+    /// A team was picked inside a league's list. Moving forward happens from there; closing waits for that list to pop.
+    private func picked() {
+        if let onPick, let selection { onPick(selection) } else { closeOnReturn = true }
     }
 }
 
@@ -136,13 +163,14 @@ struct LeagueTeamsView: View {
     let league: String
     let teams: [Team]
     @Binding var selection: String?
-    /// Tells the picker to close once this list has popped.
+    /// Whether this list pops itself after a pick (the picker then closes), or stays for the next page to push on top.
+    var popsSelf = true
     let done: () -> Void
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         List {
-            Section { TeamRows(teams: teams.sorted { $0.locationName < $1.locationName }, selection: $selection) { done(); dismiss() } }
+            Section { TeamRows(teams: teams.sorted { $0.locationName < $1.locationName }, selection: $selection) { done(); if popsSelf { dismiss() } } }
                 .listRowBackground(Color.panel)
         }
         .scrollContentBackground(.hidden)

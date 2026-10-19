@@ -16,9 +16,30 @@ enum WeatherLookup {
 
     /// The forecast for a planned game, indoors or out (the trip there is outside), once it is within the forecast's reach.
     static func forecast(venue: Venue, date: Date, now: Date = .now) async -> Weather? {
-        guard date > now.addingTimeInterval(-6 * 3600), date.timeIntervalSince(now) < Double(forecastDays) * 86_400 else { return nil }
-        return await fetch(venue: venue, date: date, now: now)
+        guard inForecastRange(date, now: now) else { return nil }
+        let key = "\(venue.id)|\(Int(date.timeIntervalSince1970))" as NSString
+        if let hit = forecastCache.object(forKey: key), now.timeIntervalSince(hit.fetched) < 3600 { return hit.weather }
+        guard let weather = await fetch(venue: venue, date: date, now: now) else { return nil }
+        forecastCache.setObject(Cached(weather: weather, fetched: now), forKey: key)
+        return weather
     }
+
+    /// A forecast fetched in the last hour, without waiting: the plan page shows it at once when the schedule row already asked.
+    static func cachedForecast(venue: Venue, date: Date, now: Date = .now) -> Weather? {
+        let key = "\(venue.id)|\(Int(date.timeIntervalSince1970))" as NSString
+        guard let hit = forecastCache.object(forKey: key), now.timeIntervalSince(hit.fetched) < 3600 else { return nil }
+        return hit.weather
+    }
+
+    static func inForecastRange(_ date: Date, now: Date = .now) -> Bool {
+        date > now.addingTimeInterval(-6 * 3600) && date.timeIntervalSince(now) < Double(forecastDays) * 86_400
+    }
+
+    private final class Cached: @unchecked Sendable {
+        let weather: Weather, fetched: Date
+        init(weather: Weather, fetched: Date) { self.weather = weather; self.fetched = fetched }
+    }
+    nonisolated(unsafe) private static let forecastCache = NSCache<NSString, Cached>()
 
     private static func fetch(venue: Venue, date: Date, now: Date) async -> Weather? {
         guard let url = requestURL(latitude: venue.latitude, longitude: venue.longitude, date: date, now: now) else { return nil }

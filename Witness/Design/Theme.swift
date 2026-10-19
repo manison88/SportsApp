@@ -98,6 +98,7 @@ extension View {
 
 /// The single white primary action on a screen.
 struct PrimaryButtonStyle: ButtonStyle {
+    var fill: Color = .white
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.condensed(.headline, weight: .heavy))
@@ -105,7 +106,7 @@ struct PrimaryButtonStyle: ButtonStyle {
             .tracking(1.2)
             .foregroundStyle(.black)
             .frame(maxWidth: .infinity, minHeight: 54)
-            .background(Color.white, in: .rect(cornerRadius: 14))
+            .background(fill, in: .rect(cornerRadius: 14))
             .opacity(configuration.isPressed ? 0.75 : 1)
             .animation(.snappy(duration: 0.2), value: configuration.isPressed)
     }

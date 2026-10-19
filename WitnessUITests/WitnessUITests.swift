@@ -289,13 +289,9 @@ final class WitnessUITests: XCTestCase {
     /// Plan a game: a team picked inside any league lands back on the plan, never closes it.
     func testPlanPickTeamFromLeagues() {
         launch(["-empty"])
-        for n in 0..<6 {
-            if n == 0 {
-                tap("add-menu")
-                app.buttons["Plan a game"].tap()
-            } else {
-                tap("plan-team")
-            }
+        tap("add-menu")
+        app.buttons["Plan a game"].tap()
+        for n in 0..<4 {
             let leagues = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'team-league-'"))
             XCTAssertTrue(leagues.firstMatch.waitForExistence(timeout: 8))
             let league = leagues.element(boundBy: n)
@@ -304,7 +300,11 @@ final class WitnessUITests: XCTestCase {
             let row = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'team-row-'")).firstMatch
             XCTAssertTrue(row.waitForExistence(timeout: 5), "Teams in \(name)")
             row.tap()
-            XCTAssertTrue(el("plan-team").waitForExistence(timeout: 5), "Still planning after picking a team in \(name)")
+            XCTAssertTrue(el("plan-team").waitForExistence(timeout: 5), "The team's schedule opens after picking a team in \(name)")
+            back()
+            sleep(1)
+            XCTAssertTrue(row.waitForExistence(timeout: 5), "Back goes to the league's teams: \(app.navigationBars.firstMatch.identifier) leagues=\(app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'team-league-'")).count) plan=\(el("plan-team").exists)")
+            back()
         }
     }
 

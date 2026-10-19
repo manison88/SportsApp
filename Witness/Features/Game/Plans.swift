@@ -37,103 +37,115 @@ enum PlanText {
 
 // MARK: - Plan a game
 
-/// Pick a team, see its coming games, plan one.
+/// Pick a team, see its coming games, plan one. One forward flow: every league, one league's teams, the team's schedule.
 struct PlanGameView: View {
-    @Environment(Library.self) private var library
+    enum Step: Hashable { case league(String), team(String) }
     @Environment(\.dismiss) private var dismiss
-    @State private var teamId: String?
+    @Environment(Library.self) private var library
+    @State private var picked: String?
+    @State private var path: [Step] = []
+
+    var body: some View {
+        NavigationStack(path: $path) {
+            TeamPickerView(selection: $picked, sport: .baseball, title: "Plan a game",
+                           onPick: { path.append(.team($0)) }, onLeague: { path.append(.league($0)) })
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button { dismiss() } label: { Image(systemName: "xmark") }
+                            .accessibilityLabel("Close")
+                            .accessibilityIdentifier("plan-close")
+                    }
+                }
+                .navigationDestination(for: Step.self) { step in
+                    switch step {
+                    case .league(let name):
+                        LeagueTeamsView(league: name, teams: library.allTeams.filter { $0.league == name }, selection: $picked, popsSelf: false) {
+                            if let picked { path.append(.team(picked)) }
+                        }
+                    case .team(let id):
+                        PlanScheduleView(teamId: id) { dismiss() }
+                    }
+                }
+        }
+    }
+}
+
+/// One team's coming games. Tapping one plans it and opens the plan.
+struct PlanScheduleView: View {
+    let teamId: String
+    /// Closes the whole Plan a game sheet.
+    let close: () -> Void
+    @Environment(Library.self) private var library
     @State private var games: [FoundGame] = []
-    @State private var loading = false
+    @State private var loading = true
     @State private var empty = false
     @State private var noSource = false
     @State private var teamEspnId: String?
-    @State private var pickerShown = false
     @State private var addingByHand = false
-    @State private var openedPicker = false
     /// The plan just made (or already made) from a row, opened on top of the list.
     @State private var openPlanId: String?
+    /// Plans made by "Plan it" and not yet confirmed with "Plan": backing out removes them.
+    @State private var tentative: Set<String> = []
 
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 18) {
-                    NavigationLink {
-                        TeamPickerView(selection: $teamId, sport: .baseball)
-                    } label: {
-                        HStack(spacing: 12) {
-                            if let team = library.team(teamId) {
-                                TeamTile(team: team)
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(team.locationName).font(.condensed(.title3, weight: .heavy)).textCase(.uppercase)
-                                    Text(team.league).font(.footnote).foregroundStyle(Color.textSecondary)
-                                }
-                            } else {
-                                Image(systemName: "magnifyingglass").foregroundStyle(Color.textSecondary)
-                                Text("Choose a team").foregroundStyle(Color.textSecondary)
-                            }
-                            Spacer()
-                            Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 18) {
+                if let team = library.team(teamId) {
+                    HStack(spacing: 12) {
+                        TeamTile(team: team)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(team.locationName).font(.condensed(.title3, weight: .heavy)).textCase(.uppercase)
+                            Text(team.league).font(.footnote).foregroundStyle(Color.textSecondary)
                         }
-                        .foregroundStyle(.white)
-                        .padding(14)
-                        .background(Color.panel, in: .rect(cornerRadius: 16))
+                        Spacer()
                     }
+                    .foregroundStyle(.white)
+                    .padding(14)
+                    .background(Color.panel, in: .rect(cornerRadius: 16))
+                    .accessibilityElement(children: .combine)
                     .accessibilityIdentifier("plan-team")
-
-                    if loading {
-                        ProgressView().frame(maxWidth: .infinity).padding(.top, 24)
-                    } else if !games.isEmpty {
-                        Text("Upcoming games").unitLabel()
-                        ForEach(games) { game in row(game) }
-                    } else if noSource {
-                        Text("We can\u{2019}t look up this team\u{2019}s schedule yet. Add the game from Add game instead.")
-                            .font(.footnote).foregroundStyle(Color.textSecondary)
-                    } else if empty {
-                        Text("No upcoming games on this team\u{2019}s schedule right now. In the off-season the schedule comes out later.")
-                            .font(.footnote).foregroundStyle(Color.textSecondary)
-                    }
-
-                    if teamId != nil, !loading {
-                        Button { addingByHand = true } label: {
-                            Label(games.isEmpty ? "Add the game yourself" : "Not listed? Add it yourself", systemImage: "square.and.pencil")
-                                .font(.subheadline.weight(.semibold))
-                                .frame(maxWidth: .infinity, minHeight: 50)
-                                .foregroundStyle(games.isEmpty ? Color.black : Color.signal)
-                                .background(games.isEmpty ? Color.white : Color.clear, in: .rect(cornerRadius: 14))
-                        }
-                        .accessibilityIdentifier("plan-add-by-hand")
-                    }
                 }
-                .gutter()
-                .padding(.top, 8)
-            }
-            .inkBackground()
-            .navigationTitle("Plan a game")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button { dismiss() } label: { Image(systemName: "xmark") }
-                        .accessibilityLabel("Close")
-                        .accessibilityIdentifier("plan-close")
+
+                if loading {
+                    ProgressView().frame(maxWidth: .infinity).padding(.top, 24)
+                } else if !games.isEmpty {
+                    Text("Upcoming games").unitLabel()
+                    ForEach(games) { game in row(game) }
+                } else if noSource {
+                    Text("We can\u{2019}t look up this team\u{2019}s schedule yet. Add the game from Add game instead.")
+                        .font(.footnote).foregroundStyle(Color.textSecondary)
+                } else if empty {
+                    Text("No upcoming games on this team\u{2019}s schedule right now. In the off-season the schedule comes out later.")
+                        .font(.footnote).foregroundStyle(Color.textSecondary)
+                }
+
+                if !loading {
+                    Button { addingByHand = true } label: {
+                        Label(games.isEmpty ? "Add the game yourself" : "Not listed? Add it yourself", systemImage: "square.and.pencil")
+                            .font(.subheadline.weight(.semibold))
+                            .frame(maxWidth: .infinity, minHeight: 50)
+                            .foregroundStyle(games.isEmpty ? Color.black : Color.signal)
+                            .background(games.isEmpty ? Color.white : Color.clear, in: .rect(cornerRadius: 14))
+                    }
+                    .accessibilityIdentifier("plan-add-by-hand")
                 }
             }
-            .onChange(of: teamId) { _, _ in Task { await load() } }
-            .sheet(isPresented: $addingByHand) {
-                AddGameView(planning: true, presetTeamId: teamId, onPlanned: { _ in dismiss() }, onDone: { addingByHand = false })
-            }
-            // Everyone starts by choosing a team, so go straight to that list. Backing out with nothing chosen closes this.
-            .navigationDestination(item: $openPlanId) { id in PlanView(planId: id) }
-            .navigationDestination(isPresented: $pickerShown) {
-                TeamPickerView(selection: $teamId, sport: .baseball)
-            }
-            .onAppear {
-                guard teamId == nil, !openedPicker else { return }
-                openedPicker = true
-                pickerShown = true
-            }
-            .onChange(of: pickerShown) { _, shown in
-                if !shown && teamId == nil { dismiss() }
-            }
+            .gutter()
+            .padding(.top, 8)
+        }
+        .inkBackground()
+        .navigationTitle("Schedule")
+        .navigationBarTitleDisplayMode(.inline)
+        .task(id: teamId) { await load() }
+        .sheet(isPresented: $addingByHand) {
+            AddGameView(planning: true, presetTeamId: teamId, onPlanned: { _ in close() }, onDone: { addingByHand = false })
+        }
+        .navigationDestination(item: $openPlanId) { id in
+            PlanView(planId: id, onConfirm: tentative.contains(id) ? { tentative.remove(id); close() } : nil)
+        }
+        .onChange(of: openPlanId) { old, new in
+            guard new == nil, let old, tentative.remove(old) != nil else { return }
+            library.removePlan(old)
         }
     }
 
@@ -141,7 +153,7 @@ struct PlanGameView: View {
         games = []
         empty = false
         noSource = false
-        guard let team = library.team(teamId) else { return }
+        guard let team = library.team(teamId) else { loading = false; return }
         loading = true
         defer { loading = false }
         guard let source = await TeamDirectory.shared.resolve(team) else {
@@ -196,7 +208,12 @@ struct PlanGameView: View {
         let weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
         let months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
         return Button {
-            if let entry = library.addPlan(game) { openPlanId = entry.id }
+            let wasPlanned = isPlanned(game)
+            guard let entry = library.addPlan(game) else { return }
+            if !wasPlanned { tentative.insert(entry.id) }
+            // Ask for the forecast now, so the plan page has it by the time it opens.
+            if let venue = library.venue(entry.venueId) { Task { _ = await WeatherLookup.forecast(venue: venue, date: entry.date) } }
+            openPlanId = entry.id
         } label: {
             HStack(spacing: 12) {
                 VStack(spacing: 0) {
@@ -229,9 +246,12 @@ struct PlanGameView: View {
 
 struct PlanView: View {
     let planId: String
+    /// Set when the plan was just picked from a schedule: the page asks to confirm with "Plan" instead of offering check-in.
+    var onConfirm: (() -> Void)? = nil
     @Environment(Library.self) private var library
     @Environment(\.dismiss) private var dismiss
     @State private var forecast: Weather?
+    @State private var forecastChecked = false
     @State private var seat = ""
     @State private var reminderDenied = false
     @State private var calendarState: CalendarState = .idle
@@ -275,7 +295,7 @@ struct PlanView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 VStack(spacing: 8) {
-                    infoRow("sun.max", "Forecast", forecast.map { "\($0.condition) \u{00B7} \(Fmt.temperature($0.temperatureF))" } ?? (days < WeatherLookup.forecastDays ? "Not available right now" : "Shows up within about two weeks of the game"))
+                    infoRow("sun.max", "Forecast", forecast.map { "\($0.condition) \u{00B7} \(Fmt.temperature($0.temperatureF))" } ?? forecastNote(plan))
                     HStack(spacing: 12) {
                         Image(systemName: "ticket").foregroundStyle(Color.signal).frame(width: 24)
                         TextField("Section, row, seat", text: $seat)
@@ -336,17 +356,29 @@ struct PlanView: View {
                 }
                 .gutter()
 
-                Button {
-                    save(plan)
-                    library.attend(plan: plan.id)
-                    cancelReminder(plan)
-                    dismiss()
-                } label: {
-                    Label("I\u{2019}m at the game", systemImage: "checkmark")
+                if let onConfirm {
+                    Button {
+                        save(plan)
+                        onConfirm()
+                    } label: {
+                        Label("Plan", systemImage: "calendar.badge.checkmark")
+                    }
+                    .buttonStyle(PrimaryButtonStyle(fill: .signal))
+                    .gutter()
+                    .accessibilityIdentifier("plan-confirm")
+                } else {
+                    Button {
+                        save(plan)
+                        library.attend(plan: plan.id)
+                        cancelReminder(plan)
+                        dismiss()
+                    } label: {
+                        Label("I\u{2019}m at the game", systemImage: "checkmark")
+                    }
+                    .buttonStyle(.primary)
+                    .gutter()
+                    .accessibilityIdentifier("plan-attend")
                 }
-                .buttonStyle(.primary)
-                .gutter()
-                .accessibilityIdentifier("plan-attend")
             }
             .padding(.bottom, 40)
         }
@@ -374,7 +406,11 @@ struct PlanView: View {
         }
         .task(id: plan.id) {
             seat = plan.seat ?? ""
-            if let venue { forecast = await WeatherLookup.forecast(venue: venue, date: plan.date) }
+            if let venue {
+                forecast = WeatherLookup.cachedForecast(venue: venue, date: plan.date)
+                if forecast == nil { forecast = await WeatherLookup.forecast(venue: venue, date: plan.date) }
+            }
+            forecastChecked = true
         }
         .onDisappear { save(plan) }
     }
@@ -389,6 +425,12 @@ struct PlanView: View {
             Spacer()
         }
         .padding(14).background(Color.panel, in: .rect(cornerRadius: 16))
+    }
+
+    /// What the forecast row says before there is a forecast.
+    private func forecastNote(_ plan: GameEntry) -> String {
+        guard WeatherLookup.inForecastRange(plan.date) else { return "Shows up about two weeks before the game" }
+        return forecastChecked ? "No forecast yet. Check back closer to the game" : "Checking the forecast\u{2026}"
     }
 
     private func save(_ plan: GameEntry) {
