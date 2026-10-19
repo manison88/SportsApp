@@ -33,3 +33,12 @@ Set each season file's `source` to the real source name ("espn", "statsapi.mlb.c
 - Do not run git. Do not touch app code. Do not edit files outside your scope folder.
 - Finish with `python3 Tools/schedules/validate.py <scope>` printing 0 errors, then NOTES.md (<= 40 lines): sources, seasons and leagues covered,
   counts, teams covered before/after, gaps and why, "Unlockable", and anything uncertain.
+
+## Update (ESPN is being fetched by CI)
+A CI job (`.github/workflows/data-fetch.yml`, `Tools/schedules/fetch_espn.py`) fetches every ESPN league the catalog has for the seasons still
+missing, 2006-2026, into `Tools/schedules/sched3-espn/` (baseball and hockey excluded: those scopes are already running). When you audit,
+treat any file under `Tools/schedules/sched*/` (including `sched3-espn/` and other `sched2-*` folders) as data that already exists, and
+re-check before you fetch: it may have appeared since you started. So do NOT refetch ESPN leagues that the audit shows covered. Spend your effort
+on what ESPN cannot give: leagues ESPN does not serve (see `sched3-espn/FETCH-LOG.txt`, lines ending "no usable feed"), seasons where ESPN's
+feed is incomplete (lines saying "kept the existing one"), and the unresolved venues in `sched3-espn/unresolved-venues.json` (geocode them via
+Wikidata/OpenStreetMap, matching SPEC.md's missing-venues format, into your own scope's `missing-venues.json`).

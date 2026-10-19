@@ -1,0 +1,62 @@
+# Fetches ESPN schedules for every catalog league that is missing seasons (2006-2026) in parallel, then commits them to this branch.
+# Start it by changing ci/data-fetch.trigger. Free on a public repository; no secrets needed.
+name: Fetch schedules
+
+on:
+  push:
+    branches: [claude/witness-mockups-phase1]
+    paths: ['ci/data-fetch.trigger']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.plan.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: plan
+        run: |
+          python3 Tools/schedules/plan_espn.py > plan.json
+          echo "matrix=$(python3 -c "import json;print(json.dumps({'include':json.load(open('plan.json'))}))")" >> "$GITHUB_OUTPUT"
+
+  fetch:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch ${{ matrix.name }}
+        run: |
+          echo '${{ toJSON(matrix.leagues) }}' > group.json
+          python3 Tools/schedules/fetch_espn.py --leagues-file group.json --today "$(date +%F)" --out out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.name }}
+          path: out
+          if-no-files-found: ignore
+
+  merge:
+    needs: fetch
+    if: always() && needs.fetch.result != 'skipped'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: parts
+      - run: python3 Tools/schedules/merge_fetch.py parts
+      - name: Commit the schedules
+        run: |
+          git config user.name "witness-data"
+          git config user.email "data@users.noreply.github.com"
+          git add Tools/schedules/sched3-espn
+          git commit -m "ESPN schedules 2006-2026 for catalog leagues with missing seasons (CI fetch)" || exit 0
+          git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}"
