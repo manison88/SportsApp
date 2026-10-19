@@ -114,12 +114,16 @@ final class ScanModel {
             for (n, cluster) in pending.enumerated() {
                 if Task.isCancelled { return }
                 self?.deepStep = .visits; self?.deepDone = n; self?.deepTotal = pending.count
-                // At a stadium already, so one clear photo of a game will do; the day must not be mostly somewhere else.
+                // At a stadium already, so one clear photo of the ground or a game will do, as long as the day was not mostly
+                // somewhere else (a bar across the street). A day with no game is offered too: a stadium tour is a visit worth
+                // keeping, and the review saves it as one when no game turns up for the date.
                 let look = await SceneCheck.look(at: cluster.assetIds.map { PhotoRef.library($0) })
-                guard look.isGame(minVenue: 1, minShare: 0.2), PhotoMatcher.looksLikeAGame(cluster.times) else { continue }
+                guard look.venue >= 1, !look.mostlyElsewhere else { continue }
+                let game = look.isGame(minVenue: 1, minShare: 0.2) && PhotoMatcher.looksLikeAGame(cluster.times)
                 let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
                 atStadiums.append(PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
-                                              reason: "Photos at \(cluster.venue.name) that look like a game, but none is on the schedule",
+                                              reason: game ? "Photos at \(cluster.venue.name) that look like a game, but none is on the schedule"
+                                                           : "Photos inside \(cluster.venue.name) with no game that day \u{00B7} a stadium visit?",
                                               suggestions: [cluster.venue]))
             }
             for day in atStadiums { claimed.insert(keyer.day(day.day, tz: .current)) }
@@ -250,6 +254,13 @@ final class ScanModel {
             for (id, game) in results { if let game { matched[id] = game } }
             matches = matched
             checkedVisits = min(start + chunk.count, found.count)
+        }
+
+        // A second, slower pass over the visits left without a game: a lookup that failed under load gets another chance,
+        // one visit at a time, before a real game is filed as "no game on the schedule".
+        for cluster in found where matched[cluster.id] == nil {
+            if Task.isCancelled { break }
+            if let game = await Self.match(cluster, venues: venues) { matched[cluster.id] = game; matches = matched }
         }
 
         // The stadium and the date decide. Tickets are digital and are not read here; a scene check is only a second opinion.

@@ -473,12 +473,42 @@ enum GameLookup {
         return days
     }
 
+    /// Schedule pages for days already over don't change, so each is fetched once per launch.
+    nonisolated(unsafe) private static let pages = NSCache<NSURL, NSData>()
+
+    /// A scan matches dozens of visits, each asking several competitions about two days. Fired all at once, the schedule
+    /// server throttles or times out some of them, and a game that was there reads as "no game". So requests wait their
+    /// turn, a failure is tried again, and a finished day is kept.
     private static func fetch(_ url: URL) async -> Data? {
-        var request = URLRequest(url: url)
-        request.timeoutInterval = 10
-        guard let (data, response) = try? await URLSession.shared.data(for: request),
-              (response as? HTTPURLResponse)?.statusCode == 200 else { return nil }
-        return data
+        if let hit = pages.object(forKey: url as NSURL) { return hit as Data }
+        await RequestGate.shared.enter()
+        defer { Task { await RequestGate.shared.leave() } }
+        for attempt in 0..<3 {
+            var request = URLRequest(url: url)
+            request.timeoutInterval = 15
+            if let (data, response) = try? await URLSession.shared.data(for: request), let http = response as? HTTPURLResponse {
+                if http.statusCode == 200 {
+                    if url.absoluteString.contains("dates="), isPastDay(url) { pages.setObject(data as NSData, forKey: url as NSURL) }
+                    return data
+                }
+                // Not throttled and not a server hiccup: asking again won't help.
+                if http.statusCode != 429 && http.statusCode < 500 { return nil }
+            }
+            if Task.isCancelled { return nil }
+            try? await Task.sleep(for: .milliseconds(600 * (attempt + 1) * (attempt + 1)))
+        }
+        return nil
+    }
+
+    /// Whether a scoreboard URL's `dates=yyyyMMdd` is at least two days ago, so its results are final.
+    private static func isPastDay(_ url: URL) -> Bool {
+        guard let item = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?.first(where: { $0.name == "dates" })?.value,
+              item.count >= 8, let day = Int(item.prefix(8)) else { return false }
+        let f = DateFormatter()
+        f.dateFormat = "yyyyMMdd"
+        f.timeZone = .gmt
+        let twoDaysAgo = Int(f.string(from: Date().addingTimeInterval(-2 * 86_400))) ?? 0
+        return day <= twoDaysAgo
     }
 
     static func date(_ s: String?) -> Date? {
@@ -641,5 +671,24 @@ extension GameLookup {
             }
         }
         return (nil, 0)
+    }
+}
+
+/// At most a few schedule requests in flight at once, the rest queued in order.
+actor RequestGate {
+    static let shared = RequestGate(limit: 6)
+    private let limit: Int
+    private var running = 0
+    private var waiting: [CheckedContinuation<Void, Never>] = []
+
+    init(limit: Int) { self.limit = limit }
+
+    func enter() async {
+        if running < limit { running += 1; return }
+        await withCheckedContinuation { waiting.append($0) }
+    }
+
+    func leave() {
+        if waiting.isEmpty { running -= 1 } else { waiting.removeFirst().resume() }
     }
 }
