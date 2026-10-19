@@ -95,11 +95,12 @@ struct PassportView: View {
                     }
                     let older = earned.dropLast(9).map { PassportShareTile(code: $0.code, color: $0.color) }
                     let pageTiles = older + page
+                    let planned = plannedStamps(excluding: Set(earned.map(\.venueId)))
                     let styles: [(String, PassportShareCard.Style)] = [
                         ("Giant", .giant), ("Stamps", .stamps), ("Color", .color), ("Paper", .paper), ("Ledger", .ledger),
                     ]
                     return [ShareCardVariant("Passport") {
-                        PassportPageCard(count: count, label: label, league: league, tiles: pageTiles)
+                        PassportPageCard(count: count, label: label, league: league, tiles: pageTiles, planned: planned)
                     }] + styles.map { entry in
                         ShareCardVariant(entry.0) {
                             PassportShareCard(style: entry.1, count: count, label: label, league: league, tiles: tiles)
@@ -326,12 +327,18 @@ private struct PassportPageCard: View {
     let label: String
     let league: String
     let tiles: [PassportShareTile]
+    /// Grounds still to come, drawn as on the page: dashed and amber, after the earned ones.
+    var planned: [PassportView.Stamp] = []
 
     private static let width: CGFloat = 390
     private var scale: CGFloat { ShareCardFormat.story.size.width / Self.width }
     private var height: CGFloat { ShareCardFormat.story.size.height / scale }
-    /// Three rows of three fit a story; more than that shows the latest eight and how many more.
-    private var shown: [PassportShareTile] { tiles.count > 9 ? Array(tiles.suffix(8)) : tiles }
+    /// Three rows of three fit a story: up to three planned grounds, then the latest earned ones, and how many more.
+    private var plannedShown: [PassportView.Stamp] { Array(planned.prefix(3)) }
+    private var shown: [PassportShareTile] {
+        let room = 9 - plannedShown.count
+        return tiles.count > room ? Array(tiles.suffix(room - 1)) : tiles
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -351,15 +358,24 @@ private struct PassportPageCard: View {
                         .frame(maxWidth: .infinity, minHeight: 148)
                         .background(Color.panel, in: .rect(cornerRadius: 16))
                 }
+                ForEach(plannedShown) { PlannedStampTile(stamp: $0) }
             }
             Spacer(minLength: 0)
-            HStack {
-                Text("WITNESS")
-                    .font(.system(size: 16, weight: .heavy).width(.compressed))
-                    .tracking(5)
-                    .foregroundStyle(.white.opacity(0.9))
+            HStack(alignment: .bottom) {
+                // The wordmark with the sport in yellow tucked under it, nudged aside so the two overlap a little.
+                ZStack(alignment: .topLeading) {
+                    Text(league.uppercased())
+                        .font(.system(size: 16, weight: .heavy).width(.compressed))
+                        .tracking(5)
+                        .foregroundStyle(Color.signal)
+                        .offset(x: 16, y: 12)
+                    Text("WITNESS")
+                        .font(.system(size: 16, weight: .heavy).width(.compressed))
+                        .tracking(5)
+                        .foregroundStyle(.white.opacity(0.9))
+                }
                 Spacer()
-                Text("\(league) PASSPORT")
+                Text("PASSPORT")
                     .font(.system(size: 12, weight: .heavy).width(.condensed))
                     .tracking(3)
                     .foregroundStyle(Color.signal)
