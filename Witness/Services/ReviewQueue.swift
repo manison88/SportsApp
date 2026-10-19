@@ -10,10 +10,26 @@ struct ReviewLedger: Codable, Equatable {
     /// "yyyy-MM-dd" days of those skips (in the phone's time zone, like the background search's claimed days), so the album
     /// search doesn't offer the same outing again from other photos of that day.
     private(set) var dismissedDays: Set<String> = []
+    /// Photos of the games on the schedule the fan skipped. Only these keep a game away: skipping a stadium visit with no game
+    /// (or a day the search was unsure of) says nothing about a game the schedule finds for those photos later.
+    private(set) var dismissedGames: Set<String> = []
 
-    mutating func dismiss(_ assetIds: [String], day: String) {
+    init() {}
+
+    mutating func dismiss(_ assetIds: [String], day: String, game: Bool = false) {
         dismissedAssets.formUnion(assetIds)
         dismissedDays.insert(day)
+        if game { dismissedGames.formUnion(assetIds) }
+    }
+
+    private enum CodingKeys: String, CodingKey { case dismissedAssets, dismissedDays, dismissedGames }
+
+    /// Ledgers written before game skips were kept apart have no `dismissedGames`.
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        dismissedAssets = try c.decodeIfPresent(Set<String>.self, forKey: .dismissedAssets) ?? []
+        dismissedDays = try c.decodeIfPresent(Set<String>.self, forKey: .dismissedDays) ?? []
+        dismissedGames = try c.decodeIfPresent(Set<String>.self, forKey: .dismissedGames) ?? []
     }
 
     static func load(from url: URL) -> ReviewLedger {
@@ -39,6 +55,12 @@ enum ReviewQueue {
         return out
     }
 
+    /// Photos that keep a game on the schedule out of the review: those of saved games, and of games the fan skipped. A saved
+    /// stadium visit's photos don't: the game found for them is that visit's game, and confirming it turns the visit into it.
+    static func gamePhotos(in games: [GameEntry], ledger: ReviewLedger) -> Set<String> {
+        photos(in: games.filter { !$0.awaitsGame }).union(ledger.dismissedGames)
+    }
+
     /// The days (in each ground's time zone) the library already has something at a ground, with the ground.
     private static func outings(_ games: [GameEntry], venues: [Venue]) -> [(venue: Venue, day: String)] {
         var keyer = DayKeyer()
@@ -58,12 +80,14 @@ enum ReviewQueue {
     /// instead of the day being asked about twice. Anything the library has or the fan turned down is left out, and so is a
     /// stadium visit on a day the library already has something at that ground or next door. (A game on such a day stays:
     /// two games next door to each other on one day are rare but real, and the scan already skips the library's ground-days.)
+    /// A game whose photos are on a saved stadium visit stays too: the visit was saved before its game was found.
     static func firstPass(games: [PhotoCluster], others: [PhotoCluster], library: [GameEntry], venues: [Venue],
                           ledger: ReviewLedger) -> (games: [PhotoCluster], others: [PhotoCluster]) {
         let taken = photos(in: library).union(ledger.dismissedAssets)
+        let gameTaken = gamePhotos(in: library, ledger: ledger)
         let saved = outings(library, venues: venues)
         var keyer = DayKeyer()
-        var kept = games.filter { !$0.assetIds.contains(where: taken.contains) }
+        var kept = games.filter { !$0.assetIds.contains(where: gameTaken.contains) }
         var visits: [PhotoCluster] = []
         for visit in others where !visit.assetIds.contains(where: taken.contains) {
             let day = keyer.day(visit.start, tz: visit.venue.tz)

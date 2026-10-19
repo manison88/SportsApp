@@ -576,8 +576,9 @@ final class Library {
         if let x = a.source, let y = b.source {
             return x.provider == y.provider && x.league == y.league && x.eventId == y.eventId
         }
-        // A stadium visit saved before its game was found, and that game from the same photos, perhaps at the ground next door.
-        if a.isVisit != b.isVisit, !Set(a.photos).isDisjoint(with: b.photos) { return true }
+        // A stadium visit (or a game card with no teams) saved before its game was found, and that game from the same photos,
+        // perhaps at the ground next door.
+        if a.awaitsGame != b.awaitsGame, !Set(a.photos).isDisjoint(with: b.photos) { return true }
         guard a.venueId == b.venueId else { return false }
         return abs(a.date.timeIntervalSince(b.date)) < 8 * 3600
     }
@@ -587,7 +588,7 @@ final class Library {
         var g = keep
         var seen = Set(g.photos)
         for ref in other.photos where seen.insert(ref).inserted { g.photos.append(ref) }
-        if g.kind == .visit && other.kind != .visit {
+        if (g.kind == .visit && other.kind != .visit) || (g.awaitsGame && other.source != nil) {
             // The visit was a game after all: where, who and what it was come from the game, not from the visit's guesses.
             g.kind = nil
             g.sport = other.sport

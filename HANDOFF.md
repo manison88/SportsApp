@@ -23,6 +23,7 @@ Another Claude session pushes to this branch: `git pull --no-rebase` before push
 ## Fixed today, to confirm on device
 
 - BiH v Qatar at Lumen Field: photos were filed at T-Mobile Park (440 m away); neighbours now 1 km, same-game visits merge. A saved stadium visit no longer hides its day from the scan (it is matched again and becomes the game); waiting visits and the background search ask the ground next door. Run Find in photos (no need to delete anything). If it is still missing: Back up & export, Scan check, pick Jun 24 2026, share the report.
+- BiH v Qatar, second fix (after the two fixes merged): the review dropped every game whose photos the library had, so the match found again for the saved stadium visit was thrown away. A saved visit (or a game card with no teams) no longer hides its game; skipping a stadium visit no longer hides a game found later for its photos (game skips kept apart in review-ledger.json); days of photos only around a stadium (within 600 m, none inside the fence) are offered as possible games when the schedule had one. Scan check now shows photo access (full/limited), skips, waiting visits, days around a stadium and whether the review would show the match. End-to-end tests: `WitnessTests/ScanEndToEndTests.swift`.
 - Schedule lookups: 6 at a time, retries on throttling, finished days cached, second pass for unmatched visits.
 - Scan screen photo strip now really cross-fades (the timer read an empty list).
 - Covers: picked at add time, preloaded, cross-faded.

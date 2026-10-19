@@ -267,6 +267,11 @@ struct GameEntry: Codable, Hashable, Identifiable {
 
     enum Kind: String, Codable { case visit }
     var isVisit: Bool { kind == .visit }
+    /// Saved from photos with nothing from a schedule: a stadium visit, or a game card saved before its lookup came back (no
+    /// teams, no event). A scan checks its photos again, and a game found for them replaces it.
+    var awaitsGame: Bool {
+        source == nil && (isVisit || (origin == .photos && homeTeamId == nil && awayTeamId == nil && sport != .motorsport))
+    }
 
     /// The photo that heads the game: the cover, else the first photo.
     var heroPhoto: PhotoRef? { coverPhoto ?? photos.first }

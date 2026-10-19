@@ -20,6 +20,15 @@ enum PhotoMatcher {
         return s == .authorized || s == .limited
     }
 
+    /// "full", "limited" (only the photos the fan picked are seen) or "no", for the scan check.
+    static var accessDescription: String {
+        switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
+        case .authorized: "full"
+        case .limited: "limited (only the photos picked in Settings are scanned)"
+        default: "no"
+        }
+    }
+
     static func requestAccess() async -> Bool {
         let current = PHPhotoLibrary.authorizationStatus(for: .readWrite)
         switch current {
@@ -95,13 +104,49 @@ enum PhotoMatcher {
         var count: Int
     }
 
+    /// What a library scan found: stadium visits, and days spent just outside a stadium's fence.
+    struct Found: Sendable {
+        /// Photos inside a stadium's fence, newest first.
+        var visits: [PhotoCluster] = []
+        /// Photos only around a stadium (the plaza, the car park, the march in), never inside its fence, newest first. A World
+        /// Cup crowd photographs the day outside and the phone may place few photos, or none, inside the bowl. Only ever a
+        /// possible game, when the schedule has one there.
+        var nearby: [PhotoCluster] = []
+    }
+
+    /// How far outside the fence a day of photos can be and still be offered as a possible game when the schedule has one there:
+    /// the plaza and car parks, and the fan march (Occidental Park is 540 m from Lumen Field).
+    static let nearbyReach: CLLocationDistance = 600
+    /// Days around stadiums looked up per scan, newest first: someone who lives next to a stadium has hundreds.
+    static let maxNearby = 40
+
+    /// The pure part of `discover`: visits from photos inside a fence (the 15-minute stay), then the days spent just outside one.
+    static func found(in points: [PhotoPoint], venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil) -> Found {
+        let skipping = settledKeys(existing, venues: venues)
+        let visits = VisitGrouping.group(points, venues: venues, radius: radius, minimumStay: 15 * 60, skipping: skipping).visits
+        let inVisits = Set(visits.flatMap(\.assetIds))
+        let outside = points.filter { $0.latitude != nil && $0.longitude != nil && !inVisits.contains($0.id) }
+        var keyer = DayKeyer()
+        let nearby = VisitGrouping.group(outside, venues: venues, radius: max(radius ?? 0, nearbyReach), minimumStay: 15 * 60).visits
+            .filter { day in
+                guard day.assetIds.count >= GameSuggester.minPhotos else { return false }
+                let key = keyer.day(day.start, tz: day.venue.tz)
+                // A visit (or a saved game) at this ground or next door that day already holds the day.
+                let near = [day.venue] + neighbors(of: day.venue, in: venues)
+                return !near.contains { v in
+                    skipping.contains("\(v.id)|\(key)") || visits.contains { $0.venue.id == v.id && keyer.day($0.start, tz: v.tz) == key }
+                }
+            }
+        return Found(visits: visits.sorted { $0.start > $1.start },
+                     nearby: Array(nearby.sorted { $0.start > $1.start }.prefix(maxNearby)))
+    }
+
     /// Finds visits in the whole library, newest first. Photos near a stadium on a visit's day count toward it
     /// (see `VisitGrouping.matchdayReach`), and a visit needs a 15-minute stay inside the fence.
     /// `progress` is called about every thousand photos, from a background thread.
     static func discover(venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil,
-                         progress: (@Sendable (ScanProgress) -> Void)? = nil) async -> [PhotoCluster] {
-        let existingKeys = settledKeys(existing, venues: venues)
-        return await Task.detached(priority: .userInitiated) { () -> [PhotoCluster] in
+                         progress: (@Sendable (ScanProgress) -> Void)? = nil) async -> Found {
+        return await Task.detached(priority: .userInitiated) { () -> Found in
             let options = PHFetchOptions()
             options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
             let result = PHAsset.fetchAssets(with: .image, options: options)
@@ -143,25 +188,25 @@ enum PhotoMatcher {
             }
             state.scanned = result.count
             progress?(state)
-            return VisitGrouping.group(points, venues: venues, radius: radius, minimumStay: 15 * 60, skipping: existingKeys)
-                .visits.sorted { $0.start > $1.start }
+            return found(in: points, venues: venues, existing: existing, radius: radius)
         }.value
     }
 
     /// "venue|day" keys of the saved games a scan leaves alone. A stadium visit is not settled: it was saved because no game
     /// turned up that day (perhaps by a scan that did not look next door, or a lookup that failed), so its photos are checked
-    /// again, and a game found for them replaces the visit.
+    /// again, and a game found for them replaces the visit. The same goes for a game card saved from photos with no teams and
+    /// no schedule match (confirmed before its lookup came back).
     static func settledKeys(_ existing: [GameEntry], venues: [Venue]) -> Set<String> {
         Set(existing.compactMap { g -> String? in
-            guard !(g.isVisit && g.source == nil), let v = venues.first(where: { $0.id == g.venueId }) else { return nil }
+            guard !g.awaitsGame, let v = venues.first(where: { $0.id == g.venueId }) else { return nil }
             return VisitGrouping.key(venueId: v.id, date: g.date, tz: v.tz)
         })
     }
 
-    /// "venue|day" keys of saved stadium visits: checked again for a game, but not offered again as visits.
+    /// "venue|day" keys of saved stadium visits (and game cards with no game): checked again for a game, but not offered again as visits.
     static func savedVisitKeys(_ existing: [GameEntry], venues: [Venue]) -> Set<String> {
         Set(existing.compactMap { g -> String? in
-            guard g.isVisit, let v = venues.first(where: { $0.id == g.venueId }) else { return nil }
+            guard g.isVisit || g.awaitsGame, let v = venues.first(where: { $0.id == g.venueId }) else { return nil }
             return VisitGrouping.key(venueId: v.id, date: g.date, tz: v.tz)
         })
     }

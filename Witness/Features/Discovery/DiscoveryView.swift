@@ -112,7 +112,7 @@ struct DiscoveryView: View {
                 }
 
                 HStack(spacing: Spacing.inner) {
-                    Button("Skip") { presenter.scan.dismiss(cluster.assetIds, on: cluster.start); advance() }
+                    Button("Skip") { presenter.scan.dismiss(cluster.assetIds, on: cluster.start, asGame: !noGame(cluster)); advance() }
                         .buttonStyle(.secondary)
                         .frame(maxWidth: 120)
                         .accessibilityIdentifier("discovery-skip")

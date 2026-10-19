@@ -95,6 +95,7 @@
 		3FEB031AE0994BFC9587347E /* NeighborGroundsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */; };
 		37AE837711CD4841A1C8F45C /* ReviewQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */; };
 		B35E9BE98F85478A9F99BF7A /* WorldCupSeattleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */; };
+		D0E00A8C14204C00B3519C8C /* ScanEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +207,7 @@
 		30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborGroundsTests.swift; sourceTree = "<group>"; };
 		A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQueueTests.swift; sourceTree = "<group>"; };
 		4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCupSeattleTests.swift; sourceTree = "<group>"; };
+		5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanEndToEndTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -358,6 +360,7 @@
 				30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */,
 				A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */,
 				4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */,
+				5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */,
 				7B48F99FC296122C6C846961 /* BigGameTests.swift */,
 				0EBB3E2CA6352B5C2EB2E15D /* DetectionTuningTests.swift */,
 				73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */,
@@ -637,6 +640,7 @@
 				3FEB031AE0994BFC9587347E /* NeighborGroundsTests.swift in Sources */,
 				37AE837711CD4841A1C8F45C /* ReviewQueueTests.swift in Sources */,
 				B35E9BE98F85478A9F99BF7A /* WorldCupSeattleTests.swift in Sources */,
+				D0E00A8C14204C00B3519C8C /* ScanEndToEndTests.swift in Sources */,
 				BB3F51B6F1750A2ECB5E0479 /* BigGameTests.swift in Sources */,
 				1307844B2E7EAB4CDD54E487 /* DetectionTuningTests.swift in Sources */,
 				7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */,

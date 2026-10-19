@@ -309,6 +309,15 @@ private struct ResultScreen: View {
                     .opacity(beat >= 3 ? 1 : 0)
                     .accessibilityIdentifier("onboarding-possible-note")
             }
+            if !scan.possible.isEmpty {
+                // Days just outside a stadium on a game's day: the fan says where they were.
+                Label("Plus \(scan.possible.count) possible \(scan.possible.count == 1 ? "game" : "games") from photos around a stadium while a game was on. Pick the stadium next.",
+                      systemImage: "questionmark.circle")
+                    .font(.footnote)
+                    .foregroundStyle(Color.textSecondary)
+                    .opacity(beat >= 3 ? 1 : 0)
+                    .accessibilityIdentifier("onboarding-nearby-note")
+            }
             Spacer(minLength: 0)
             VStack(spacing: 8) {
                 if scan.games.count > 1 {
@@ -323,7 +332,7 @@ private struct ResultScreen: View {
                         .buttonStyle(.secondary)
                         .accessibilityIdentifier("onboarding-review")
                 } else {
-                    Button(scan.games.isEmpty ? "Review stadium visits" : "Review games", action: onReview)
+                    Button(!scan.games.isEmpty ? "Review games" : scan.others.isEmpty ? "Review possible games" : "Review stadium visits", action: onReview)
                         .buttonStyle(.primary)
                         .accessibilityIdentifier("onboarding-review")
                 }
