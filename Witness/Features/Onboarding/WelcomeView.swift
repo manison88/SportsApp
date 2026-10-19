@@ -8,7 +8,8 @@ struct WelcomeView: View {
 
     /// 0...4: the count's steps; the wall dims a share of its dots at each one.
     @State private var stage = 0
-    @State private var cards = 0
+    /// The last step: the amber dots burst into a collage of game photos.
+    @State private var revealed = false
 
     static let steps: [(count: Int, label: String, how: String)] = [
         (40_000, "Photos in your camera roll", "Somewhere in there is every game you went to. Nothing in your phone knows which."),
@@ -19,13 +20,10 @@ struct WelcomeView: View {
     ]
     private static var last: Int { steps.count - 1 }
 
-    /// Examples from the sample library, one per sport.
-    static var examples: [(photo: String, venue: String, line: String, sport: String)] { [
-        ("united-center-court", "United Center", "Feb 14, 2026 · CHI 112–109 MIA", "Basketball"),
-        ("soldier-soccer", "Soldier Field", "Oct 4, 2025 · CHI 2–1 MIA", SoccerWord.name),
-        ("lambeau-concourse", "Lambeau Field", "Jan 5, 2025 · CHI 24–22 GB", "NFL"),
-        ("wrigley-night-2", "Wrigley Field", "Oct 30, 2016 · CHC 3–2 CLE", "Baseball"),
-    ] }
+    /// Photos from the sample library for the collage, one per game.
+    static let photos = ["wrigley-night", "soldier-soccer", "lambeau-exterior", "united-center-court", "camp-nou-aerial",
+                         "fenway-night", "wrigley-bleachers", "soldier-skyline", "lambeau-concourse", "wrigley-scoreboard",
+                         "fenway-day", "soldier-aerial", "fenway-postcard", "wrigley-night-2"]
 
     var body: some View {
         let step = Self.steps[stage]
@@ -33,14 +31,9 @@ struct WelcomeView: View {
         VStack(alignment: .leading, spacing: 0) {
             ZStack(alignment: .top) {
                 DotWall(stage: stage)
-                    .opacity(cards > 0 ? 0 : 1)
-                VStack(spacing: 8) {
-                    ForEach(Array(Self.examples.enumerated()), id: \.offset) { i, e in
-                        if i < cards {
-                            card(e).transition(.move(edge: .bottom).combined(with: .opacity))
-                        }
-                    }
-                }
+                    .opacity(revealed ? 0 : 1)
+                    .animation(.easeOut(duration: 0.35), value: revealed)
+                Collage(revealed: revealed)
             }
             .frame(height: 280, alignment: .top)
             .padding(.top, 20)
@@ -69,8 +62,8 @@ struct WelcomeView: View {
                 if done {
                     VStack(alignment: .leading, spacing: 12) {
                         VStack(alignment: .leading, spacing: -4) {
-                            Text("Your camera roll").foregroundStyle(.white)
-                            Text("already knows.").foregroundStyle(Color.signal)
+                            Text("Every night,").foregroundStyle(.white)
+                            Text("back in one place.").foregroundStyle(Color.signal)
                         }
                         .displayFont(48)
                         .textCase(.uppercase)
@@ -113,7 +106,7 @@ struct WelcomeView: View {
         .background(Color.ink.ignoresSafeArea())
         .onAppear {
             // UI tests go straight to the end, so one tap on the button starts onboarding.
-            if ProcessInfo.processInfo.arguments.contains("-uitest") { stage = Self.last; cards = Self.examples.count }
+            if ProcessInfo.processInfo.arguments.contains("-uitest") { stage = Self.last; revealed = true }
         }
     }
 
@@ -124,35 +117,44 @@ struct WelcomeView: View {
         Analytics.shared.track(.onboardingStep, ["step": "welcome_\(stage)"])
         guard stage == Self.last else { return }
         Task {
-            try? await Task.sleep(for: .milliseconds(450))
-            for i in 1...Self.examples.count {
-                withAnimation(.spring(duration: 0.5, bounce: 0.2)) { cards = i }
-                try? await Task.sleep(for: .milliseconds(140))
-            }
+            // The amber dots light up first, then burst into the photos.
+            try? await Task.sleep(for: .milliseconds(550))
+            revealed = true
         }
     }
+}
 
-    private func card(_ e: (photo: String, venue: String, line: String, sport: String)) -> some View {
-        ZStack(alignment: .leading) {
-            PhotoView(ref: .bundled(e.photo))
-            LinearGradient(colors: [Color.ink.opacity(0.94), Color.ink.opacity(0.15)], startPoint: .leading, endPoint: .trailing)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(e.venue).font(.condensed(.title3, weight: .heavy)).textCase(.uppercase).foregroundStyle(.white)
-                Text(e.line).font(.caption).foregroundStyle(Color.textSecondary)
+/// One tile per game, a few of them big, bursting out of amber in a quick ripple.
+private struct Collage: View {
+    let revealed: Bool
+    /// Column, row, width, height on a 6 x 5 grid: 23 tiles, three of them bigger.
+    private static let tiles: [(c: Int, r: Int, w: Int, h: Int)] = [
+        (0, 0, 2, 2), (2, 0, 1, 1), (3, 0, 1, 1), (4, 0, 1, 1), (5, 0, 1, 1), (2, 1, 1, 1), (3, 1, 1, 1), (4, 1, 2, 1),
+        (0, 2, 1, 1), (1, 2, 1, 1), (2, 2, 1, 1), (3, 2, 2, 2), (5, 2, 1, 1),
+        (0, 3, 1, 1), (1, 3, 1, 1), (2, 3, 1, 1), (5, 3, 1, 1),
+        (0, 4, 1, 1), (1, 4, 1, 1), (2, 4, 1, 1), (3, 4, 1, 1), (4, 4, 1, 1), (5, 4, 1, 1),
+    ]
+
+    var body: some View {
+        GeometryReader { geo in
+            let gap: CGFloat = 5
+            let side = min((geo.size.width - gap * 5) / 6, (geo.size.height - gap * 4) / 5)
+            ForEach(Array(Self.tiles.enumerated()), id: \.offset) { i, t in
+                let w = side * CGFloat(t.w) + gap * CGFloat(t.w - 1)
+                let h = side * CGFloat(t.h) + gap * CGFloat(t.h - 1)
+                Color.panel
+                    .overlay { Image(WelcomeView.photos[(i * 5) % WelcomeView.photos.count]).resizable().scaledToFill() }
+                    .overlay { Color.signal.opacity(revealed ? 0 : 1) }
+                    .frame(width: w, height: h)
+                    .clipShape(.rect(cornerRadius: 8))
+                    .scaleEffect(revealed ? 1 : 0.15)
+                    .opacity(revealed ? 1 : 0)
+                    .position(x: CGFloat(t.c) * (side + gap) + w / 2, y: CGFloat(t.r) * (side + gap) + h / 2)
+                    .animation(.spring(duration: 0.6, bounce: 0.3).delay(Double((i * 7) % 23) * 0.035), value: revealed)
             }
-            .padding(.horizontal, 14)
         }
-        .frame(height: 62)
-        .clipShape(.rect(cornerRadius: 14))
-        .overlay(alignment: .topTrailing) {
-            Text(e.sport)
-                .font(.condensed(.caption2, weight: .heavy)).textCase(.uppercase).tracking(1.2)
-                .foregroundStyle(Color.signal)
-                .padding(.horizontal, 8).frame(minHeight: 20)
-                .background(Color.ink.opacity(0.7), in: .capsule)
-                .padding(8)
-        }
-        .accessibilityElement(children: .combine)
+        .frame(height: 280)
+        .accessibilityHidden(true)
     }
 }
 
