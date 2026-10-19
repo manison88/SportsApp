@@ -171,9 +171,11 @@ struct AddMenu: View {
     }
 }
 
-private struct TimelineCard: View {
+struct TimelineCard: View {
     @Environment(Library.self) private var library
     let game: GameEntry
+    /// The cover, already loaded: the share card draws the card without waiting on Photos.
+    var photo: UIImage? = nil
 
     var body: some View {
         let venue = library.venue(game.venueId)
@@ -182,7 +184,9 @@ private struct TimelineCard: View {
         VStack(spacing: 0) {
             ZStack(alignment: .bottomLeading) {
                 Color.panel
-                    .overlay { GameBackdrop(game: game) }
+                    .overlay {
+                        if let photo { Image(uiImage: photo).resizable().scaledToFill() } else { GameBackdrop(game: game) }
+                    }
                     .clipped()
                 Scrim()
                 DateBlock(date: game.date, tz: tz, venue: venue, championship: title)
@@ -197,30 +201,7 @@ private struct TimelineCard: View {
             }
             .clipShape(UnevenRoundedRectangle(topLeadingRadius: 22, topTrailingRadius: 22))
 
-            TicketStub(trailingInset: 0, minHeight: 100) {
-                HStack(spacing: 0) {
-                    VStack(alignment: .leading, spacing: 10) {
-                        HStack(alignment: .firstTextBaseline) {
-                            Text(Self.firstLine(game, tz: tz))
-                                .font(.condensed(.title3, weight: .heavy))
-                                .lineLimit(1)
-                            Spacer(minLength: 6)
-                            if let seat = Self.seatLine(game.seat) {
-                                Text(seat)
-                                    .font(.condensed(.subheadline, weight: .heavy))
-                                    .tracking(1)
-                                    .foregroundStyle(Color.textSecondary)
-                                    .lineLimit(1)
-                            }
-                        }
-                        Rectangle().fill(Color.hairline).frame(height: 1)
-                        facts
-                    }
-                    .padding(.trailing, 14)
-                    TearOff(game: game)
-                }
-                .foregroundStyle(.white)
-            }
+            GameStub(game: game)
         }
         .overlay {
             // Title games get a champagne keyline around the whole ticket.
@@ -230,6 +211,7 @@ private struct TimelineCard: View {
             }
         }
         .task(id: game.id) {
+            guard photo == nil else { return }
             // Pick a cover for games with several photos, as their cards scroll into view.
             if !ProcessInfo.processInfo.arguments.contains("-uitest") { await library.autoCover(game.id) }
         }
@@ -241,7 +223,7 @@ private struct TimelineCard: View {
     // MARK: Stub
 
     /// Start time when the schedule gave one (a matched game, a ticket, a live check-in), else the date.
-    private static func firstLine(_ game: GameEntry, tz: TimeZone) -> String {
+    static func firstLine(_ game: GameEntry, tz: TimeZone) -> String {
         if game.source != nil || game.origin == .ticket || game.origin == .live || game.origin == .sample {
             return Fmt.time(game.date, in: tz)
         }
@@ -249,13 +231,55 @@ private struct TimelineCard: View {
     }
 
     /// "SEC 314 · ROW 8", whichever parts the seat has.
-    private static func seatLine(_ seat: String?) -> String? {
+    static func seatLine(_ seat: String?) -> String? {
         guard let seat, !seat.isEmpty else { return nil }
         let sec = section(seat)
         var parts: [String] = []
         if let sec { parts.append(sec) }
         if let m = seat.firstMatch(of: #/(?i)row\s*([A-Z]?\d+[A-Z]?)/#) { parts.append("ROW \(m.1)") }
         return parts.isEmpty ? nil : parts.joined(separator: " \u{00B7} ")
+    }
+
+    /// "Bleachers \u{00B7} Section 314" -> "SEC 314"
+    static func section(_ seat: String?) -> String? {
+        guard let seat, !seat.isEmpty else { return nil }
+        let pattern = #/(?i)(?:sec(?:tion)?\.?\s*)([A-Z]?\d+[A-Z]?)/#
+        if let m = seat.firstMatch(of: pattern) { return "SEC \(m.1)" }
+        return seat.count <= 12 ? seat.uppercased() : nil
+    }
+}
+
+/// The ticket stub under a game's card: start time, seat, weather and crowd, and the score behind a perforation.
+struct GameStub: View {
+    @Environment(Library.self) private var library
+    let game: GameEntry
+
+    var body: some View {
+        let tz = library.venue(game.venueId)?.tz ?? .current
+        TicketStub(trailingInset: 0, minHeight: 100) {
+            HStack(spacing: 0) {
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(TimelineCard.firstLine(game, tz: tz))
+                            .font(.condensed(.title3, weight: .heavy))
+                            .lineLimit(1)
+                        Spacer(minLength: 6)
+                        if let seat = TimelineCard.seatLine(game.seat) {
+                            Text(seat)
+                                .font(.condensed(.subheadline, weight: .heavy))
+                                .tracking(1)
+                                .foregroundStyle(Color.textSecondary)
+                                .lineLimit(1)
+                        }
+                    }
+                    Rectangle().fill(Color.hairline).frame(height: 1)
+                    facts
+                }
+                .padding(.trailing, 14)
+                TearOff(game: game)
+            }
+            .foregroundStyle(.white)
+        }
     }
 
     /// Weather, attendance, game length and a ticket glyph; whatever is unknown is left out.
@@ -292,17 +316,10 @@ private struct TimelineCard: View {
         return out
     }
 
-    /// "Bleachers \u{00B7} Section 314" -> "SEC 314"
-    static func section(_ seat: String?) -> String? {
-        guard let seat, !seat.isEmpty else { return nil }
-        let pattern = #/(?i)(?:sec(?:tion)?\.?\s*)([A-Z]?\d+[A-Z]?)/#
-        if let m = seat.firstMatch(of: pattern) { return "SEC \(m.1)" }
-        return seat.count <= 12 ? seat.uppercased() : nil
-    }
 }
 
 /// The date as the card's title: a big day number over the month, with the venue beside it.
-private struct DateBlock: View {
+struct DateBlock: View {
     let date: Date
     let tz: TimeZone
     let venue: Venue?
@@ -362,7 +379,7 @@ private struct DateBlock: View {
 }
 
 /// The tear-off end of the stub: the score, stacked, behind a perforation.
-private struct TearOff: View {
+struct TearOff: View {
     @Environment(Library.self) private var library
     let game: GameEntry
 
@@ -438,7 +455,7 @@ private struct TearOff: View {
 }
 
 /// The ticket stub under a card: notched corners and a perforated top edge.
-private struct TicketStub<Content: View>: View {
+struct TicketStub<Content: View>: View {
     var trailingInset: CGFloat = 22
     var minHeight: CGFloat = 92
     @ViewBuilder var content: Content

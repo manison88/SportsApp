@@ -64,6 +64,7 @@
 		B36A1EF368677A89AD58E91D /* CoverPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0A2D620B0AF02229035D47 /* CoverPicker.swift */; };
 		B5ADCC2536397DCDB31BF5F2 /* nfl-summary-401671844.json in Resources */ = {isa = PBXBuildFile; fileRef = 0F19D32DC278C4AA996AD53E /* nfl-summary-401671844.json */; };
 		B77AD38956434C4AE7F0517B /* GameMemoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDE9AC79A998536F4025B92 /* GameMemoryView.swift */; };
+		0F93BE106B7E45D588FECF53 /* GameStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC438604B64906AEB1BAAE /* GameStoryCard.swift */; };
 		BB3F51B6F1750A2ECB5E0479 /* BigGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B48F99FC296122C6C846961 /* BigGameTests.swift */; };
 		BCA5382F18D2E1996030DA1E /* TicketAnchors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CF0E40DE18A5B2FEAC521A /* TicketAnchors.swift */; };
 		BED863E726CE333896659B1A /* AlbumImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BE7A67E02B803D6070CA3E /* AlbumImportView.swift */; };
@@ -169,6 +170,7 @@
 		D8B224F7426AC04A827ABB7E /* AddVenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVenueView.swift; sourceTree = "<group>"; };
 		DA0A2D620B0AF02229035D47 /* CoverPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverPicker.swift; sourceTree = "<group>"; };
 		DEDE9AC79A998536F4025B92 /* GameMemoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMemoryView.swift; sourceTree = "<group>"; };
+		4EDC438604B64906AEB1BAAE /* GameStoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStoryCard.swift; sourceTree = "<group>"; };
 		E1D759FA400F64646D4F0E01 /* YouView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouView.swift; sourceTree = "<group>"; };
 		EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuckyCharmView.swift; sourceTree = "<group>"; };
 		5E0149F8899B48F98151EFE4 /* LegalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalContent.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				DEDE9AC79A998536F4025B92 /* GameMemoryView.swift */,
+				4EDC438604B64906AEB1BAAE /* GameStoryCard.swift */,
 				0D1EBE038CBF9E1D49805847 /* GamePhotosView.swift */,
 				08AAD768395210D8C4AC6920 /* RecapFilmView.swift */,
 				A704303482A7331087EFF150 /* YouWereThereView.swift */,
@@ -632,6 +635,7 @@
 				2F79484B07C141D2ABB335EB /* UEFASchedule.swift in Sources */,
 				EE613D09F1784245897CA7D6 /* BackgroundPhotoCheck.swift in Sources */,
 				B77AD38956434C4AE7F0517B /* GameMemoryView.swift in Sources */,
+				0F93BE106B7E45D588FECF53 /* GameStoryCard.swift in Sources */,
 				6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */,
 				E14EE3095355CC6B33297843 /* Library.swift in Sources */,
 				5ECA51942472297977790DB9 /* LifeMapView.swift in Sources */,

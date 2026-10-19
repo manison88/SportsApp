@@ -432,13 +432,14 @@ struct GameMemoryView: View {
                 stageTint: stage?.kind.tint ?? Color.white
             )
         }
-        return [
-            ShareCardVariant("Photo") { card(.photo) },
-            ShareCardVariant("Number") { card(.number) },
-            ShareCardVariant("Color") { card(.color) },
-            ShareCardVariant("Paper") { card(.paper) },
-            ShareCardVariant("Stub") { card(.stub) },
-        ]
+        _ = card
+        let aerial: UIImage? = if let venue { await AerialCache.shared.image(for: venue, points: 390) } else { nil }
+        let library = library
+        return GameStoryCard.Style.allCases.map { style in
+            ShareCardVariant(style.name) {
+                GameStoryCard(style: style, game: game, photo: photo, aerial: aerial).environment(library)
+            }
+        }
     }
 }
 

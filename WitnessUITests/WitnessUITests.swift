@@ -308,6 +308,20 @@ final class WitnessUITests: XCTestCase {
         }
     }
 
+    func testShareGameLooks() {
+        launch(["-demo"])
+        openGame("mlb-2016-ws5", query: "World Series")
+        XCTAssertTrue(el("game-title").waitForExistence(timeout: 5))
+        tap("game-menu")
+        tap("game-share")
+        sleep(6)
+        for i in 0..<6 {
+            snap("game-share-\(i)")
+            app.swipeLeft()
+            sleep(2)
+        }
+    }
+
     func testSharePassportPage() {
         launch([])
         tap("welcome-sample")
