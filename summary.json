@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 1,
-      "passedTests" : 105,
+      "failedTests" : 0,
+      "passedTests" : 106,
       "skippedTests" : 1,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,31 +22,24 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 1,
-  "finishTime" : 1792429917.089,
-  "passedTests" : 105,
-  "result" : "Failed",
+  "failedTests" : 0,
+  "finishTime" : 1792431590.396,
+  "passedTests" : 106,
+  "result" : "Passed",
   "skippedTests" : 1,
-  "startTime" : 1792428697.375,
+  "startTime" : 1792430528.684,
   "statistics" : [
 
   ],
   "testFailures" : [
-    {
-      "failureText" : "XCTAssertTrue failed - The Soldier Field visit with no game should be reviewed under Other",
-      "targetName" : "WitnessUITests",
-      "testIdentifier" : 92,
-      "testIdentifierString" : "WitnessUITests/testDiscoveryFromPhotos()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testDiscoveryFromPhotos",
-      "testName" : "testDiscoveryFromPhotos()"
-    }
+
   ],
   "title" : "Test - Witness",
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "47% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 10.15s (three standard deviations)"
+      "impact" : "51% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 9.17s (three standard deviations)"
     }
   ],
   "totalTestCount" : 107
