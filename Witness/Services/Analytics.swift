@@ -114,7 +114,7 @@ final class Analytics {
         request.setValue(Self.key, forHTTPHeaderField: "x-witness-key")
         request.setValue("application/json", forHTTPHeaderField: "content-type")
         request.httpBody = data
-        let ok = (try? await URLSession.shared.data(for: request)).map { (/bin/bash.1 as? HTTPURLResponse)?.statusCode == 204 } ?? false
+        let ok = (try? await URLSession.shared.data(for: request)).map { ($0.1 as? HTTPURLResponse)?.statusCode == 204 } ?? false
         if !ok { queue.insert(contentsOf: batch, at: 0); queue = Array(queue.prefix(300)) }
     }
 }
