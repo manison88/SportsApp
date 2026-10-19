@@ -16,6 +16,7 @@
 		0AE7B6A5CB64192CD96DA62B /* WeatherLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3C02570844ED9B793E2B02 /* WeatherLookup.swift */; };
 		0C31791A5B92BA9FD5FC041B /* BackgroundPhotoCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2F247B2D8B5DD97EF0D2F9 /* BackgroundPhotoCheck.swift */; };
 		0E12D046A277661BA11D667B /* AddVenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B224F7426AC04A827ABB7E /* AddVenueView.swift */; };
+		0FB4B58AF78B22552D4CDB2F /* GameStoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2BB9052C4C70B0DC345E10 /* GameStoryCard.swift */; };
 		1063DE931F2D0F81A6578E96 /* DiscoveryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5108FC517334D9D1A1F635 /* DiscoveryView.swift */; };
 		10A7E1C349037AD2CA7BE55A /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C4FEF32607AF617D75F825 /* RootView.swift */; };
 		1307844B2E7EAB4CDD54E487 /* DetectionTuningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBB3E2CA6352B5C2EB2E15D /* DetectionTuningTests.swift */; };
@@ -122,6 +123,7 @@
 		1F5F7CEAB6296502544C0B9F /* ScoreboardReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardReader.swift; sourceTree = "<group>"; };
 		1F7F27F82CA290482A72741B /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		281972298861717804A0CBFD /* PhotoCredits.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = PhotoCredits.md; sourceTree = "<group>"; };
+		2E2BB9052C4C70B0DC345E10 /* GameStoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStoryCard.swift; sourceTree = "<group>"; };
 		302F3BA2809104AA07A544F3 /* PackStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackStore.swift; sourceTree = "<group>"; };
 		3927624E070DF7A5F2C592AD /* LegalContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalContent.swift; sourceTree = "<group>"; };
 		39A71CEDC65654D5367E4E1C /* UEFASchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UEFASchedule.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 			children = (
 				DEDE9AC79A998536F4025B92 /* GameMemoryView.swift */,
 				0D1EBE038CBF9E1D49805847 /* GamePhotosView.swift */,
+				2E2BB9052C4C70B0DC345E10 /* GameStoryCard.swift */,
 				AE175DF13FB178FC0BF52DF9 /* MatchReport.swift */,
 				CDE6698F9E68B2D6627DE240 /* Plans.swift */,
 				08AAD768395210D8C4AC6920 /* RecapFilmView.swift */,
@@ -633,6 +636,7 @@
 				2FB08C6E1D9C2F5F821BFEA3 /* GameLookup.swift in Sources */,
 				B77AD38956434C4AE7F0517B /* GameMemoryView.swift in Sources */,
 				6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */,
+				0FB4B58AF78B22552D4CDB2F /* GameStoryCard.swift in Sources */,
 				00F26CCF0838E1FA236E6A34 /* GameSuggester.swift in Sources */,
 				00A18AB96E3FAB46259A750C /* HomePickerView.swift in Sources */,
 				7B27E405891225F28D7399BA /* LegalContent.swift in Sources */,
