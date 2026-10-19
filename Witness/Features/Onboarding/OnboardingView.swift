@@ -538,7 +538,7 @@ private struct ResultScreen: View {
                 .opacity(beat >= 2 ? 1 : 0)
                 .offset(y: beat >= 2 ? 0 : 18)
             if !scan.possible.isEmpty {
-                Label("\(scan.possible.count) more \(scan.possible.count == 1 ? "day" : "days") might be games, from your albums, trips and photos. You pick the stadium and we match the date.",
+                Label("\(scan.possible.count) more \(scan.possible.count == 1 ? "visit" : "visits") near stadiums might be games. You confirm the stadium and we match the date.",
                       systemImage: "mappin.and.ellipse")
                     .font(.footnote)
                     .foregroundStyle(Color.textSecondary)
@@ -550,8 +550,7 @@ private struct ResultScreen: View {
                 if scan.games.count > 1 {
                     Button("Add all \(scan.games.count) games") {
                         scan.commit(scan.games, into: library)
-                        scan.markReviewed()
-                        if scan.possible.isEmpty { return }
+                        if scan.possible.isEmpty { scan.markReviewed(); return }
                         onReview()
                     }
                     .buttonStyle(.primary)
@@ -631,9 +630,68 @@ private struct ResultScreen: View {
 /// While a scan runs in the background, or has results waiting, the Timeline says so.
 struct ScanBanner: View {
     @Environment(Presenter.self) private var presenter
+    @Environment(Library.self) private var library
 
     var body: some View {
         let scan = presenter.scan
+        if scan.deepState == .running {
+            card {
+                ProgressView().tint(.white)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Searching albums and trips").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
+                    Text(scan.deepTotal > 0 ? "\(scan.deepDone) of \(scan.deepTotal) days. You can keep using the app." : "Looking for days that might be games")
+                        .font(.footnote).foregroundStyle(Color.textSecondary)
+                }
+                Spacer()
+            }
+            .accessibilityIdentifier("deep-scan-running")
+        } else if scan.deepState == .done && !scan.deepReviewed {
+            Button { presenter.modal = .discovery } label: {
+                card {
+                    Image(systemName: "photo.on.rectangle.angled")
+                    Text("\(scan.possible.count) possible games in your albums and trips")
+                        .font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
+                    Spacer()
+                    Text("Review").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase).foregroundStyle(Color.signal)
+                }
+            }
+            .accessibilityIdentifier("deep-scan-review")
+        } else if offerDeepScan(scan) {
+            card {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Look for more games?").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
+                    Text("Search your albums, trips and less obvious photos for games without a stadium location. It runs in the background and you pick the stadium for each one.")
+                        .font(.footnote).foregroundStyle(Color.textSecondary)
+                    HStack(spacing: 10) {
+                        Button("Search") { scan.startDeepScan(library: library) }
+                            .buttonStyle(.primary).accessibilityIdentifier("deep-scan-start")
+                        Button("Not now") { scan.deepDeclined = true }
+                            .buttonStyle(.secondary).accessibilityIdentifier("deep-scan-decline")
+                    }
+                }
+            }
+        } else {
+            firstPass(scan)
+        }
+    }
+
+    /// Offered once the first pass has been seen, to anyone who gave photo access and has not said no.
+    private func offerDeepScan(_ scan: ScanModel) -> Bool {
+        guard scan.deepState == .idle, !scan.deepDeclined, PhotoMatcher.hasAccess else { return false }
+        return (scan.state == .done && scan.reviewed) || scan.state == .empty
+    }
+
+    private func card<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+        HStack(spacing: 12) { content() }
+            .foregroundStyle(.white)
+            .padding(14)
+            .background(Color.panel, in: .rect(cornerRadius: 14))
+            .gutter()
+            .padding(.vertical, 6)
+    }
+
+    @ViewBuilder
+    private func firstPass(_ scan: ScanModel) -> some View {
         switch scan.state {
         case .scanning, .matching, .verifying:
             HStack(spacing: 12) {

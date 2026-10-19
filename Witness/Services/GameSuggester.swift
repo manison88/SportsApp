@@ -21,6 +21,19 @@ enum GameSuggester {
     static let maxDays = 150
     static let maxAlbums = 60
 
+    /// Albums that apps and the system make (saved from Instagram, WhatsApp, screenshots...) are never a day out.
+    static let appAlbums = ["instagram", "whatsapp", "facebook", "messenger", "snapchat", "tiktok", "telegram", "twitter", "pinterest",
+                            "reddit", "youtube", "discord", "wechat", "viber", "slack", "gmail", "google photos",
+                            "screenshot", "screen recording", "saved", "downloads", "imported", "received", "shared", "memes", "meme",
+                            "camera roll", "recents", "snapseed", "lightroom", "vsco", "photoshop", "capcut", "inshot", "canva"]
+
+    /// Pure: whether an album's title names an app or a system collection rather than an occasion.
+    static func isAppAlbum(_ title: String) -> Bool {
+        let t = fold(title)
+        let words = Set(t.split(separator: " ").map(String.init))
+        return appAlbums.contains { app in app.contains(" ") ? t.contains(app) : words.contains { $0 == app || $0 == app + "s" } }
+    }
+
     /// Pure: the days worth a look. Enough photos, none the library already covers, newest first.
     static func candidates(_ piles: [DayPile], skipping claimed: Set<String>) -> [DayPile] {
         piles.filter { $0.assetIds.count >= minPhotos && !claimed.contains($0.id) }.sorted { $0.day > $1.day }
@@ -74,7 +87,7 @@ enum GameSuggester {
         // Everything that touches the photo library runs off the main thread.
         let sources: [Source] = await Task.detached(priority: .utility) {
             var out: [Source] = []
-            for album in AlbumImporter.albums().filter({ $0.count >= minPhotos && $0.count <= 3000 }).prefix(maxAlbums) {
+            for album in AlbumImporter.albums().filter({ $0.count >= minPhotos && $0.count <= 3000 && !isAppAlbum($0.title) }).prefix(maxAlbums) {
                 let hints = Self.venues(named: album.title, teams: teams, venues: venues) { id in venues.first { $0.id == id } }
                 out.append(Source(reason: "In your album \u{201C}\(album.title)\u{201D}", points: AlbumImporter.points(in: album), hints: hints))
             }

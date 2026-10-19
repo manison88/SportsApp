@@ -613,7 +613,9 @@ struct DiscoveryView: View {
         guard phase == .requesting else { return }
         let scan = presenter.scan
         // Onboarding already scanned, matched and read the tickets: go straight to the first game.
-        if !(scan.state == .done && !scan.reviewed) {
+        // Results already waiting (the first pass, or the optional second pass over albums and trips) are shown without scanning again.
+        let waiting = (scan.state == .done && !scan.reviewed) || (scan.deepState == .done && !scan.deepReviewed)
+        if !waiting {
             phase = .scanning
             scan.reset()
             scan.start(library: library)

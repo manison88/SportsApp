@@ -36,7 +36,21 @@ final class ScanModel {
     /// Set once the scan screen has walked the person through every step, so the results appear after it, not mid-count.
     private(set) var shown = false
 
+    /// The optional second pass over albums, trips and photos with no location. Only ever started by the fan, and runs in the background.
+    enum DeepState: Equatable { case idle, running, done }
+    private(set) var deepState: DeepState = .idle
+    private(set) var deepDone = 0
+    private(set) var deepTotal = 0
+    /// Set once the fan has seen the second pass's results.
+    private(set) var deepReviewed = true
+    /// The fan said no to the second pass; it is not offered again.
+    var deepDeclined: Bool {
+        get { UserDefaults.standard.bool(forKey: "deepScanDeclined") }
+        set { UserDefaults.standard.set(newValue, forKey: "deepScanDeclined") }
+    }
+
     @ObservationIgnored private var task: Task<Void, Never>?
+    @ObservationIgnored private var deepTask: Task<Void, Never>?
 
     var matchedCount: Int { matches.count }
     var inProgress: Bool { state == .scanning || state == .matching || state == .verifying }
@@ -49,7 +63,34 @@ final class ScanModel {
         task = Task { await run(library: library) }
     }
 
-    func markReviewed() { reviewed = true }
+    func markReviewed() { reviewed = true; deepReviewed = true }
+
+    /// Looks through albums, trips and days with no location for more games, in the background. Everything it finds is a
+    /// possible game: the fan picks the stadium, and nothing is added on its own.
+    func startDeepScan(library: Library) {
+        guard deepState != .running else { return }
+        deepState = .running
+        deepDone = 0; deepTotal = 0
+        var claimed = Set<String>()
+        var keyer = DayKeyer()
+        for g in library.games { claimed.insert(keyer.day(g.date, tz: .current)) }
+        for c in games { claimed.insert(keyer.day(c.start, tz: .current)) }
+        for m in possible { claimed.insert(keyer.day(m.day, tz: .current)) }
+        let venues = library.venues, teams = library.allTeams
+        let home = library.profile.homeLocation, hasHome = library.hasHome
+        Analytics.shared.track(.onboardingStep, ["step": "deep_scan_started"])
+        deepTask = Task { [weak self] in
+            let found = await GameSuggester.find(venues: venues, teams: teams, home: home, hasHome: hasHome, claimed: claimed) { done, total in
+                self?.deepTotal = total
+                self?.deepDone = done
+            }
+            guard let self, !Task.isCancelled else { return }
+            possible = (possible + found).sorted { $0.day > $1.day }
+            deepReviewed = false
+            deepState = .done
+            Analytics.shared.track(.scanFinished, ["deep": true, "possible": found.count])
+        }
+    }
 
     /// Adds visits to the library in one go, without asking about each: games with their schedule match (or ticket seat), or
     /// every visit as a stadium visit. Plays and win probability arrive afterwards. Added visits leave the lists, so the review
@@ -99,6 +140,10 @@ final class ScanModel {
 
     func reset() {
         task?.cancel()
+        deepTask?.cancel()
+        deepState = .idle
+        deepDone = 0; deepTotal = 0
+        deepReviewed = true
         state = .idle
         progress = .init()
         games = []
@@ -193,20 +238,7 @@ final class ScanModel {
             verifiedVisits += 1
         }
 
-        // Albums, trips and days with no location: every one is a day to ask about, never added on its own.
-        var claimed = Set<String>()
-        var keyer = DayKeyer()
-        for g in library.games { claimed.insert(keyer.day(g.date, tz: .current)) }
-        for c in confirmed { claimed.insert(keyer.day(c.start, tz: .current)) }
-        for m in maybe { claimed.insert(keyer.day(m.day, tz: .current)) }
-        let base = verifiedVisits, baseTotal = verifyTotal
-        let extra = await GameSuggester.find(venues: library.venues, teams: library.allTeams, home: library.profile.homeLocation,
-                                             hasHome: library.hasHome, claimed: claimed) { [weak self] done, total in
-            self?.verifyTotal = baseTotal + total
-            self?.verifiedVisits = base + done
-        }
         matches = matched
-        maybe += extra
 
         skippedVisits = skipped
         games = confirmed.sorted { $0.start > $1.start }

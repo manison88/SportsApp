@@ -532,6 +532,15 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(kept.map(\.id), ["2020-06-01"], "Too few photos and already-covered days are left out")
     }
 
+    func testAppAndSystemAlbumsAreSkipped() {
+        for title in ["Instagram", "WhatsApp", "Facebook", "Screenshots", "Saved from TikTok", "Google Photos"] {
+            XCTAssertTrue(GameSuggester.isAppAlbum(title), title)
+        }
+        for title in ["Cubs game", "Wrigley 2019", "Chicago trip", "Lines of Defense"] {
+            XCTAssertFalse(GameSuggester.isAppAlbum(title), title)
+        }
+    }
+
     func testIndoorOutdoorIsASecondOpinion() throws {
         let setting = SceneCheck.setting([("indoor_arena", 0.8), ("sky", 0.1)])
         XCTAssertGreaterThan(setting.indoor, 0.5)
