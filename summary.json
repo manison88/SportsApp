@@ -23,11 +23,11 @@
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
   "failedTests" : 1,
-  "finishTime" : 1792423218.752,
+  "finishTime" : 1792425001.933,
   "passedTests" : 105,
   "result" : "Failed",
   "skippedTests" : 1,
-  "startTime" : 1792422053.025,
+  "startTime" : 1792423826.283,
   "statistics" : [
 
   ],
@@ -45,8 +45,8 @@
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "49% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 9.53s (three standard deviations)"
+      "impact" : "50% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 10.70s (three standard deviations)"
     }
   ],
   "totalTestCount" : 107
