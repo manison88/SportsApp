@@ -92,9 +92,10 @@ actor PackStore {
     // MARK: Updating
 
     /// Fetches the manifest and any packs that are new or changed. Returns true when something new was stored.
-    /// Catalog packs go first (they are small); schedules follow, newest seasons first, on Wi-Fi only.
+    /// Catalog packs go first (they are small). Schedules are fetched for leagues already on the phone (to keep them current) and for
+    /// `prefetch` (the leagues of the fan's teams and places); every other league is fetched the first time a lookup needs it (`ensure`).
     @discardableResult
-    func refresh() async -> Bool {
+    func refresh(prefetch: Set<String> = []) async -> Bool {
         guard let base = PackConfig.resolvedBaseURL else { return false }
         var request = URLRequest(url: base.appending(path: "manifest.json"))
         request.timeoutInterval = 15
@@ -116,7 +117,12 @@ actor PackStore {
         }
         guard let target else { return false }
 
-        let missing = target.packs.filter { !FileManager.default.fileExists(atPath: file(for: $0).path) }
+        let onPhone = Set(target.packs.filter { $0.kind == "schedule" && hasFile(for: $0) }.compactMap(\.league))
+        let wanted = onPhone.union(prefetch)
+        let missing = target.packs.filter { pack in
+            !FileManager.default.fileExists(atPath: file(for: pack).path)
+                && (pack.kind != "schedule" || pack.league.map(wanted.contains) == true)
+        }
             .sorted { a, b in
                 if (a.kind == "catalog") != (b.kind == "catalog") { return a.kind == "catalog" }
                 return (a.season ?? 0) > (b.season ?? 0)
@@ -150,6 +156,23 @@ actor PackStore {
         return stored
     }
 
+    /// Downloads the season packs of one league that a lookup needs and the phone does not have yet. They are small, so this runs on
+    /// any connection; a failed download changes nothing and the lookup simply uses the live source.
+    func ensure(league: String, seasons: ClosedRange<Int>) async {
+        guard let base = PackConfig.resolvedBaseURL, let manifest else { return }
+        let missing = manifest.packs.filter { pack in
+            pack.kind == "schedule" && pack.league == league && pack.season.map { seasons.contains($0) } == true
+                && !FileManager.default.fileExists(atPath: file(for: pack).path)
+        }
+        guard !missing.isEmpty else { return }
+        await withTaskGroup(of: (PackManifest.Pack, Data?).self) { group in
+            for pack in missing { group.addTask { (pack, await Self.download(pack, from: base, onAnyNetwork: true)) } }
+            for await (pack, bytes) in group {
+                if let bytes { try? bytes.write(to: file(for: pack), options: .atomic) }
+            }
+        }
+    }
+
     // MARK: Checks and files (pure, so they can be tested)
 
     /// The manifest, if its signature holds (when a key is configured) and it decodes.
@@ -179,11 +202,11 @@ actor PackStore {
     }
 
     /// One download, checked against the manifest's size and SHA-256 before it is trusted.
-    private static func download(_ pack: PackManifest.Pack, from base: URL) async -> Data? {
+    private static func download(_ pack: PackManifest.Pack, from base: URL, onAnyNetwork: Bool = false) async -> Data? {
         let config = URLSessionConfiguration.default
-        let schedule = pack.kind == "schedule"
-        config.allowsExpensiveNetworkAccess = !schedule
-        config.allowsConstrainedNetworkAccess = !schedule
+        let background = pack.kind == "schedule" && !onAnyNetwork
+        config.allowsExpensiveNetworkAccess = !background
+        config.allowsConstrainedNetworkAccess = !background
         config.timeoutIntervalForRequest = 60
         let session = URLSession(configuration: config)
         defer { session.finishTasksAndInvalidate() }

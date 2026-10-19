@@ -490,4 +490,24 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertEqual(ScoreboardReader.support(reading, for: game(home: ("CHI", "Chicago", 2), away: ("TB", "Tampa Bay", 0))), 2,
                        "Vision read: \(text)")
     }
+
+    func testBackupRoundTripAndSpreadsheet() throws {
+        let venue = try XCTUnwrap(library.venues.first)
+        library.add(GameEntry(sport: .baseball, date: Date(timeIntervalSince1970: 1_700_000_000), venueId: venue.id,
+                              homeScore: 3, awayScore: 2, note: "Rain, then \"extra\" innings", origin: .manual))
+        let backup = try library.backupFile()
+        let csv = try String(contentsOf: try library.csvFile(), encoding: .utf8)
+        XCTAssertTrue(csv.hasPrefix("date,sport,kind,venue"))
+        XCTAssertTrue(csv.contains("\"Rain, then \"\"extra\"\" innings\""), "Commas and quotes are escaped")
+
+        let other = Library(storeURL: FileManager.default.temporaryDirectory.appending(path: "restore-\(UUID().uuidString).json"))
+        XCTAssertEqual(try other.restore(from: backup), 1)
+        XCTAssertEqual(try other.restore(from: backup), 0, "Restoring twice adds nothing")
+        XCTAssertEqual(other.games.count, 1)
+    }
+
+    func testFormerTeamNamesAreSearchable() throws {
+        let team = try XCTUnwrap(library.allTeams.first { $0.id == "nba-okc" })
+        XCTAssertEqual(team.formerNames, ["Seattle SuperSonics"])
+    }
 }

@@ -126,6 +126,7 @@ enum LocalSchedule {
         let range = seasons(from: from, to: to)
         var out = Set<String>()
         for league in leagues {
+            await PackStore.shared.ensure(league: league, seasons: range)
             let have = await PackStore.shared.schedulePacks(league: league, seasons: range)
             if Set(have.compactMap(\.season)).isSuperset(of: Set(range)) { out.insert(league) }
         }

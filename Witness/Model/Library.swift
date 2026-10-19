@@ -796,6 +796,20 @@ final class Library {
         }
     }
 
+    /// League keys the fan cares about (their teams' leagues and the leagues of games they saved): schedules for these are downloaded ahead of time.
+    func relevantLeagues() -> Set<String> {
+        var out = Set<String>()
+        func add(_ id: String?) {
+            if let t = team(id), let key = t.leagueKey ?? t.externalIds?.espnLeague { out.insert(key) }
+        }
+        for g in games + plans {
+            add(g.homeTeamId); add(g.awayTeamId)
+            if let league = g.source?.league { out.insert(league) }
+        }
+        chosenFavoriteTeamIds.forEach { add($0) }
+        return out
+    }
+
     // MARK: Backup and export
 
     /// The whole library as one file the fan can keep: games, plans, custom places and people. Photos stay in their own library.
