@@ -1,5 +1,7 @@
 // Witness analytics: takes event batches from the app, keeps them in D1, and shows a dashboard.
 //   POST /e        the app's batches (needs the x-witness-key header)
+//   GET  /packs/*  the downloadable data packs (teams, venues, schedules) from R2; public, immutable files named by hash
+//   PUT  /packs-admin/<key>, GET /packs-admin/list, DELETE /packs-admin/<key>  upload from CI (same basic-auth password)
 //   GET  /         the dashboard (HTTP basic auth, password in the DASH_PASSWORD secret)
 // No IP address is kept, only Cloudflare's country code. Events carry no photos, locations or names of people.
 
@@ -20,6 +22,8 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === '/e' && request.method === 'POST') return ingest(request, env);
     if (url.pathname === '/health') return new Response('ok');
+    if (url.pathname.startsWith('/packs/')) return servePack(request, env, url.pathname.slice(7));
+    if (url.pathname.startsWith('/packs-admin/')) return adminPacks(request, env, url.pathname.slice(13));
     // The privacy policy and terms the App Store listing and the app link to: public, no sign-in.
     if (url.pathname === '/privacy') return page(PRIVACY_HTML);
     if (url.pathname === '/terms') return page(TERMS_HTML);
@@ -84,6 +88,44 @@ function cleanProps(p) {
   }
   const s = JSON.stringify(out);
   return s.length > 600 ? null : s;
+}
+
+// MARK: Data packs
+
+const PACK_KEY = /^[A-Za-z0-9._/-]{1,200}$/;
+const validKey = (key) => PACK_KEY.test(key) && !key.includes('..');
+
+async function servePack(request, env, key) {
+  if (!env.PACKS || !validKey(key) || !['GET', 'HEAD'].includes(request.method)) return new Response('Not found', { status: 404 });
+  const object = await env.PACKS.get(key);
+  if (!object) return new Response('Not found', { status: 404 });
+  const headers = new Headers({
+    'content-type': 'application/json',
+    'etag': object.httpEtag,
+    // Files are named by their hash and never change; only the manifest is short-lived.
+    'cache-control': key === 'manifest.json' ? 'public, max-age=300' : 'public, max-age=31536000, immutable',
+  });
+  if (request.headers.get('if-none-match') === object.httpEtag) return new Response(null, { status: 304, headers });
+  return new Response(request.method === 'HEAD' ? null : object.body, { headers });
+}
+
+async function adminPacks(request, env, key) {
+  if (!env.PACKS) return new Response('Not found', { status: 404 });
+  if (!authorized(request, env)) return new Response('Sign in', { status: 401 });
+  if (key === 'list' && request.method === 'GET') {
+    const keys = [];
+    let cursor;
+    do {
+      const page = await env.PACKS.list({ cursor, limit: 1000 });
+      keys.push(...page.objects.map((o) => o.key));
+      cursor = page.truncated ? page.cursor : undefined;
+    } while (cursor);
+    return Response.json(keys);
+  }
+  if (!validKey(key)) return new Response('Bad key', { status: 400 });
+  if (request.method === 'PUT') { await env.PACKS.put(key, request.body); return new Response('ok'); }
+  if (request.method === 'DELETE') { await env.PACKS.delete(key); return new Response('ok'); }
+  return new Response('Not found', { status: 404 });
 }
 
 // MARK: Dashboard

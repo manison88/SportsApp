@@ -25,13 +25,19 @@ enum AnalyticsEvent: String {
 
 /// Anonymous usage events, sent in small batches to our own analytics Worker (analytics/worker.js). It is off in tests, until the
 /// Worker's address is filled in below, and whenever the person turns it off in You.
+/// The one Cloudflare Worker the app talks to: anonymous usage numbers (/e), the privacy and terms pages, and the data packs (/packs).
+/// Fill in the address printed by the Worker deploy (the analytics-deploy branch, URL.txt) and all three switch on together.
+enum Backend {
+    static let base = "https://witness-analytics.SUBDOMAIN.workers.dev"
+    static var isOnline: Bool { !base.contains("SUBDOMAIN") }
+}
+
 @Observable
 @MainActor
 final class Analytics {
     static let shared = Analytics()
 
-    /// Fill in the address printed by the analytics deploy (the analytics-deploy branch, URL.txt), then add "/e".
-    static let endpoint = "https://witness-analytics.SUBDOMAIN.workers.dev/e"
+    static let endpoint = Backend.base + "/e"
     /// Ships inside the app, so it only keeps casual junk out. The Worker validates and limits everything anyway.
     private static let key = "5ujo3n8yQh1uI6jbaVIoUucWMvja2S-9"
 
@@ -52,7 +58,7 @@ final class Analytics {
             device = UUID().uuidString
             d.set(device, forKey: "analytics.device")
         }
-        active = !ProcessInfo.processInfo.arguments.contains("-uitest") && !Self.endpoint.contains("SUBDOMAIN")
+        active = !ProcessInfo.processInfo.arguments.contains("-uitest") && Backend.isOnline
     }
 
     func setEnabled(_ on: Bool) {

@@ -4,10 +4,10 @@ import CryptoKit
 /// Where downloadable data packs come from. Packs are public reference data (teams, venues, schedules): the app
 /// downloads whole packs and matches photos on the phone, so no server ever hears where or when a photo was taken.
 enum PackConfig {
-    /// Public, read-only static host for `manifest.json` and the packs. Empty turns downloading off.
-    static let baseURL = ""
+    /// Public, read-only host for `manifest.json` and the packs: the Worker's /packs path. Empty (until the Worker is live) turns downloading off.
+    static var baseURL: String { Backend.isOnline ? Backend.base + "/packs" : "" }
     /// Base64 Ed25519 public key that signs `manifest.json`. Empty accepts unsigned manifests (development only).
-    static let publicKey = "nzhFUkb09SOOUu8voon7szwiGV25RgAMJfRR2i6oBOU="
+    static let publicKey = "Di9c9bdxUI6yJQ1d5cQ4dvS0H9zxvMds3jjbAn567eU="
 
     /// `-WitnessPackBaseURL <url>` on the command line (or the defaults key) overrides the built-in host, for testing.
     static var resolvedBaseURL: URL? {

@@ -1,5 +1,6 @@
-# Rebuilds the downloadable data packs and publishes them to R2, so schedules update without an app release.
-# Secrets (repo settings): PACKS_SIGNING_KEY (from Tools/packs/make_keys.py), R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY.
+# Rebuilds the downloadable data packs and publishes them through the analytics Worker (stored in R2), so teams, venues and schedules
+# update without an app release. Secrets (repo settings): PACKS_SIGNING_KEY (from Tools/packs/make_keys.py) and ANALYTICS_DASH_PASSWORD.
+# The Worker's address comes from the analytics-deploy branch (URL.txt), so deploy the Worker first.
 name: Publish data packs
 
 on:
@@ -7,27 +8,39 @@ on:
     - cron: "17 6 * * *"
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [main, claude/witness-mockups-phase1]
     paths: ["Tools/teams/**", "Tools/schedules/**", "Tools/countries/**", "Tools/packs/**", "Witness/Resources/Catalog/**"]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      HAS_KEYS: ${{ secrets.PACKS_SIGNING_KEY != '' && secrets.ANALYTICS_DASH_PASSWORD != '' }}
     steps:
+      - name: Skip until the secrets are set
+        if: env.HAS_KEYS != 'true'
+        run: echo "Add PACKS_SIGNING_KEY and ANALYTICS_DASH_PASSWORD to publish packs."
       - uses: actions/checkout@v4
+        if: env.HAS_KEYS == 'true'
       - uses: actions/setup-python@v5
+        if: env.HAS_KEYS == 'true'
         with:
           python-version: "3.12"
-      - run: pip install boto3 cryptography
+      - run: pip install cryptography
+        if: env.HAS_KEYS == 'true'
       - name: Refresh the current season from ESPN
+        if: env.HAS_KEYS == 'true'
         run: python3 Tools/packs/refresh_current.py
       - name: Build packs
+        if: env.HAS_KEYS == 'true'
         env:
           PACKS_SIGNING_KEY: ${{ secrets.PACKS_SIGNING_KEY }}
         run: python3 Tools/packs/build_packs.py --version-note "$GITHUB_SHA"
-      - name: Publish to R2
+      - name: Publish through the Worker
+        if: env.HAS_KEYS == 'true'
         env:
-          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-        run: python3 Tools/packs/publish.py
+          PACKS_PASSWORD: ${{ secrets.ANALYTICS_DASH_PASSWORD }}
+        run: |
+          git fetch --depth=1 origin analytics-deploy
+          export PACKS_BASE_URL="$(git show origin/analytics-deploy:URL.txt | tr -d '[:space:]')"
+          python3 Tools/packs/publish_worker.py

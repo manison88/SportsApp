@@ -2,8 +2,8 @@ import SwiftUI
 
 /// Where the app's legal links point. The pages are served by the analytics Worker (/privacy and /terms), so they share its address.
 enum LegalLinks {
-    private static var base: String { Analytics.endpoint.replacingOccurrences(of: "/e", with: "", options: [.backwards, .anchored]) }
-    static var isOnline: Bool { !base.contains("SUBDOMAIN") }
+    private static var base: String { Backend.base }
+    static var isOnline: Bool { Backend.isOnline }
     static var privacy: URL? { isOnline ? URL(string: base + "/privacy") : nil }
     static var terms: URL? { isOnline ? URL(string: base + "/terms") : nil }
 }

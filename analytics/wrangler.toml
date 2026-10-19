@@ -7,6 +7,11 @@ binding = "DB"
 database_name = "witness-analytics"
 database_id = "09f1ee9b-c1df-4523-a536-28ec9bceae21"
 
+# Downloadable data packs: teams, venues and schedules the app fetches over the air.
+[[r2_buckets]]
+binding = "PACKS"
+bucket_name = "witness-packs"
+
 # The app sends this key with every batch. It ships inside the app, so it only keeps casual junk out; the Worker also
 # checks every event's name and size and limits how much one phone can send.
 [vars]

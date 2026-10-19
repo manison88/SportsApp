@@ -26,6 +26,16 @@ jobs:
         if: env.HAS_TOKEN != 'true'
         run: echo "Add CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID and ANALYTICS_DASH_PASSWORD to deploy." 
 
+      - name: Create the data packs bucket
+        if: env.HAS_TOKEN == 'true'
+        uses: cloudflare/wrangler-action@v3
+        continue-on-error: true
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: analytics
+          command: r2 bucket create witness-packs
+
       - name: Deploy the Worker
         if: env.HAS_TOKEN == 'true'
         id: deploy
