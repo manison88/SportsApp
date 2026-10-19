@@ -514,6 +514,7 @@ final class Library {
             sortAndSave()
             let id = games[i].id
             Task { await fillWeather(id) }
+            pickCoverSoon(id)
             return
         }
         games.append(game)
@@ -521,6 +522,7 @@ final class Library {
         Analytics.shared.track(.gameAdded, ["source": game.origin.rawValue, "sport": game.sport.rawValue, "visit": game.isVisit])
         let id = game.id
         Task { await fillWeather(id) }
+        pickCoverSoon(id)
     }
 
     // MARK: Weather
@@ -676,6 +678,12 @@ final class Library {
     @ObservationIgnored private var coverWork = Set<String>()
 
     /// Picks a cover for a game that has several photos and none chosen yet. Never touches the fan's own pick.
+    /// Picks the cover as soon as a game with several photos is added, instead of when its card first scrolls into view.
+    private func pickCoverSoon(_ id: String) {
+        guard !ProcessInfo.processInfo.arguments.contains("-uitest") else { return }
+        Task { await autoCover(id) }
+    }
+
     func autoCover(_ id: String, force: Bool = false) async {
         guard let g = game(id), g.photos.count > 1, !coverWork.contains(id) else { return }
         guard force ? g.coverChosenByFan != true : (g.coverPhoto == nil && g.coverChosenByFan != true) else { return }
@@ -683,6 +691,8 @@ final class Library {
         defer { coverWork.remove(id) }
         let stills = MediaInfo.stills(g.photos)
         guard stills.count > 1, let best = await CoverPicker.best(stills), let again = game(id), again.coverChosenByFan != true else { return }
+        // Loaded before it is set, so the card changes photo in one cross-fade, never through a blank.
+        _ = await PhotoLoader.load(best)
         setCover(id, to: best, byFan: false)
     }
 

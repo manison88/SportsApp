@@ -96,6 +96,14 @@ final class WitnessUITests: XCTestCase {
         XCTAssertTrue(app.tabBars.buttons["Timeline"].waitForExistence(timeout: 8))
     }
 
+    func testOnboardingAccessPage() {
+        launch([])
+        tap("welcome-start")
+        XCTAssertTrue(el("onboarding-access").waitForExistence(timeout: 5))
+        sleep(1)
+        snap("ob-access")
+    }
+
     func testTabsTour() {
         launch(["-demo"])
         XCTAssertTrue(el("game-card-mlb-2026-0704").waitForExistence(timeout: 10))

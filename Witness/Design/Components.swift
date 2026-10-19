@@ -260,6 +260,14 @@ struct PhotoView: View {
     @State private var image: UIImage?
     @State private var failed = false
 
+    init(ref: PhotoRef, contentMode: ContentMode = .fill, showsMediaBadge: Bool = false) {
+        self.ref = ref
+        self.contentMode = contentMode
+        self.showsMediaBadge = showsMediaBadge
+        // A photo already loaded shows on the first frame: no blank flash when a card switches to its cover.
+        _image = State(initialValue: PhotoLoader.cached(ref))
+    }
+
     var body: some View {
         // A clear base takes the proposed size, so a filled photo never widens its parent.
         Color.clear
@@ -297,9 +305,10 @@ struct PhotoView: View {
                 }
             }
             .task(id: ref) {
-                // Clear first so a reused cell never shows the previous photo.
-                image = nil
+                // Reset first so a reused cell never shows the previous photo; a cached one shows at once.
+                image = PhotoLoader.cached(ref)
                 failed = false
+                if image != nil { return }
                 image = await PhotoLoader.load(ref)
                 failed = image == nil
             }
@@ -338,6 +347,12 @@ enum PhotoLoader {
         c.countLimit = 160
         return c
     }()
+
+    /// A library photo already in memory at this size, without waiting.
+    static func cached(_ ref: PhotoRef, size: CGSize = CGSize(width: 1400, height: 1400)) -> UIImage? {
+        guard case .library(let id) = ref else { return nil }
+        return cache.object(forKey: "\(id)@\(Int(size.width))" as NSString)
+    }
 
     static func load(_ ref: PhotoRef, size: CGSize = CGSize(width: 1400, height: 1400)) async -> UIImage? {
         switch ref {
@@ -424,7 +439,13 @@ struct GameBackdrop: View {
 
     var body: some View {
         if index == 0, let hero = game.heroPhoto {
-            PhotoView(ref: hero)
+            // The cover can change after a game is added (the best photo is picked a moment later): cross-fade to it.
+            ZStack {
+                PhotoView(ref: hero)
+                    .id(hero)
+                    .transition(.opacity)
+            }
+            .animation(.easeInOut(duration: 0.6), value: hero)
         } else if game.photos.indices.contains(index) {
             PhotoView(ref: game.photos[index])
         } else {

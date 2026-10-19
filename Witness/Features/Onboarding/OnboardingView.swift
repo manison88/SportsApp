@@ -58,20 +58,23 @@ struct OnboardingView: View {
     }
 
     private var controls: some View {
-        VStack(spacing: Spacing.inner) {
+        VStack(spacing: 6) {
             Button("Allow photo access") { presenter.scan.start(library: library) }
-                .buttonStyle(.primary)
+                .buttonStyle(PrimaryButtonStyle(fill: .signal))
                 .accessibilityIdentifier("onboarding-allow")
-            Button("Choose an album instead") { presenter.modal = .importAlbum }
-                .buttonStyle(.secondary)
-                .accessibilityIdentifier("onboarding-album")
-            Button("Not now") { library.loadSample() }
-                .font(.condensed(.headline, weight: .bold))
-                .textCase(.uppercase)
-                .tracking(1.2)
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity, minHeight: 44)
-                .accessibilityIdentifier("onboarding-notnow")
+            HStack(spacing: 0) {
+                Button("Choose an album") { presenter.modal = .importAlbum }
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .accessibilityIdentifier("onboarding-album")
+                Rectangle().fill(Color.hairline).frame(width: 1, height: 18)
+                Button("Not now") { library.loadSample() }
+                    .frame(maxWidth: .infinity, minHeight: 44)
+                    .accessibilityIdentifier("onboarding-notnow")
+            }
+            .font(.condensed(.subheadline, weight: .heavy))
+            .textCase(.uppercase)
+            .tracking(1.2)
+            .foregroundStyle(.white)
             HStack(spacing: 18) {
                 Button("Privacy policy") { legal = LegalContent.privacy }
                     .accessibilityIdentifier("onboarding-privacy")
@@ -94,49 +97,72 @@ struct OnboardingView: View {
 
 // MARK: - Photo access
 
+/// The ask for photo access: the same wall of photos, dimmed, with a light passing over it, and the three things Witness reads
+/// and does not do.
 private struct AccessPage: View {
+    @State private var sweep = false
+
     var body: some View {
-        VStack(alignment: .leading, spacing: Spacing.block) {
+        VStack(alignment: .leading, spacing: 0) {
+            DotWall(stage: 0)
+                .opacity(0.45)
+                .frame(height: 170, alignment: .top)
+                .clipped()
+                .overlay {
+                    GeometryReader { geo in
+                        LinearGradient(colors: [Color.signal.opacity(0), Color.signal.opacity(0.28), Color.signal.opacity(0)],
+                                       startPoint: .top, endPoint: .bottom)
+                            .frame(height: 56)
+                            .offset(y: sweep ? geo.size.height : -56)
+                    }
+                    .clipped()
+                    .allowsHitTesting(false)
+                }
+                .padding(.top, 20)
+                .accessibilityHidden(true)
+
+            Text("What Witness reads").unitLabel().foregroundStyle(Color.textSecondary).padding(.top, 22)
+            VStack(spacing: 8) {
+                row("When each photo was taken", on: true)
+                row("Where it was taken", on: true)
+                row("Nothing is uploaded. No account.", on: false)
+            }
+            .padding(.top, 10)
+
             VStack(alignment: .leading, spacing: -4) {
-                Text("Dates and\nplaces.").foregroundStyle(.white)
+                Text("Dates and places.").foregroundStyle(.white)
                 Text("Nothing else.").foregroundStyle(Color.signal)
             }
-            .displayFont(60)
+            .displayFont(44)
             .textCase(.uppercase)
-            .lineLimit(4)
+            .lineLimit(2)
             .minimumScaleFactor(0.6)
+            .padding(.top, 22)
             .accessibilityElement(children: .combine)
             .accessibilityAddTraits(.isHeader)
-
-            VStack(spacing: 0) {
-                row("Date", "Jul 4, 2026 · 7:02 PM", muted: false)
-                row("Place", "Near a stadium", muted: false)
-                row("Content", "Not read", muted: true)
-            }
-            .overlay(alignment: .top) { Rectangle().fill(Color.hairline).frame(height: 1) }
-
-            Label("Photos and results stay on this iPhone. Nothing is uploaded.", systemImage: "lock.fill")
-                .font(.footnote)
-                .foregroundStyle(Color.textSecondary)
             Spacer()
         }
         .gutter()
-        .padding(.top, 76)
         .frame(maxWidth: .infinity, alignment: .leading)
         .accessibilityIdentifier("onboarding-access")
+        .onAppear {
+            withAnimation(.easeInOut(duration: 2.2).repeatForever(autoreverses: false)) { sweep = true }
+        }
     }
 
-    private func row(_ label: String, _ value: String, muted: Bool) -> some View {
-        HStack(alignment: .firstTextBaseline) {
-            Text(label).unitLabel().foregroundStyle(Color.textTertiary).frame(width: 84, alignment: .leading)
-            Text(value)
-                .font(.condensed(.title3, weight: .heavy))
-                .textCase(.uppercase)
-                .foregroundStyle(muted ? Color.textSecondary : .white)
+    private func row(_ text: String, on: Bool) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: on ? "checkmark" : "lock.fill")
+                .font(.caption.weight(.heavy))
+                .foregroundStyle(on ? Color.black : Color.textSecondary)
+                .frame(width: 26, height: 26)
+                .background(on ? Color.signal : Color.panelRaised, in: .circle)
+            Text(text).font(.subheadline).foregroundStyle(on ? .white : Color.textSecondary)
             Spacer()
         }
-        .frame(minHeight: 52)
-        .overlay(alignment: .bottom) { Rectangle().fill(Color.hairline).frame(height: 1) }
+        .padding(.horizontal, 14)
+        .frame(minHeight: 48)
+        .background(Color.panel, in: .rect(cornerRadius: 12))
         .accessibilityElement(children: .combine)
     }
 }
