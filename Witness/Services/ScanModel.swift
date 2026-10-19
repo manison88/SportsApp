@@ -64,6 +64,16 @@ final class ScanModel {
     }
 
     private static var pendingURL: URL { URL.applicationSupportDirectory.appending(path: "pending-visits.json") }
+    nonisolated static var ledgerURL: URL { URL.applicationSupportDirectory.appending(path: "review-ledger.json") }
+
+    /// What the fan skipped in any review, so no later pass offers it again. Added visits are in the library.
+    @ObservationIgnored private(set) var ledger: ReviewLedger
+    @ObservationIgnored private let ledgerURL: URL
+
+    init(ledgerURL: URL = ScanModel.ledgerURL) {
+        self.ledgerURL = ledgerURL
+        ledger = ReviewLedger.load(from: ledgerURL)
+    }
 
     private static func loadPending() -> [PhotoCluster] {
         guard let data = try? Data(contentsOf: pendingURL) else { return [] }
@@ -89,6 +99,43 @@ final class ScanModel {
 
     func markReviewed() { reviewed = true; deepReviewed = true }
 
+    /// The first pass's results, minus what the library has or the fan turned down, each visit in one place.
+    func settleFirstPass(games: [PhotoCluster], others: [PhotoCluster], library: Library) {
+        let settled = ReviewQueue.firstPass(games: games, others: others, library: library.games, venues: library.venues, ledger: ledger)
+        self.games = settled.games
+        self.others = settled.others
+    }
+
+    /// Adds the background search's finds to what is waiting, minus anything already added, turned down or offered.
+    func settleDeep(_ found: [PossibleDay], library: Library) {
+        possible = ReviewQueue.possible(possible + found, alongside: games + others, library: library.games, ledger: ledger)
+    }
+
+    struct Review { var games: [PhotoCluster]; var others: [PhotoCluster]; var possible: [PossibleDay] }
+
+    /// Hands everything waiting to the review screen, once: the lists empty as they are taken, so a later search's review
+    /// shows only that search's finds. Checked against the library and the skips again, since both change while results wait.
+    func takeForReview(library: Library) -> Review {
+        settleFirstPass(games: games, others: others, library: library)
+        settleDeep([], library: library)
+        let out = Review(games: games, others: others, possible: possible)
+        games = []; others = []; possible = []
+        markReviewed()
+        return out
+    }
+
+    /// The fan skipped this visit or day: it is not offered again, by this pass or any later one, after a relaunch too.
+    func dismiss(_ assetIds: [String], on day: Date) {
+        var keyer = DayKeyer()
+        ledger.dismiss(assetIds, day: keyer.day(day, tz: .current))
+        ledger.save(to: ledgerURL)
+        let ids = Set(assetIds)
+        games.removeAll { $0.assetIds.contains(where: ids.contains) }
+        others.removeAll { $0.assetIds.contains(where: ids.contains) }
+        possible.removeAll { $0.assetIds.contains(where: ids.contains) }
+        pendingVisits.removeAll { $0.assetIds.contains(where: ids.contains) }
+    }
+
     /// Looks through albums, trips and days with no location for more games, in the background. Everything it finds is a
     /// possible game: the fan picks the stadium, and nothing is added on its own.
     func startDeepScan(library: Library) {
@@ -100,10 +147,13 @@ final class ScanModel {
         for g in library.games { claimed.insert(keyer.day(g.date, tz: .current)) }
         for c in games { claimed.insert(keyer.day(c.start, tz: .current)) }
         for m in possible { claimed.insert(keyer.day(m.day, tz: .current)) }
+        // Stadium visits already up for review, and days the fan turned down, are not looked for again in the albums.
+        for c in others { claimed.insert(keyer.day(c.start, tz: .current)) }
+        claimed.formUnion(ledger.dismissedDays)
         let venues = library.venues, teams = library.allTeams
         let home = library.profile.homeLocation, hasHome = library.hasHome
         Analytics.shared.track(.onboardingStep, ["step": "deep_scan_started"])
-        let pending = pendingVisits
+        let pending = pendingVisits.filter { !$0.assetIds.contains(where: ledger.dismissedAssets.contains) }
         let claimedBefore = claimed
         deepTask = Task { [weak self] in
             var claimed = claimedBefore
@@ -133,7 +183,7 @@ final class ScanModel {
                 self?.deepDone = done
             }
             guard let self, !Task.isCancelled else { return }
-            possible = (possible + atStadiums + found).sorted { $0.day > $1.day }
+            settleDeep(atStadiums + found, library: library)
             pendingVisits = []
             deepReviewed = false
             deepState = .done
@@ -143,10 +193,12 @@ final class ScanModel {
 
     /// Adds visits to the library in one go, without asking about each: games with their schedule match (or ticket seat), or
     /// every visit as a stadium visit. Plays and win probability arrive afterwards. Added visits leave the lists, so the review
-    /// screen only shows what is left. Returns how many were added.
+    /// screen only shows what is left. Returns how many new cards the library gained (photos for a game it already has
+    /// join that game, and are not counted).
     @discardableResult
     func commit(_ clusters: [PhotoCluster], asVisits: Bool = false, tickets extraTickets: [String: TicketDraft] = [:],
                 matches extraMatches: [String: FoundGame] = [:], into library: Library) -> Int {
+        let before = library.games.count
         var details: [(String, FoundGame)] = []
         let tickets = self.tickets.merging(extraTickets) { _, new in new }
         let matches = self.matches.merging(extraMatches) { _, new in new }
@@ -183,7 +235,7 @@ final class ScanModel {
                 library.update(saved)
             }
         }
-        return clusters.count
+        return library.games.count - before
     }
     func markShown() { shown = true }
 
@@ -297,12 +349,11 @@ final class ScanModel {
             if look.venue >= 1, !look.mostlyElsewhere { tours.append(cluster) } else { pending.append(cluster) }
             verifiedVisits += 1
         }
-        pendingVisits = pending
+        pendingVisits = pending.filter { !$0.assetIds.contains(where: ledger.dismissedAssets.contains) }
         matches = matched
         skippedVisits = pending.count
-        games = confirmed.sorted { $0.start > $1.start }
-        others = tours.sorted { $0.start > $1.start }
         possible = []
+        settleFirstPass(games: confirmed, others: tours, library: library)
         state = games.isEmpty && others.isEmpty ? .empty : .done
         Analytics.shared.track(.scanFinished, ["games": games.count, "visits": others.count, "photos": progress.scanned,
                                                "seconds": Int(Date().timeIntervalSince(began))])

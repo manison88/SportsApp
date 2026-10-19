@@ -13,6 +13,9 @@ struct WitnessApp: App {
         if args.contains("-reset") {
             library.reset()
             try? FileManager.default.removeItem(at: URL.applicationSupportDirectory.appending(path: "pending-visits.json"))
+            try? FileManager.default.removeItem(at: ScanModel.ledgerURL)
+            // The scan read both files when the presenter was made, above: start it again from the cleared ones.
+            _presenter = State(initialValue: Presenter())
         }
         if args.contains("-demo") { library.loadSample() }
         if args.contains("-empty") { library.startEmpty() }
