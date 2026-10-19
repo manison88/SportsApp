@@ -13,6 +13,8 @@ struct SceneVerdict: Hashable {
     /// Strongest sign of being indoors (arena, court, rink, ceiling) and outdoors (sky, grass, field), 0...1.
     var indoor: Double = 0
     var outdoor: Double = 0
+    /// Strongest sign of a stadium, arena, ballpark, scoreboard or a named sport (not just a crowd or a field), 0...1.
+    var venueSign: Double = 0
 
     /// The photos' setting fits the ground: an arena should look indoors, a ballpark or stadium outdoors. A second opinion only:
     /// the place and the date already found the game.
@@ -21,6 +23,8 @@ struct SceneVerdict: Hashable {
     /// Clearly not a game: no sign of sport, and a clear sign of somewhere else.
     var doubtful: Bool { sports < 0.15 && elsewhere >= 0.3 }
     var looksLikeGame: Bool { sports >= 0.25 }
+    /// A crowd, a field or a team could be a wedding, a school play or a kid's game. This needs a stadium, arena, scoreboard or sport.
+    var showsAVenue: Bool { venueSign >= 0.25 }
 
     /// Positively somewhere else: a clear sign of a bedroom, a restaurant, a bar and no sign of sport. An unsure result
     /// is never grounds for dropping a game, because the classifier's confidence on real stadium photos can be low.
@@ -32,6 +36,9 @@ enum SceneCheck {
     static let sportsWords = ["stadium", "arena", "sport", "baseball", "basketball", "football", "soccer", "hockey",
                               "athlet", "ballpark", "field", "court", "crowd", "scoreboard", "bleacher", "racing", "rink",
                               "tennis", "rugby", "cricket", "jersey", "team", "goal", "pitch", "audience"]
+    /// What only a real game venue or sport produces. "crowd", "field", "court", "team", "audience", "goal" are not here on purpose.
+    static let venueWords = ["stadium", "arena", "ballpark", "scoreboard", "bleacher", "baseball", "basketball", "football", "soccer",
+                             "hockey", "rink", "racing", "rugby", "cricket", "tennis"]
     static let indoorWords = ["indoor", "arena", "court", "rink", "ceiling", "gym", "hall", "stage"]
     static let outdoorWords = ["outdoor", "sky", "grass", "field", "cloud", "lawn", "sunset", "daytime", "stadium", "ballpark"]
     static let eventWords = ["concert", "stage", "stadium", "arena", "crowd", "audience", "festival", "fireworks", "spotlight"]
@@ -55,11 +62,17 @@ enum SceneCheck {
             verdict.sports = max(verdict.sports, s.sports)
             verdict.elsewhere = max(verdict.elsewhere, s.elsewhere)
             verdict.event = max(verdict.event, s.event)
+            verdict.venueSign = max(verdict.venueSign, venueSign(labels))
             let setting = Self.setting(labels)
             verdict.indoor = max(verdict.indoor, setting.indoor)
             verdict.outdoor = max(verdict.outdoor, setting.outdoor)
         }
         return classified ? verdict : nil
+    }
+
+    /// Pure: the strongest label that names a stadium, arena, scoreboard or sport.
+    static func venueSign(_ labels: [(String, Float)]) -> Double {
+        labels.filter { id, _ in venueWords.contains { id.lowercased().contains($0) } }.map { Double($0.1) }.max() ?? 0
     }
 
     /// Pure: how indoors and how outdoors the labels say the photo is.

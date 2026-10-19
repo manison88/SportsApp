@@ -78,6 +78,8 @@ enum GameSuggester {
         let reason: String
         let points: [PhotoPoint]
         let hints: [Venue]
+        /// The title names a team or stadium, which is evidence on its own. A trip's nearby stadiums are not.
+        var titled = false
     }
 
     /// The days that are only possible games.
@@ -89,7 +91,7 @@ enum GameSuggester {
             var out: [Source] = []
             for album in AlbumImporter.albums().filter({ $0.count >= minPhotos && $0.count <= 3000 && !isAppAlbum($0.title) }).prefix(maxAlbums) {
                 let hints = Self.venues(named: album.title, teams: teams, venues: venues) { id in venues.first { $0.id == id } }
-                out.append(Source(reason: "In your album \u{201C}\(album.title)\u{201D}", points: AlbumImporter.points(in: album), hints: hints))
+                out.append(Source(reason: "In your album \u{201C}\(album.title)\u{201D}", points: AlbumImporter.points(in: album), hints: hints, titled: !hints.isEmpty))
             }
             if hasHome {
                 for trip in TripFinder.find(home: home, venues: venues).prefix(20) {
@@ -113,6 +115,13 @@ enum GameSuggester {
         var work: [(DayPile, Source)] = []
         var claimed = claimed
         for source in sources {
+            // An album or trip counts only if some of its photos show a stadium, arena, scoreboard or sport (or its title names
+            // a team or stadium). A crowd alone is a wedding, a party or a school event.
+            if !source.titled {
+                let ids = source.points.map(\.id)
+                let verdict = await SceneCheck.verdict(for: ids.map { PhotoRef.library($0) }, sample: 16)
+                guard verdict?.showsAVenue == true else { continue }
+            }
             let scan = await Task.detached { VisitGrouping.group(source.points, venues: venues) }.value
             for pile in candidates(scan.unplacedDays, skipping: claimed) where claimed.insert(pile.id).inserted {
                 work.append((pile, source))

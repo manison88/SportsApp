@@ -541,6 +541,12 @@ final class AlbumAndScoreboardTests: XCTestCase {
         }
     }
 
+    func testACrowdAloneIsNotAVenue() {
+        XCTAssertEqual(SceneCheck.venueSign([("crowd", 0.9), ("audience", 0.8), ("field", 0.7), ("team", 0.6)]), 0)
+        XCTAssertGreaterThan(SceneCheck.venueSign([("crowd", 0.9), ("stadium", 0.4)]), 0.3)
+        XCTAssertGreaterThan(SceneCheck.venueSign([("scoreboard", 0.5)]), 0.3)
+    }
+
     func testIndoorOutdoorIsASecondOpinion() throws {
         let setting = SceneCheck.setting([("indoor_arena", 0.8), ("sky", 0.1)])
         XCTAssertGreaterThan(setting.indoor, 0.5)
