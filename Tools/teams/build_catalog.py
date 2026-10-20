@@ -76,15 +76,18 @@ for path in sorted(glob.glob(os.path.join(ROOT, "Tools/teams/*-teams.json"))):
         key = (t["sport"], t["abbreviation"])
         if (t["sport"], norm(t["league"]), t["abbreviation"]) in seed_keys or t["id"] in SAME_AS_SEED:
             skipped["dupe"] += 1; continue
-        if t["id"] in have_ids or (t["kind"] == "national" and key in have_nat) \
-           or (t["league"].endswith("national teams") and key in have_nat):
+        # A women's side shares its country's code with the men's one: only the men's soccer sides in national-teams.json are the same team.
+        women = t.get("gender") == "women"
+        if t["id"] in have_ids or (t["kind"] == "national" and key in have_nat and not women) \
+           or (t["league"].endswith("national teams") and key in have_nat and not women):
             skipped["dupe"] += 1; continue
         have_ids.add(t["id"])
         ext = t.get("externalIds") or {}
         venue = remap.get(t.get("homeVenueId"), t.get("homeVenueId"))
         rec = {"id": t["id"], "sport": t["sport"], "league": t["league"], "abbreviation": t["abbreviation"],
                "locationName": t["locationName"], "teamName": t["teamName"], "monogram": t["monogram"],
-               "colors": t["colors"], "leagueKey": t["leagueKey"], "countryCode": t["countryCode"]}
+               "colors": t["colors"], "leagueKey": t["leagueKey"]}
+        if t["countryCode"] != "XX": rec["countryCode"] = t["countryCode"]
         if ext.get("espn"): rec["externalIds"] = {"espn": str(ext["espn"]), "espnLeague": ext.get("espnLeague") or t["leagueKey"]}
         if venue in venue_ids: rec["homeVenueId"] = venue
         out.append(rec)

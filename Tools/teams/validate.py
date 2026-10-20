@@ -46,8 +46,11 @@ for t in teams:
     seen.add(tid)
     # A racing team's factory is not a ground a fan visits, so motorsport teams have no home venue.
     racing = t.get("sport") == "motorsport"
+    # A national side has no home ground a fan visits (the tournament's hosts change), and a continental club the sources give no
+    # arena for is still pickable: the tournaments scope may leave homeVenueId empty for both.
+    homeless = t.get("kind") == "national" or (scope == "tournaments" and t.get("homeVenueId") is None)
     for f in ("id", "kind", "sport", "league", "leagueKey", "country", "countryCode", "abbreviation", "locationName", "teamName", "monogram", "colors", "homeVenueId", "tier"):
-        if f == "homeVenueId" and racing: continue
+        if f == "homeVenueId" and (racing or homeless): continue
         if t.get(f) in (None, ""): errors.append(f"{tid}: missing {f}")
     if t.get("sport") not in SPORTS: errors.append(f"{tid}: bad sport {t.get('sport')}")
     if t.get("kind") not in ("club", "national"): errors.append(f"{tid}: bad kind")
@@ -61,11 +64,15 @@ for t in teams:
         if not hexre.match(str(cols.get(c, ""))): errors.append(f"{tid}: colors.{c} is not 6-digit hex")
     if hexre.match(str(cols.get("accent", ""))) and contrast_on_ink(cols["accent"]) < 3.0:
         errors.append(f"{tid}: accent {cols['accent']} too dark on the app background (contrast {contrast_on_ink(cols['accent']):.1f})")
-    if t.get("homeVenueId") not in venue_ids and not (racing and t.get("homeVenueId") is None):
+    if t.get("homeVenueId") not in venue_ids and not ((racing or homeless) and t.get("homeVenueId") is None):
         errors.append(f"{tid}: homeVenueId {t.get('homeVenueId')} not in venues.json or missing-venues")
     if tid in existing_ids: pass
 import glob as _g
 team_ids = set(seen) | existing_ids
+# Teams the app bundles in Catalog/national-teams.json and teams-more.json (build_catalog.py output) are teams too.
+for _n in ("national-teams", "teams-more"):
+    _p = os.path.join(ROOT, "Witness/Resources/Catalog", _n + ".json")
+    if os.path.exists(_p): team_ids |= {x["id"] for x in json.load(open(_p))}
 for _f in _g.glob(os.path.join(HERE, "*-teams.json")):
     try: team_ids |= {x["id"] for x in json.load(open(_f))}
     except Exception: pass
@@ -80,6 +87,10 @@ for L in leagues:
     if L.get("teamCount") and len(L.get("teamIds", [])) != L["teamCount"]:
         errors.append(f"league {key}: teamCount {L['teamCount']} but {len(L.get('teamIds', []))} teamIds")
 league_keys = {L.get("key") for L in leagues}
+# A team may sit in a league another scope's file defines (a new club in its domestic league), so every leagues file counts.
+for _f in glob.glob(os.path.join(HERE, "*-leagues.json")):
+    try: league_keys |= {L.get("key") for L in json.load(open(_f))}
+    except Exception: pass
 for t in teams:
     if t.get("leagueKey") not in league_keys: errors.append(f"{t.get('id')}: league {t.get('leagueKey')} has no league record")
 for v in missing:
