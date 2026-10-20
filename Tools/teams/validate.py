@@ -24,6 +24,9 @@ for _f in glob.glob(os.path.join(HERE, "*-teams.json")):
         try: other_team_ids |= {t.get("id") for t in json.load(open(_f))}
         except Exception: pass
 venue_ids = {v["id"] for v in venues} | {v.get("id") for v in missing} | other_venue_ids
+# Formula 1 circuits ship in their own catalog file and join venues.json when the app loads.
+_f1 = os.path.join(ROOT, "Witness/Resources/Catalog/f1-circuits.json")
+if os.path.exists(_f1): venue_ids |= {c["id"] for c in json.load(open(_f1))}
 existing = json.load(open(os.path.join(ROOT, "Witness/Resources/Catalog/teams.json")))
 existing = existing if isinstance(existing, list) else existing.get("teams", existing)
 existing_ids = {t["id"] for t in existing}
@@ -41,7 +44,10 @@ for t in teams:
     tid = t.get("id", "?")
     if tid in seen: errors.append(f"duplicate team id {tid}")
     seen.add(tid)
+    # A racing team's factory is not a ground a fan visits, so motorsport teams have no home venue.
+    racing = t.get("sport") == "motorsport"
     for f in ("id", "kind", "sport", "league", "leagueKey", "country", "countryCode", "abbreviation", "locationName", "teamName", "monogram", "colors", "homeVenueId", "tier"):
+        if f == "homeVenueId" and racing: continue
         if t.get(f) in (None, ""): errors.append(f"{tid}: missing {f}")
     if t.get("sport") not in SPORTS: errors.append(f"{tid}: bad sport {t.get('sport')}")
     if t.get("kind") not in ("club", "national"): errors.append(f"{tid}: bad kind")
@@ -55,7 +61,8 @@ for t in teams:
         if not hexre.match(str(cols.get(c, ""))): errors.append(f"{tid}: colors.{c} is not 6-digit hex")
     if hexre.match(str(cols.get("accent", ""))) and contrast_on_ink(cols["accent"]) < 3.0:
         errors.append(f"{tid}: accent {cols['accent']} too dark on the app background (contrast {contrast_on_ink(cols['accent']):.1f})")
-    if t.get("homeVenueId") not in venue_ids: errors.append(f"{tid}: homeVenueId {t.get('homeVenueId')} not in venues.json or missing-venues")
+    if t.get("homeVenueId") not in venue_ids and not (racing and t.get("homeVenueId") is None):
+        errors.append(f"{tid}: homeVenueId {t.get('homeVenueId')} not in venues.json or missing-venues")
     if tid in existing_ids: pass
 import glob as _g
 team_ids = set(seen) | existing_ids

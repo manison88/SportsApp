@@ -83,34 +83,53 @@ struct DayKeyer {
 }
 
 /// Venues bucketed into ~2 km cells, so a photo checks a handful of venues instead of all of them.
+/// A venue is filed under every cell its fence reaches into: a circuit's 1.5 km fence (Silverstone, Spa) crosses
+/// into the next cell, and a photo there must still find it.
 struct VenueIndex {
     private static let cell = 0.02
+    /// The smallest lat/lon box a venue is checked against: a little over the biggest stadium fence (300 m).
+    static let minimumBox: CLLocationDistance = 320
     private let cells: [Int: [Venue]]
 
     init(_ venues: [Venue]) {
         var cells: [Int: [Venue]] = [:]
-        for v in venues { cells[Self.key(Self.index(v.latitude), Self.index(v.longitude)), default: []].append(v) }
+        for v in venues {
+            let (dLat, dLon) = Self.box(v.geofence, at: v.latitude)
+            for i in Self.index(v.latitude - dLat)...Self.index(v.latitude + dLat) {
+                for j in Self.index(v.longitude - dLon)...Self.index(v.longitude + dLon) {
+                    cells[Self.key(i, j), default: []].append(v)
+                }
+            }
+        }
         self.cells = cells
     }
 
     private static func index(_ degrees: Double) -> Int { Int((degrees / cell).rounded(.down)) }
     private static func key(_ i: Int, _ j: Int) -> Int { i * 20_000 + j }
 
+    /// Half the height and width, in degrees, of a box that holds every point within `meters` of a venue at this
+    /// latitude (never smaller than `minimumBox`, and 2% over so the flat-earth arithmetic never clips a true distance).
+    static func box(_ meters: CLLocationDistance, at latitude: Double) -> (lat: Double, lon: Double) {
+        let dLat = max(minimumBox, meters * 1.02) / 111_000
+        return (dLat, dLat / max(0.1, cos(latitude * .pi / 180)))
+    }
+
     /// Same rule as `VisitGrouping.nearestVenue`: the nearest venue whose geofence (or `radius`) holds the point.
     func nearest(lat: Double, lon: Double, radius: CLLocationDistance? = nil) -> Venue? {
-        let box = radius ?? 320
-        let dLat = box / 111_000
         let here = CLLocation(latitude: lat, longitude: lon)
+        // Each venue's own fence is covered by the cells it was filed under; a wider `radius` has to look further out.
+        let reach = Self.box(radius ?? Self.minimumBox, at: lat)
+        let span = (lat: max(1, Int((reach.lat / Self.cell).rounded(.up))), lon: max(1, Int((reach.lon / Self.cell).rounded(.up))))
         let ci = Self.index(lat), cj = Self.index(lon)
         var best: (Venue, CLLocationDistance)?
-        for di in -1...1 {
-            for dj in -1...1 {
+        for di in -span.lat...span.lat {
+            for dj in -span.lon...span.lon {
                 for v in cells[Self.key(ci + di, cj + dj)] ?? [] {
-                    guard abs(v.latitude - lat) <= dLat else { continue }
-                    let dLon = dLat / max(0.1, cos(v.latitude * .pi / 180))
-                    guard abs(v.longitude - lon) <= dLon else { continue }
+                    let limit = radius ?? v.geofence
+                    let (dLat, dLon) = Self.box(limit, at: v.latitude)
+                    guard abs(v.latitude - lat) <= dLat, abs(v.longitude - lon) <= dLon else { continue }
                     let d = here.distance(from: v.location)
-                    if d <= (radius ?? v.geofence), d < (best?.1 ?? .infinity) { best = (v, d) }
+                    if d <= limit, d < (best?.1 ?? .infinity) { best = (v, d) }
                 }
             }
         }
@@ -244,16 +263,15 @@ enum VisitGrouping {
     /// A cheap lat/lon box runs before the true distance, and nearest wins because stadiums often have an arena
     /// next door (Michigan Stadium and Crisler, 180 m).
     static func nearestVenue(lat: Double, lon: Double, in venues: [Venue], radius: CLLocationDistance? = nil) -> Venue? {
-        let box = radius ?? 320
-        let dLat = box / 111_000
         let here = CLLocation(latitude: lat, longitude: lon)
         var best: (Venue, CLLocationDistance)?
         for v in venues {
-            guard abs(v.latitude - lat) <= dLat else { continue }
-            let dLon = dLat / max(0.1, cos(v.latitude * .pi / 180))
-            guard abs(v.longitude - lon) <= dLon else { continue }
+            // The box is each venue's own fence: a circuit's reaches 1.5 km, a ballpark's 200 m.
+            let limit = radius ?? v.geofence
+            let (dLat, dLon) = VenueIndex.box(limit, at: v.latitude)
+            guard abs(v.latitude - lat) <= dLat, abs(v.longitude - lon) <= dLon else { continue }
             let d = here.distance(from: v.location)
-            if d <= (radius ?? v.geofence), d < (best?.1 ?? .infinity) { best = (v, d) }
+            if d <= limit, d < (best?.1 ?? .infinity) { best = (v, d) }
         }
         return best?.0
     }
