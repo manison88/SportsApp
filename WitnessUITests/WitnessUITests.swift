@@ -163,10 +163,6 @@ final class WitnessUITests: XCTestCase {
         snap("15-big-games")
         back()
 
-        tap("person-row-maya")
-        XCTAssertTrue(el("shared-count").waitForExistence(timeout: 5))
-        snap("13-shared-passport")
-        back()
     }
 
     func testGameMemoryRecapAndYouWereThere() {

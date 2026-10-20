@@ -147,22 +147,6 @@ struct YouView: View {
             .accessibilityIdentifier("you-analytics")
             LegalLinksRows()
             // Wrapped is off for now: its row returns when the redesign is built (WrappedView and Modal.wrapped stay in place).
-            ForEach(stats.companions.prefix(3)) { c in
-                NavigationLink(value: Route.person(c.person.id)) {
-                    HStack(spacing: 12) {
-                        Avatar(person: c.person, size: 32).accessibilityHidden(true)
-                        Text(c.person.name).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
-                        Spacer()
-                        Text("\(c.games) games").font(.subheadline).foregroundStyle(Color.textSecondary)
-                        Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary).accessibilityHidden(true)
-                    }
-                    .frame(minHeight: 56)
-                    .contentShape(.rect)
-                }
-                .buttonStyle(.plain)
-                .overlay(alignment: .top) { Rectangle().fill(Color.hairline).frame(height: 1) }
-                .accessibilityIdentifier("person-row-\(c.person.id)")
-            }
             if library.isSample {
                 Button("Remove sample games", role: .destructive) { confirmRemove = true }
                     .font(.subheadline.weight(.semibold))

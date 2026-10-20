@@ -29,34 +29,6 @@ struct LuckyCharmView: View {
                     tile(value: odds.percentText, label: usesOdds ? "The odds" : "Coin flip", background: Color.panelRaised)
                 }
 
-                if let best = bestCompanion(stats) {
-                    NavigationLink(value: Route.person(best.person.id)) {
-                        HStack(spacing: Spacing.inner) {
-                            Avatar(person: best.person, size: 32).accessibilityHidden(true)
-                            VStack(alignment: .leading, spacing: 3) {
-                                Text("With \(best.person.name)")
-                                    .font(.condensed(.headline, weight: .heavy))
-                                    .textCase(.uppercase)
-                                Text("\(best.record.text) in \(best.games) games")
-                                    .font(.footnote)
-                                    .foregroundStyle(Color.textSecondary)
-                            }
-                            Spacer()
-                            Text(best.record.rate?.percentText ?? "–")
-                                .displayFont(30, relativeTo: .title2)
-                                .foregroundStyle(best.person.color)
-                            Image(systemName: "chevron.right")
-                                .font(.footnote.weight(.bold))
-                                .foregroundStyle(Color.textTertiary)
-                                .accessibilityHidden(true)
-                        }
-                        .frame(minHeight: 56)
-                        .contentShape(.rect)
-                    }
-                    .buttonStyle(.plain)
-                    .accessibilityIdentifier("lucky-companion")
-                }
-
                 shareLink(rate: rate, odds: odds, delta: delta, usesOdds: usesOdds, accent: accent)
                 .accessibilityIdentifier("lucky-share")
             }
@@ -85,11 +57,6 @@ struct LuckyCharmView: View {
         .padding(14)
         .background(background, in: .rect(cornerRadius: 14))
         .accessibilityElement(children: .combine)
-    }
-
-    private func bestCompanion(_ stats: Stats) -> Stats.Companion? {
-        let qualified = stats.companions.filter { $0.games >= 3 && $0.record.rate != nil }
-        return qualified.max { ($0.record.rate ?? 0) < ($1.record.rate ?? 0) } ?? stats.companions.first
     }
 
     private func shareLink(rate: Double?, odds: Double, delta: Int?, usesOdds: Bool, accent: Color) -> some View {

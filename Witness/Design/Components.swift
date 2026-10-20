@@ -71,7 +71,6 @@ enum Route: Hashable {
     case youWereThere(String)
     case venue(String)
     case trip(String)
-    case person(String)
     case lucky
     case bigGames
     case photos(String)
