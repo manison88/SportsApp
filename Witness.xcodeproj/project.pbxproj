@@ -107,6 +107,7 @@
 		6E5B5E15CF2B4F6BBA5C5ED4 /* AppearanceChoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0D60D51D34D21BC3A5187 /* AppearanceChoiceTests.swift */; };
 		F16E68820C464A61B5C436DE /* ScanSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B76B4D41A545A09D70DF7A /* ScanSettingsTests.swift */; };
 		CC39DF83E455454CA0ECDFAA /* F1CircuitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86A7CA4CE54B87A0E10203 /* F1CircuitTests.swift */; };
+		414D6422971640518453B6B6 /* TournamentCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6916C75064B044CD9A141F04 /* TournamentCatalogTests.swift */; };
 		5FAF894E69244EC7BD9363C2 /* CityDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85F7A38250A42C0B83A7467 /* CityDayTests.swift */; };
 		4E545CC7F1CE4A09ADD8E641 /* MatchupAlbumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BE31FCD43E4130982C9AE7 /* MatchupAlbumTests.swift */; };
 /* End PBXBuildFile section */
@@ -232,6 +233,7 @@
 		48D0D60D51D34D21BC3A5187 /* AppearanceChoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceChoiceTests.swift; sourceTree = "<group>"; };
 		16B76B4D41A545A09D70DF7A /* ScanSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSettingsTests.swift; sourceTree = "<group>"; };
 		9D86A7CA4CE54B87A0E10203 /* F1CircuitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1CircuitTests.swift; sourceTree = "<group>"; };
+		6916C75064B044CD9A141F04 /* TournamentCatalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentCatalogTests.swift; sourceTree = "<group>"; };
 		F85F7A38250A42C0B83A7467 /* CityDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDayTests.swift; sourceTree = "<group>"; };
 		41BE31FCD43E4130982C9AE7 /* MatchupAlbumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchupAlbumTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -397,6 +399,7 @@
 				48D0D60D51D34D21BC3A5187 /* AppearanceChoiceTests.swift */,
 				16B76B4D41A545A09D70DF7A /* ScanSettingsTests.swift */,
 				9D86A7CA4CE54B87A0E10203 /* F1CircuitTests.swift */,
+				6916C75064B044CD9A141F04 /* TournamentCatalogTests.swift */,
 				F85F7A38250A42C0B83A7467 /* CityDayTests.swift */,
 				41BE31FCD43E4130982C9AE7 /* MatchupAlbumTests.swift */,
 				7B48F99FC296122C6C846961 /* BigGameTests.swift */,
@@ -685,6 +688,7 @@
 				6E5B5E15CF2B4F6BBA5C5ED4 /* AppearanceChoiceTests.swift in Sources */,
 				F16E68820C464A61B5C436DE /* ScanSettingsTests.swift in Sources */,
 				CC39DF83E455454CA0ECDFAA /* F1CircuitTests.swift in Sources */,
+				414D6422971640518453B6B6 /* TournamentCatalogTests.swift in Sources */,
 				5FAF894E69244EC7BD9363C2 /* CityDayTests.swift in Sources */,
 				4E545CC7F1CE4A09ADD8E641 /* MatchupAlbumTests.swift in Sources */,
 				BB3F51B6F1750A2ECB5E0479 /* BigGameTests.swift in Sources */,

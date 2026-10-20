@@ -37,7 +37,8 @@ final class NationalTeamTests: XCTestCase {
                                   color: nil, altColor: nil, score: nil, line: [])
         XCTAssertEqual(library.addTeam(GameLookup.team(from: uefa, game: Self.game(league: "soccer/uefa.nations", name: "UEFA Nations League", side: uefa))).id, "nat-452")
         XCTAssertTrue(library.customTeams.isEmpty, "No second Bosnia: \(library.customTeams.map(\.id))")
-        XCTAssertEqual(library.teams(for: .soccer).filter { $0.abbreviation == "BIH" }.count, 1, "One Bosnia in the picker")
+        // The women's side is its own team (ESPN gives it its own id, in "Women's national teams"); the men's picker list has one Bosnia.
+        XCTAssertEqual(library.teams(for: .soccer).filter { $0.abbreviation == "BIH" && $0.league == "National teams" }.count, 1, "One Bosnia in the picker")
     }
 
     func testClubWithACountrysCodeIsNotMerged() {
