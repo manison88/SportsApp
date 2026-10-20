@@ -219,7 +219,7 @@ struct LiveCheckInView: View {
         if location.location == nil { return "We couldn\u{2019}t get your location. Check that Location is on for Witness." }
         if nearbyPlaces.isEmpty {
             guard let near = nearestStadium else { return "We couldn\u{2019}t find a stadium near you." }
-            return "No stadium within \(Fmt.metric ? "8 km" : "5 miles") of you. The closest is \(near.0.name), \(Fmt.distance(meters: near.1)) away."
+            return "No stadium within \(Fmt.metric ? "32 km" : "20 miles") of you. The closest is \(near.0.name), \(Fmt.distance(meters: near.1)) away."
         }
         return "No games on the schedule at \(nearbyVenueNames) right now."
     }
@@ -269,8 +269,9 @@ struct LiveCheckInView: View {
         meters < 160 ? "here" : (meters < 1000 ? "\(Int((meters / 10).rounded()) * 10) m" : String(format: "%.1f km", meters / 1000))
     }
 
-    /// How far from you a stadium can be and still be listed: about 5 miles, enough for a parking lot or a tailgate.
-    private static let searchRadius: CLLocationDistance = 8_000
+    /// How far from you a stadium can be and still be listed: about 20 miles, so a check-in from the hotel, the train or the
+    /// tailgate across town still finds the game.
+    private static let searchRadius: CLLocationDistance = 32_000
 
     private func findNearby(around loc: CLLocation) async {
         nearestStadium = library.venues.map { ($0, $0.location.distance(from: loc)) }.min { $0.1 < $1.1 }
