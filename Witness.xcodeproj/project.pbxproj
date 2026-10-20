@@ -27,6 +27,7 @@
 		1A9BE557672AF3F73FC079F3 /* MatchupAlbumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C0D4FC752F6337386A597F /* MatchupAlbumTests.swift */; };
 		2255C527B132D1FCBC15EAAD /* BigGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6573A4420FA4FE35D7CC37B3 /* BigGame.swift */; };
 		24825EBA9F0FC0B1BF80D2ED /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A73F86BCDBA2E422921DE /* WelcomeView.swift */; };
+		2632B5CB1E8C1ECAA295A3AA /* TournamentCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0B42ED99638F744E0CC224 /* TournamentCatalogTests.swift */; };
 		26BF4BFB83576FB3F048F517 /* PhotoCredits.md in Resources */ = {isa = PBXBuildFile; fileRef = 281972298861717804A0CBFD /* PhotoCredits.md */; };
 		29A2F767CE1F9907F6F16402 /* TicketParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF398484DD3487B795AB540 /* TicketParserTests.swift */; };
 		2A1B4249B8E285AC96DDCC6C /* EventTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4F48A3DC2D47231C6E56B7 /* EventTheme.swift */; };
@@ -203,6 +204,7 @@
 		A704303482A7331087EFF150 /* YouWereThereView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouWereThereView.swift; sourceTree = "<group>"; };
 		A857D75ED272F933EF88177E /* VenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueView.swift; sourceTree = "<group>"; };
 		A899956D50D97F19CC520FC4 /* ScanProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanProgressView.swift; sourceTree = "<group>"; };
+		AC0B42ED99638F744E0CC224 /* TournamentCatalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentCatalogTests.swift; sourceTree = "<group>"; };
 		AE175DF13FB178FC0BF52DF9 /* MatchReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchReport.swift; sourceTree = "<group>"; };
 		B0ACCE2144B8B5D7125D5F38 /* ReviewQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQueueTests.swift; sourceTree = "<group>"; };
 		B67381837ED335A8DC3A8AB2 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 				DEA43264BA3B857C96D516F9 /* ScanSettingsTests.swift */,
 				903443890581343B7B39B754 /* TicketOCRTests.swift */,
 				FEF398484DD3487B795AB540 /* TicketParserTests.swift */,
+				AC0B42ED99638F744E0CC224 /* TournamentCatalogTests.swift */,
 				E92A0F4AD480434C06900655 /* WorldCupSeattleTests.swift */,
 				E3CB1FAA1BA725B71A2F77D4 /* Fixtures */,
 			);
@@ -697,6 +700,7 @@
 				CB03A823CF380A64CF21921D /* ScanSettingsTests.swift in Sources */,
 				33986E7A0BDD5EAC7B8E13D7 /* TicketOCRTests.swift in Sources */,
 				29A2F767CE1F9907F6F16402 /* TicketParserTests.swift in Sources */,
+				2632B5CB1E8C1ECAA295A3AA /* TournamentCatalogTests.swift in Sources */,
 				66AE1AD937BB114E91B80E57 /* WorldCupSeattleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
