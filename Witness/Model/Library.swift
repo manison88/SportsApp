@@ -40,6 +40,11 @@ final class Library {
     private(set) var hasLibrary = false
     /// Catalog teams by "leagueKey#espnId", so a schedule's team finds the team the app already has.
     private(set) var espnIndex: [String: Team] = [:]
+    /// The catalog's national sides by "sport#espnId" and "sport#FIFA code": a country is one team whatever the competition.
+    private var nationalByEspn: [String: Team] = [:]
+    private var nationalByCode: [String: Team] = [:]
+    /// The league the catalog files countries under.
+    static let nationalLeague = "National teams"
 
     let storeURL: URL
     private let bundle: Bundle
@@ -747,13 +752,10 @@ final class Library {
         if let known = catalogTeam(league: team.externalIds?.espnLeague ?? team.leagueKey, espnId: team.externalIds?.espn) {
             return known
         }
+        // A country from any of its competitions (a qualifier's "Bosnia and Herzegovina") is the catalog's national team.
+        if let known = catalogNationalTeam(for: team) { return known }
         if let known = allTeams.first(where: { $0.sport == team.sport && $0.abbreviation == team.abbreviation
             && $0.locationName.caseInsensitiveCompare(team.locationName) == .orderedSame }) {
-            return known
-        }
-        // A national side from the UEFA feed: its FIFA code is the abbreviation of the catalog's national team.
-        if team.leagueKey?.hasSuffix("uefa.nations") == true,
-           let known = allTeams.first(where: { $0.sport == .soccer && $0.league == "National teams" && $0.abbreviation == team.abbreviation }) {
             return known
         }
         // ESPN and the catalog can code a team differently (GS and GSW), so city plus name matches too.
@@ -765,6 +767,61 @@ final class Library {
         customTeams.append(team)
         save()
         return team
+    }
+
+    /// The catalog's national side a schedule's team really is, if it is one. ESPN keeps one id for a country across the World
+    /// Cup, its qualifying, the Euros, the Nations League and friendlies, while the catalog lists the country once (under the
+    /// World Cup), so the id is matched in the same sport whatever the competition. A side with no ESPN id (the UEFA feed)
+    /// matches on its FIFA code, but only when it came from a competition between countries: a club coded BIH is not Bosnia,
+    /// and neither is a team the fan made by hand.
+    func catalogNationalTeam(for team: Team) -> Team? {
+        guard team.league != Self.nationalLeague, teams[team.id] == nil else { return nil }
+        if let espn = team.externalIds?.espn, let known = nationalByEspn["\(team.sport.rawValue)#\(espn)"] { return known }
+        if let league = team.externalIds?.espnLeague ?? team.leagueKey, GameLookup.isNationalCompetition(league),
+           let known = nationalByCode["\(team.sport.rawValue)#\(team.abbreviation.uppercased())"] {
+            return known
+        }
+        return nil
+    }
+
+    /// Custom teams that are a catalog national side under another competition's name (a qualifier's "Bosnia and Herzegovina"
+    /// beside the catalog's "Bosnia-Herzegovina"), folded into the catalog team: every game, plan and favorite that named the
+    /// duplicate names the catalog team, and the duplicate goes. Runs on every load and has nothing to do the second time.
+    /// Returns how many were folded.
+    @discardableResult
+    func mergeNationalDuplicates() -> Int {
+        var folded: [String: String] = [:]
+        for team in customTeams { if let known = catalogNationalTeam(for: team) { folded[team.id] = known.id } }
+        guard !folded.isEmpty else { return 0 }
+        customTeams.removeAll { folded[$0.id] != nil }
+        fold(folded)
+        return folded.count
+    }
+
+    /// Every game, plan, favorite and schedule note that names one of the old team ids names the catalog team instead.
+    private func fold(_ mapping: [String: String]) {
+        func fixed(_ id: String?) -> String? { id.flatMap { mapping[$0] } ?? id }
+        for i in games.indices {
+            games[i].homeTeamId = fixed(games[i].homeTeamId)
+            games[i].awayTeamId = fixed(games[i].awayTeamId)
+            games[i].rootingForTeamId = fixed(games[i].rootingForTeamId)
+        }
+        for i in plans.indices {
+            plans[i].homeTeamId = fixed(plans[i].homeTeamId)
+            plans[i].awayTeamId = fixed(plans[i].awayTeamId)
+            plans[i].rootingForTeamId = fixed(plans[i].rootingForTeamId)
+        }
+        var seen = Set<String>()
+        chosenFavoriteTeamIds = chosenFavoriteTeamIds.map { mapping[$0] ?? $0 }.filter { seen.insert($0).inserted }
+        var logged = Set<String>()
+        scheduleLog = scheduleLog.compactMap { entry in
+            var e = entry
+            e.teamId = mapping[entry.teamId] ?? entry.teamId
+            return logged.insert(e.teamId).inserted ? e : nil
+        }
+        print("Library: \(mapping.count) national-team duplicate(s) folded into the catalog: "
+              + mapping.map { "\($0.key) -> \($0.value)" }.sorted().joined(separator: ", "))
+        save()
     }
 
     @discardableResult
@@ -905,6 +962,7 @@ final class Library {
         if chosenFavoriteTeamIds.isEmpty { chosenFavoriteTeamIds = stored.favoriteTeamIds ?? [] }
         if customHome == nil { customHome = stored.home }
         sortAndSave()
+        mergeNationalDuplicates()
         return fresh.count
     }
 
@@ -929,6 +987,7 @@ final class Library {
         customHome = stored.home
         scheduleLog = stored.scheduleLog ?? []
         hasLibrary = true
+        mergeNationalDuplicates()
     }
 
     private func loadCatalog() {
@@ -972,7 +1031,7 @@ final class Library {
     // MARK: Downloaded packs
 
     /// What a downloaded teams pack holds: new teams, and league keys and ESPN ids for teams the app ships with.
-    private struct PackTeams: Decodable {
+    struct PackTeams: Decodable {
         struct Overlay: Decodable {
             struct Ids: Decodable { var espn: String?; var espnLeague: String? }
             let id: String
@@ -993,20 +1052,7 @@ final class Library {
     func applyPacks() async {
         if let data = await PackStore.shared.data("catalog/teams"),
            let pack = try? Self.decoder.decode(PackTeams.self, from: data) {
-            for overlay in pack.overlays {
-                guard let i = allTeams.firstIndex(where: { $0.id == overlay.id }) else { continue }
-                var team = allTeams[i]
-                if team.leagueKey == nil { team.leagueKey = overlay.leagueKey }
-                var ids = team.externalIds ?? Team.ExternalIds()
-                if ids.espn == nil { ids.espn = overlay.externalIds?.espn }
-                if ids.espnLeague == nil { ids.espnLeague = overlay.externalIds?.espnLeague }
-                team.externalIds = ids
-                allTeams[i] = team
-            }
-            let known = Set(allTeams.map(\.id))
-            allTeams += pack.teams.compactMap(\.value).filter { !known.contains($0.id) }
-            teams = Dictionary(allTeams.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
-            rebuildTeamIndex()
+            apply(pack)
         }
         if let data = await PackStore.shared.data("catalog/venues"),
            let extra = try? Self.decoder.decode([Lossy<Venue>].self, from: data) {
@@ -1016,12 +1062,50 @@ final class Library {
         await ScheduleCache.shared.reset()
     }
 
+    /// One teams pack over the catalog: overlays fill in what shipped teams lack, new teams join. A pack team that is a catalog
+    /// national side under another competition's name (the World Cup qualifiers' "Bosnia and Herzegovina", ESPN id 452, beside
+    /// the catalog's "Bosnia-Herzegovina", the same id) is not added, and anything saved under its id names the catalog team.
+    func apply(_ pack: PackTeams) {
+        for overlay in pack.overlays {
+            guard let i = allTeams.firstIndex(where: { $0.id == overlay.id }) else { continue }
+            var team = allTeams[i]
+            if team.leagueKey == nil { team.leagueKey = overlay.leagueKey }
+            var ids = team.externalIds ?? Team.ExternalIds()
+            if ids.espn == nil { ids.espn = overlay.externalIds?.espn }
+            if ids.espnLeague == nil { ids.espnLeague = overlay.externalIds?.espnLeague }
+            team.externalIds = ids
+            allTeams[i] = team
+        }
+        let known = Set(allTeams.map(\.id))
+        var folded: [String: String] = [:]
+        allTeams += pack.teams.compactMap(\.value).filter { !known.contains($0.id) }.filter { team in
+            guard let national = catalogNationalTeam(for: team) else { return true }
+            folded[team.id] = national.id
+            return false
+        }
+        teams = Dictionary(allTeams.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
+        rebuildTeamIndex()
+        let named = Set((games + plans).flatMap { [$0.homeTeamId, $0.awayTeamId, $0.rootingForTeamId].compactMap { $0 } }
+                        + chosenFavoriteTeamIds + scheduleLog.map(\.teamId))
+        let used = folded.filter { named.contains($0.key) }
+        if !used.isEmpty { fold(used) }
+    }
+
     private func rebuildTeamIndex() {
         espnIndex = [:]
+        nationalByEspn = [:]
+        nationalByCode = [:]
         // Current franchises first: ESPN names today's team, and a relocated club's old record shares its id.
         for team in allTeams.filter({ !$0.id.hasPrefix("hist-") }) + allTeams.filter({ $0.id.hasPrefix("hist-") }) {
             guard let espn = team.externalIds?.espn, let league = team.externalIds?.espnLeague ?? team.leagueKey else { continue }
             espnIndex["\(league)#\(espn)"] = espnIndex["\(league)#\(espn)"] ?? team
+        }
+        for team in allTeams where team.league == Self.nationalLeague {
+            if let espn = team.externalIds?.espn {
+                nationalByEspn["\(team.sport.rawValue)#\(espn)"] = nationalByEspn["\(team.sport.rawValue)#\(espn)"] ?? team
+            }
+            let code = "\(team.sport.rawValue)#\(team.abbreviation.uppercased())"
+            nationalByCode[code] = nationalByCode[code] ?? team
         }
     }
 
