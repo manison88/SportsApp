@@ -90,7 +90,7 @@ struct OnboardingView: View {
         ZStack {
             ScanProgressView(scan: scan, finished: true)
                 .opacity(0.45)
-            EmptySheet(checked: scan.progress.total)
+            EmptySheet(checked: scan.progress.total, unchecked: scan.uncheckedVisits)
         }
     }
 }
@@ -245,20 +245,35 @@ private struct EmptySheet: View {
     @Environment(Library.self) private var library
     @Environment(Presenter.self) private var presenter
     let checked: Int
+    let unchecked: Int
 
     var body: some View {
+        let access = PhotoAccess.current
         SheetFrame {
             Image(systemName: "magnifyingglass").font(.title3)
                 .frame(width: 48, height: 48)
                 .background(Color.panelRaised, in: .rect(cornerRadius: 12))
             Text("No games found yet").displayFont(34).textCase(.uppercase).foregroundStyle(Color.primaryText)
                 .accessibilityIdentifier("onboarding-empty")
-            Text("\(checked.formatted()) photos checked, none taken inside a stadium. Older photos, or ones with location off, may be missing a date or a place.")
+            Text(PhotoAccess.emptyBody(access, checked: checked))
                 .font(.body).foregroundStyle(Color.textSecondary)
                 .fixedSize(horizontal: false, vertical: true)
-            Button("Choose another album") { presenter.modal = .importAlbum }
-                .buttonStyle(.primary)
-                .accessibilityIdentifier("onboarding-empty-album")
+            if let line = PhotoAccess.uncheckedLine(unchecked) {
+                Text(line)
+                    .font(.body).foregroundStyle(Color.textSecondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .accessibilityIdentifier("onboarding-unchecked")
+            }
+            if access.isLimited { LimitedAccessButtons() }
+            if access.isLimited {
+                Button("Choose another album") { presenter.modal = .importAlbum }
+                    .buttonStyle(.secondary)
+                    .accessibilityIdentifier("onboarding-empty-album")
+            } else {
+                Button("Choose another album") { presenter.modal = .importAlbum }
+                    .buttonStyle(.primary)
+                    .accessibilityIdentifier("onboarding-empty-album")
+            }
             FallbackRow(title: "Add a game by hand", id: "onboarding-empty-add") {
                 library.startEmpty()
                 presenter.modal = .addGame
@@ -308,6 +323,13 @@ private struct ResultScreen: View {
                     .foregroundStyle(Color.textSecondary)
                     .opacity(beat >= 3 ? 1 : 0)
                     .accessibilityIdentifier("onboarding-possible-note")
+            }
+            if let line = PhotoAccess.uncheckedLine(scan.uncheckedVisits) {
+                Label(line, systemImage: "wifi.slash")
+                    .font(.footnote)
+                    .foregroundStyle(Color.textSecondary)
+                    .opacity(beat >= 3 ? 1 : 0)
+                    .accessibilityIdentifier("onboarding-unchecked")
             }
             if !scan.possible.isEmpty {
                 // Days just outside a stadium on a game's day: the fan says where they were.

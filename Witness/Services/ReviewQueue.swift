@@ -7,29 +7,48 @@ import CoreLocation
 struct ReviewLedger: Codable, Equatable {
     /// Photos of every visit or possible game the fan skipped.
     private(set) var dismissedAssets: Set<String> = []
-    /// "yyyy-MM-dd" days of those skips (in the phone's time zone, like the background search's claimed days), so the album
-    /// search doesn't offer the same outing again from other photos of that day.
+    /// Days written by ledgers before skips were kept per outing. They no longer hide anything: a skipped visit used to hide every
+    /// later possible game on its phone-day (a morning tour hid the evening game). Still read and written, so an older file loads.
     private(set) var dismissedDays: Set<String> = []
     /// Photos of the games on the schedule the fan skipped. Only these keep a game away: skipping a stadium visit with no game
     /// (or a day the search was unsure of) says nothing about a game the schedule finds for those photos later.
     private(set) var dismissedGames: Set<String> = []
 
+    /// The time the photos of one skip span. A possible game found from other photos taken within `skipWindowHours` of it is the
+    /// same outing and stays away; one hours later the same day is a different outing.
+    struct Outing: Codable, Hashable {
+        var from: TimeInterval
+        var to: TimeInterval
+    }
+    private(set) var dismissedOutings: [Outing] = []
+
     init() {}
 
-    mutating func dismiss(_ assetIds: [String], day: String, game: Bool = false) {
+    /// - span: first to last photo time of what was skipped (nil: nothing is kept away beyond the photos themselves).
+    mutating func dismiss(_ assetIds: [String], span: ClosedRange<Date>? = nil, game: Bool = false) {
         dismissedAssets.formUnion(assetIds)
-        dismissedDays.insert(day)
+        if let span {
+            let outing = Outing(from: span.lowerBound.timeIntervalSince1970, to: span.upperBound.timeIntervalSince1970)
+            if !dismissedOutings.contains(outing) { dismissedOutings.append(outing) }
+        }
         if game { dismissedGames.formUnion(assetIds) }
     }
 
-    private enum CodingKeys: String, CodingKey { case dismissedAssets, dismissedDays, dismissedGames }
+    /// Whether a skip covers this moment: within `skipWindowHours` of a skipped outing's photos.
+    func skipped(at date: Date, settings: ScanSettings = .current) -> Bool {
+        let t = date.timeIntervalSince1970, slack = settings.skipWindowHours * 3600
+        return dismissedOutings.contains { t >= $0.from - slack && t <= $0.to + slack }
+    }
 
-    /// Ledgers written before game skips were kept apart have no `dismissedGames`.
+    private enum CodingKeys: String, CodingKey { case dismissedAssets, dismissedDays, dismissedGames, dismissedOutings }
+
+    /// Ledgers written before game skips were kept apart have no `dismissedGames`; before per-outing skips, no `dismissedOutings`.
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         dismissedAssets = try c.decodeIfPresent(Set<String>.self, forKey: .dismissedAssets) ?? []
         dismissedDays = try c.decodeIfPresent(Set<String>.self, forKey: .dismissedDays) ?? []
         dismissedGames = try c.decodeIfPresent(Set<String>.self, forKey: .dismissedGames) ?? []
+        dismissedOutings = try c.decodeIfPresent([Outing].self, forKey: .dismissedOutings) ?? []
     }
 
     static func load(from url: URL) -> ReviewLedger {
@@ -109,17 +128,15 @@ enum ReviewQueue {
     }
 
     /// Possible games from any pass, newest first: none that share photos with a visit already up for review, one offered
-    /// earlier in `days` (so the pass that found it first keeps it), the library, or a skip, and none on a day the fan
-    /// turned down.
+    /// earlier in `days` (so the pass that found it first keeps it), the library, or a skip, and none from the same outing as
+    /// something the fan turned down (within `skipWindowHours` of its photos, not the whole day).
     static func possible(_ days: [PossibleDay], alongside shown: [PhotoCluster], library: [GameEntry],
-                         ledger: ReviewLedger) -> [PossibleDay] {
+                         ledger: ReviewLedger, settings: ScanSettings = .current) -> [PossibleDay] {
         var taken = photos(in: library).union(ledger.dismissedAssets)
         for c in shown { taken.formUnion(c.assetIds) }
-        var keyer = DayKeyer()
         var out: [PossibleDay] = []
         for day in days {
-            guard !day.assetIds.contains(where: taken.contains),
-                  !ledger.dismissedDays.contains(keyer.day(day.day, tz: .current)) else { continue }
+            guard !day.assetIds.contains(where: taken.contains), !ledger.skipped(at: day.day, settings: settings) else { continue }
             taken.formUnion(day.assetIds)
             out.append(day)
         }

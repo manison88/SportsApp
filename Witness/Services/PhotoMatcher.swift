@@ -157,7 +157,8 @@ enum PhotoMatcher {
         let nearby = VisitGrouping.group(outside, venues: venues, radius: max(radius ?? 0, settings.nearbyReachMeters), minimumStay: stay,
                                          moving: moving, settings: settings).visits
             .filter { day in
-                guard day.assetIds.count >= settings.nearbyPhotos else { return false }
+                // Only the photos placed near the ground count: ones with no location or far away come with the day, they do not make it.
+                guard (day.insideIds?.count ?? 0) >= settings.nearbyPhotos else { return false }
                 let key = keyer.day(day.start, tz: day.venue.tz)
                 // A visit (or a saved game) at this ground or next door that day already holds the day.
                 let near = [day.venue] + neighbors(of: day.venue, in: venues, settings: settings)

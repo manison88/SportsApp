@@ -86,16 +86,17 @@ final class AirborneTests: XCTestCase {
         }
         XCTAssertNil(moving["cabin-selfie"], "At the gate")
         XCTAssertNil(moving["terminal-dog"])
-        // The cabin's stale fix is the only photo inside the fence on foot: with the day's other photos it makes a visit by the
-        // 15-minute rule, with one photo inside the fence, and the scan drops it (three over twenty minutes, or nothing).
+        // The cabin's stale fix is the only photo inside the fence on foot, and nothing else is near the ground on foot (the
+        // dog is 20 km away): one photo inside the fence alone is no visit, so the scan never sees one.
         let found = PhotoMatcher.found(in: landing, venues: library.venues, existing: [])
-        XCTAssertEqual(found.visits.map(\.insideIds), [["cabin-selfie"]])
-        XCTAssertEqual(found.visits.first?.isStadiumVisit, false)
+        XCTAssertTrue(found.visits.isEmpty)
         XCTAssertTrue(found.nearby.isEmpty)
+        // An album the fan chose is trusted: it would still make the visit, with every photo of the day.
+        XCTAssertEqual(VisitGrouping.group(landing, venues: library.venues).visits.map(\.insideIds), [["cabin-selfie"]])
         let (scan, review) = await scan(landing)
         XCTAssertEqual(scan.state, .empty)
         XCTAssertTrue(review.games.isEmpty && review.others.isEmpty && review.possible.isEmpty)
-        XCTAssertEqual(scan.skippedVisits, 1)
+        XCTAssertEqual(scan.skippedVisits, 0, "Not even a visit to drop")
         XCTAssertTrue(scan.pendingVisits.isEmpty, "Nothing waits for the background search either")
     }
 
@@ -285,9 +286,10 @@ final class AirborneTests: XCTestCase {
         XCTAssertTrue(text.contains("Photos: 8 (8 with a location, 0 without) \u{00B7} 6 on the move: these never place a visit"), text)
         XCTAssertTrue(text.contains("06:03  51.48170,-0.19000  inside Stamford Bridge (77 m, fence 200 m) \u{00B7} on the move, 92 m/s (limit 20 m/s over 1 km)"), text)
         XCTAssertTrue(text.contains("06:40  51.47000,-0.45430  no stadium within 2 km\n"), text)
-        XCTAssertTrue(text.contains("Visits (scan rule: a photo inside the fence, not on the move, and the day's photos 15+ min apart):\n"
+        XCTAssertTrue(text.contains("Visits (scan rule: a photo inside the fence, not on the move, and another inside or within reach of it, 15+ min apart):\n"
+                                    + "  none\nVisits only an album would make (the scan drops these: too short a stay inside the fence, or already saved):\n"
                                     + "  Stamford Bridge [stamford-bridge|2026-03-25]: 8 photos, 06:01\u{2013}06:40 (1 inside the fence)"), text)
-        let cabin = PhotoMatcher.found(in: landing, venues: library.venues, existing: []).visits[0]
+        let cabin = VisitGrouping.group(landing, venues: library.venues).visits[0]
         XCTAssertEqual(ScanCheck.visitLine(cabin), "stadium visit: 1 photos inside the fence over 0 min \u{2014} fewer than 3 or under 20 min, dropped")
 
         // A drive past the ground: the photo inside the fence was on the move, so the visit it would have made is shown dropped.
@@ -296,7 +298,7 @@ final class AirborneTests: XCTestCase {
             Self.point("past-the-gate", "2026-03-27T15:01:20Z", 51.4817, -0.1910),
         ], venues: library.venues, saved: [], zone: london).joined(separator: "\n")
         XCTAssertTrue(road.contains("inside Stamford Bridge (8 m, fence 200 m) \u{00B7} on the move, 25 m/s (limit 20 m/s over 1 km)"), road)
-        XCTAssertTrue(road.contains("Visits (scan rule: a photo inside the fence, not on the move, and the day's photos 15+ min apart):\n  none"), road)
+        XCTAssertTrue(road.contains("Visits (scan rule: a photo inside the fence, not on the move, and another inside or within reach of it, 15+ min apart):\n  none"), road)
         XCTAssertTrue(road.contains("Visits the photos would make if none were on the move (the scan drops these: every photo inside the fence was on the move):\n"
                                     + "  Stamford Bridge [stamford-bridge|2026-03-27]: 2 photos, 15:00\u{2013}15:01 (1 inside the fence)"), road)
 
@@ -304,8 +306,8 @@ final class AirborneTests: XCTestCase {
         let circuit = ScanCheck.lines(points: nurburgring, venues: library.venues, saved: [], zone: chicago).joined(separator: "\n")
         XCTAssertTrue(circuit.contains("Photos: 47 (47 with a location, 0 without)\n"), circuit)
         XCTAssertTrue(circuit.contains("03:22  50.33357,6.94552  inside Nurburgring Grand Prix Circuit (262 m, fence 900 m)\n"), circuit)
-        XCTAssertTrue(circuit.contains("Visits (scan rule: a photo inside the fence, not on the move, and the day's photos 15+ min apart):\n"
-                                       + "  Nurburgring Grand Prix Circuit [nurburgring|2023-08-05]: 47 photos, 03:22\u{2013}10:16 (18 inside the fence)"), circuit)
+        XCTAssertTrue(circuit.contains("Visits (scan rule: a photo inside the fence, not on the move, and another inside or within reach of it, 15+ min apart):\n"
+                                       + "  Nurburgring Grand Prix Circuit [nurburgring|2023-08-05]: 47 photos, 03:22\u{2013}06:08 (18 inside the fence)"), circuit)
         let visit = PhotoMatcher.found(in: nurburgring, venues: library.venues, existing: []).visits[0]
         XCTAssertEqual(ScanCheck.visitLine(visit), "stadium visit: 18 photos inside the fence over 166 min \u{2014} offered")
         let stale = PhotoMatcher.found(in: landing.filter { $0.id != "hammersmith" }, venues: library.venues, existing: []).visits[0]

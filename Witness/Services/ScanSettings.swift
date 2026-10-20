@@ -56,6 +56,9 @@ struct ScanSettings: Codable, Equatable, Sendable {
     /// A visit with no game on the schedule is offered as a stadium visit when this many photos inside the fence span this long.
     var dwellPhotos = 3
     var dwellMinutes: Double = 20
+    /// A skipped visit or possible game keeps away anything offered for the same outing: a candidate within this many hours of
+    /// the skipped photos' first and last. A game hours later the same day is a different outing and is still offered.
+    var skipWindowHours: Double = 3
 
     // MARK: Schedule windows (`GameLookup`, `ScanModel`)
 
@@ -230,7 +233,7 @@ struct ScanSettings: Codable, Equatable, Sendable {
         case fenceMeters, fenceBigMeters, fenceHugeMeters, fenceBigCapacity, fenceHugeCapacity, indexBoxMeters, indexBoxSlack
         case matchdayReachMeters, neighborMeters
         case vehicleSpeed, movingSpeed, movingDistanceMeters, movingWindowMinutes
-        case visitStayMinutes, overnightGapHours, askGapHours, dwellPhotos, dwellMinutes
+        case visitStayMinutes, overnightGapHours, askGapHours, dwellPhotos, dwellMinutes, skipWindowHours
         case scheduleBeforeHours, scheduleAfterHours, nearbyBeforeHours, nearbyAfterHours
         case lookupConcurrency, lookupAttempts, lookupBackoffMilliseconds, lookupTimeoutSeconds, matchBatch
         case nearbyReachMeters, nearbyPhotos, nearbyMaxDays
@@ -272,6 +275,7 @@ struct ScanSettings: Codable, Equatable, Sendable {
         askGapHours = get(.askGapHours, d.askGapHours)
         dwellPhotos = get(.dwellPhotos, d.dwellPhotos)
         dwellMinutes = get(.dwellMinutes, d.dwellMinutes)
+        skipWindowHours = get(.skipWindowHours, d.skipWindowHours)
         scheduleBeforeHours = get(.scheduleBeforeHours, d.scheduleBeforeHours)
         scheduleAfterHours = get(.scheduleAfterHours, d.scheduleAfterHours)
         nearbyBeforeHours = get(.nearbyBeforeHours, d.nearbyBeforeHours)
@@ -384,6 +388,7 @@ struct ScanSettings: Codable, Equatable, Sendable {
         s.askGapHours = m(s.askGapHours, 1, 48)
         s.dwellPhotos = n(s.dwellPhotos)
         s.dwellMinutes = minutes(s.dwellMinutes)
+        s.skipWindowHours = hours(s.skipWindowHours)
         s.scheduleBeforeHours = hours(s.scheduleBeforeHours)
         s.scheduleAfterHours = hours(s.scheduleAfterHours)
         s.nearbyBeforeHours = hours(s.nearbyBeforeHours)

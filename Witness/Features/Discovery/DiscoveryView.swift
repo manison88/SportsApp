@@ -100,10 +100,14 @@ struct DiscoveryView: View {
         case .denied:
             message(title: "Witness can't see your photos.",
                     body: "Allow photo access in Settings and Witness will match them to stadiums on this iPhone.",
-                    showSettings: true, id: "discovery-denied")
+                    showSettings: true, limited: false, id: "discovery-denied")
         case .results:
             if clusters.isEmpty && others.isEmpty && possible.isEmpty {
-                message(title: "No games found in your photos yet.", body: nil, showSettings: false, id: "discovery-empty")
+                let limited = PhotoAccess.current.isLimited
+                let why = [limited ? PhotoAccess.limitedMessage : nil, PhotoAccess.uncheckedLine(presenter.scan.uncheckedVisits)]
+                    .compactMap { $0 }.joined(separator: "\n\n")
+                message(title: "No games found in your photos yet.", body: why.isEmpty ? nil : why,
+                        showSettings: false, limited: limited, id: "discovery-empty")
             } else if index >= clusters.count {
                 // Games first; then the visits that were near a stadium but not a game.
                 if possibleIndex < possible.count { possibleReview(possible[possibleIndex]) }
@@ -146,7 +150,7 @@ struct DiscoveryView: View {
                 }
 
                 HStack(spacing: Spacing.inner) {
-                    Button("Skip") { presenter.scan.dismiss(cluster.assetIds, on: cluster.start, asGame: !noGame(cluster)); advance() }
+                    Button("Skip") { presenter.scan.dismiss(cluster.assetIds, on: cluster.start, times: cluster.times, asGame: !noGame(cluster)); advance() }
                         .buttonStyle(.secondary)
                         .frame(maxWidth: 120)
                         .accessibilityIdentifier("discovery-skip")
@@ -397,7 +401,7 @@ struct DiscoveryView: View {
         // The answer stays in reach: Skip and Add sit under the scroll, never below it.
         .safeAreaInset(edge: .bottom) {
             HStack(spacing: Spacing.inner) {
-                Button("Skip") { presenter.scan.dismiss(day.assetIds, on: day.day); advancePossible() }
+                Button("Skip") { presenter.scan.dismiss(day.assetIds, on: day.day, times: day.times); advancePossible() }
                     .buttonStyle(.secondary)
                     .frame(maxWidth: 120)
                     .accessibilityIdentifier("discovery-possible-skip")
@@ -594,7 +598,7 @@ struct DiscoveryView: View {
                         .accessibilityIdentifier("discovery-other-add-all")
                 }
                 HStack(spacing: Spacing.inner) {
-                    Button("Skip") { presenter.scan.dismiss(cluster.assetIds, on: cluster.start); advanceOther() }
+                    Button("Skip") { presenter.scan.dismiss(cluster.assetIds, on: cluster.start, times: cluster.times); advanceOther() }
                         .buttonStyle(.secondary)
                         .frame(maxWidth: 120)
                         .accessibilityIdentifier("discovery-other-skip")
@@ -670,7 +674,7 @@ struct DiscoveryView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func message(title: String, body: String?, showSettings: Bool, id: String) -> some View {
+    private func message(title: String, body: String?, showSettings: Bool, limited: Bool, id: String) -> some View {
         VStack(alignment: .leading, spacing: Spacing.inner) {
             Spacer()
             Text(title)
@@ -693,6 +697,11 @@ struct DiscoveryView: View {
                 .buttonStyle(.primary)
                 Button("Add a game") { addManually() }
                     .buttonStyle(.secondary)
+            } else if limited {
+                LimitedAccessButtons()
+                Button("Add a game") { addManually() }
+                    .buttonStyle(.secondary)
+                    .accessibilityIdentifier("discovery-add")
             } else {
                 Button("Add a game") { addManually() }
                     .buttonStyle(.primary)

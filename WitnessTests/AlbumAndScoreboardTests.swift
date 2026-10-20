@@ -132,9 +132,15 @@ final class AlbumAndScoreboardTests: XCTestCase {
         XCTAssertTrue(scan.visits.isEmpty)
         XCTAssertEqual(scan.unplacedDays.count, 1)
 
-        // Discovery's stay rule counts only the photos inside the fence.
-        let walkBy = [point("in", "2016-10-31T00:30:00Z", north: 50), point("pub", "2016-10-30T20:00:00Z", north: 430)]
+        // Discovery's stay rule counts the photos inside the fence and within reach of it (a tailgate and the game are a stay) ...
+        let tailgated = [point("in", "2016-10-31T00:30:00Z", north: 50), point("pub", "2016-10-30T20:00:00Z", north: 430)]
+        let stayed = VisitGrouping.group(tailgated, venues: library.venues, minimumStay: 15 * 60).visits
+        XCTAssertEqual(stayed.count, 1)
+        XCTAssertEqual(stayed.first?.start, date("2016-10-30T20:00:00Z"))
+        // ... but a walk by is not: the photo inside the fence and the one near it minutes apart, or the one inside alone.
+        let walkBy = [point("in", "2016-10-31T00:30:00Z", north: 50), point("pub", "2016-10-31T00:35:00Z", north: 430)]
         XCTAssertTrue(VisitGrouping.group(walkBy, venues: library.venues, minimumStay: 15 * 60).visits.isEmpty)
+        XCTAssertTrue(VisitGrouping.group([point("in", "2016-10-31T00:30:00Z", north: 50)], venues: library.venues, minimumStay: 15 * 60).visits.isEmpty)
     }
 
     func testOneTeamOnTheBoardBacksAKnownGame() {

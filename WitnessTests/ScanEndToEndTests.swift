@@ -32,6 +32,7 @@ final class ScanEndToEndTests: XCTestCase {
 
     override func tearDown() async throws {
         GameLookup.responder = nil
+        GameLookup.simulatedFailure = nil
     }
 
     private func temp(_ name: String) -> URL {
@@ -248,6 +249,96 @@ final class ScanEndToEndTests: XCTestCase {
         try assertTheMatch(matchdayEntries.first)
     }
 
+    // MARK: No connection
+
+    /// Requests the schedule server was asked for, counted for the tests below.
+    nonisolated(unsafe) private static var requests = 0
+    nonisolated private static let requestLock = NSLock()
+    nonisolated private static func count() { requestLock.lock(); requests += 1; requestLock.unlock() }
+
+    /// The matchday repeated on `days` earlier days: one visit each.
+    private func manyMatchdays(_ days: Int) -> [PhotoPoint] {
+        (0..<days).flatMap { n in
+            matchday.map {
+                PhotoPoint(id: "\($0.id)-\(n)", date: $0.date?.addingTimeInterval(-Double(n) * 86_400 * 3), latitude: $0.latitude, longitude: $0.longitude)
+            }
+        }
+    }
+
+    /// Offline, the scan finishes without deciding anything about the visit: it is not a stadium visit, not dropped, and the
+    /// screens say how many could not be checked. Back online, the next Find in photos finds the match.
+    func testOfflineScanLeavesTheVisitUncheckedAndTheNextScanFindsIt() async throws {
+        GameLookup.simulatedFailure = { _ in .notConnectedToInternet }
+        defer { GameLookup.simulatedFailure = nil }
+        let scan = model(matchday, look: SceneCheck.DayLook())
+        let offline = await findInPhotos(scan)
+        XCTAssertEqual(scan.state, .empty)
+        XCTAssertTrue(offline.games.isEmpty && offline.others.isEmpty && offline.possible.isEmpty,
+                      "A visit whose lookup could not run was judged a stadium visit or a game")
+        XCTAssertEqual(scan.uncheckedVisits, 1)
+        XCTAssertEqual(scan.skippedVisits, 0, "Not dropped either")
+        XCTAssertEqual(scan.pendingVisits.count, 1, "Kept for the next look")
+        XCTAssertEqual(PhotoAccess.uncheckedLine(scan.uncheckedVisits), "1 visit couldn't be checked, connect and run Find in photos again.")
+
+        GameLookup.simulatedFailure = nil
+        let online = await findInPhotos(scan)
+        XCTAssertEqual(online.games.count, 1)
+        XCTAssertEqual(scan.uncheckedVisits, 0)
+    }
+
+    /// The first offline failure stops every later lookup: a scan of many visits sends a few requests, not all of them.
+    func testOfflineStopsFurtherLookups() async throws {
+        let points = manyMatchdays(12)
+        Self.requests = 0
+        GameLookup.simulatedFailure = { _ in Self.count(); return nil }
+        let scan = model(points, look: SceneCheck.DayLook())
+        _ = await findInPhotos(scan)
+        let connected = Self.requests
+        XCTAssertEqual(scan.uncheckedVisits, 0)
+        XCTAssertGreaterThan(connected, 12)
+
+        Self.requests = 0
+        GameLookup.simulatedFailure = { _ in Self.count(); return .networkConnectionLost }
+        defer { GameLookup.simulatedFailure = nil }
+        let review = await findInPhotos(scan)
+        // A visit the phone's own downloaded schedule can answer needs no connection, so it may be a game; the rest are
+        // unchecked. None is judged "no game" or a stadium visit.
+        XCTAssertGreaterThan(scan.uncheckedVisits, 0)
+        XCTAssertEqual(scan.uncheckedVisits + review.games.count, 12, "Every visit is a game from the on-device schedule or unchecked, none judged")
+        XCTAssertTrue(review.others.isEmpty && review.possible.isEmpty)
+        XCTAssertLessThan(Self.requests, connected / 2, "Lookups kept going after the device was offline")
+    }
+
+    /// A lookup that fails some other way (a timeout under load) is not "no game" either: unchecked, and tried once more.
+    func testALookupThatTimedOutIsNotAVisitWithNoGame() async throws {
+        GameLookup.simulatedFailure = { _ in .timedOut }
+        defer { GameLookup.simulatedFailure = nil }
+        let scan = model(matchday, look: SceneCheck.DayLook())
+        let review = await findInPhotos(scan)
+        XCTAssertTrue(review.games.isEmpty && review.others.isEmpty)
+        XCTAssertEqual(scan.uncheckedVisits, 1)
+    }
+
+    /// The background search does not turn a visit whose lookup could not run into a stadium visit either.
+    func testTheBackgroundSearchDoesNotJudgeAVisitItCouldNotCheck() async throws {
+        let cluster = try XCTUnwrap(PhotoMatcher.found(in: matchday, venues: library.venues, existing: []).visits.first)
+        GameLookup.simulatedFailure = { _ in .notConnectedToInternet }
+        defer { GameLookup.simulatedFailure = nil }
+        let offline = await ScanModel.waitingDay(cluster, venues: library.venues)
+        XCTAssertNil(offline)
+        GameLookup.simulatedFailure = nil
+        Self.worldCupAnswers = false
+        let answered = await ScanModel.waitingDay(cluster, venues: library.venues)
+        XCTAssertNotNil(answered, "Answered with no game, a stadium visit is offered")
+    }
+
+    func testWhichErrorsMeanOffline() {
+        XCTAssertTrue(LookupOutage.isOfflineError(.notConnectedToInternet))
+        XCTAssertTrue(LookupOutage.isOfflineError(.networkConnectionLost))
+        XCTAssertTrue(LookupOutage.isOfflineError(.dataNotAllowed))
+        XCTAssertFalse(LookupOutage.isOfflineError(.timedOut))
+    }
+
     // MARK: (e) Photos around the ground, not inside it
 
     /// A World Cup crowd photographs the plaza and the march, and the phone placed nothing inside the bowl. No visit, so the
@@ -286,15 +377,51 @@ final class ScanEndToEndTests: XCTestCase {
         XCTAssertTrue(review.possible.isEmpty)
     }
 
-    /// One fix inside the bowl is enough when the day has other photos: the photos of that day with no stadium fix (the fan
-    /// zone, 540 m out) count toward the stay, so it is a visit, and the match.
-    func testOnePhotoInsideTheBowlAndTheDayAroundItIsTheMatch() async throws {
-        let review = await findInPhotos(model(aroundTheGround + [Self.point("bowl", "12:20", 47.5955, -122.3318)]))
+    /// One fix inside the bowl is not a game: the photos of that day with no stadium fix, or far away, do not count toward the
+    /// stay (the fan zone at 540 m is outside the 500 m reach), and a lone fix is a drive past. (This test once said the day around
+    /// it made the match; photos that are not near the ground no longer make or stretch a visit.)
+    func testOnePhotoInsideTheBowlWithNothingNearItIsNotAGame() async throws {
+        let review = await findInPhotos(model([Self.point("fan-zone", "10:05", 47.6000, -122.3330),
+                                               Self.point("bowl", "12:20", 47.5955, -122.3318),
+                                               Self.point("home", "20:00", 47.6740, -122.3870),
+                                               Self.point("no-gps", "21:00", nil, nil)]))
+        XCTAssertTrue(review.games.isEmpty, "games \(review.games.map(\.id))")
+        XCTAssertTrue(review.others.isEmpty, "others \(review.others.map(\.id))")
+        XCTAssertTrue(review.possible.isEmpty, "possible \(review.possible.map(\.reason))")
+    }
+
+    /// A taxi past the ground with one red-light shot, and breakfast at home that morning: nothing.
+    func testATaxiPastTheGroundAndBreakfastAtHomeIsNothing() async throws {
+        let review = await findInPhotos(model([Self.point("breakfast", "07:40", 47.6740, -122.3870),
+                                               Self.point("red-light", "11:50", 47.5955, -122.3318),
+                                               Self.point("lunch-no-gps", "13:00", nil, nil)]))
+        XCTAssertTrue(review.games.isEmpty && review.others.isEmpty && review.possible.isEmpty)
+    }
+
+    /// One fix inside the bowl and one within the near reach 20 minutes later span the stay: a game.
+    func testOnePhotoInsideAndANearPhotoTwentyMinutesLaterIsTheMatch() async throws {
+        let review = await findInPhotos(model([Self.point("bowl", "12:20", 47.5955, -122.3318),
+                                               Self.point("plaza", "12:40", 47.5982, -122.3317)]))
         XCTAssertEqual(review.games.count, 1)
-        XCTAssertTrue(review.possible.isEmpty)
+        XCTAssertEqual(Set(review.games.first?.assetIds ?? []), ["bowl", "plaza"])
+    }
+
+    /// Photos with no place join a visit that exists, but do not make it or stretch the window the schedule is asked about.
+    func testLoosePhotosJoinAVisitButDoNotStretchIt() async throws {
+        let found = PhotoMatcher.found(in: [Self.point("in-1", "11:50", 47.5955, -122.3318), Self.point("in-2", "12:30", 47.5950, -122.3312),
+                                            Self.point("home", "07:40", 47.6740, -122.3870), Self.point("no-gps", "22:00", nil, nil)],
+                                       venues: library.venues, existing: [])
+        let visit = try XCTUnwrap(found.visits.first)
+        XCTAssertEqual(Set(visit.assetIds), ["in-1", "in-2", "home", "no-gps"], "Adopted as photos of the visit")
+        XCTAssertEqual(visit.end.timeIntervalSince(visit.start), 40 * 60, "The window is the photos at the ground")
     }
 
     /// The visit rule itself: two photos inside a fence at least 15 minutes apart. Two inside the bowl are enough.
+    func testTwoPhotosThirtyMinutesApartInsideTheBowlMakeAVisit() async throws {
+        let review = await findInPhotos(model([Self.point("in-1", "11:50", 47.5955, -122.3318), Self.point("in-2", "12:20", 47.5950, -122.3312)]))
+        XCTAssertEqual(review.games.count, 1)
+    }
+
     func testTwoPhotosInsideTheBowlMakeAVisit() async throws {
         let points = [Self.point("in-1", "11:50", 47.5955, -122.3318), Self.point("in-2", "12:40", 47.5950, -122.3312)]
         let review = await findInPhotos(model(points))
@@ -321,12 +448,12 @@ final class ScanEndToEndTests: XCTestCase {
         var ledger = ReviewLedger()
         let cluster = try XCTUnwrap(PhotoMatcher.found(in: matchday, venues: library.venues, existing: library.games).visits.first)
         XCTAssertEqual(ScanCheck.verdict(cluster, library: library.games, venues: library.venues, ledger: ledger), "the review shows it")
-        ledger.dismiss(stadiumIds, day: "2026-06-24", game: true)
+        ledger.dismiss(stadiumIds, span: matchday[1].date!...matchday[7].date!, game: true)
         XCTAssertEqual(ScanCheck.verdict(cluster, library: library.games, venues: library.venues, ledger: ledger),
                        "left out: skipped as a game in an earlier review")
         let text = ScanCheck.gates(points: matchday, venues: library.venues, library: library.games, ledger: ledger,
                                    pending: [cluster], zone: zone).joined(separator: "\n")
-        XCTAssertTrue(text.contains("7 of this day's photos skipped, 7 of them as a game \u{00B7} day skipped: yes"), text)
+        XCTAssertTrue(text.contains("7 of this day's photos skipped, 7 of them as a game \u{00B7} outing skipped near this day's photos: yes"), text)
         XCTAssertTrue(text.contains("Waiting for the background search (pending-visits.json): T-Mobile Park [mlb-sea|2026-06-24]"), text)
         XCTAssertTrue(text.contains("Around a stadium, no photo inside its fence"), text)
         // A saved game holds its photos.

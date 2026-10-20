@@ -1,4 +1,5 @@
 import Foundation
+import os
 
 /// A real game found on a league schedule.
 struct FoundGame: Identifiable, Hashable {
@@ -63,13 +64,19 @@ enum GameLookup {
     /// Games on the venue's league schedules that started in the window (`scheduleBeforeHours` before `from` to
     /// `scheduleAfterHours` after `to`) and were played at this venue.
     static func games(at venue: Venue, from: Date, to: Date, settings: ScanSettings = .current) async -> [FoundGame] {
+        await gamesChecked(at: venue, from: from, to: to, settings: settings).games
+    }
+
+    /// `games`, and whether every schedule it needed answered. A lookup that could not run (offline, throttled past its retries)
+    /// is incomplete: "no games" from it means "not checked", not "no game that day".
+    static func gamesChecked(at venue: Venue, from: Date, to: Date, settings: ScanSettings = .current) async -> (games: [FoundGame], complete: Bool) {
         let leagues = leagues(for: venue).filter { !$0.hasPrefix("racing/") }
         let windowStart = from.addingTimeInterval(-settings.scheduleBeforeHours * 3600)
         let windowEnd = to.addingTimeInterval(settings.scheduleAfterHours * 3600)
         // A circuit's race weekends come from the bundled calendar, with no network call.
         let races = venue.sports.contains(.motorsport)
             ? F1Calendar.races(at: venue, from: from, to: to).map { F1Calendar.found($0, venue: venue) } : []
-        guard !leagues.isEmpty else { return races }
+        guard !leagues.isEmpty else { return (races, true) }
         let days = dayStrings(from: windowStart, to: windowEnd, tz: venue.tz)
 
         // Past games of a league whose seasons are downloaded come from the phone: no network, nothing leaves the device.
@@ -79,23 +86,31 @@ enum GameLookup {
             found = await LocalSchedule.games(at: venue, leagues: leagues.filter { covered.contains($0) },
                                               from: windowStart, to: windowEnd)
         }
-        await withTaskGroup(of: [FoundGame].self) { group in
+        var complete = true
+        await withTaskGroup(of: (games: [FoundGame], answered: Bool).self) { group in
             for league in leagues where !covered.contains(league) {
                 for day in days {
                     group.addTask {
-                        guard let data = await fetch(scoreboardURL(league: league, day: day)) else { return [] }
-                        return parseScoreboard(data, league: league)
+                        switch await fetchResult(scoreboardURL(league: league, day: day)) {
+                        case .data(let data): return (parseScoreboard(data, league: league), true)
+                        case .none: return ([], true)
+                        case .failed: return ([], false)
+                        }
                     }
                 }
             }
-            for await batch in group { found.append(contentsOf: batch) }
+            for await batch in group {
+                found.append(contentsOf: batch.games)
+                if !batch.answered { complete = false }
+            }
         }
         var seen = Set<String>()
-        return (races + found
+        let games = (races + found
             .filter { $0.start >= windowStart && $0.start <= windowEnd }
             .filter { venueMatches($0, venue: venue) })
             .filter { seen.insert($0.id).inserted }
             .sorted { abs($0.start.timeIntervalSince(from)) < abs($1.start.timeIntervalSince(from)) }
+        return (games, complete)
     }
 
     /// Every game on one league's schedule that started in the window, at any venue.
@@ -491,26 +506,53 @@ enum GameLookup {
     /// turn (`lookupConcurrency` at once), a failure is tried again (`lookupAttempts` tries, `lookupBackoffMilliseconds` × the
     /// attempt squared between them, `lookupTimeoutSeconds` each), and a finished day is kept.
     private static func fetch(_ url: URL) async -> Data? {
-        if let responder { return responder(url) }
-        if let hit = pages.object(forKey: url as NSURL) { return hit as Data }
+        if case .data(let data) = await fetchResult(url) { return data }
+        return nil
+    }
+
+    /// What a schedule request came to: the page, nothing there (the server answered, there is no such page), or no answer at all.
+    enum Fetched { case data(Data), none, failed }
+
+    /// Tests make a request fail with this error instead of answering from `responder`.
+    nonisolated(unsafe) static var simulatedFailure: (@Sendable (URL) -> URLError.Code?)?
+
+    /// Like `fetch`, but says "failed" apart from "nothing there". A device that is offline fails at once, without retries, and
+    /// every later request of the scan (`LookupOutage`) fails at once with it, so a scan without a connection finishes promptly.
+    static func fetchResult(_ url: URL) async -> Fetched {
+        if LookupOutage.isOffline { return .failed }
+        if let responder {
+            if let code = simulatedFailure?(url) {
+                if LookupOutage.isOfflineError(code) { LookupOutage.markOffline() }
+                return .failed
+            }
+            return responder(url).map(Fetched.data) ?? .none
+        }
+        if let hit = pages.object(forKey: url as NSURL) { return .data(hit as Data) }
         let settings = ScanSettings.current
         await RequestGate.shared.enter()
         defer { Task { await RequestGate.shared.leave() } }
         for attempt in 0..<settings.lookupAttempts {
+            if LookupOutage.isOffline { return .failed }
             var request = URLRequest(url: url)
             request.timeoutInterval = settings.lookupTimeoutSeconds
-            if let (data, response) = try? await URLSession.shared.data(for: request), let http = response as? HTTPURLResponse {
-                if http.statusCode == 200 {
-                    if url.absoluteString.contains("dates="), isPastDay(url) { pages.setObject(data as NSData, forKey: url as NSURL) }
-                    return data
+            do {
+                let (data, response) = try await URLSession.shared.data(for: request)
+                if let http = response as? HTTPURLResponse {
+                    if http.statusCode == 200 {
+                        if url.absoluteString.contains("dates="), isPastDay(url) { pages.setObject(data as NSData, forKey: url as NSURL) }
+                        return .data(data)
+                    }
+                    // Not throttled and not a server hiccup: asking again won't help.
+                    if http.statusCode != 429 && http.statusCode < 500 { return .none }
                 }
-                // Not throttled and not a server hiccup: asking again won't help.
-                if http.statusCode != 429 && http.statusCode < 500 { return nil }
-            }
-            if Task.isCancelled { return nil }
+            } catch let error as URLError where LookupOutage.isOfflineError(error.code) {
+                LookupOutage.markOffline()
+                return .failed
+            } catch {}
+            if Task.isCancelled { return .failed }
             try? await Task.sleep(for: .milliseconds(settings.lookupBackoffMilliseconds * (attempt + 1) * (attempt + 1)))
         }
-        return nil
+        return .failed
     }
 
     /// Whether a scoreboard URL's `dates=yyyyMMdd` is at least two days ago, so its results are final.
@@ -689,6 +731,23 @@ extension GameLookup {
             }
         }
         return (nil, 0)
+    }
+}
+
+/// Whether the device has no connection, for the length of one scan. The first request to fail with an offline error (not
+/// connected, connection lost, data not allowed) marks it, and every request after fails at once, so no scan sleeps through
+/// retries it cannot win. Only a scan that called `begin()` is tracked; anything else just fails fast on its own request.
+enum LookupOutage {
+    private struct State { var tracking = false; var offline = false }
+    private static let state = OSAllocatedUnfairLock(initialState: State())
+
+    static func begin() { state.withLock { $0 = State(tracking: true) } }
+    static func end() { state.withLock { $0 = State() } }
+    static var isOffline: Bool { state.withLock { $0.offline } }
+    static func markOffline() { state.withLock { if $0.tracking { $0.offline = true } } }
+
+    static func isOfflineError(_ code: URLError.Code) -> Bool {
+        code == .notConnectedToInternet || code == .networkConnectionLost || code == .dataNotAllowed
     }
 }
 

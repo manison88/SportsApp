@@ -70,10 +70,44 @@ final class ReviewQueueTests: XCTestCase {
         let review = relaunched.takeForReview(library: library)
         XCTAssertTrue(review.others.isEmpty)
         XCTAssertTrue(review.possible.isEmpty)
-        // Other photos of that day from an album are the same outing.
+        // Other photos of the same outing (the same hours) from an album are the same outing.
         let sameDay = PossibleDay(id: "album", day: tour.start, assetIds: ["a", "b", "c"], times: [], reason: "Album")
         relaunched.settleDeep([sameDay], library: library)
         XCTAssertTrue(relaunched.possible.isEmpty)
+    }
+
+    /// A skipped morning stadium visit says nothing about the evening: a game found later that day (an album, a city day) is offered.
+    func testASkippedMorningVisitDoesNotHideTheEveningGame() throws {
+        let library = Library(storeURL: tempURL("library"))
+        let ledgerURL = tempURL("ledger")
+        let scan = ScanModel(ledgerURL: ledgerURL)
+        let tour = visit("tour", at: try venue("Fenway Park", in: library), day("2019-03-02T15:00:00Z"))
+        scan.settleFirstPass(games: [], others: [tour], library: library)
+        XCTAssertEqual(scan.takeForReview(library: library).others.count, 1)
+        scan.dismiss(tour.assetIds, on: tour.start, times: tour.times)
+
+        let evening = PossibleDay(id: "album-evening", day: day("2019-03-02T23:30:00Z"), assetIds: ["e1", "e2", "e3"], times: [], reason: "Album \"Game night\"")
+        scan.settleDeep([evening], library: library)
+        XCTAssertEqual(scan.takeForReview(library: library).possible.map(\.id), ["album-evening"])
+
+        // After a relaunch too; the skip is not kept as a day.
+        let relaunched = ScanModel(ledgerURL: ledgerURL)
+        relaunched.settleDeep([evening], library: library)
+        XCTAssertEqual(relaunched.possible.map(\.id), ["album-evening"])
+        XCTAssertTrue(relaunched.ledger.dismissedDays.isEmpty)
+    }
+
+    /// A ledger from before skips were kept per outing still loads, and its day-level skips hide nothing new.
+    func testAnOlderDayLevelSkipNoLongerHidesTheWholeDay() throws {
+        let library = Library(storeURL: tempURL("library"))
+        let ledgerURL = tempURL("ledger")
+        try Data(#"{"dismissedAssets":["old-1"],"dismissedDays":["2019-03-02"]}"#.utf8).write(to: ledgerURL)
+        let scan = ScanModel(ledgerURL: ledgerURL)
+        XCTAssertEqual(scan.ledger.dismissedAssets, ["old-1"])
+        let evening = PossibleDay(id: "album-evening", day: day("2019-03-02T23:30:00Z"), assetIds: ["e1", "e2", "e3"], times: [], reason: "Album")
+        let oldPhotos = PossibleDay(id: "again", day: day("2019-03-02T15:00:00Z"), assetIds: ["old-1", "x"], times: [], reason: "Album")
+        scan.settleDeep([evening, oldPhotos], library: library)
+        XCTAssertEqual(scan.possible.map(\.id), ["album-evening"], "The skipped photos stay skipped; the day does not")
     }
 
     func testOnboardingCountIsWhatAddAllAdds() throws {

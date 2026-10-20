@@ -32,6 +32,9 @@ final class ScanModel {
     private(set) var notes: [String: String] = [:]
     /// Visits with no game and too few photos inside the fence (a drive past, a bar across the street), left out.
     private(set) var skippedVisits = 0
+    /// Visits (and days) whose schedule lookup could not run, usually for lack of a connection. They are neither games nor
+    /// stadium visits nor dropped: nothing was decided about them, and the next "Find in photos" asks again.
+    private(set) var uncheckedVisits = 0
     /// Set once the review screen has taken the results, so the Timeline banner goes away.
     private(set) var reviewed = false
     /// Set once the scan screen has walked the person through every step, so the results appear after it, not mid-count.
@@ -160,9 +163,11 @@ final class ScanModel {
 
     /// The fan skipped this visit or day: it is not offered again, by this pass or any later one, after a relaunch too.
     /// `asGame` when it was offered as a game on the schedule; a skipped stadium visit still lets a game found later for its photos through.
-    func dismiss(_ assetIds: [String], on day: Date, asGame: Bool = false) {
-        var keyer = DayKeyer()
-        ledger.dismiss(assetIds, day: keyer.day(day, tz: .current), game: asGame)
+    /// `times` are the photos' times: what is skipped is that outing (within `skipWindowHours` of them), not the whole day, so a
+    /// morning tour skipped does not hide the evening game.
+    func dismiss(_ assetIds: [String], on day: Date, times: [Date] = [], asGame: Bool = false) {
+        let all = times + [day]
+        ledger.dismiss(assetIds, span: all.min()!...all.max()!, game: asGame)
         ledger.save(to: ledgerURL)
         let ids = Set(assetIds)
         games.removeAll { $0.assetIds.contains(where: ids.contains) }
@@ -182,9 +187,9 @@ final class ScanModel {
         for g in library.games { claimed.insert(keyer.day(g.date, tz: .current)) }
         for c in games { claimed.insert(keyer.day(c.start, tz: .current)) }
         for m in possible { claimed.insert(keyer.day(m.day, tz: .current)) }
-        // Stadium visits already up for review, and days the fan turned down, are not looked for again in the albums.
+        // Stadium visits already up for review are not looked for again in the albums. What the fan turned down is filtered from
+        // the finds afterwards (`ReviewQueue.possible`), by outing: a skipped morning does not hide the evening's game.
         for c in others { claimed.insert(keyer.day(c.start, tz: .current)) }
-        claimed.formUnion(ledger.dismissedDays)
         let venues = library.venues, teams = library.allTeams
         let home = library.profile.homeLocation, hasHome = library.hasHome
         Analytics.shared.track(.onboardingStep, ["step": "deep_scan_started"])
@@ -193,6 +198,8 @@ final class ScanModel {
         let photos = photos
         let settings = ScanSettings.current
         deepTask = Task { [weak self] in
+            LookupOutage.begin()
+            defer { LookupOutage.end() }
             var claimed = claimedBefore
             var keyer = DayKeyer()
             // First the stadium visits with no game on the schedule: a possible game when the photos look like one
@@ -287,6 +294,7 @@ final class ScanModel {
         verifiedVisits = 0
         verifyTotal = 0
         skippedVisits = 0
+        uncheckedVisits = 0
         reviewed = false
         shown = false
     }
@@ -301,10 +309,13 @@ final class ScanModel {
         Analytics.shared.track(.onboardingStep, ["step": "photo_access", "granted": true])
         progress = .init()
         games = []; others = []; possible = []; matches = [:]; tickets = [:]; notes = [:]
-        checkedVisits = 0; totalVisits = 0; verifiedVisits = 0; verifyTotal = 0; skippedVisits = 0
+        checkedVisits = 0; totalVisits = 0; verifiedVisits = 0; verifyTotal = 0; skippedVisits = 0; uncheckedVisits = 0
         reviewed = false
         shown = false
         state = .scanning
+        // One connection check for the whole scan: the first offline failure stops every later lookup (`LookupOutage`).
+        LookupOutage.begin()
+        defer { LookupOutage.end() }
         // The scan can take minutes: keep the screen awake so it isn't interrupted.
         UIApplication.shared.isIdleTimerDisabled = true
         defer { UIApplication.shared.isIdleTimerDisabled = false }
@@ -324,28 +335,40 @@ final class ScanModel {
         totalVisits = found.count
         let venues = library.venues
         var matched: [String: FoundGame] = [:]
+        // Visits whose lookup could not run (offline, or throttled past its retries): not "no game", just not checked.
+        var unchecked = Set<String>()
         // Schedule lookups are network calls, so a few (`matchBatch`) run at once.
         let batch = settings.matchBatch
         for start in stride(from: 0, to: found.count, by: batch) {
             let chunk = Array(found[start..<min(start + batch, found.count)])
-            let results = await withTaskGroup(of: (String, FoundGame?).self, returning: [(String, FoundGame?)].self) { group in
+            // Offline: no more requests are sent; every visit left is unchecked.
+            if LookupOutage.isOffline {
+                unchecked.formUnion(found[start...].map(\.id))
+                checkedVisits = found.count
+                break
+            }
+            let results = await withTaskGroup(of: (String, Lookup).self, returning: [(String, Lookup)].self) { group in
                 for cluster in chunk {
-                    group.addTask { (cluster.id, await Self.match(cluster, venues: venues, settings: settings)) }
+                    group.addTask { (cluster.id, await Self.lookup(cluster, venues: venues, settings: settings)) }
                 }
-                var out: [(String, FoundGame?)] = []
+                var out: [(String, Lookup)] = []
                 for await r in group { out.append(r) }
                 return out
             }
-            for (id, game) in results { if let game { matched[id] = game } }
+            for (id, result) in results {
+                if let game = result.game { matched[id] = game } else if !result.complete { unchecked.insert(id) }
+            }
             matches = matched
             checkedVisits = min(start + chunk.count, found.count)
         }
 
-        // A second, slower pass over the visits left without a game: a lookup that failed under load gets another chance,
-        // one visit at a time, before a real game is filed as "no game on the schedule".
-        for cluster in found where matched[cluster.id] == nil {
-            if Task.isCancelled { break }
-            if let game = await Self.match(cluster, venues: venues, settings: settings) { matched[cluster.id] = game; matches = matched }
+        // A second, slower pass over the visits whose lookup failed (not the ones the schedule answered "no game" for): a lookup
+        // that failed under load gets another chance, one visit at a time. Not at all when the device is offline.
+        for cluster in found where unchecked.contains(cluster.id) {
+            if Task.isCancelled || LookupOutage.isOffline { break }
+            let result = await Self.lookup(cluster, venues: venues, settings: settings)
+            if let game = result.game { matched[cluster.id] = game; matches = matched }
+            if result.game != nil || result.complete { unchecked.remove(cluster.id) }
         }
 
         // The stadium and the date decide. Tickets are digital and are not read here; a scene check is only a second opinion.
@@ -373,13 +396,15 @@ final class ScanModel {
         }
         // A saved stadium visit is scanned again only to find its game: still without one, it stays as it was and is not asked about again.
         let savedVisits = PhotoMatcher.savedVisitKeys(library.games, venues: venues)
-        let unmatched = visits.filter { matched[$0.id] == nil && !savedVisits.contains($0.id) }
+        let unmatched = visits.filter { matched[$0.id] == nil && !savedVisits.contains($0.id) && !unchecked.contains($0.id) }
+        uncheckedVisits = visits.filter { unchecked.contains($0.id) && matched[$0.id] == nil && !savedVisits.contains($0.id) }.count
         state = .verifying
         verifiedVisits = 0
         verifyTotal = unmatched.count
         let tours = unmatched.filter { $0.isStadiumVisit(settings) }
         verifiedVisits = unmatched.count
-        pendingVisits = []
+        // Visits that could not be checked wait for the background search, which asks again; nothing was decided about them.
+        pendingVisits = visits.filter { unchecked.contains($0.id) && matched[$0.id] == nil && !savedVisits.contains($0.id) }
         matches = matched
         skippedVisits = unmatched.count - tours.count
         possible = []
@@ -388,7 +413,12 @@ final class ScanModel {
         var aroundGrounds: [PossibleDay] = []
         for cluster in scanned.nearby {
             if Task.isCancelled { break }
-            if let day = await Self.nearbyDay(cluster, venues: venues, settings: settings) { aroundGrounds.append(day) }
+            if LookupOutage.isOffline { uncheckedVisits += 1; continue }
+            if let day = await Self.nearbyDay(cluster, venues: venues, settings: settings) {
+                aroundGrounds.append(day)
+            } else if LookupOutage.isOffline {
+                uncheckedVisits += 1
+            }
         }
         // Albums titled for a game: cheap (a title read per album; only a matchup title asks the schedules), and a game between
         // the two named teams on the photos' dates is strong enough to ask about without a single located photo.
@@ -400,6 +430,7 @@ final class ScanModel {
         let see = photos.look
         for day in scanned.cityDays {
             if Task.isCancelled { break }
+            if LookupOutage.isOffline { uncheckedVisits += 1; continue }
             if let offer = await CityDays.evaluate(day, look: { await see($0, settings.citySample) }, settings: settings).offer {
                 inCity.append(offer)
             }
@@ -415,7 +446,8 @@ final class ScanModel {
         let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
         // The schedule first, the ground next door too: the visit may be waiting from a scan that never looked there, or whose
         // lookup failed. A game on it is offered whatever the photos look like, with the ground it was played at first.
-        if let game = await match(cluster, venues: venues, settings: settings) {
+        let looked = await lookup(cluster, venues: venues, settings: settings)
+        if let game = looked.game {
             let at = GameLookup.venue(of: game, in: venues) ?? cluster.venue
             return PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
                                reason: "Photos at \(cluster.venue.name) \u{00B7} \(GameSuggester.describe(game, at: at))",
@@ -423,7 +455,8 @@ final class ScanModel {
         }
         // A day with no game is offered too when the fan plainly stayed inside the fence (`PhotoCluster.isStadiumVisit`): a
         // stadium tour is a visit worth keeping, and the review saves it as one when no game turns up for the date.
-        guard cluster.isStadiumVisit(settings) else { return nil }
+        // A lookup that could not run decides nothing: it is not a visit with no game.
+        guard looked.complete, cluster.isStadiumVisit(settings) else { return nil }
         return PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
                            reason: "Photos inside \(cluster.venue.name) with no game that day \u{00B7} a stadium visit?",
                            suggestions: [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: venues, settings: settings).prefix(2))
@@ -465,11 +498,24 @@ final class ScanModel {
         return out
     }
 
+    /// What the schedules said about a visit: its game, and whether every schedule asked answered.
+    struct Lookup { var game: FoundGame?; var complete: Bool }
+
+    /// The game on the schedule at this visit's stadium (or the arena next door) around the photos' times. With no game,
+    /// `complete` says whether that is an answer ("no game that day") or only a lookup that could not run (offline, throttled).
+    nonisolated static func lookup(_ cluster: PhotoCluster, venues: [Venue], settings: ScanSettings = .current) async -> Lookup {
+        var complete = true
+        for venue in [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: venues, settings: settings) {
+            if LookupOutage.isOffline { return Lookup(game: nil, complete: false) }
+            let found = await GameLookup.gamesChecked(at: venue, from: cluster.start, to: cluster.end, settings: settings)
+            if let game = found.games.first { return Lookup(game: game, complete: true) }
+            if !found.complete { complete = false }
+        }
+        return Lookup(game: nil, complete: complete)
+    }
+
     /// The game on the schedule at this visit's stadium (or the arena next door) around the photos' times.
     nonisolated static func match(_ cluster: PhotoCluster, venues: [Venue], settings: ScanSettings = .current) async -> FoundGame? {
-        for venue in [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: venues, settings: settings) {
-            if let game = await GameLookup.games(at: venue, from: cluster.start, to: cluster.end, settings: settings).first { return game }
-        }
-        return nil
+        await lookup(cluster, venues: venues, settings: settings).game
     }
 }

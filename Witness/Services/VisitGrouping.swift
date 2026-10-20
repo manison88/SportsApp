@@ -133,8 +133,11 @@ struct VenueIndex {
 
 /// Groups photos into stadium visits. Pure, so it's shared by library discovery and album import and unit tested.
 enum VisitGrouping {
-    /// - minimumStay: required spread of a visit's photos (the ones inside the fence and the day's others; library discovery
-    ///   uses `visitStayMinutes` to skip drive-bys; an album the fan chose is trusted, so it passes nil).
+    /// - minimumStay: required spread of a visit's photos inside the fence and within `matchdayReachMeters` of it (library
+    ///   discovery uses `visitStayMinutes` to skip drive-bys; an album the fan chose is trusted, so it passes nil). With it, a visit
+    ///   needs a photo inside the fence and at least one more photo inside or near, that far apart, and its time (the window the
+    ///   schedule is asked about) is theirs: photos with no location, on the move or far away join the visit once it exists
+    ///   (they come with it as photos) but never make it, never count toward its stay, and never stretch its window.
     /// - skipping: "venueId|yyyy-MM-dd" keys of games already in the library.
     /// - moving: which photos were on the move (`TransitCheck.moving`); worked out here when nil. Such a photo is one of the
     ///   day's, never the one that places a visit: a plane over the ground is not a visit to it.
@@ -149,6 +152,7 @@ enum VisitGrouping {
         var loose: [(String, Date)] = []
         var around: [(String, Date, Venue)] = []
         var joined: [String: [(String, Date)]] = [:]
+        var adopted: [String: [(String, Date)]] = [:]
         var inside = Set<String>()
         let index = VenueIndex(venues, settings: settings)
         let moving = moving ?? TransitCheck.moving(points, settings: settings)
@@ -223,21 +227,23 @@ enum VisitGrouping {
                 if let k = visitByDay["\(zoneId)|\(days.day(date, tz: tz))"] { home = k; break }
             }
             if let home {
-                visits[home]!.1.append((id, date))
+                adopted[home, default: []].append((id, date))
             } else {
                 byDay[days.day(date, tz: .current), default: []].append((id, date))
             }
         }
 
         scan.visits = visits.compactMap { k, value -> PhotoCluster? in
-            let anchors = value.1.sorted { $0.1 < $1.1 }
+            // The photos that place the visit and time it: inside the fence, and within reach on its day.
+            let core = (value.1 + (joined[k] ?? [])).sorted { $0.1 < $1.1 }
             if let minimumStay {
-                guard anchors.count >= 2, anchors.last!.1.timeIntervalSince(anchors.first!.1) >= minimumStay else { return nil }
+                guard core.count >= 2, core.last!.1.timeIntervalSince(core.first!.1) >= minimumStay else { return nil }
             }
-            let sorted = (value.1 + (joined[k] ?? [])).sorted { $0.1 < $1.1 }
-            return PhotoCluster(id: k, venue: value.0, start: sorted.first!.1, end: sorted.last!.1,
-                                assetIds: sorted.map(\.0), times: sorted.map(\.1),
-                                insideIds: sorted.map(\.0).filter(inside.contains))
+            let all = (core + (adopted[k] ?? [])).sorted { $0.1 < $1.1 }
+            let window = minimumStay == nil ? all : core
+            return PhotoCluster(id: k, venue: value.0, start: window.first!.1, end: window.last!.1,
+                                assetIds: all.map(\.0), times: all.map(\.1),
+                                insideIds: all.map(\.0).filter(inside.contains))
         }
         .sorted { $0.start < $1.start }
 

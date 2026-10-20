@@ -114,8 +114,9 @@ final class WorldCupSeattleTests: XCTestCase {
         XCTAssertTrue(text.contains("11:25  47.59250,-122.33270  inside T-Mobile Park"), text)
         XCTAssertTrue(text.contains("near Lumen Field"), text)
         XCTAssertTrue(text.contains("stadium visit at T-Mobile Park, 1 photos \u{00B7} checked again by the scan"), text)
-        // The meeting point and the march, outside every fence, belong to the day's visit.
-        XCTAssertTrue(text.contains("T-Mobile Park [mlb-sea|2026-06-24]: 7 photos, 10:05\u{2013}14:20"), text)
+        // The meeting point and the march, outside every fence, belong to the day's visit as photos; its stay is the photos inside
+        // the fence and near it.
+        XCTAssertTrue(text.contains("T-Mobile Park [mlb-sea|2026-06-24]: 7 photos, 11:25\u{2013}14:20"), text)
     }
 
     /// A real game is still a game: a saved one keeps its day to itself.

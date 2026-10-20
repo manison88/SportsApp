@@ -59,7 +59,7 @@ enum ScanCheck {
         let scan = VisitGrouping.group(points, venues: venues, minimumStay: stay, skipping: settled, moving: moving, settings: settings)
         let album = VisitGrouping.group(points, venues: venues, moving: moving, settings: settings)
         out.append("")
-        out.append("Visits (scan rule: a photo inside the fence, not on the move, and the day's photos \(Int(settings.visitStayMinutes))+ min apart):")
+        out.append("Visits (scan rule: a photo inside the fence, not on the move, and another inside or within reach of it, \(Int(settings.visitStayMinutes))+ min apart):")
         if scan.visits.isEmpty { out.append("  none") }
         for v in scan.visits { out.append("  " + describe(v, time: time)) }
         let dropped = album.visits.filter { a in !scan.visits.contains { $0.id == a.id } }
@@ -84,12 +84,11 @@ enum ScanCheck {
         time.dateFormat = "HH:mm"
         time.timeZone = zone
         let ids = Set(points.map(\.id))
-        var keyer = DayKeyer()
-        let days = Set(points.compactMap(\.date).map { keyer.day($0, tz: zone) })
         var out = [""]
         out.append("Skips (review-ledger.json): \(ids.intersection(ledger.dismissedAssets).count) of this day's photos skipped, "
-                   + "\(ids.intersection(ledger.dismissedGames).count) of them as a game \u{00B7} day skipped: "
-                   + (days.isDisjoint(with: ledger.dismissedDays) ? "no" : "yes (the album search leaves it alone)"))
+                   + "\(ids.intersection(ledger.dismissedGames).count) of them as a game \u{00B7} outing skipped near this day's photos: "
+                   + (points.compactMap(\.date).contains { ledger.skipped(at: $0, settings: settings) }
+                      ? "yes (a possible game within \(Int(settings.skipWindowHours)) h of it is left out; the rest of the day is not)" : "no"))
         let waiting = pending.filter { !ids.isDisjoint(with: $0.assetIds) }
         out.append("Waiting for the background search (pending-visits.json): "
                    + (waiting.isEmpty ? "none" : waiting.map { describe($0, time: time) }.joined(separator: "; ")))
@@ -277,6 +276,7 @@ enum ScanCheck {
         if let scan {
             out.append("Scan now: \(scan.state) \u{00B7} reviewed: \(scan.reviewed ? "yes" : "no") \u{00B7} background search: \(scan.deepState)"
                        + " \u{00B7} waiting for review: \(scan.games.count) games, \(scan.others.count) visits, \(scan.possible.count) possible")
+            if let line = PhotoAccess.uncheckedLine(scan.uncheckedVisits) { out.append("Last scan: " + line) }
         }
         out += lines(points: points, venues: venues, saved: saved, settings: settings)
         let ledger = scan?.ledger ?? ReviewLedger.load(from: ScanModel.ledgerURL)
@@ -297,8 +297,8 @@ enum ScanCheck {
                 }.joined(separator: "; ")
                 out.append("    \(venue.id == visit.venue.id ? "" : "next door: ")\(venue.name) [\(leagues.count) competitions: \(leagues.joined(separator: ", "))] \u{2192} \(found)")
             }
-            let match = await ScanModel.match(visit, venues: venues, settings: settings)
-            out.append("    scan match: \(match.map { "\($0.away.name) at \($0.home.name) (\($0.league) \($0.eventId))" } ?? "none")")
+            let looked = await ScanModel.lookup(visit, venues: venues, settings: settings)
+            out.append("    scan match: \(looked.game.map { "\($0.away.name) at \($0.home.name) (\($0.league) \($0.eventId))" } ?? (looked.complete ? "none" : "could not be checked (no connection or the schedule did not answer): connect and run Find in photos again"))")
         }
         // The albums holding the day's photos: a title naming the game finds it with no located photo.
         let albums = await Task.detached(priority: .userInitiated) { AlbumImporter.albums(containing: points.map(\.id)) }.value
@@ -338,9 +338,12 @@ enum ScanCheck {
             out.append("  \(visit.venue.name): dropped, every photo inside its fence was on the move (see each photo above)")
         }
         for visit in scanned.visits {
-            if let game = await ScanModel.match(visit, venues: venues, settings: settings) {
+            let looked = await ScanModel.lookup(visit, venues: venues, settings: settings)
+            if let game = looked.game {
                 out.append("  \(visit.venue.name): \(game.away.name) at \(game.home.name) \u{2192} "
                            + verdict(visit, library: library.games, venues: venues, ledger: ledger))
+            } else if !looked.complete {
+                out.append("  \(visit.venue.name): could not be checked, no game judged \u{2192} connect and run Find in photos again")
             } else {
                 out.append("  \(visit.venue.name): no game on the schedule \u{2192} " + visitLine(visit, settings: settings))
             }

@@ -22,6 +22,7 @@
 		15F1090C95B0CA0B6E0F53B9 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7F27F82CA290482A72741B /* TripView.swift */; };
 		163C4380442841D0AF67CCEC /* LegalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B77C99822CC48EE82C59B2E /* LegalView.swift */; };
 		16FED003FB24284298322F7E /* PhotoMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B31653ED86394E9918FE2C1 /* PhotoMatcher.swift */; };
+		A12DD6BD23D349DC846A65DD /* PhotoAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6708E8D8CC954CE8B30BDA08 /* PhotoAccess.swift */; };
 		1E25478ED82A463EAA50F533 /* Plans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39A55E1FBC00484C951F38B5 /* Plans.swift */; };
 		2255C527B132D1FCBC15EAAD /* BigGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6573A4420FA4FE35D7CC37B3 /* BigGame.swift */; };
 		24825EBA9F0FC0B1BF80D2ED /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A73F86BCDBA2E422921DE /* WelcomeView.swift */; };
@@ -99,6 +100,7 @@
 		FD6F7B578E5D5610C7F4C564 /* AlbumAndScoreboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2EE34983CD926C23F62BCF /* AlbumAndScoreboardTests.swift */; };
 		3FEB031AE0994BFC9587347E /* NeighborGroundsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */; };
 		37AE837711CD4841A1C8F45C /* ReviewQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */; };
+		72DD54D44FC748C59AB15068 /* PhotoAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D7EBBD441443584F6FDA8 /* PhotoAccessTests.swift */; };
 		B35E9BE98F85478A9F99BF7A /* WorldCupSeattleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */; };
 		D0E00A8C14204C00B3519C8C /* ScanEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */; };
 		3D39260116C14C0FAEC1F888 /* AirborneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E05E8030B4AEEBD6CF48D /* AirborneTests.swift */; };
@@ -167,6 +169,7 @@
 		6516D6DD6F814EAF9F70E81A /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		6573A4420FA4FE35D7CC37B3 /* BigGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigGame.swift; sourceTree = "<group>"; };
 		6B31653ED86394E9918FE2C1 /* PhotoMatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMatcher.swift; sourceTree = "<group>"; };
+		6708E8D8CC954CE8B30BDA08 /* PhotoAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAccess.swift; sourceTree = "<group>"; };
 		6B77C99822CC48EE82C59B2E /* LegalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalView.swift; sourceTree = "<group>"; };
 		6BC9CF6489D7C89535986EFB /* WitnessUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = WitnessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F27DBC4958B4E48B5BA0D77 /* F1Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1Calendar.swift; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 		FF2EE34983CD926C23F62BCF /* AlbumAndScoreboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAndScoreboardTests.swift; sourceTree = "<group>"; };
 		30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeighborGroundsTests.swift; sourceTree = "<group>"; };
 		A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewQueueTests.swift; sourceTree = "<group>"; };
+		6D8D7EBBD441443584F6FDA8 /* PhotoAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAccessTests.swift; sourceTree = "<group>"; };
 		4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCupSeattleTests.swift; sourceTree = "<group>"; };
 		5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanEndToEndTests.swift; sourceTree = "<group>"; };
 		AF9E05E8030B4AEEBD6CF48D /* AirborneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirborneTests.swift; sourceTree = "<group>"; };
@@ -330,6 +334,7 @@
 				1833A6AAA7A248529EAE4685 /* BackgroundPhotoCheck.swift */,
 				94EF1E486EA6D3C38019482C /* LocationService.swift */,
 				6B31653ED86394E9918FE2C1 /* PhotoMatcher.swift */,
+				6708E8D8CC954CE8B30BDA08 /* PhotoAccess.swift */,
 				8E49321B29793341AF81A22B /* ScanModel.swift */,
 				B9EA637F3E10456AB9BFB372 /* ReviewQueue.swift */,
 				FAB2D82783934847BBD938CF /* ScanCheck.swift */,
@@ -385,6 +390,7 @@
 				FF2EE34983CD926C23F62BCF /* AlbumAndScoreboardTests.swift */,
 				30B7F162B0D04FDD90D4AB21 /* NeighborGroundsTests.swift */,
 				A58043348C2A42C2B4BBB1F5 /* ReviewQueueTests.swift */,
+				6D8D7EBBD441443584F6FDA8 /* PhotoAccessTests.swift */,
 				4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */,
 				5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */,
 				AF9E05E8030B4AEEBD6CF48D /* AirborneTests.swift */,
@@ -672,6 +678,7 @@
 				FD6F7B578E5D5610C7F4C564 /* AlbumAndScoreboardTests.swift in Sources */,
 				3FEB031AE0994BFC9587347E /* NeighborGroundsTests.swift in Sources */,
 				37AE837711CD4841A1C8F45C /* ReviewQueueTests.swift in Sources */,
+				72DD54D44FC748C59AB15068 /* PhotoAccessTests.swift in Sources */,
 				B35E9BE98F85478A9F99BF7A /* WorldCupSeattleTests.swift in Sources */,
 				D0E00A8C14204C00B3519C8C /* ScanEndToEndTests.swift in Sources */,
 				3D39260116C14C0FAEC1F888 /* AirborneTests.swift in Sources */,
@@ -731,6 +738,7 @@
 				90B450D0203B4D0EA299E59C /* ScanProgressView.swift in Sources */,
 				1411D600F8E6ED08F4735EEE /* PassportView.swift in Sources */,
 				16FED003FB24284298322F7E /* PhotoMatcher.swift in Sources */,
+				A12DD6BD23D349DC846A65DD /* PhotoAccess.swift in Sources */,
 				6122F26E5A1E6D6723B52578 /* RecapFilmView.swift in Sources */,
 				10A7E1C349037AD2CA7BE55A /* RootView.swift in Sources */,
 				039B28D15BD758C29D374F98 /* ScanModel.swift in Sources */,
