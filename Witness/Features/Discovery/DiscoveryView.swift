@@ -24,6 +24,8 @@ struct DiscoveryView: View {
     @State private var possibleMatch: (game: FoundGame?, shift: Int)?
     @State private var pickedVenueId: String?
     @State private var pickingVenue = false
+    /// Every photo of the visit under review, full screen: which it is, and where to start.
+    @State private var viewing: ReviewPhotos?
     @State private var clusters: [PhotoCluster] = []
     @State private var index = 0
     @State private var confirmed = 0
@@ -53,7 +55,28 @@ struct DiscoveryView: View {
             .padding(.horizontal, Spacing.gutter - 4)
         }
         .task { await run() }
+        .fullScreenCover(item: $viewing) { item in
+            PhotoPager(photos: item.ids.map { PhotoRef.library($0) }, start: item.start)
+        }
     }
+
+    /// Six of the visit's photos; tap one to see them all.
+    private func photoGrid(_ ids: [String]) -> some View {
+        let shown = Array(ids.prefix(6))
+        return LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
+            ForEach(Array(shown.enumerated()), id: \.element) { i, id in
+                Button { viewing = ReviewPhotos(ids: ids, start: i) } label: {
+                    Color.panel.aspectRatio(1, contentMode: .fit)
+                        .overlay { PhotoView(ref: .library(id)) }
+                        .clipShape(.rect(cornerRadius: 8))
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Photo \(i + 1) of \(ids.count)")
+                .accessibilityIdentifier("discovery-photo-\(i)")
+            }
+        }
+    }
+
 
     @ViewBuilder
     private var content: some View {
@@ -199,30 +222,34 @@ struct DiscoveryView: View {
                 ForEach(Array(ids.enumerated()), id: \.element) { i, _ in
                     let id = ids[i]
                     let time = cluster.times.indices.contains(i) ? cluster.times[i] : cluster.start
-                    Color.panel
-                        .aspectRatio(4 / 3, contentMode: .fit)
-                        .overlay { PhotoView(ref: .library(id)) }
-                        .clipShape(.rect(cornerRadius: 8))
-                        .overlay(alignment: .bottomLeading) {
-                            Text(Fmt.time(time, in: cluster.venue.tz))
-                                .font(.condensed(.caption, weight: .bold))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 6).padding(.vertical, 3)
-                                .background(.black.opacity(0.55), in: .rect(cornerRadius: 4))
-                                .padding(6)
-                        }
-                        .overlay {
-                            // The last tile carries the rest, so four thumbnails don't read as "four photos".
-                            if i == ids.count - 1, hidden > 0 {
-                                ZStack {
-                                    Color.black.opacity(0.55)
-                                    Text("+\(hidden.formatted())")
-                                        .font(.condensed(.title, weight: .heavy))
-                                        .foregroundStyle(.white)
-                                }
-                                .clipShape(.rect(cornerRadius: 8))
+                    Button { viewing = ReviewPhotos(ids: cluster.assetIds, start: i) } label: {
+                        Color.panel
+                            .aspectRatio(4 / 3, contentMode: .fit)
+                            .overlay { PhotoView(ref: .library(id)) }
+                            .clipShape(.rect(cornerRadius: 8))
+                            .overlay(alignment: .bottomLeading) {
+                                Text(Fmt.time(time, in: cluster.venue.tz))
+                                    .font(.condensed(.caption, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal, 6).padding(.vertical, 3)
+                                    .background(.black.opacity(0.55), in: .rect(cornerRadius: 4))
+                                    .padding(6)
                             }
-                        }
+                            .overlay {
+                                // The last tile carries the rest, so four thumbnails don't read as "four photos".
+                                if i == ids.count - 1, hidden > 0 {
+                                    ZStack {
+                                        Color.black.opacity(0.55)
+                                        Text("+\(hidden.formatted())")
+                                            .font(.condensed(.title, weight: .heavy))
+                                            .foregroundStyle(.white)
+                                    }
+                                    .clipShape(.rect(cornerRadius: 8))
+                                }
+                            }
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("Photo \(i + 1) of \(cluster.assetIds.count)")
                 }
             }
             .accessibilityElement()
@@ -307,13 +334,7 @@ struct DiscoveryView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("\(Fmt.dayTitle(day.day)) \u{00B7} \(day.assetIds.count) \(day.assetIds.count == 1 ? "photo" : "photos")")
                         .font(.condensed(.title3, weight: .heavy)).textCase(.uppercase)
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
-                        ForEach(day.assetIds.prefix(6), id: \.self) { id in
-                            Color.panel.aspectRatio(1, contentMode: .fit)
-                                .overlay { PhotoView(ref: .library(id)) }
-                                .clipShape(.rect(cornerRadius: 8))
-                        }
-                    }
+                    photoGrid(day.assetIds)
                 }
 
                 VStack(alignment: .leading, spacing: 10) {
@@ -333,10 +354,12 @@ struct DiscoveryView: View {
                     ForEach(day.suggestions) { venue in
                         if possibleVenue?.id != venue.id {
                             Button { Task { await choosePossible(venue, for: day) } } label: {
-                                HStack {
+                                HStack(spacing: 10) {
                                     Text(venue.name).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
                                     Spacer()
                                     Text(venue.cityLine).font(.footnote).foregroundStyle(Color.textSecondary)
+                                    Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
+                                        .accessibilityHidden(true)
                                 }
                                 .foregroundStyle(.white)
                                 .padding(.horizontal, 14).frame(minHeight: 52)
@@ -373,6 +396,15 @@ struct DiscoveryView: View {
                     }
                     .buttonStyle(.primary)
                     .accessibilityIdentifier("discovery-possible-add")
+                } else if possibleVenue != nil {
+                    Button {} label: { HStack(spacing: 8) { ProgressView().tint(.black); Text("Checking") } }
+                        .buttonStyle(.primary).disabled(true).opacity(0.6)
+                } else {
+                    Button { if let first = day.suggestions.first { Task { await choosePossible(first, for: day) } } else { pickingVenue = true } } label: {
+                        Label("Pick a stadium", systemImage: "mappin.and.ellipse")
+                    }
+                    .buttonStyle(.primary)
+                    .accessibilityIdentifier("discovery-possible-pick")
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -382,6 +414,10 @@ struct DiscoveryView: View {
             .background(Color.ink)
         }
         .scrollIndicators(.hidden)
+        .task(id: day.id) {
+            // The likeliest ground is checked as the screen opens, so the game and Add are there without a tap.
+            if possibleVenue == nil, let first = day.suggestions.first { await choosePossible(first, for: day) }
+        }
         .sheet(isPresented: $pickingVenue) {
             NavigationStack { VenuePickerView(venueId: $pickedVenueId, sport: nil) }
         }
@@ -471,13 +507,16 @@ struct DiscoveryView: View {
     /// A visit at or near a stadium with no game on the schedule. The person says what it was, or skips it.
     private func otherReview(_ cluster: PhotoCluster) -> some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: Spacing.block) {
-                VStack(alignment: .leading, spacing: Spacing.inner) {
-                    Text("Other").displayFont(80).textCase(.uppercase)
-                        .accessibilityIdentifier("discovery-other-title")
+            VStack(alignment: .leading, spacing: 22) {
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("Other").displayFont(48).textCase(.uppercase)
+                            .accessibilityIdentifier("discovery-other-title")
+                        Spacer(minLength: 8)
+                        Text("\(otherIndex + 1) of \(others.count)").unitLabel()
+                    }
                     Text("Near or at a stadium, but not part of a game on the schedule. A concert, a tour, a tailgate? Add what it was, or skip it.")
                         .font(.subheadline).foregroundStyle(Color.textSecondary)
-                    Text("\(otherIndex + 1) of \(others.count)").unitLabel()
                 }
 
                 if let note = presenter.scan.notes[cluster.id], let game = presenter.scan.matches[cluster.id] {
@@ -492,20 +531,17 @@ struct DiscoveryView: View {
                     }
                 }
 
-                VStack(alignment: .leading, spacing: Spacing.inner) {
-                    Text(cluster.venue.name).font(.condensed(.title3, weight: .heavy)).textCase(.uppercase)
-                    Text("\(Fmt.dayTitle(cluster.start, in: cluster.venue.tz)) \u{00B7} \(Fmt.time(cluster.start, in: cluster.venue.tz)) \u{00B7} \(cluster.assetIds.count) \(cluster.assetIds.count == 1 ? "photo" : "photos")")
-                        .font(.footnote).foregroundStyle(Color.textSecondary)
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
-                        ForEach(cluster.assetIds.prefix(6), id: \.self) { id in
-                            Color.panel.aspectRatio(1, contentMode: .fit)
-                                .overlay { PhotoView(ref: .library(id)) }
-                                .clipShape(.rect(cornerRadius: 8))
-                        }
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(cluster.venue.name).font(.condensed(.title3, weight: .heavy)).textCase(.uppercase)
+                        Spacer(minLength: 8)
+                        Text("\(Fmt.dayTitle(cluster.start, in: cluster.venue.tz)) \u{00B7} \(cluster.assetIds.count) \(cluster.assetIds.count == 1 ? "photo" : "photos")")
+                            .font(.footnote).foregroundStyle(Color.textSecondary)
                     }
+                    photoGrid(cluster.assetIds)
                 }
 
-                VStack(alignment: .leading, spacing: Spacing.inner) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text("What was it?").unitLabel()
                     ScrollView(.horizontal) {
                         HStack(spacing: 8) {
@@ -531,13 +567,21 @@ struct DiscoveryView: View {
                         .background(Color.panel, in: .rect(cornerRadius: 12))
                         .accessibilityIdentifier("discovery-other-name")
                 }
-
+            }
+            .gutter()
+            .padding(.top, 8)
+            .padding(.bottom, 16)
+        }
+        // Skip and Add stay under the scroll; "Add all" is a line above them so it never pushes them off.
+        .safeAreaInset(edge: .bottom) {
+            VStack(spacing: 10) {
                 if others.count - otherIndex > 1 {
                     Button("Add all \(others.count - otherIndex) as stadium visits") { addAllOthers() }
-                        .buttonStyle(.secondary)
+                        .font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase).tracking(1)
+                        .foregroundStyle(Color.signal)
+                        .frame(maxWidth: .infinity, minHeight: 36)
                         .accessibilityIdentifier("discovery-other-add-all")
                 }
-
                 HStack(spacing: Spacing.inner) {
                     Button("Skip") { presenter.scan.dismiss(cluster.assetIds, on: cluster.start); advanceOther() }
                         .buttonStyle(.secondary)
@@ -550,7 +594,8 @@ struct DiscoveryView: View {
             }
             .gutter()
             .padding(.top, 8)
-            .padding(.bottom, 24)
+            .padding(.bottom, 8)
+            .background(Color.ink)
         }
         .scrollIndicators(.hidden)
     }
@@ -794,4 +839,11 @@ struct DiscoveryView: View {
         if (confirmed > 0 || addedOther > 0) && !library.hasLibrary { library.startEmpty() }
         dismiss()
     }
+}
+
+/// The photos under review, opened full screen from one of their tiles.
+struct ReviewPhotos: Identifiable {
+    let ids: [String]
+    let start: Int
+    var id: String { "\(ids.first ?? "")-\(start)" }
 }

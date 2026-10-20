@@ -44,9 +44,12 @@ struct GameMemoryView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) { playButton(game) }
-            ToolbarItem(placement: .topBarTrailing) { addPhotosButton }
-            ToolbarItem(placement: .topBarTrailing) { menu(game) }
+            // One item, so the three buttons sit close; separate items get the system's wide gap.
+            ToolbarItem(placement: .topBarTrailing) {
+                HStack(spacing: 2) { playButton(game); addPhotosButton; menu(game) }
+                    .accessibilityElement(children: .contain)
+                    .accessibilityIdentifier("game-toolbar")
+            }
         }
         .fullScreenCover(item: $viewer) { item in
             PhotoPager(photos: game.photos, start: item.id, cover: game.heroPhoto, onSetCover: { ref in
