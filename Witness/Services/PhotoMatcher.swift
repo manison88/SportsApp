@@ -10,6 +10,12 @@ struct PhotoCluster: Identifiable, Hashable, Codable {
     let end: Date
     let assetIds: [String]
     let times: [Date]
+    /// The photos inside the fence, taken on the ground and not on the move: the ones that placed the visit. Nil for a visit
+    /// built from an album, a ticket or a saved game, where every photo counts.
+    var insideIds: [String]? = nil
+
+    /// The photos a scene check judges the visit by: the ones inside the fence, or all of them when that is not known.
+    var anchors: [String] { insideIds ?? assetIds }
 }
 
 /// Finds games in the photo library from each photo's time and place. On-device only.
@@ -124,13 +130,17 @@ enum PhotoMatcher {
     static let maxNearby = 40
 
     /// The pure part of `discover`: visits from photos inside a fence (the 15-minute stay), then the days spent just outside one.
+    /// Photos in the air or on the move (a landing over the ground, the motorway past it) place neither.
     static func found(in points: [PhotoPoint], venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil) -> Found {
         let skipping = settledKeys(existing, venues: venues)
-        let visits = VisitGrouping.group(points, venues: venues, radius: radius, minimumStay: 15 * 60, skipping: skipping).visits
+        let transit = TransitCheck.verdicts(points)
+        let visits = VisitGrouping.group(points, venues: venues, radius: radius, minimumStay: 15 * 60, skipping: skipping,
+                                         transit: transit).visits
         let inVisits = Set(visits.flatMap(\.assetIds))
         let outside = points.filter { $0.latitude != nil && $0.longitude != nil && !inVisits.contains($0.id) }
         var keyer = DayKeyer()
-        let nearby = VisitGrouping.group(outside, venues: venues, radius: max(radius ?? 0, nearbyReach), minimumStay: 15 * 60).visits
+        let nearby = VisitGrouping.group(outside, venues: venues, radius: max(radius ?? 0, nearbyReach), minimumStay: 15 * 60,
+                                         transit: transit).visits
             .filter { day in
                 guard day.assetIds.count >= GameSuggester.minPhotos else { return false }
                 let key = keyer.day(day.start, tz: day.venue.tz)
@@ -166,7 +176,8 @@ enum PhotoMatcher {
                 let loc = asset.location
                 points.append(PhotoPoint(id: asset.localIdentifier, date: asset.creationDate,
                                          latitude: loc?.coordinate.latitude, longitude: loc?.coordinate.longitude,
-                                         screenshot: asset.mediaSubtypes.contains(.photoScreenshot)))
+                                         screenshot: asset.mediaSubtypes.contains(.photoScreenshot),
+                                         altitude: loc.flatMap(PhotoPoint.altitude), speed: loc.flatMap(PhotoPoint.speed)))
                 if let loc {
                     state.located += 1
                     if let v = index.nearest(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude, radius: radius) {
@@ -235,9 +246,11 @@ enum PhotoMatcher {
             options.predicate = NSPredicate(format: "creationDate >= %@ AND creationDate < %@", from as NSDate, to as NSDate)
             var out: [PhotoPoint] = []
             PHAsset.fetchAssets(with: .image, options: options).enumerateObjects { asset, _, _ in
+                let loc = asset.location
                 out.append(PhotoPoint(id: asset.localIdentifier, date: asset.creationDate,
-                                      latitude: asset.location?.coordinate.latitude, longitude: asset.location?.coordinate.longitude,
-                                      screenshot: asset.mediaSubtypes.contains(.photoScreenshot)))
+                                      latitude: loc?.coordinate.latitude, longitude: loc?.coordinate.longitude,
+                                      screenshot: asset.mediaSubtypes.contains(.photoScreenshot),
+                                      altitude: loc.flatMap(PhotoPoint.altitude), speed: loc.flatMap(PhotoPoint.speed)))
             }
             return out
         }.value

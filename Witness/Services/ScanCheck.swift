@@ -16,11 +16,15 @@ enum ScanCheck {
         time.timeZone = zone
         var out: [String] = []
         let located = points.filter { $0.latitude != nil && $0.longitude != nil }
-        out.append("Photos: \(points.count) (\(located.count) with a location, \(points.count - located.count) without)")
+        let transit = TransitCheck.verdicts(points)
+        let airborne = transit.values.filter { if case .airborne = $0 { true } else { false } }.count
+        out.append("Photos: \(points.count) (\(located.count) with a location, \(points.count - located.count) without)"
+                   + (transit.isEmpty ? "" : " \u{00B7} \(airborne) in the air, \(transit.count - airborne) on the move: these never place a visit"))
 
         let index = VenueIndex(venues)
         out.append("")
-        out.append("Where each photo was placed (inside = the stadium's fence; near = within \(Int(VisitGrouping.matchdayReach)) m, joins a visit that day):")
+        out.append("Where each photo was placed (inside = the stadium's fence; near = within \(Int(VisitGrouping.matchdayReach)) m, joins a visit that day; "
+                   + "m up = altitude; in the air = \(Int(TransitCheck.climb))+ m above the lowest photo nearby; on the move = \(Int(TransitCheck.movingSpeed))+ m/s between shots \(Int(TransitCheck.movingDistance / 1000))+ km apart):")
         for p in located.prefix(listed) {
             guard let lat = p.latitude, let lon = p.longitude else { continue }
             let here = CLLocation(latitude: lat, longitude: lon)
@@ -34,7 +38,9 @@ enum ScanCheck {
             } else {
                 place = "no stadium within \(Int(GameSuggester.reach / 1000)) km"
             }
-            out.append("  \(p.date.map { time.string(from: $0) } ?? "--:--")  \(String(format: "%.5f,%.5f", lat, lon))  \(place)")
+            let height = p.altitude.map { " \u{00B7} \(Int($0)) m up" } ?? ""
+            let verdict = transit[p.id].map { " \u{00B7} \($0.text)" } ?? ""
+            out.append("  \(p.date.map { time.string(from: $0) } ?? "--:--")  \(String(format: "%.5f,%.5f", lat, lon))  \(place)\(height)\(verdict)")
         }
         if located.count > listed { out.append("  ... and \(located.count - listed) more") }
 
@@ -51,16 +57,22 @@ enum ScanCheck {
         }
         if !saved.isEmpty { out.append("  The background search skips this day: something is saved on it.") }
 
-        let scan = VisitGrouping.group(points, venues: venues, minimumStay: 15 * 60, skipping: settled)
-        let album = VisitGrouping.group(points, venues: venues)
+        let scan = VisitGrouping.group(points, venues: venues, minimumStay: 15 * 60, skipping: settled, transit: transit)
+        let album = VisitGrouping.group(points, venues: venues, transit: transit)
         out.append("")
-        out.append("Visits (scan rule: 2+ photos inside the fence, 15+ min apart):")
+        out.append("Visits (scan rule: a photo inside the fence, on the ground and not on the move, and the day's photos 15+ min apart):")
         if scan.visits.isEmpty { out.append("  none") }
         for v in scan.visits { out.append("  " + describe(v, time: time)) }
         let dropped = album.visits.filter { a in !scan.visits.contains { $0.id == a.id } }
         if !dropped.isEmpty {
             out.append("Visits only an album would make (the scan drops these: too short a stay inside the fence, or already saved):")
             for v in dropped { out.append("  " + describe(v, time: time)) }
+        }
+        // As if every photo were on the ground: what the air or the road would have placed.
+        let grounded = VisitGrouping.group(points, venues: venues, transit: [:]).visits.filter { g in !album.visits.contains { $0.id == g.id } }
+        if !grounded.isEmpty {
+            out.append("Visits the photos would make if every one were on the ground (the scan drops these: every photo inside the fence was in the air or on the move):")
+            for v in grounded { out.append("  " + describe(v, time: time)) }
         }
         return out
     }
@@ -229,6 +241,15 @@ enum ScanCheck {
 
     private static func describe(_ v: PhotoCluster, time: DateFormatter) -> String {
         "\(v.venue.name) [\(v.id)]: \(v.assetIds.count) photos, \(time.string(from: v.start))\u{2013}\(time.string(from: v.end))"
+            + (v.insideIds.map { " (\($0.count) inside the fence)" } ?? "")
+    }
+
+    /// What the scene check made of a visit with no game: whether it is offered as a stadium visit (a tour), and why.
+    static func tourLine(_ visit: PhotoCluster, look: SceneCheck.DayLook) -> String {
+        "scene check of the \(visit.anchors.count) photos inside the fence: \(look.classified) classified, \(look.structure) the ground itself, "
+            + "\(look.aerial) from the air, \(look.elsewhere) somewhere else \u{2192} "
+            + (look.showsTheGround() ? "offered as a stadium visit" : "not a stadium visit, waits for the background search")
+            + " (needs 3+ of the ground itself, none from the air, under half somewhere else)"
     }
 
     /// The whole report for the phone's calendar day holding `day`, with each visit's schedule lookups.
@@ -303,12 +324,19 @@ enum ScanCheck {
         out.append("")
         out.append("Review (what Find in photos would offer for this day):")
         if scanned.visits.isEmpty && scanned.nearby.isEmpty { out.append("  nothing: no visit and no day around a stadium") }
+        // What the scan would have made of the day had every photo been on the ground.
+        let grounded = VisitGrouping.group(points, venues: venues, minimumStay: 15 * 60,
+                                           skipping: PhotoMatcher.settledKeys(library.games, venues: venues), transit: [:]).visits
+        for visit in grounded where !scanned.visits.contains(where: { $0.id == visit.id }) {
+            out.append("  \(visit.venue.name): dropped, every photo inside its fence was in the air or on the move (see each photo above)")
+        }
         for visit in scanned.visits {
             if let game = await ScanModel.match(visit, venues: venues) {
                 out.append("  \(visit.venue.name): \(game.away.name) at \(game.home.name) \u{2192} "
                            + verdict(visit, library: library.games, venues: venues, ledger: ledger))
             } else {
-                out.append("  \(visit.venue.name): no game on the schedule \u{2192} a stadium visit if a photo shows the ground, else waits for the background search")
+                let look = await SceneCheck.look(at: visit.anchors.map { PhotoRef.library($0) }, max: SceneCheck.tourSample)
+                out.append("  \(visit.venue.name): no game on the schedule \u{2192} " + tourLine(visit, look: look))
             }
         }
         for day in scanned.nearby {

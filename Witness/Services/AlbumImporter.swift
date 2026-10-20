@@ -59,8 +59,10 @@ enum AlbumImporter {
         var out: [PhotoPoint] = []
         out.reserveCapacity(assets.count)
         assets.enumerateObjects { a, _, _ in
+            let loc = a.location
             out.append(PhotoPoint(id: a.localIdentifier, date: a.creationDate,
-                                  latitude: a.location?.coordinate.latitude, longitude: a.location?.coordinate.longitude))
+                                  latitude: loc?.coordinate.latitude, longitude: loc?.coordinate.longitude,
+                                  altitude: loc.flatMap(PhotoPoint.altitude), speed: loc.flatMap(PhotoPoint.speed)))
         }
         return out
     }
@@ -75,8 +77,10 @@ enum AlbumImporter {
         var out: [PhotoPoint] = []
         out.reserveCapacity(assets.count)
         assets.enumerateObjects { a, _, _ in
+            let loc = a.location
             out.append(PhotoPoint(id: a.localIdentifier, date: a.creationDate,
-                                  latitude: a.location?.coordinate.latitude, longitude: a.location?.coordinate.longitude))
+                                  latitude: loc?.coordinate.latitude, longitude: loc?.coordinate.longitude,
+                                  altitude: loc.flatMap(PhotoPoint.altitude), speed: loc.flatMap(PhotoPoint.speed)))
         }
         return out
     }

@@ -9,6 +9,21 @@ struct PhotoPoint: Hashable, Sendable {
     let longitude: Double?
     /// A screenshot carries no location and was not taken anywhere: never a photo of a day out.
     var screenshot = false
+    /// Metres above sea level from the fix, when it has one. A plane over the ground is not a visit (`TransitCheck`).
+    var altitude: Double? = nil
+    /// Metres per second from the fix, when the phone recorded one.
+    var speed: Double? = nil
+
+    /// The fix's altitude, when it has one: a location from a photo's EXIF carries 0 with no vertical accuracy when the camera
+    /// recorded none. 0 with an accuracy is sea level.
+    static func altitude(of location: CLLocation) -> Double? {
+        location.verticalAccuracy >= 0 || location.altitude != 0 ? location.altitude : nil
+    }
+
+    /// The fix's speed, when the phone recorded one (negative when it did not).
+    static func speed(of location: CLLocation) -> Double? {
+        location.speed >= 0 ? location.speed : nil
+    }
 }
 
 /// Photos from one day that we couldn't place at a stadium (no GPS, or GPS nowhere near one).
@@ -33,8 +48,10 @@ extension PhotoCluster {
             ids.append(id)
             times.append(time)
         }
+        let inside: [String]? = first.insideIds == nil && second.insideIds == nil ? nil
+            : ids.filter { Set((first.insideIds ?? []) + (second.insideIds ?? [])).contains($0) }
         return PhotoCluster(id: first.id, venue: first.venue, start: min(first.start, second.start),
-                            end: max(first.end, second.end), assetIds: ids, times: times)
+                            end: max(first.end, second.end), assetIds: ids, times: times, insideIds: inside)
     }
 }
 
@@ -111,28 +128,35 @@ enum VisitGrouping {
     /// local days, with no more than this between the last of the first day and the first of the next, are one visit.
     static let overnightGap: TimeInterval = 6 * 3600
 
-    /// - minimumStay: required spread of a visit's photos inside the fence (library discovery uses 15 min to
-    ///   skip drive-bys; an album the fan chose is trusted, so it passes nil).
+    /// - minimumStay: required spread of a visit's photos (the ones inside the fence and the day's others; library discovery
+    ///   uses 15 min to skip drive-bys; an album the fan chose is trusted, so it passes nil).
     /// - skipping: "venueId|yyyy-MM-dd" keys of games already in the library.
+    /// - transit: which photos were in the air or on the move (`TransitCheck.verdicts`); worked out here when nil. Such a
+    ///   photo is one of the day's, never the one that places a visit: a plane over the ground is not a visit to it.
     static func group(_ points: [PhotoPoint], venues: [Venue], radius: CLLocationDistance? = nil,
-                      minimumStay: TimeInterval? = nil, skipping: Set<String> = []) -> PhotoScan {
+                      minimumStay: TimeInterval? = nil, skipping: Set<String> = [],
+                      transit: [String: TransitCheck.Verdict]? = nil) -> PhotoScan {
         var scan = PhotoScan()
         var visits: [String: (Venue, [(String, Date)])] = [:]
         var loose: [(String, Date)] = []
         var around: [(String, Date, Venue)] = []
         var joined: [String: [(String, Date)]] = [:]
+        var inside = Set<String>()
         let index = VenueIndex(venues)
+        let transit = transit ?? TransitCheck.verdicts(points)
         var days = DayKeyer()
 
         for p in points {
             guard let date = p.date else { scan.undated.append(p.id); continue }
             guard let lat = p.latitude, let lon = p.longitude else { loose.append((p.id, date)); continue }
+            if let verdict = transit[p.id], !verdict.placesAVisit { loose.append((p.id, date)); continue }
             if let v = index.nearest(lat: lat, lon: lon, radius: radius) {
                 let k = "\(v.id)|\(days.day(date, tz: v.tz))"
                 if skipping.contains(k) { continue }
                 var entry = visits[k] ?? (v, [])
                 entry.1.append((p.id, date))
                 visits[k] = entry
+                inside.insert(p.id)
             } else if let v = index.nearest(lat: lat, lon: lon, radius: matchdayReach) {
                 around.append((p.id, date, v))
             } else {
@@ -203,7 +227,8 @@ enum VisitGrouping {
             }
             let sorted = (value.1 + (joined[k] ?? [])).sorted { $0.1 < $1.1 }
             return PhotoCluster(id: k, venue: value.0, start: sorted.first!.1, end: sorted.last!.1,
-                                assetIds: sorted.map(\.0), times: sorted.map(\.1))
+                                assetIds: sorted.map(\.0), times: sorted.map(\.1),
+                                insideIds: sorted.map(\.0).filter(inside.contains))
         }
         .sorted { $0.start < $1.start }
 
