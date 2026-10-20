@@ -7,6 +7,16 @@ final class WitnessUITests: XCTestCase {
 
     override func setUp() {
         continueAfterFailure = false
+        // CI grants photo access with simctl before the build, but running the unit tests first reinstalls the app and clears
+        // that grant. Then the first test that touches photos (adding a game looks for photos) meets the system prompt, and
+        // an unanswered prompt is recorded as "Don't Allow" for every test after it. Always allow, like the fan would.
+        addUIInterruptionMonitor(withDescription: "Photo access") { alert in
+            for label in ["Allow Full Access", "Allow Access to All Photos", "Allow"] where alert.buttons[label].exists {
+                alert.buttons[label].tap()
+                return true
+            }
+            return false
+        }
     }
 
     // MARK: Helpers
