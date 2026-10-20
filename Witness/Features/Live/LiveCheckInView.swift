@@ -221,12 +221,16 @@ struct LiveCheckInView: View {
             guard let near = nearestStadium else { return "We couldn\u{2019}t find a stadium near you." }
             return "No stadium within \(Fmt.metric ? "32 km" : "20 miles") of you. The closest is \(near.0.name), \(Fmt.distance(meters: near.1)) away."
         }
-        return "No games on the schedule at \(nearbyVenueNames) right now."
+        let radius = Fmt.metric ? "32 km" : "20 miles"
+        let count = nearbyPlaces.count
+        if count == 1 { return "No games on the schedule at \(nearbyPlaces[0].name) right now. It\u{2019}s the only stadium within \(radius) of you." }
+        return "No games on the schedule at the \(count) stadiums within \(radius) of you right now, including \(nearbyVenueNames)."
     }
 
+    /// The two closest, as examples; the check covers every stadium in range.
     private var nearbyVenueNames: String {
         let names = nearbyPlaces.prefix(2).map(\.name)
-        return names.joined(separator: " or ")
+        return names.joined(separator: " and ")
     }
 
     private func gameCard(_ item: NearbyGame) -> some View {
