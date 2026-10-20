@@ -538,12 +538,14 @@ struct UpcomingSection: View {
         let days = PlanText.daysAway(plan, tz: tz(plan))
         return ZStack(alignment: .topLeading) {
             LinearGradient(colors: [(home?.primary ?? Color.panelRaised).opacity(0.9), Color.photoInk], startPoint: .topLeading, endPoint: .bottomTrailing)
+            // A bright team color (Sweden's yellow) would wash out the white text, so the card is always a little darker at the edge.
+            Color.photoInk.opacity(0.3)
             VStack(alignment: .leading, spacing: 8) {
                 Text(PlanText.countdown(days)).font(.condensed(.caption, weight: .heavy)).textCase(.uppercase).tracking(1.2)
-                    .foregroundStyle(Color.black).padding(.horizontal, 10).frame(height: 24).background(Color.signal, in: .capsule)
+                    .foregroundStyle(Color.photoInk).padding(.horizontal, 10).frame(height: 24).background(Color(hex: "FFB547"), in: .capsule)
                 Text(PlanText.title(plan, library).uppercased()).font(.condensed(.title, weight: .heavy)).lineLimit(2).minimumScaleFactor(0.7)
                 Text("\(venue?.name ?? "") \u{00B7} \(Fmt.dayTitle(plan.date, in: tz(plan))) \u{00B7} \(Fmt.time(plan.date, in: tz(plan)))")
-                    .font(.footnote).foregroundStyle(.white.opacity(0.75)).lineLimit(1)
+                    .font(.footnote).foregroundStyle(.white.opacity(0.85)).lineLimit(1)
             }
             .foregroundStyle(.white)
             .padding(16)
