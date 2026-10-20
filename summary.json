@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 2,
-      "passedTests" : 160,
+      "failedTests" : 3,
+      "passedTests" : 173,
       "skippedTests" : 1,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,20 +22,28 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 2,
-  "finishTime" : 1792456334.302,
-  "passedTests" : 160,
+  "failedTests" : 3,
+  "finishTime" : 1792458111.985,
+  "passedTests" : 173,
   "result" : "Failed",
   "skippedTests" : 1,
-  "startTime" : 1792455032.571,
+  "startTime" : 1792456941.799,
   "statistics" : [
 
   ],
   "testFailures" : [
     {
+      "failureText" : "XCTAssertTrue failed",
+      "targetName" : "WitnessUITests",
+      "testIdentifier" : 155,
+      "testIdentifierString" : "WitnessUITests/testAddGameManually()",
+      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testAddGameManually",
+      "testName" : "testAddGameManually()"
+    },
+    {
       "failureText" : "XCTAssertTrue failed - Expected the scan to find the seeded stadium photos",
       "targetName" : "WitnessUITests",
-      "testIdentifier" : 144,
+      "testIdentifier" : 158,
       "testIdentifierString" : "WitnessUITests/testDiscoveryFromPhotos()",
       "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testDiscoveryFromPhotos",
       "testName" : "testDiscoveryFromPhotos()"
@@ -43,7 +51,7 @@
     {
       "failureText" : "XCTAssertTrue failed - The seeded album should be listed",
       "targetName" : "WitnessUITests",
-      "testIdentifier" : 147,
+      "testIdentifier" : 161,
       "testIdentifierString" : "WitnessUITests/testImportAlbumWithScoreboardReading()",
       "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testImportAlbumWithScoreboardReading",
       "testName" : "testImportAlbumWithScoreboardReading()"
@@ -53,9 +61,9 @@
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "28% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 9.42s (three standard deviations)"
+      "impact" : "26% of duration",
+      "text" : "1 longest test run with outlier durations exceeding 8.38s (three standard deviations)"
     }
   ],
-  "totalTestCount" : 163
+  "totalTestCount" : 177
 }
