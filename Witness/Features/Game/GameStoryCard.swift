@@ -16,6 +16,7 @@ struct GameStoryCard: View {
     }
 
     @Environment(Library.self) private var library
+    @Environment(\.colorScheme) private var scheme
     let style: Style
     let game: GameEntry
     let photo: UIImage?
@@ -38,14 +39,14 @@ struct GameStoryCard: View {
             .environment(\.dynamicTypeSize, .large)
             .scaleEffect(scale, anchor: .topLeading)
             .frame(width: ShareCardFormat.story.size.width, height: ShareCardFormat.story.size.height, alignment: .topLeading)
-            .environment(\.colorScheme, .dark)
+            .shareSurface()
     }
 
     @ViewBuilder
     private var content: some View {
         switch style {
         case .ticket: ticket
-        case .fullBleed: fullBleed
+        case .fullBleed: fullBleed.shareOnPhoto()
         }
     }
 
@@ -85,10 +86,10 @@ struct GameStoryCard: View {
                 .offset(x: size, y: size * 0.75)
             Text("WITNESS")
                 .font(.system(size: size, weight: .heavy).width(.compressed)).tracking(size * 0.32)
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
         }
         .padding(.bottom, size * 0.75)
-        .shadow(color: .black.opacity(0.3), radius: 4)
+        .shadow(color: .black.opacity(scheme == .light && style == .ticket ? 0 : 0.3), radius: 4)
     }
 
     // MARK: Looks

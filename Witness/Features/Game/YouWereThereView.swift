@@ -316,8 +316,9 @@ private struct YouWereThereShareCard: View {
     let period: String
     let playText: String
 
-    private var paperInk: Color { Color(red: 0.07, green: 0.07, blue: 0.08) }
-    private var paperBg: Color { Color(red: 0.96, green: 0.95, blue: 0.92) }
+    @Environment(\.shareScheme) private var scheme
+    private var paperInk: Color { Color.sharePaperInk(scheme) }
+    private var paperBg: Color { Color.sharePaper(scheme) }
 
     /// The big line: the score, else the headline.
     private var heroText: String { score.isEmpty ? headline : score }
@@ -331,7 +332,7 @@ private struct YouWereThereShareCard: View {
                 Text("WITNESS")
                     .font(.system(size: 40, weight: .heavy).width(.compressed))
                     .tracking(10)
-                    .foregroundStyle(style == .paper ? paperInk : Color.white.opacity(0.9))
+                    .foregroundStyle(style == .paper ? paperInk : (style == .photo || style == .field ? Color.white.opacity(0.9) : Color.primaryText.opacity(0.9)))
                     .padding(.top, 40)
             }
             .padding(.horizontal, 84)
@@ -340,7 +341,7 @@ private struct YouWereThereShareCard: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 
     // MARK: Backgrounds
@@ -402,7 +403,7 @@ private struct YouWereThereShareCard: View {
         Text("YOU WERE THERE")
             .font(.system(size: 44, weight: .heavy).width(.condensed))
             .tracking(8)
-            .foregroundStyle(Color.signal)
+            .foregroundStyle(style == .photo ? Color(hex: "FFB547") : Color.signal)
             .lineLimit(1)
             .minimumScaleFactor(0.5)
     }
@@ -455,17 +456,17 @@ private struct YouWereThereShareCard: View {
             Text(heroText)
                 .font(.display(score.isEmpty ? 260 : 560))
                 .monospacedDigit()
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .lineLimit(score.isEmpty ? 4 : 1)
                 .minimumScaleFactor(0.3)
             if !score.isEmpty {
                 Text(headline)
                     .font(.system(size: 56, weight: .bold).width(.condensed))
-                    .foregroundStyle(.white.opacity(0.9))
+                    .foregroundStyle(Color.primaryText.opacity(0.9))
                     .lineLimit(3)
                     .minimumScaleFactor(0.6)
             }
-            if !footer.isEmpty { footerLine(.white.opacity(0.6)) }
+            if !footer.isEmpty { footerLine(Color.primaryText.opacity(0.6)) }
             Spacer(minLength: 0)
         }
     }
@@ -548,12 +549,12 @@ private struct YouWereThereShareCard: View {
                 Text(score)
                     .font(.display(300))
                     .monospacedDigit()
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.4)
                     .padding(.bottom, 24)
             }
-            Rectangle().fill(Color.white.opacity(0.3)).frame(height: 2)
+            Rectangle().fill(Color.primaryText.opacity(0.3)).frame(height: 2)
             if !headline.isEmpty { stubRow("GAME", headline, lines: 2) }
             if !footer.isEmpty { stubRow("WHERE", footer, lines: 2) }
             if !period.isEmpty { stubRow("WHEN", period, lines: 1) }
@@ -567,17 +568,17 @@ private struct YouWereThereShareCard: View {
             Text(name)
                 .font(.system(size: 30, weight: .bold).width(.condensed))
                 .tracking(6)
-                .foregroundStyle(.white.opacity(0.55))
+                .foregroundStyle(Color.primaryText.opacity(0.55))
                 .lineLimit(1)
             Text(value)
                 .font(.system(size: 52, weight: .bold).width(.condensed))
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .lineLimit(lines)
                 .minimumScaleFactor(0.6)
                 .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding(.vertical, 26)
-        .overlay(alignment: .bottom) { Rectangle().fill(Color.white.opacity(0.3)).frame(height: 2) }
+        .overlay(alignment: .bottom) { Rectangle().fill(Color.primaryText.opacity(0.3)).frame(height: 2) }
     }
 }
 

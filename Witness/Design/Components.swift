@@ -1,6 +1,7 @@
 import SwiftUI
 import Photos
 import AVKit
+import UniformTypeIdentifiers
 
 // MARK: - Formatting
 
@@ -654,7 +655,7 @@ extension GameEntry.Stage.Kind {
         }
     }
 
-    var tint: Color { self == .championship ? .trophy : .white }
+    var tint: Color { self == .championship ? .trophy : Color.primaryText }
 
     var name: String {
         switch self {
@@ -863,6 +864,8 @@ struct PhotoPager: View {
                 coverButton
             }
         }
+        // A black screen: white clock and battery, and dark controls, in Light too.
+        .preferredColorScheme(.dark)
     }
 
     /// Small thumbnails along the bottom: shows how many there are and jumps to any of them.
@@ -1000,7 +1003,36 @@ enum ShareCardFormat {
     }
 }
 
-/// The frame every share card sits in: ink background, a wash of the accent color at the top, margins that
+/// Which look a share card is drawn in. Set from outside by the share sheet; the card's root applies it with `.shareSurface()`,
+/// so an export never depends on the live UI's appearance.
+private struct ShareSchemeKey: EnvironmentKey { static let defaultValue: ColorScheme = .dark }
+
+extension EnvironmentValues {
+    var shareScheme: ColorScheme {
+        get { self[ShareSchemeKey.self] }
+        set { self[ShareSchemeKey.self] = newValue }
+    }
+}
+
+private struct ShareSurface: ViewModifier {
+    @Environment(\.shareScheme) private var scheme
+    func body(content: Content) -> some View { content.environment(\.colorScheme, scheme) }
+}
+
+extension View {
+    /// Draws a share card in the chosen look (light or dark). Palette colors and `Color.primaryText` follow it.
+    func shareSurface() -> some View { modifier(ShareSurface()) }
+    /// Keeps a photo-led part of a card dark whichever look was chosen: white type on a photo or team color.
+    func shareOnPhoto() -> some View { environment(\.colorScheme, .dark) }
+}
+
+extension Color {
+    /// The "paper" share look: warm paper with black type in the light card, warm black with paper type in the dark one.
+    static func sharePaper(_ scheme: ColorScheme) -> Color { scheme == .light ? Color(hex: "F4F1EA") : Color(hex: "17160F") }
+    static func sharePaperInk(_ scheme: ColorScheme) -> Color { scheme == .light ? Color(hex: "0B0B0C") : Color(hex: "F4F1EA") }
+}
+
+/// The frame every share card sits in: ink background (light or dark), a wash of the accent color at the top, margins that
 /// keep content clear of story chrome, and the Witness mark at the bottom. Cards are drawn at full pixel size
 /// (1080 wide), so type is big: hero 300-420pt `.display`, labels 36-44pt condensed with tracking, one idea per card.
 /// Cards take plain values and `UIImage`s, never `@Environment`, so they render the same anywhere.
@@ -1008,18 +1040,19 @@ struct ShareCardFrame<Content: View>: View {
     let format: ShareCardFormat
     var accent: Color = .signal
     @ViewBuilder var content: Content
+    @Environment(\.shareScheme) private var scheme
 
     var body: some View {
         ZStack(alignment: .topLeading) {
             Color.ink
-            LinearGradient(colors: [accent.opacity(0.4), .clear], startPoint: .top, endPoint: .center)
+            LinearGradient(colors: [accent.opacity(scheme == .dark ? 0.4 : 0.28), .clear], startPoint: .top, endPoint: .center)
             VStack(alignment: .leading, spacing: 0) {
                 content
                 Spacer(minLength: 40)
                 Text("WITNESS")
                     .font(.system(size: 40, weight: .heavy).width(.compressed))
                     .tracking(10)
-                    .foregroundStyle(.white.opacity(0.9))
+                    .foregroundStyle(Color.primaryText.opacity(0.9))
             }
             .padding(.horizontal, 84)
             .padding(.top, format == .story ? 230 : 96)
@@ -1027,40 +1060,143 @@ struct ShareCardFrame<Content: View>: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
         .frame(width: format.size.width, height: format.size.height)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 }
 
-/// Draws a card to an image at its format's pixel size.
+/// A card drawn to a real file: an opaque sRGB image at the format's exact pixel size, written under a readable name.
+/// Share the file, not an in-memory image: Messages and Mail need a file with a name and a type, and show a black
+/// placeholder for anonymous image data. The temp folder lives as long as this object, which the share sheet holds.
+final class ShareCardExport: @unchecked Sendable {
+    let image: UIImage
+    let pngURL: URL
+    /// A JPEG of the same card, written only when the PNG is large (photo-heavy cards); Messages prefers it.
+    let jpegURL: URL?
+    let name: String
+    private let folder: URL
+
+    var prefersJPEG: Bool { jpegURL != nil }
+
+    /// A PNG larger than this goes out as a JPEG.
+    static let pngLimit = 4_000_000
+
+    /// A file-safe name: "Witness-<title>-<style>".
+    static func fileName(_ parts: [String]) -> String {
+        let text = (["Witness"] + parts).joined(separator: "-")
+        var out = ""
+        var dash = false
+        for u in text.unicodeScalars {
+            if CharacterSet.alphanumerics.contains(u) { out.unicodeScalars.append(u); dash = false }
+            else if !dash { out.append("-"); dash = true }
+        }
+        out = out.trimmingCharacters(in: CharacterSet(charactersIn: "-"))
+        return String(out.prefix(60))
+    }
+
+    /// Redraws the card opaque in sRGB at exactly `size` pixels (ImageRenderer can hand back alpha and wide color).
+    static func flatten(_ ui: UIImage, size: CGSize) -> UIImage {
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = 1
+        format.opaque = true
+        format.preferredRange = .standard
+        return UIGraphicsImageRenderer(size: size, format: format).image { ctx in
+            UIColor(Color.photoInk).setFill()
+            ctx.fill(CGRect(origin: .zero, size: size))
+            ui.draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
+
+    init?(rendered ui: UIImage, size: CGSize, name: String, pngLimit: Int = ShareCardExport.pngLimit) {
+        let flat = Self.flatten(ui, size: size)
+        guard let png = flat.pngData() else { return nil }
+        let folder = FileManager.default.temporaryDirectory.appendingPathComponent("share-" + UUID().uuidString, isDirectory: true)
+        guard (try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)) != nil else { return nil }
+        let pngURL = folder.appendingPathComponent(name + ".png")
+        guard (try? png.write(to: pngURL)) != nil else { return nil }
+        var jpegURL: URL?
+        if png.count > pngLimit, let jpeg = flat.jpegData(compressionQuality: 0.92) {
+            let url = folder.appendingPathComponent(name + ".jpg")
+            if (try? jpeg.write(to: url)) != nil { jpegURL = url }
+        }
+        self.image = flat
+        self.pngURL = pngURL
+        self.jpegURL = jpegURL
+        self.name = name
+        self.folder = folder
+    }
+
+    deinit { try? FileManager.default.removeItem(at: folder) }
+}
+
+/// What the share sheet receives for a PNG: the file itself, with the image as a fallback.
+struct ShareCardPNG: Transferable {
+    let export: ShareCardExport
+    static var transferRepresentation: some TransferRepresentation {
+        FileRepresentation(exportedContentType: .png) { item in
+            SentTransferredFile(item.export.pngURL, allowAccessingOriginalFile: true)
+        }
+        ProxyRepresentation { Image(uiImage: $0.export.image) }
+    }
+}
+
+/// The JPEG of a large card.
+struct ShareCardJPEG: Transferable {
+    let export: ShareCardExport
+    static var transferRepresentation: some TransferRepresentation {
+        FileRepresentation(exportedContentType: .jpeg) { item in
+            SentTransferredFile(item.export.jpegURL ?? item.export.pngURL, allowAccessingOriginalFile: true)
+        }
+        ProxyRepresentation { Image(uiImage: $0.export.image) }
+    }
+}
+
+/// A ShareLink for one exported card: the file (PNG, or JPEG when the PNG is large), previewed with its image.
+struct ShareCardFileLink<Label: View>: View {
+    let export: ShareCardExport
+    let title: String
+    @ViewBuilder var label: Label
+
+    var body: some View {
+        let preview = SharePreview(title, image: Image(uiImage: export.image))
+        if export.prefersJPEG {
+            ShareLink(item: ShareCardJPEG(export: export), preview: preview) { label }
+        } else {
+            ShareLink(item: ShareCardPNG(export: export), preview: preview) { label }
+        }
+    }
+}
+
+/// Draws a card to an image at its format's pixel size, in the given look.
 @MainActor
-func renderShareImage<V: View>(_ card: V, format: ShareCardFormat) -> Image? {
-    let renderer = ImageRenderer(content: card)
+func renderShareImage<V: View>(_ card: V, format: ShareCardFormat, scheme: ColorScheme = .dark, name: String = "card") -> ShareCardExport? {
+    let renderer = ImageRenderer(content: card.environment(\.shareScheme, scheme).environment(\.colorScheme, scheme))
     renderer.scale = 1
     renderer.proposedSize = ProposedViewSize(format.size)
     guard let ui = renderer.uiImage else { return nil }
-    return Image(uiImage: ui)
+    return ShareCardExport(rendered: ui, size: format.size, name: name)
 }
 
-/// A share button that shares the card as an image. The card is built (load photos here) and drawn when the
+/// A share button that shares the card as a file. The card is built (load photos here) and drawn when the
 /// button appears, and again when `key` changes; until it is ready the label shows dimmed and does nothing.
 struct ShareCardLink<Card: View, Label: View>: View {
     let title: String
     let format: ShareCardFormat
     var key: String = ""
+    var scheme: ColorScheme = .dark
     let card: () async -> Card
     @ViewBuilder var label: Label
 
-    @State private var image: Image?
+    @State private var export: ShareCardExport?
 
     var body: some View {
         Group {
-            if let image {
-                ShareLink(item: image, preview: SharePreview(title, image: image)) { label }
+            if let export {
+                ShareCardFileLink(export: export, title: title) { label }
             } else {
                 label.opacity(0.4)
             }
         }
-        .task(id: key) { image = renderShareImage(await card(), format: format) }
+        .task(id: key) { export = renderShareImage(await card(), format: format, scheme: scheme, name: ShareCardExport.fileName([title])) }
     }
 }
 
@@ -1089,8 +1225,12 @@ struct ShareCardSheet: View {
     let variants: () async -> [ShareCardVariant]
 
     @Environment(\.dismiss) private var dismiss
-    @State private var rendered: [(name: String, image: Image)] = []
+    @Environment(\.colorScheme) private var appScheme
+    @State private var built: [ShareCardVariant] = []
+    @State private var rendered: [ShareCardExport] = []
     @State private var selection = 0
+    /// The look the cards are drawn in: starts as the app's current one (Auto resolved by the system), then the fan's choice.
+    @State private var scheme: ColorScheme?
 
     var body: some View {
         VStack(spacing: 16) {
@@ -1116,9 +1256,17 @@ struct ShareCardSheet: View {
             if rendered.isEmpty {
                 ProgressView().tint(Color.primaryText).frame(maxHeight: .infinity)
             } else {
+                Picker("Look", selection: Binding(get: { scheme ?? appScheme }, set: { scheme = $0 })) {
+                    Text("Light").tag(ColorScheme.light)
+                    Text("Dark").tag(ColorScheme.dark)
+                }
+                .pickerStyle(.segmented)
+                .frame(width: 180)
+                .accessibilityIdentifier("share-card-look")
+
                 TabView(selection: $selection) {
                     ForEach(rendered.indices, id: \.self) { i in
-                        rendered[i].image
+                        Image(uiImage: rendered[i].image)
                             .resizable()
                             .aspectRatio(format.size.width / format.size.height, contentMode: .fit)
                             .clipShape(.rect(cornerRadius: 18))
@@ -1130,7 +1278,7 @@ struct ShareCardSheet: View {
                 .tabViewStyle(.page(indexDisplayMode: .never))
 
                 VStack(spacing: 10) {
-                    Text(rendered[min(selection, rendered.count - 1)].name)
+                    Text(built[min(selection, built.count - 1)].name)
                         .unitLabel()
                     HStack(spacing: 8) {
                         ForEach(rendered.indices, id: \.self) { i in
@@ -1143,14 +1291,15 @@ struct ShareCardSheet: View {
                 }
 
                 let current = rendered[min(selection, rendered.count - 1)]
-                ShareLink(item: current.image, preview: SharePreview(title, image: current.image)) {
+                let currentName = built[min(selection, built.count - 1)].name
+                ShareCardFileLink(export: current, title: title) {
                     Label("Share", systemImage: "square.and.arrow.up")
                 }
                 .buttonStyle(.primary)
                 .padding(.horizontal, Spacing.gutter)
                 .padding(.bottom, 12)
                 .simultaneousGesture(TapGesture().onEnded {
-                    Analytics.shared.track(.shareTapped, ["kind": kind, "style": current.name])
+                    Analytics.shared.track(.shareTapped, ["kind": kind, "style": currentName, "look": (scheme ?? appScheme) == .light ? "light" : "dark"])
                 })
                 .accessibilityIdentifier("share-card-share")
             }
@@ -1159,14 +1308,36 @@ struct ShareCardSheet: View {
         .presentationDetents([.large])
         .onAppear { Analytics.shared.track(.shareOpened, ["kind": kind]) }
         .task(id: key) {
-            var out: [(name: String, image: Image)] = []
-            for v in await variants() {
-                if let image = renderShareImage(v.card, format: format) { out.append((v.name, image)) }
-                await Task.yield()
-            }
-            rendered = out
+            built = await variants()
+            await renderAll()
             selection = 0
         }
+        .task(id: scheme) {
+            // The look changed: draw every card again (the cards are already built).
+            guard !built.isEmpty, scheme != nil else { return }
+            await renderAll()
+        }
+    }
+
+    @MainActor
+    private func renderAll() async {
+        let look = scheme ?? appScheme
+        var out: [ShareCardExport] = []
+        for v in built {
+            if let export = renderShareImage(v.card, format: format, scheme: look, name: ShareCardExport.fileName([title, v.name, look == .light ? "light" : "dark"])) {
+                out.append(export)
+            }
+            await Task.yield()
+        }
+        rendered = out
+        #if DEBUG
+        // Review builds: -uitest runs copy each export to REVIEW_OUT so the cards can be checked as files.
+        if let folder = ProcessInfo.processInfo.environment["REVIEW_OUT"] {
+            let dir = URL(fileURLWithPath: folder).appendingPathComponent("export", isDirectory: true)
+            try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+            for e in out { try? FileManager.default.copyItem(at: e.pngURL, to: dir.appendingPathComponent(e.pngURL.lastPathComponent)) }
+        }
+        #endif
     }
 }
 
@@ -1222,5 +1393,41 @@ struct FoundGameChip: View {
             .accessibilityElement(children: .combine)
             .accessibilityLabel("\(game.away.location) \(game.away.score ?? 0), \(game.home.location) \(game.home.score ?? 0)")
         }
+    }
+}
+
+// MARK: - Status bar over photo heroes
+
+/// A page that opens on a full-bleed dark photo needs the clock and battery in white, even in Light. The system draws the
+/// status bar from the navigation controller's bar style, so this sets it while the page is on screen and restores it after.
+private struct LightStatusBar: UIViewControllerRepresentable {
+    final class Probe: UIViewController {
+        private var previous: UIBarStyle?
+
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            guard let nav = navigationController else { return }
+            if previous == nil { previous = nav.navigationBar.barStyle }
+            nav.navigationBar.barStyle = .black
+            nav.setNeedsStatusBarAppearanceUpdate()
+        }
+
+        override func viewWillDisappear(_ animated: Bool) {
+            super.viewWillDisappear(animated)
+            guard let nav = navigationController, let previous else { return }
+            nav.navigationBar.barStyle = previous
+            self.previous = nil
+            nav.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+
+    func makeUIViewController(context: Context) -> Probe { Probe() }
+    func updateUIViewController(_ controller: Probe, context: Context) {}
+}
+
+extension View {
+    /// Light clock and battery while this page, which starts with a dark photo, is showing.
+    func lightStatusBar() -> some View {
+        background { LightStatusBar().frame(width: 0, height: 0).allowsHitTesting(false) }
     }
 }

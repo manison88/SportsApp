@@ -25,6 +25,7 @@ struct VenueStoryCard: View {
     }
 
     @Environment(Library.self) private var library
+    @Environment(\.colorScheme) private var scheme
     let style: Style
     let data: Data
 
@@ -51,13 +52,13 @@ struct VenueStoryCard: View {
             .environment(\.dynamicTypeSize, .large)
             .scaleEffect(scale, anchor: .topLeading)
             .frame(width: ShareCardFormat.story.size.width, height: ShareCardFormat.story.size.height, alignment: .topLeading)
-            .environment(\.colorScheme, .dark)
+            .shareSurface()
     }
 
     @ViewBuilder
     private var content: some View {
         switch style {
-        case .aerial: aerialCard
+        case .aerial: aerialCard.shareOnPhoto()
         case .games: gamesCard
         }
     }
@@ -72,26 +73,26 @@ struct VenueStoryCard: View {
                 .offset(x: size, y: size * 0.75)
             Text("WITNESS")
                 .font(.system(size: size, weight: .heavy).width(.compressed)).tracking(size * 0.32)
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
         }
         .padding(.bottom, size * 0.75)
-        .shadow(color: .black.opacity(0.3), radius: 4)
+        .shadow(color: .black.opacity(scheme == .light && style == .games ? 0 : 0.3), radius: 4)
     }
 
     private func title(_ size: CGFloat = 52) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(venue.name.uppercased()).font(.display(size)).lineLimit(2).minimumScaleFactor(0.6)
             Text(venue.cityLine.uppercased()).font(.system(size: 13, weight: .heavy).width(.condensed)).tracking(2.4)
-                .foregroundStyle(.white.opacity(0.7))
+                .foregroundStyle(Color.primaryText.opacity(0.7))
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
     }
 
     private func stat(_ value: String, _ label: String, accent: Bool = false, size: CGFloat = 40) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(value).font(.display(size)).foregroundStyle(accent ? Color.signal : .white).lineLimit(1).minimumScaleFactor(0.6)
+            Text(value).font(.display(size)).foregroundStyle(accent ? Color.signal : Color.primaryText).lineLimit(1).minimumScaleFactor(0.6)
             Text(label.uppercased()).font(.system(size: 11, weight: .heavy).width(.condensed)).tracking(2)
-                .foregroundStyle(.white.opacity(0.65))
+                .foregroundStyle(Color.primaryText.opacity(0.65))
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -140,7 +141,7 @@ struct VenueStoryCard: View {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("\(count) \(count == 1 ? "GAME" : "GAMES") AT").font(.system(size: 13, weight: .heavy).width(.condensed)).tracking(2.6)
                         .foregroundStyle(Color.signal)
-                    Text(venue.name.uppercased()).font(.display(34)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
+                    Text(venue.name.uppercased()).font(.display(34)).foregroundStyle(Color.primaryText).lineLimit(1).minimumScaleFactor(0.6)
                 }
             }
             VStack(spacing: 0) {
@@ -148,7 +149,7 @@ struct VenueStoryCard: View {
             }
             if data.games.count > 9 {
                 Text("+ \(data.games.count - 9) more").font(.system(size: 13, weight: .heavy).width(.condensed)).tracking(2)
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(Color.primaryText.opacity(0.6))
             }
             Spacer(minLength: 0)
             if record.decided > 0 {
@@ -165,7 +166,7 @@ struct VenueStoryCard: View {
         let mark = switch outcome { case .win: "W"; case .loss: "L"; case .draw: "D"; case .none: "·" }
         return HStack(spacing: 10) {
             Text(Fmt.day(g.date, in: tz).uppercased()).font(.system(size: 13, weight: .heavy).width(.condensed)).tracking(1.2)
-                .foregroundStyle(.white.opacity(0.7)).frame(width: 96, alignment: .leading)
+                .foregroundStyle(Color.primaryText.opacity(0.7)).frame(width: 96, alignment: .leading)
             if g.hasScore, let away = library.team(g.awayTeamId), let home = library.team(g.homeTeamId) {
                 TeamTile(team: away, compact: true)
                 Text("\(g.awayScore ?? 0)").font(.display(20))
@@ -176,11 +177,11 @@ struct VenueStoryCard: View {
                     .font(.system(size: 13, weight: .heavy).width(.condensed)).tracking(1.2).lineLimit(1)
             }
             Spacer(minLength: 4)
-            Text(mark).font(.display(20)).foregroundStyle(outcome == .win ? Color.signal : .white.opacity(0.6))
+            Text(mark).font(.display(20)).foregroundStyle(outcome == .win ? Color.signal : Color.primaryText.opacity(0.6))
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .frame(height: 38)
-        .overlay(alignment: .bottom) { Rectangle().fill(.white.opacity(0.08)).frame(height: 1) }
+        .overlay(alignment: .bottom) { Rectangle().fill(Color.primaryText.opacity(0.08)).frame(height: 1) }
     }
 
     // MARK: Loading

@@ -222,12 +222,13 @@ private struct YouShareCard: View {
     let rows: [YouShareStat]
     let accent: Color
     let style: Style
+    @Environment(\.shareScheme) private var scheme
 
     private var fg: Color {
         switch style {
-        case .paper: return Color.black
+        case .paper: return Color.sharePaperInk(scheme)
         case .color: return accent.readableInk
-        default: return Color.white
+        default: return Color.primaryText
         }
     }
 
@@ -240,7 +241,7 @@ private struct YouShareCard: View {
             }
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 
     // MARK: Pieces
@@ -305,7 +306,7 @@ private struct YouShareCard: View {
         case .color:
             accent
         case .paper:
-            Color(hex: "F4F1EA")
+            Color.sharePaper(scheme)
         default:
             ZStack {
                 Color.ink
@@ -361,7 +362,7 @@ private struct YouShareCard: View {
                     }
                     .padding(.vertical, 28)
                     .overlay(alignment: .top) {
-                        Rectangle().fill(Color.white.opacity(0.2)).frame(height: 2)
+                        Rectangle().fill(Color.primaryText.opacity(0.2)).frame(height: 2)
                     }
                 }
             }
@@ -420,7 +421,7 @@ private struct YouShareCard: View {
                 hero(size: 320, color: fg)
                 caption(fg.opacity(0.85)).padding(.top, 8)
                 Rectangle()
-                    .stroke(Color.white.opacity(0.4), style: StrokeStyle(lineWidth: 3, dash: [16, 12]))
+                    .stroke(Color.primaryText.opacity(0.4), style: StrokeStyle(lineWidth: 3, dash: [16, 12]))
                     .frame(height: 3)
                     .padding(.vertical, 50)
                 VStack(spacing: 30) {
@@ -434,8 +435,8 @@ private struct YouShareCard: View {
                 }
             }
             .padding(56)
-            .background(Color.white.opacity(0.08), in: .rect(cornerRadius: 40))
-            .overlay(RoundedRectangle(cornerRadius: 40).strokeBorder(Color.white.opacity(0.25), lineWidth: 2))
+            .background(Color.primaryText.opacity(0.08), in: .rect(cornerRadius: 40))
+            .overlay(RoundedRectangle(cornerRadius: 40).strokeBorder(Color.primaryText.opacity(0.25), lineWidth: 2))
             .padding(.top, 50)
         }
     }
@@ -463,15 +464,15 @@ private struct YouShareCard: View {
                 VStack(spacing: 28) {
                     ForEach(rows) { row in
                         HStack(alignment: .firstTextBaseline, spacing: 24) {
-                            label(row.label, color: Color.white.opacity(0.6))
+                            label(row.label, color: Color.primaryText.opacity(0.6))
                             Spacer(minLength: 24)
-                            value(row.value, size: 110, color: Color.white)
+                            value(row.value, size: 110, color: Color.primaryText)
                         }
                     }
                 }
                 .padding(.top, 50)
                 Spacer(minLength: 20)
-                footer(Color.white.opacity(0.9))
+                footer(Color.primaryText.opacity(0.9))
             }
             .padding(.horizontal, 84)
             .padding(.bottom, 250)

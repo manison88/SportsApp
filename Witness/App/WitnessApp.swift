@@ -22,6 +22,14 @@ struct WitnessApp: App {
         if args.contains("-empty") { library.startEmpty() }
         if args.contains("-uitest") { UIView.setAnimationsEnabled(false) }
         if !args.contains("-uitest") { BackgroundPhotoCheck.register(library) }
+        #if DEBUG
+        // Review builds: open Wrapped (its row on You is off for now) so its screens and share cards can be checked.
+        if args.contains("-review-wrapped") {
+            let presenter = Presenter()
+            presenter.modal = .wrapped(Calendar.current.component(.year, from: .now))
+            _presenter = State(initialValue: presenter)
+        }
+        #endif
         _library = State(initialValue: library)
     }
 
