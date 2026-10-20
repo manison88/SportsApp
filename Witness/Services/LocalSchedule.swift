@@ -117,38 +117,74 @@ actor ScheduleCache {
     }
 }
 
-/// Past games from the packs on the phone: no network, and nothing leaves the device.
+/// Games from the packs on the phone: no network, and nothing leaves the device.
 enum LocalSchedule {
+    /// Tests put schedule packs here instead of installing signed ones on disk.
+    nonisolated(unsafe) static var testPacks: [SchedulePack]?
+
+    /// The parsed packs of one league for these seasons.
+    private static func parsedPacks(league: String, seasons: ClosedRange<Int>) async -> [SchedulePack] {
+        if let testPacks { return testPacks.filter { $0.league == league && seasons.contains($0.season) } }
+        await PackStore.shared.ensure(league: league, seasons: seasons)
+        var out: [SchedulePack] = []
+        for pack in await PackStore.shared.schedulePacks(league: league, seasons: seasons) {
+            if let parsed = await ScheduleCache.shared.pack(pack) { out.append(parsed) }
+        }
+        return out
+    }
+
     /// Leagues whose downloaded seasons cover the whole window, so the live source need not be asked.
-    /// Recent and upcoming games still change, so those always go to the live source.
+    /// Recent and upcoming games still change, so those always go to the live source. A competition ESPN does not serve under its
+    /// key (the FIBA, IIHF and IHF tournaments) has no live source: the pack, past or coming, is all there is, so it always counts.
     static func covered(_ leagues: [String], from: Date, to: Date, now: Date = .now) async -> Set<String> {
-        guard to < now.addingTimeInterval(-7 * 86_400) else { return [] }
+        var out = Set(leagues.filter { CompetitionCatalog.shared.isPackOnly($0) })
+        guard to < now.addingTimeInterval(-7 * 86_400) else { return out }
         let range = seasons(from: from, to: to)
-        var out = Set<String>()
-        for league in leagues {
-            await PackStore.shared.ensure(league: league, seasons: range)
-            let have = await PackStore.shared.schedulePacks(league: league, seasons: range)
-            if Set(have.compactMap(\.season)).isSuperset(of: Set(range)) { out.insert(league) }
+        for league in leagues where !out.contains(league) {
+            let have: Set<Int>
+            if let testPacks {
+                have = Set(testPacks.filter { $0.league == league }.map(\.season))
+            } else {
+                await PackStore.shared.ensure(league: league, seasons: range)
+                have = Set(await PackStore.shared.schedulePacks(league: league, seasons: range).compactMap(\.season))
+            }
+            if have.isSuperset(of: Set(range)) { out.insert(league) }
         }
         return out
     }
 
     /// Games at this venue that started in the window, nearest the window's start first.
     static func games(at venue: Venue, leagues: [String], from: Date, to: Date) async -> [FoundGame] {
+        await games(leagues: leagues, from: from, to: to, at: venue)
+    }
+
+    /// Games of these leagues that started in the window at any ground (or only at `venue`), nearest the window's start first.
+    static func games(leagues: [String], from: Date, to: Date, at venue: Venue? = nil) async -> [FoundGame] {
+        guard !leagues.isEmpty else { return [] }
         let range = seasons(from: from, to: to)
-        let names = await ScheduleCache.shared.teamBriefs()
+        let names = testPacks == nil ? await ScheduleCache.shared.teamBriefs() : [:]
         var found: [FoundGame] = []
         for league in leagues {
-            for pack in await PackStore.shared.schedulePacks(league: league, seasons: range) {
-                guard let schedule = await ScheduleCache.shared.pack(pack) else { continue }
+            for schedule in await parsedPacks(league: league, seasons: range) {
                 found += games(in: schedule, at: venue, from: from, to: to, names: names)
             }
         }
         return found.sorted { abs($0.start.timeIntervalSince(from)) < abs($1.start.timeIntervalSince(from)) }
     }
 
+    /// A national team's coming games from the schedule packs of the competitions it plays in, soonest first.
+    static func upcoming(for team: Team, now: Date = .now, limit: Int = 14) async -> [FoundGame] {
+        let competitions = CompetitionCatalog.shared.competitions(forTeam: team.id).filter { $0.isNational && $0.feed.pack != nil }
+        guard !competitions.isEmpty else { return [] }
+        let found = await games(leagues: competitions.map(\.id), from: now.addingTimeInterval(-3 * 3600), to: now.addingTimeInterval(400 * 86_400))
+        let code = team.abbreviation.uppercased()
+        var seen = Set<String>()
+        return Array(found.filter { $0.home.abbreviation.uppercased() == code || $0.away.abbreviation.uppercased() == code }
+            .filter { seen.insert($0.id).inserted }.sorted { $0.start < $1.start }.prefix(limit))
+    }
+
     /// The pure part: which rows of one season were at this venue inside the window.
-    static func games(in pack: SchedulePack, at venue: Venue, from: Date, to: Date, names: [String: TeamBrief]) -> [FoundGame] {
+    static func games(in pack: SchedulePack, at venue: Venue?, from: Date, to: Date, names: [String: TeamBrief]) -> [FoundGame] {
         guard let sport = Sport(rawValue: String(pack.league.split(separator: "/").first ?? "")) else { return [] }
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -177,7 +213,7 @@ enum LocalSchedule {
                 note: row.note.isEmpty ? nil : row.note,
                 seasonSlug: row.note.isEmpty ? nil : row.note.lowercased().replacingOccurrences(of: " ", with: "-"),
                 seasonType: nil)
-            if GameLookup.venueMatches(game, venue: venue) { out.append(game) }
+            if let venue { if GameLookup.venueMatches(game, venue: venue) { out.append(game) } } else { out.append(game) }
         }
         return out
     }

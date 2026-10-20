@@ -40,7 +40,8 @@ final class Library {
     private(set) var hasLibrary = false
     /// Catalog teams by "leagueKey#espnId", so a schedule's team finds the team the app already has.
     private(set) var espnIndex: [String: Team] = [:]
-    /// The catalog's national sides by "sport#espnId" and "sport#FIFA code": a country is one team whatever the competition.
+    /// The catalog's national sides by "sport#espnId" and "sport#gender#federation code": a country is one team per sport and
+    /// gender whatever the competition. ESPN gives a women's side its own id, so the id key needs no gender.
     private var nationalByEspn: [String: Team] = [:]
     private var nationalByCode: [String: Team] = [:]
     /// The league the catalog files countries under.
@@ -772,13 +773,16 @@ final class Library {
     /// The catalog's national side a schedule's team really is, if it is one. ESPN keeps one id for a country across the World
     /// Cup, its qualifying, the Euros, the Nations League and friendlies, while the catalog lists the country once (under the
     /// World Cup), so the id is matched in the same sport whatever the competition. A side with no ESPN id (the UEFA feed)
-    /// matches on its FIFA code, but only when it came from a competition between countries: a club coded BIH is not Bosnia,
-    /// and neither is a team the fan made by hand.
+    /// matches on its federation code (the FIFA code, or the FIBA, IIHF or IHF one: any sport), but only when it came from a
+    /// competition between countries (`national` in the competition catalog): a club coded BIH is not Bosnia, and neither is a
+    /// team the fan made by hand. The competition's gender picks the men's or the women's side: Bosnia's women are not
+    /// Bosnia's men.
     func catalogNationalTeam(for team: Team) -> Team? {
-        guard team.league != Self.nationalLeague, teams[team.id] == nil else { return nil }
+        guard !CompetitionCatalog.isNationalSide(team), teams[team.id] == nil else { return nil }
         if let espn = team.externalIds?.espn, let known = nationalByEspn["\(team.sport.rawValue)#\(espn)"] { return known }
-        if let league = team.externalIds?.espnLeague ?? team.leagueKey, GameLookup.isNationalCompetition(league),
-           let known = nationalByCode["\(team.sport.rawValue)#\(team.abbreviation.uppercased())"] {
+        if let competition = CompetitionCatalog.shared.competition(team.externalIds?.espnLeague ?? team.leagueKey), competition.isNational,
+           competition.sportValue == team.sport,
+           let known = nationalByCode["\(team.sport.rawValue)#\(competition.gender)#\(team.abbreviation.uppercased())"] {
             return known
         }
         return nil
@@ -1106,11 +1110,12 @@ final class Library {
             guard let espn = team.externalIds?.espn, let league = team.externalIds?.espnLeague ?? team.leagueKey else { continue }
             espnIndex["\(league)#\(espn)"] = espnIndex["\(league)#\(espn)"] ?? team
         }
-        for team in allTeams where team.league == Self.nationalLeague {
+        for team in allTeams {
+            guard let gender = CompetitionCatalog.nationalGender(of: team) else { continue }
             if let espn = team.externalIds?.espn {
                 nationalByEspn["\(team.sport.rawValue)#\(espn)"] = nationalByEspn["\(team.sport.rawValue)#\(espn)"] ?? team
             }
-            let code = "\(team.sport.rawValue)#\(team.abbreviation.uppercased())"
+            let code = "\(team.sport.rawValue)#\(gender)#\(team.abbreviation.uppercased())"
             nationalByCode[code] = nationalByCode[code] ?? team
         }
     }

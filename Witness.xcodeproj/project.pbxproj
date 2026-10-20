@@ -85,12 +85,14 @@
 		C969C27B55763B17CA718E21 /* LuckyCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */; };
 		CC00A63D66FA2073A5D2C456 /* LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF7F7EAD209867041DEF5 /* LibraryTests.swift */; };
 		86384A30A911462298F1EF98 /* NationalTeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513EF4F81A14E30A123476C /* NationalTeamTests.swift */; };
+		13E4AF7CD6A344139C9E342A /* CompetitionCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0C5454CFCA48D5BE98188F /* CompetitionCatalogTests.swift */; };
 		CD5342E7131026E858E6D978 /* AlbumImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F836BE70D81FF166D6EFD6A /* AlbumImporter.swift */; };
 		CFBFBA9DB68338AEE808C225 /* SharedPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C6F4096980A62A376DA6A /* SharedPassportView.swift */; };
 		D26B177823A3F0DD02688F08 /* Sample in Resources */ = {isa = PBXBuildFile; fileRef = 8007189AFB335F74AD2F2242 /* Sample */; };
 		D695CE379806D2766F6BFE81 /* PackStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE252F11ED2045452387B12 /* PackStore.swift */; };
 		A62D53ECB6BD4A82A0800554 /* ScanSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE6CDB0C5345F092D2F92C /* ScanSettings.swift */; };
 		E14EE3095355CC6B33297843 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA0327CBD34799EB421705D /* Library.swift */; };
+		C1E20C5E943D48FFA08300CC /* CompetitionCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0911A1CFC04BDC9CCD18B0 /* CompetitionCatalog.swift */; };
 		E6419B75864FC1DFA5ED08F1 /* WitnessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E5222772FB0C38016D430A /* WitnessUITests.swift */; };
 		E669D62EF7D7D9DD19FCDFAB /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDEDDEB3372D49CD437F4B5 /* Stats.swift */; };
 		E6F2907DBF9114392C1C5A25 /* Catalog in Resources */ = {isa = PBXBuildFile; fileRef = 4DE49130D83B8D5B5C8CD63A /* Catalog */; };
@@ -177,6 +179,7 @@
 		73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLookupTests.swift; sourceTree = "<group>"; };
 		746EF7F7EAD209867041DEF5 /* LibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTests.swift; sourceTree = "<group>"; };
 		4513EF4F81A14E30A123476C /* NationalTeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTeamTests.swift; sourceTree = "<group>"; };
+		0A0C5454CFCA48D5BE98188F /* CompetitionCatalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionCatalogTests.swift; sourceTree = "<group>"; };
 		77E49C234DD8C079A4C4FE0D /* WitnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitnessApp.swift; sourceTree = "<group>"; };
 		7B48F99FC296122C6C846961 /* BigGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigGameTests.swift; sourceTree = "<group>"; };
 		7F836BE70D81FF166D6EFD6A /* AlbumImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImporter.swift; sourceTree = "<group>"; };
@@ -192,6 +195,7 @@
 		94EF1E486EA6D3C38019482C /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		99BE7A67E02B803D6070CA3E /* AlbumImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImportView.swift; sourceTree = "<group>"; };
 		9AA0327CBD34799EB421705D /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		7D0911A1CFC04BDC9CCD18B0 /* CompetitionCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompetitionCatalog.swift; sourceTree = "<group>"; };
 		9F4F48A3DC2D47231C6E56B7 /* EventTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTheme.swift; sourceTree = "<group>"; };
 		A051A1837F2F1411136520EB /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		A2E5222772FB0C38016D430A /* WitnessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitnessUITests.swift; sourceTree = "<group>"; };
@@ -290,6 +294,7 @@
 			children = (
 				9F4F48A3DC2D47231C6E56B7 /* EventTheme.swift */,
 				9AA0327CBD34799EB421705D /* Library.swift */,
+				7D0911A1CFC04BDC9CCD18B0 /* CompetitionCatalog.swift */,
 				4551DB23A001CFF2C2646420 /* Models.swift */,
 				1CDEDDEB3372D49CD437F4B5 /* Stats.swift */,
 			);
@@ -407,6 +412,7 @@
 				73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */,
 				746EF7F7EAD209867041DEF5 /* LibraryTests.swift */,
 				4513EF4F81A14E30A123476C /* NationalTeamTests.swift */,
+				0A0C5454CFCA48D5BE98188F /* CompetitionCatalogTests.swift */,
 				BAD292282DB6DC3BCC066881 /* PhotoMatcherTests.swift */,
 				903443890581343B7B39B754 /* TicketOCRTests.swift */,
 				FEF398484DD3487B795AB540 /* TicketParserTests.swift */,
@@ -696,6 +702,7 @@
 				7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */,
 				CC00A63D66FA2073A5D2C456 /* LibraryTests.swift in Sources */,
 				86384A30A911462298F1EF98 /* NationalTeamTests.swift in Sources */,
+				13E4AF7CD6A344139C9E342A /* CompetitionCatalogTests.swift in Sources */,
 				4FA66493F78992F852961E30 /* PhotoMatcherTests.swift in Sources */,
 				33986E7A0BDD5EAC7B8E13D7 /* TicketOCRTests.swift in Sources */,
 				29A2F767CE1F9907F6F16402 /* TicketParserTests.swift in Sources */,
@@ -725,6 +732,7 @@
 				0F93BE106B7E45D588FECF53 /* GameStoryCard.swift in Sources */,
 				6B06F4E483E3BCD3403C77CB /* GamePhotosView.swift in Sources */,
 				E14EE3095355CC6B33297843 /* Library.swift in Sources */,
+				C1E20C5E943D48FFA08300CC /* CompetitionCatalog.swift in Sources */,
 				5ECA51942472297977790DB9 /* LifeMapView.swift in Sources */,
 				0CB8D1C3F3B14C6783C4CE4B /* MapStoryCard.swift in Sources */,
 				8BB42FE6C0064890AFA4AE69 /* MapListSheet.swift in Sources */,

@@ -37,7 +37,7 @@ enum MatchupAlbums {
             }
         }
         for team in teams {
-            let national = team.league == "National teams"
+            let national = CompetitionCatalog.isNationalSide(team)
             add(team.teamName, team, 4)
             add(team.locationName, team, national ? 4 : 2)
             add(team.locationName + " " + team.teamName, team, 5)
@@ -73,7 +73,7 @@ enum MatchupAlbums {
             guard !found.isEmpty else { continue }
             // National sides first among equals: a matchup album is far more often an international than a namesake club.
             let sorted = found.sorted { a, b in
-                a.1 != b.1 ? a.1 > b.1 : (a.0.league == "National teams" && b.0.league != "National teams")
+                a.1 != b.1 ? a.1 > b.1 : (CompetitionCatalog.isNationalSide(a.0) && !CompetitionCatalog.isNationalSide(b.0))
             }
             var seen = Set<String>()
             return Array(sorted.map(\.0).filter { seen.insert($0.id).inserted }.prefix(3))
@@ -125,8 +125,9 @@ enum MatchupAlbums {
         func add(_ l: String?) { if let l, !l.isEmpty, !out.contains(l) { out.append(l) } }
         add(team.leagueKey)
         add(team.externalIds?.espnLeague)
-        if team.league == "National teams" {
-            GameLookup.nationalCompetitions.forEach { add($0) }
+        if CompetitionCatalog.isNationalSide(team) {
+            // Every competition between countries the team plays in, any sport: the catalog lists them (FIBA, IIHF, IHF, WBSC too).
+            CompetitionCatalog.shared.nationalKeys(for: team).forEach { add($0) }
         } else if team.sport == .soccer {
             ["soccer/uefa.champions", "soccer/uefa.europa", "soccer/uefa.europa.conf", "soccer/fifa.cwc", "soccer/club.friendly",
              "soccer/concacaf.champions", "soccer/conmebol.libertadores"].forEach { add($0) }
@@ -135,8 +136,12 @@ enum MatchupAlbums {
     }
 
     /// Whether a schedule's side is this team: the same ESPN id in the same sport, or the same name.
-    static func side(_ side: FoundGame.Side, is team: Team, sport: Sport) -> Bool {
+    static func side(_ side: FoundGame.Side, is team: Team, sport: Sport, league: String? = nil) -> Bool {
         if sport == team.sport, let id = team.externalIds?.espn, id == side.espnId { return true }
+        // A schedule pack names a country by its federation code (BIH, QAT): the same code in a competition of the team's own
+        // sport and gender between countries is the team.
+        if sport == team.sport, let gender = CompetitionCatalog.nationalGender(of: team), let competition = CompetitionCatalog.shared.competition(league),
+           competition.isNational, competition.gender == gender, side.abbreviation.uppercased() == team.abbreviation.uppercased() { return true }
         let named = GameLookup.tokens("\(side.location) \(side.name)")
         return !named.isEmpty && (named == GameLookup.tokens("\(team.locationName) \(team.teamName)") || named == GameLookup.tokens(team.locationName))
     }
@@ -148,8 +153,11 @@ enum MatchupAlbums {
         // Schedules file a game under the US day it starts on, so ask every day the window touches in UTC and the day either side.
         let days = GameLookup.dayStrings(from: from.addingTimeInterval(-12 * 3600), to: to.addingTimeInterval(12 * 3600), tz: .gmt)
         var found: [FoundGame] = []
+        // A competition ESPN does not list (FIBA, IIHF, IHF) is asked of the downloaded schedule packs only, keyed by its id.
+        let packOnly = leagues.filter { CompetitionCatalog.shared.isPackOnly($0) }
+        found += await LocalSchedule.games(leagues: packOnly, from: from, to: to)
         await withTaskGroup(of: [FoundGame].self) { group in
-            for league in leagues {
+            for league in leagues where !packOnly.contains(league) {
                 for day in days {
                     group.addTask { await GameLookup.scoreboard(league: league, day: day) }
                 }
@@ -159,8 +167,8 @@ enum MatchupAlbums {
         var seen = Set<String>()
         return found.filter { g in
             g.start >= from && g.start <= to && seen.insert(g.id).inserted
-                && (home.contains { side(g.home, is: $0, sport: g.sport) } && away.contains { side(g.away, is: $0, sport: g.sport) }
-                    || home.contains { side(g.away, is: $0, sport: g.sport) } && away.contains { side(g.home, is: $0, sport: g.sport) })
+                && (home.contains { side(g.home, is: $0, sport: g.sport, league: g.league) } && away.contains { side(g.away, is: $0, sport: g.sport, league: g.league) }
+                    || home.contains { side(g.away, is: $0, sport: g.sport, league: g.league) } && away.contains { side(g.home, is: $0, sport: g.sport, league: g.league) })
         }
         .sorted { abs($0.start.timeIntervalSince(around)) < abs($1.start.timeIntervalSince(around)) }
     }

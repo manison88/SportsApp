@@ -676,29 +676,22 @@ actor TeamDirectory {
 
 
 extension GameLookup {
-    /// Every competition a men's national side plays in, ESPN league paths: the World Cup and its qualifying by confederation,
-    /// the Euros and their qualifying, the Nations Leagues, the continental cups and friendlies.
-    static let nationalCompetitions = [
-        "soccer/fifa.world", "soccer/fifa.worldq.uefa", "soccer/fifa.worldq.conmebol", "soccer/fifa.worldq.concacaf",
-        "soccer/fifa.worldq.afc", "soccer/fifa.worldq.caf", "soccer/fifa.worldq.ofc",
-        "soccer/uefa.euro", "soccer/uefa.euroq", "soccer/uefa.nations",
-        "soccer/concacaf.nations.league", "soccer/concacaf.gold", "soccer/concacaf.gold_qual",
-        "soccer/conmebol.america", "soccer/caf.nations", "soccer/caf.nations_qual", "soccer/afc.asian.cup",
-        "soccer/fifa.friendly",
-    ]
-    private static let nationalCompetitionSet = Set(nationalCompetitions)
+    /// Every competition a men's national soccer side plays in, ESPN league paths, from the competition catalog
+    /// (`national: true` in Catalog/competitions.json): the World Cup and its qualifying by confederation, the Euros and their
+    /// qualifying, the Nations Leagues, the continental cups and friendlies.
+    static var nationalCompetitions: [String] { CompetitionCatalog.shared.nationalKeys(sport: .soccer, gender: "men") }
 
-    /// Whether an ESPN league path is one of the competitions between countries above, as against a club cup run by the same
-    /// body (uefa.champions, uefa.europa, conmebol.libertadores, fifa.cwc) or a women's tournament, whose sides have other ids.
-    static func isNationalCompetition(_ league: String) -> Bool { nationalCompetitionSet.contains(league) }
+    /// Whether a league path is one of the competitions between countries (any sport, either gender), as against a club cup run
+    /// by the same body (uefa.champions, uefa.europa, conmebol.libertadores, fifa.cwc).
+    static func isNationalCompetition(_ league: String) -> Bool { CompetitionCatalog.shared.isNational(league) }
 
     /// A national team's coming games in every one of its competitions at once, soonest first. ESPN keeps one team id for a
     /// country across all of them.
-    static func upcomingNational(espnId: String, limit: Int = 14) async -> [FoundGame] {
+    static func upcomingNational(espnId: String, leagues: [String]? = nil, limit: Int = 14) async -> [FoundGame] {
         let now = Date()
         var found: [FoundGame] = []
         await withTaskGroup(of: [FoundGame].self) { group in
-            for league in nationalCompetitions {
+            for league in leagues ?? nationalCompetitions {
                 group.addTask {
                     guard let url = URL(string: "\(base)\(league)/teams/\(espnId)/schedule"), let data = await fetch(url) else { return [] }
                     return parseScoreboard(data, league: league)

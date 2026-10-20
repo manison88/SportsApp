@@ -110,7 +110,7 @@ struct TeamPickerView: View {
 
     /// Every word typed must appear somewhere in the team's city, name, code, league or country, in any order:
     /// "chicago bears", "bears chicago", "bears nfl" and "chi" all find the Chicago Bears.
-    @MainActor private static func matches(_ t: Team, _ q: String) -> Bool {
+    @MainActor static func matches(_ t: Team, _ q: String) -> Bool {
         let hay = haystack(t)
         return fold(q).split(separator: " ").allSatisfy { hay.contains($0) }
     }
@@ -185,14 +185,31 @@ struct LeagueTeamsView: View {
     var popsSelf = true
     let done: () -> Void
     @Environment(\.dismiss) private var dismiss
+    @State private var query = ""
+
+    private var typed: String { query.trimmingCharacters(in: .whitespacesAndNewlines) }
+    private func sorted(_ list: [Team]) -> [Team] { list.sorted { $0.displayName < $1.displayName } }
+    private func pick() { done(); if popsSelf { dismiss() } }
 
     var body: some View {
         List {
-            Section { TeamRows(teams: teams.sorted { $0.displayName < $1.displayName }, selection: $selection) { done(); if popsSelf { dismiss() } } }
-                .listRowBackground(Color.panel)
+            if !typed.isEmpty {
+                let found = sorted(teams.filter { TeamPickerView.matches($0, typed) })
+                Section("\(found.count) \(found.count == 1 ? "team" : "teams")") { TeamRows(teams: found, selection: $selection, done: pick) }
+                    .listRowBackground(Color.panel)
+            } else if let zones = CompetitionCatalog.shared.zones(for: teams) {
+                ForEach(zones, id: \.title) { zone in
+                    Section("\(zone.title) \u{00B7} \(zone.teams.count)") { TeamRows(teams: sorted(zone.teams), selection: $selection, done: pick) }
+                        .listRowBackground(Color.panel)
+                }
+            } else {
+                Section { TeamRows(teams: sorted(teams), selection: $selection, done: pick) }
+                    .listRowBackground(Color.panel)
+            }
         }
         .scrollContentBackground(.hidden)
         .background(Color.ink.ignoresSafeArea())
+        .searchable(text: $query, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search \(league)")
         .navigationTitle(league)
         .navigationBarTitleDisplayMode(.inline)
     }

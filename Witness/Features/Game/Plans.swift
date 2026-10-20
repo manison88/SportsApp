@@ -104,6 +104,7 @@ struct PlanScheduleView: View {
                     .background(Color.panel, in: .rect(cornerRadius: 16))
                     .accessibilityElement(children: .combine)
                     .accessibilityIdentifier("plan-team")
+                    TeamCompetitionsCard(team: team)
                 }
 
                 if loading {
@@ -111,6 +112,8 @@ struct PlanScheduleView: View {
                 } else if !games.isEmpty {
                     Text("Upcoming games").unitLabel()
                     ForEach(games) { game in row(game) }
+                } else if let note = noFeedNote {
+                    Text(note).font(.footnote).foregroundStyle(Color.textSecondary).accessibilityIdentifier("plan-no-schedule")
                 } else if noSource {
                     Text("We can\u{2019}t look up this team\u{2019}s schedule yet. Add the game from Add game instead.")
                         .font(.footnote).foregroundStyle(Color.textSecondary)
@@ -156,23 +159,38 @@ struct PlanScheduleView: View {
         guard let team = library.team(teamId) else { loading = false; return }
         loading = true
         defer { loading = false }
+        // Schedule packs of the team's tournaments (FIBA, IIHF, IHF) when any are on the phone: found by competition id.
+        let local = await LocalSchedule.upcoming(for: team)
         guard let source = await TeamDirectory.shared.resolve(team) else {
-            noSource = true
-            library.recordScheduleSearch(team, found: 0, noSource: true)
+            games = local
+            noSource = local.isEmpty
+            library.recordScheduleSearch(team, found: local.count, noSource: local.isEmpty)
             return
         }
         teamEspnId = source.id
         if team.sport == .soccer, team.id.hasPrefix("nat-") || team.league.lowercased().contains("national") {
             // A country plays in many competitions: World Cup and its qualifying, Euros, Nations League, friendlies.
             // ESPN's lists are late for some, so UEFA's own feed adds the Nations League with later dates.
-            async let espn = GameLookup.upcomingNational(espnId: source.id)
-            async let uefa = UEFASchedule.upcoming(for: team)
-            games = Self.merged(await espn, await uefa)
+            // A women's side asks the women's competitions; UEFA's feed here is the men's Nations League.
+            let women = CompetitionCatalog.nationalGender(of: team) == "women"
+            async let espn = GameLookup.upcomingNational(espnId: source.id, leagues: women ? CompetitionCatalog.shared.nationalKeys(for: team) : nil)
+            async let uefa = women ? [] : UEFASchedule.upcoming(for: team)
+            games = Self.merged(await espn + local, await uefa)
         } else {
-            games = await GameLookup.upcoming(league: source.league, teamEspnId: source.id)
+            games = Self.merged(await GameLookup.upcoming(league: source.league, teamEspnId: source.id) + local, [])
         }
         empty = games.isEmpty
         library.recordScheduleSearch(team, found: games.count)
+    }
+
+    /// What to say when the team's tournaments have no schedule feed at all (ESPN does not list them and no pack is on the phone):
+    /// an honest "not available yet" instead of a blank. Nil when some feed exists, or the team plays in no listed tournament.
+    private var noFeedNote: String? {
+        guard games.isEmpty, noSource || empty, let team = library.team(teamId) else { return nil }
+        let competitions = CompetitionCatalog.shared.competitions(forTeam: team.id)
+        guard !competitions.isEmpty, competitions.allSatisfy({ $0.feed.espn == nil }) else { return nil }
+        return competitions.count == 1 ? "Schedule for this tournament isn\u{2019}t available yet. Add the game yourself below."
+            : "Schedules for these tournaments aren\u{2019}t available yet. Add the game yourself below."
     }
 
     /// One list, soonest first. The same match from both feeds (same day, same two sides) is kept once, UEFA's version.
@@ -239,6 +257,42 @@ struct PlanScheduleView: View {
         }
         .buttonStyle(.plain)
         .accessibilityIdentifier("plan-game-\(game.eventId)")
+    }
+}
+
+/// The tournaments a catalog team plays in, with the next edition's dates: "Plays: FIBA World Cup 2027, EuroBasket qualifiers...".
+struct TeamCompetitionsCard: View {
+    let team: Team
+    private static let shown = 8
+
+    var body: some View {
+        let all = CompetitionCatalog.shared.competitions(forTeam: team.id).filter(\.isNational)
+        if !all.isEmpty {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Plays").unitLabel()
+                ForEach(all.prefix(Self.shown)) { c in
+                    HStack(alignment: .firstTextBaseline, spacing: 10) {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(c.nextTitle).font(.condensed(.subheadline, weight: .heavy)).foregroundStyle(Color.primaryText)
+                            Text(c.nextLine ?? "Dates not announced").font(.footnote).foregroundStyle(Color.textSecondary)
+                        }
+                        Spacer(minLength: 8)
+                        if c.feed.espn == nil {
+                            Text("No schedule yet").font(.caption2.weight(.semibold)).foregroundStyle(Color.textTertiary)
+                        }
+                    }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityIdentifier("team-plays-\(c.id)")
+                }
+                if all.count > Self.shown {
+                    Text("and \(all.count - Self.shown) more").font(.footnote).foregroundStyle(Color.textSecondary)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(14)
+            .background(Color.panel, in: .rect(cornerRadius: 16))
+            .accessibilityIdentifier("team-plays")
+        }
     }
 }
 

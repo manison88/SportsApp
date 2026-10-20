@@ -293,6 +293,22 @@ ctx = {
 S.zone = zone_codes
 competitions = K.build(ctx)
 
+# ESPN national-team leagues the lookup always asked about that no tournament table lists (friendlies, and the African and
+# CONCACAF Gold Cup qualifying leagues): men's soccer sides with the same ESPN ids as the World Cup. Their teams are those of the
+# tournament they feed (friendlies: every men's national side in the catalog).
+_by_id = {c["id"]: c for c in competitions}
+_men_all = sorted(t["id"] for t in json.load(open(f"{CAT}/national-teams.json")))
+for _id, _name, _body, _teams, _alias in [
+        ("soccer/fifa.friendly", "International friendlies", "FIFA", _men_all, ["Friendlies", "Friendly"]),
+        ("soccer/concacaf.gold_qual", "CONCACAF Gold Cup qualifying", "CONCACAF", _by_id["soccer/concacaf.gold"]["teamIds"], []),
+        ("soccer/caf.nations_qual", "Africa Cup of Nations qualifying", "CAF", _by_id["soccer/caf.nations"]["teamIds"], ["AFCON qualifiers"])]:
+    competitions.append(K.comp(_id, _name, "soccer", "men", "national", "world" if _body == "FIFA" else "continental", _body,
+                               "ongoing" if _body == "FIFA" else "every 2 years", feed={"espn": _id, "pack": None}, aliases=_alias))
+    competitions[-1]["teamIds"] = list(_teams)
+# "national": the competition is between countries, so its sides are one team per country, merged across competitions by the app.
+for _c in competitions:
+    _c["national"] = _c["kind"] == "national"
+
 # ---------------------------------------------------------------- venues the tournaments need that the catalog lacks (+ league patches)
 for v in K.VENUES:
     if v["id"] in venues:
