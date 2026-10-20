@@ -78,8 +78,9 @@ struct Team: Codable, Hashable, Identifiable {
     /// Earlier names of the club (Cleveland Indians, Seattle SuperSonics), so searching the old name still finds it.
     var formerNames: [String]? = nil
 
-    /// UI shows city names and codes only, never marks or nicknames.
-    var displayName: String { locationName }
+    /// UI shows city names and codes only, never marks or nicknames. A racing team has no city a fan would know it by
+    /// (Brackley is Mercedes), so it goes by its name.
+    var displayName: String { sport == .motorsport ? teamName : locationName }
     var accent: Color { Color(hex: colors.accent) }
     var primary: Color { Color(hex: colors.primary) }
 }

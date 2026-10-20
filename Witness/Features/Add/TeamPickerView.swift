@@ -96,7 +96,7 @@ struct TeamPickerView: View {
     private var searching: Bool { !trimmedQuery.isEmpty }
 
     private var customIds: Set<String> { Set(library.customTeams.map(\.id)) }
-    private func sorted(_ teams: [Team]) -> [Team] { teams.sorted { $0.locationName < $1.locationName } }
+    private func sorted(_ teams: [Team]) -> [Team] { teams.sorted { $0.displayName < $1.displayName } }
     private var custom: [Team] {
         let q = trimmedQuery
         return sorted(library.customTeams.filter { q.isEmpty || Self.matches($0, q) })
@@ -130,7 +130,7 @@ struct TeamPickerView: View {
         let q = Self.fold(trimmedQuery)
         let found = library.allTeams.filter { Self.matches($0, q) }
         func full(_ t: Team) -> Int { Self.fold("\(t.locationName) \(t.teamName)") == q || Self.fold(t.locationName) == q ? 0 : 1 }
-        func order(_ list: [Team]) -> [Team] { list.sorted { full($0) != full($1) ? full($0) < full($1) : $0.locationName < $1.locationName } }
+        func order(_ list: [Team]) -> [Team] { list.sorted { full($0) != full($1) ? full($0) < full($1) : $0.displayName < $1.displayName } }
         return order(found.filter { $0.sport == sport }) + order(found.filter { $0.sport != sport })
     }
 
@@ -188,7 +188,7 @@ struct LeagueTeamsView: View {
 
     var body: some View {
         List {
-            Section { TeamRows(teams: teams.sorted { $0.locationName < $1.locationName }, selection: $selection) { done(); if popsSelf { dismiss() } } }
+            Section { TeamRows(teams: teams.sorted { $0.displayName < $1.displayName }, selection: $selection) { done(); if popsSelf { dismiss() } } }
                 .listRowBackground(Color.panel)
         }
         .scrollContentBackground(.hidden)
@@ -212,7 +212,7 @@ struct TeamRows: View {
                 HStack(spacing: 12) {
                     TeamTile(team: t, compact: true)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(t.locationName).font(.condensed(.headline)).foregroundStyle(.white)
+                        Text(t.displayName).font(.condensed(.headline)).foregroundStyle(.white)
                         Text(t.league).font(.footnote).foregroundStyle(Color.textSecondary)
                     }
                     Spacer()
