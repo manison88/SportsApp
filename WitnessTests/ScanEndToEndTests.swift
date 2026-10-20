@@ -230,21 +230,22 @@ final class ScanEndToEndTests: XCTestCase {
         XCTAssertEqual(review.games.count, 1)
     }
 
-    /// A lookup that failed in the first pass leaves the visit waiting; "Look for more games?" asks the schedule again and offers
-    /// the match, at Lumen Field, even though the photos can't be looked at.
-    func testLookForMoreGamesFindsAMatchWhoseLookupFailed() async throws {
+    /// A lookup that failed in the first pass leaves the day a stadium visit (five photos inside the fence over three hours),
+    /// offered as one and nothing waiting; saved as a visit, the next Find in photos asks the schedule again and offers the match.
+    func testAVisitWhoseLookupFailedIsOfferedAndMatchedNextTime() async throws {
         Self.worldCupAnswers = false
         let scan = model(matchday, look: SceneCheck.DayLook())
         let first = await findInPhotos(scan)
         XCTAssertTrue(first.games.isEmpty)
-        XCTAssertEqual(scan.pendingVisits.count, 1, "The visit waits for the background search")
+        XCTAssertEqual(first.others.map(\.venue.id), ["mlb-sea"], "Offered as a stadium visit")
+        XCTAssertTrue(scan.pendingVisits.isEmpty, "Nothing waits for the background search")
+        scan.commit(first.others, asVisits: true, into: library)
         Self.worldCupAnswers = true
-        scan.startDeepScan(library: library)
-        await scan.finished()
-        let review = scan.takeForReview(library: library)
-        let day = try XCTUnwrap(review.possible.first)
-        XCTAssertEqual(day.suggestions.first?.id, "lumen-field")
-        XCTAssertTrue(day.reason.contains("Bosnia"), day.reason)
+        let review = await findInPhotos(scan)
+        XCTAssertEqual(review.games.count, 1)
+        scan.commit(review.games, into: library)
+        XCTAssertEqual(matchdayEntries.count, 1)
+        try assertTheMatch(matchdayEntries.first)
     }
 
     // MARK: (e) Photos around the ground, not inside it

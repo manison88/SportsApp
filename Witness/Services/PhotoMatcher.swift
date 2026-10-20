@@ -10,12 +10,27 @@ struct PhotoCluster: Identifiable, Hashable, Codable {
     let end: Date
     let assetIds: [String]
     let times: [Date]
-    /// The photos inside the fence, taken on the ground and not on the move: the ones that placed the visit. Nil for a visit
-    /// built from an album, a ticket or a saved game, where every photo counts.
+    /// The photos inside the fence, not on the move: the ones that placed the visit. Nil for a visit built from an album, a
+    /// ticket or a saved game, where every photo counts.
     var insideIds: [String]? = nil
 
-    /// The photos a scene check judges the visit by: the ones inside the fence, or all of them when that is not known.
+    /// The photos the visit is judged by: the ones inside the fence, or all of them when that is not known.
     var anchors: [String] { insideIds ?? assetIds }
+
+    /// How long the photos inside the fence span, first to last.
+    var insideSpan: TimeInterval {
+        let inside = insideIds.map(Set.init)
+        let times = zip(assetIds, times).filter { inside?.contains($0.0) ?? true }.map(\.1)
+        guard let first = times.min(), let last = times.max() else { return 0 }
+        return last.timeIntervalSince(first)
+    }
+
+    /// A stadium visit with no game on the schedule (a tour, a walk round the ground) is offered when this many photos inside
+    /// the fence, none on the move, span twenty minutes: nobody lingers inside a fence that long by accident. A plane over the
+    /// ground is on the move; a drive past it leaves one photo; a bar across the street is outside the fence.
+    static let visitPhotos = 3
+    static let visitStay: TimeInterval = 20 * 60
+    var isStadiumVisit: Bool { anchors.count >= Self.visitPhotos && insideSpan >= Self.visitStay }
 }
 
 /// Finds games in the photo library from each photo's time and place. On-device only.
@@ -130,17 +145,17 @@ enum PhotoMatcher {
     static let maxNearby = 40
 
     /// The pure part of `discover`: visits from photos inside a fence (the 15-minute stay), then the days spent just outside one.
-    /// Photos in the air or on the move (a landing over the ground, the motorway past it) place neither.
+    /// Photos on the move (a landing over the ground, the motorway past it) place neither.
     static func found(in points: [PhotoPoint], venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil) -> Found {
         let skipping = settledKeys(existing, venues: venues)
-        let transit = TransitCheck.verdicts(points)
+        let moving = TransitCheck.moving(points)
         let visits = VisitGrouping.group(points, venues: venues, radius: radius, minimumStay: 15 * 60, skipping: skipping,
-                                         transit: transit).visits
+                                         moving: moving).visits
         let inVisits = Set(visits.flatMap(\.assetIds))
         let outside = points.filter { $0.latitude != nil && $0.longitude != nil && !inVisits.contains($0.id) }
         var keyer = DayKeyer()
         let nearby = VisitGrouping.group(outside, venues: venues, radius: max(radius ?? 0, nearbyReach), minimumStay: 15 * 60,
-                                         transit: transit).visits
+                                         moving: moving).visits
             .filter { day in
                 guard day.assetIds.count >= GameSuggester.minPhotos else { return false }
                 let key = keyer.day(day.start, tz: day.venue.tz)
@@ -176,8 +191,7 @@ enum PhotoMatcher {
                 let loc = asset.location
                 points.append(PhotoPoint(id: asset.localIdentifier, date: asset.creationDate,
                                          latitude: loc?.coordinate.latitude, longitude: loc?.coordinate.longitude,
-                                         screenshot: asset.mediaSubtypes.contains(.photoScreenshot),
-                                         altitude: loc.flatMap(PhotoPoint.altitude), speed: loc.flatMap(PhotoPoint.speed)))
+                                         screenshot: asset.mediaSubtypes.contains(.photoScreenshot), speed: loc.flatMap(PhotoPoint.speed)))
                 if let loc {
                     state.located += 1
                     if let v = index.nearest(lat: loc.coordinate.latitude, lon: loc.coordinate.longitude, radius: radius) {
@@ -249,8 +263,7 @@ enum PhotoMatcher {
                 let loc = asset.location
                 out.append(PhotoPoint(id: asset.localIdentifier, date: asset.creationDate,
                                       latitude: loc?.coordinate.latitude, longitude: loc?.coordinate.longitude,
-                                      screenshot: asset.mediaSubtypes.contains(.photoScreenshot),
-                                      altitude: loc.flatMap(PhotoPoint.altitude), speed: loc.flatMap(PhotoPoint.speed)))
+                                      screenshot: asset.mediaSubtypes.contains(.photoScreenshot), speed: loc.flatMap(PhotoPoint.speed)))
             }
             return out
         }.value

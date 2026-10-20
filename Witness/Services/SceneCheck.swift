@@ -45,12 +45,6 @@ enum SceneCheck {
     /// The ground itself rather than a sport, which a park, a schoolyard or a beach can show too. Real stadium photos carry
     /// "stadium" and "arena" together (0.8 to 0.9), and often "scoreboard".
     static let structureLabels: Set<String> = ["stadium", "arena", "scoreboard", "bleachers"]
-    /// What a window seat, a cabin or a terminal shows, as the classifier's exact identifiers (it has no "aerial"). A photo
-    /// with one of these was taken from the air or on the way, whatever else it shows: an aerial view of a pitch is not the
-    /// ground seen from its stands.
-    static let transitLabels: Set<String> = ["airplane", "aircraft", "airport", "skydiving", "balloon_hotair"]
-    /// Photos looked at for a visit with no game: the ones inside the fence, up to this many.
-    static let tourSample = 8
     static let indoorWords = ["indoor", "arena", "court", "rink", "ceiling", "gym", "hall", "stage"]
     static let outdoorWords = ["outdoor", "sky", "grass", "field", "cloud", "lawn", "sunset", "daytime", "stadium", "ballpark"]
     static let eventWords = ["concert", "stage", "stadium", "arena", "crowd", "audience", "festival", "fireworks", "spotlight"]
@@ -104,21 +98,14 @@ enum SceneCheck {
         return e >= 0.3 ? .elsewhere : .neither
     }
 
-    /// Pure: the photo shows a plane, an airport or a jump, so it was taken from the air or on the way.
-    static func fromTheAir(_ labels: [(String, Float)]) -> Bool {
-        labels.contains { transitLabels.contains($0.0.lowercased()) && $0.1 >= 0.3 }
-    }
-
     /// A day's photos counted one by one: how many show a stadium, arena, scoreboard or sport, and how many show somewhere
     /// else (a beach, a party, a meal). For the background search, which has time to look at most of a day.
     struct DayLook {
         var classified = 0
         var venue = 0
         var elsewhere = 0
-        /// Venue photos that show the ground itself (stadium, arena, scoreboard, bleachers), not only a sport, and not from the air.
+        /// Venue photos that show the ground itself (stadium, arena, scoreboard, bleachers), not only a sport.
         var structure = 0
-        /// Photos with a plane, an airport or a jump in them: from the air or on the way (`SceneCheck.transitLabels`).
-        var aerial = 0
         var venueShare: Double { classified == 0 ? 0 : Double(venue) / Double(classified) }
         var elsewhereShare: Double { classified == 0 ? 0 : Double(elsewhere) / Double(classified) }
         /// Several photos of the day clearly at a game, and the day not mostly somewhere else. One stray "soccer pitch" is not enough.
@@ -126,13 +113,6 @@ enum SceneCheck {
             venue >= minVenue && venueShare >= minShare && elsewhereShare < 0.35
         }
         var mostlyElsewhere: Bool { elsewhereShare >= 0.5 }
-        /// A stadium visit with no game on the schedule (a tour, a walk round the ground), judged by the photos inside the
-        /// fence: three of them must show the ground itself (stadium, arena, scoreboard, bleachers at 0.3 or more), none may
-        /// be from the air, and the set must not be mostly somewhere else. A pitch seen from a plane window reads "soccer",
-        /// even "stadium", but a landing is not a visit.
-        func showsTheGround(minStructure: Int = 3) -> Bool {
-            structure >= minStructure && aerial == 0 && !mostlyElsewhere
-        }
     }
 
     static func look(at refs: [PhotoRef], max: Int = 24) async -> DayLook {
@@ -144,10 +124,8 @@ enum SceneCheck {
             guard let image = await PhotoLoader.load(ref, size: CGSize(width: 384, height: 384)),
                   let labels = await labels(for: image) else { continue }
             out.classified += 1
-            let air = fromTheAir(labels)
-            if air { out.aerial += 1 }
             switch kind(labels) {
-            case .venue(let structure): out.venue += 1; if structure && !air { out.structure += 1 }
+            case .venue(let structure): out.venue += 1; if structure { out.structure += 1 }
             case .elsewhere: out.elsewhere += 1
             case .neither: break
             }

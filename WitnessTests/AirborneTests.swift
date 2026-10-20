@@ -2,10 +2,13 @@ import XCTest
 import CoreLocation
 @testable import Witness
 
-/// The owner's onboarding scan offered "Stamford Bridge · Mar 25, 2026 · 1:04 AM · 47 photos" as a stadium visit. The photos
-/// were a landing at Heathrow: window shots over west London, a selfie in the cabin, a dog on the terminal floor. The approach
-/// crosses the ground at 1,000 m and the phone's fix put the window shots inside its fence. A photo in the air, or on the
-/// move, never places a visit; a visit with no game needs the photos inside its fence to show the ground from the ground.
+/// Two days the scan got wrong, and the two rules that put them right.
+/// The owner's onboarding scan offered "Stamford Bridge · Mar 25, 2026 · 1:04 AM · 47 photos" as a stadium visit: a landing at
+/// Heathrow, window shots over west London 1 to 3 km apart half a minute apart, the phone's fix inside the ground's fence. A
+/// photo on the move never places a visit. Then the Nurburgring (Aug 5, 2023): 47 photos, a day at the circuit, every one of
+/// them flagged "in the air" because the circuit sits 300 m above the valley the hotel is in. Altitude is gone: speed alone
+/// tells a plane from a fan. A visit with no game on the schedule is a stadium visit when three photos inside the fence span
+/// twenty minutes; fewer are dropped.
 @MainActor
 final class AirborneTests: XCTestCase {
     private var library: Library!
@@ -38,111 +41,97 @@ final class AirborneTests: XCTestCase {
         return try Data(contentsOf: url)
     }
 
-    private static func point(_ id: String, _ utc: String, _ lat: Double, _ lon: Double, up altitude: Double? = nil,
-                              speed: Double? = nil) -> PhotoPoint {
-        PhotoPoint(id: id, date: ISO8601DateFormatter().date(from: utc)!, latitude: lat, longitude: lon, altitude: altitude, speed: speed)
+    private static func point(_ id: String, _ utc: String, _ lat: Double, _ lon: Double, speed: Double? = nil) -> PhotoPoint {
+        PhotoPoint(id: id, date: ISO8601DateFormatter().date(from: utc)!, latitude: lat, longitude: lon, speed: speed)
     }
 
-    private func model(_ points: [PhotoPoint], look: SceneCheck.DayLook = .init()) -> ScanModel {
+    private func model(_ points: [PhotoPoint]) -> ScanModel {
         ScanModel(ledgerURL: ledgerURL, pendingURL: pendingURL, photos: .init(
             access: { true },
             discover: { venues, existing, _ in PhotoMatcher.found(in: points, venues: venues, existing: existing) },
-            look: { _, _ in look },
+            look: { _, _ in .init() },
             suggest: { _, _, _, _, _, _ in [] }))
     }
 
-    private func scan(_ points: [PhotoPoint], look: SceneCheck.DayLook = .init()) async -> (ScanModel, ScanModel.Review) {
-        let scan = model(points, look: look)
+    private func scan(_ points: [PhotoPoint]) async -> (ScanModel, ScanModel.Review) {
+        let scan = model(points)
         scan.start(library: library)
         await scan.finished()
         return (scan, scan.takeForReview(library: library))
     }
 
-    /// A scene check that would have passed every gate: most photos a stadium, half of them the ground itself.
-    private let convincing = SceneCheck.DayLook(classified: 7, venue: 5, elsewhere: 1, structure: 4)
-
     // MARK: The owner's landing
 
     /// 1:04 AM in Chicago on March 25 2026 is 06:04 GMT: the approach to Heathrow from the east, over the Thames, Battersea
-    /// and Stamford Bridge (two window shots inside its fence at 1,000 m), the cabin at the gate sixteen minutes later with the
-    /// fix the phone still had, and a dog on the terminal floor at 25 m.
+    /// and Stamford Bridge (two window shots inside its fence), Hammersmith, the cabin at the gate sixteen minutes later with
+    /// the fix the phone still had, and a dog on the terminal floor.
     private var landing: [PhotoPoint] {
         [
-            Self.point("thames", "2026-03-25T06:01:00Z", 51.4790, -0.0500, up: 1_500),
-            Self.point("waterloo", "2026-03-25T06:01:45Z", 51.4800, -0.1000, up: 1_350),     // 3.5 km on, 45 s later
-            Self.point("battersea", "2026-03-25T06:02:30Z", 51.4810, -0.1500, up: 1_200),
-            Self.point("bridge-1", "2026-03-25T06:03:00Z", 51.4817, -0.1900, up: 1_050),     // inside Stamford Bridge's fence
-            Self.point("bridge-2", "2026-03-25T06:03:20Z", 51.4818, -0.1925, up: 1_000),
-            Self.point("cabin-selfie", "2026-03-25T06:19:00Z", 51.4817, -0.1905, up: 1_000), // the phone's last fix
-            Self.point("terminal-dog", "2026-03-25T06:40:00Z", 51.4700, -0.4543, up: 25),
+            Self.point("thames", "2026-03-25T06:01:00Z", 51.4790, -0.0500),
+            Self.point("waterloo", "2026-03-25T06:01:45Z", 51.4800, -0.1000),     // 3.5 km on, 45 s later
+            Self.point("battersea", "2026-03-25T06:02:30Z", 51.4810, -0.1500),
+            Self.point("bridge-1", "2026-03-25T06:03:00Z", 51.4817, -0.1900),     // inside Stamford Bridge's fence
+            Self.point("bridge-2", "2026-03-25T06:03:20Z", 51.4818, -0.1925),
+            Self.point("hammersmith", "2026-03-25T06:03:50Z", 51.4850, -0.2300),
+            Self.point("cabin-selfie", "2026-03-25T06:19:00Z", 51.4817, -0.1905), // the phone's last fix
+            Self.point("terminal-dog", "2026-03-25T06:40:00Z", 51.4700, -0.4543),
         ]
     }
 
-    func testTheLandingIsInTheAir() {
-        let verdicts = TransitCheck.verdicts(landing)
-        for id in ["thames", "waterloo", "battersea", "bridge-1", "bridge-2", "cabin-selfie"] {
-            guard case .airborne(let above) = verdicts[id] else { return XCTFail("\(id) is not in the air: \(String(describing: verdicts[id]))") }
-            XCTAssertGreaterThan(above, 900, id)
+    /// The speed between shots (3 km in 30 s) says the phone was in a vehicle: no photo inside the fence places a visit.
+    func testTheLandingIsOnTheMove() async throws {
+        let moving = TransitCheck.moving(landing)
+        for id in ["thames", "waterloo", "battersea", "bridge-1", "bridge-2", "hammersmith"] {
+            XCTAssertGreaterThan(moving[id] ?? 0, 60, "\(id) is not on the move")
         }
-        XCTAssertNil(verdicts["terminal-dog"], "The terminal floor is the ground")
-        // The grouping rule itself: nothing inside the fence was on the ground, so there is no visit, and no day around one.
+        XCTAssertNil(moving["cabin-selfie"], "At the gate")
+        XCTAssertNil(moving["terminal-dog"])
+        // The cabin's stale fix is the only photo inside the fence on foot: with the day's other photos it makes a visit by the
+        // 15-minute rule, with one photo inside the fence, and the scan drops it (three over twenty minutes, or nothing).
         let found = PhotoMatcher.found(in: landing, venues: library.venues, existing: [])
-        XCTAssertTrue(found.visits.isEmpty, found.visits.map(\.id).joined(separator: ", "))
+        XCTAssertEqual(found.visits.map(\.insideIds), [["cabin-selfie"]])
+        XCTAssertEqual(found.visits.first?.isStadiumVisit, false)
         XCTAssertTrue(found.nearby.isEmpty)
-    }
-
-    /// Onboarding: nothing is offered, however convincing the window shots look to the classifier.
-    func testTheLandingIsNotOfferedAsAStadiumVisit() async throws {
-        let (scan, review) = await scan(landing, look: convincing)
+        let (scan, review) = await scan(landing)
         XCTAssertEqual(scan.state, .empty)
-        XCTAssertTrue(review.games.isEmpty)
-        XCTAssertTrue(review.others.isEmpty, "The landing was offered as a stadium visit at \(review.others.map(\.venue.name))")
-        XCTAssertTrue(review.possible.isEmpty)
+        XCTAssertTrue(review.games.isEmpty && review.others.isEmpty && review.possible.isEmpty)
+        XCTAssertEqual(scan.skippedVisits, 1)
         XCTAssertTrue(scan.pendingVisits.isEmpty, "Nothing waits for the background search either")
     }
 
-    /// The same approach with no altitude on the fixes: the speed between shots (3 km in 30 s) says the phone was in a vehicle.
-    func testTheLandingWithNoAltitudeIsOnTheMove() async throws {
-        let flat = [
-            Self.point("thames", "2026-03-25T06:01:00Z", 51.4790, -0.0500),
-            Self.point("waterloo", "2026-03-25T06:01:45Z", 51.4800, -0.1000),
-            Self.point("battersea", "2026-03-25T06:02:30Z", 51.4810, -0.1500),
-            Self.point("bridge-1", "2026-03-25T06:03:00Z", 51.4817, -0.1900),
-            Self.point("bridge-2", "2026-03-25T06:03:20Z", 51.4818, -0.1925),
-            Self.point("hammersmith", "2026-03-25T06:03:50Z", 51.4850, -0.2300),
-            Self.point("terminal-dog", "2026-03-25T06:40:00Z", 51.4700, -0.4543),
-        ]
-        let verdicts = TransitCheck.verdicts(flat)
-        for id in ["thames", "waterloo", "battersea", "bridge-1", "bridge-2", "hammersmith"] {
-            guard case .moving(let speed) = verdicts[id] else { return XCTFail("\(id) is not on the move: \(String(describing: verdicts[id]))") }
-            XCTAssertGreaterThan(speed, 60, id)
-        }
-        XCTAssertNil(verdicts["terminal-dog"])
-        let (_, review) = await scan(flat, look: convincing)
+    /// Without the Hammersmith shot the last window shot pairs with nothing and stays on foot: with the cabin's stale fix that
+    /// is two photos inside the fence sixteen minutes apart, a visit by the grouping rule, dropped for too few photos.
+    func testALandingWithTwoPhotosInsideTheFenceIsDropped() async throws {
+        let stale = landing.filter { $0.id != "hammersmith" }
+        let visit = try XCTUnwrap(PhotoMatcher.found(in: stale, venues: library.venues, existing: []).visits.first)
+        XCTAssertEqual(visit.insideIds, ["bridge-2", "cabin-selfie"])
+        XCTAssertFalse(visit.isStadiumVisit)
+        let (scan, review) = await scan(stale)
         XCTAssertTrue(review.games.isEmpty && review.others.isEmpty && review.possible.isEmpty)
+        XCTAssertEqual(scan.skippedVisits, 1)
+        XCTAssertTrue(scan.pendingVisits.isEmpty, "Dropped, not deferred")
     }
 
     /// The fix's own speed, when the phone recorded one, is enough on its own.
     func testAFixAtAirlinerSpeedIsOnTheMove() {
-        let verdicts = TransitCheck.verdicts([Self.point("window", "2026-03-25T06:03:00Z", 51.4817, -0.1900, speed: 75)])
-        XCTAssertEqual(verdicts["window"], .moving(speed: 75))
-        XCTAssertTrue(TransitCheck.verdicts([Self.point("walk", "2026-03-25T06:03:00Z", 51.4817, -0.1900, speed: 1.4)]).isEmpty)
+        XCTAssertEqual(TransitCheck.moving([Self.point("window", "2026-03-25T06:03:00Z", 51.4817, -0.1900, speed: 75)]), ["window": 75])
+        XCTAssertTrue(TransitCheck.moving([Self.point("walk", "2026-03-25T06:03:00Z", 51.4817, -0.1900, speed: 1.4)]).isEmpty)
     }
 
     // MARK: Real visits still stand
 
-    /// A tour of Stamford Bridge: six photos inside the fence at 30 m over forty minutes, the hotel two hours before.
+    /// A tour of Stamford Bridge: six photos inside the fence over forty minutes, the hotel two hours before.
     private var tour: [PhotoPoint] {
-        [Self.point("hotel", "2026-03-25T09:00:00Z", 51.5010, -0.1920, up: 28)]
+        [Self.point("hotel", "2026-03-25T09:00:00Z", 51.5010, -0.1920)]
             + (0..<6).map { n in
                 Self.point("stand-\(n)", "2026-03-25T11:\(String(format: "%02d", n * 8)):00Z",
-                           51.4815 + Double(n) * 0.0001, -0.1915 + Double(n) * 0.0002, up: 30 + Double(n))
+                           51.4815 + Double(n) * 0.0001, -0.1915 + Double(n) * 0.0002)
             }
     }
 
-    func testATourOfTheGroundIsStillOffered() async throws {
-        XCTAssertTrue(TransitCheck.verdicts(tour).isEmpty, "Everyone was on the ground")
-        let (_, review) = await scan(tour, look: SceneCheck.DayLook(classified: 6, venue: 5, elsewhere: 0, structure: 4))
+    func testATourOfTheGroundIsOffered() async throws {
+        XCTAssertTrue(TransitCheck.moving(tour).isEmpty, "Everyone was on foot")
+        let (_, review) = await scan(tour)
         XCTAssertTrue(review.games.isEmpty)
         let visit = try XCTUnwrap(review.others.first, "The tour was not offered")
         XCTAssertEqual(visit.venue.id, "stamford-bridge")
@@ -150,44 +139,45 @@ final class AirborneTests: XCTestCase {
         XCTAssertEqual(visit.insideIds?.count, 6, "The six photos inside the fence placed it")
     }
 
-    /// The same tour judged by photos that do not show the ground (the museum, the shop, a selfie by the gate) waits for the
-    /// background search instead; one with a plane in the window never passes.
-    func testATourNeedsThreePhotosOfTheGroundFromTheGround() async throws {
-        var (scan, review) = await scan(tour, look: SceneCheck.DayLook(classified: 6, venue: 4, elsewhere: 0, structure: 2))
+    /// Two photos inside the fence, however far apart, or three inside twenty minutes, are not a stay: dropped, not deferred.
+    func testAVisitNeedsThreePhotosInsideTheFenceOverTwentyMinutes() async throws {
+        let two = tour.filter { !["stand-1", "stand-2", "stand-3", "stand-4"].contains($0.id) }   // 11:00 and 11:40
+        var (scan, review) = await scan(two)
         XCTAssertTrue(review.others.isEmpty)
-        XCTAssertEqual(scan.pendingVisits.count, 1, "Waits for the background search")
-        (scan, review) = await self.scan(tour, look: SceneCheck.DayLook(classified: 6, venue: 5, elsewhere: 0, structure: 4, aerial: 1))
+        XCTAssertEqual(scan.skippedVisits, 1)
+        XCTAssertTrue(scan.pendingVisits.isEmpty)
+        let quick = tour.filter { !["stand-3", "stand-4", "stand-5"].contains($0.id) }             // 11:00, 11:08, 11:16
+        (scan, review) = await self.scan(quick)
         XCTAssertTrue(review.others.isEmpty)
-        XCTAssertEqual(scan.pendingVisits.count, 1)
+        XCTAssertEqual(scan.skippedVisits, 1)
+        let five = tour.filter { $0.id != "stand-5" }                                              // 11:00 to 11:32
+        (scan, review) = await self.scan(five)
+        XCTAssertEqual(review.others.count, 1)
     }
 
-    /// The background search's offer for a waiting visit is judged by the photos inside the fence too.
-    func testTheBackgroundSearchJudgesAWaitingVisitByThePhotosInsideTheFence() async throws {
+    /// A visit left waiting by an earlier scan is judged the same way by the background search.
+    func testTheBackgroundSearchJudgesAWaitingVisitTheSameWay() async throws {
         let cluster = try XCTUnwrap(VisitGrouping.group(tour, venues: library.venues, minimumStay: 15 * 60).visits.first)
-        var seen: [String] = []
-        let offered = await ScanModel.waitingDay(cluster, venues: library.venues) { ids in
-            seen = ids
-            return SceneCheck.DayLook(classified: 6, venue: 5, elsewhere: 0, structure: 3)
-        }
-        XCTAssertEqual(seen, cluster.insideIds)
-        let day = try XCTUnwrap(offered, "A visit whose photos show the ground is offered")
+        let offered = await ScanModel.waitingDay(cluster, venues: library.venues)
+        let day = try XCTUnwrap(offered, "A stay inside the fence is offered")
         XCTAssertEqual(day.suggestions.first?.id, "stamford-bridge")
         XCTAssertTrue(day.reason.contains("Stamford Bridge"), day.reason)
-        let kept = await ScanModel.waitingDay(cluster, venues: library.venues) { _ in SceneCheck.DayLook(classified: 6, venue: 5, elsewhere: 0, structure: 2) }
-        XCTAssertNil(kept, "Two photos of the ground are not enough for a visit with no game")
+        let two = try XCTUnwrap(VisitGrouping.group(tour.filter { !["stand-1", "stand-2", "stand-3", "stand-4"].contains($0.id) },
+                                                    venues: library.venues, minimumStay: 15 * 60).visits.first)
+        let kept = await ScanModel.waitingDay(two, venues: library.venues)
+        XCTAssertNil(kept, "Two photos inside the fence are not enough for a visit with no game")
     }
 
-    /// Red Sox at Rockies, Coors Field, June 24 2026, 1:10 PM in Denver, a mile up: the hotel downtown that morning is at
-    /// 1,605 m and the ballpark at 1,610 to 1,625 m, so nothing is in the air. The rule is relative to the photos nearby.
+    /// Red Sox at Rockies, Coors Field, June 24 2026, 1:10 PM in Denver, a mile up: a game like any other.
     func testAGameDayAMileUpIsStillAVisit() async throws {
         let denver = [
-            Self.point("hotel", "2026-06-24T16:00:00Z", 39.7470, -104.9920, up: 1_605),
-            Self.point("gate", "2026-06-24T19:00:00Z", 39.7561, -104.9935, up: 1_610),
-            Self.point("first-pitch", "2026-06-24T19:12:00Z", 39.7563, -104.9942, up: 1_622),
-            Self.point("seventh", "2026-06-24T21:05:00Z", 39.7560, -104.9945, up: 1_625),
-            Self.point("final", "2026-06-24T22:10:00Z", 39.7558, -104.9940, up: 1_612),
+            Self.point("hotel", "2026-06-24T16:00:00Z", 39.7470, -104.9920),
+            Self.point("gate", "2026-06-24T19:00:00Z", 39.7561, -104.9935),
+            Self.point("first-pitch", "2026-06-24T19:12:00Z", 39.7563, -104.9942),
+            Self.point("seventh", "2026-06-24T21:05:00Z", 39.7560, -104.9945),
+            Self.point("final", "2026-06-24T22:10:00Z", 39.7558, -104.9940),
         ]
-        XCTAssertTrue(TransitCheck.verdicts(denver).isEmpty, "A town at 1,600 m is on the ground")
+        XCTAssertTrue(TransitCheck.moving(denver).isEmpty)
         let (scan, review) = await scan(denver)
         XCTAssertEqual(review.games.count, 1)
         let game = try XCTUnwrap(review.games.first)
@@ -209,48 +199,74 @@ final class AirborneTests: XCTestCase {
             Self.point("west-2", "2026-03-27T15:02:40Z", 51.4805, -0.2200),
             Self.point("home", "2026-03-27T17:10:00Z", 51.5100, -0.2500),
         ]
-        let verdicts = TransitCheck.verdicts(driveBy)
-        guard case .moving(let speed) = verdicts["past-the-gate"] else { return XCTFail("The photo inside the fence was not on the move") }
-        XCTAssertEqual(speed, 25, accuracy: 1)
-        XCTAssertNil(verdicts["home"])
+        let moving = TransitCheck.moving(driveBy)
+        XCTAssertEqual(try XCTUnwrap(moving["past-the-gate"], "The photo inside the fence was not on the move"), 25, accuracy: 1)
+        XCTAssertNil(moving["home"])
         XCTAssertTrue(PhotoMatcher.found(in: driveBy, venues: library.venues, existing: []).visits.isEmpty)
-        let (_, review) = await scan(driveBy, look: convincing)
+        let (_, review) = await scan(driveBy)
         XCTAssertTrue(review.games.isEmpty && review.others.isEmpty && review.possible.isEmpty)
     }
 
     /// A fix that jumps a few hundred metres inside a full bowl is not a vehicle: a kilometre is the least that counts.
-    func testAJumpingFixInsideTheBowlStaysOnTheGround() {
+    func testAJumpingFixInsideTheBowlStaysOnFoot() {
         let jumpy = [
             Self.point("a", "2026-03-25T15:00:00Z", 51.4817, -0.1911),
             Self.point("b", "2026-03-25T15:00:10Z", 51.4845, -0.1911), // 310 m north, 31 m/s
             Self.point("c", "2026-03-25T15:00:20Z", 51.4817, -0.1911),
         ]
-        XCTAssertTrue(TransitCheck.verdicts(jumpy).isEmpty)
+        XCTAssertTrue(TransitCheck.moving(jumpy).isEmpty)
+    }
+
+    // MARK: The owner's day at the Nurburgring
+
+    /// August 5 2023, from the scan check (times are Chicago's, UTC-5): 42 photos at the circuit from 03:22 to 06:26, eighteen
+    /// of them inside the fence (the grandstand, 600 m up) and the rest at the car park a kilometre east, then the road out,
+    /// Adenau, two photos in the valley at 340 m and Wuppertal that evening. The old altitude rule read the circuit's 270 m
+    /// above the valley as flight and dropped the day.
+    private var nurburgring: [PhotoPoint] {
+        let start = ISO8601DateFormatter().date(from: "2023-08-05T08:22:00Z")!
+        return (0..<42).map { i in
+            let inside = i % 7 < 3
+            return PhotoPoint(id: "circuit-\(i)", date: start.addingTimeInterval(Double(i) * 270),
+                              latitude: inside ? 50.33357 + Double(i % 7) * 0.0009 : 50.3350 + Double(i % 7 - 3) * 0.0008,
+                              longitude: (inside ? 6.94552 : 6.9610) + Double(i / 7) * 0.0006)
+        } + [
+            Self.point("road", "2023-08-05T12:30:00Z", 50.34816, 6.96942),
+            Self.point("adenau", "2023-08-05T12:39:00Z", 50.37032, 7.00584),
+            Self.point("valley-1", "2023-08-05T12:59:00Z", 50.37641, 6.94981),
+            Self.point("valley-2", "2023-08-05T13:10:00Z", 50.37663, 6.95096),
+            Self.point("wuppertal", "2023-08-05T15:16:00Z", 51.22796, 7.23996),
+        ]
+    }
+
+    func testADayAtTheNurburgringIsAVisit() async throws {
+        XCTAssertTrue(TransitCheck.moving(nurburgring).isEmpty, "Nobody was on the move")
+        let found = PhotoMatcher.found(in: nurburgring, venues: library.venues, existing: [])
+        let visit = try XCTUnwrap(found.visits.first)
+        XCTAssertEqual(visit.id, "nurburgring|2023-08-05")
+        XCTAssertEqual(visit.assetIds.count, 47)
+        XCTAssertEqual(visit.insideIds?.count, 18)
+        XCTAssertEqual(visit.anchors, (0..<42).filter { $0 % 7 < 3 }.map { "circuit-\($0)" })
+        XCTAssertTrue(visit.isStadiumVisit)
+        // No race on the calendar that weekend: offered as a stadium visit.
+        let (scan, review) = await scan(nurburgring)
+        XCTAssertTrue(review.games.isEmpty)
+        let offered = try XCTUnwrap(review.others.first, "The day at the circuit was not offered")
+        XCTAssertEqual(offered.venue.id, "nurburgring")
+        XCTAssertEqual(offered.insideIds?.count, 18)
+        XCTAssertEqual(scan.skippedVisits, 0)
     }
 
     // MARK: The pieces
 
-    /// What the photo library's fix carries: EXIF with no altitude reads as 0 with no vertical accuracy.
-    func testAltitudeAndSpeedComeFromTheFixWhenItHasThem() {
-        func fix(altitude: Double, vertical: Double, speed: Double = -1) -> CLLocation {
-            CLLocation(coordinate: CLLocationCoordinate2D(latitude: 51.48, longitude: -0.19), altitude: altitude,
-                       horizontalAccuracy: 10, verticalAccuracy: vertical, course: -1, speed: speed, timestamp: .now)
+    /// What the photo library's fix carries: a speed only when the phone recorded one.
+    func testSpeedComesFromTheFixWhenItHasOne() {
+        func fix(speed: Double) -> CLLocation {
+            CLLocation(coordinate: CLLocationCoordinate2D(latitude: 51.48, longitude: -0.19), altitude: 0,
+                       horizontalAccuracy: 10, verticalAccuracy: -1, course: -1, speed: speed, timestamp: .now)
         }
-        XCTAssertNil(PhotoPoint.altitude(of: fix(altitude: 0, vertical: -1)))
-        XCTAssertEqual(PhotoPoint.altitude(of: fix(altitude: 1_200, vertical: -1)), 1_200)
-        XCTAssertEqual(PhotoPoint.altitude(of: fix(altitude: 0, vertical: 5)), 0, "Sea level with an accuracy is real")
-        XCTAssertNil(PhotoPoint.speed(of: fix(altitude: 0, vertical: -1)))
-        XCTAssertEqual(PhotoPoint.speed(of: fix(altitude: 0, vertical: -1, speed: 50)), 50)
-    }
-
-    func testTheClassifierTellsAWindowSeatFromTheStands() {
-        XCTAssertTrue(SceneCheck.fromTheAir([("airplane", 0.6), ("sky", 0.5)]))
-        XCTAssertTrue(SceneCheck.fromTheAir([("airport", 0.4), ("dog", 0.7)]))
-        XCTAssertFalse(SceneCheck.fromTheAir([("stadium", 0.8), ("arena", 0.7), ("airplane", 0.1)]))
-        XCTAssertTrue(SceneCheck.DayLook(classified: 6, venue: 5, elsewhere: 0, structure: 3).showsTheGround())
-        XCTAssertFalse(SceneCheck.DayLook(classified: 6, venue: 5, elsewhere: 0, structure: 2).showsTheGround())
-        XCTAssertFalse(SceneCheck.DayLook(classified: 6, venue: 5, elsewhere: 0, structure: 4, aerial: 1).showsTheGround())
-        XCTAssertFalse(SceneCheck.DayLook(classified: 6, venue: 3, elsewhere: 3, structure: 3).showsTheGround())
+        XCTAssertNil(PhotoPoint.speed(of: fix(speed: -1)))
+        XCTAssertEqual(PhotoPoint.speed(of: fix(speed: 50)), 50)
     }
 
     /// A visit saved before the photos inside the fence were kept still reads, and is judged by all its photos.
@@ -261,25 +277,38 @@ final class AirborneTests: XCTestCase {
         XCTAssertEqual(cluster.anchors, ["a", "b"])
     }
 
-    /// The scan check shows each photo's altitude and verdict, the visit the landing would have made, and why it is dropped.
-    func testScanCheckShowsTheAirAndTheRoad() {
-        let zone = TimeZone(identifier: "Europe/London")!
-        let text = ScanCheck.lines(points: landing, venues: library.venues, saved: [], zone: zone).joined(separator: "\n")
-        XCTAssertTrue(text.contains("Photos: 7 (7 with a location, 0 without) \u{00B7} 6 in the air, 0 on the move: these never place a visit"), text)
-        XCTAssertTrue(text.contains("06:03  51.48170,-0.19000  inside Stamford Bridge (77 m, fence 200 m) \u{00B7} 1050 m up \u{00B7} in the air, 1025 m above the lowest photo nearby (limit 250 m)"), text)
-        XCTAssertTrue(text.contains("06:40  51.47000,-0.45430  no stadium within 2 km \u{00B7} 25 m up\n"), text)
-        XCTAssertTrue(text.contains("Visits (scan rule: a photo inside the fence, on the ground and not on the move, and the day's photos 15+ min apart):\n  none"), text)
-        XCTAssertTrue(text.contains("Visits the photos would make if every one were on the ground (the scan drops these: every photo inside the fence was in the air or on the move):\n  Stamford Bridge [stamford-bridge|2026-03-25]: 7 photos, 06:01\u{2013}06:40 (3 inside the fence)"), text)
+    /// The scan check shows each photo's verdict, the visit the landing would have made and why it is dropped, and for the
+    /// circuit the visit and the stay inside the fence that offers it.
+    func testScanCheckShowsTheRoadAndTheStay() {
+        let london = TimeZone(identifier: "Europe/London")!
+        let text = ScanCheck.lines(points: landing, venues: library.venues, saved: [], zone: london).joined(separator: "\n")
+        XCTAssertTrue(text.contains("Photos: 8 (8 with a location, 0 without) \u{00B7} 6 on the move: these never place a visit"), text)
+        XCTAssertTrue(text.contains("06:03  51.48170,-0.19000  inside Stamford Bridge (77 m, fence 200 m) \u{00B7} on the move, 92 m/s (limit 20 m/s over 1 km)"), text)
+        XCTAssertTrue(text.contains("06:40  51.47000,-0.45430  no stadium within 2 km\n"), text)
+        XCTAssertTrue(text.contains("Visits (scan rule: a photo inside the fence, not on the move, and the day's photos 15+ min apart):\n"
+                                    + "  Stamford Bridge [stamford-bridge|2026-03-25]: 8 photos, 06:01\u{2013}06:40 (1 inside the fence)"), text)
+        let cabin = PhotoMatcher.found(in: landing, venues: library.venues, existing: []).visits[0]
+        XCTAssertEqual(ScanCheck.visitLine(cabin), "stadium visit: 1 photos inside the fence over 0 min \u{2014} fewer than 3 or under 20 min, dropped")
 
+        // A drive past the ground: the photo inside the fence was on the move, so the visit it would have made is shown dropped.
         let road = ScanCheck.lines(points: [
             Self.point("east-1", "2026-03-27T15:00:40Z", 51.4823, -0.1765),
             Self.point("past-the-gate", "2026-03-27T15:01:20Z", 51.4817, -0.1910),
-        ], venues: library.venues, saved: [], zone: zone).joined(separator: "\n")
+        ], venues: library.venues, saved: [], zone: london).joined(separator: "\n")
         XCTAssertTrue(road.contains("inside Stamford Bridge (8 m, fence 200 m) \u{00B7} on the move, 25 m/s (limit 20 m/s over 1 km)"), road)
+        XCTAssertTrue(road.contains("Visits (scan rule: a photo inside the fence, not on the move, and the day's photos 15+ min apart):\n  none"), road)
+        XCTAssertTrue(road.contains("Visits the photos would make if none were on the move (the scan drops these: every photo inside the fence was on the move):\n"
+                                    + "  Stamford Bridge [stamford-bridge|2026-03-27]: 2 photos, 15:00\u{2013}15:01 (1 inside the fence)"), road)
 
-        let kept = ScanCheck.tourLine(PhotoCluster(id: "x", venue: library.venue("stamford-bridge")!, start: .now, end: .now, assetIds: ["a", "b", "c", "d"],
-                                                   times: [.now, .now, .now, .now], insideIds: ["a", "b", "c"]),
-                                      look: SceneCheck.DayLook(classified: 3, venue: 3, elsewhere: 0, structure: 3))
-        XCTAssertEqual(kept, "scene check of the 3 photos inside the fence: 3 classified, 3 the ground itself, 0 from the air, 0 somewhere else \u{2192} offered as a stadium visit (needs 3+ of the ground itself, none from the air, under half somewhere else)")
+        let chicago = TimeZone(identifier: "America/Chicago")!
+        let circuit = ScanCheck.lines(points: nurburgring, venues: library.venues, saved: [], zone: chicago).joined(separator: "\n")
+        XCTAssertTrue(circuit.contains("Photos: 47 (47 with a location, 0 without)\n"), circuit)
+        XCTAssertTrue(circuit.contains("03:22  50.33357,6.94552  inside Nurburgring Grand Prix Circuit (262 m, fence 900 m)\n"), circuit)
+        XCTAssertTrue(circuit.contains("Visits (scan rule: a photo inside the fence, not on the move, and the day's photos 15+ min apart):\n"
+                                       + "  Nurburgring Grand Prix Circuit [nurburgring|2023-08-05]: 47 photos, 03:22\u{2013}10:16 (18 inside the fence)"), circuit)
+        let visit = PhotoMatcher.found(in: nurburgring, venues: library.venues, existing: []).visits[0]
+        XCTAssertEqual(ScanCheck.visitLine(visit), "stadium visit: 18 photos inside the fence over 166 min \u{2014} offered")
+        let stale = PhotoMatcher.found(in: landing.filter { $0.id != "hammersmith" }, venues: library.venues, existing: []).visits[0]
+        XCTAssertEqual(ScanCheck.visitLine(stale), "stadium visit: 2 photos inside the fence over 15 min \u{2014} fewer than 3 or under 20 min, dropped")
     }
 }

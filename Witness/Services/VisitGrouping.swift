@@ -9,16 +9,8 @@ struct PhotoPoint: Hashable, Sendable {
     let longitude: Double?
     /// A screenshot carries no location and was not taken anywhere: never a photo of a day out.
     var screenshot = false
-    /// Metres above sea level from the fix, when it has one. A plane over the ground is not a visit (`TransitCheck`).
-    var altitude: Double? = nil
-    /// Metres per second from the fix, when the phone recorded one.
+    /// Metres per second from the fix, when the phone recorded one. A photo on the move is not a visit (`TransitCheck`).
     var speed: Double? = nil
-
-    /// The fix's altitude, when it has one: a location from a photo's EXIF carries 0 with no vertical accuracy when the camera
-    /// recorded none. 0 with an accuracy is sea level.
-    static func altitude(of location: CLLocation) -> Double? {
-        location.verticalAccuracy >= 0 || location.altitude != 0 ? location.altitude : nil
-    }
 
     /// The fix's speed, when the phone recorded one (negative when it did not).
     static func speed(of location: CLLocation) -> Double? {
@@ -131,11 +123,11 @@ enum VisitGrouping {
     /// - minimumStay: required spread of a visit's photos (the ones inside the fence and the day's others; library discovery
     ///   uses 15 min to skip drive-bys; an album the fan chose is trusted, so it passes nil).
     /// - skipping: "venueId|yyyy-MM-dd" keys of games already in the library.
-    /// - transit: which photos were in the air or on the move (`TransitCheck.verdicts`); worked out here when nil. Such a
-    ///   photo is one of the day's, never the one that places a visit: a plane over the ground is not a visit to it.
+    /// - moving: which photos were on the move (`TransitCheck.moving`); worked out here when nil. Such a photo is one of the
+    ///   day's, never the one that places a visit: a plane over the ground is not a visit to it.
     static func group(_ points: [PhotoPoint], venues: [Venue], radius: CLLocationDistance? = nil,
                       minimumStay: TimeInterval? = nil, skipping: Set<String> = [],
-                      transit: [String: TransitCheck.Verdict]? = nil) -> PhotoScan {
+                      moving: [String: Double]? = nil) -> PhotoScan {
         var scan = PhotoScan()
         var visits: [String: (Venue, [(String, Date)])] = [:]
         var loose: [(String, Date)] = []
@@ -143,13 +135,13 @@ enum VisitGrouping {
         var joined: [String: [(String, Date)]] = [:]
         var inside = Set<String>()
         let index = VenueIndex(venues)
-        let transit = transit ?? TransitCheck.verdicts(points)
+        let moving = moving ?? TransitCheck.moving(points)
         var days = DayKeyer()
 
         for p in points {
             guard let date = p.date else { scan.undated.append(p.id); continue }
             guard let lat = p.latitude, let lon = p.longitude else { loose.append((p.id, date)); continue }
-            if let verdict = transit[p.id], !verdict.placesAVisit { loose.append((p.id, date)); continue }
+            if moving[p.id] != nil { loose.append((p.id, date)); continue }
             if let v = index.nearest(lat: lat, lon: lon, radius: radius) {
                 let k = "\(v.id)|\(days.day(date, tz: v.tz))"
                 if skipping.contains(k) { continue }
