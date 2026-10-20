@@ -168,7 +168,7 @@ final class Library {
 
     /// Whether a venue is a place for this sport. Big football bowls count for soccer too: World Cup and Gold Cup games.
     func hosts(_ venue: Venue, _ sport: Sport) -> Bool {
-        venue.sports.contains(sport)
+        sport == .other || venue.sports.contains(sport)
             || (sport == .soccer && venue.sports.contains(.football) && (venue.capacity ?? 0) >= 30_000)
     }
 
@@ -928,7 +928,7 @@ final class Library {
         for g in games.sorted(by: { $0.date < $1.date }) {
             let v = venue(g.venueId)
             let day = Self.fileDay(g.date, in: v?.tz ?? .current)
-            let cols: [String?] = [day, g.sport.name, g.isVisit ? "stadium visit" : "game", v?.name, v?.city, v?.country,
+            let cols: [String?] = [day, g.sportName, g.isVisit ? "stadium visit" : "game", v?.name, v?.city, v?.country,
                                    team(g.homeTeamId)?.displayName, team(g.awayTeamId)?.displayName,
                                    g.homeScore.map(String.init), g.awayScore.map(String.init),
                                    team(g.rootingForTeamId)?.displayName, g.competition, g.seat, String(g.photos.count), g.note]

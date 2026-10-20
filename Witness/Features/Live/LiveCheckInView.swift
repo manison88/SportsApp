@@ -11,6 +11,7 @@ struct LiveCheckInView: View {
     @State private var startedAt = Date.now
     @State private var venueId: String = ""
     @State private var sport: Sport = .baseball
+    @State private var sportLabel = ""
     @State private var homeId: String = ""
     @State private var awayId: String = ""
     @State private var seat = ""
@@ -117,6 +118,8 @@ struct LiveCheckInView: View {
                         Label(s.name, systemImage: s.symbol).tag(s)
                     }
                 }
+                .accessibilityIdentifier("live-sport")
+                if sport == .other { OtherSportField(text: $sportLabel) }
             }
             Section {
                 teamPicker("Home", selection: $homeId).accessibilityIdentifier("live-home")
@@ -319,7 +322,8 @@ struct LiveCheckInView: View {
     }
 
     private var canStart: Bool {
-        !venueId.isEmpty && !homeId.isEmpty && !awayId.isEmpty && homeId != awayId
+        if sport == .other { return !venueId.isEmpty && sportLabel.trimmedOrNil != nil && (homeId.isEmpty || homeId != awayId) }
+        return !venueId.isEmpty && !homeId.isEmpty && !awayId.isEmpty && homeId != awayId
     }
 
     private var venueBinding: Binding<String> {
@@ -587,7 +591,7 @@ struct LiveCheckInView: View {
 
     private func selectVenue(_ id: String) {
         venueId = id
-        if let v = library.venue(id), let s = v.sports.first, s != .motorsport {
+        if sport != .other, let v = library.venue(id), let s = v.sports.first, s != .motorsport {
             sport = s
         }
         defaultTeams()
@@ -611,6 +615,7 @@ struct LiveCheckInView: View {
 
     private func finish() {
         var entry = GameEntry(sport: sport, date: startedAt, venueId: venueId, origin: .live)
+        entry.sportLabel = sport == .other ? sportLabel.trimmedOrNil : nil
         entry.homeTeamId = homeId.isEmpty ? nil : homeId
         entry.awayTeamId = awayId.isEmpty ? nil : awayId
         entry.homeScore = homeScore

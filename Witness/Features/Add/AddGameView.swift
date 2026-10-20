@@ -23,6 +23,10 @@ struct AddGameView: View {
     @State private var awayTeamId: String?
     @State private var raceName = ""
     @State private var competition = ""
+    /// What the fan calls the sport when it is Other.
+    @State private var sportLabel = ""
+    /// A free-text title for an Other game ("Sevens final").
+    @State private var otherTitle = ""
     @State private var venueId: String?
     @State private var date = Calendar.current.date(bySettingHour: 19, minute: 0, second: 0, of: .now) ?? .now
     @State private var homeScore = ""
@@ -92,6 +96,15 @@ struct AddGameView: View {
                 }
                 .pickerStyle(.menu)
                 .accessibilityIdentifier("add-sport")
+
+                if sport == .other {
+                    OtherSportField(text: $sportLabel)
+                    if !isVisit && !planning {
+                        TextField("Title (optional)", text: $otherTitle)
+                            .textInputAutocapitalization(.words)
+                            .accessibilityIdentifier("add-other-title")
+                    }
+                }
 
                 if isVisit {
                     teamPicker("Whose stadium", selection: $homeTeamId, id: "add-home-team")
@@ -180,7 +193,7 @@ struct AddGameView: View {
                         }
                         .accessibilityIdentifier("add-rooting")
                     }
-                    if let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty {
+                    if sport != .other, let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty {
                         Button {
                             Task { await lookup() }
                         } label: {
@@ -292,11 +305,11 @@ struct AddGameView: View {
                 Button(action: save) {
                     Image(systemName: "checkmark")
                         .fontWeight(.bold)
-                        .foregroundStyle(venueId == nil ? Color.textTertiary : Color.onPrimary)
+                        .foregroundStyle(!canSave ? Color.textTertiary : Color.onPrimary)
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(Color.primaryText)
-                .disabled(venueId == nil)
+                .disabled(!canSave)
                 .accessibilityLabel("Save")
                 .accessibilityIdentifier("add-save")
             }
@@ -327,7 +340,7 @@ struct AddGameView: View {
 
     /// A stadium that does not fit what was entered: it does not host the sport, or the photos were taken far from it.
     private var venueWarning: String? {
-        guard let venue = venueId.flatMap({ library.venue($0) }), !isVisit, sport != .motorsport else { return nil }
+        guard let venue = venueId.flatMap({ library.venue($0) }), !isVisit, sport != .motorsport, sport != .other else { return nil }
         if !library.hosts(venue, sport) {
             return "\(venue.name) doesn\u{2019}t usually host \(sport.name.lowercased()). Is it the right stadium?"
         }
@@ -336,6 +349,9 @@ struct AddGameView: View {
         }
         return nil
     }
+
+    /// A ground, and for Other a name for what it was.
+    private var canSave: Bool { venueId != nil && (sport != .other || sportLabel.trimmedOrNil != nil) }
 
     private var venueName: String {
         if let v = venueId.flatMap({ library.venue($0) }) { return v.name }
@@ -399,6 +415,8 @@ struct AddGameView: View {
         didPrefill = true
         if let g = editing {
             sport = g.sport
+            sportLabel = g.sportLabel ?? ""
+            otherTitle = g.sport == .other ? (g.headline ?? "") : ""
             isVisit = g.isVisit
             if g.isVisit, let c = g.competition, Self.visitTypes.contains(c) { visitType = c }
             homeTeamId = g.homeTeamId
@@ -523,7 +541,7 @@ struct AddGameView: View {
     /// Looks the game up as soon as a venue and day are set, but only on a new game with no teams picked yet, so
     /// nothing the fan typed is overwritten. "Find this game" stays for everything else.
     private func autoLookup() {
-        guard !planning, !isVisit, found == nil, !lookingUp,
+        guard !planning, !isVisit, sport != .other, found == nil, !lookingUp,
               let venue = venueId.flatMap({ library.venue($0) }), !GameLookup.leagues(for: venue).isEmpty else { return }
         let noTeamsYet = homeTeamId == nil && awayTeamId == nil
         if let editing {
@@ -560,7 +578,7 @@ struct AddGameView: View {
 
     /// Finds the real game at this venue on this day and fills the form from it.
     private func lookup() async {
-        guard let venue = venueId.flatMap({ library.venue($0) }) else { return }
+        guard sport != .other, let venue = venueId.flatMap({ library.venue($0) }) else { return }
         lookingUp = true
         lookupFailed = false
         defer { lookingUp = false }
@@ -610,6 +628,7 @@ struct AddGameView: View {
             plan.awayTeamId = sport == .motorsport ? nil : awayTeamId
             let title = (sport == .motorsport ? raceName : competition).trimmingCharacters(in: .whitespacesAndNewlines)
             plan.competition = title.isEmpty ? nil : title
+            plan.sportLabel = sport == .other ? sportLabel.trimmedOrNil : nil
             let seatText = seat.trimmingCharacters(in: .whitespacesAndNewlines)
             plan.seat = seatText.isEmpty ? nil : seatText
             let noteText = note.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -622,6 +641,8 @@ struct AddGameView: View {
         }
         var g = editing ?? GameEntry(sport: sport, date: date, venueId: venueId, origin: draft == nil ? .manual : .ticket)
         g.sport = sport
+        g.sportLabel = sport == .other ? sportLabel.trimmedOrNil : nil
+        if sport == .other, !isVisit { g.headline = otherTitle.trimmedOrNil }
         g.date = date
         g.venueId = venueId
         if isVisit {

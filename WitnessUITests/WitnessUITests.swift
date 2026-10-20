@@ -268,6 +268,50 @@ final class WitnessUITests: XCTestCase {
         snap("add-game-detail")
     }
 
+    /// A sport the app doesn't list: Other, with a name the fan types.
+    func testAddOtherSportByTyping() { addOtherSport(extra: []) }
+
+    func testAddOtherSportByTypingLight() { addOtherSport(extra: ["-appearance", "light"]) }
+
+    private func addOtherSport(extra: [String]) {
+        launch(["-empty"] + extra)
+        tap("empty-add")
+        tap("add-sport")
+        app.buttons["Other"].firstMatch.tap()
+        let name = el("other-sport-field")
+        XCTAssertTrue(name.waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["add-save"].isEnabled, "Save waits for a venue and a name")
+        snap("add-other-empty")
+
+        tap("add-venue")
+        let field = app.searchFields.firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 5))
+        field.tap()
+        field.typeText("Wrigley")
+        tap("venue-row-wrigley")
+        XCTAssertTrue(el("add-venue-name").waitForExistence(timeout: 5))
+        XCTAssertFalse(app.buttons["add-save"].isEnabled, "A venue alone is not enough for Other")
+
+        name.tap(); app.typeText("Rugby")
+        tap("add-other-title"); app.typeText("Sevens final")
+        snap("add-other-filled")
+        XCTAssertTrue(app.buttons["add-save"].isEnabled)
+        tap("add-save")
+
+        let card = app.descendants(matching: .any).matching(NSPredicate(format: "identifier BEGINSWITH 'game-card-'")).firstMatch
+        XCTAssertTrue(card.waitForExistence(timeout: 5))
+        snap("add-other-timeline")
+        card.tap()
+        XCTAssertTrue(el("game-title").waitForExistence(timeout: 5))
+        snap("add-other-detail")
+        back()
+
+        tab("Passport")
+        XCTAssertTrue(el("passport-count").waitForExistence(timeout: 5))
+        XCTAssertTrue(el("passport-other-Rugby").waitForExistence(timeout: 5), "The passport lists the typed name")
+        snap("add-other-passport")
+    }
+
     /// Any team against any team: a national side and a club from a league the catalog doesn't have, made by hand.
     func testAddGameWithCustomTeams() {
         launch(["-empty"])

@@ -533,7 +533,10 @@ func matchupText(_ game: GameEntry, _ library: Library) -> String {
     case let (a?, h?): return "\(a) at \(h)"
     case let (nil, h?): return h
     case let (a?, nil): return a
-    default: return library.venue(game.venueId)?.name ?? "Game"
+    default:
+        let venue = library.venue(game.venueId)?.name
+        if game.sport == .other { return venue.map { "\(game.sportName) at \($0)" } ?? game.sportName }
+        return venue ?? "Game"
     }
 }
 
@@ -723,6 +726,7 @@ extension Sport {
         case .soccer: Color(hex: "E6F05A")
         case .motorsport: Color(hex: "BF7BFF")
         case .handball: Color(hex: "FF7AD1")
+        case .other: Color(hex: "9AA3B2")
         }
     }
 }

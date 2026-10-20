@@ -107,7 +107,7 @@ struct LifeMapView: View {
                 Menu {
                     Picker("Sport", selection: $sport) {
                         Text("All sports").tag(Sport?.none)
-                        ForEach(Sport.allCases) { s in
+                        ForEach(Sport.allCases.filter { $0 != .other || library.games.contains { $0.sport == .other } }) { s in
                             Label(s.name, systemImage: s.symbol).tag(Sport?.some(s))
                         }
                     }

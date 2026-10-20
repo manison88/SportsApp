@@ -444,7 +444,7 @@ enum GameLookup {
         case .football, .basketball: return n > 4 ? "OT" : "Q\(n)"
         case .hockey: return n > 3 ? "OT" : "P\(n)"
         case .soccer, .handball: return clock ?? "\(n)H"
-        case .motorsport: return "\(n)"
+        case .motorsport, .other: return "\(n)"
         }
     }
 
@@ -455,7 +455,7 @@ enum GameLookup {
         case .basketball: 2.25 * 3600
         case .hockey: 2.5 * 3600
         case .soccer, .handball: 1.9 * 3600
-        case .motorsport: 2 * 3600
+        case .motorsport, .other: 2 * 3600
         }
     }
 

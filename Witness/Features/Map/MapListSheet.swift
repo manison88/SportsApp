@@ -341,6 +341,9 @@ struct VenueGlyph: View {
                 ctx.stroke(p, with: .color(line.opacity(0.8)), lineWidth: lw * 0.8)
                 let r = field.height * 0.22
                 ctx.stroke(Path(ellipseIn: CGRect(x: field.midX - r, y: field.midY - r, width: 2 * r, height: 2 * r)), with: .color(line.opacity(0.8)), lineWidth: lw * 0.8)
+            case .other:
+                ctx.fill(Path(roundedRect: field, cornerRadius: 4), with: .color(line.opacity(0.18)))
+                ctx.stroke(Path(roundedRect: field, cornerRadius: 4), with: .color(line), lineWidth: lw)
             }
         }
         .frame(width: size, height: size)

@@ -16,6 +16,10 @@ struct DiscoveryView: View {
     @State private var otherIndex = 0
     @State private var addedOther = 0
     @State private var otherKind = "Concert"
+    /// What the fan typed instead of picking a kind, and the sport they marked it as (nil keeps the ground's sport).
+    @State private var otherCustom = ""
+    @State private var otherSport: Sport?
+    @State private var otherSportLabel = ""
     @State private var otherTitle = ""
     /// Days that might be games: the fan selects the stadium, then the photos' date finds the game.
     @State private var possible: [PossibleDay] = []
@@ -581,6 +585,39 @@ struct DiscoveryView: View {
                         .padding(14)
                         .background(Color.panel, in: .rect(cornerRadius: 12))
                         .accessibilityIdentifier("discovery-other-name")
+                    TextField("Or type what it was", text: $otherCustom)
+                        .textInputAutocapitalization(.words)
+                        .padding(14)
+                        .background(Color.panel, in: .rect(cornerRadius: 12))
+                        .accessibilityIdentifier("discovery-other-custom")
+                        .onChange(of: otherCustom) { _, new in
+                            if new.count > 40 { otherCustom = String(new.prefix(40)) }
+                        }
+
+                    Text("Was it a sport? (optional)").unitLabel().padding(.top, 6)
+                    ScrollView(.horizontal) {
+                        HStack(spacing: 8) {
+                            ForEach(Sport.allCases) { s in
+                                Button { otherSport = otherSport == s ? nil : s } label: {
+                                    Text(s.name)
+                                        .font(.condensed(.subheadline, weight: .heavy))
+                                        .textCase(.uppercase)
+                                        .foregroundStyle(otherSport == s ? Color.onPrimary : Color.primaryText)
+                                        .padding(.horizontal, 14)
+                                        .frame(minHeight: 44)
+                                        .background(otherSport == s ? Color.primaryText : Color.panelRaised, in: .capsule)
+                                }
+                                .accessibilityAddTraits(otherSport == s ? .isSelected : [])
+                                .accessibilityIdentifier("discovery-other-sport-\(s.rawValue)")
+                            }
+                        }
+                    }
+                    .scrollIndicators(.hidden)
+                    if otherSport == .other {
+                        OtherSportField(text: $otherSportLabel)
+                            .padding(14)
+                            .background(Color.panel, in: .rect(cornerRadius: 12))
+                    }
                 }
             }
             .gutter()
@@ -636,7 +673,11 @@ struct DiscoveryView: View {
         var entry = GameEntry(sport: cluster.venue.sports.first ?? .baseball, date: cluster.start, venueId: cluster.venue.id,
                               photos: cluster.assetIds.map { PhotoRef.library($0) }, origin: .photos)
         entry.kind = .visit
-        entry.competition = otherKind
+        entry.competition = otherCustom.trimmedOrNil ?? otherKind
+        if let s = otherSport {
+            entry.sport = s
+            if s == .other { entry.sportLabel = otherSportLabel.trimmedOrNil ?? otherCustom.trimmedOrNil }
+        }
         let title = otherTitle.trimmingCharacters(in: .whitespacesAndNewlines)
         if !title.isEmpty { entry.headline = title }
         library.add(entry)
@@ -648,6 +689,9 @@ struct DiscoveryView: View {
         otherIndex += 1
         otherKind = "Concert"
         otherTitle = ""
+        otherCustom = ""
+        otherSport = nil
+        otherSportLabel = ""
     }
 
     private var done: some View {

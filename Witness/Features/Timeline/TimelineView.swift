@@ -13,7 +13,7 @@ struct TimelineView: View {
         guard !q.isEmpty else { return library.games }
         return library.games.filter { g in
             let words = [headlineText(g, library), matchupText(g, library), library.venue(g.venueId)?.name ?? "",
-                         library.venue(g.venueId)?.city ?? "", g.competition ?? "", String(Fmt.year(g.date)),
+                         library.venue(g.venueId)?.city ?? "", g.competition ?? "", g.sportLabel ?? "", String(Fmt.year(g.date)),
                          library.team(g.homeTeamId)?.abbreviation ?? "", library.team(g.awayTeamId)?.abbreviation ?? ""]
             return words.joined(separator: " ").lowercased().contains(q)
         }
@@ -433,6 +433,12 @@ struct TearOff: View {
                 Text("RACE").font(.condensed(.caption2, weight: .heavy)).tracking(2).foregroundStyle(Color.textSecondary)
                 Text(game.podium.first.map { $0.split(separator: " ").prefix(2).joined(separator: " ") } ?? "\u{2014}")
                     .font(.condensed(.title3, weight: .heavy))
+            } else if game.sport == .other, game.homeTeamId == nil, game.awayTeamId == nil {
+                // No sides to show: the stub says what it was.
+                Image(systemName: game.sport.symbol).font(.title2).foregroundStyle(Color.signal)
+                Text(game.sportName.uppercased())
+                    .font(.condensed(.caption, weight: .heavy)).tracking(2).foregroundStyle(Color.textSecondary)
+                    .lineLimit(2).multilineTextAlignment(.center).minimumScaleFactor(0.7)
             } else if game.isVisit {
                 Text((game.competition ?? "Visit").uppercased())
                     .font(.condensed(.caption2, weight: .heavy)).tracking(2).foregroundStyle(Color.textSecondary)

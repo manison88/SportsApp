@@ -84,7 +84,7 @@ final class TournamentCatalogTests: XCTestCase {
 
     func testEverySportTheAppListsHasItsTournaments() {
         let sports = Set(Self.competitions.map(\.sport))
-        for sport in Sport.allCases { XCTAssertTrue(sports.contains(sport.rawValue), "\(sport) has tournaments") }
+        for sport in Sport.allCases where sport != .other { XCTAssertTrue(sports.contains(sport.rawValue), "\(sport) has tournaments") }
         for id in ["soccer/fifa.world", "soccer/uefa.euro", "soccer/conmebol.america", "soccer/caf.nations", "soccer/afc.asian.cup",
                    "soccer/concacaf.gold", "soccer/uefa.nations", "soccer/fifa.wwc", "soccer/uefa.champions", "soccer/conmebol.libertadores",
                    "hockey/iihf.worlds", "hockey/olympics-mens-ice-hockey", "hockey/hockey-world-cup", "handball/ihf.worldchamp",

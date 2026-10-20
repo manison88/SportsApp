@@ -6,8 +6,16 @@ import SwiftUI
 
 enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
     case baseball, football, basketball, hockey, soccer, motorsport, handball
+    /// Anything else: rugby, cricket, a concert. The fan types the name (`GameEntry.sportLabel`).
+    case other
 
     var id: String { rawValue }
+
+    /// An unknown sport from a newer file reads as Other instead of failing the whole library.
+    init(from decoder: Decoder) throws {
+        let raw = try decoder.singleValueContainer().decode(String.self)
+        self = Sport(rawValue: raw) ?? .other
+    }
 
     var name: String {
         switch self {
@@ -18,6 +26,7 @@ enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
         case .soccer: SoccerWord.name
         case .motorsport: "Motorsport"
         case .handball: "Handball"
+        case .other: "Other"
         }
     }
 
@@ -30,6 +39,7 @@ enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
         case .soccer: "soccerball"
         case .motorsport: "flag.checkered"
         case .handball: "figure.handball"
+        case .other: "sparkles"
         }
     }
 
@@ -37,7 +47,7 @@ enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
     var scoringNoun: String {
         switch self {
         case .baseball: "runs"
-        case .football, .basketball: "points"
+        case .football, .basketball, .other: "points"
         case .hockey, .soccer, .handball: "goals"
         case .motorsport: "laps"
         }
@@ -50,7 +60,7 @@ enum Sport: String, Codable, CaseIterable, Identifiable, Hashable {
         case .football, .basketball: ["1", "2", "3", "4"]
         case .hockey: ["1", "2", "3"]
         case .soccer, .handball: ["1H", "2H"]
-        case .motorsport: []
+        case .motorsport, .other: []
         }
     }
 }
@@ -232,6 +242,8 @@ struct GameEntry: Codable, Hashable, Identifiable {
     var rootingForTeamId: String?
     var competition: String?
     var headline: String?
+    /// What the fan typed when the sport is Other ("Rugby", "Rodeo").
+    var sportLabel: String?
     var seat: String?
     var companionIds: [String] = []
     var note: String?
@@ -267,6 +279,12 @@ struct GameEntry: Codable, Hashable, Identifiable {
     var autoPhotosUntil: Date?
     /// True once videos from the stadium and game time have been looked for.
     var videosChecked: Bool?
+
+    /// The sport as the fan reads it: the typed label for Other, else the sport's name.
+    var sportName: String {
+        if sport == .other, let l = sportLabel?.trimmingCharacters(in: .whitespacesAndNewlines), !l.isEmpty { return l }
+        return sport.name
+    }
 
     enum Kind: String, Codable { case visit }
     var isVisit: Bool { kind == .visit }

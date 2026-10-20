@@ -71,6 +71,8 @@ struct PassportView: View {
                         .accessibilityIdentifier("planned-stamp-\(stamp.venueId)")
                     }
                 }
+
+                otherNames
             }
             .gutter()
             .padding(.bottom, Spacing.block)
@@ -134,6 +136,35 @@ struct PassportView: View {
         .background(Color.panel, in: .rect(cornerRadius: 16))
     }
 
+    /// What the fan logged under Other: each typed name with how many times.
+    @ViewBuilder private var otherNames: some View {
+        if sport == .other { otherNamesList }
+    }
+
+    private struct OtherName: Identifiable { let name: String; let count: Int; var id: String { name } }
+
+    private var otherNamesList: some View {
+        let others: [GameEntry] = library.games.filter { $0.sport == .other }
+        let grouped: [String: [GameEntry]] = Dictionary(grouping: others, by: { $0.sportName })
+        var names: [OtherName] = grouped.map { OtherName(name: $0.key, count: $0.value.count) }
+        names.sort { $0.count != $1.count ? $0.count > $1.count : $0.name < $1.name }
+        return VStack(alignment: .leading, spacing: 0) {
+            ForEach(names) { row in
+                HStack {
+                    Text(row.name).font(.body)
+                    Spacer()
+                    Text("\(row.count)").font(.condensed(.headline, weight: .heavy)).foregroundStyle(Color.textSecondary)
+                }
+                .frame(minHeight: 48)
+                .accessibilityElement(children: .combine)
+                .accessibilityIdentifier("passport-other-\(row.name)")
+            }
+        }
+        .foregroundStyle(Color.primaryText)
+        .padding(.horizontal, 16)
+        .background(Color.panel, in: .rect(cornerRadius: 16))
+    }
+
     private var filter: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
@@ -166,6 +197,7 @@ struct PassportView: View {
         case .soccer: SoccerWord.usesFudbal ? "FUDBAL" : "SOCCER"
         case .motorsport: "MOTOR"
         case .handball: "HANDBALL"
+        case .other: "OTHER"
         }
     }
 
@@ -176,6 +208,7 @@ struct PassportView: View {
                                               : (earned == 1 ? "soccer\nstadium" : "soccer\nstadiums")
         case .motorsport: earned == 1 ? "circuit" : "circuits"
         case .handball: earned == 1 ? "handball\narena" : "handball\narenas"
+        case .other: earned == 1 ? "other\nvenue" : "other\nvenues"
         case .basketball, .hockey: earned == 1 ? "\(Self.league(sport))\narena" : "\(Self.league(sport))\narenas"
         case .football: earned == 1 ? "NFL\nstadium" : "NFL\nstadiums"
         }

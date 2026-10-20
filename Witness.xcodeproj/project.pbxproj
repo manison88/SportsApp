@@ -72,6 +72,7 @@
 		9E944FAAA2B99623DAC8A56B /* TeamPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3389D60FD9A2CDD994777AC /* TeamPickerView.swift */; };
 		A40E4A393EC511572F23D872 /* nfl-scoreboard-20250105.json in Resources */ = {isa = PBXBuildFile; fileRef = 08C11AF682C23D055AB16995 /* nfl-scoreboard-20250105.json */; };
 		A4991501BDDEFF74F3C2711D /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080F09ACBEB9945779CC3D9E /* AddGameView.swift */; };
+		7C57DFBF084C49FCA8C77658 /* OtherSportField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81215430EE43461890494916 /* OtherSportField.swift */; };
 		A56DC27EEC6C4B3CBD3C7A66 /* HomePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD30B8B75E6C4D489D4D368D /* HomePickerView.swift */; };
 		B36A1EF368677A89AD58E91D /* CoverPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0A2D620B0AF02229035D47 /* CoverPicker.swift */; };
 		B5ADCC2536397DCDB31BF5F2 /* nfl-summary-401671844.json in Resources */ = {isa = PBXBuildFile; fileRef = 0F19D32DC278C4AA996AD53E /* nfl-summary-401671844.json */; };
@@ -84,6 +85,7 @@
 		C81F6A142E090EADB2D8F432 /* TextRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82BEB516D31165D21C006E /* TextRecognizer.swift */; };
 		C969C27B55763B17CA718E21 /* LuckyCharmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC70DF3A4422B36428B0E088 /* LuckyCharmView.swift */; };
 		CC00A63D66FA2073A5D2C456 /* LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EF7F7EAD209867041DEF5 /* LibraryTests.swift */; };
+		B07A513995DC48FCBA3BCD85 /* OtherSportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A715D5D6E86E4FAB97BDE3C1 /* OtherSportTests.swift */; };
 		86384A30A911462298F1EF98 /* NationalTeamTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4513EF4F81A14E30A123476C /* NationalTeamTests.swift */; };
 		CD5342E7131026E858E6D978 /* AlbumImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F836BE70D81FF166D6EFD6A /* AlbumImporter.swift */; };
 		CFBFBA9DB68338AEE808C225 /* SharedPassportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD0C6F4096980A62A376DA6A /* SharedPassportView.swift */; };
@@ -132,6 +134,7 @@
 /* Begin PBXFileReference section */
 		003C9498EA506F48F2E4ECF9 /* Witness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Witness.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		080F09ACBEB9945779CC3D9E /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
+		81215430EE43461890494916 /* OtherSportField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherSportField.swift; sourceTree = "<group>"; };
 		08AAD768395210D8C4AC6920 /* RecapFilmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapFilmView.swift; sourceTree = "<group>"; };
 		08C11AF682C23D055AB16995 /* nfl-scoreboard-20250105.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "nfl-scoreboard-20250105.json"; sourceTree = "<group>"; };
 		0BF19D597AB4306240030ECA /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
@@ -176,6 +179,7 @@
 		6F27DBC4958B4E48B5BA0D77 /* F1Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1Calendar.swift; sourceTree = "<group>"; };
 		73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLookupTests.swift; sourceTree = "<group>"; };
 		746EF7F7EAD209867041DEF5 /* LibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryTests.swift; sourceTree = "<group>"; };
+		A715D5D6E86E4FAB97BDE3C1 /* OtherSportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherSportTests.swift; sourceTree = "<group>"; };
 		4513EF4F81A14E30A123476C /* NationalTeamTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalTeamTests.swift; sourceTree = "<group>"; };
 		77E49C234DD8C079A4C4FE0D /* WitnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitnessApp.swift; sourceTree = "<group>"; };
 		7B48F99FC296122C6C846961 /* BigGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigGameTests.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				080F09ACBEB9945779CC3D9E /* AddGameView.swift */,
+				81215430EE43461890494916 /* OtherSportField.swift */,
 				D8B224F7426AC04A827ABB7E /* AddVenueView.swift */,
 				99BE7A67E02B803D6070CA3E /* AlbumImportView.swift */,
 				F3389D60FD9A2CDD994777AC /* TeamPickerView.swift */,
@@ -406,6 +411,7 @@
 				0EBB3E2CA6352B5C2EB2E15D /* DetectionTuningTests.swift */,
 				73DFB5636186C6FD1B66C6CE /* GameLookupTests.swift */,
 				746EF7F7EAD209867041DEF5 /* LibraryTests.swift */,
+				A715D5D6E86E4FAB97BDE3C1 /* OtherSportTests.swift */,
 				4513EF4F81A14E30A123476C /* NationalTeamTests.swift */,
 				BAD292282DB6DC3BCC066881 /* PhotoMatcherTests.swift */,
 				903443890581343B7B39B754 /* TicketOCRTests.swift */,
@@ -695,6 +701,7 @@
 				1307844B2E7EAB4CDD54E487 /* DetectionTuningTests.swift in Sources */,
 				7535A49AEDC92F5C2E71CBDB /* GameLookupTests.swift in Sources */,
 				CC00A63D66FA2073A5D2C456 /* LibraryTests.swift in Sources */,
+				B07A513995DC48FCBA3BCD85 /* OtherSportTests.swift in Sources */,
 				86384A30A911462298F1EF98 /* NationalTeamTests.swift in Sources */,
 				4FA66493F78992F852961E30 /* PhotoMatcherTests.swift in Sources */,
 				33986E7A0BDD5EAC7B8E13D7 /* TicketOCRTests.swift in Sources */,
@@ -707,6 +714,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4991501BDDEFF74F3C2711D /* AddGameView.swift in Sources */,
+				7C57DFBF084C49FCA8C77658 /* OtherSportField.swift in Sources */,
 				0E12D046A277661BA11D667B /* AddVenueView.swift in Sources */,
 				BED863E726CE333896659B1A /* AlbumImportView.swift in Sources */,
 				CD5342E7131026E858E6D978 /* AlbumImporter.swift in Sources */,
