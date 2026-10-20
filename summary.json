@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 3,
-      "passedTests" : 173,
+      "failedTests" : 2,
+      "passedTests" : 174,
       "skippedTests" : 1,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,24 +22,16 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 3,
-  "finishTime" : 1792458111.985,
-  "passedTests" : 173,
+  "failedTests" : 2,
+  "finishTime" : 1792460425.125,
+  "passedTests" : 174,
   "result" : "Failed",
   "skippedTests" : 1,
-  "startTime" : 1792456941.799,
+  "startTime" : 1792458881.87,
   "statistics" : [
 
   ],
   "testFailures" : [
-    {
-      "failureText" : "XCTAssertTrue failed",
-      "targetName" : "WitnessUITests",
-      "testIdentifier" : 155,
-      "testIdentifierString" : "WitnessUITests/testAddGameManually()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testAddGameManually",
-      "testName" : "testAddGameManually()"
-    },
     {
       "failureText" : "XCTAssertTrue failed - Expected the scan to find the seeded stadium photos",
       "targetName" : "WitnessUITests",
@@ -62,7 +54,7 @@
     {
       "category" : "Longest Test Runs",
       "impact" : "26% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 8.38s (three standard deviations)"
+      "text" : "1 longest test run with outlier durations exceeding 9.99s (three standard deviations)"
     }
   ],
   "totalTestCount" : 177
