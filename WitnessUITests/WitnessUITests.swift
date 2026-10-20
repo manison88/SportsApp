@@ -387,6 +387,38 @@ final class WitnessUITests: XCTestCase {
         }
     }
 
+    /// A fan who wants a FIBA game finds the country in the picker (search, and the league's zones), sees the tournaments it plays
+    /// with their next dates, and an honest line where no schedule exists yet.
+    func testPlanBasketballNationalTeam() {
+        launch(["-empty"])
+        tap("add-menu")
+        app.buttons["Plan a game"].tap()
+        let league = el("team-league-FIBA national teams (men)")
+        for _ in 0..<12 where !league.exists { app.swipeUp() }
+        XCTAssertTrue(league.exists, "Basketball's national teams are a league group")
+        league.tap()
+        XCTAssertTrue(app.staticTexts["FIBA Europe \u{00B7} 42"].waitForExistence(timeout: 5), "The 132 sides are split by FIBA zone")
+        shot("fiba-league")
+        search("Bosnia")
+        let row = el("team-row-fibam-bih")
+        XCTAssertTrue(row.waitForExistence(timeout: 5), "Search finds the country")
+        row.tap()
+        XCTAssertTrue(el("plan-team").waitForExistence(timeout: 5))
+        sleep(3)
+        shot("fiba-team")
+        XCTAssertTrue(el("team-plays").waitForExistence(timeout: 5), "The tournaments are listed")
+        XCTAssertTrue(el("plan-no-schedule").waitForExistence(timeout: 8), "No schedule feed: an honest line, not a blank")
+        shot("fiba-team")
+    }
+
+    /// Screenshots for review, written where a reviewer can open them when the folder exists.
+    func shot(_ name: String) {
+        snap(name)
+        let dir = "/private/tmp/claude-501/shots"
+        guard FileManager.default.fileExists(atPath: dir) else { return }
+        try? XCUIScreen.main.screenshot().pngRepresentation.write(to: URL(fileURLWithPath: "\(dir)/\(name)-\(ProcessInfo.processInfo.environment["SHOT_SUFFIX"] ?? "x").png"))
+    }
+
     func testShareGameLooks() {
         launch(["-demo"])
         openGame("mlb-2016-ws5", query: "World Series")
