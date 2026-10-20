@@ -131,8 +131,7 @@ final class WorldCupSeattleTests: XCTestCase {
     /// visit left over from a scan that never looked next door stayed a visit. The schedule is asked first now, next door too.
     func testWaitingVisitIsCheckedAgainstTheScheduleNextDoor() async throws {
         let visit = try ballparkVisit
-        // The photos are in iCloud and not loaded: the scene check sees nothing.
-        let waiting = await ScanModel.waitingDay(visit, venues: library.venues) { _ in SceneCheck.DayLook() }
+        let waiting = await ScanModel.waitingDay(visit, venues: library.venues)
         let day = try XCTUnwrap(waiting, "A matched visit is offered whatever its photos look like")
         XCTAssertEqual(day.suggestions.first?.id, "lumen-field")
         XCTAssertTrue(day.reason.contains("Bosnia"), day.reason)
