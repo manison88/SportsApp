@@ -641,6 +641,11 @@ extension GameLookup {
         "soccer/conmebol.america", "soccer/caf.nations", "soccer/caf.nations_qual", "soccer/afc.asian.cup",
         "soccer/fifa.friendly",
     ]
+    private static let nationalCompetitionSet = Set(nationalCompetitions)
+
+    /// Whether an ESPN league path is one of the competitions between countries above, as against a club cup run by the same
+    /// body (uefa.champions, uefa.europa, conmebol.libertadores, fifa.cwc) or a women's tournament, whose sides have other ids.
+    static func isNationalCompetition(_ league: String) -> Bool { nationalCompetitionSet.contains(league) }
 
     /// A national team's coming games in every one of its competitions at once, soonest first. ESPN keeps one team id for a
     /// country across all of them.
