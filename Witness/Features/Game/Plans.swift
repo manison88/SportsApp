@@ -99,7 +99,7 @@ struct PlanScheduleView: View {
                         }
                         Spacer()
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .padding(14)
                     .background(Color.panel, in: .rect(cornerRadius: 16))
                     .accessibilityElement(children: .combine)
@@ -124,8 +124,8 @@ struct PlanScheduleView: View {
                         Label(games.isEmpty ? "Add the game yourself" : "Not listed? Add it yourself", systemImage: "square.and.pencil")
                             .font(.subheadline.weight(.semibold))
                             .frame(maxWidth: .infinity, minHeight: 50)
-                            .foregroundStyle(games.isEmpty ? Color.black : Color.signal)
-                            .background(games.isEmpty ? Color.white : Color.clear, in: .rect(cornerRadius: 14))
+                            .foregroundStyle(games.isEmpty ? Color.onPrimary : Color.signal)
+                            .background(games.isEmpty ? Color.primaryText : Color.clear, in: .rect(cornerRadius: 14))
                     }
                     .accessibilityIdentifier("plan-add-by-hand")
                 }
@@ -233,7 +233,7 @@ struct PlanScheduleView: View {
                     .padding(.horizontal, 10).frame(height: 26)
                     .background(planned ? Color.signal : Color.panelRaised, in: .capsule)
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .padding(.horizontal, 14).padding(.vertical, 10)
             .background(Color.panel, in: .rect(cornerRadius: 16))
         }
@@ -289,7 +289,7 @@ struct PlanView: View {
                         Text("\(venue?.name ?? "") \u{00B7} \(Fmt.dayTitle(plan.date, in: tz)) \u{00B7} \(Fmt.time(plan.date, in: tz))")
                             .font(.subheadline).foregroundStyle(Color.textSecondary)
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .gutter().padding(.bottom, 12).padding(.top, 90)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -316,7 +316,7 @@ struct PlanView: View {
                             }
                             Spacer()
                         }
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                         .padding(14).background(Color.panel, in: .rect(cornerRadius: 16))
                     }
                     .buttonStyle(.plain)
@@ -363,7 +363,7 @@ struct PlanView: View {
                     } label: {
                         Label("Plan", systemImage: "calendar.badge.checkmark")
                     }
-                    .buttonStyle(PrimaryButtonStyle(fill: .signal))
+                    .buttonStyle(PrimaryButtonStyle(fill: .signal, onFill: .black))
                     .gutter()
                     .accessibilityIdentifier("plan-confirm")
                 } else {
@@ -396,7 +396,7 @@ struct PlanView: View {
                         dismiss()
                     } label: { Label("Remove plan", systemImage: "trash") }
                 } label: {
-                    Image(systemName: "ellipsis").font(.body.weight(.bold)).foregroundStyle(.white)
+                    Image(systemName: "ellipsis").font(.body.weight(.bold)).foregroundStyle(Color.primaryText)
                         .frame(width: 36, height: 36).background(.ultraThinMaterial, in: .circle)
                         .frame(width: 44, height: 44).contentShape(.circle)
                 }
@@ -537,7 +537,7 @@ struct UpcomingSection: View {
         let venue = library.venue(plan.venueId)
         let days = PlanText.daysAway(plan, tz: tz(plan))
         return ZStack(alignment: .topLeading) {
-            LinearGradient(colors: [(home?.primary ?? Color.panelRaised).opacity(0.9), Color.panel], startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(colors: [(home?.primary ?? Color.panelRaised).opacity(0.9), Color.photoInk], startPoint: .topLeading, endPoint: .bottomTrailing)
             VStack(alignment: .leading, spacing: 8) {
                 Text(PlanText.countdown(days)).font(.condensed(.caption, weight: .heavy)).textCase(.uppercase).tracking(1.2)
                     .foregroundStyle(Color.black).padding(.horizontal, 10).frame(height: 24).background(Color.signal, in: .capsule)
@@ -562,9 +562,9 @@ struct UpcomingSection: View {
             Spacer()
             Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .padding(14)
-        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.white.opacity(0.28), style: StrokeStyle(lineWidth: 1.5, dash: [5, 4])))
+        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Color.primaryText.opacity(0.28), style: StrokeStyle(lineWidth: 1.5, dash: [5, 4])))
     }
 
     private func dayPrompt(_ plan: GameEntry) -> some View {
@@ -583,16 +583,16 @@ struct UpcomingSection: View {
                 Button { library.attend(plan: plan.id) } label: { Text("Yes, add my photos").frame(maxWidth: .infinity) }
                     .buttonStyle(.primary).accessibilityIdentifier("plan-day-yes")
                 Button { dismissed.insert(plan.id) } label: {
-                    Text("Not today").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).foregroundStyle(.white)
+                    Text("Not today").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).foregroundStyle(Color.primaryText)
                         .frame(maxWidth: .infinity, minHeight: 50)
-                        .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(Color.white.opacity(0.25), lineWidth: 1.5))
+                        .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(Color.primaryText.opacity(0.25), lineWidth: 1.5))
                 }
                 .accessibilityIdentifier("plan-day-no")
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .padding(14)
         .background(Color.panel, in: .rect(cornerRadius: 18))
-        .overlay(RoundedRectangle(cornerRadius: 18).strokeBorder(Color.white.opacity(0.12)))
+        .overlay(RoundedRectangle(cornerRadius: 18).strokeBorder(Color.primaryText.opacity(0.12)))
     }
 }

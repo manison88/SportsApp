@@ -125,7 +125,7 @@ struct AddGameView: View {
                 } label: {
                     LabeledContent("Venue") {
                         Text(venueName)
-                            .foregroundStyle(venueId == nil ? Color.textTertiary : Color.white)
+                            .foregroundStyle(venueId == nil ? Color.textTertiary : Color.primaryText)
                             .accessibilityIdentifier("add-venue-name")
                     }
                 }
@@ -292,10 +292,10 @@ struct AddGameView: View {
                 Button(action: save) {
                     Image(systemName: "checkmark")
                         .fontWeight(.bold)
-                        .foregroundStyle(venueId == nil ? Color.textTertiary : Color.black)
+                        .foregroundStyle(venueId == nil ? Color.textTertiary : Color.onPrimary)
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.white)
+                .tint(Color.primaryText)
                 .disabled(venueId == nil)
                 .accessibilityLabel("Save")
                 .accessibilityIdentifier("add-save")
@@ -374,7 +374,7 @@ struct AddGameView: View {
                 if let t = library.team(selection.wrappedValue) {
                     HStack(spacing: 8) {
                         TeamTile(team: t, compact: true)
-                        Text(t.locationName).foregroundStyle(.white)
+                        Text(t.locationName).foregroundStyle(Color.primaryText)
                     }
                 } else {
                     Text("Choose").foregroundStyle(Color.textTertiary)
@@ -721,7 +721,7 @@ struct RacePickerView: View {
                                 Text("R\(race.round)").font(.condensed(.subheadline, weight: .heavy))
                                     .foregroundStyle(Color.textSecondary).frame(width: 34, alignment: .leading)
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(race.shortName).font(.condensed(.headline)).foregroundStyle(.white)
+                                    Text(race.shortName).font(.condensed(.headline)).foregroundStyle(Color.primaryText)
                                     Text([library.venue(race.circuitId)?.name, race.raceLocalDate].compactMap { $0 }.joined(separator: " \u{00B7} "))
                                         .font(.footnote).foregroundStyle(Color.textSecondary)
                                 }

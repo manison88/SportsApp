@@ -28,7 +28,7 @@ struct LegalView: View {
                     Link("Open on the web", destination: online).font(.subheadline.weight(.semibold)).padding(.top, 14)
                 }
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .gutter()
             .padding(.vertical, 12)
         }
@@ -49,7 +49,7 @@ struct LegalLinksRows: View {
                 .accessibilityIdentifier("you-terms")
         }
         .buttonStyle(.plain)
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
     }
 
     private func row(_ title: String) -> some View {

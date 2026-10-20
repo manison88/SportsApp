@@ -41,7 +41,7 @@ struct BigGamesView: View {
                         .displayFont(40, relativeTo: .title)
                         .textCase(.uppercase)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .accessibilityElement(children: .combine)
                 .accessibilityAddTraits(.isHeader)
 
@@ -78,7 +78,7 @@ struct BigGamesView: View {
                 Text(stage.label)
                     .font(.condensed(.headline, weight: .heavy))
                     .textCase(.uppercase)
-                    .foregroundStyle(stage.kind == .championship ? Color.trophy : .white)
+                    .foregroundStyle(stage.kind == .championship ? Color.trophy : Color.primaryText)
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
                 Text([venue?.name, Fmt.dayTitle(game.date, in: venue?.tz ?? .current)].compactMap { $0 }.joined(separator: " · "))

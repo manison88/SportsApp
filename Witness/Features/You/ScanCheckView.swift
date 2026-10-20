@@ -19,7 +19,7 @@ struct ScanCheckView: View {
             Section {
                 DatePicker("Day", selection: $day, in: ...Date(), displayedComponents: .date)
                     .tint(Color.signal)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                 Button {
                     Task {
                         checking = true
@@ -29,7 +29,7 @@ struct ScanCheckView: View {
                 } label: {
                     HStack(spacing: 8) {
                         Text("Check this day").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
-                        if checking { ProgressView().tint(.white) }
+                        if checking { ProgressView().tint(Color.primaryText) }
                     }
                 }
                 .disabled(checking)
@@ -40,7 +40,7 @@ struct ScanCheckView: View {
                 Section {
                     Text(report)
                         .font(.system(.caption2, design: .monospaced))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                         .textSelection(.enabled)
                 }
                 .listRowBackground(Color.panel)

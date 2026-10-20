@@ -590,18 +590,18 @@ private struct PlayRow: View {
         HStack(spacing: 12) {
             Text(play.period)
                 .font(.condensed(.caption, weight: .heavy))
-                .foregroundStyle(highlighted ? Color.black : Color.textSecondary)
+                .foregroundStyle(highlighted ? Color.onPrimary : Color.textSecondary)
                 .frame(minWidth: 30, minHeight: 24)
-                .background(highlighted ? Color.white : Color.clear, in: .rect(cornerRadius: 5))
+                .background(highlighted ? Color.primaryText : Color.clear, in: .rect(cornerRadius: 5))
             Text(play.text)
                 .font(.subheadline.weight(highlighted ? .semibold : .regular))
-                .foregroundStyle(highlighted ? Color.white : Color.textSecondary)
+                .foregroundStyle(highlighted ? Color.primaryText : Color.textSecondary)
                 .lineLimit(2)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text(score)
                 .font(.condensed(.headline, weight: .heavy))
                 .monospacedDigit()
-                .foregroundStyle(highlighted ? Color.white : Color.textSecondary)
+                .foregroundStyle(highlighted ? Color.primaryText : Color.textSecondary)
         }
         .frame(minHeight: 56)
         .overlay(alignment: .bottom) { Rectangle().fill(Color.hairline).frame(height: 1) }

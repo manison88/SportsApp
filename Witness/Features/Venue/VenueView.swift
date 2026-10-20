@@ -48,6 +48,7 @@ struct VenueView: View {
         .inkBackground()
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
         .onAppear { Analytics.shared.track(.venueOrListOpened, ["kind": "venue"]) }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -60,7 +61,7 @@ struct VenueView: View {
                 ) {
                     Image(systemName: "square.and.arrow.up")
                         .font(.body.weight(.bold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                         .frame(width: 36, height: 36)
                         .background(.ultraThinMaterial, in: .circle)
                         .frame(width: 44, height: 44)
@@ -82,7 +83,7 @@ struct VenueView: View {
                 if let photoGame {
                     GameBackdrop(game: photoGame)
                 } else {
-                    LinearGradient(colors: [Color.panelRaised, Color.ink], startPoint: .top, endPoint: .bottom)
+                    LinearGradient(colors: [Color(hex: "171A21"), Color.photoInk], startPoint: .top, endPoint: .bottom)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -108,6 +109,8 @@ struct VenueView: View {
             .padding(.bottom, 4)
         }
         .frame(height: 400)
+        // The photo and its scrim are dark in both appearances, so the text on them stays white.
+        .environment(\.colorScheme, .dark)
     }
 
     // MARK: Record
@@ -264,7 +267,7 @@ struct SeatMap: View {
             diamond.addLine(to: CGPoint(x: home.x, y: home.y - 2 * d))
             diamond.addLine(to: CGPoint(x: home.x - d, y: home.y - d))
             diamond.closeSubpath()
-            context.stroke(diamond, with: .color(Color.white.opacity(0.35)), lineWidth: 1.5)
+            context.stroke(diamond, with: .color(Color.primaryText.opacity(0.35)), lineWidth: 1.5)
         }
     }
 

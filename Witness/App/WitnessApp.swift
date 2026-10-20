@@ -5,6 +5,7 @@ struct WitnessApp: App {
     @State private var library: Library
     @State private var presenter = Presenter()
     @Environment(\.scenePhase) private var scenePhase
+    @AppStorage("appearance") private var appearance = "auto"
 
     init() {
         Appearance.apply()
@@ -29,8 +30,8 @@ struct WitnessApp: App {
             RootView()
                 .environment(library)
                 .environment(presenter)
-                .preferredColorScheme(.dark)
-                .tint(.white)
+                .preferredColorScheme(AppearanceChoice(stored: appearance).colorScheme)
+                .tint(Color.primaryText)
                 .onChange(of: scenePhase) { _, phase in
                     if phase == .background {
                         BackgroundPhotoCheck.schedule()

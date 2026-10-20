@@ -137,7 +137,7 @@ struct MatchReportView: View {
                     .font(.condensed(.caption, weight: .heavy)).tracking(1.2)
                     .foregroundStyle(Color.textSecondary).lineLimit(1).minimumScaleFactor(0.7)
                 Text("You were there")
-                    .font(.condensed(.title, weight: .heavy)).textCase(.uppercase).foregroundStyle(.white)
+                    .font(.condensed(.title, weight: .heavy)).textCase(.uppercase).foregroundStyle(Color.primaryText)
                 if moments.isEmpty {
                     Text("Add photos from this night and they land on the game clock.")
                         .font(.footnote).foregroundStyle(Color.textSecondary)
@@ -161,7 +161,7 @@ struct MatchReportView: View {
 
     private func stat(_ value: String, _ label: String, accent: Bool = false) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(value).displayFont(30).foregroundStyle(accent ? Color.signal : .white)
+            Text(value).displayFont(30).foregroundStyle(accent ? Color.signal : Color.primaryText)
             Text(label).font(.caption).foregroundStyle(Color.textSecondary).fixedSize(horizontal: false, vertical: true)
         }
     }
@@ -177,7 +177,7 @@ struct MatchReportView: View {
         let active = beats.first { $0.id == activeId }
         return VStack(alignment: .leading, spacing: 6) {
             HStack {
-                Text(readout(active)).font(.condensed(.subheadline, weight: .heavy)).foregroundStyle(.white).lineLimit(1)
+                Text(readout(active)).font(.condensed(.subheadline, weight: .heavy)).foregroundStyle(Color.primaryText).lineLimit(1)
                 Spacer(minLength: 8)
                 Text(scoreLine(for: active)).font(.condensed(.subheadline, weight: .heavy)).monospacedDigit().foregroundStyle(Color.textSecondary)
             }
@@ -206,7 +206,7 @@ struct MatchReportView: View {
                             .position(x: x(play.time), y: geo.size.height - 5)
                     }
                     if let t = active?.time {
-                        Rectangle().fill(.white).frame(width: 2, height: geo.size.height)
+                        Rectangle().fill(Color.primaryText).frame(width: 2, height: geo.size.height)
                             .position(x: x(t), y: geo.size.height / 2)
                     }
                 }
@@ -302,7 +302,7 @@ struct MatchReportView: View {
                         photos: [YouWereThereView.PhotoMoment], caption: String?) -> some View {
         HStack(alignment: .top, spacing: 12) {
             VStack(spacing: 4) {
-                Text(label).font(.condensed(.title3, weight: .heavy)).foregroundStyle(.white).lineLimit(1).minimumScaleFactor(0.6)
+                Text(label).font(.condensed(.title3, weight: .heavy)).foregroundStyle(Color.primaryText).lineLimit(1).minimumScaleFactor(0.6)
                 if let clock { Text(Self.clock(clock, tz)).font(.caption2).foregroundStyle(Color.textTertiary).monospacedDigit() }
             }
             .frame(width: 52)
@@ -310,12 +310,12 @@ struct MatchReportView: View {
                 .overlay(alignment: .top) { Rectangle().fill(Color.hairline).frame(width: 2).offset(y: 18) }
             VStack(alignment: .leading, spacing: 8) {
                 HStack(alignment: .firstTextBaseline) {
-                    Text(title).font(.condensed(.headline, weight: .heavy)).foregroundStyle(.white)
+                    Text(title).font(.condensed(.headline, weight: .heavy)).foregroundStyle(Color.primaryText)
                         .fixedSize(horizontal: false, vertical: true)
                     Spacer(minLength: 8)
                     if let scoreText {
                         Text(scoreText).font(.condensed(.title3, weight: .heavy)).monospacedDigit()
-                            .foregroundStyle(accent ? Color.signal : .white)
+                            .foregroundStyle(accent ? Color.signal : Color.primaryText)
                     }
                 }
                 if let detail { Text(detail).font(.subheadline).foregroundStyle(Color.textSecondary).fixedSize(horizontal: false, vertical: true) }

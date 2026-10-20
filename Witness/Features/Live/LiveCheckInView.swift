@@ -174,8 +174,8 @@ struct LiveCheckInView: View {
                     Label("Not here, or not listed? Log manually", systemImage: "square.and.pencil")
                         .font(.subheadline.weight(.semibold))
                         .frame(maxWidth: .infinity, minHeight: 48)
-                        .foregroundStyle(nearbyGames.isEmpty && searchedNearby ? Color.black : Color.signal)
-                        .background(nearbyGames.isEmpty && searchedNearby ? Color.white : Color.clear, in: .rect(cornerRadius: 14))
+                        .foregroundStyle(nearbyGames.isEmpty && searchedNearby ? Color.onPrimary : Color.signal)
+                        .background(nearbyGames.isEmpty && searchedNearby ? Color.primaryText : Color.clear, in: .rect(cornerRadius: 14))
                 }
                 .padding(.top, 6)
                 .accessibilityIdentifier("live-log-manually")
@@ -197,7 +197,7 @@ struct LiveCheckInView: View {
             .frame(minHeight: 50)
         }
         .padding(.horizontal, 16)
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .background(Color.panel, in: .rect(cornerRadius: 16))
     }
 
@@ -209,7 +209,7 @@ struct LiveCheckInView: View {
             Text(detail).font(.subheadline).foregroundStyle(Color.textSecondary).multilineTextAlignment(.center)
             content()
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .frame(maxWidth: .infinity)
         .padding(.vertical, 40)
     }
@@ -254,7 +254,7 @@ struct LiveCheckInView: View {
                     if selected { Image(systemName: "checkmark.circle.fill").foregroundStyle(Color.signal) }
                 }
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .padding(14)
             .background(Color.panel, in: .rect(cornerRadius: 16))
             .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(selected ? Color.signal : .clear, lineWidth: 1.5))
@@ -398,7 +398,7 @@ struct LiveCheckInView: View {
                         Spacer()
                         Button("End & save game") { finish() }
                             .font(.condensed(.headline, weight: .heavy))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(Color.primaryText)
                             .frame(minHeight: 44)
                             .accessibilityIdentifier("live-end")
                     }
@@ -416,7 +416,7 @@ struct LiveCheckInView: View {
                 .displayFont(150)
                 .lineLimit(1)
                 .minimumScaleFactor(0.5)
-                .foregroundStyle(dimmed ? Color(hex: "6B7690") : .white)
+                .foregroundStyle(dimmed ? Color(hex: "6B7690") : Color.primaryText)
                 .contentTransition(.numericText())
                 .accessibilityIdentifier("live-score-\(id)")
                 .accessibilityLabel("\(team?.locationName ?? id) score")
@@ -458,8 +458,8 @@ struct LiveCheckInView: View {
                 HStack(spacing: 8) {
                     ForEach(0..<2, id: \.self) { i in
                         Circle()
-                            .strokeBorder(.white.opacity(0.8), lineWidth: 2)
-                            .background(Circle().fill(i < outs ? Color.white : .clear))
+                            .strokeBorder(Color.primaryText.opacity(0.8), lineWidth: 2)
+                            .background(Circle().fill(i < outs ? Color.primaryText : .clear))
                             .frame(width: 13, height: 13)
                     }
                 }
@@ -488,8 +488,8 @@ struct LiveCheckInView: View {
             bases[i].toggle()
         } label: {
             RoundedRectangle(cornerRadius: 3)
-                .strokeBorder(.white.opacity(0.85), lineWidth: 2)
-                .background(RoundedRectangle(cornerRadius: 3).fill(bases[i] ? Color.white : .clear))
+                .strokeBorder(Color.primaryText.opacity(0.85), lineWidth: 2)
+                .background(RoundedRectangle(cornerRadius: 3).fill(bases[i] ? Color.primaryText : .clear))
                 .frame(width: 18, height: 18)
                 .rotationEffect(.degrees(45))
                 .frame(width: 44, height: 44)
@@ -503,7 +503,7 @@ struct LiveCheckInView: View {
         Button(action: action) {
             Image(systemName: symbol)
                 .font(.system(size: 15, weight: .bold))
-                .foregroundStyle(.white.opacity(0.85))
+                .foregroundStyle(Color.primaryText.opacity(0.85))
                 .frame(width: 44, height: 44)
                 .contentShape(.rect)
         }
@@ -646,7 +646,7 @@ private struct LivePillStyle: LabelStyle {
         .font(.condensed(.subheadline, weight: .heavy))
         .textCase(.uppercase)
         .tracking(1.4)
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .padding(.horizontal, 12)
         .frame(minHeight: 30)
         .background(Color.live, in: .rect(cornerRadius: 7))

@@ -41,7 +41,7 @@ struct WelcomeView: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(step.count.formatted())
                     .displayFont(96)
-                    .foregroundStyle(done ? Color.signal : .white)
+                    .foregroundStyle(done ? Color.signal : Color.primaryText)
                     .contentTransition(.numericText(value: Double(step.count)))
                     .lineLimit(1)
                     .minimumScaleFactor(0.6)
@@ -49,7 +49,7 @@ struct WelcomeView: View {
                     .font(.condensed(.subheadline, weight: .heavy))
                     .textCase(.uppercase)
                     .tracking(2.4)
-                    .foregroundStyle(done ? .white : Color.textSecondary)
+                    .foregroundStyle(done ? Color.primaryText : Color.textSecondary)
                     .contentTransition(.opacity)
             }
             .padding(.top, 18)
@@ -62,7 +62,7 @@ struct WelcomeView: View {
                 if done {
                     VStack(alignment: .leading, spacing: 12) {
                         VStack(alignment: .leading, spacing: -4) {
-                            Text("Every night,").foregroundStyle(.white)
+                            Text("Every night,").foregroundStyle(Color.primaryText)
                             Text("back in one place.").foregroundStyle(Color.signal)
                         }
                         .displayFont(48)

@@ -116,7 +116,7 @@ struct MapListSheet: View {
             Text(months[((c.month ?? 1) - 1) % 12]).font(.condensed(.caption2, weight: .heavy)).tracking(1.5)
                 .foregroundStyle(Color.textSecondary)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
     }
 
     // MARK: Tile
@@ -142,7 +142,7 @@ struct MapListSheet: View {
             }
             Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary).accessibilityHidden(true)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .padding(.horizontal, 14)
         .frame(minHeight: 64)
         .background(Color.panel, in: .rect(cornerRadius: 14))
@@ -193,7 +193,7 @@ struct CountryGames: View {
                             ScoreBug(game: game)
                             Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary).accessibilityHidden(true)
                         }
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                         .padding(.horizontal, 14)
                         .frame(minHeight: 64)
                         .background(Color.panel, in: .rect(cornerRadius: 14))

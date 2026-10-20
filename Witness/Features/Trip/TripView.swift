@@ -358,7 +358,7 @@ private struct TripShareCard: View {
                 Text(gamesLabel)
                     .font(.system(size: 52, weight: .heavy).width(.condensed))
                     .tracking(6)
-                    .foregroundStyle(Color.signal)
+                    .foregroundStyle(Color(hex: "FFB547"))
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
                     .padding(.top, 8)
@@ -390,7 +390,7 @@ private struct TripShareCard: View {
                     .minimumScaleFactor(0.3)
                 Text(gameCount == 1 ? "GAME" : "GAMES")
                     .font(.display(150))
-                    .foregroundStyle(Color.signal)
+                    .foregroundStyle(Color(hex: "FFB547"))
                     .lineLimit(1)
                     .minimumScaleFactor(0.4)
                 Text(title)
@@ -419,7 +419,7 @@ private struct TripShareCard: View {
 
     /// Solid amber field with black type, title at the bottom.
     private var fieldCard: some View {
-        flatCard(background: Color.signal, fg: .black) {
+        flatCard(background: Color(hex: "FFB547"), fg: .black) {
             VStack(alignment: .leading, spacing: 0) {
                 Text(dates)
                     .font(.system(size: 44, weight: .heavy).width(.condensed))
@@ -493,7 +493,7 @@ private struct TripShareCard: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.3)
                 HStack(spacing: 0) {
-                    cell(label: "GAMES", value: "\(gameCount)", valueColor: Color.signal)
+                    cell(label: "GAMES", value: "\(gameCount)", valueColor: Color(hex: "FFB547"))
                     cell(label: "CITIES", value: "\(cities.count)", valueColor: .white)
                 }
                 .padding(.top, 50)

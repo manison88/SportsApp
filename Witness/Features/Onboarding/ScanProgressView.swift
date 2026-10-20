@@ -138,7 +138,7 @@ struct ScanProgressView: View {
                         .contentTransition(.numericText())
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                         .accessibilityIdentifier("onboarding-scanning")
                     Text(headlineCount == 1 ? "game found" : "games found").unitLabel().foregroundStyle(Color.textSecondary)
                 }
@@ -227,7 +227,7 @@ struct ScanProgressView: View {
                 Text(step.title)
                     .font(.condensed(.headline, weight: .heavy))
                     .textCase(.uppercase)
-                    .foregroundStyle(state == .pending ? Color.textTertiary : .white)
+                    .foregroundStyle(state == .pending ? Color.textTertiary : Color.primaryText)
                 if let line = detail(step, state: state) {
                     Text(line).font(.footnote).monospacedDigit().foregroundStyle(Color.textSecondary)
                 }
@@ -325,7 +325,7 @@ private struct VenueRow: View {
             Spacer()
             Text(venue.count.formatted()).font(.condensed(.title3, weight: .heavy)).monospacedDigit()
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .frame(minHeight: 56)
         .overlay(alignment: .top) { Rectangle().fill(Color.hairline).frame(height: 1) }
         .accessibilityElement(children: .combine)

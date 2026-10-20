@@ -451,7 +451,7 @@ struct GameBackdrop: View {
         } else {
             let team = library.team(library.rootingTeam(game))
             Color.clear.overlay {
-                LinearGradient(colors: [(team?.accent ?? .gray).opacity(0.55), Color.ink],
+                LinearGradient(colors: [(team?.accent ?? .gray).opacity(0.55), Color.photoInk],
                                startPoint: .topTrailing, endPoint: .bottomLeading)
                 Image(systemName: game.sport.symbol)
                     .font(.system(size: 120, weight: .bold))
@@ -469,11 +469,11 @@ struct GameBackdrop: View {
 struct Scrim: View {
     var body: some View {
         LinearGradient(stops: [
-            .init(color: Color.ink.opacity(0.6), location: 0),
-            .init(color: Color.ink.opacity(0), location: 0.22),
-            .init(color: Color.ink.opacity(0), location: 0.5),
-            .init(color: Color.ink.opacity(0.9), location: 0.86),
-            .init(color: Color.ink, location: 1),
+            .init(color: Color.photoInk.opacity(0.6), location: 0),
+            .init(color: Color.photoInk.opacity(0), location: 0.22),
+            .init(color: Color.photoInk.opacity(0), location: 0.5),
+            .init(color: Color.photoInk.opacity(0.9), location: 0.86),
+            .init(color: Color.photoInk, location: 1),
         ], startPoint: .top, endPoint: .bottom)
         .allowsHitTesting(false)
     }
@@ -491,7 +491,7 @@ struct CircleButton: View {
         Button(action: action) {
             Image(systemName: systemName)
                 .font(.body.weight(.bold))
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .frame(width: 36, height: 36)
                 .background(.ultraThinMaterial, in: .circle)
                 .frame(width: 44, height: 44)
@@ -515,7 +515,7 @@ extension View {
 extension Outcome {
     var color: Color {
         switch self {
-        case .win: .white
+        case .win: .primaryText
         case .loss: .textSecondary
         case .draw: .textSecondary
         case .none: .textTertiary
@@ -586,7 +586,7 @@ struct ScoreLinesTitle: View {
                     .displayFont(52)
                 }
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(rows.map { "\($0.name) \($0.score)" }.joined(separator: ", "))
         } else {
@@ -594,7 +594,7 @@ struct ScoreLinesTitle: View {
                 .displayFont(52)
                 .lineLimit(4)
                 .minimumScaleFactor(0.5)
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
         }
     }
 }
@@ -609,7 +609,7 @@ extension View {
                 ToolbarItem(placement: .topBarLeading) {
                     Text(title.uppercased())
                         .displayFont(30, relativeTo: .title)
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                         .fixedSize()
                         .accessibilityAddTraits(.isHeader)
                 }
@@ -758,12 +758,12 @@ struct ScoreStack: View {
                 .textCase(.uppercase)
                 .lineLimit(1)
                 .minimumScaleFactor(0.6)
-                .foregroundStyle(won ? Color.white : Color.textSecondary)
+                .foregroundStyle(won ? Color.primaryText : Color.textSecondary)
             Spacer(minLength: 8)
             Text(score.map(String.init) ?? "")
                 .font(.condensed(.title2, weight: .heavy))
                 .monospacedDigit()
-                .foregroundStyle(won ? Color.white : Color.textSecondary)
+                .foregroundStyle(won ? Color.primaryText : Color.textSecondary)
         }
         .frame(minHeight: 48)
     }
@@ -1095,13 +1095,13 @@ struct ShareCardSheet: View {
                 Text(title)
                     .font(.condensed(.title3, weight: .heavy))
                     .textCase(.uppercase)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .lineLimit(1)
                 Spacer()
                 Button { dismiss() } label: {
                     Image(systemName: "xmark")
                         .font(.body.weight(.bold))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                         .frame(width: 40, height: 40)
                         .background(Color.panelRaised, in: .circle)
                 }
@@ -1111,7 +1111,7 @@ struct ShareCardSheet: View {
             .padding(.top, 20)
 
             if rendered.isEmpty {
-                ProgressView().tint(.white).frame(maxHeight: .infinity)
+                ProgressView().tint(Color.primaryText).frame(maxHeight: .infinity)
             } else {
                 TabView(selection: $selection) {
                     ForEach(rendered.indices, id: \.self) { i in
@@ -1132,7 +1132,7 @@ struct ShareCardSheet: View {
                     HStack(spacing: 8) {
                         ForEach(rendered.indices, id: \.self) { i in
                             Circle()
-                                .fill(i == selection ? Color.white : Color.textTertiary)
+                                .fill(i == selection ? Color.primaryText : Color.textTertiary)
                                 .frame(width: 7, height: 7)
                         }
                     }
