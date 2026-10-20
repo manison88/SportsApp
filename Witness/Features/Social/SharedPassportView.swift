@@ -224,6 +224,8 @@ private struct PassportShareCard: View {
     let recent: String
     let color: Color
     let photos: [UIImage]
+    @Environment(\.shareScheme) private var scheme
+    private var paperInk: Color { Color.sharePaperInk(scheme) }
 
     var body: some View {
         switch style {
@@ -295,10 +297,10 @@ private struct PassportShareCard: View {
     private var numberCard: some View {
         ShareCardFrame(format: .story, accent: color) {
             VStack(alignment: .leading, spacing: 0) {
-                label("Games together", .white.opacity(0.6))
+                label("Games together", Color.primaryText.opacity(0.6))
                 Text("\(count)")
                     .font(.display(720))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.4)
                     .padding(.top, 20)
@@ -308,7 +310,7 @@ private struct PassportShareCard: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.3)
                 if !record.isEmpty {
-                    label("Record \(record)", .white.opacity(0.6), size: 48).padding(.top, 48)
+                    label("Record \(record)", Color.primaryText.opacity(0.6), size: 48).padding(.top, 48)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -353,26 +355,26 @@ private struct PassportShareCard: View {
     // 4. Light paper, black type, photo strip.
     private var paperCard: some View {
         ZStack(alignment: .topLeading) {
-            Color(red: 0.96, green: 0.95, blue: 0.92)
+            Color.sharePaper(scheme)
             VStack(alignment: .leading, spacing: 0) {
-                label(withName, .black.opacity(0.55))
+                label(withName, paperInk.opacity(0.55))
                 Text("\(count)")
                     .font(.display(560))
-                    .foregroundStyle(.black)
+                    .foregroundStyle(paperInk)
                     .lineLimit(1)
                     .minimumScaleFactor(0.4)
                     .padding(.top, 16)
                 Text("GAMES TOGETHER")
                     .font(.display(120))
-                    .foregroundStyle(.black)
+                    .foregroundStyle(paperInk)
                     .lineLimit(1)
                     .minimumScaleFactor(0.3)
-                Rectangle().fill(Color.black).frame(height: 4).padding(.vertical, 48)
+                Rectangle().fill(paperInk).frame(height: 4).padding(.vertical, 48)
                 if !record.isEmpty {
-                    label("Record together", .black.opacity(0.55))
+                    label("Record together", paperInk.opacity(0.55))
                     Text(record)
                         .font(.display(200))
-                        .foregroundStyle(.black)
+                        .foregroundStyle(paperInk)
                         .lineLimit(1)
                         .minimumScaleFactor(0.4)
                 }
@@ -393,7 +395,7 @@ private struct PassportShareCard: View {
                 Text("WITNESS")
                     .font(.system(size: 40, weight: .heavy).width(.compressed))
                     .tracking(10)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(paperInk)
             }
             .padding(.horizontal, 84)
             .padding(.top, 230)
@@ -401,14 +403,14 @@ private struct PassportShareCard: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .light)
+        .shareSurface()
     }
 
     // 5. Data-forward stub: ruled rows of figures.
     private var stubCard: some View {
         ShareCardFrame(format: .story, accent: color) {
             VStack(alignment: .leading, spacing: 0) {
-                label("Shared passport", .white.opacity(0.6))
+                label("Shared passport", Color.primaryText.opacity(0.6))
                 Text(name.uppercased())
                     .font(.display(260))
                     .foregroundStyle(color)
@@ -434,11 +436,11 @@ private struct PassportShareCard: View {
 
     private func stubRow(_ title: String, _ value: String, small: Bool = false) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Rectangle().fill(Color.white.opacity(0.25)).frame(height: 2)
-            label(title, .white.opacity(0.6), size: 34).padding(.top, 20)
+            Rectangle().fill(Color.primaryText.opacity(0.25)).frame(height: 2)
+            label(title, Color.primaryText.opacity(0.6), size: 34).padding(.top, 20)
             Text(small ? value.uppercased() : value)
                 .font(small ? Font.system(size: 64, weight: .bold).width(.condensed) : Font.display(190))
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .lineLimit(1)
                 .minimumScaleFactor(0.3)
                 .padding(.bottom, 24)

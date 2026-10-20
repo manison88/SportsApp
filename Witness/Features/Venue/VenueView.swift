@@ -45,6 +45,7 @@ struct VenueView: View {
         }
         .scrollIndicators(.hidden)
         .ignoresSafeArea(edges: .top)
+        .lightStatusBar()
         .inkBackground()
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
@@ -208,6 +209,7 @@ struct VenueView: View {
 /// The most frequent section glows amber; up to two more are lit dimmer.
 struct SeatMap: View {
     let sections: [Int]
+    @Environment(\.colorScheme) private var scheme
 
     private static let wedgesPerTier = 11
     private static let tiers: [(CGFloat, CGFloat)] = [(0.40, 0.58), (0.62, 0.79), (0.83, 1.0)]
@@ -240,7 +242,7 @@ struct SeatMap: View {
                         let color: Color = rank == 0 ? .signal : Color.signal.opacity(rank == 1 ? 0.5 : 0.35)
                         context.fill(path, with: .color(color))
                     } else {
-                        context.fill(path, with: .color(Color.panelRaised))
+                        context.fill(path, with: .color(scheme == .light ? Color.primaryText.opacity(0.13) : Color.panelRaised))
                     }
                 }
             }
@@ -254,7 +256,7 @@ struct SeatMap: View {
                 let point = CGPoint(x: center.x + r * CGFloat(cos(mid.radians)), y: center.y + r * CGFloat(sin(mid.radians)))
                 let label = Text("\(s)")
                     .font(.system(size: rank == 0 ? 15 : 13, weight: .heavy).width(.condensed))
-                    .foregroundStyle(rank == 0 ? Color.black : Color.white)
+                    .foregroundStyle(rank == 0 || scheme == .light ? Color.black : Color.white)
                 context.draw(label, at: point)
             }
 
@@ -267,7 +269,7 @@ struct SeatMap: View {
             diamond.addLine(to: CGPoint(x: home.x, y: home.y - 2 * d))
             diamond.addLine(to: CGPoint(x: home.x - d, y: home.y - d))
             diamond.closeSubpath()
-            context.stroke(diamond, with: .color(Color.primaryText.opacity(0.35)), lineWidth: 1.5)
+            context.stroke(diamond, with: .color(Color.primaryText.opacity(scheme == .light ? 0.5 : 0.35)), lineWidth: 1.5)
         }
     }
 

@@ -164,7 +164,13 @@ struct LifeMapView: View {
                 shots[key] = shot
             }
             let shot = shots[key]
-            out.append(ShareCardVariant(style.name) { MapStoryCard(style: style, shot: shot, numbers: numbers) })
+            // The light look gets a light map of the same area.
+            let lightKey = key + "-light"
+            if shots[lightKey] == nil, let lit = await MapShot.make(venues: venues, colors: colors, home: home, size: style.mapSize, type: type, dark: false) {
+                shots[lightKey] = lit
+            }
+            let lightShot = shots[lightKey]
+            out.append(ShareCardVariant(style.name) { MapStoryCard(style: style, shot: shot, numbers: numbers, lightShot: lightShot) })
         }
         return out
     }

@@ -226,6 +226,7 @@ struct AerialVenueIcon: View {
     var given: UIImage? = nil
 
     @State private var loaded: UIImage?
+    @Environment(\.colorScheme) private var scheme
     private var image: UIImage? { given ?? loaded }
 
     var body: some View {
@@ -234,7 +235,8 @@ struct AerialVenueIcon: View {
                 if let image {
                     Image(uiImage: image).resizable().scaledToFill()
                 } else {
-                    Color.panelRaised
+                    // Until the satellite view arrives: a dark ground, so the disc reads on a white card too.
+                    scheme == .light ? Color(hex: "2B3745") : Color.panelRaised
                 }
             }
             .frame(width: size, height: size)
@@ -280,12 +282,14 @@ final class AerialCache {
 struct VenueGlyph: View {
     let sport: Sport
     var size: CGFloat = 40
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
+        let ground = scheme == .light ? Color(hex: "2B3745") : Color.panelRaised
         Canvas { ctx, canvas in
             let w = canvas.width, h = canvas.height
             let rect = CGRect(origin: .zero, size: canvas)
-            ctx.fill(Path(roundedRect: rect, cornerRadius: w * 0.28), with: .color(Color.panelRaised))
+            ctx.fill(Path(roundedRect: rect, cornerRadius: w * 0.28), with: .color(ground))
             // The bowl: two rings, like seating tiers seen from above.
             let bowl = rect.insetBy(dx: w * 0.1, dy: h * 0.18)
             ctx.stroke(Path(roundedRect: bowl, cornerRadius: bowl.height * 0.5), with: .color(.white.opacity(0.28)), lineWidth: w * 0.07)
@@ -386,13 +390,21 @@ struct CountryGlobe: View {
     var size: CGFloat = 40
 
     private static let yellow = Color(hex: "F7D64A")
+    @Environment(\.colorScheme) private var scheme
 
     var body: some View {
+        // On the dark panels the globe is a dark disc with dim land. On a white card that vanished, so in Light the
+        // disc is deep ocean blue with lighter land and the yellow country on top.
+        let light = scheme == .light
+        let ocean = light ? Color(hex: "1F3F66") : Color.panelRaised
+        let land = light ? Color(hex: "6F93BA").opacity(0.55) : Color.white.opacity(0.22)
+        let gridColor = Color.white.opacity(light ? 0.16 : 0.10)
+        let rim = light ? Color(hex: "132A47") : Color.white.opacity(0.35)
         Canvas { ctx, canvas in
             let r = min(canvas.width, canvas.height) / 2 - 1
             let c = CGPoint(x: canvas.width / 2, y: canvas.height / 2)
             let globe = Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: 2 * r, height: 2 * r))
-            ctx.fill(globe, with: .color(Color.panelRaised))
+            ctx.fill(globe, with: .color(ocean))
             let center = CountryShapes.center(code) ?? CGPoint(x: 0, y: 20)
             let lon0 = center.x * .pi / 180, lat0 = center.y * .pi / 180
             // Small countries are magnified so the yellow is readable: the country fills about half the globe.
@@ -428,7 +440,7 @@ struct CountryGlobe: View {
                     if let q = project(CGPoint(x: lon, y: lat)) { if started { grid.addLine(to: q) } else { grid.move(to: q); started = true } } else { started = false }
                 }
             }
-            ctx.stroke(grid, with: .color(.white.opacity(0.10)), lineWidth: 0.5)
+            ctx.stroke(grid, with: .color(gridColor), lineWidth: 0.5)
             // Every country, dim; then the one that matters, yellow.
             func draw(_ rings: [[CGPoint]], fill: Color) {
                 for ring in rings {
@@ -441,14 +453,14 @@ struct CountryGlobe: View {
                     if any { path.closeSubpath(); ctx.fill(path, with: .color(fill)) }
                 }
             }
-            for (other, rings) in CountryShapes.all where other != code { draw(rings, fill: .white.opacity(0.22)) }
+            for (other, rings) in CountryShapes.all where other != code { draw(rings, fill: land) }
             if let rings = CountryShapes.all[code] {
                 draw(rings, fill: Self.yellow)
             } else {
                 // No outline for this one (a very small country): a yellow dot at the centre of the globe.
                 ctx.fill(Path(ellipseIn: CGRect(x: c.x - r * 0.12, y: c.y - r * 0.12, width: r * 0.24, height: r * 0.24)), with: .color(Self.yellow))
             }
-            ctx.stroke(globe, with: .color(.white.opacity(0.35)), lineWidth: 1)
+            ctx.stroke(globe, with: .color(rim), lineWidth: 1)
         }
         .frame(width: size, height: size)
         .accessibilityHidden(true)

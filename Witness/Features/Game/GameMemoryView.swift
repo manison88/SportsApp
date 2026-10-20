@@ -40,6 +40,7 @@ struct GameMemoryView: View {
         }
         .scrollIndicators(.hidden)
         .ignoresSafeArea(edges: .top)
+        .lightStatusBar()
         .inkBackground()
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
@@ -176,7 +177,7 @@ struct GameMemoryView: View {
                     ForEach(Array(game.podium.enumerated()), id: \.offset) { i, line in
                         Text(line)
                             .font(.condensed(.title3, weight: .heavy))
-                            .foregroundStyle(i == 0 ? Color.white : Color.textSecondary)
+                            .foregroundStyle(i == 0 ? Color.primaryText : Color.textSecondary)
                             .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                             .overlay(alignment: .bottom) {
                                 if i < game.podium.count - 1 { Rectangle().fill(Color.hairline).frame(height: 1) }

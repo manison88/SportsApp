@@ -425,7 +425,7 @@ private struct PassportPageCard: View {
                     Text("WITNESS")
                         .font(.system(size: 16, weight: .heavy).width(.compressed))
                         .tracking(5)
-                        .foregroundStyle(.white.opacity(0.9))
+                        .foregroundStyle(Color.primaryText.opacity(0.9))
                 }
                 Spacer()
                 Text("\(league) PASSPORT")
@@ -442,7 +442,7 @@ private struct PassportPageCard: View {
         .environment(\.dynamicTypeSize, .large)
         .scaleEffect(scale, anchor: .topLeading)
         .frame(width: ShareCardFormat.story.size.width, height: ShareCardFormat.story.size.height, alignment: .topLeading)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 
     /// A tile drawn at its page size, then scaled down to its cell.

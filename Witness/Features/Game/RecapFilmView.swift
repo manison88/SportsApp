@@ -228,7 +228,7 @@ struct RecapFilmView: View {
             } label: {
                 Image(systemName: playing ? "pause.fill" : "play.fill")
                     .font(.system(size: 18, weight: .bold))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .frame(width: 54, height: 54)
                     .background(Color.panelRaised, in: .rect(cornerRadius: 14))
                     .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(Color.hairline))
@@ -289,6 +289,9 @@ private struct RecapStoryCard: View {
     let day: String
     let score: String
 
+    @Environment(\.shareScheme) private var scheme
+    private var paperInk: Color { Color.sharePaperInk(scheme) }
+
     private var footer: String { [venue, day].filter { !$0.isEmpty }.joined(separator: " · ") }
 
     var body: some View {
@@ -302,7 +305,7 @@ private struct RecapStoryCard: View {
             }
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 
     private func titleText(_ size: CGFloat, _ color: Color, lines: Int = 4) -> some View {
@@ -382,11 +385,11 @@ private struct RecapStoryCard: View {
             Color.ink
             LinearGradient(colors: [accent.opacity(0.4), .clear], startPoint: .top, endPoint: .center)
             safe {
-                titleText(330, .white, lines: 5)
+                titleText(330, Color.primaryText, lines: 5)
                 Spacer(minLength: 40)
-                quoteText(.white.opacity(0.85))
-                footerText(.white.opacity(0.55)).padding(.top, 28)
-                wordmark(.white.opacity(0.9)).padding(.top, 56)
+                quoteText(Color.primaryText.opacity(0.85))
+                footerText(Color.primaryText.opacity(0.55)).padding(.top, 28)
+                wordmark(Color.primaryText.opacity(0.9)).padding(.top, 56)
             }
         }
     }
@@ -408,11 +411,11 @@ private struct RecapStoryCard: View {
     // 4 Light paper, black type, photo as a framed print.
     private var paperLook: some View {
         ZStack(alignment: .topLeading) {
-            Color(hex: "F4F1EA")
+            Color.sharePaper(scheme)
             safe {
-                footerText(.black.opacity(0.55))
+                footerText(paperInk.opacity(0.55))
                 if let background {
-                    Color.black.opacity(0.1)
+                    paperInk.opacity(0.1)
                         .frame(height: 620)
                         .overlay {
                             Image(uiImage: background)
@@ -423,9 +426,9 @@ private struct RecapStoryCard: View {
                         .padding(.top, 36)
                 }
                 Spacer(minLength: 36)
-                titleText(190, .black, lines: 3)
-                quoteText(.black.opacity(0.7)).padding(.top, 32)
-                wordmark(.black).padding(.top, 48)
+                titleText(190, paperInk, lines: 3)
+                quoteText(paperInk.opacity(0.7)).padding(.top, 32)
+                wordmark(paperInk).padding(.top, 48)
             }
         }
     }
@@ -435,8 +438,8 @@ private struct RecapStoryCard: View {
         ZStack(alignment: .topLeading) {
             Color.ink
             safe {
-                wordmark(.white.opacity(0.9))
-                titleText(150, .white, lines: 3).padding(.top, 48)
+                wordmark(Color.primaryText.opacity(0.9))
+                titleText(150, Color.primaryText, lines: 3).padding(.top, 48)
                 Spacer(minLength: 40)
                 stubRow("Score", score.isEmpty ? "FINAL" : score, big: true)
                 stubRow("Venue", venue, big: false)
@@ -448,14 +451,14 @@ private struct RecapStoryCard: View {
 
     private func stubRow(_ label: String, _ value: String, big: Bool) -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            Rectangle().fill(.white.opacity(0.25)).frame(height: 2)
+            Rectangle().fill(Color.primaryText.opacity(0.25)).frame(height: 2)
             Text(label.uppercased())
                 .font(.system(size: 32, weight: .bold).width(.condensed))
                 .tracking(6)
-                .foregroundStyle(.white.opacity(0.55))
+                .foregroundStyle(Color.primaryText.opacity(0.55))
             Text(value.uppercased())
                 .font(.display(big ? 200 : 84))
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .lineLimit(1)
                 .minimumScaleFactor(0.4)
                 .frame(maxWidth: .infinity, alignment: .leading)

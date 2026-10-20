@@ -128,6 +128,12 @@ struct MapStoryCard: View {
     let style: Style
     let shot: MapShot?
     let numbers: Numbers
+    /// The same map in a light style, for the light look.
+    var lightShot: MapShot? = nil
+    @Environment(\.shareScheme) private var scheme
+    private var mapIsLight: Bool { scheme == .light && lightShot != nil }
+    /// Type that sits on the map itself (not on the card): white on the dark map, ink on the light one.
+    private var mapInk: Color { mapIsLight ? Color.photoInk : .white }
 
     static let width: CGFloat = 390
     private var scale: CGFloat { ShareCardFormat.story.size.width / Self.width }
@@ -141,7 +147,7 @@ struct MapStoryCard: View {
             .environment(\.dynamicTypeSize, .large)
             .scaleEffect(scale, anchor: .topLeading)
             .frame(width: ShareCardFormat.story.size.width, height: ShareCardFormat.story.size.height, alignment: .topLeading)
-            .environment(\.colorScheme, .dark)
+            .shareSurface()
     }
 
     @ViewBuilder
@@ -158,11 +164,11 @@ struct MapStoryCard: View {
 
     @ViewBuilder
     private var map: some View {
-        if let shot { MapShotView(shot: shot) }
+        if let shot = mapIsLight ? lightShot : shot { MapShotView(shot: shot) }
         else { Color.panel }
     }
 
-    private func wordmark(_ size: CGFloat = 26, ink: Color = .white) -> some View {
+    private func wordmark(_ size: CGFloat = 26, ink: Color = Color.primaryText) -> some View {
         ZStack(alignment: .topLeading) {
             Text("SPORTS")
                 .font(.system(size: size, weight: .heavy).width(.compressed)).tracking(size * 0.32)
@@ -177,7 +183,7 @@ struct MapStoryCard: View {
 
     private var unit: String { Fmt.distanceUnit.uppercased() }
 
-    private func distanceLine(_ size: CGFloat, ink: Color = .white) -> some View {
+    private func distanceLine(_ size: CGFloat, ink: Color = Color.primaryText) -> some View {
         HStack(alignment: .lastTextBaseline, spacing: 8) {
             Text(Fmt.number(numbers.distance ?? 0)).font(.display(size)).lineLimit(1).minimumScaleFactor(0.5)
             Text(unit).font(.display(size * 0.3))
@@ -185,7 +191,7 @@ struct MapStoryCard: View {
         .foregroundStyle(ink)
     }
 
-    private func stats(ink: Color = .white) -> some View {
+    private func stats(ink: Color = Color.primaryText) -> some View {
         HStack(spacing: 0) {
             stat(numbers.venues, numbers.venues == 1 ? "Venue" : "Venues", ink)
             stat(numbers.countries, numbers.countries == 1 ? "Country" : "Countries", ink)
@@ -228,7 +234,7 @@ struct MapStoryCard: View {
             .padding(.horizontal, 18)
             .padding(.bottom, 40)
         }
-        .overlay(alignment: .topLeading) { wordmark().padding(.top, 50).padding(.leading, 18) }
+        .overlay(alignment: .topLeading) { wordmark(ink: mapInk).padding(.top, 50).padding(.leading, 18) }
     }
 
     /// The distance is the picture; the map is a card under it.
@@ -236,13 +242,13 @@ struct MapStoryCard: View {
         VStack(alignment: .leading, spacing: 16) {
             wordmark()
             Spacer(minLength: 0)
-            Text(Fmt.number(numbers.distance ?? 0)).font(.display(150)).foregroundStyle(.white)
+            Text(Fmt.number(numbers.distance ?? 0)).font(.display(150)).foregroundStyle(Color.primaryText)
                 .lineLimit(1).minimumScaleFactor(0.4)
             Text("\(unit) TO THE GAMES").font(.display(34)).foregroundStyle(Color.signal)
             map.clipShape(.rect(cornerRadius: 22))
-                .overlay(RoundedRectangle(cornerRadius: 22).strokeBorder(.white.opacity(0.12)))
+                .overlay(RoundedRectangle(cornerRadius: 22).strokeBorder(Color.primaryText.opacity(0.12)))
             caption(numbers.homeCity.isEmpty ? "\(numbers.venues) VENUES" : "FROM \(numbers.homeCity.uppercased()) \u{00B7} \(numbers.venues) VENUES",
-                    .white.opacity(0.7))
+                    Color.primaryText.opacity(0.7))
         }
         .padding(.horizontal, 18)
         .padding(.top, 50)
@@ -252,7 +258,7 @@ struct MapStoryCard: View {
     /// The map, then the grounds themselves from above, as in the venue list.
     private var grounds: some View {
         VStack(alignment: .leading, spacing: 18) {
-            map.overlay(alignment: .topLeading) { wordmark().padding(.top, 50).padding(.leading, 18) }
+            map.overlay(alignment: .topLeading) { wordmark(ink: mapInk).padding(.top, 50).padding(.leading, 18) }
             VStack(alignment: .leading, spacing: 14) {
                 HStack(alignment: .lastTextBaseline, spacing: 8) {
                     Text("\(numbers.venues)").font(.display(64))
@@ -262,14 +268,14 @@ struct MapStoryCard: View {
                         Text("\(Fmt.number(numbers.distance ?? 0)) \(unit)").font(.display(26)).foregroundStyle(Color.signal)
                     }
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 let shown = Array(numbers.grounds.prefix(10))
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 5), spacing: 12) {
                     ForEach(Array(shown.enumerated()), id: \.offset) { _, g in
                         VStack(spacing: 4) {
                             AerialVenueIcon(venue: g.venue, sport: g.sport, size: 52, given: g.aerial)
                             Text(g.venue.city.uppercased()).font(.system(size: 9, weight: .heavy).width(.condensed))
-                                .tracking(1).foregroundStyle(.white.opacity(0.75)).lineLimit(1).minimumScaleFactor(0.7)
+                                .tracking(1).foregroundStyle(Color.primaryText.opacity(0.75)).lineLimit(1).minimumScaleFactor(0.7)
                         }
                     }
                 }
@@ -283,18 +289,18 @@ struct MapStoryCard: View {
     /// The map, then the countries in order of venues seen.
     private var countries: some View {
         VStack(alignment: .leading, spacing: 18) {
-            map.overlay(alignment: .topLeading) { wordmark().padding(.top, 50).padding(.leading, 18) }
+            map.overlay(alignment: .topLeading) { wordmark(ink: mapInk).padding(.top, 50).padding(.leading, 18) }
             VStack(alignment: .leading, spacing: 10) {
                 HStack(alignment: .lastTextBaseline, spacing: 8) {
                     Text("\(numbers.countries)").font(.display(64))
                     Text(numbers.countries == 1 ? "COUNTRY" : "COUNTRIES").font(.display(26))
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 ForEach(Array(numbers.countryCounts.prefix(5).enumerated()), id: \.offset) { _, c in
                     HStack(spacing: 12) {
                         CountryGlobe(code: c.code, size: 36)
                         Text((Locale.current.localizedString(forRegionCode: c.code) ?? c.code).uppercased())
-                            .font(.display(26)).foregroundStyle(.white).lineLimit(1)
+                            .font(.display(26)).foregroundStyle(Color.primaryText).lineLimit(1)
                         Spacer()
                         Text("\(c.venues)").font(.display(26)).foregroundStyle(Color.signal)
                     }

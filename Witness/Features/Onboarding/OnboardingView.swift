@@ -404,6 +404,8 @@ private struct ResultScreen: View {
                         .font(.footnote).foregroundStyle(Color.textSecondary)
                 }
                 .padding(14)
+                // On a photo and its dark scrim: white type in either appearance.
+                .environment(\.colorScheme, .dark)
             }
             .frame(maxWidth: .infinity)
             .frame(height: 230)

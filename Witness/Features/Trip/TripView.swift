@@ -275,12 +275,12 @@ private struct TripMap: View {
     var body: some View {
         Map(initialPosition: region, interactionModes: []) {
             MapPolyline(coordinates: coordinates, contourStyle: .geodesic)
-                .stroke(Color.white.opacity(0.85), style: StrokeStyle(lineWidth: 2, dash: [5, 5]))
+                .stroke(Color.primaryText.opacity(0.75), style: StrokeStyle(lineWidth: 2, dash: [5, 5]))
             ForEach(gameStops, id: \.offset) { item in
                 Annotation(item.element.city,
                            coordinate: CLLocationCoordinate2D(latitude: item.element.latitude, longitude: item.element.longitude)) {
                     Circle()
-                        .fill(Color.white)
+                        .fill(Color.primaryText)
                         .frame(width: 12, height: 12)
                         .overlay(Circle().stroke(Color.signal, lineWidth: 3))
                 }
@@ -316,7 +316,8 @@ private struct TripShareCard: View {
 
     private let maxCities = 5
     private let maxGames = 5
-    private let paperColor = Color(red: 0.96, green: 0.95, blue: 0.92)
+    @Environment(\.shareScheme) private var scheme
+    private var paperInk: Color { Color.sharePaperInk(scheme) }
 
     func styled(_ s: Style) -> TripShareCard {
         var copy = self
@@ -352,28 +353,28 @@ private struct TripShareCard: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text(title)
                     .font(.display(300))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.3)
                 Text(gamesLabel)
                     .font(.system(size: 52, weight: .heavy).width(.condensed))
                     .tracking(6)
-                    .foregroundStyle(Color(hex: "FFB547"))
+                    .foregroundStyle(Color.signal)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
                     .padding(.top, 8)
                 Text(dates)
                     .font(.system(size: 40, weight: .bold).width(.condensed))
                     .tracking(4)
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(Color.primaryText.opacity(0.6))
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
                     .padding(.top, 10)
                 if cities.count > 1 {
-                    route(fg: .white).padding(.top, 70)
+                    route(fg: Color.primaryText).padding(.top, 70)
                 }
                 if !games.isEmpty {
-                    gameList(fg: .white).padding(.top, 70)
+                    gameList(fg: Color.primaryText).padding(.top, 70)
                 }
             }
         }
@@ -385,31 +386,31 @@ private struct TripShareCard: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text("\(gameCount)")
                     .font(.display(640))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.3)
                 Text(gameCount == 1 ? "GAME" : "GAMES")
                     .font(.display(150))
-                    .foregroundStyle(Color(hex: "FFB547"))
+                    .foregroundStyle(Color.signal)
                     .lineLimit(1)
                     .minimumScaleFactor(0.4)
                 Text(title)
                     .font(.display(120))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.3)
                     .padding(.top, 50)
                 Text(dates)
                     .font(.system(size: 40, weight: .bold).width(.condensed))
                     .tracking(4)
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(Color.primaryText.opacity(0.6))
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
                     .padding(.top, 10)
                 Text(cityLine)
                     .font(.system(size: 40, weight: .bold).width(.condensed))
                     .tracking(3)
-                    .foregroundStyle(.white.opacity(0.6))
+                    .foregroundStyle(Color.primaryText.opacity(0.6))
                     .lineLimit(2)
                     .minimumScaleFactor(0.5)
                     .padding(.top, 30)
@@ -453,28 +454,28 @@ private struct TripShareCard: View {
 
     /// Off-white paper, black type, the game list as the hero.
     private var paperCard: some View {
-        flatCard(background: paperColor, fg: .black) {
+        flatCard(background: Color.sharePaper(scheme), fg: paperInk) {
             VStack(alignment: .leading, spacing: 0) {
                 Text(title)
                     .font(.display(260))
-                    .foregroundStyle(Color.black)
+                    .foregroundStyle(paperInk)
                     .lineLimit(1)
                     .minimumScaleFactor(0.3)
                 Text("\(gamesLabel)  /  \(dates)")
                     .font(.system(size: 40, weight: .bold).width(.condensed))
                     .tracking(4)
-                    .foregroundStyle(Color.black.opacity(0.55))
+                    .foregroundStyle(paperInk.opacity(0.55))
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
                     .padding(.top, 10)
                 if !games.isEmpty {
-                    gameList(fg: .black).padding(.top, 80)
+                    gameList(fg: paperInk).padding(.top, 80)
                 }
                 if cities.count > 1 {
                     Text(cityLine)
                         .font(.system(size: 40, weight: .bold).width(.condensed))
                         .tracking(3)
-                        .foregroundStyle(Color.black.opacity(0.55))
+                        .foregroundStyle(paperInk.opacity(0.55))
                         .lineLimit(2)
                         .minimumScaleFactor(0.5)
                         .padding(.top, 60)
@@ -489,48 +490,48 @@ private struct TripShareCard: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text(title)
                     .font(.display(180))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.3)
                 HStack(spacing: 0) {
-                    cell(label: "GAMES", value: "\(gameCount)", valueColor: Color(hex: "FFB547"))
-                    cell(label: "CITIES", value: "\(cities.count)", valueColor: .white)
+                    cell(label: "GAMES", value: "\(gameCount)", valueColor: Color.signal)
+                    cell(label: "CITIES", value: "\(cities.count)", valueColor: Color.primaryText)
                 }
                 .padding(.top, 50)
-                cell(label: "DATES", value: dates, valueColor: .white, size: 64)
+                cell(label: "DATES", value: dates, valueColor: Color.primaryText, size: 64)
                 VStack(alignment: .leading, spacing: 0) {
                     ForEach(Array(games.prefix(maxGames))) { game in
                         HStack(spacing: 24) {
                             Text(String(format: "%02d", game.id + 1))
                                 .font(.system(size: 40, weight: .bold).width(.condensed))
-                                .foregroundStyle(.white.opacity(0.5))
+                                .foregroundStyle(Color.primaryText.opacity(0.5))
                             Text(game.matchup)
                                 .font(.system(size: 44, weight: .heavy).width(.condensed))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(Color.primaryText)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.5)
                             Spacer(minLength: 16)
                             Text(game.date)
                                 .font(.system(size: 38, weight: .bold).width(.condensed))
-                                .foregroundStyle(.white.opacity(0.6))
+                                .foregroundStyle(Color.primaryText.opacity(0.6))
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.5)
                         }
                         .frame(height: 80)
                         .padding(.horizontal, 28)
                         .overlay(alignment: .bottom) {
-                            Rectangle().fill(.white.opacity(0.25)).frame(height: 2)
+                            Rectangle().fill(Color.primaryText.opacity(0.25)).frame(height: 2)
                         }
                     }
                     if games.count > maxGames {
                         Text("+\(games.count - maxGames) MORE")
                             .font(.system(size: 36, weight: .bold).width(.condensed))
                             .tracking(4)
-                            .foregroundStyle(.white.opacity(0.6))
+                            .foregroundStyle(Color.primaryText.opacity(0.6))
                             .padding(28)
                     }
                 }
-                .overlay(Rectangle().stroke(Color.white.opacity(0.25), lineWidth: 2))
+                .overlay(Rectangle().stroke(Color.primaryText.opacity(0.25), lineWidth: 2))
             }
         }
     }
@@ -542,7 +543,7 @@ private struct TripShareCard: View {
             Text(label)
                 .font(.system(size: 34, weight: .bold).width(.condensed))
                 .tracking(5)
-                .foregroundStyle(.white.opacity(0.6))
+                .foregroundStyle(Color.primaryText.opacity(0.6))
             Text(value)
                 .font(.display(size))
                 .foregroundStyle(valueColor)
@@ -551,7 +552,7 @@ private struct TripShareCard: View {
         }
         .padding(28)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .overlay(Rectangle().stroke(Color.white.opacity(0.25), lineWidth: 2))
+        .overlay(Rectangle().stroke(Color.primaryText.opacity(0.25), lineWidth: 2))
     }
 
     /// A full-bleed card with its own background, for the looks that are not on ink.
@@ -573,7 +574,7 @@ private struct TripShareCard: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .light)
+        .shareSurface()
     }
 
     private func route(fg: Color) -> some View {

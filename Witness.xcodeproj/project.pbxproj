@@ -92,6 +92,7 @@
 		A62D53ECB6BD4A82A0800554 /* ScanSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DE6CDB0C5345F092D2F92C /* ScanSettings.swift */; };
 		E14EE3095355CC6B33297843 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA0327CBD34799EB421705D /* Library.swift */; };
 		E6419B75864FC1DFA5ED08F1 /* WitnessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2E5222772FB0C38016D430A /* WitnessUITests.swift */; };
+		8280AC968C7643F7BE0AB2F2 /* AppearanceReviewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 938C9F6C69DD41AD905358FA /* AppearanceReviewTests.swift */; };
 		E669D62EF7D7D9DD19FCDFAB /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDEDDEB3372D49CD437F4B5 /* Stats.swift */; };
 		E6F2907DBF9114392C1C5A25 /* Catalog in Resources */ = {isa = PBXBuildFile; fileRef = 4DE49130D83B8D5B5C8CD63A /* Catalog */; };
 		EE613D09F1784245897CA7D6 /* BackgroundPhotoCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1833A6AAA7A248529EAE4685 /* BackgroundPhotoCheck.swift */; };
@@ -105,6 +106,7 @@
 		D0E00A8C14204C00B3519C8C /* ScanEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */; };
 		3D39260116C14C0FAEC1F888 /* AirborneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E05E8030B4AEEBD6CF48D /* AirborneTests.swift */; };
 		6E5B5E15CF2B4F6BBA5C5ED4 /* AppearanceChoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D0D60D51D34D21BC3A5187 /* AppearanceChoiceTests.swift */; };
+		1EB04E21676943238C8368A9 /* ShareExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23761484161F4AF9876228F4 /* ShareExportTests.swift */; };
 		F16E68820C464A61B5C436DE /* ScanSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B76B4D41A545A09D70DF7A /* ScanSettingsTests.swift */; };
 		CC39DF83E455454CA0ECDFAA /* F1CircuitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86A7CA4CE54B87A0E10203 /* F1CircuitTests.swift */; };
 		414D6422971640518453B6B6 /* TournamentCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6916C75064B044CD9A141F04 /* TournamentCatalogTests.swift */; };
@@ -195,6 +197,7 @@
 		9F4F48A3DC2D47231C6E56B7 /* EventTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTheme.swift; sourceTree = "<group>"; };
 		A051A1837F2F1411136520EB /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		A2E5222772FB0C38016D430A /* WitnessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitnessUITests.swift; sourceTree = "<group>"; };
+		938C9F6C69DD41AD905358FA /* AppearanceReviewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceReviewTests.swift; sourceTree = "<group>"; };
 		A704303482A7331087EFF150 /* YouWereThereView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouWereThereView.swift; sourceTree = "<group>"; };
 		A857D75ED272F933EF88177E /* VenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueView.swift; sourceTree = "<group>"; };
 		026BC44F5308460A978EB351 /* VenueStoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueStoryCard.swift; sourceTree = "<group>"; };
@@ -231,6 +234,7 @@
 		5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanEndToEndTests.swift; sourceTree = "<group>"; };
 		AF9E05E8030B4AEEBD6CF48D /* AirborneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirborneTests.swift; sourceTree = "<group>"; };
 		48D0D60D51D34D21BC3A5187 /* AppearanceChoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceChoiceTests.swift; sourceTree = "<group>"; };
+		23761484161F4AF9876228F4 /* ShareExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareExportTests.swift; sourceTree = "<group>"; };
 		16B76B4D41A545A09D70DF7A /* ScanSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanSettingsTests.swift; sourceTree = "<group>"; };
 		9D86A7CA4CE54B87A0E10203 /* F1CircuitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1CircuitTests.swift; sourceTree = "<group>"; };
 		6916C75064B044CD9A141F04 /* TournamentCatalogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentCatalogTests.swift; sourceTree = "<group>"; };
@@ -397,6 +401,7 @@
 				5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */,
 				AF9E05E8030B4AEEBD6CF48D /* AirborneTests.swift */,
 				48D0D60D51D34D21BC3A5187 /* AppearanceChoiceTests.swift */,
+				23761484161F4AF9876228F4 /* ShareExportTests.swift */,
 				16B76B4D41A545A09D70DF7A /* ScanSettingsTests.swift */,
 				9D86A7CA4CE54B87A0E10203 /* F1CircuitTests.swift */,
 				6916C75064B044CD9A141F04 /* TournamentCatalogTests.swift */,
@@ -484,6 +489,7 @@
 			isa = PBXGroup;
 			children = (
 				A2E5222772FB0C38016D430A /* WitnessUITests.swift */,
+				938C9F6C69DD41AD905358FA /* AppearanceReviewTests.swift */,
 			);
 			path = WitnessUITests;
 			sourceTree = "<group>";
@@ -671,6 +677,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E6419B75864FC1DFA5ED08F1 /* WitnessUITests.swift in Sources */,
+				8280AC968C7643F7BE0AB2F2 /* AppearanceReviewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,6 +693,7 @@
 				D0E00A8C14204C00B3519C8C /* ScanEndToEndTests.swift in Sources */,
 				3D39260116C14C0FAEC1F888 /* AirborneTests.swift in Sources */,
 				6E5B5E15CF2B4F6BBA5C5ED4 /* AppearanceChoiceTests.swift in Sources */,
+				1EB04E21676943238C8368A9 /* ShareExportTests.swift in Sources */,
 				F16E68820C464A61B5C436DE /* ScanSettingsTests.swift in Sources */,
 				CC39DF83E455454CA0ECDFAA /* F1CircuitTests.swift in Sources */,
 				414D6422971640518453B6B6 /* TournamentCatalogTests.swift in Sources */,

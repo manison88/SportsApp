@@ -379,7 +379,7 @@ private func wrapText(_ s: String, size: CGFloat, color: Color, lines: Int = 1,
         .frame(maxWidth: .infinity, alignment: .leading)
 }
 
-private func wrapNumeral(_ s: String, size: CGFloat, color: Color = .white) -> some View {
+private func wrapNumeral(_ s: String, size: CGFloat, color: Color = Color.primaryText) -> some View {
     Text(s)
         .font(.display(size))
         .foregroundStyle(color)
@@ -393,19 +393,19 @@ private struct WrapStatRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
-            Rectangle().fill(Color.white.opacity(0.3)).frame(height: 3)
+            Rectangle().fill(Color.primaryText.opacity(0.3)).frame(height: 3)
             HStack(alignment: .top, spacing: 24) {
                 ForEach(stats) { s in
                     VStack(alignment: .leading, spacing: 4) {
                         Text(s.value)
                             .font(.display(130))
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.primaryText)
                             .lineLimit(1)
                             .minimumScaleFactor(0.4)
                         Text(s.label.uppercased())
                             .font(.system(size: 34, weight: .bold).width(.condensed))
                             .tracking(5)
-                            .foregroundStyle(Color.white.opacity(0.6))
+                            .foregroundStyle(Color.primaryText.opacity(0.6))
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
                     }
@@ -425,7 +425,7 @@ private struct WrapRoute: View {
         VStack(alignment: .leading, spacing: 22) {
             ZStack {
                 Rectangle()
-                    .fill(Color.white.opacity(0.3))
+                    .fill(Color.primaryText.opacity(0.3))
                     .frame(height: 2)
                     .padding(.horizontal, 456 / CGFloat(n))
                 HStack(spacing: 0) {
@@ -441,7 +441,7 @@ private struct WrapRoute: View {
                 ForEach(cities.indices, id: \.self) { i in
                     Text(cities[i].uppercased())
                         .font(.system(size: 28, weight: .bold).width(.condensed))
-                        .foregroundStyle(Color.white.opacity(0.85))
+                        .foregroundStyle(Color.primaryText.opacity(0.85))
                         .multilineTextAlignment(.center)
                         .lineLimit(2)
                         .minimumScaleFactor(0.6)
@@ -450,7 +450,7 @@ private struct WrapRoute: View {
                 }
             }
             if extra > 0 {
-                wrapText("+\(extra) more", size: 32, color: Color.white.opacity(0.55), tracking: 4)
+                wrapText("+\(extra) more", size: 32, color: Color.primaryText.opacity(0.55), tracking: 4)
             }
         }
     }
@@ -463,22 +463,22 @@ private struct WrapLedgerRow: View {
     var body: some View {
         let sub = [row.dateText, row.stage].filter { !$0.isEmpty }.joined(separator: " · ")
         VStack(spacing: 0) {
-            Rectangle().fill(Color.black).frame(height: 3)
+            Rectangle().fill(Color.primaryText).frame(height: 3)
             HStack(alignment: .center, spacing: 24) {
                 Text("\(rank)")
                     .font(.display(120))
-                    .foregroundStyle(Color.black)
+                    .foregroundStyle(Color.primaryText)
                     .frame(width: 80, alignment: .leading)
                 VStack(alignment: .leading, spacing: 6) {
                     Text(row.matchup.uppercased())
                         .font(.system(size: 50, weight: .heavy).width(.condensed))
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(Color.primaryText)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
                     Text(sub.uppercased())
                         .font(.system(size: 32, weight: .bold).width(.condensed))
                         .tracking(3)
-                        .foregroundStyle(Color.black.opacity(0.55))
+                        .foregroundStyle(Color.primaryText.opacity(0.55))
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
                 }
@@ -486,7 +486,7 @@ private struct WrapLedgerRow: View {
                 if !row.score.isEmpty {
                     Text(row.score)
                         .font(.display(76))
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(Color.primaryText)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
                 }
@@ -541,8 +541,8 @@ private struct GamesShareCard: View {
         ZStack(alignment: .topLeading) {
             Color.ink
             LinearGradient(colors: [tint.opacity(0.45), .clear], startPoint: .top, endPoint: .center)
-            WrapSafe(mark: Color.white.opacity(0.9)) {
-                WrapKicker(text: "Wrapped \(year)", color: Color.white.opacity(0.85))
+            WrapSafe(mark: Color.primaryText.opacity(0.9)) {
+                WrapKicker(text: "Wrapped \(year)", color: Color.primaryText.opacity(0.85))
                 Spacer(minLength: 20)
                 wrapNumeral("\(games)", size: 640)
                 wrapText(games == 1 ? "game in \(year)" : "games in \(year)", size: 56, color: Color.signal, tracking: 8, weight: .heavy)
@@ -554,7 +554,7 @@ private struct GamesShareCard: View {
             }
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 }
 
@@ -572,18 +572,18 @@ private struct MilesShareCard: View {
         ZStack(alignment: .topLeading) {
             Color.ink
             LinearGradient(colors: [.clear, tint.opacity(0.4)], startPoint: .center, endPoint: .bottom)
-            WrapSafe(mark: Color.white.opacity(0.9)) {
-                WrapKicker(text: "Wrapped \(year)", color: Color.white.opacity(0.85))
+            WrapSafe(mark: Color.primaryText.opacity(0.9)) {
+                WrapKicker(text: "Wrapped \(year)", color: Color.primaryText.opacity(0.85))
                 Spacer(minLength: 20)
                 wrapNumeral(miles, size: 440)
                 wrapText("\(Fmt.distanceWord) traveled", size: 56, color: Color.signal, tracking: 8, weight: .heavy)
                     .textCase(.uppercase)
                 Spacer(minLength: 48)
                 if !farName.isEmpty {
-                    wrapText("Farthest from home", size: 34, color: Color.white.opacity(0.55), tracking: 5)
+                    wrapText("Farthest from home", size: 34, color: Color.primaryText.opacity(0.55), tracking: 5)
                         .textCase(.uppercase)
-                    wrapText(farName.uppercased(), size: 76, color: .white, lines: 2, weight: .heavy).padding(.top, 8)
-                    wrapText(farCity, size: 40, color: Color.white.opacity(0.7)).padding(.top, 6)
+                    wrapText(farName.uppercased(), size: 76, color: Color.primaryText, lines: 2, weight: .heavy).padding(.top, 8)
+                    wrapText(farCity, size: 40, color: Color.primaryText.opacity(0.7)).padding(.top, 6)
                 }
                 if route.count >= 2 {
                     Spacer(minLength: 48)
@@ -592,7 +592,7 @@ private struct MilesShareCard: View {
             }
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 }
 
@@ -674,13 +674,13 @@ private struct BigGameShareCard: View {
     let tint: Color
 
     var body: some View {
-        let stageColor: Color = isTitle ? Color.trophy : Color.white
+        let stageColor: Color = isTitle ? Color.trophy : Color.primaryText
         let when = [row.dateText, row.timeText.isEmpty ? "" : "\(row.timeText) kickoff"].filter { !$0.isEmpty }.joined(separator: " · ")
         ZStack(alignment: .topLeading) {
             Color.ink
             LinearGradient(colors: [tint.opacity(0.45), .clear], startPoint: .top, endPoint: .center)
-            WrapSafe(mark: Color.white.opacity(0.9)) {
-                WrapKicker(text: "Game of \(year)", color: Color.white.opacity(0.85))
+            WrapSafe(mark: Color.primaryText.opacity(0.9)) {
+                WrapKicker(text: "Game of \(year)", color: Color.primaryText.opacity(0.85))
                 wrapText(stage.uppercased(), size: 56, color: stageColor, lines: 2, tracking: 4, weight: .heavy)
                     .padding(.top, 36)
                 if let photo {
@@ -695,15 +695,15 @@ private struct BigGameShareCard: View {
                 if !row.score.isEmpty {
                     wrapNumeral(row.score, size: photo == nil ? 420 : 260).padding(.top, 12)
                 }
-                wrapText(row.matchup.uppercased(), size: 64, color: .white, lines: 2, weight: .heavy).padding(.top, 12)
-                wrapText(when.uppercased(), size: 44, color: Color.white.opacity(0.85), tracking: 3).padding(.top, 24)
+                wrapText(row.matchup.uppercased(), size: 64, color: Color.primaryText, lines: 2, weight: .heavy).padding(.top, 12)
+                wrapText(when.uppercased(), size: 44, color: Color.primaryText.opacity(0.85), tracking: 3).padding(.top, 24)
                 if !row.venue.isEmpty {
-                    wrapText(row.venue, size: 36, color: Color.white.opacity(0.6)).padding(.top, 8)
+                    wrapText(row.venue, size: 36, color: Color.primaryText.opacity(0.6)).padding(.top, 8)
                 }
             }
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 }
 
@@ -723,29 +723,29 @@ private struct WeatherShareCard: View {
         ZStack(alignment: .topLeading) {
             Color.ink
             LinearGradient(colors: [wash.opacity(0.6), .clear], startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 0.75))
-            WrapSafe(mark: Color.white.opacity(0.9)) {
-                WrapKicker(text: "Wrapped \(year)", color: Color.white.opacity(0.85))
+            WrapSafe(mark: Color.primaryText.opacity(0.9)) {
+                WrapKicker(text: "Wrapped \(year)", color: Color.primaryText.opacity(0.85))
                 Spacer(minLength: 20)
                 wrapText(isCold ? "Coldest game" : "Hottest game", size: 48, color: Color.signal, tracking: 8, weight: .heavy)
                     .textCase(.uppercase)
                 wrapNumeral(temp, size: 520).padding(.top, 8)
                 if !condition.isEmpty {
-                    wrapText(condition.uppercased(), size: 72, color: .white, lines: 2, tracking: 4, weight: .heavy)
+                    wrapText(condition.uppercased(), size: 72, color: Color.primaryText, lines: 2, tracking: 4, weight: .heavy)
                 }
                 Spacer(minLength: 60)
-                Rectangle().fill(Color.white.opacity(0.3)).frame(height: 3)
+                Rectangle().fill(Color.primaryText.opacity(0.3)).frame(height: 3)
                 if !venue.isEmpty {
-                    wrapText(venue.uppercased(), size: 60, color: .white, lines: 2, weight: .heavy).padding(.top, 28)
+                    wrapText(venue.uppercased(), size: 60, color: Color.primaryText, lines: 2, weight: .heavy).padding(.top, 28)
                 }
                 if !city.isEmpty {
-                    wrapText(city, size: 40, color: Color.white.opacity(0.7)).padding(.top, 6)
+                    wrapText(city, size: 40, color: Color.primaryText.opacity(0.7)).padding(.top, 6)
                 }
-                wrapText("\(dateText) · \(timeText) kickoff".uppercased(), size: 44, color: Color.white.opacity(0.85), tracking: 3)
+                wrapText("\(dateText) · \(timeText) kickoff".uppercased(), size: 44, color: Color.primaryText.opacity(0.85), tracking: 3)
                     .padding(.top, 20)
             }
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 }
 
@@ -763,10 +763,10 @@ private struct CalendarShareCard: View {
         let dot = min(34, max(8, (770 - 10 * CGFloat(m - 1)) / CGFloat(m)))
         ZStack(alignment: .topLeading) {
             Color.ink
-            WrapSafe(mark: Color.white.opacity(0.9)) {
-                WrapKicker(text: "Wrapped \(year)", color: Color.white.opacity(0.85))
+            WrapSafe(mark: Color.primaryText.opacity(0.9)) {
+                WrapKicker(text: "Wrapped \(year)", color: Color.primaryText.opacity(0.85))
                 wrapNumeral("\(games)", size: 260).padding(.top, 12)
-                wrapText(games == 1 ? "game" : "games", size: 48, color: Color.white.opacity(0.7), tracking: 8, weight: .heavy)
+                wrapText(games == 1 ? "game" : "games", size: 48, color: Color.primaryText.opacity(0.7), tracking: 8, weight: .heavy)
                     .textCase(.uppercase)
                 Spacer(minLength: 28)
                 VStack(alignment: .leading, spacing: 0) {
@@ -775,18 +775,18 @@ private struct CalendarShareCard: View {
                             Text(names[i])
                                 .font(.system(size: 30, weight: .bold).width(.condensed))
                                 .tracking(4)
-                                .foregroundStyle(Color.white.opacity(0.55))
+                                .foregroundStyle(Color.primaryText.opacity(0.55))
                                 .frame(width: 120, alignment: .leading)
                             HStack(spacing: 10) {
                                 if i < months.count && !months[i].isEmpty {
                                     ForEach(months[i].indices, id: \.self) { j in
                                         Circle()
-                                            .fill(months[i][j] ? Color.signal : Color.white)
+                                            .fill(months[i][j] ? Color.signal : Color.primaryText)
                                             .frame(width: dot, height: dot)
                                     }
                                 } else {
                                     Circle()
-                                        .strokeBorder(Color.white.opacity(0.25), lineWidth: 2)
+                                        .strokeBorder(Color.primaryText.opacity(0.25), lineWidth: 2)
                                         .frame(width: 12, height: 12)
                                 }
                             }
@@ -798,24 +798,25 @@ private struct CalendarShareCard: View {
             }
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 }
 
 // 8 Top Five: a ruled ledger on paper.
 private struct TopFiveShareCard: View {
+    @Environment(\.shareScheme) private var scheme
     let year: String
     let rows: [WrapRow]
     let tint: Color
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            Color(hex: "F4F1EA")
-            WrapSafe(mark: Color.black) {
-                WrapKicker(text: "Wrapped \(year)", color: Color.black.opacity(0.55))
+            Color.sharePaper(scheme)
+            WrapSafe(mark: Color.primaryText) {
+                WrapKicker(text: "Wrapped \(year)", color: Color.primaryText.opacity(0.55))
                 Text(rows.count == 5 ? "TOP FIVE" : "TOP \(rows.count)")
                     .font(.display(190))
-                    .foregroundStyle(Color.black)
+                    .foregroundStyle(Color.primaryText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.4)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -825,13 +826,13 @@ private struct TopFiveShareCard: View {
                     ForEach(rows.indices, id: \.self) { i in
                         WrapLedgerRow(rank: i + 1, row: rows[i])
                     }
-                    Rectangle().fill(Color.black).frame(height: 3)
+                    Rectangle().fill(Color.primaryText).frame(height: 3)
                 }
                 .padding(.top, 36)
             }
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .light)
+        .shareSurface()
     }
 }
 

@@ -120,12 +120,13 @@ private struct LuckyShareCard: View {
     let style: Style
 
     private let barWidth: CGFloat = 912
+    @Environment(\.shareScheme) private var scheme
 
     private var fg: Color {
         switch style {
-        case .paper: return Color.black
+        case .paper: return Color.sharePaperInk(scheme)
         case .color: return accent.readableInk
-        default: return Color.white
+        default: return Color.primaryText
         }
     }
 
@@ -138,7 +139,7 @@ private struct LuckyShareCard: View {
             }
         }
         .frame(width: 1080, height: 1920)
-        .environment(\.colorScheme, .dark)
+        .shareSurface()
     }
 
     // MARK: Pieces
@@ -228,7 +229,7 @@ private struct LuckyShareCard: View {
         case .color:
             accent
         case .paper:
-            Color(hex: "F4F1EA")
+            Color.sharePaper(scheme)
         default:
             ZStack {
                 Color.ink
@@ -274,9 +275,9 @@ private struct LuckyShareCard: View {
             caption(fg.opacity(0.85)).padding(.top, 8)
             VStack(alignment: .leading, spacing: 44) {
                 bar(label: "With me", valueText: withMeText, value: withMe ?? 0,
-                    fill: Color.signal, track: Color.white.opacity(0.12), ink: fg)
+                    fill: Color.signal, track: Color.primaryText.opacity(0.12), ink: fg)
                 bar(label: baselineLabel, valueText: baselineText, value: baseline,
-                    fill: Color.white.opacity(0.5), track: Color.white.opacity(0.12), ink: fg)
+                    fill: Color.primaryText.opacity(0.5), track: Color.primaryText.opacity(0.12), ink: fg)
             }
             .padding(.top, 90)
             line(fg.opacity(0.85)).padding(.top, 70)
@@ -343,7 +344,7 @@ private struct LuckyShareCard: View {
                 hero(size: 330, color: fg)
                 caption(fg.opacity(0.85)).padding(.top, 8)
                 Rectangle()
-                    .stroke(Color.white.opacity(0.4), style: StrokeStyle(lineWidth: 3, dash: [16, 12]))
+                    .stroke(Color.primaryText.opacity(0.4), style: StrokeStyle(lineWidth: 3, dash: [16, 12]))
                     .frame(height: 3)
                     .padding(.vertical, 50)
                 VStack(spacing: 30) {
@@ -360,8 +361,8 @@ private struct LuckyShareCard: View {
                 }
             }
             .padding(56)
-            .background(Color.white.opacity(0.08), in: .rect(cornerRadius: 40))
-            .overlay(RoundedRectangle(cornerRadius: 40).strokeBorder(Color.white.opacity(0.25), lineWidth: 2))
+            .background(Color.primaryText.opacity(0.08), in: .rect(cornerRadius: 40))
+            .overlay(RoundedRectangle(cornerRadius: 40).strokeBorder(Color.primaryText.opacity(0.25), lineWidth: 2))
             .padding(.top, 50)
             line(fg.opacity(0.85)).padding(.top, 50)
         }
@@ -406,10 +407,10 @@ private struct LuckyShareCard: View {
             .zIndex(1)
 
             VStack(alignment: .leading, spacing: 0) {
-                label(baselineLabel, color: Color.white.opacity(0.6)).padding(.top, 120)
-                value(baselineText, size: 380, color: Color.white.opacity(0.5))
+                label(baselineLabel, color: Color.primaryText.opacity(0.6)).padding(.top, 120)
+                value(baselineText, size: 380, color: Color.primaryText.opacity(0.5))
                 Spacer(minLength: 20)
-                footer(Color.white.opacity(0.9))
+                footer(Color.primaryText.opacity(0.9))
             }
             .padding(.horizontal, 84)
             .padding(.bottom, 250)
@@ -447,7 +448,7 @@ private struct Dial: View {
                     p.addArc(center: center, radius: radius, startAngle: .degrees(start),
                              endAngle: angle, clockwise: false)
                 }
-                .stroke(Color.white, style: StrokeStyle(lineWidth: 2, lineCap: .round))
+                .stroke(Color.primaryText, style: StrokeStyle(lineWidth: 2, lineCap: .round))
 
                 Path { p in
                     for i in 0...10 {
