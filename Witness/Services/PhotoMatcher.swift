@@ -25,12 +25,13 @@ struct PhotoCluster: Identifiable, Hashable, Codable {
         return last.timeIntervalSince(first)
     }
 
-    /// A stadium visit with no game on the schedule (a tour, a walk round the ground) is offered when this many photos inside
-    /// the fence, none on the move, span twenty minutes: nobody lingers inside a fence that long by accident. A plane over the
-    /// ground is on the move; a drive past it leaves one photo; a bar across the street is outside the fence.
-    static let visitPhotos = 3
-    static let visitStay: TimeInterval = 20 * 60
-    var isStadiumVisit: Bool { anchors.count >= Self.visitPhotos && insideSpan >= Self.visitStay }
+    /// A stadium visit with no game on the schedule (a tour, a walk round the ground) is offered when `dwellPhotos` photos inside
+    /// the fence, none on the move, span `dwellMinutes` (three over twenty minutes): nobody lingers inside a fence that long by
+    /// accident. A plane over the ground is on the move; a drive past it leaves one photo; a bar across the street is outside the fence.
+    var isStadiumVisit: Bool { isStadiumVisit(ScanSettings.current) }
+    func isStadiumVisit(_ settings: ScanSettings) -> Bool {
+        anchors.count >= settings.dwellPhotos && insideSpan >= settings.dwellMinutes * 60
+    }
 }
 
 /// Finds games in the photo library from each photo's time and place. On-device only.
@@ -90,11 +91,12 @@ enum PhotoMatcher {
         VisitGrouping.nearestVenue(lat: p.lat, lon: p.lon, in: venues, radius: radius)
     }
 
-    /// Other venues close enough that the same photos could belong to them.
-    /// Other grounds close enough that a fan's photos on the way in can land at either: Lumen Field and T-Mobile Park are
-    /// 440 m apart, the United Center and its practice rinks closer still.
-    static func neighbors(of venue: Venue, in venues: [Venue], within radius: CLLocationDistance = 1_000) -> [Venue] {
-        venues.filter { $0.id != venue.id && $0.location.distance(from: venue.location) <= radius }
+    /// Other grounds close enough (`neighborMeters`, 1 km) that a fan's photos on the way in can land at either: Lumen Field and
+    /// T-Mobile Park are 440 m apart, the United Center and its practice rinks closer still.
+    static func neighbors(of venue: Venue, in venues: [Venue], within radius: CLLocationDistance? = nil,
+                          settings: ScanSettings = .current) -> [Venue] {
+        let radius = radius ?? settings.neighborMeters
+        return venues.filter { $0.id != venue.id && $0.location.distance(from: venue.location) <= radius }
             .sorted { $0.location.distance(from: venue.location) < $1.location.distance(from: venue.location) }
     }
 
@@ -138,49 +140,48 @@ enum PhotoMatcher {
         var cityDays: [CityDay] = []
     }
 
-    /// How far outside the fence a day of photos can be and still be offered as a possible game when the schedule has one there:
-    /// the plaza and car parks, and the fan march (Occidental Park is 540 m from Lumen Field).
-    static let nearbyReach: CLLocationDistance = 600
-    /// Days around stadiums looked up per scan, newest first: someone who lives next to a stadium has hundreds.
-    static let maxNearby = 40
-
-    /// The pure part of `discover`: visits from photos inside a fence (the 15-minute stay), then the days spent just outside one.
-    /// Photos on the move (a landing over the ground, the motorway past it) place neither.
-    static func found(in points: [PhotoPoint], venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil) -> Found {
+    /// The pure part of `discover`: visits from photos inside a fence (the `visitStayMinutes` stay), then the days spent just
+    /// outside one: within `nearbyReachMeters` (600 m: the plaza and car parks, and the fan march; Occidental Park is 540 m
+    /// from Lumen Field), `nearbyPhotos` or more, at most `nearbyMaxDays` newest first (someone who lives next to a stadium has
+    /// hundreds). Photos on the move (a landing over the ground, the motorway past it) place neither.
+    static func found(in points: [PhotoPoint], venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil,
+                      settings: ScanSettings = .current) -> Found {
         let skipping = settledKeys(existing, venues: venues)
-        let moving = TransitCheck.moving(points)
-        let visits = VisitGrouping.group(points, venues: venues, radius: radius, minimumStay: 15 * 60, skipping: skipping,
-                                         moving: moving).visits
+        let moving = TransitCheck.moving(points, settings: settings)
+        let stay = settings.visitStayMinutes * 60
+        let visits = VisitGrouping.group(points, venues: venues, radius: radius, minimumStay: stay, skipping: skipping,
+                                         moving: moving, settings: settings).visits
         let inVisits = Set(visits.flatMap(\.assetIds))
         let outside = points.filter { $0.latitude != nil && $0.longitude != nil && !inVisits.contains($0.id) }
         var keyer = DayKeyer()
-        let nearby = VisitGrouping.group(outside, venues: venues, radius: max(radius ?? 0, nearbyReach), minimumStay: 15 * 60,
-                                         moving: moving).visits
+        let nearby = VisitGrouping.group(outside, venues: venues, radius: max(radius ?? 0, settings.nearbyReachMeters), minimumStay: stay,
+                                         moving: moving, settings: settings).visits
             .filter { day in
-                guard day.assetIds.count >= GameSuggester.minPhotos else { return false }
+                guard day.assetIds.count >= settings.nearbyPhotos else { return false }
                 let key = keyer.day(day.start, tz: day.venue.tz)
                 // A visit (or a saved game) at this ground or next door that day already holds the day.
-                let near = [day.venue] + neighbors(of: day.venue, in: venues)
+                let near = [day.venue] + neighbors(of: day.venue, in: venues, settings: settings)
                 return !near.contains { v in
                     skipping.contains("\(v.id)|\(key)") || visits.contains { $0.venue.id == v.id && keyer.day($0.start, tz: v.tz) == key }
                 }
             }
-        let kept = Array(nearby.sorted { $0.start > $1.start }.prefix(maxNearby))
+        let kept = Array(nearby.sorted { $0.start > $1.start }.prefix(settings.nearbyMaxDays))
         let taken = Set(visits.flatMap(\.assetIds) + kept.flatMap(\.assetIds))
         return Found(visits: visits.sorted { $0.start > $1.start }, nearby: kept,
-                     cityDays: CityDays.candidates(points, venues: venues, taken: taken, existing: existing))
+                     cityDays: CityDays.candidates(points, venues: venues, taken: taken, existing: existing, settings: settings))
     }
 
     /// Finds visits in the whole library, newest first. Photos near a stadium on a visit's day count toward it
-    /// (see `VisitGrouping.matchdayReach`), and a visit needs a 15-minute stay inside the fence.
-    /// `progress` is called about every thousand photos, from a background thread.
+    /// (`matchdayReachMeters`), and a visit needs a `visitStayMinutes` stay inside the fence.
+    /// `progress` is called about every `progressEveryPhotos` photos, from a background thread.
     static func discover(venues: [Venue], existing: [GameEntry], radius: CLLocationDistance? = nil,
                          progress: (@Sendable (ScanProgress) -> Void)? = nil) async -> Found {
+        let settings = ScanSettings.current
         return await Task.detached(priority: .userInitiated) { () -> Found in
             let options = PHFetchOptions()
             options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
             let result = PHAsset.fetchAssets(with: .image, options: options)
-            let index = VenueIndex(venues)
+            let index = VenueIndex(venues, settings: settings)
             var state = ScanProgress(total: result.count)
             var tallyAt: [String: Int] = [:]
             var visitKeys = Set<String>()
@@ -207,11 +208,11 @@ enum PhotoMatcher {
                             state.visits += 1
                             // One photo per visit, so the strip on the scan screen shows many games, not one game many times.
                             state.recentIds.insert(asset.localIdentifier, at: 0)
-                            if state.recentIds.count > 40 { state.recentIds.removeLast() }
+                            if state.recentIds.count > settings.progressRecentPhotos { state.recentIds.removeLast() }
                         }
                     }
                 }
-                if i % 1000 == 999 {
+                if i % settings.progressEveryPhotos == settings.progressEveryPhotos - 1 {
                     state.scanned = i + 1
                     state.date = asset.creationDate
                     progress?(state)
@@ -219,7 +220,7 @@ enum PhotoMatcher {
             }
             state.scanned = result.count
             progress?(state)
-            return found(in: points, venues: venues, existing: existing, radius: radius)
+            return found(in: points, venues: venues, existing: existing, radius: radius, settings: settings)
         }.value
     }
 
@@ -283,7 +284,7 @@ enum PhotoMatcher {
     /// Where a game's own photos were taken: the first of them that carries a location.
     static func location(ofPhotos ids: [String]) async -> CLLocation? {
         guard hasAccess, !ids.isEmpty else { return nil }
-        let some = Array(ids.prefix(24))
+        let some = Array(ids.prefix(ScanSettings.current.photoLocationSample))
         return await Task.detached(priority: .utility) { () -> CLLocation? in
             let assets = PHAsset.fetchAssets(withLocalIdentifiers: some, options: nil)
             var found: CLLocation?
@@ -295,10 +296,10 @@ enum PhotoMatcher {
     }
 
     /// A drive-by snapshot isn't a game: ask for at least two photos taken
-    /// at least 15 minutes apart, the shortest plausible stay in the stands.
-    static func looksLikeAGame(_ times: [Date], minimumStay: TimeInterval = 15 * 60) -> Bool {
+    /// at least `visitStayMinutes` (15 minutes) apart, the shortest plausible stay in the stands.
+    static func looksLikeAGame(_ times: [Date], minimumStay: TimeInterval? = nil, settings: ScanSettings = .current) -> Bool {
         guard times.count >= 2, let first = times.min(), let last = times.max() else { return false }
-        return last.timeIntervalSince(first) >= minimumStay
+        return last.timeIntervalSince(first) >= (minimumStay ?? settings.visitStayMinutes * 60)
     }
 
     /// "wrigley|2016-10-30", the venue's local calendar day.

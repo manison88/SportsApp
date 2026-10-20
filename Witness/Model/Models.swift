@@ -120,13 +120,15 @@ struct Venue: Codable, Hashable, Identifiable {
     /// How far from the venue's center a photo can be and still count as inside: 200 m, a little more for the
     /// biggest bowls so their upper decks count (Michigan Stadium is ~300 m across). Tight enough to leave out
     /// the bar across the street.
-    var geofence: Double {
+    var geofence: Double { geofence(ScanSettings.current) }
+
+    /// The fence by the settings in force (the tiers are tunable over the air; a venue's own `geofenceMeters` always wins).
+    func geofence(_ settings: ScanSettings) -> Double {
         if let geofenceMeters { return geofenceMeters }
-        switch capacity ?? 0 {
-        case 90_000...: return 300
-        case 65_000..<90_000: return 260
-        default: return 200
-        }
+        let seats = capacity ?? 0
+        if seats >= settings.fenceHugeCapacity { return settings.fenceHugeMeters }
+        if seats >= settings.fenceBigCapacity { return settings.fenceBigMeters }
+        return settings.fenceMeters
     }
     var location: CLLocation { CLLocation(latitude: latitude, longitude: longitude) }
     var tz: TimeZone { TimeZone(identifier: timeZone) ?? .current }

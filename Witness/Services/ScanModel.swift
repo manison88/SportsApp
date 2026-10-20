@@ -191,6 +191,7 @@ final class ScanModel {
         let pending = pendingVisits.filter { !$0.assetIds.contains(where: ledger.dismissedAssets.contains) }
         let claimedBefore = claimed
         let photos = photos
+        let settings = ScanSettings.current
         deepTask = Task { [weak self] in
             var claimed = claimedBefore
             var keyer = DayKeyer()
@@ -200,7 +201,7 @@ final class ScanModel {
             for (n, cluster) in pending.enumerated() {
                 if Task.isCancelled { return }
                 self?.deepStep = .visits; self?.deepDone = n; self?.deepTotal = pending.count
-                if let day = await Self.waitingDay(cluster, venues: venues) {
+                if let day = await Self.waitingDay(cluster, venues: venues, settings: settings) {
                     atStadiums.append(day)
                 }
             }
@@ -307,6 +308,8 @@ final class ScanModel {
         // The scan can take minutes: keep the screen awake so it isn't interrupted.
         UIApplication.shared.isIdleTimerDisabled = true
         defer { UIApplication.shared.isIdleTimerDisabled = false }
+        // One scan, one set of settings, even if a pack lands while it runs.
+        let settings = ScanSettings.current
 
         let scanned = await photos.discover(library.venues, library.games) { p in
             Task { @MainActor [weak self] in
@@ -321,12 +324,13 @@ final class ScanModel {
         totalVisits = found.count
         let venues = library.venues
         var matched: [String: FoundGame] = [:]
-        // Schedule lookups are network calls, so a few run at once.
-        for start in stride(from: 0, to: found.count, by: 4) {
-            let chunk = Array(found[start..<min(start + 4, found.count)])
+        // Schedule lookups are network calls, so a few (`matchBatch`) run at once.
+        let batch = settings.matchBatch
+        for start in stride(from: 0, to: found.count, by: batch) {
+            let chunk = Array(found[start..<min(start + batch, found.count)])
             let results = await withTaskGroup(of: (String, FoundGame?).self, returning: [(String, FoundGame?)].self) { group in
                 for cluster in chunk {
-                    group.addTask { (cluster.id, await Self.match(cluster, venues: venues)) }
+                    group.addTask { (cluster.id, await Self.match(cluster, venues: venues, settings: settings)) }
                 }
                 var out: [(String, FoundGame?)] = []
                 for await r in group { out.append(r) }
@@ -341,7 +345,7 @@ final class ScanModel {
         // one visit at a time, before a real game is filed as "no game on the schedule".
         for cluster in found where matched[cluster.id] == nil {
             if Task.isCancelled { break }
-            if let game = await Self.match(cluster, venues: venues) { matched[cluster.id] = game; matches = matched }
+            if let game = await Self.match(cluster, venues: venues, settings: settings) { matched[cluster.id] = game; matches = matched }
         }
 
         // The stadium and the date decide. Tickets are digital and are not read here; a scene check is only a second opinion.
@@ -350,7 +354,7 @@ final class ScanModel {
         tickets = [:]
 
         // Games: a game on the schedule at the stadium that day. A visit with no game is a stadium visit (a tour, a walk
-        // around the ground) when three photos inside its fence, none on the move, span twenty minutes
+        // around the ground) when `dwellPhotos` photos inside its fence, none on the move, span `dwellMinutes`
         // (`PhotoCluster.isStadiumVisit`); the rest are dropped, and the review screen is the filter after that.
         // One game, one card: photos split between two neighbouring grounds (the walk in by the ballpark, the match next
         // door) that found the same game become one visit.
@@ -373,7 +377,7 @@ final class ScanModel {
         state = .verifying
         verifiedVisits = 0
         verifyTotal = unmatched.count
-        let tours = unmatched.filter(\.isStadiumVisit)
+        let tours = unmatched.filter { $0.isStadiumVisit(settings) }
         verifiedVisits = unmatched.count
         pendingVisits = []
         matches = matched
@@ -384,19 +388,21 @@ final class ScanModel {
         var aroundGrounds: [PossibleDay] = []
         for cluster in scanned.nearby {
             if Task.isCancelled { break }
-            if let day = await Self.nearbyDay(cluster, venues: venues) { aroundGrounds.append(day) }
+            if let day = await Self.nearbyDay(cluster, venues: venues, settings: settings) { aroundGrounds.append(day) }
         }
         // Albums titled for a game: cheap (a title read per album; only a matchup title asks the schedules), and a game between
         // the two named teams on the photos' dates is strong enough to ask about without a single located photo.
         let titled = Task.isCancelled ? [] : await photos.matchups(venues, library.allTeams, library.games)
         // Photos with no location on a day the located ones place in one city: a possible game only when that city's schedule
-        // had one while they were taken and the sampled photos look like a stadium. At most `CityDays.maxDays` days, and a
+        // had one while they were taken and the sampled photos look like a stadium. At most `cityMaxDays` days, and a
         // scene check only for a day a game fits.
         var inCity: [PossibleDay] = []
         let see = photos.look
         for day in scanned.cityDays {
             if Task.isCancelled { break }
-            if let offer = await CityDays.evaluate(day, look: { await see($0, CityDays.sample) }).offer { inCity.append(offer) }
+            if let offer = await CityDays.evaluate(day, look: { await see($0, settings.citySample) }, settings: settings).offer {
+                inCity.append(offer)
+            }
         }
         settleDeep(aroundGrounds + titled + inCity, library: library)
         state = games.isEmpty && others.isEmpty && possible.isEmpty ? .empty : .done
@@ -405,11 +411,11 @@ final class ScanModel {
     }
 
     /// What the background search offers for a stadium visit still waiting from an earlier scan without a game.
-    nonisolated static func waitingDay(_ cluster: PhotoCluster, venues: [Venue]) async -> PossibleDay? {
+    nonisolated static func waitingDay(_ cluster: PhotoCluster, venues: [Venue], settings: ScanSettings = .current) async -> PossibleDay? {
         let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
         // The schedule first, the ground next door too: the visit may be waiting from a scan that never looked there, or whose
         // lookup failed. A game on it is offered whatever the photos look like, with the ground it was played at first.
-        if let game = await match(cluster, venues: venues) {
+        if let game = await match(cluster, venues: venues, settings: settings) {
             let at = GameLookup.venue(of: game, in: venues) ?? cluster.venue
             return PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
                                reason: "Photos at \(cluster.venue.name) \u{00B7} \(GameSuggester.describe(game, at: at))",
@@ -417,17 +423,20 @@ final class ScanModel {
         }
         // A day with no game is offered too when the fan plainly stayed inside the fence (`PhotoCluster.isStadiumVisit`): a
         // stadium tour is a visit worth keeping, and the review saves it as one when no game turns up for the date.
-        guard cluster.isStadiumVisit else { return nil }
+        guard cluster.isStadiumVisit(settings) else { return nil }
         return PossibleDay(id: "possible-" + cluster.id, day: middle, assetIds: cluster.assetIds, times: cluster.times,
                            reason: "Photos inside \(cluster.venue.name) with no game that day \u{00B7} a stadium visit?",
-                           suggestions: [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: venues).prefix(2))
+                           suggestions: [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: venues, settings: settings).prefix(2))
     }
 
     /// A possible game for a day of photos just outside a stadium's fence: only when the schedule had a game there (or next door)
-    /// while the photos were taken, from two hours before kickoff to three after.
-    nonisolated static func nearbyDay(_ cluster: PhotoCluster, venues: [Venue]) async -> PossibleDay? {
-        guard let game = await match(cluster, venues: venues),
-              cluster.times.contains(where: { $0 >= game.start.addingTimeInterval(-2 * 3600) && $0 <= game.start.addingTimeInterval(3 * 3600) })
+    /// while the photos were taken, from `nearbyBeforeHours` before kickoff to `nearbyAfterHours` after.
+    nonisolated static func nearbyDay(_ cluster: PhotoCluster, venues: [Venue], settings: ScanSettings = .current) async -> PossibleDay? {
+        guard let game = await match(cluster, venues: venues, settings: settings),
+              cluster.times.contains(where: {
+                  $0 >= game.start.addingTimeInterval(-settings.nearbyBeforeHours * 3600)
+                      && $0 <= game.start.addingTimeInterval(settings.nearbyAfterHours * 3600)
+              })
         else { return nil }
         let at = GameLookup.venue(of: game, in: venues) ?? cluster.venue
         let middle = cluster.times.sorted().dropFirst(cluster.times.count / 2).first ?? cluster.start
@@ -457,9 +466,9 @@ final class ScanModel {
     }
 
     /// The game on the schedule at this visit's stadium (or the arena next door) around the photos' times.
-    nonisolated static func match(_ cluster: PhotoCluster, venues: [Venue]) async -> FoundGame? {
-        for venue in [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: venues) {
-            if let game = await GameLookup.games(at: venue, from: cluster.start, to: cluster.end).first { return game }
+    nonisolated static func match(_ cluster: PhotoCluster, venues: [Venue], settings: ScanSettings = .current) async -> FoundGame? {
+        for venue in [cluster.venue] + PhotoMatcher.neighbors(of: cluster.venue, in: venues, settings: settings) {
+            if let game = await GameLookup.games(at: venue, from: cluster.start, to: cluster.end, settings: settings).first { return game }
         }
         return nil
     }

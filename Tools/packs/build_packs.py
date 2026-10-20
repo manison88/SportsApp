@@ -4,12 +4,15 @@
   python3 Tools/packs/build_packs.py [--out dist/packs] [--version-note "text"]
 
 Inputs (all under Tools/): teams/*-teams.json, teams/*-leagues.json, teams/*-missing-venues.json, countries/*.json,
-schedules/<scope>/<leagueSlug>/<season>[-tag].json, schedules/<scope>/{venues-seen,missing-venues}.json.
+schedules/<scope>/<leagueSlug>/<season>[-tag].json, schedules/<scope>/{venues-seen,missing-venues}.json,
+packs/scan-settings.json (the photo scan's thresholds and word lists, `ScanSettings` in the app: shipped over the air, applied
+when its "version" is newer than the app's built-in defaults, so bump it with every change).
 The bundled app catalog (Witness/Resources/Catalog) wins on every id and every same-place venue.
 
 Output (immutable files named by content hash, so a CDN can cache them forever; only manifest.json changes):
   <out>/manifest.json
   <out>/catalog/teams.<sha8>.json, venues, leagues, countries, venue-map
+  <out>/settings/scan.<sha8>.json
   <out>/schedule/<leagueSlug>/<season>.<sha8>.json
 manifest.json is {"body": "<manifest JSON as a string>", "signature": "<base64 Ed25519 over the body's UTF-8 bytes>"}; it is signed
 when PACKS_SIGNING_KEY (base64 32-byte Ed25519 seed) is set. The body lists every pack with its sha256 and size.
@@ -20,6 +23,7 @@ from datetime import datetime, timezone
 TOOLS = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPO = os.path.dirname(TOOLS)
 CATALOG = os.path.join(REPO, "Witness", "Resources", "Catalog")
+SCAN_SETTINGS = os.path.join(TOOLS, "packs", "scan-settings.json")
 SCHEMA = 1
 
 STOP = {"the", "stadium", "estadio", "stade", "stadio", "stadion", "field", "arena", "park", "center", "centre",
@@ -185,6 +189,16 @@ def build(out_dir, note, include_sources=()):
         lg["teamCount"] = len(lg.get("teamIds", []))
     write("catalog/leagues", "catalog", sorted(leagues.values(), key=lambda l: l["key"]), items=len(leagues))
 
+    # ---- the scan's settings: one small pack, kind "settings", fetched with the catalog and gating the manifest like it. The app
+    # applies it only when "version" is newer than its built-in defaults; the manifest's signature and the pack's hash cover it.
+    scan_settings = load_json(SCAN_SETTINGS)
+    settings_version = None
+    if isinstance(scan_settings, dict):
+        settings_version = scan_settings.get("version")
+        if not isinstance(settings_version, int) or settings_version < 1:
+            sys.exit(f"{os.path.relpath(SCAN_SETTINGS, REPO)}: \"version\" must be a positive integer (bump it with every change)")
+        write("settings/scan", "settings", scan_settings, items=settings_version)
+
     # ---- countries
     countries = {}
     for name in ("countries", "us-states", "canada-provinces"):
@@ -257,6 +271,7 @@ def build(out_dir, note, include_sources=()):
         print("  teams left out (the app has no such sport yet):", skipped_sports)
     print(f"{len(packs)} packs ({len(sched)} schedule), {total / 1e6:.1f} MB raw; {len(teams)} new teams, "
           f"{len(extra_venues)} new venues, {len(leagues)} leagues, {sum(len(v) for v in venue_map.values())} venue mappings"
+          f"; scan settings {'v%d' % settings_version if settings_version else 'MISSING (Tools/packs/scan-settings.json)'}"
           f"{'' if manifest['signature'] else '; UNSIGNED (set PACKS_SIGNING_KEY)'}")
 
 def sign(body):

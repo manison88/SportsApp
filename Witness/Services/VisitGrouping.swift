@@ -79,14 +79,16 @@ struct DayKeyer {
 /// into the next cell, and a photo there must still find it.
 struct VenueIndex {
     private static let cell = 0.02
-    /// The smallest lat/lon box a venue is checked against: a little over the biggest stadium fence (300 m).
-    static let minimumBox: CLLocationDistance = 320
     private let cells: [Int: [Venue]]
+    /// The fences and the box slack the index was built with (`indexBoxMeters`: the smallest lat/lon box a venue is checked
+    /// against, a little over the biggest stadium fence).
+    private let settings: ScanSettings
 
-    init(_ venues: [Venue]) {
+    init(_ venues: [Venue], settings: ScanSettings = .current) {
+        self.settings = settings
         var cells: [Int: [Venue]] = [:]
         for v in venues {
-            let (dLat, dLon) = Self.box(v.geofence, at: v.latitude)
+            let (dLat, dLon) = Self.box(v.geofence(settings), at: v.latitude, settings: settings)
             for i in Self.index(v.latitude - dLat)...Self.index(v.latitude + dLat) {
                 for j in Self.index(v.longitude - dLon)...Self.index(v.longitude + dLon) {
                     cells[Self.key(i, j), default: []].append(v)
@@ -100,9 +102,9 @@ struct VenueIndex {
     private static func key(_ i: Int, _ j: Int) -> Int { i * 20_000 + j }
 
     /// Half the height and width, in degrees, of a box that holds every point within `meters` of a venue at this
-    /// latitude (never smaller than `minimumBox`, and 2% over so the flat-earth arithmetic never clips a true distance).
-    static func box(_ meters: CLLocationDistance, at latitude: Double) -> (lat: Double, lon: Double) {
-        let dLat = max(minimumBox, meters * 1.02) / 111_000
+    /// latitude (never smaller than `indexBoxMeters`, and `indexBoxSlack` over so the flat-earth arithmetic never clips a true distance).
+    static func box(_ meters: CLLocationDistance, at latitude: Double, settings: ScanSettings = .current) -> (lat: Double, lon: Double) {
+        let dLat = max(settings.indexBoxMeters, meters * settings.indexBoxSlack) / 111_000
         return (dLat, dLat / max(0.1, cos(latitude * .pi / 180)))
     }
 
@@ -110,15 +112,15 @@ struct VenueIndex {
     func nearest(lat: Double, lon: Double, radius: CLLocationDistance? = nil) -> Venue? {
         let here = CLLocation(latitude: lat, longitude: lon)
         // Each venue's own fence is covered by the cells it was filed under; a wider `radius` has to look further out.
-        let reach = Self.box(radius ?? Self.minimumBox, at: lat)
+        let reach = Self.box(radius ?? settings.indexBoxMeters, at: lat, settings: settings)
         let span = (lat: max(1, Int((reach.lat / Self.cell).rounded(.up))), lon: max(1, Int((reach.lon / Self.cell).rounded(.up))))
         let ci = Self.index(lat), cj = Self.index(lon)
         var best: (Venue, CLLocationDistance)?
         for di in -span.lat...span.lat {
             for dj in -span.lon...span.lon {
                 for v in cells[Self.key(ci + di, cj + dj)] ?? [] {
-                    let limit = radius ?? v.geofence
-                    let (dLat, dLon) = Self.box(limit, at: v.latitude)
+                    let limit = radius ?? v.geofence(settings)
+                    let (dLat, dLon) = Self.box(limit, at: v.latitude, settings: settings)
                     guard abs(v.latitude - lat) <= dLat, abs(v.longitude - lon) <= dLon else { continue }
                     let d = here.distance(from: v.location)
                     if d <= limit, d < (best?.1 ?? .infinity) { best = (v, d) }
@@ -131,30 +133,26 @@ struct VenueIndex {
 
 /// Groups photos into stadium visits. Pure, so it's shared by library discovery and album import and unit tested.
 enum VisitGrouping {
-    /// Photos this close to a stadium on a visit's day belong to the visit (the pub, the tailgate, the walk in).
-    /// They can't start a visit: only photos inside the venue's own fence do.
-    static let matchdayReach: CLLocationDistance = 500
-
-    /// A game that runs past midnight is photographed on two calendar days. Photos at one venue on consecutive
-    /// local days, with no more than this between the last of the first day and the first of the next, are one visit.
-    static let overnightGap: TimeInterval = 6 * 3600
-
     /// - minimumStay: required spread of a visit's photos (the ones inside the fence and the day's others; library discovery
-    ///   uses 15 min to skip drive-bys; an album the fan chose is trusted, so it passes nil).
+    ///   uses `visitStayMinutes` to skip drive-bys; an album the fan chose is trusted, so it passes nil).
     /// - skipping: "venueId|yyyy-MM-dd" keys of games already in the library.
     /// - moving: which photos were on the move (`TransitCheck.moving`); worked out here when nil. Such a photo is one of the
     ///   day's, never the one that places a visit: a plane over the ground is not a visit to it.
+    /// - settings: the fences, `matchdayReachMeters` (photos this close to a stadium on a visit's day belong to the visit: the
+    ///   pub, the walk in; they can't start one) and `overnightGapHours` (a game that runs past midnight is photographed on two
+    ///   calendar days: photos at one venue on consecutive local days no more than this apart are one visit).
     static func group(_ points: [PhotoPoint], venues: [Venue], radius: CLLocationDistance? = nil,
                       minimumStay: TimeInterval? = nil, skipping: Set<String> = [],
-                      moving: [String: Double]? = nil) -> PhotoScan {
+                      moving: [String: Double]? = nil, settings: ScanSettings = .current) -> PhotoScan {
         var scan = PhotoScan()
         var visits: [String: (Venue, [(String, Date)])] = [:]
         var loose: [(String, Date)] = []
         var around: [(String, Date, Venue)] = []
         var joined: [String: [(String, Date)]] = [:]
         var inside = Set<String>()
-        let index = VenueIndex(venues)
-        let moving = moving ?? TransitCheck.moving(points)
+        let index = VenueIndex(venues, settings: settings)
+        let moving = moving ?? TransitCheck.moving(points, settings: settings)
+        let overnightGap = settings.overnightGapHours * 3600
         var days = DayKeyer()
 
         for p in points {
@@ -168,7 +166,7 @@ enum VisitGrouping {
                 entry.1.append((p.id, date))
                 visits[k] = entry
                 inside.insert(p.id)
-            } else if let v = index.nearest(lat: lat, lon: lon, radius: matchdayReach) {
+            } else if let v = index.nearest(lat: lat, lon: lon, radius: settings.matchdayReachMeters) {
                 around.append((p.id, date, v))
             } else {
                 loose.append((p.id, date))
@@ -254,13 +252,14 @@ enum VisitGrouping {
     /// The nearest venue whose geofence holds the point (each venue's own `geofence`, unless `radius` overrides it).
     /// A cheap lat/lon box runs before the true distance, and nearest wins because stadiums often have an arena
     /// next door (Michigan Stadium and Crisler, 180 m).
-    static func nearestVenue(lat: Double, lon: Double, in venues: [Venue], radius: CLLocationDistance? = nil) -> Venue? {
+    static func nearestVenue(lat: Double, lon: Double, in venues: [Venue], radius: CLLocationDistance? = nil,
+                             settings: ScanSettings = .current) -> Venue? {
         let here = CLLocation(latitude: lat, longitude: lon)
         var best: (Venue, CLLocationDistance)?
         for v in venues {
             // The box is each venue's own fence: a circuit's reaches 1.5 km, a ballpark's 200 m.
-            let limit = radius ?? v.geofence
-            let (dLat, dLon) = VenueIndex.box(limit, at: v.latitude)
+            let limit = radius ?? v.geofence(settings)
+            let (dLat, dLon) = VenueIndex.box(limit, at: v.latitude, settings: settings)
             guard abs(v.latitude - lat) <= dLat, abs(v.longitude - lon) <= dLon else { continue }
             let d = here.distance(from: v.location)
             if d <= limit, d < (best?.1 ?? .infinity) { best = (v, d) }
@@ -268,20 +267,17 @@ enum VisitGrouping {
         return best?.0
     }
 
-    /// Visits at one stadium on consecutive days whose photos are more than `overnightGap` but no more than this apart
-    /// are probably one game, but we ask.
-    static let askGap: TimeInterval = 12 * 3600
-
-    /// A visit in `pool` just before or after `cluster` at the same stadium, in the ask window (more than six, up to
-    /// twelve hours between the last photo of the earlier and the first of the later).
-    static func possibleSameGame(as cluster: PhotoCluster, in pool: [PhotoCluster]) -> PhotoCluster? {
+    /// A visit in `pool` just before or after `cluster` at the same stadium, in the ask window: visits at one stadium on
+    /// consecutive days whose photos are more than `overnightGapHours` but no more than `askGapHours` apart (between the last
+    /// photo of the earlier and the first of the later) are probably one game, but we ask.
+    static func possibleSameGame(as cluster: PhotoCluster, in pool: [PhotoCluster], settings: ScanSettings = .current) -> PhotoCluster? {
         pool.first { other in
             guard other.id != cluster.id, other.venue.id == cluster.venue.id else { return false }
             let first = cluster.start <= other.start ? cluster : other
             let second = cluster.start <= other.start ? other : cluster
             guard let lastOfFirst = first.times.max(), let firstOfSecond = second.times.min() else { return false }
             let gap = firstOfSecond.timeIntervalSince(lastOfFirst)
-            return gap > overnightGap && gap <= askGap
+            return gap > settings.overnightGapHours * 3600 && gap <= settings.askGapHours * 3600
         }
     }
 

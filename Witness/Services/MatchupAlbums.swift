@@ -15,34 +15,20 @@ enum MatchupAlbums {
         var isMatchup: Bool { !home.isEmpty && !away.isEmpty }
     }
 
-    /// Between the two sides: "v", "vs", "vs.", "x", "versus", "against", "at", "@", "-", "–", "—", ":", "|", "/".
-    static let separator = try! NSRegularExpression(
-        pattern: #"(?i)\s+(?:vs?\.?|x|versus|against|at)\s+|\s*[@–—:|/]\s*|\s+-\s+|(?<=\p{L})-(?=\p{L})"#)
-
-    /// Words a matchup title carries that are not a side.
-    static let filler: Set<String> = ["the", "world", "cup", "wc", "fifa", "uefa", "euro", "copa", "gold", "nations", "league",
-                                      "game", "games", "match", "matchday", "group", "stage", "final", "semi", "semifinal",
-                                      "quarter", "quarterfinal", "round", "friendly", "day", "trip", "national", "team", "fans",
-                                      "my", "our", "at", "in", "with", "and", "i", "of", "fc", "live", "stadium"]
-
-    /// Other names a national side goes by (the native name, the short name), by its code. The full names, codes and the first
-    /// word of a long name ("Bosnia") are read from the teams themselves.
-    static let nationalNames: [String: [String]] = [
-        "BIH": ["bosnia", "bosna", "bosna hercegovina", "bosnia herzegovina", "bosnia hercegovina", "bih", "zmajevi"],
-        "QAT": ["katar"], "GER": ["deutschland"], "ESP": ["espana"], "NED": ["holland", "nederland"], "CRO": ["hrvatska"],
-        "SRB": ["srbija"], "SUI": ["schweiz", "suisse", "svizzera"], "KOR": ["korea"], "PRK": ["dpr korea"],
-        "USA": ["usa", "usmnt", "us", "america"], "BRA": ["brasil"], "CZE": ["czech republic", "czech", "cesko"],
-        "TUR": ["turkey", "turkiye"], "CIV": ["cote divoire"], "IRL": ["ireland"], "MAR": ["maroc"], "KSA": ["saudi"],
-        "UAE": ["emirates", "uae"], "MEX": ["el tri"], "ITA": ["italia"], "POR": ["portugal"], "BEL": ["belgique", "belgie"],
-        "AUT": ["osterreich"], "POL": ["polska"], "NOR": ["norge"], "SWE": ["sverige"], "DEN": ["danmark"], "JPN": ["nippon"],
-        "MKD": ["macedonia"], "SVN": ["slovenija"], "SVK": ["slovensko"], "MNE": ["crna gora"], "ALB": ["shqiperia"],
-    ]
+    /// The separator between the two sides ("v", "vs", "vs.", "x", "versus", "against", "at", "@", "-", "–", "—", ":", "|", "/"),
+    /// the filler words that are not a side, and the other names a national side goes by (the native name, the short name) all
+    /// come from `ScanSettings` (`matchupSeparator`, `matchupFiller`, `nationalNames`). The full names, codes and the first word
+    /// of a long name ("Bosnia") are read from the teams themselves.
+    static func separator(_ settings: ScanSettings) -> NSRegularExpression {
+        (try? NSRegularExpression(pattern: settings.matchupSeparator))
+            ?? (try! NSRegularExpression(pattern: ScanSettings.defaults.matchupSeparator))
+    }
 
     /// Every name a team goes by, folded, with how sure a match on it is (a full name beats a code beats a first word).
-    fileprivate static func index(_ teams: [Team]) -> [String: [(Team, Int)]] {
+    fileprivate static func index(_ teams: [Team], settings: ScanSettings) -> [String: [(Team, Int)]] {
         var out: [String: [(Team, Int)]] = [:]
         func add(_ key: String, _ team: Team, _ score: Int) {
-            let k = words(key).joined(separator: " ")
+            let k = words(key, settings: settings).joined(separator: " ")
             guard !k.isEmpty else { return }
             if let at = out[k]?.firstIndex(where: { $0.0.id == team.id }) {
                 out[k]![at].1 = max(out[k]![at].1, score)
@@ -58,18 +44,20 @@ enum MatchupAlbums {
             for old in team.formerNames ?? [] { add(old, team, 3) }
             if team.abbreviation.count >= 3 { add(team.abbreviation, team, 3) }
             if national {
-                for alias in nationalNames[team.abbreviation.uppercased()] ?? [] { add(alias, team, 4) }
+                for alias in settings.nationalNames[team.abbreviation.uppercased()] ?? [] { add(alias, team, 4) }
                 // "Bosnia" for Bosnia-Herzegovina, "Trinidad" for Trinidad and Tobago.
-                if let first = words(team.locationName).first, first.count >= 5, words(team.locationName).count > 1 { add(first, team, 2) }
+                let location = words(team.locationName, settings: settings)
+                if let first = location.first, first.count >= 5, location.count > 1 { add(first, team, 2) }
             }
         }
         return out
     }
 
     /// Folded words with the filler, the years and the bare numbers dropped.
-    static func words(_ s: String) -> [String] {
+    static func words(_ s: String, settings: ScanSettings = .current) -> [String] {
+        let filler = Set(settings.matchupFiller)
         // An emoji's variation selector survives the fold as a "word": only letters and digits are kept.
-        GameSuggester.fold(s).split(separator: " ")
+        return GameSuggester.fold(s).split(separator: " ")
             .map { String(String.UnicodeScalarView($0.unicodeScalars.filter { $0.properties.isAlphabetic || $0.properties.numericType != nil })) }
             .filter { !$0.isEmpty && !filler.contains($0) && !$0.allSatisfy(\.isNumber) }
     }
@@ -93,26 +81,34 @@ enum MatchupAlbums {
         return []
     }
 
-    /// Reads many titles against one index of the teams' names (building it is the slow part).
+    /// Reads many titles against one index of the teams' names (building it is the slow part), with the separator and the word
+    /// tables of one set of settings.
     struct Reader {
         fileprivate let index: [String: [(Team, Int)]]
-        init(teams: [Team]) { index = MatchupAlbums.index(teams) }
-        func parse(_ title: String) -> Parsed { MatchupAlbums.parse(title, index: index) }
+        fileprivate let separator: NSRegularExpression
+        fileprivate let settings: ScanSettings
+        init(teams: [Team], settings: ScanSettings = .current) {
+            self.settings = settings
+            index = MatchupAlbums.index(teams, settings: settings)
+            separator = MatchupAlbums.separator(settings)
+        }
+        func parse(_ title: String) -> Parsed { MatchupAlbums.parse(title, reader: self) }
     }
 
     /// Pure: what a title says. Every separator is tried in turn ("Bosnia-Herzegovina v Qatar" splits at the "v", not the
     /// hyphen) and the first split where both sides name a team wins.
-    static func parse(_ title: String, teams: [Team]) -> Parsed {
-        parse(title, index: index(teams))
+    static func parse(_ title: String, teams: [Team], settings: ScanSettings = .current) -> Parsed {
+        parse(title, reader: Reader(teams: teams, settings: settings))
     }
 
-    fileprivate static func parse(_ title: String, index: [String: [(Team, Int)]]) -> Parsed {
+    fileprivate static func parse(_ title: String, reader: Reader) -> Parsed {
         let ns = title as NSString
-        let cuts = separator.matches(in: title, range: NSRange(location: 0, length: ns.length))
+        let index = reader.index
+        let cuts = reader.separator.matches(in: title, range: NSRange(location: 0, length: ns.length))
         var first: Parsed?
         for cut in cuts {
-            let left = words(ns.substring(to: cut.range.location))
-            let right = words(ns.substring(from: cut.range.location + cut.range.length))
+            let left = words(ns.substring(to: cut.range.location), settings: reader.settings)
+            let right = words(ns.substring(from: cut.range.location + cut.range.length), settings: reader.settings)
             // A side ends at the next separator: "World Cup: BiH v Qatar" reads "BiH" on the left of the "v".
             let parsed = Parsed(sides: [left.joined(separator: " "), right.joined(separator: " ")],
                                 home: teams(in: left, index: index), away: teams(in: right, index: index))
@@ -169,12 +165,13 @@ enum MatchupAlbums {
         .sorted { abs($0.start.timeIntervalSince(around)) < abs($1.start.timeIntervalSince(around)) }
     }
 
-    /// A run of an album's photos with no gap of more than six hours: one outing, whatever time zone the phone is in.
-    static func outings(_ points: [PhotoPoint]) -> [[PhotoPoint]] {
+    /// A run of an album's photos with no gap of more than `matchupOutingGapHours` (six): one outing, whatever time zone the phone is in.
+    static func outings(_ points: [PhotoPoint], settings: ScanSettings = .current) -> [[PhotoPoint]] {
         let dated = points.filter { $0.date != nil }.sorted { $0.date! < $1.date! }
+        let gap = settings.matchupOutingGapHours * 3600
         var out: [[PhotoPoint]] = []
         for p in dated {
-            if let last = out.last?.last?.date, p.date!.timeIntervalSince(last) <= 6 * 3600 { out[out.count - 1].append(p) } else { out.append([p]) }
+            if let last = out.last?.last?.date, p.date!.timeIntervalSince(last) <= gap { out[out.count - 1].append(p) } else { out.append([p]) }
         }
         return out
     }
@@ -188,18 +185,21 @@ enum MatchupAlbums {
         var days: [PossibleDay] = []
     }
 
-    /// A game between the title's teams that started while the outing's photos were taken: from six hours before the first
-    /// (photos added after the game) to six hours after the last (the march in, the morning of the match).
-    static func check(_ album: PhotoAlbum, points: [PhotoPoint], parsed: Parsed, venues: [Venue], existing: [GameEntry]) async -> Outcome {
+    /// A game between the title's teams that started while the outing's photos were taken: from `matchupWindowHours` (six)
+    /// before the first (photos added after the game) to as long after the last (the march in, the morning of the match). The
+    /// last `matchupMaxOutings` outings of `suggestMinPhotos`+ photos are looked up.
+    static func check(_ album: PhotoAlbum, points: [PhotoPoint], parsed: Parsed, venues: [Venue], existing: [GameEntry],
+                      settings: ScanSettings = .current) async -> Outcome {
         var outcome = Outcome(album: album, parsed: parsed)
         guard parsed.isMatchup else { return outcome }
         // Games the library already has are not asked about again.
         let saved = Set(existing.compactMap { $0.source?.eventId })
-        for outing in outings(points).suffix(4) {
-            guard let first = outing.first?.date, let last = outing.last?.date, outing.count >= GameSuggester.minPhotos else { continue }
+        let window = settings.matchupWindowHours * 3600
+        for outing in outings(points, settings: settings).suffix(settings.matchupMaxOutings) {
+            guard let first = outing.first?.date, let last = outing.last?.date, outing.count >= settings.suggestMinPhotos else { continue }
             let middle = outing[outing.count / 2].date ?? first
-            let game = await games(between: parsed.home, and: parsed.away, from: first.addingTimeInterval(-6 * 3600),
-                                   to: last.addingTimeInterval(6 * 3600), around: middle).first
+            let game = await games(between: parsed.home, and: parsed.away, from: first.addingTimeInterval(-window),
+                                   to: last.addingTimeInterval(window), around: middle).first
             outcome.outings.append((first, last, outing.count, game))
             guard let game, !saved.contains(game.eventId) else { continue }
             let at = GameLookup.venue(of: game, in: venues)
@@ -207,24 +207,22 @@ enum MatchupAlbums {
             outcome.days.append(PossibleDay(id: "possible-album-\(album.id)|\(game.id)", day: middle, assetIds: outing.map(\.id),
                                             times: outing.compactMap(\.date),
                                             reason: "In your album \u{201C}\(album.title)\u{201D} \u{00B7} \(named)",
-                                            suggestions: at.map { [$0] + Array(PhotoMatcher.neighbors(of: $0, in: venues).prefix(1)) } ?? []))
+                                            suggestions: at.map { [$0] + Array(PhotoMatcher.neighbors(of: $0, in: venues, settings: settings).prefix(1)) } ?? []))
         }
         return outcome
     }
 
-    /// Albums are read only when the title names two teams, so a library of hundreds of albums costs a title read each.
-    static let maxAlbums = 20
-
-    /// Possible games from every album whose title names a game, newest album first.
+    /// Possible games from every album whose title names a game, newest album first. Albums are read only when the title names
+    /// two teams, so a library of hundreds of albums costs a title read each; at most `matchupMaxAlbums` are read.
     static func find(albums: [PhotoAlbum], points: (PhotoAlbum) -> [PhotoPoint], teams: [Team], venues: [Venue],
-                     existing: [GameEntry]) async -> [PossibleDay] {
-        let reader = Reader(teams: teams)
+                     existing: [GameEntry], settings: ScanSettings = .current) async -> [PossibleDay] {
+        let reader = Reader(teams: teams, settings: settings)
         var out: [PossibleDay] = []
-        let titled = albums.filter { $0.count >= GameSuggester.minPhotos && $0.count <= 3000 && !GameSuggester.isAppAlbum($0.title) }
-            .map { ($0, reader.parse($0.title)) }.filter { $0.1.isMatchup }.prefix(maxAlbums)
+        let titled = albums.filter { $0.count >= settings.suggestMinPhotos && $0.count <= settings.albumMaxPhotos && !GameSuggester.isAppAlbum($0.title, settings: settings) }
+            .map { ($0, reader.parse($0.title)) }.filter { $0.1.isMatchup }.prefix(settings.matchupMaxAlbums)
         for (album, parsed) in titled {
             if Task.isCancelled { break }
-            out += await check(album, points: points(album), parsed: parsed, venues: venues, existing: existing).days
+            out += await check(album, points: points(album), parsed: parsed, venues: venues, existing: existing, settings: settings).days
         }
         return out
     }
