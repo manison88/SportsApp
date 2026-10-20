@@ -97,7 +97,7 @@ enum ReviewQueue {
             }) {
                 let merged = kept[at].combined(with: visit)
                 kept[at] = PhotoCluster(id: kept[at].id, venue: kept[at].venue, start: merged.start, end: merged.end,
-                                        assetIds: merged.assetIds, times: merged.times)
+                                        assetIds: merged.assetIds, times: merged.times, insideIds: merged.insideIds)
             } else if saved.contains(where: { sameOuting($0.venue, $0.day, visit.venue, day) }) {
                 continue
             } else if !visits.contains(where: { $0.assetIds.contains(where: ids.contains) }) {
