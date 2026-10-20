@@ -21,41 +21,30 @@ enum GameSuggester {
     /// with stadium photos, then looking at each day.
     enum Step: Int, Sendable { case visits, reading, sorting, days }
 
-    static let minPhotos = 3
-    static let maxDays = 150
-    static let maxAlbums = 60
-    /// The review shows the surest days, not every one that passed.
-    static let maxOffered = 12
-    /// Photos with a location this close to a stadium could be a game whose fix drifted; farther, the fan was somewhere else.
-    static let reach: CLLocationDistance = 2000
-
-    /// Words that say an album is about sport, so it is read even when it runs for months ("Baseball", "Cubs games").
-    static let sportTitleWords = ["game", "games", "match", "matchday", "stadium", "ballpark", "arena", "baseball", "football",
-                                  "soccer", "hockey", "basketball", "nfl", "nba", "mlb", "nhl", "mls", "playoffs", "season", "tickets"]
-
     /// Pure: an album the fan keeps adding to over months ("Favorites", "Family", "2019") is a collection, not a day out.
-    /// The middle 80% of its photos must fall within 60 days, unless the title is about sport.
-    static func isCollection(_ dates: [Date], title: String) -> Bool {
+    /// The middle 80% of its `collectionPhotos`+ photos must fall within `collectionDays`, unless the title is about sport
+    /// (`sportTitleWords`: "Baseball", "Cubs games" are read even when they run for months).
+    static func isCollection(_ dates: [Date], title: String, settings: ScanSettings = .current) -> Bool {
         let words = Set(fold(title).split(separator: " ").map(String.init))
-        guard words.isDisjoint(with: sportTitleWords), dates.count >= 5 else { return false }
+        guard words.isDisjoint(with: settings.sportTitleWords), dates.count >= settings.collectionPhotos else { return false }
         let sorted = dates.sorted()
         let low = sorted[sorted.count / 10], high = sorted[sorted.count - 1 - sorted.count / 10]
-        return high.timeIntervalSince(low) > 60 * 86_400
+        return high.timeIntervalSince(low) > settings.collectionDays * 86_400
     }
 
-    /// When a day's photos were taken: its busiest stretch of up to four hours.
+    /// When a day's photos were taken: its busiest stretch of up to `outingWindowHours`.
     struct DayShape: Hashable {
-        static let window: TimeInterval = 4 * 3600
         /// First and last photo of the busiest stretch.
         let first: Date
         let last: Date
         let inside: Int
         let total: Int
 
-        /// Pure: the stretch of up to four hours holding the most photos.
-        static func of(_ times: [Date]) -> DayShape? {
+        /// Pure: the stretch of up to `outingWindowHours` holding the most photos.
+        static func of(_ times: [Date], settings: ScanSettings = .current) -> DayShape? {
             let t = times.sorted()
             guard !t.isEmpty else { return nil }
+            let window = settings.outingWindowHours * 3600
             var best = (0, 0), j = 0
             for i in t.indices {
                 j = max(j, i)
@@ -65,13 +54,17 @@ enum GameSuggester {
             return DayShape(first: t[best.0], last: t[best.1], inside: best.1 - best.0 + 1, total: t.count)
         }
 
-        /// Most of the day in one stretch, long enough to be at a game: not photos from morning to night, nor a two-minute burst.
-        var looksLikeAnOuting: Bool {
-            inside >= 3 && Double(inside) >= Double(total) * 0.5 && last.timeIntervalSince(first) >= 20 * 60
+        /// Most of the day in one stretch, long enough to be at a game: not photos from morning to night, nor a two-minute burst
+        /// (`outingPhotos` photos, `outingShare` of the day's, over `outingMinutes`).
+        var looksLikeAnOuting: Bool { looksLikeAnOuting(.current) }
+        func looksLikeAnOuting(_ settings: ScanSettings) -> Bool {
+            inside >= settings.outingPhotos && Double(inside) >= Double(total) * settings.outingShare
+                && last.timeIntervalSince(first) >= settings.outingMinutes * 60
         }
-        /// A game that started then was on while the busiest photos were taken (from four hours before the first to an hour after the last).
-        func covers(_ start: Date) -> Bool {
-            start >= first.addingTimeInterval(-4 * 3600) && start <= last.addingTimeInterval(3600)
+        /// A game that started then was on while the busiest photos were taken (from `outingBeforeHours` before the first to
+        /// `outingAfterHours` after the last).
+        func covers(_ start: Date, settings: ScanSettings = .current) -> Bool {
+            start >= first.addingTimeInterval(-settings.outingBeforeHours * 3600) && start <= last.addingTimeInterval(settings.outingAfterHours * 3600)
         }
         /// An evening or a weekend, when most games are played.
         func isPrime(_ calendar: Calendar = .current) -> Bool {
@@ -90,11 +83,12 @@ enum GameSuggester {
         case unknown
     }
 
-    /// Pure: what the located photos of a day say.
-    static func whereabouts(_ located: [CLLocation], total: Int, index: VenueIndex) -> Whereabouts {
+    /// Pure: what the located photos of a day say. A photo within `suggestReachMeters` of a stadium could be a game whose fix
+    /// drifted; farther, the fan was somewhere else.
+    static func whereabouts(_ located: [CLLocation], total: Int, index: VenueIndex, settings: ScanSettings = .current) -> Whereabouts {
         var near: [Venue: CLLocationDistance] = [:]
         for p in located {
-            guard let v = index.nearest(lat: p.coordinate.latitude, lon: p.coordinate.longitude, radius: reach) else { continue }
+            guard let v = index.nearest(lat: p.coordinate.latitude, lon: p.coordinate.longitude, radius: settings.suggestReachMeters) else { continue }
             near[v] = min(near[v] ?? .infinity, p.distance(from: v.location))
         }
         if !near.isEmpty { return .near(Array(near.sorted { $0.value < $1.value }.map(\.key).prefix(3))) }
@@ -142,10 +136,11 @@ enum GameSuggester {
 
     /// The first game at these stadiums whose time fits the photos, from the downloaded seasons or the schedules. Each stadium's
     /// neighbours in `venues` are asked too (photos placed at T-Mobile Park on a World Cup day were at Lumen Field, 440 m away).
-    static func scheduled(at candidates: [Venue], shape: DayShape, specific: Bool, venues: [Venue] = []) async -> Schedule {
+    static func scheduled(at candidates: [Venue], shape: DayShape, specific: Bool, venues: [Venue] = [],
+                          settings: ScanSettings = .current) async -> Schedule {
         var grounds: [Venue] = []
         for venue in candidates {
-            for v in [venue] + PhotoMatcher.neighbors(of: venue, in: venues) where !grounds.contains(where: { $0.id == v.id }) {
+            for v in [venue] + PhotoMatcher.neighbors(of: venue, in: venues, settings: settings) where !grounds.contains(where: { $0.id == v.id }) {
                 grounds.append(v)
             }
         }
@@ -153,30 +148,25 @@ enum GameSuggester {
         guard !checkable.isEmpty else { return .unknown }
         for venue in checkable {
             if Task.isCancelled { return .unknown }
-            let games = await GameLookup.games(at: venue, from: shape.first, to: shape.last)
-            if let game = games.first(where: { shape.covers($0.start) }) { return .game(game, venue, specific: specific) }
+            let games = await GameLookup.games(at: venue, from: shape.first, to: shape.last, settings: settings)
+            if let game = games.first(where: { shape.covers($0.start, settings: settings) }) { return .game(game, venue, specific: specific) }
         }
         // Only a stadium the photos or the title point at can rule a day out. Checking the fan's home stadiums finds
         // nothing for a game abroad or at a ground the schedules miss, and that is no reason to drop it.
         return specific ? .none : .unknown
     }
 
-    /// Albums that apps and the system make (saved from Instagram, WhatsApp, screenshots...) are never a day out.
-    static let appAlbums = ["instagram", "whatsapp", "facebook", "messenger", "snapchat", "tiktok", "telegram", "twitter", "pinterest",
-                            "reddit", "youtube", "discord", "wechat", "viber", "slack", "gmail", "google photos",
-                            "screenshot", "screen recording", "meta ai", "chatgpt", "gemini", "midjourney", "generated", "ai", "saved", "downloads", "imported", "received", "shared", "memes", "meme",
-                            "camera roll", "recents", "snapseed", "lightroom", "vsco", "photoshop", "capcut", "inshot", "canva"]
-
-    /// Pure: whether an album's title names an app or a system collection rather than an occasion.
-    static func isAppAlbum(_ title: String) -> Bool {
+    /// Pure: whether an album's title names an app or a system collection rather than an occasion (`appAlbums`: albums that
+    /// apps and the system make, saved from Instagram, WhatsApp, screenshots, are never a day out).
+    static func isAppAlbum(_ title: String, settings: ScanSettings = .current) -> Bool {
         let t = fold(title)
         let words = Set(t.split(separator: " ").map(String.init))
-        return appAlbums.contains { app in app.contains(" ") ? t.contains(app) : words.contains { $0 == app || $0 == app + "s" } }
+        return settings.appAlbums.contains { app in app.contains(" ") ? t.contains(app) : words.contains { $0 == app || $0 == app + "s" } }
     }
 
-    /// Pure: the days worth a look. Enough photos, none the library already covers, newest first.
-    static func candidates(_ piles: [DayPile], skipping claimed: Set<String>) -> [DayPile] {
-        piles.filter { $0.assetIds.count >= minPhotos && !claimed.contains($0.id) }.sorted { $0.day > $1.day }
+    /// Pure: the days worth a look. Enough photos (`suggestMinPhotos`), none the library already covers, newest first.
+    static func candidates(_ piles: [DayPile], skipping claimed: Set<String>, settings: ScanSettings = .current) -> [DayPile] {
+        piles.filter { $0.assetIds.count >= settings.suggestMinPhotos && !claimed.contains($0.id) }.sorted { $0.day > $1.day }
     }
 
     /// Pure: the stadiums an album's title points at: a team's home ground ("Cubs game"), or a stadium named outright ("Wrigley 2019").
@@ -238,21 +228,24 @@ enum GameSuggester {
     /// `claimed` holds "yyyy-MM-dd" days a visit or a saved game already covers.
     static func find(venues: [Venue], teams: [Team], home: CLLocation, hasHome: Bool, claimed: Set<String>,
                      progress: @escaping @MainActor (_ step: Step, _ done: Int, _ total: Int) -> Void) async -> [PossibleDay] {
+        let settings = ScanSettings.current
         // Everything that touches the photo library runs off the main thread.
         let sources: [Source] = await Task.detached(priority: .utility) {
             var out: [Source] = []
-            let albums = Array(AlbumImporter.albums().filter({ $0.count >= minPhotos && $0.count <= 3000 && !isAppAlbum($0.title) }).prefix(maxAlbums))
+            let albums = Array(AlbumImporter.albums()
+                .filter { $0.count >= settings.suggestMinPhotos && $0.count <= settings.albumMaxPhotos && !isAppAlbum($0.title, settings: settings) }
+                .prefix(settings.suggestMaxAlbums))
             for (n, album) in albums.enumerated() {
                 Task { @MainActor in progress(.reading, n, albums.count) }
                 let hints = Self.venues(named: album.title, teams: teams, venues: venues) { id in venues.first { $0.id == id } }
                 let points = AlbumImporter.points(in: album)
                 // "Favorites", "Family", "2019": an album that runs for months is a collection, not a day out.
-                if hints.isEmpty && isCollection(points.compactMap(\.date), title: album.title) { continue }
+                if hints.isEmpty && isCollection(points.compactMap(\.date), title: album.title, settings: settings) { continue }
                 out.append(Source(reason: "In your album \u{201C}\(album.title)\u{201D}", points: points, hints: hints, titled: !hints.isEmpty,
                                   album: album))
             }
             if hasHome {
-                for trip in TripFinder.find(home: home, venues: venues).prefix(20) {
+                for trip in TripFinder.find(home: home, venues: venues).prefix(settings.tripMaxCount) {
                     let points = AlbumImporter.points(in: trip)
                     let located = points.compactMap { p in p.latitude.flatMap { la in p.longitude.map { CLLocation(latitude: la, longitude: $0) } } }
                     var near: [Venue] = []
@@ -260,7 +253,7 @@ enum GameSuggester {
                         let lat = located.map { $0.coordinate.latitude }.reduce(0, +) / Double(located.count)
                         let lon = located.map { $0.coordinate.longitude }.reduce(0, +) / Double(located.count)
                         let center = CLLocation(latitude: lat, longitude: lon)
-                        near = Array(venues.filter { ($0.capacity ?? 0) >= 5000 && $0.location.distance(from: center) < 40_000 }
+                        near = Array(venues.filter { ($0.capacity ?? 0) >= settings.suggestVenueCapacity && $0.location.distance(from: center) < settings.tripReachMeters }
                             .sorted { $0.location.distance(from: center) < $1.location.distance(from: center) }.prefix(3))
                     }
                     out.append(Source(reason: "On your \(trip.title.lowercased())", points: points, hints: near))
@@ -271,10 +264,10 @@ enum GameSuggester {
 
         // The stadiums near home, for days with no location and no title: the fan's most likely grounds.
         let local: [Venue] = hasHome
-            ? Array(venues.filter { ($0.capacity ?? 0) >= 5000 && $0.closed == nil && $0.location.distance(from: home) < 50_000 }
-                .sorted { ($0.capacity ?? 0) > ($1.capacity ?? 0) }.prefix(4))
+            ? Array(venues.filter { ($0.capacity ?? 0) >= settings.suggestVenueCapacity && $0.closed == nil && $0.location.distance(from: home) < settings.homeReachMeters }
+                .sorted { ($0.capacity ?? 0) > ($1.capacity ?? 0) }.prefix(settings.homeVenues))
             : []
-        let index = VenueIndex(venues)
+        let index = VenueIndex(venues, settings: settings)
 
         // An album titled for a game ("BiH v Qatar") names both sides: the schedule is asked for a game between them on the
         // photos' dates, in every competition they play, and the stadium comes from the schedule. National sides have no home
@@ -283,12 +276,12 @@ enum GameSuggester {
         var possible: [(PossibleDay, Double)] = []
         var claimed = claimed
         var keyer = DayKeyer()
-        let reader = MatchupAlbums.Reader(teams: teams)
+        let reader = MatchupAlbums.Reader(teams: teams, settings: settings)
         for source in sources {
             guard let album = source.album else { continue }
             let parsed = reader.parse(album.title)
             guard parsed.isMatchup else { continue }
-            for day in await MatchupAlbums.check(album, points: source.points, parsed: parsed, venues: venues, existing: []).days
+            for day in await MatchupAlbums.check(album, points: source.points, parsed: parsed, venues: venues, existing: [], settings: settings).days
             where !claimed.contains(keyer.day(day.day, tz: .current)) {
                 claimed.formUnion(day.times.map { keyer.day($0, tz: .current) })
                 possible.append((day, 10))
@@ -304,44 +297,44 @@ enum GameSuggester {
             // An album or trip counts only if some of its photos show a stadium, arena, scoreboard or sport (or its title names
             // a team or stadium). A crowd alone is a wedding, a party or a school event.
             if !source.titled {
-                let look = await SceneCheck.look(at: source.points.map { PhotoRef.library($0.id) }, max: 20)
-                guard look.isGame(minVenue: 2, minShare: 0.05) else { continue }
+                let look = await SceneCheck.look(at: source.points.map { PhotoRef.library($0.id) }, max: settings.sourceLookPhotos, settings: settings)
+                guard look.isGame(minVenue: settings.sourceLookMinVenue, minShare: settings.sourceLookMinShare, settings: settings) else { continue }
             }
-            let scan = await Task.detached { VisitGrouping.group(source.points, venues: venues) }.value
-            for pile in candidates(scan.unplacedDays, skipping: claimed) where queued.insert("\(n)|\(pile.id)").inserted {
+            let scan = await Task.detached { VisitGrouping.group(source.points, venues: venues, settings: settings) }.value
+            for pile in candidates(scan.unplacedDays, skipping: claimed, settings: settings) where queued.insert("\(n)|\(pile.id)").inserted {
                 work.append((pile, source))
             }
         }
-        work = Array(work.sorted { $0.0.day > $1.0.day }.prefix(maxDays))
+        work = Array(work.sorted { $0.0.day > $1.0.day }.prefix(settings.suggestMaxDays))
         await progress(.days, 0, work.count)
 
         for (n, (pile, source)) in work.enumerated() {
             defer { Task { await progress(.days, n + 1, work.count) } }
             if Task.isCancelled { break }
             // Cheapest first. The time shape: most photos in one stretch of a few hours.
-            guard let shape = DayShape.of(pile.times), shape.looksLikeAnOuting else { continue }
+            guard let shape = DayShape.of(pile.times, settings: settings), shape.looksLikeAnOuting(settings) else { continue }
             // The place: a phone inside a stadium places its photos there, so a day whose photos mostly carry a location
             // far from every stadium was spent somewhere else.
             let ids = Set(pile.assetIds)
             let located = source.points.filter { ids.contains($0.id) }
                 .compactMap { p in p.latitude.flatMap { la in p.longitude.map { CLLocation(latitude: la, longitude: $0) } } }
-            let place = whereabouts(located, total: pile.assetIds.count, index: index)
+            let place = whereabouts(located, total: pile.assetIds.count, index: index, settings: settings)
             if place == .elsewhere { continue }
 
             // The photos of the busiest stretch, most of them looked at (no time pressure here).
             let busy = zip(pile.assetIds, pile.times).filter { $0.1 >= shape.first && $0.1 <= shape.last }.map(\.0)
-            let look = await SceneCheck.look(at: busy.map { PhotoRef.library($0) })
+            let look = await SceneCheck.look(at: busy.map { PhotoRef.library($0) }, max: settings.dayLookPhotos, settings: settings)
             // Not worth asking the schedules about a day the photos already rule out.
-            guard look.venue >= 1, !look.mostlyElsewhere else { continue }
+            guard look.venue >= 1, !look.mostlyElsewhere(settings) else { continue }
 
             // The schedule: some stadium the day could be at had a game while the photos were taken.
             let schedule: Schedule
             if case .near(let near) = place {
-                schedule = await scheduled(at: near, shape: shape, specific: true, venues: venues)
+                schedule = await scheduled(at: near, shape: shape, specific: true, venues: venues, settings: settings)
             } else if source.titled {
-                schedule = await scheduled(at: source.hints, shape: shape, specific: true, venues: venues)
+                schedule = await scheduled(at: source.hints, shape: shape, specific: true, venues: venues, settings: settings)
             } else {
-                schedule = await scheduled(at: source.hints.isEmpty ? local : source.hints, shape: shape, specific: false)
+                schedule = await scheduled(at: source.hints.isEmpty ? local : source.hints, shape: shape, specific: false, settings: settings)
             }
             guard let score = confidence(look: look, shape: shape, schedule: schedule, titled: source.titled) else { continue }
 
@@ -360,6 +353,6 @@ enum GameSuggester {
         // The surest handful, newest first, each day once (the album or the trip, whichever is surer).
         var days = Set<String>()
         return possible.sorted { $0.1 > $1.1 }.filter { days.insert(keyer.day($0.0.day, tz: .current)).inserted }
-            .prefix(maxOffered).map(\.0).sorted { $0.day > $1.day }
+            .prefix(settings.suggestMaxOffered).map(\.0).sorted { $0.day > $1.day }
     }
 }

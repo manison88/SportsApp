@@ -19,34 +19,24 @@ struct CityDay: Hashable, Sendable {
     var city: String { venues.first?.city ?? "" }
 }
 
+/// The numbers come from `ScanSettings`: a stretch is photos no more than `cityGapMinutes` apart, at least `cityPhotos` of
+/// them over `citySpanMinutes`; the located photos before and after must be within `cityAnchorHours` (the evening before or
+/// the next morning); one city is every located photo within `cityMetroMeters` of every other and of each stadium asked;
+/// only grounds of `cityMinCapacity`+ (a crowd worth photographing; a high-school field with a schedule entry is not asked),
+/// at most `cityMaxVenues`; `cityMaxDays` days per scan, newest first (each asks a city's schedules, and a game in the window
+/// costs a scene check); a game's window runs from `cityBeforeMinutes` before kickoff to `cityAfterMinutes` after; `citySample`
+/// photos are looked at per day.
 enum CityDays {
-    /// A stretch with no location: photos no more than an hour apart, at least five of them over at least half an hour.
-    static let maxGap: TimeInterval = 3600
-    static let minPhotos = 5
-    static let minSpan: TimeInterval = 30 * 60
-    /// The located photos before and after must be this close in time: the evening before or the next morning.
-    static let anchorReach: TimeInterval = 12 * 3600
-    /// One city: every located photo within this of every other, and of each stadium asked.
-    static let metro: CLLocationDistance = 40_000
-    /// Grounds with a crowd worth photographing; a high-school field with a schedule entry is not asked.
-    static let minCapacity = 10_000
-    static let maxVenues = 6
-    /// Days looked up per scan, newest first: each asks a city's schedules, and a game in the window costs a scene check.
-    static let maxDays = 12
-    /// A game's window: from an hour before kickoff to three and a half hours after.
-    static let before: TimeInterval = 3600
-    static let after: TimeInterval = 3.5 * 3600
-    /// Photos looked at per day, from the game's window.
-    static let sample = 16
-
     /// Pure: the stretches worth asking about. `taken` holds the photos a visit or a day around a stadium already has; a stretch
     /// near anything the library has saved (a game, a visit) is left alone, since that day is accounted for.
-    static func candidates(_ points: [PhotoPoint], venues: [Venue], taken: Set<String>, existing: [GameEntry]) -> [CityDay] {
+    static func candidates(_ points: [PhotoPoint], venues: [Venue], taken: Set<String>, existing: [GameEntry],
+                           settings: ScanSettings = .current) -> [CityDay] {
         let located = located(points)
-        let big = bigGrounds(venues)
+        let big = bigGrounds(venues, settings: settings)
         var out: [CityDay] = []
-        for run in runs(points, taken: taken).reversed() {
-            guard out.count < maxDays, case .day(let day) = judge(run, located: located, grounds: big, existing: existing) else { continue }
+        for run in runs(points, taken: taken, settings: settings).reversed() {
+            guard out.count < settings.cityMaxDays,
+                  case .day(let day) = judge(run, located: located, grounds: big, existing: existing, settings: settings) else { continue }
             out.append(day)
         }
         return out
@@ -56,17 +46,18 @@ enum CityDays {
         points.filter { $0.date != nil && $0.latitude != nil && $0.longitude != nil }.sorted { $0.date! < $1.date! }
     }
 
-    static func bigGrounds(_ venues: [Venue]) -> [Venue] {
-        venues.filter { ($0.capacity ?? 0) >= minCapacity && $0.closed == nil && !GameLookup.leagues(for: $0).isEmpty }
+    static func bigGrounds(_ venues: [Venue], settings: ScanSettings = .current) -> [Venue] {
+        venues.filter { ($0.capacity ?? 0) >= settings.cityMinCapacity && $0.closed == nil && !GameLookup.leagues(for: $0).isEmpty }
     }
 
-    /// Pure: the photos with no location (screenshots and photos a visit has left out), in stretches with no gap over an hour.
-    static func runs(_ points: [PhotoPoint], taken: Set<String>) -> [[PhotoPoint]] {
+    /// Pure: the photos with no location (screenshots and photos a visit has left out), in stretches with no gap over `cityGapMinutes`.
+    static func runs(_ points: [PhotoPoint], taken: Set<String>, settings: ScanSettings = .current) -> [[PhotoPoint]] {
         let loose = points.filter { $0.date != nil && $0.latitude == nil && !$0.screenshot && !taken.contains($0.id) }
             .sorted { $0.date! < $1.date! }
+        let gap = settings.cityGapMinutes * 60
         var runs: [[PhotoPoint]] = []
         for p in loose {
-            if let last = runs.last?.last?.date, p.date!.timeIntervalSince(last) <= maxGap { runs[runs.count - 1].append(p) } else { runs.append([p]) }
+            if let last = runs.last?.last?.date, p.date!.timeIntervalSince(last) <= gap { runs[runs.count - 1].append(p) } else { runs.append([p]) }
         }
         return runs
     }
@@ -76,66 +67,72 @@ enum CityDays {
         case day(CityDay)
         case tooFew, saved, noAnchors, spread, noGrounds([PhotoPoint])
 
-        var why: String {
+        func why(_ settings: ScanSettings = .current) -> String {
             switch self {
             case .day: "asked"
-            case .tooFew: "fewer than \(CityDays.minPhotos) photos or under \(Int(CityDays.minSpan / 60)) min"
+            case .tooFew: "fewer than \(settings.cityPhotos) photos or under \(Int(settings.citySpanMinutes)) min"
             case .saved: "something is saved then"
-            case .noAnchors: "no located photo during it, nor one within 12 h both before and after"
-            case .spread: "the located photos around it are more than \(Int(CityDays.metro / 1000)) km apart"
-            case .noGrounds: "no stadium of \(CityDays.minCapacity / 1000)k+ within \(Int(CityDays.metro / 1000)) km of every located photo"
+            case .noAnchors: "no located photo during it, nor one within \(Int(settings.cityAnchorHours)) h both before and after"
+            case .spread: "the located photos around it are more than \(Int(settings.cityMetroMeters / 1000)) km apart"
+            case .noGrounds: "no stadium of \(settings.cityMinCapacity / 1000)k+ within \(Int(settings.cityMetroMeters / 1000)) km of every located photo"
             }
         }
     }
 
-    static func judge(_ run: [PhotoPoint], located: [PhotoPoint], grounds big: [Venue], existing: [GameEntry]) -> Verdict {
-        guard run.count >= minPhotos, let start = run.first?.date, let end = run.last?.date,
-              end.timeIntervalSince(start) >= minSpan else { return .tooFew }
-        if existing.contains(where: { $0.date >= start.addingTimeInterval(-4 * 3600) && $0.date <= end.addingTimeInterval(2 * 3600) }) {
+    static func judge(_ run: [PhotoPoint], located: [PhotoPoint], grounds big: [Venue], existing: [GameEntry],
+                      settings: ScanSettings = .current) -> Verdict {
+        guard run.count >= settings.cityPhotos, let start = run.first?.date, let end = run.last?.date,
+              end.timeIntervalSince(start) >= settings.citySpanMinutes * 60 else { return .tooFew }
+        if existing.contains(where: {
+            $0.date >= start.addingTimeInterval(-settings.citySavedBeforeHours * 3600) && $0.date <= end.addingTimeInterval(settings.citySavedAfterHours * 3600)
+        }) {
             return .saved
         }
-        guard let anchors = anchors(for: start...end, in: located) else {
-            return nearby(start...end, in: located).isEmpty ? .noAnchors : .spread
+        guard let anchors = anchors(for: start...end, in: located, settings: settings) else {
+            return nearby(start...end, in: located, settings: settings).isEmpty ? .noAnchors : .spread
         }
         let spots = anchors.map { CLLocation(latitude: $0.latitude!, longitude: $0.longitude!) }
-        let grounds = big.filter { v in spots.allSatisfy { $0.distance(from: v.location) <= metro } }
+        let grounds = big.filter { v in spots.allSatisfy { $0.distance(from: v.location) <= settings.cityMetroMeters } }
             .sorted { ($0.capacity ?? 0) > ($1.capacity ?? 0) }
         guard !grounds.isEmpty else { return .noGrounds(anchors) }
-        return .day(CityDay(ids: run.map(\.id), times: run.compactMap(\.date), anchors: anchors, venues: Array(grounds.prefix(maxVenues))))
+        return .day(CityDay(ids: run.map(\.id), times: run.compactMap(\.date), anchors: anchors, venues: Array(grounds.prefix(settings.cityMaxVenues))))
     }
 
     /// The located photos that would anchor a span, before the one-city check.
-    private static func nearby(_ span: ClosedRange<Date>, in located: [PhotoPoint]) -> [PhotoPoint] {
+    private static func nearby(_ span: ClosedRange<Date>, in located: [PhotoPoint], settings: ScanSettings) -> [PhotoPoint] {
+        let reach = settings.cityAnchorHours * 3600
         let during = located.filter { span.contains($0.date!) }
-        let before = located.last { $0.date! < span.lowerBound && span.lowerBound.timeIntervalSince($0.date!) <= anchorReach }
-        let after = located.first { $0.date! > span.upperBound && $0.date!.timeIntervalSince(span.upperBound) <= anchorReach }
+        let before = located.last { $0.date! < span.lowerBound && span.lowerBound.timeIntervalSince($0.date!) <= reach }
+        let after = located.first { $0.date! > span.upperBound && $0.date!.timeIntervalSince(span.upperBound) <= reach }
         return !during.isEmpty || (before != nil && after != nil) ? [before].compactMap { $0 } + during + [after].compactMap { $0 } : []
     }
 
     /// Pure: where the fan was during `span`, from located photos: those taken during it, else the last one before and the first
-    /// one after (both needed, each within twelve hours). Nil when there are none, or they are not all in one city.
-    static func anchors(for span: ClosedRange<Date>, in located: [PhotoPoint]) -> [PhotoPoint]? {
-        let anchors = nearby(span, in: located)
+    /// one after (both needed, each within `cityAnchorHours`). Nil when there are none, or they are not all in one city.
+    static func anchors(for span: ClosedRange<Date>, in located: [PhotoPoint], settings: ScanSettings = .current) -> [PhotoPoint]? {
+        let anchors = nearby(span, in: located, settings: settings)
         guard !anchors.isEmpty else { return nil }
         let spots = anchors.map { CLLocation(latitude: $0.latitude!, longitude: $0.longitude!) }
-        for a in spots { for b in spots where a.distance(from: b) > metro { return nil } }
+        for a in spots { for b in spots where a.distance(from: b) > settings.cityMetroMeters { return nil } }
         return anchors
     }
 
-    /// Pure: the photos of the stretch in a game's window, when they make a real stay (five or more, over half an hour).
-    static func inWindow(_ day: CityDay, kickoff: Date) -> [Int]? {
-        let at = day.times.indices.filter { day.times[$0] >= kickoff.addingTimeInterval(-before) && day.times[$0] <= kickoff.addingTimeInterval(after) }
-        guard at.count >= minPhotos, let first = at.first, let last = at.last,
-              day.times[last].timeIntervalSince(day.times[first]) >= minSpan else { return nil }
+    /// Pure: the photos of the stretch in a game's window, when they make a real stay (`cityPhotos` or more, over `citySpanMinutes`).
+    static func inWindow(_ day: CityDay, kickoff: Date, settings: ScanSettings = .current) -> [Int]? {
+        let from = kickoff.addingTimeInterval(-settings.cityBeforeMinutes * 60), to = kickoff.addingTimeInterval(settings.cityAfterMinutes * 60)
+        let at = day.times.indices.filter { day.times[$0] >= from && day.times[$0] <= to }
+        guard at.count >= settings.cityPhotos, let first = at.first, let last = at.last,
+              day.times[last].timeIntervalSince(day.times[first]) >= settings.citySpanMinutes * 60 else { return nil }
         return at
     }
 
     /// Pure: the photos look like a stadium. Stricter than a stadium visit's check, since nothing else places these photos:
-    /// three or more of the sample show a stadium, arena, scoreboard or sport, at least 30% of those classified; two show the
-    /// ground itself (a stadium, a scoreboard, the stands), not just a ball or a pitch; and under a quarter look like a bar,
-    /// a meal or a home (a match on a pub's TV).
-    static func looksLikeTheGround(_ look: SceneCheck.DayLook) -> Bool {
-        look.venue >= 3 && look.venueShare >= 0.3 && look.structure >= 2 && look.elsewhereShare < 0.25
+    /// `cityMinVenue` or more of the sample show a stadium, arena, scoreboard or sport, at least `cityVenueShare` of those
+    /// classified; `cityMinStructure` show the ground itself (a stadium, a scoreboard, the stands), not just a ball or a pitch;
+    /// and under `cityElsewhereShare` look like a bar, a meal or a home (a match on a pub's TV).
+    static func looksLikeTheGround(_ look: SceneCheck.DayLook, settings: ScanSettings = .current) -> Bool {
+        look.venue >= settings.cityMinVenue && look.venueShare >= settings.cityVenueShare
+            && look.structure >= settings.cityMinStructure && look.elsewhereShare < settings.cityElsewhereShare
     }
 
     struct Fit: Hashable {
@@ -155,16 +152,17 @@ enum CityDays {
     }
 
     /// Asks the city's schedules, then looks at the photos only if a game fits.
-    static func evaluate(_ day: CityDay, look see: ([PhotoRef]) async -> SceneCheck.DayLook) async -> Evaluation {
+    static func evaluate(_ day: CityDay, look see: ([PhotoRef]) async -> SceneCheck.DayLook,
+                         settings: ScanSettings = .current) async -> Evaluation {
         var eval = Evaluation(day: day)
         var seen = Set<String>()
         for venue in day.venues {
             if Task.isCancelled { return eval }
-            // Kickoffs from five hours before the first photo to an hour after the last: every window the photos can be in.
-            for game in await GameLookup.games(at: venue, from: day.start, to: day.end) where seen.insert(game.id).inserted {
+            // Kickoffs from `scheduleBeforeHours` before the first photo to `scheduleAfterHours` after the last: every window the photos can be in.
+            for game in await GameLookup.games(at: venue, from: day.start, to: day.end, settings: settings) where seen.insert(game.id).inserted {
                 // The ground the schedule names (a World Cup game matches every soccer ground in the city by its city).
                 let at = GameLookup.venue(of: game, in: day.venues) ?? venue
-                eval.games.append(Fit(game: game, venue: at, photos: inWindow(day, kickoff: game.start) ?? []))
+                eval.games.append(Fit(game: game, venue: at, photos: inWindow(day, kickoff: game.start, settings: settings) ?? []))
             }
         }
         let fitting = eval.games.filter { !$0.photos.isEmpty }.sorted { $0.photos.count > $1.photos.count }
@@ -172,11 +170,12 @@ enum CityDays {
         // Two games in the city at once (a ballgame and a match): the ones whose window holds nearly as many photos are offered too.
         eval.best = Array(fitting.filter { Double($0.photos.count) >= Double(top.photos.count) * 0.8 }.prefix(3))
         let ids = top.photos.map { day.ids[$0] }
+        let sample = settings.citySample
         let step = max(1, ids.count / sample)
         let picked = stride(from: 0, to: ids.count, by: step).prefix(sample).map { PhotoRef.library(ids[$0]) }
         let look = await see(picked)
         eval.look = look
-        guard looksLikeTheGround(look) else { return eval }
+        guard looksLikeTheGround(look, settings: settings) else { return eval }
         let times = top.photos.map { day.times[$0] }
         let what = top.game.race == nil && !top.game.home.name.isEmpty
             ? "\(top.game.away.name) at \(top.game.home.name) at \(top.venue.name)" : "a game at \(top.venue.name)"

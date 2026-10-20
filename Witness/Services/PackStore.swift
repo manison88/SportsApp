@@ -53,8 +53,11 @@ actor PackStore {
     private var manifest: PackManifest?
     private static let etagKey = "WitnessPackManifestETag"
 
+    /// Where the shared store keeps its packs. `ScanSettings` reads its pack from here too.
+    static var defaultDirectory: URL { URL.applicationSupportDirectory.appending(path: "Packs", directoryHint: .isDirectory) }
+
     init(directory: URL? = nil) {
-        let dir = directory ?? URL.applicationSupportDirectory.appending(path: "Packs", directoryHint: .isDirectory)
+        let dir = directory ?? Self.defaultDirectory
         self.directory = dir
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         self.manifest = Self.cachedManifest(in: dir)
@@ -124,7 +127,8 @@ actor PackStore {
                 && (pack.kind != "schedule" || pack.league.map(wanted.contains) == true)
         }
             .sorted { a, b in
-                if (a.kind == "catalog") != (b.kind == "catalog") { return a.kind == "catalog" }
+                // The small packs first: the catalog and the scan settings.
+                if (a.kind == "schedule") != (b.kind == "schedule") { return b.kind == "schedule" }
                 return (a.season ?? 0) > (b.season ?? 0)
             }
         var stored = false
@@ -143,8 +147,8 @@ actor PackStore {
             }
         }
 
-        // Adopt the new manifest once every catalog pack is here; schedules that are still missing retry next time.
-        let catalogReady = target.packs.filter { $0.kind == "catalog" }
+        // Adopt the new manifest once every catalog (and settings) pack is here; schedules that are still missing retry next time.
+        let catalogReady = target.packs.filter { $0.kind != "schedule" }
             .allSatisfy { FileManager.default.fileExists(atPath: file(for: $0).path) }
         if let freshData, catalogReady {
             manifest = target
@@ -152,6 +156,8 @@ actor PackStore {
             if let tag = http.value(forHTTPHeaderField: "ETag") { defaults.set(tag, forKey: Self.etagKey) }
             prune(keeping: target)
             stored = true
+            // The scan settings ride in the same signed manifest: the scan judges by the new ones from here on.
+            if directory == Self.defaultDirectory { ScanSettings.reload(from: directory) }
         }
         return stored
     }
@@ -197,8 +203,18 @@ actor PackStore {
     /// "schedule/baseball-mlb/2024" -> "schedule__baseball-mlb__2024".
     static func fileStem(_ id: String) -> String { id.replacingOccurrences(of: "/", with: "__") }
 
+    /// "schedule__baseball-mlb__2024.1a2b3c4d.json": the file a pack is kept in.
+    static func fileName(for pack: PackManifest.Pack) -> String { "\(fileStem(pack.id)).\(pack.version).json" }
+
     private func file(for pack: PackManifest.Pack) -> URL {
-        directory.appending(path: "\(Self.fileStem(pack.id)).\(pack.version).json")
+        directory.appending(path: Self.fileName(for: pack))
+    }
+
+    /// Whether these bytes are the pack the signed manifest describes: the same size and SHA-256.
+    static func matches(_ data: Data, _ pack: PackManifest.Pack) -> Bool {
+        guard data.count == pack.bytes else { return false }
+        let digest = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
+        return digest == pack.sha256
     }
 
     /// One download, checked against the manifest's size and SHA-256 before it is trusted.
@@ -211,9 +227,8 @@ actor PackStore {
         let session = URLSession(configuration: config)
         defer { session.finishTasksAndInvalidate() }
         guard let (data, response) = try? await session.data(from: base.appending(path: pack.path)),
-              (response as? HTTPURLResponse)?.statusCode == 200, data.count == pack.bytes else { return nil }
-        let digest = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
-        return digest == pack.sha256 ? data : nil
+              (response as? HTTPURLResponse)?.statusCode == 200, matches(data, pack) else { return nil }
+        return data
     }
 
     /// Removes files for packs that are gone, and old versions of packs whose current version is on disk.

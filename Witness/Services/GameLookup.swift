@@ -60,11 +60,12 @@ enum GameLookup {
 
     // MARK: Finding the game
 
-    /// Games on the venue's league schedules that started in the window and were played at this venue.
-    static func games(at venue: Venue, from: Date, to: Date) async -> [FoundGame] {
+    /// Games on the venue's league schedules that started in the window (`scheduleBeforeHours` before `from` to
+    /// `scheduleAfterHours` after `to`) and were played at this venue.
+    static func games(at venue: Venue, from: Date, to: Date, settings: ScanSettings = .current) async -> [FoundGame] {
         let leagues = leagues(for: venue).filter { !$0.hasPrefix("racing/") }
-        let windowStart = from.addingTimeInterval(-5 * 3600)
-        let windowEnd = to.addingTimeInterval(1 * 3600)
+        let windowStart = from.addingTimeInterval(-settings.scheduleBeforeHours * 3600)
+        let windowEnd = to.addingTimeInterval(settings.scheduleAfterHours * 3600)
         // A circuit's race weekends come from the bundled calendar, with no network call.
         let races = venue.sports.contains(.motorsport)
             ? F1Calendar.races(at: venue, from: from, to: to).map { F1Calendar.found($0, venue: venue) } : []
@@ -487,15 +488,17 @@ enum GameLookup {
 
     /// A scan matches dozens of visits, each asking several competitions about two days. Fired all at once, the schedule
     /// server throttles or times out some of them, and a game that was there reads as "no game". So requests wait their
-    /// turn, a failure is tried again, and a finished day is kept.
+    /// turn (`lookupConcurrency` at once), a failure is tried again (`lookupAttempts` tries, `lookupBackoffMilliseconds` × the
+    /// attempt squared between them, `lookupTimeoutSeconds` each), and a finished day is kept.
     private static func fetch(_ url: URL) async -> Data? {
         if let responder { return responder(url) }
         if let hit = pages.object(forKey: url as NSURL) { return hit as Data }
+        let settings = ScanSettings.current
         await RequestGate.shared.enter()
         defer { Task { await RequestGate.shared.leave() } }
-        for attempt in 0..<3 {
+        for attempt in 0..<settings.lookupAttempts {
             var request = URLRequest(url: url)
-            request.timeoutInterval = 15
+            request.timeoutInterval = settings.lookupTimeoutSeconds
             if let (data, response) = try? await URLSession.shared.data(for: request), let http = response as? HTTPURLResponse {
                 if http.statusCode == 200 {
                     if url.absoluteString.contains("dates="), isPastDay(url) { pages.setObject(data as NSData, forKey: url as NSURL) }
@@ -505,7 +508,7 @@ enum GameLookup {
                 if http.statusCode != 429 && http.statusCode < 500 { return nil }
             }
             if Task.isCancelled { return nil }
-            try? await Task.sleep(for: .milliseconds(600 * (attempt + 1) * (attempt + 1)))
+            try? await Task.sleep(for: .milliseconds(settings.lookupBackoffMilliseconds * (attempt + 1) * (attempt + 1)))
         }
         return nil
     }
@@ -689,14 +692,16 @@ extension GameLookup {
     }
 }
 
-/// At most a few schedule requests in flight at once, the rest queued in order.
+/// At most a few schedule requests in flight at once (`lookupConcurrency`), the rest queued in order.
 actor RequestGate {
-    static let shared = RequestGate(limit: 6)
-    private let limit: Int
+    static let shared = RequestGate()
+    private let fixed: Int?
+    private var limit: Int { fixed ?? ScanSettings.current.lookupConcurrency }
     private var running = 0
     private var waiting: [CheckedContinuation<Void, Never>] = []
 
-    init(limit: Int) { self.limit = limit }
+    /// A fixed limit, or (nil) the settings' limit, read each time a request asks to enter.
+    init(limit: Int? = nil) { fixed = limit }
 
     func enter() async {
         if running < limit { running += 1; return }

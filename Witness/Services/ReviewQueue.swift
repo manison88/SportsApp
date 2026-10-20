@@ -70,9 +70,9 @@ enum ReviewQueue {
         }
     }
 
-    /// The same outing: the same day at one ground or the one next door (a stadium and its neighbour share a car park).
-    private static func sameOuting(_ a: Venue, _ aDay: String, _ b: Venue, _ bDay: String) -> Bool {
-        aDay == bDay && (a.id == b.id || a.location.distance(from: b.location) <= 1_000)
+    /// The same outing: the same day at one ground or the one next door (`neighborMeters`: a stadium and its neighbour share a car park).
+    private static func sameOuting(_ a: Venue, _ aDay: String, _ b: Venue, _ bDay: String, settings: ScanSettings) -> Bool {
+        aDay == bDay && (a.id == b.id || a.location.distance(from: b.location) <= settings.neighborMeters)
     }
 
     /// The first pass, games then stadium visits. A visit at a game's ground (or the one next door) on the game's day is
@@ -82,7 +82,7 @@ enum ReviewQueue {
     /// two games next door to each other on one day are rare but real, and the scan already skips the library's ground-days.)
     /// A game whose photos are on a saved stadium visit stays too: the visit was saved before its game was found.
     static func firstPass(games: [PhotoCluster], others: [PhotoCluster], library: [GameEntry], venues: [Venue],
-                          ledger: ReviewLedger) -> (games: [PhotoCluster], others: [PhotoCluster]) {
+                          ledger: ReviewLedger, settings: ScanSettings = .current) -> (games: [PhotoCluster], others: [PhotoCluster]) {
         let taken = photos(in: library).union(ledger.dismissedAssets)
         let gameTaken = gamePhotos(in: library, ledger: ledger)
         let saved = outings(library, venues: venues)
@@ -93,12 +93,13 @@ enum ReviewQueue {
             let day = keyer.day(visit.start, tz: visit.venue.tz)
             let ids = Set(visit.assetIds)
             if let at = kept.firstIndex(where: {
-                $0.assetIds.contains(where: ids.contains) || sameOuting($0.venue, keyer.day($0.start, tz: $0.venue.tz), visit.venue, day)
+                $0.assetIds.contains(where: ids.contains)
+                    || sameOuting($0.venue, keyer.day($0.start, tz: $0.venue.tz), visit.venue, day, settings: settings)
             }) {
                 let merged = kept[at].combined(with: visit)
                 kept[at] = PhotoCluster(id: kept[at].id, venue: kept[at].venue, start: merged.start, end: merged.end,
                                         assetIds: merged.assetIds, times: merged.times, insideIds: merged.insideIds)
-            } else if saved.contains(where: { sameOuting($0.venue, $0.day, visit.venue, day) }) {
+            } else if saved.contains(where: { sameOuting($0.venue, $0.day, visit.venue, day, settings: settings) }) {
                 continue
             } else if !visits.contains(where: { $0.assetIds.contains(where: ids.contains) }) {
                 visits.append(visit)

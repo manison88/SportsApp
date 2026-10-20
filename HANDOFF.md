@@ -8,10 +8,10 @@ Another Claude session pushes to this branch: `git pull --no-rebase` before push
 ## In flight (two agents, worktrees under `.claude/worktrees/`, branches not pushed)
 
 - **Logic review** → writes `docs/SCAN-LOGIC.md` (the pipeline as numbered rules with thresholds and file:function, findings ranked, test-coverage map, ≤5 fixes before shipping). Read-only; commit the doc when it lands.
-- **OTA scan settings** → branch `claude/ota-scan-settings`: `Witness/Services/ScanSettings.swift` (every threshold/cap/word list, defaults = today's values, `clamped()`), loaded from a signed `scan-settings` pack entry via `PackStore` when newer, persisted; services read `ScanSettings.current`; Scan check prints `settings v<n> (built-in | pack)`; `Tools/packs/build_packs.py` signs `scan-settings.json`. Merge, run tests, push, then ship a change by editing the JSON + bumping version + `build_packs` + publish.
+- **OTA scan settings** → branch `claude/ota-scan-settings`, built (see the decision below). Merge, run tests, push.
 - Owner's ask behind both: review the logic once more **before the next App Review submission**, and make the matching tunable without a release.
 
-## The scan, as shipped (plain rules; thresholds will move to ScanSettings)
+## The scan, as shipped (plain rules; every number below is a `ScanSettings` field)
 
 1. **Place each photo**: inside = within the ground's fence (200 m default; circuits 800–1500 m; the index box is the venue's own fence, filed under every cell it reaches); near = within 500 m (joins a visit, can't start one); grounds within 1 km are neighbours.
 2. **On the move** (`TransitCheck.swift`): fix speed > 40 m/s, or consecutive photos ≥ 1 km apart within 5 min (≥ 20 m/s). Never places a visit. **No altitude rule** (terrain read as flight at the Nurburgring) and **no scene check for tours** (owner: not worth it).
@@ -24,6 +24,7 @@ Another Claude session pushes to this branch: `git pull --no-rebase` before push
 
 ## Decisions made today (keep these)
 
+- **OTA scan settings**: every threshold, cap and word list the scan judges by is a field of `ScanSettings` (`Witness/Services/ScanSettings.swift`; `defaults` = today's values, each clamped to a sane range, a missing key keeps its default). The `settings/scan` pack in the signed manifest replaces them when its `version` is newer than the built-in one, after the manifest's Ed25519 signature and the pack's SHA-256 pass like any pack (`PackStore` → `ScanSettings.reload`); the pack stays on disk, so offline launches keep it. Pure functions take `settings:`; `ScanModel` reads `ScanSettings.current` once per scan. Scan check header: `settings v<n> (built-in | pack)` + a `changed:` line per non-default value. **To ship a change**: edit `Tools/packs/scan-settings.json`, bump `"version"`, `PACKS_SIGNING_KEY=… python3 Tools/packs/build_packs.py`, publish (`Tools/packs/publish_worker.py` or `publish.py`); phones apply it on their next manifest refresh (app launch). A release that changes the built-in defaults must bump `ScanSettings.defaults.version` above the published pack's, and keep the JSON equal to the defaults (`ScanSettingsTests` checks both). Tests: `WitnessTests/ScanSettingsTests.swift`.
 - Review screens fit the phone: Possible game checks the likeliest stadium as it opens (game + Add there without a tap), stadium rows carry a chevron, the bar always has a primary; Other: one-line title, Skip/Add pinned, "Add all" a line above. Every photo tile opens the full-screen pager; with > 6 photos, "See all N photos" (owner picked C of three mockups, `mockups/scan-handling/png/badge-*.jpg`).
 - Game page toolbar: Play, +, ⋯ in one toolbar item (tight); the group has its own identifier `game-toolbar`.
 - Venue share: "games", not "nights".

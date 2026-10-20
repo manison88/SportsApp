@@ -33,46 +33,39 @@ struct SceneVerdict: Hashable {
 
 /// Tells a game from a party near the stadium by looking at the photos themselves. Runs on the phone.
 enum SceneCheck {
-    static let sportsWords = ["stadium", "arena", "sport", "baseball", "basketball", "football", "soccer", "hockey",
-                              "athlet", "ballpark", "field", "court", "crowd", "scoreboard", "bleacher", "racing", "rink",
-                              "tennis", "rugby", "cricket", "jersey", "team", "goal", "pitch", "audience"]
+    /// The word lists come from `ScanSettings` (`sceneSportsWords`, `sceneVenueLabels`, ...); these read the settings in force.
+    static var sportsWords: [String] { ScanSettings.current.sceneSportsWords }
     /// What only a real game venue or sport produces, as the classifier's exact identifiers. Matched whole, not as substrings:
     /// "rink" is inside "drink" and "baseball" inside "baseball_hat". "crowd", "people" and "grass" are not here on purpose
     /// (the taxonomy has no "field", "court", "pitch", "team" or "audience").
-    static let venueLabels: Set<String> = ["stadium", "arena", "scoreboard", "bleachers", "baseball", "basketball", "football", "soccer",
-                                           "hockey", "rink", "rugby", "cricket_sport", "tennis", "softball", "motorsport", "nascar",
-                                           "formula_one_car"]
+    static var venueLabels: Set<String> { Set(ScanSettings.current.sceneVenueLabels) }
     /// The ground itself rather than a sport, which a park, a schoolyard or a beach can show too. Real stadium photos carry
     /// "stadium" and "arena" together (0.8 to 0.9), and often "scoreboard".
-    static let structureLabels: Set<String> = ["stadium", "arena", "scoreboard", "bleachers"]
-    static let indoorWords = ["indoor", "arena", "court", "rink", "ceiling", "gym", "hall", "stage"]
-    static let outdoorWords = ["outdoor", "sky", "grass", "field", "cloud", "lawn", "sunset", "daytime", "stadium", "ballpark"]
-    static let eventWords = ["concert", "stage", "stadium", "arena", "crowd", "audience", "festival", "fireworks", "spotlight"]
-    static let elsewhereWords = ["bar", "pub", "nightclub", "party", "cocktail", "wine", "restaurant", "dining", "dinner",
-                                 "concert", "stage", "dancing", "wedding", "kitchen", "living_room", "bedroom", "office",
-                                 "bathroom", "nursery", "playroom", "toy", "document", "bed", "desk", "furniture",
-                                 "beach", "sand", "shore", "ocean", "sea", "seascape", "lake", "waterfront", "swimming_pool", "pool",
-                                 "swimming", "swimsuit", "sunbathing", "surfing", "surfboard", "sandcastle", "water_body", "seafood", "museum",
-                                 "hiking", "skiing", "screenshot", "picnic", "camping", "food", "meal", "dessert", "cake", "dog", "cat", "pet"]
+    static var structureLabels: Set<String> { Set(ScanSettings.current.sceneStructureLabels) }
+    static var indoorWords: [String] { ScanSettings.current.sceneIndoorWords }
+    static var outdoorWords: [String] { ScanSettings.current.sceneOutdoorWords }
+    static var eventWords: [String] { ScanSettings.current.sceneEventWords }
+    static var elsewhereWords: [String] { ScanSettings.current.sceneElsewhereWords }
 
-    /// Scores a visit from a sample of its photos. Nil when the classifier isn't available (some simulators),
+    /// Scores a visit from a sample (`sceneVerdictSample`) of its photos. Nil when the classifier isn't available (some simulators),
     /// so callers treat the visit as unknown rather than doubtful.
-    static func verdict(for refs: [PhotoRef], sample: Int = 6) async -> SceneVerdict? {
+    static func verdict(for refs: [PhotoRef], sample: Int? = nil, settings: ScanSettings = .current) async -> SceneVerdict? {
         guard !refs.isEmpty else { return nil }
+        let sample = sample ?? settings.sceneVerdictSample
         let step = max(1, refs.count / sample)
         let picked = stride(from: 0, to: refs.count, by: step).prefix(sample).map { refs[$0] }
         var verdict = SceneVerdict(sports: 0, elsewhere: 0, event: 0, indoor: 0, outdoor: 0)
         var classified = false
         for ref in picked {
             guard let image = await PhotoLoader.load(ref, size: CGSize(width: 512, height: 512)),
-                  let labels = await labels(for: image) else { continue }
+                  let labels = await labels(for: image, settings: settings) else { continue }
             classified = true
-            let s = score(labels)
+            let s = score(labels, settings: settings)
             verdict.sports = max(verdict.sports, s.sports)
             verdict.elsewhere = max(verdict.elsewhere, s.elsewhere)
             verdict.event = max(verdict.event, s.event)
-            verdict.venueSign = max(verdict.venueSign, venueSign(labels))
-            let setting = Self.setting(labels)
+            verdict.venueSign = max(verdict.venueSign, venueSign(labels, settings: settings))
+            let setting = Self.setting(labels, settings: settings)
             verdict.indoor = max(verdict.indoor, setting.indoor)
             verdict.outdoor = max(verdict.outdoor, setting.outdoor)
         }
@@ -80,22 +73,25 @@ enum SceneCheck {
     }
 
     /// Pure: the strongest label that names a stadium, arena, scoreboard or sport.
-    static func venueSign(_ labels: [(String, Float)]) -> Double {
-        labels.filter { venueLabels.contains($0.0.lowercased()) }.map { Double($0.1) }.max() ?? 0
+    static func venueSign(_ labels: [(String, Float)], settings: ScanSettings = .current) -> Double {
+        let venue = settings.sceneVenueLabels
+        return labels.filter { venue.contains($0.0.lowercased()) }.map { Double($0.1) }.max() ?? 0
     }
 
     /// What one photo shows, for counting a day.
     enum PhotoKind: Equatable { case venue(structure: Bool), elsewhere, neither }
 
-    /// Pure: a photo is at a game when a venue or sport label is clear and beats every beach, party or meal label (a beach with
-    /// a ball reads "soccer" too); somewhere else when one of those is clear and no game is.
-    static func kind(_ labels: [(String, Float)]) -> PhotoKind {
-        let v = venueSign(labels), e = score(labels).elsewhere
-        if v >= 0.3 && v > e {
-            let s = labels.filter { structureLabels.contains($0.0.lowercased()) }.map { Double($0.1) }.max() ?? 0
-            return .venue(structure: s >= 0.3)
+    /// Pure: a photo is at a game when a venue or sport label is clear (`sceneKindThreshold`) and beats every beach, party or
+    /// meal label (a beach with a ball reads "soccer" too); somewhere else when one of those is clear and no game is.
+    static func kind(_ labels: [(String, Float)], settings: ScanSettings = .current) -> PhotoKind {
+        let clear = settings.sceneKindThreshold
+        let v = venueSign(labels, settings: settings), e = score(labels, settings: settings).elsewhere
+        if v >= clear && v > e {
+            let structure = settings.sceneStructureLabels
+            let s = labels.filter { structure.contains($0.0.lowercased()) }.map { Double($0.1) }.max() ?? 0
+            return .venue(structure: s >= clear)
         }
-        return e >= 0.3 ? .elsewhere : .neither
+        return e >= clear ? .elsewhere : .neither
     }
 
     /// A day's photos counted one by one: how many show a stadium, arena, scoreboard or sport, and how many show somewhere
@@ -108,23 +104,27 @@ enum SceneCheck {
         var structure = 0
         var venueShare: Double { classified == 0 ? 0 : Double(venue) / Double(classified) }
         var elsewhereShare: Double { classified == 0 ? 0 : Double(elsewhere) / Double(classified) }
-        /// Several photos of the day clearly at a game, and the day not mostly somewhere else. One stray "soccer pitch" is not enough.
-        func isGame(minVenue: Int = 2, minShare: Double = 0.25) -> Bool {
-            venue >= minVenue && venueShare >= minShare && elsewhereShare < 0.35
+        /// Several photos of the day clearly at a game (`lookMinVenue` at `lookMinShare`), and the day not mostly somewhere else
+        /// (under `lookMaxElsewhere`). One stray "soccer pitch" is not enough.
+        func isGame(minVenue: Int? = nil, minShare: Double? = nil, settings: ScanSettings = .current) -> Bool {
+            venue >= (minVenue ?? settings.lookMinVenue) && venueShare >= (minShare ?? settings.lookMinShare)
+                && elsewhereShare < settings.lookMaxElsewhere
         }
-        var mostlyElsewhere: Bool { elsewhereShare >= 0.5 }
+        var mostlyElsewhere: Bool { mostlyElsewhere(.current) }
+        func mostlyElsewhere(_ settings: ScanSettings) -> Bool { elsewhereShare >= settings.lookMostlyElsewhere }
     }
 
-    static func look(at refs: [PhotoRef], max: Int = 24) async -> DayLook {
+    static func look(at refs: [PhotoRef], max: Int? = nil, settings: ScanSettings = .current) async -> DayLook {
         var out = DayLook()
         guard !refs.isEmpty else { return out }
+        let max = max ?? settings.dayLookPhotos
         let step = Swift.max(1, refs.count / max)
         for ref in stride(from: 0, to: refs.count, by: step).prefix(max).map({ refs[$0] }) {
             if Task.isCancelled { break }
             guard let image = await PhotoLoader.load(ref, size: CGSize(width: 384, height: 384)),
-                  let labels = await labels(for: image) else { continue }
+                  let labels = await labels(for: image, settings: settings) else { continue }
             out.classified += 1
-            switch kind(labels) {
+            switch kind(labels, settings: settings) {
             case .venue(let structure): out.venue += 1; if structure { out.structure += 1 }
             case .elsewhere: out.elsewhere += 1
             case .neither: break
@@ -134,39 +134,41 @@ enum SceneCheck {
     }
 
     /// Pure: how indoors and how outdoors the labels say the photo is.
-    static func setting(_ labels: [(String, Float)]) -> (indoor: Double, outdoor: Double) {
+    static func setting(_ labels: [(String, Float)], settings: ScanSettings = .current) -> (indoor: Double, outdoor: Double) {
         var indoor = 0.0, outdoor = 0.0
         for (id, confidence) in labels {
             let l = id.lowercased()
-            if indoorWords.contains(where: { l.contains($0) }) { indoor = max(indoor, Double(confidence)) }
-            if outdoorWords.contains(where: { l.contains($0) }) { outdoor = max(outdoor, Double(confidence)) }
+            if settings.sceneIndoorWords.contains(where: { l.contains($0) }) { indoor = max(indoor, Double(confidence)) }
+            if settings.sceneOutdoorWords.contains(where: { l.contains($0) }) { outdoor = max(outdoor, Double(confidence)) }
         }
         return (indoor, outdoor)
     }
 
     /// Pure scoring of classifier labels, unit tested.
-    static func score(_ labels: [(String, Float)]) -> (sports: Double, elsewhere: Double, event: Double) {
+    static func score(_ labels: [(String, Float)], settings: ScanSettings = .current) -> (sports: Double, elsewhere: Double, event: Double) {
         var sports = 0.0, elsewhere = 0.0, event = 0.0
         for (id, confidence) in labels {
             let l = id.lowercased()
-            if sportsWords.contains(where: { l.contains($0) }) { sports = max(sports, Double(confidence)) }
-            if eventWords.contains(where: { l.contains($0) }) { event = max(event, Double(confidence)) }
-            if elsewhereWords.contains(where: { l == $0 || l.hasPrefix($0 + "_") || l.hasSuffix("_" + $0) }) {
+            if settings.sceneSportsWords.contains(where: { l.contains($0) }) { sports = max(sports, Double(confidence)) }
+            if settings.sceneEventWords.contains(where: { l.contains($0) }) { event = max(event, Double(confidence)) }
+            if settings.sceneElsewhereWords.contains(where: { l == $0 || l.hasPrefix($0 + "_") || l.hasSuffix("_" + $0) }) {
                 elsewhere = max(elsewhere, Double(confidence))
             }
         }
         return (sports, elsewhere, event)
     }
 
-    static func labels(for image: UIImage) async -> [(String, Float)]? {
+    /// The classifier's labels for an image, those over `sceneLabelFloor`.
+    static func labels(for image: UIImage, settings: ScanSettings = .current) async -> [(String, Float)]? {
         guard let cg = image.cgImage else { return nil }
+        let floor = Float(settings.sceneLabelFloor)
         return await withCheckedContinuation { (cont: CheckedContinuation<[(String, Float)]?, Never>) in
             DispatchQueue.global(qos: .userInitiated).async {
                 let request = VNClassifyImageRequest()
                 let handler = VNImageRequestHandler(cgImage: cg, orientation: .up)
                 do {
                     try handler.perform([request])
-                    let results = (request.results ?? []).filter { $0.confidence > 0.05 }.map { ($0.identifier, $0.confidence) }
+                    let results = (request.results ?? []).filter { $0.confidence > floor }.map { ($0.identifier, $0.confidence) }
                     cont.resume(returning: results)
                 } catch {
                     cont.resume(returning: nil)
