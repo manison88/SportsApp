@@ -35,7 +35,8 @@ jobs:
         if: env.HAS_KEYS == 'true'
         env:
           PACKS_SIGNING_KEY: ${{ secrets.PACKS_SIGNING_KEY }}
-        run: python3 Tools/packs/build_packs.py --version-note "$GITHUB_SHA"
+        # Owner decision (Oct 20 2026): publish the FIBA, Sofascore and HockeyTech schedules too. They are public game dates and times, not sold.
+        run: python3 Tools/packs/build_packs.py --version-note "$GITHUB_SHA" --include-sources fiba,sofascore,hockeytech
       - name: Publish through the Worker
         if: env.HAS_KEYS == 'true'
         env:
