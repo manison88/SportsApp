@@ -77,7 +77,7 @@ struct YouView: View {
             Spacer(minLength: 8)
             Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary).accessibilityHidden(true)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .padding(16)
         .frame(maxWidth: .infinity, minHeight: 64, alignment: .leading)
         .background(Color.panel, in: .rect(cornerRadius: 16))
@@ -101,7 +101,7 @@ struct YouView: View {
                     .contentShape(.rect)
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .accessibilityIdentifier("you-big-games")
             }
             if !library.scheduleLog.isEmpty {
@@ -117,7 +117,7 @@ struct YouView: View {
                     .contentShape(.rect)
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .accessibilityIdentifier("you-schedule-gaps")
             }
             NavigationLink { BackupView() } label: {
@@ -131,9 +131,10 @@ struct YouView: View {
                 .contentShape(.rect)
             }
             .buttonStyle(.plain)
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .accessibilityIdentifier("you-backup")
             SoccerWordRow()
+            AppearanceRow()
             Toggle(isOn: Binding(get: { Analytics.shared.enabled }, set: { Analytics.shared.setEnabled($0) })) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("Share anonymous usage").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
@@ -142,7 +143,7 @@ struct YouView: View {
             }
             .tint(Color.signal)
             .frame(minHeight: 56)
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .accessibilityIdentifier("you-analytics")
             LegalLinksRows()
             // Wrapped is off for now: its row returns when the redesign is built (WrappedView and Modal.wrapped stay in place).
@@ -576,12 +577,12 @@ private struct ResultDots: View {
     private func dot(_ o: Outcome) -> some View {
         switch o {
         case .win:
-            Circle().fill(.white)
+            Circle().fill(Color.primaryText)
         case .loss:
             Circle().strokeBorder(Color.textSecondary, lineWidth: 2)
         case .draw:
-            Circle().strokeBorder(.white, lineWidth: 2)
-                .overlay { HalfCircle().fill(.white).padding(2) }
+            Circle().strokeBorder(Color.primaryText, lineWidth: 2)
+                .overlay { HalfCircle().fill(Color.primaryText).padding(2) }
         case .none:
             Rectangle().fill(color).rotationEffect(.degrees(45)).scaleEffect(0.7)
         }
@@ -615,7 +616,7 @@ private struct LinkRow: View {
             .contentShape(.rect)
         }
         .buttonStyle(.plain)
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
     }
 }
 
@@ -637,6 +638,26 @@ private struct SoccerWordRow: View {
             .accessibilityIdentifier("you-soccer-word")
         }
         .frame(minHeight: 56)
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
+    }
+}
+
+/// Auto follows the phone; Light and Dark force it. Applied at the root in WitnessApp.
+private struct AppearanceRow: View {
+    @AppStorage("appearance") private var appearance = "auto"
+
+    var body: some View {
+        HStack {
+            Text("Appearance").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+            Spacer()
+            Picker("Appearance", selection: Binding(get: { AppearanceChoice(stored: appearance).rawValue }, set: { appearance = $0 })) {
+                ForEach(AppearanceChoice.allCases, id: \.self) { Text($0.label).tag($0.rawValue) }
+            }
+            .pickerStyle(.segmented)
+            .frame(width: 220)
+            .accessibilityIdentifier("you-appearance")
+        }
+        .frame(minHeight: 56)
+        .foregroundStyle(Color.primaryText)
     }
 }

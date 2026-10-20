@@ -45,7 +45,7 @@ struct PassportView: View {
                             .lineLimit(2)
                             .minimumScaleFactor(0.6)
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .accessibilityElement(children: .combine)
 
                     if let next = plannedStamps(excluding: Set(earned.map(\.venueId)), sport: sport).first, let date = next.date {
@@ -122,14 +122,14 @@ struct PassportView: View {
                 .font(.footnote).foregroundStyle(Color.textSecondary)
             HStack(spacing: 10) {
                 Button("Soccer") { soccerWord = "soccer" }
-                    .buttonStyle(PrimaryButtonStyle(fill: SoccerWord.usesFudbal ? .white : .signal))
+                    .buttonStyle(PrimaryButtonStyle(fill: SoccerWord.usesFudbal ? .primaryText : .signal, onFill: SoccerWord.usesFudbal ? .onPrimary : .black))
                     .accessibilityIdentifier("soccer-word-soccer")
                 Button("Fudbal") { soccerWord = "fudbal" }
-                    .buttonStyle(PrimaryButtonStyle(fill: SoccerWord.usesFudbal ? .signal : .white))
+                    .buttonStyle(PrimaryButtonStyle(fill: SoccerWord.usesFudbal ? .signal : .primaryText, onFill: SoccerWord.usesFudbal ? .black : .onPrimary))
                     .accessibilityIdentifier("soccer-word-fudbal")
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .padding(16)
         .background(Color.panel, in: .rect(cornerRadius: 16))
     }
@@ -144,10 +144,10 @@ struct PassportView: View {
                         Text(Self.league(s))
                             .font(.condensed(.subheadline, weight: .heavy))
                             .tracking(1.2)
-                            .foregroundStyle(sport == s ? Color.black : Color.textSecondary)
+                            .foregroundStyle(sport == s ? Color.onPrimary : Color.textSecondary)
                             .padding(.horizontal, 16)
                             .frame(minHeight: 44)
-                            .background(sport == s ? Color.white : Color.panelRaised, in: .rect(cornerRadius: 10))
+                            .background(sport == s ? Color.primaryText : Color.panelRaised, in: .rect(cornerRadius: 10))
                     }
                     .buttonStyle(.plain)
                     .accessibilityAddTraits(sport == s ? .isSelected : [])
@@ -404,7 +404,7 @@ private struct PassportPageCard: View {
                 Text("\(count)").font(.display(100)).lineLimit(1).fixedSize()
                 Text(label.uppercased()).font(.display(32)).lineLimit(2).fixedSize()
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .frame(height: 110, alignment: .leading)
             LazyVGrid(columns: Array(repeating: GridItem(.fixed(Self.tileW * tileScale), spacing: Self.gap), count: columns),
                       alignment: .leading, spacing: Self.gap) {

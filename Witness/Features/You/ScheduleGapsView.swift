@@ -37,7 +37,7 @@ struct ScheduleGapsView: View {
                             .font(.condensed(.caption, weight: .heavy)).textCase(.uppercase)
                             .foregroundStyle(row.misses > 0 ? Color.signal : Color.textSecondary)
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .accessibilityElement(children: .combine)
                 }
             }

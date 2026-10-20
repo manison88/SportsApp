@@ -118,7 +118,7 @@ struct TicketImportView: View {
                     .accessibilityHidden(true)
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .frame(minHeight: 52)
         .contentShape(.rect)
     }

@@ -63,7 +63,7 @@ struct LifeMapView: View {
                                 .font(.condensed(.title2, weight: .heavy))
                                 .textCase(.uppercase)
                         }
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                         .accessibilityElement(children: .combine)
                         .accessibilityIdentifier("map-miles")
                     } else {
@@ -184,7 +184,7 @@ struct LifeMapView: View {
                             Text(s.name).font(.condensed(.subheadline, weight: .bold)).textCase(.uppercase)
                             Text("\(counts[s, default: 0])").font(.condensed(.subheadline)).foregroundStyle(Color.textSecondary)
                         }
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                         .padding(.horizontal, 12)
                         .frame(minHeight: 36)
                         .background(sport == s ? Color.panelRaised : Color.panel, in: .capsule)
@@ -344,7 +344,7 @@ struct WorldMapCanvas: View {
         Button(action: action) {
             Image(systemName: symbol)
                 .font(.body.weight(.bold))
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .frame(width: 40, height: 40)
                 .background(.ultraThinMaterial, in: .circle)
         }

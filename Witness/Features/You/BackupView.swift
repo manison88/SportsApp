@@ -24,7 +24,7 @@ struct BackupView: View {
                         Text("Scan check").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
                         Text("Why a day\u{2019}s photos did or did not find a game").font(.footnote).foregroundStyle(Color.textSecondary)
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .frame(minHeight: 56)
                 }
                 .accessibilityIdentifier("backup-scan-check")
@@ -84,7 +84,7 @@ struct BackupView: View {
             Spacer()
             Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary).accessibilityHidden(true)
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .frame(minHeight: 56)
         .contentShape(.rect)
     }

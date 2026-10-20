@@ -37,7 +37,7 @@ struct HomePickerView: View {
                     ForEach(results, id: \.self) { item in
                         Button { choose(item) } label: {
                             VStack(alignment: .leading, spacing: 3) {
-                                Text(Self.city(item)).foregroundStyle(.white)
+                                Text(Self.city(item)).foregroundStyle(Color.primaryText)
                                 Text([item.placemark.administrativeArea, item.placemark.country].compactMap { $0 }.joined(separator: ", "))
                                     .font(.subheadline).foregroundStyle(Color.textSecondary)
                             }

@@ -74,11 +74,11 @@ struct AddVenueView: View {
                     } else {
                         Image(systemName: "checkmark")
                             .fontWeight(.bold)
-                            .foregroundStyle(trimmedName.isEmpty ? Color.textTertiary : Color.black)
+                            .foregroundStyle(trimmedName.isEmpty ? Color.textTertiary : Color.onPrimary)
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .tint(.white)
+                .tint(Color.primaryText)
                 .disabled(trimmedName.isEmpty || saving)
                 .accessibilityLabel("Save venue")
                 .accessibilityIdentifier("venue-save")

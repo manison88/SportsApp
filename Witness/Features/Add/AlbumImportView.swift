@@ -73,7 +73,7 @@ struct AlbumImportView: View {
         switch phase {
         case .loading, .scanning:
             VStack(spacing: Spacing.inner) {
-                ProgressView().controlSize(.large).tint(.white)
+                ProgressView().controlSize(.large).tint(Color.primaryText)
                 Text(progress.isEmpty ? "Opening your albums" : progress)
                     .font(.condensed(.headline))
                     .foregroundStyle(Color.textSecondary)
@@ -105,7 +105,7 @@ struct AlbumImportView: View {
                                                description: Text("Make an album in Photos for a trip, or switch to Trips."))
                     } else if source == 1 && findingTrips {
                         VStack(spacing: Spacing.inner) {
-                            ProgressView().controlSize(.large).tint(.white)
+                            ProgressView().controlSize(.large).tint(Color.primaryText)
                             Text("Looking for trips in your photos")
                                 .font(.condensed(.headline)).foregroundStyle(Color.textSecondary)
                         }
@@ -130,7 +130,7 @@ struct AlbumImportView: View {
                 .overlay { if let c = a.coverId { PhotoView(ref: .library(c)) } }
                 .clipShape(.rect(cornerRadius: 10))
             VStack(alignment: .leading, spacing: 4) {
-                Text(a.title).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).foregroundStyle(.white)
+                Text(a.title).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).foregroundStyle(Color.primaryText)
                 Text(albumDetail(a)).font(.footnote).foregroundStyle(Color.textSecondary)
             }
             Spacer()
@@ -162,7 +162,7 @@ struct AlbumImportView: View {
                         .displayFont(30, relativeTo: .title)
                         .textCase(.uppercase)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .accessibilityElement(children: .combine)
                 .accessibilityIdentifier("album-found")
 
@@ -290,7 +290,7 @@ struct AlbumImportView: View {
                 .overlay { if let id = i.cluster.assetIds.last { PhotoView(ref: .library(id)) } }
                 .clipShape(.rect(cornerRadius: 10))
             VStack(alignment: .leading, spacing: 4) {
-                Text(venue.name).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).foregroundStyle(.white).lineLimit(1)
+                Text(venue.name).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).foregroundStyle(Color.primaryText).lineLimit(1)
                 Text(Fmt.dayTitle(i.cluster.start, in: venue.tz) + " · " + photoCount(i.cluster.assetIds.count))
                     .font(.footnote).foregroundStyle(Color.textSecondary)
                 if let game = i.game {
@@ -307,7 +307,7 @@ struct AlbumImportView: View {
                                 .accessibilityIdentifier("album-scoreboard")
                         }
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                 } else {
                     Text(i.ticket == nil ? "No game on the schedule · saved as a stadium visit" : "No game on the schedule")
                         .font(.footnote).foregroundStyle(Color.textTertiary)
@@ -333,7 +333,7 @@ struct AlbumImportView: View {
             Image(systemName: symbol).font(.title3).foregroundStyle(Color.signal).frame(width: 52)
                 .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 4) {
-                Text(title).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).foregroundStyle(.white)
+                Text(title).font(.condensed(.headline, weight: .heavy)).textCase(.uppercase).foregroundStyle(Color.primaryText)
                 Text(detail).font(.footnote).foregroundStyle(Color.textSecondary)
             }
             Spacer()

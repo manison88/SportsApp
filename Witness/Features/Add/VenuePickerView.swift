@@ -73,7 +73,7 @@ struct VenuePickerView: View {
             VStack(alignment: .leading, spacing: 3) {
                 Text(name)
                     .font(.condensed(.headline))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                 if !detail.isEmpty {
                     Text(detail)
                         .font(.subheadline)
@@ -82,7 +82,7 @@ struct VenuePickerView: View {
             }
             Spacer()
             if selected {
-                Image(systemName: "checkmark").foregroundStyle(.white).accessibilityHidden(true)
+                Image(systemName: "checkmark").foregroundStyle(Color.primaryText).accessibilityHidden(true)
             }
         }
         .contentShape(.rect)

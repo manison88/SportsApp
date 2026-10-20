@@ -131,7 +131,7 @@ struct DiscoveryView: View {
                     .accessibilityAddTraits(.isHeader)
                     .accessibilityIdentifier("discovery-count")
                     ProgressView(value: Double(confirmed), total: Double(max(clusters.count, 1)))
-                        .tint(.white)
+                        .tint(Color.primaryText)
                     Text("\(confirmed) of \(clusters.count) confirmed").unitLabel()
                 }
 
@@ -372,7 +372,7 @@ struct DiscoveryView: View {
                                     Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
                                         .accessibilityHidden(true)
                                 }
-                                .foregroundStyle(.white)
+                                .foregroundStyle(Color.primaryText)
                                 .padding(.horizontal, 14).frame(minHeight: 52)
                                 .background(Color.panelRaised, in: .rect(cornerRadius: 12))
                             }
@@ -466,13 +466,13 @@ struct DiscoveryView: View {
                         .accessibilityIdentifier("discovery-possible-none")
                 }
             } else {
-                HStack(spacing: 8) { ProgressView().tint(.white); Text("Checking the schedule").font(.footnote).foregroundStyle(Color.textSecondary) }
+                HStack(spacing: 8) { ProgressView().tint(Color.primaryText); Text("Checking the schedule").font(.footnote).foregroundStyle(Color.textSecondary) }
             }
         }
-        .foregroundStyle(.white)
+        .foregroundStyle(Color.primaryText)
         .padding(14)
         .background(Color.panelRaised, in: .rect(cornerRadius: 12))
-        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(.white, lineWidth: 2))
+        .overlay(RoundedRectangle(cornerRadius: 12).strokeBorder(Color.primaryText, lineWidth: 2))
         .accessibilityElement(children: .contain)
     }
 
@@ -561,10 +561,10 @@ struct DiscoveryView: View {
                                     Text(kind)
                                         .font(.condensed(.subheadline, weight: .heavy))
                                         .textCase(.uppercase)
-                                        .foregroundStyle(otherKind == kind ? Color.black : Color.white)
+                                        .foregroundStyle(otherKind == kind ? Color.onPrimary : Color.primaryText)
                                         .padding(.horizontal, 14)
                                         .frame(minHeight: 44)
-                                        .background(otherKind == kind ? Color.white : Color.panelRaised, in: .capsule)
+                                        .background(otherKind == kind ? Color.primaryText : Color.panelRaised, in: .capsule)
                                 }
                                 .accessibilityAddTraits(otherKind == kind ? .isSelected : [])
                                 .accessibilityIdentifier("discovery-other-kind-\(kind)")

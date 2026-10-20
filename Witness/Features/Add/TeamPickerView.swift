@@ -151,7 +151,7 @@ struct TeamPickerView: View {
 
     private func leagueLabel(_ league: LeagueGroup) -> some View {
         HStack {
-            Text(league.name).font(.condensed(.headline)).foregroundStyle(.white)
+            Text(league.name).font(.condensed(.headline)).foregroundStyle(Color.primaryText)
             Spacer()
             Text("\(league.teams.count)").font(.footnote).foregroundStyle(Color.textSecondary)
             if onLeague != nil {
@@ -212,11 +212,11 @@ struct TeamRows: View {
                 HStack(spacing: 12) {
                     TeamTile(team: t, compact: true)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(t.displayName).font(.condensed(.headline)).foregroundStyle(.white)
+                        Text(t.displayName).font(.condensed(.headline)).foregroundStyle(Color.primaryText)
                         Text(t.league).font(.footnote).foregroundStyle(Color.textSecondary)
                     }
                     Spacer()
-                    if t.id == selection { Image(systemName: "checkmark").foregroundStyle(.white).accessibilityHidden(true) }
+                    if t.id == selection { Image(systemName: "checkmark").foregroundStyle(Color.primaryText).accessibilityHidden(true) }
                 }
                 .contentShape(.rect)
             }
@@ -365,7 +365,7 @@ struct RootingChips: View {
                         Spacer(minLength: 0)
                         if on { Image(systemName: "checkmark.circle.fill").foregroundStyle(Color.signal).accessibilityHidden(true) }
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .padding(.horizontal, 12)
                     .frame(maxWidth: .infinity, minHeight: 48)
                     .background(Color.panel, in: .rect(cornerRadius: 12))
@@ -400,7 +400,7 @@ struct RootingPicker: View {
                     HStack(spacing: 10) {
                         Text("I was there for").font(.footnote.weight(.semibold)).foregroundStyle(Color.textSecondary)
                         TeamTile(team: team, compact: true)
-                        Text(team.locationName).font(.condensed(.subheadline, weight: .heavy)).foregroundStyle(.white).lineLimit(1)
+                        Text(team.locationName).font(.condensed(.subheadline, weight: .heavy)).foregroundStyle(Color.primaryText).lineLimit(1)
                         Spacer(minLength: 8)
                         Text("Change").font(.footnote.weight(.semibold)).foregroundStyle(Color.signal)
                         Image(systemName: "chevron.down").font(.caption.weight(.bold)).foregroundStyle(Color.signal).accessibilityHidden(true)
@@ -452,7 +452,7 @@ struct FavoriteTeamsView: View {
                         HStack(spacing: 12) {
                             TeamTile(team: team, compact: true)
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(team.locationName).font(.condensed(.headline)).foregroundStyle(.white)
+                                Text(team.locationName).font(.condensed(.headline)).foregroundStyle(Color.primaryText)
                                 Text(team.league).font(.footnote).foregroundStyle(Color.textSecondary)
                             }
                             Spacer()

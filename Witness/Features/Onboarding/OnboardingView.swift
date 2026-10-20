@@ -60,7 +60,7 @@ struct OnboardingView: View {
     private var controls: some View {
         VStack(spacing: 6) {
             Button("Allow photo access") { presenter.scan.start(library: library) }
-                .buttonStyle(PrimaryButtonStyle(fill: .signal))
+                .buttonStyle(PrimaryButtonStyle(fill: .signal, onFill: .black))
                 .accessibilityIdentifier("onboarding-allow")
             HStack(spacing: 0) {
                 Button("Choose an album") { presenter.modal = .importAlbum }
@@ -74,7 +74,7 @@ struct OnboardingView: View {
             .font(.condensed(.subheadline, weight: .heavy))
             .textCase(.uppercase)
             .tracking(1.2)
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             HStack(spacing: 18) {
                 Button("Privacy policy") { legal = LegalContent.privacy }
                     .accessibilityIdentifier("onboarding-privacy")
@@ -130,7 +130,7 @@ private struct AccessPage: View {
             .padding(.top, 10)
 
             VStack(alignment: .leading, spacing: -4) {
-                Text("Dates and places.").foregroundStyle(.white)
+                Text("Dates and places.").foregroundStyle(Color.primaryText)
                 Text("Nothing else.").foregroundStyle(Color.signal)
             }
             .displayFont(44)
@@ -157,7 +157,7 @@ private struct AccessPage: View {
                 .foregroundStyle(on ? Color.black : Color.textSecondary)
                 .frame(width: 26, height: 26)
                 .background(on ? Color.signal : Color.panelRaised, in: .circle)
-            Text(text).font(.subheadline).foregroundStyle(on ? .white : Color.textSecondary)
+            Text(text).font(.subheadline).foregroundStyle(on ? Color.primaryText : Color.textSecondary)
             Spacer()
         }
         .padding(.horizontal, 14)
@@ -200,7 +200,7 @@ private struct FallbackRow: View {
                 Spacer()
                 Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .frame(minHeight: 52)
             .contentShape(.rect)
             .overlay(alignment: .top) { Rectangle().fill(Color.hairline).frame(height: 1) }
@@ -220,7 +220,7 @@ private struct DeniedSheet: View {
                 Image(systemName: "sun.max").font(.title3)
                     .frame(width: 48, height: 48)
                     .background(Color.panelRaised, in: .rect(cornerRadius: 12))
-                Text("Photo access is off").displayFont(34).textCase(.uppercase).foregroundStyle(.white)
+                Text("Photo access is off").displayFont(34).textCase(.uppercase).foregroundStyle(Color.primaryText)
                     .accessibilityIdentifier("onboarding-denied")
                 Text("Witness can't see your photos, so it can't find your games. Turn access on in Settings, or start another way.")
                     .font(.body).foregroundStyle(Color.textSecondary)
@@ -251,7 +251,7 @@ private struct EmptySheet: View {
             Image(systemName: "magnifyingglass").font(.title3)
                 .frame(width: 48, height: 48)
                 .background(Color.panelRaised, in: .rect(cornerRadius: 12))
-            Text("No games found yet").displayFont(34).textCase(.uppercase).foregroundStyle(.white)
+            Text("No games found yet").displayFont(34).textCase(.uppercase).foregroundStyle(Color.primaryText)
                 .accessibilityIdentifier("onboarding-empty")
             Text("\(checked.formatted()) photos checked, none taken inside a stadium. Older photos, or ones with location off, may be missing a date or a place.")
                 .font(.body).foregroundStyle(Color.textSecondary)
@@ -284,11 +284,11 @@ private struct ResultScreen: View {
             HStack(alignment: .firstTextBaseline, spacing: 12) {
                 Text("\(counted)")
                     .displayFont(150)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                     .contentTransition(.numericText())
                     .minimumScaleFactor(0.5)
                     .accessibilityIdentifier("onboarding-result")
-                Text("Games\nfound").displayFont(44).textCase(.uppercase).foregroundStyle(.white)
+                Text("Games\nfound").displayFont(44).textCase(.uppercase).foregroundStyle(Color.primaryText)
             }
             HStack(alignment: .top) {
                 stat(p.total, "Photos\nchecked")
@@ -357,7 +357,7 @@ private struct ResultScreen: View {
 
     private func stat(_ value: Int, _ label: String) -> some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(value.formatted()).displayFont(40).foregroundStyle(.white)
+            Text(value.formatted()).displayFont(40).foregroundStyle(Color.primaryText)
             Text(label).unitLabel().foregroundStyle(Color.textSecondary).fixedSize(horizontal: false, vertical: true)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -373,10 +373,10 @@ private struct ResultScreen: View {
                 if let hero { PhotoView(ref: .library(hero)) }
                 Scrim()
                 VStack(alignment: .leading, spacing: 8) {
-                    Text(c.venue.name).displayFont(30).textCase(.uppercase).foregroundStyle(.white).lineLimit(2).minimumScaleFactor(0.6)
+                    Text(c.venue.name).displayFont(30).textCase(.uppercase).foregroundStyle(Color.primaryText).lineLimit(2).minimumScaleFactor(0.6)
                     if let g = scan.newest {
                         FoundGameChip(game: g, font: .condensed(.headline, weight: .heavy))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(Color.primaryText)
                     }
                     Text("\(Fmt.dayTitle(c.start, in: c.venue.tz)) · \(c.assetIds.count) photos")
                         .font(.footnote).foregroundStyle(Color.textSecondary)
@@ -471,7 +471,7 @@ struct ScanBanner: View {
 
     private func card<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
         HStack(spacing: 12) { content() }
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .padding(14)
             .background(Color.panel, in: .rect(cornerRadius: 14))
             .gutter()
@@ -483,7 +483,7 @@ struct ScanBanner: View {
         switch scan.state {
         case .scanning, .matching, .verifying:
             HStack(spacing: 12) {
-                ProgressView().tint(.white)
+                ProgressView().tint(Color.primaryText)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(scan.state == .scanning ? "Scanning your photos" : scan.state == .matching ? "Matching to the schedule" : "Checking your photos")
                         .font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
@@ -494,7 +494,7 @@ struct ScanBanner: View {
                 }
                 Spacer()
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .padding(14)
             .background(Color.panel, in: .rect(cornerRadius: 14))
             .gutter()
@@ -510,7 +510,7 @@ struct ScanBanner: View {
                     Spacer()
                     Text("Review").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase).foregroundStyle(Color.signal)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .padding(14)
                 .background(Color.panel, in: .rect(cornerRadius: 14))
                 .gutter()

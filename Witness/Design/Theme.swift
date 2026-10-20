@@ -16,6 +16,12 @@ extension Color {
     static let live = Color("Live")
     /// Champagne gold, only for title games. Amber stays "you".
     static let trophy = Color("Trophy")
+    /// Body text and icons: white in dark, ink in light. Plain `.white` stays only on photos, team colors and cards.
+    static let primaryText = Color("PrimaryText")
+    /// Ink that stays ink in light mode: the fade under text that sits on a photo or team color.
+    static let photoInk = Color(hex: "07080A")
+    /// The label on a primaryText fill: black in dark, white in light.
+    static let onPrimary = Color("OnPrimary")
     static let textSecondary = Color("TextSecondary")
     static let textTertiary = Color("TextTertiary")
 
@@ -98,13 +104,15 @@ extension View {
 
 /// The single white primary action on a screen.
 struct PrimaryButtonStyle: ButtonStyle {
-    var fill: Color = .white
+    var fill: Color = .primaryText
+    /// Label color on the fill: black on amber, the inverse of the text color on the default fill.
+    var onFill: Color = .onPrimary
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.condensed(.headline, weight: .heavy))
             .textCase(.uppercase)
             .tracking(1.2)
-            .foregroundStyle(.black)
+            .foregroundStyle(onFill)
             .frame(maxWidth: .infinity, minHeight: 54)
             .background(fill, in: .rect(cornerRadius: 14))
             .opacity(configuration.isPressed ? 0.75 : 1)
@@ -119,7 +127,7 @@ struct SecondaryButtonStyle: ButtonStyle {
             .font(.condensed(.headline, weight: .heavy))
             .textCase(.uppercase)
             .tracking(1.2)
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .frame(maxWidth: .infinity, minHeight: 54)
             .background(Color.panelRaised, in: .rect(cornerRadius: 14))
             .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(Color.hairline))
@@ -144,12 +152,12 @@ enum Appearance {
         let nav = UINavigationBarAppearance()
         nav.configureWithTransparentBackground()
         nav.largeTitleTextAttributes = [.font: UIFontMetrics(forTextStyle: .largeTitle).scaledFont(for: large),
-                                        .foregroundColor: UIColor.white]
+                                        .foregroundColor: UIColor(named: "PrimaryText") ?? .label]
         nav.titleTextAttributes = [.font: UIFontMetrics(forTextStyle: .headline).scaledFont(for: inline),
-                                   .foregroundColor: UIColor.white]
+                                   .foregroundColor: UIColor(named: "PrimaryText") ?? .label]
         let scrolled = UINavigationBarAppearance()
         scrolled.configureWithDefaultBackground()
-        scrolled.backgroundEffect = UIBlurEffect(style: .systemChromeMaterialDark)
+        scrolled.backgroundEffect = UIBlurEffect(style: .systemChromeMaterial)
         scrolled.largeTitleTextAttributes = nav.largeTitleTextAttributes
         scrolled.titleTextAttributes = nav.titleTextAttributes
         UINavigationBar.appearance().standardAppearance = scrolled
@@ -164,6 +172,30 @@ enum Appearance {
         let tabFont = UIFont.systemFont(ofSize: 10, weight: .semibold)
         for state in [UIControl.State.normal, .selected, .highlighted] {
             UITabBarItem.appearance().setTitleTextAttributes([.font: tabFont], for: state)
+        }
+    }
+}
+
+/// The Appearance setting: follow the phone, or force light or dark. Stored under "appearance" as a plain string.
+enum AppearanceChoice: String, CaseIterable {
+    case auto, light, dark
+
+    init(stored: String) { self = AppearanceChoice(rawValue: stored) ?? .auto }
+
+    /// nil lets the system decide.
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .auto: nil
+        case .light: .light
+        case .dark: .dark
+        }
+    }
+
+    var label: String {
+        switch self {
+        case .auto: "Auto"
+        case .light: "Light"
+        case .dark: "Dark"
         }
     }
 }

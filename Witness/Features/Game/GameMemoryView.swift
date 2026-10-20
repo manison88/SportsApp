@@ -43,6 +43,7 @@ struct GameMemoryView: View {
         .inkBackground()
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
         .toolbar {
             // One item, so the three buttons sit close; separate items get the system's wide gap.
             ToolbarItem(placement: .topBarTrailing) {
@@ -137,6 +138,8 @@ struct GameMemoryView: View {
             .allowsHitTesting(false)
         }
         .clipped()
+        // The photo and its scrim are dark in both appearances, so the text on them stays white.
+        .environment(\.colorScheme, .dark)
     }
 
     /// The stadium, tappable, then the date: "Wrigley Field, Oct 30, 2016".
@@ -659,7 +662,7 @@ private struct GameShareCard: View {
                         .clipShape(.rect(cornerRadius: 8))
                 }
                 heroText(size: 170, color: .black, lines: 4, maxHeight: 560)
-                Rectangle().fill(Color.signal).frame(width: 140, height: 12)
+                Rectangle().fill(Color(hex: "FFB547")).frame(width: 140, height: 12)
                 if !resultLine.isEmpty { label(resultLine, size: 60, color: .black) }
                 if !place.isEmpty { label(place.uppercased(), size: 38, color: .black.opacity(0.6), lines: 2) }
                 Spacer(minLength: 0)

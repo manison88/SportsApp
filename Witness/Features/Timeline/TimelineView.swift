@@ -104,7 +104,7 @@ private struct SampleBanner: View {
                     .accessibilityHint("Removes the sample games and goes back to the start")
                     .accessibilityIdentifier("sample-exit")
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
             .padding(14)
             .background(Color.panel, in: .rect(cornerRadius: 14))
             .gutter()
@@ -136,7 +136,7 @@ private struct DuplicateBanner: View {
                     Text("Combine").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase)
                         .foregroundStyle(Color.signal)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .padding(14)
                 .background(Color.panel, in: .rect(cornerRadius: 14))
                 .gutter()
@@ -173,7 +173,7 @@ private struct VenueDoubtBanner: View {
                     Spacer()
                     Text("Review").font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase).foregroundStyle(Color.signal)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .padding(14)
                 .background(Color.panel, in: .rect(cornerRadius: 14))
                 .gutter()
@@ -237,6 +237,8 @@ struct TimelineCard: View {
                     EventMark(game: game, stage: stage).padding(16)
                 }
             }
+            // The photo and its scrim are dark in both appearances, so the text on them stays white.
+            .environment(\.colorScheme, .dark)
             .clipShape(UnevenRoundedRectangle(topLeadingRadius: 22, topTrailingRadius: 22))
 
             GameStub(game: game)
@@ -316,7 +318,7 @@ struct GameStub: View {
                 .padding(.trailing, 14)
                 TearOff(game: game)
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(Color.primaryText)
         }
     }
 
@@ -372,22 +374,22 @@ struct DateBlock: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(parts.day)
                     .displayFont(104, relativeTo: .largeTitle)
-                    .foregroundStyle(championship ? Color.trophy : .white)
+                    .foregroundStyle(championship ? Color.trophy : Color.primaryText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.6)
                 Text(parts.month)
                     .font(.condensed(.title2, weight: .heavy))
                     .tracking(6)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color.primaryText)
                 Rectangle().fill(Color.signal).frame(width: 84, height: 2)
                 Text("\(parts.weekday) \u{00B7} \(parts.year)")
                     .font(.condensed(.footnote, weight: .heavy))
                     .tracking(2.4)
-                    .foregroundStyle(.white.opacity(0.75))
+                    .foregroundStyle(Color.primaryText.opacity(0.75))
             }
             .fixedSize()
             if let venue {
-                Rectangle().fill(.white.opacity(0.35)).frame(width: 1, height: 52)
+                Rectangle().fill(Color.primaryText.opacity(0.35)).frame(width: 1, height: 52)
                 if let aerial { AerialVenueIcon(venue: venue, sport: sport, size: 46, given: aerial) }
                 VStack(alignment: .leading, spacing: 5) {
                     Text(venue.name)
@@ -399,10 +401,10 @@ struct DateBlock: View {
                         .font(.condensed(.footnote, weight: .heavy))
                         .tracking(2.4)
                         .textCase(.uppercase)
-                        .foregroundStyle(.white.opacity(0.7))
+                        .foregroundStyle(Color.primaryText.opacity(0.7))
                         .lineLimit(1)
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
                 .padding(.bottom, 2)
             }
             Spacer(minLength: 0)
@@ -549,7 +551,7 @@ private struct EmptyTimeline: View {
         VStack(alignment: .leading, spacing: Spacing.block) {
             Text("YOUR FIRST GAME GOES HERE.")
                 .displayFont(56)
-                .foregroundStyle(.white)
+                .foregroundStyle(Color.primaryText)
             VStack(spacing: Spacing.inner) {
                 Button("Add a game") { presenter.modal = .addGame }
                     .buttonStyle(.primary)
