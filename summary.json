@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 2,
-      "passedTests" : 208,
+      "failedTests" : 0,
+      "passedTests" : 210,
       "skippedTests" : 1,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,39 +22,24 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 2,
-  "finishTime" : 1792505502.875,
-  "passedTests" : 208,
-  "result" : "Failed",
+  "failedTests" : 0,
+  "finishTime" : 1792511081.152,
+  "passedTests" : 210,
+  "result" : "Passed",
   "skippedTests" : 1,
-  "startTime" : 1792504297.551,
+  "startTime" : 1792509823.242,
   "statistics" : [
 
   ],
   "testFailures" : [
-    {
-      "failureText" : "XCTAssertTrue failed - Expected the scan to find the seeded stadium photos",
-      "targetName" : "WitnessUITests",
-      "testIdentifier" : 192,
-      "testIdentifierString" : "WitnessUITests/testDiscoveryFromPhotos()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testDiscoveryFromPhotos",
-      "testName" : "testDiscoveryFromPhotos()"
-    },
-    {
-      "failureText" : "XCTAssertTrue failed - The seeded album should be listed",
-      "targetName" : "WitnessUITests",
-      "testIdentifier" : 195,
-      "testIdentifierString" : "WitnessUITests/testImportAlbumWithScoreboardReading()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testImportAlbumWithScoreboardReading",
-      "testName" : "testImportAlbumWithScoreboardReading()"
-    }
+
   ],
   "title" : "Test - Witness",
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "28% of duration",
-      "text" : "1 longest test run with outlier durations exceeding 11.17s (three standard deviations)"
+      "impact" : "40% of duration",
+      "text" : "2 longest test runs with outlier durations exceeding 11.61s (three standard deviations)"
     }
   ],
   "totalTestCount" : 211
