@@ -101,6 +101,7 @@
 		B35E9BE98F85478A9F99BF7A /* WorldCupSeattleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */; };
 		D0E00A8C14204C00B3519C8C /* ScanEndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */; };
 		3D39260116C14C0FAEC1F888 /* AirborneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9E05E8030B4AEEBD6CF48D /* AirborneTests.swift */; };
+		CC39DF83E455454CA0ECDFAA /* F1CircuitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D86A7CA4CE54B87A0E10203 /* F1CircuitTests.swift */; };
 		5FAF894E69244EC7BD9363C2 /* CityDayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85F7A38250A42C0B83A7467 /* CityDayTests.swift */; };
 		4E545CC7F1CE4A09ADD8E641 /* MatchupAlbumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BE31FCD43E4130982C9AE7 /* MatchupAlbumTests.swift */; };
 /* End PBXBuildFile section */
@@ -220,6 +221,7 @@
 		4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldCupSeattleTests.swift; sourceTree = "<group>"; };
 		5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanEndToEndTests.swift; sourceTree = "<group>"; };
 		AF9E05E8030B4AEEBD6CF48D /* AirborneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirborneTests.swift; sourceTree = "<group>"; };
+		9D86A7CA4CE54B87A0E10203 /* F1CircuitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = F1CircuitTests.swift; sourceTree = "<group>"; };
 		F85F7A38250A42C0B83A7467 /* CityDayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDayTests.swift; sourceTree = "<group>"; };
 		41BE31FCD43E4130982C9AE7 /* MatchupAlbumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchupAlbumTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -379,6 +381,7 @@
 				4CA0B457FE264205AC030A17 /* WorldCupSeattleTests.swift */,
 				5A6499A4A87740BEA672E980 /* ScanEndToEndTests.swift */,
 				AF9E05E8030B4AEEBD6CF48D /* AirborneTests.swift */,
+				9D86A7CA4CE54B87A0E10203 /* F1CircuitTests.swift */,
 				F85F7A38250A42C0B83A7467 /* CityDayTests.swift */,
 				41BE31FCD43E4130982C9AE7 /* MatchupAlbumTests.swift */,
 				7B48F99FC296122C6C846961 /* BigGameTests.swift */,
@@ -663,6 +666,7 @@
 				B35E9BE98F85478A9F99BF7A /* WorldCupSeattleTests.swift in Sources */,
 				D0E00A8C14204C00B3519C8C /* ScanEndToEndTests.swift in Sources */,
 				3D39260116C14C0FAEC1F888 /* AirborneTests.swift in Sources */,
+				CC39DF83E455454CA0ECDFAA /* F1CircuitTests.swift in Sources */,
 				5FAF894E69244EC7BD9363C2 /* CityDayTests.swift in Sources */,
 				4E545CC7F1CE4A09ADD8E641 /* MatchupAlbumTests.swift in Sources */,
 				BB3F51B6F1750A2ECB5E0479 /* BigGameTests.swift in Sources */,

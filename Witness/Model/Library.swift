@@ -1017,6 +1017,12 @@ final class Library {
                 venueList[i].geofenceMeters = circuit.geofenceMeters
                 venueList[i].sports = Array(Set(venueList[i].sports + circuit.sports))
                 venueList[i].leagues = Array(Set((venueList[i].leagues ?? []) + (circuit.leagues ?? [])))
+                // The circuit's other names ("COTA"), so a search finds it; capacity and opening year where the catalog had none.
+                var aliases = venueList[i].aliases ?? []
+                for alias in circuit.aliases ?? [] where !aliases.contains(alias) { aliases.append(alias) }
+                venueList[i].aliases = aliases
+                if venueList[i].capacity == nil { venueList[i].capacity = circuit.capacity }
+                if venueList[i].opened == nil { venueList[i].opened = circuit.opened }
             } else {
                 venueList.append(circuit)
             }
