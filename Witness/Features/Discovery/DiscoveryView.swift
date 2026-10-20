@@ -60,19 +60,30 @@ struct DiscoveryView: View {
         }
     }
 
-    /// Six of the visit's photos; tap one to see them all.
+    /// Six of the visit's photos; tap one to see them all. With more than six, a line under the grid says so and opens them.
     private func photoGrid(_ ids: [String]) -> some View {
         let shown = Array(ids.prefix(6))
-        return LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
-            ForEach(Array(shown.enumerated()), id: \.element) { i, id in
-                Button { viewing = ReviewPhotos(ids: ids, start: i) } label: {
-                    Color.panel.aspectRatio(1, contentMode: .fit)
-                        .overlay { PhotoView(ref: .library(id)) }
-                        .clipShape(.rect(cornerRadius: 8))
+        return VStack(alignment: .leading, spacing: 10) {
+            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 6), count: 3), spacing: 6) {
+                ForEach(Array(shown.enumerated()), id: \.element) { i, id in
+                    Button { viewing = ReviewPhotos(ids: ids, start: i) } label: {
+                        Color.panel.aspectRatio(1, contentMode: .fit)
+                            .overlay { PhotoView(ref: .library(id)) }
+                            .clipShape(.rect(cornerRadius: 8))
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("Photo \(i + 1) of \(ids.count)")
+                    .accessibilityIdentifier("discovery-photo-\(i)")
                 }
-                .buttonStyle(.plain)
-                .accessibilityLabel("Photo \(i + 1) of \(ids.count)")
-                .accessibilityIdentifier("discovery-photo-\(i)")
+            }
+            if ids.count > shown.count {
+                Button { viewing = ReviewPhotos(ids: ids, start: 0) } label: {
+                    Label("See all \(ids.count) photos", systemImage: "photo.on.rectangle")
+                        .font(.condensed(.subheadline, weight: .heavy)).textCase(.uppercase).tracking(1)
+                        .foregroundStyle(Color.signal)
+                        .frame(minHeight: 36)
+                }
+                .accessibilityIdentifier("discovery-photos-all")
             }
         }
     }
