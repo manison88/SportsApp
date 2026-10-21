@@ -5,6 +5,7 @@ import UniformTypeIdentifiers
 /// Photos are not copied: they stay in the Photos library, and a restored game finds its photos again only on a phone that has them.
 struct BackupView: View {
     @Environment(Library.self) private var library
+    @Environment(Presenter.self) private var presenter
     @State private var importing = false
     @State private var message: String?
     @State private var backup: URL?
@@ -28,6 +29,13 @@ struct BackupView: View {
                     .frame(minHeight: 56)
                 }
                 .accessibilityIdentifier("backup-scan-check")
+                Button {
+                    let count = presenter.scan.forgetSkips()
+                    message = count == 0 ? "Nothing was skipped." : "Forgot \(count) skipped photo\(count == 1 ? "" : "s"). Run Find in photos to see those visits again."
+                } label: {
+                    row("Forget skipped visits", "Stadium visits and days you skipped in a review are offered again by the next Find in photos", "arrow.uturn.backward")
+                }
+                .accessibilityIdentifier("backup-forget-skips")
             }
             .listRowBackground(Color.panel)
             Section {

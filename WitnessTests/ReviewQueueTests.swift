@@ -65,6 +65,26 @@ final class ReviewQueueTests: XCTestCase {
         XCTAssertEqual(second.possible.map(\.id), ["album-day"])
     }
 
+    /// Forget skipped visits (Back up & export): a tour the fan skipped is offered by the next scan, after a relaunch too.
+    func testForgettingSkipsOffersASkippedTourAgain() throws {
+        let library = Library(storeURL: tempURL("library"))
+        let ledgerURL = tempURL("ledger")
+        let scan = ScanModel(ledgerURL: ledgerURL)
+        let tour = visit("tour", at: try venue("Fenway Park", in: library), day("2019-03-02T15:00:00Z"))
+        scan.settleFirstPass(games: [], others: [tour], library: library)
+        _ = scan.takeForReview(library: library)
+        scan.dismiss(tour.assetIds, on: tour.start)
+        scan.settleFirstPass(games: [], others: [tour], library: library)
+        XCTAssertTrue(scan.takeForReview(library: library).others.isEmpty, "Skipped")
+
+        XCTAssertEqual(scan.forgetSkips(), tour.assetIds.count)
+        scan.settleFirstPass(games: [], others: [tour], library: library)
+        XCTAssertEqual(scan.takeForReview(library: library).others.map(\.id), ["tour"], "Offered again")
+        let relaunched = ScanModel(ledgerURL: ledgerURL)
+        XCTAssertTrue(relaunched.ledger.dismissedAssets.isEmpty, "Forgotten on disk too")
+        XCTAssertEqual(relaunched.forgetSkips(), 0)
+    }
+
     func testSkippedTourIsNotOfferedAgainEvenAfterARelaunch() throws {
         let library = Library(storeURL: tempURL("library"))
         let ledgerURL = tempURL("ledger")

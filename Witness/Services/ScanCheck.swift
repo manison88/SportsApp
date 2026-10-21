@@ -352,6 +352,9 @@ enum ScanCheck {
                            + verdict(visit, library: library.games, venues: venues, ledger: ledger))
             } else if !looked.complete {
                 out.append("  \(visit.venue.name): could not be checked, no game judged \u{2192} connect and run Find in photos again")
+            } else if visit.assetIds.contains(where: ledger.dismissedAssets.contains) {
+                out.append("  \(visit.venue.name): no game on the schedule \u{2192} left out: skipped in an earlier review "
+                           + "(Back up & export \u{2192} Forget skipped visits brings it back)")
             } else {
                 out.append("  \(visit.venue.name): no game on the schedule \u{2192} " + visitLine(visit, settings: settings))
             }

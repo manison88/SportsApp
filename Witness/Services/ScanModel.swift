@@ -176,6 +176,16 @@ final class ScanModel {
         pendingVisits.removeAll { $0.assetIds.contains(where: ids.contains) }
     }
 
+    /// Forgets every skip: what the fan turned down in a review is offered again by the next Find in photos (a skip is one tap,
+    /// and there was no way back from it). Returns how many photos' skips were forgotten.
+    @discardableResult
+    func forgetSkips() -> Int {
+        let count = ledger.dismissedAssets.count
+        ledger = ReviewLedger()
+        ledger.save(to: ledgerURL)
+        return count
+    }
+
     /// Looks through albums, trips and days with no location for more games, in the background. Everything it finds is a
     /// possible game: the fan picks the stadium, and nothing is added on its own.
     func startDeepScan(library: Library) {
