@@ -1,213 +1,213 @@
-Application, 0x105a77950, pid: 58366, label: 'Witness' <App element pid: 58366>
-  Window (Main), 0x105a7b450, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 58366, elementOrHash.elementID: 4335898224.4>
-    Other, 0x105a791d0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 58366, elementOrHash.elementID: 4334899664.5>
-      Other, 0x105a72f40, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4334900688.6>
-        Other, 0x105a7a9d0, {{-354.0, -742.4}, {1110.0, 2413.3}} <AX element pid: 58366, elementOrHash.elementID: 4336819344.100>
-        Other, 0x105a71a40, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4336408128.7>
-          Other, 0x105a73060, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4338202784.8>
-            Other, 0x105a73180, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4336451952.9>
-              Other, 0x105a732a0, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4336457024.10>
-                Other, 0x105a733c0, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4336511200.12>
-                  Other, 0x105a734e0, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4336459824.17>
-                    Other, 0x105a73600, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4338829792.19>
-                      Other, 0x105a73720, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4338830880.20>
-                        Other, 0x105a73840, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4338275952.21>
-                          NavigationBar, 0x105a7b780, {{16.0, 113.8}, {370.0, 88.4}}, identifier: 'Timeline' <AX element pid: 58366, elementOrHash.elementID: 4334954960.22>
-                            Other, 0x105a7b8a0, {{30.7, 117.5}, {88.4, 33.1}}, label: 'TIMELINE' <AX element pid: 58366, elementOrHash.elementID: 4398392832.24>
-                              Other, 0x105a7b9c0, {{30.7, 117.5}, {88.4, 33.1}} <AX element pid: 58366, elementOrHash.elementID: 4338724048.30>
-                                StaticText, 0x105a7bae0, {{30.7, 117.5}, {88.4, 33.1}}, label: 'TIMELINE' <AX element pid: 58366, elementOrHash.elementID: 4338722816.36>
-                            StaticText, 0x105a7bc00, {{200.7, 133.8}, {0.9, 0.9}}, label: 'Timeline' <AX element pid: 58366, elementOrHash.elementID: 4397013504.25>
-                              Other, 0x105a7bd20, {{200.7, 133.8}, {0.9, 0.9}} <AX element pid: 58366, elementOrHash.elementID: 4338893760.31>
-                                Other, 0x105a7be40, {{200.7, 133.8}, {0.9, 0.9}} <AX element pid: 58366, elementOrHash.elementID: 4338742160.37>
-                            Other, 0x105a7bf60, {{299.5, 118.1}, {35.0, 32.2}}, identifier: 'timeline-big-games', label: 'Big games' <AX element pid: 58366, elementOrHash.elementID: 4397416960.26>
-                              Other, 0x105a7c080, {{299.5, 118.1}, {35.0, 32.2}} <AX element pid: 58366, elementOrHash.elementID: 4338658864.32>
-                                Button, 0x105a7c1a0, {{299.5, 118.1}, {35.0, 32.2}}, identifier: 'timeline-big-games', label: 'Big games' <AX element pid: 58366, elementOrHash.elementID: 4338656416.38>
-                            Other, 0x105a7c2c0, {{341.8, 120.3}, {29.5, 27.9}}, identifier: 'add-menu', label: 'Add' <AX element pid: 58366, elementOrHash.elementID: 4398086144.27>
-                              Other, 0x105a77f90, {{341.8, 120.3}, {29.5, 27.9}} <AX element pid: 58366, elementOrHash.elementID: 4338708336.33>
-                                Button, 0x105a780b0, {{341.8, 120.3}, {29.5, 27.9}}, identifier: 'add-menu', label: 'Add' <AX element pid: 58366, elementOrHash.elementID: 4338705568.39>
-                                  Button, 0x105a781d0, {{341.8, 120.3}, {29.5, 27.9}} <AX element pid: 58366, elementOrHash.elementID: 4338667568.41>
-                                    Other, 0x105a782f0, {{341.8, 120.3}, {29.5, 27.9}} <AX element pid: 58366, elementOrHash.elementID: 4338709200.48>
-                                      Image, 0x105a78410, {{341.8, 120.3}, {29.5, 27.9}}, identifier: 'plus', label: 'Add' <AX element pid: 58366, elementOrHash.elementID: 4338708768.52>
-                            SearchField, 0x105a78530, {{30.7, 155.3}, {340.5, 33.1}}, label: 'Teams, places, years', placeholderValue: 'Teams, places, years' <AX element pid: 58366, elementOrHash.elementID: 4397040128.28>
-                              Image, 0x105a78650, {{36.2, 162.9}, {18.7, 17.2}}, identifier: 'magnifyingglass', label: 'Search' <AX element pid: 58366, elementOrHash.elementID: 4338336512.34>
-                          Other, 0x105a78770, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4338276400.23>
-                            Other, 0x105a78890, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4338593888.29>
-                              Other, 0x105a79ab0, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4338211696.35>
-                                Other, 0x105a79bd0, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4338850160.40>
-                                  ScrollView, 0x105a79cf0, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 58366, elementOrHash.elementID: 4396548096.42>
-                                    Other, 0x105a79e10, {{16.0, 202.2}, {370.0, 33.1}} <AX element pid: 58366, elementOrHash.elementID: 4338265040.49>
-                                      Other, 0x105a79f30, {{0.0, 0.0}, {0.0, 0.0}} <AX element pid: 58366, elementOrHash.elementID: 4338755792.53>
-                                    Other, 0x105a7a050, {{355.6, 202.2}, {27.6, 587.8}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 58366, elementOrHash.elementID: 4338736816.50>
-                                      Other, 0x105a7a170, {{380.5, 759.7}, {2.8, 27.6}} <AX element pid: 58366, elementOrHash.elementID: 4338740976.54>
-                                    Other, 0x105a7a290, {{355.6, 202.2}, {27.6, 587.8}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 58366, elementOrHash.elementID: 4338736816.50>
-                                      Other, 0x105a7a3b0, {{380.5, 759.7}, {2.8, 27.6}} <AX element pid: 58366, elementOrHash.elementID: 4338740976.54>
-                                  StaticText, 0x105a7a4d0, {{34.4, 336.1}, {312.6, 123.0}}, label: 'YOUR FIRST GAME GOES HERE.' <AX element pid: 58366, elementOrHash.elementID: 4338796896.43>
-                                  Button, 0x105a6ede0, {{34.4, 485.1}, {333.2, 49.7}}, identifier: 'empty-add', label: 'ADD A GAME' <AX element pid: 58366, elementOrHash.elementID: 4338844720.44>
-                                  Button, 0x105a6ef00, {{34.4, 545.8}, {333.2, 49.7}}, label: 'IMPORT A TICKET' <AX element pid: 58366, elementOrHash.elementID: 4338845152.45>
-                                  Button, 0x105a6f020, {{34.4, 606.6}, {333.2, 49.7}}, label: 'FIND GAMES IN MY PHOTOS' <AX element pid: 58366, elementOrHash.elementID: 4338846288.46>
-              TabBar, 0x105a6f140, {{16.0, 790.0}, {370.0, 76.4}}, label: 'Tab Bar' <AX element pid: 58366, elementOrHash.elementID: 4336454320.11>
-                Button, 0x105a6f260, {{17.8, 791.0}, {89.3, 44.2}}, identifier: 'rectangle.stack.fill', label: 'Timeline', Selected <AX element pid: 58366, elementOrHash.elementID: 4336475696.13>
-                  Image, 0x105a6f380, {{48.2, 793.4}, {27.6, 28.8}}, identifier: 'rectangle.stack.fill', label: 'Album' <AX element pid: 58366, elementOrHash.elementID: 4338228112.18>
-                Button, 0x105a6f4a0, {{110.8, 791.0}, {88.4, 44.2}}, identifier: 'globe.americas.fill', label: 'Map' <AX element pid: 58366, elementOrHash.elementID: 4336465760.14>
-                Button, 0x105a6f5c0, {{202.8, 791.0}, {89.3, 44.2}}, identifier: 'person.text.rectangle.fill', label: 'Passport' <AX element pid: 58366, elementOrHash.elementID: 4336502368.15>
-                Button, 0x105a6d480, {{295.8, 791.0}, {88.4, 44.2}}, identifier: 'person.crop.circle.fill', label: 'You' <AX element pid: 58366, elementOrHash.elementID: 4336508576.16>
-    Other, 0x105a6d5a0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 58366, elementOrHash.elementID: 4336730128.97>
-      Other, 0x105a6d6c0, {{-402.0, -874.0}, {1206.0, 2622.0}} <AX element pid: 58366, elementOrHash.elementID: 4336818816.98>
-      Other, 0x105a6d7e0, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4334874272.99>
-        Other, 0x105a6d900, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4335102096.101>
-          Other, 0x105a6da20, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4335059184.102>
-            Other, 0x105a6db40, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4336691264.103>
-              Other, 0x105a7c720, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4683410352.104>
-                Other, 0x105a7c840, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4335829424.105>
-                  NavigationBar, 0x105a7c960, {{0.0, 72.0}, {402.0, 108.0}}, identifier: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4335772832.106>
-                    Button, 0x105a7ca80, {{0.0, 78.0}, {68.0, 44.0}}, identifier: 'BackButton', label: 'Plan a game' <AX element pid: 58366, elementOrHash.elementID: 105553142896960.972>
-                    StaticText, 0x105a7cba0, {{100.0, 88.0}, {202.3, 23.0}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4673636576.109>
-                    SearchField, 0x105a7ccc0, {{16.0, 129.0}, {370.0, 36.0}}, label: 'Search FIBA national teams (men)', placeholderValue: 'Search FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4348365312.973>
-                      Image, 0x105a7cde0, {{22.0, 137.3}, {20.3, 18.7}}, identifier: 'magnifyingglass', label: 'Search' <AX element pid: 58366, elementOrHash.elementID: 4674255088.975>
-                  Other, 0x105a7cf00, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4335830688.107>
-                    Other, 0x105a7d020, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4674139728.974>
-                      Other, 0x105a7d140, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4674972016.976>
-                        Other, 0x105a7d260, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4336852848.977>
-                          CollectionView, 0x105a7d380, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 58366, elementOrHash.elementID: 4348361728.978>
-                            Other, 0x105a7d4a0, {{-16.0, -1424.0}, {434.0, 3732.3}} <AX element pid: 58366, elementOrHash.elementID: 4684305488.979>
-                            Cell, 0x105a7d5c0, {{16.0, 180.0}, {370.0, 38.7}} <AX element pid: 58366, elementOrHash.elementID: 4348857856.980>
-                              Other, 0x105a7d6e0, {{16.0, 180.0}, {370.0, 38.7}} <AX element pid: 58366, elementOrHash.elementID: 4684304992.1003>
-                              Other, 0x105a7d800, {{16.0, 180.0}, {370.0, 38.7}} <AX element pid: 58366, elementOrHash.elementID: 4684129632.1004>
-                                Other, 0x105a7d920, {{16.0, 180.0}, {370.0, 38.7}} <AX element pid: 58366, elementOrHash.elementID: 4348875776.1028>
-                                  Other, 0x105a7da40, {{16.0, 180.0}, {370.0, 38.7}} <AX element pid: 58366, elementOrHash.elementID: 4683691072.1051>
-                                    StaticText, 0x105a7db60, {{16.0, 180.0}, {370.0, 38.7}}, label: 'FIBA EUROPE · 42' <AX element pid: 58366, elementOrHash.elementID: 4683500032.1074>
-                            Cell, 0x105a7dc80, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348197376.981>
-                              Other, 0x105a7dda0, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674309664.1005>
-                                Other, 0x105a7dec0, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674317776.1029>
-                                  Other, 0x105a7dfe0, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683691504.1052>
-                              Other, 0x105a7e100, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674280128.1006>
-                                Other, 0x105a7e220, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348198912.1030>
-                                  Other, 0x105a7e340, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683147760.1053>
-                                    Button, 0x105a7e460, {{16.0, 218.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-alb', label: 'Albania, Albania, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683146864.1075>
-                                      StaticText, 0x105a7e580, {{32.0, 237.7}, {33.3, 22.0}}, label: 'Albania' <AX element pid: 58366, elementOrHash.elementID: 4683692288.1086>
-                                      StaticText, 0x105a7e6a0, {{77.3, 229.7}, {52.0, 20.3}}, label: 'Albania' <AX element pid: 58366, elementOrHash.elementID: 4683692720.1087>
-                                      StaticText, 0x105a7e7c0, {{77.3, 252.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683473024.1088>
-                            Cell, 0x105a7e8e0, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348375552.982>
-                              Other, 0x105a7ea00, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674310160.1007>
-                                Other, 0x105a7eb20, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674370816.1031>
-                                  Other, 0x105a7ec40, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683148544.1054>
-                              Other, 0x105a7ed60, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674322160.1008>
-                                Other, 0x105a7ee80, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348377088.1032>
-                                  Other, 0x105a7efa0, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683550896.1055>
-                                    Button, 0x105a7f0c0, {{16.0, 278.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-arm', label: 'Armenia, Armenia, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683047648.1076>
-                                      StaticText, 0x105a7f1e0, {{32.0, 297.7}, {36.7, 22.0}}, label: 'Armenia' <AX element pid: 58366, elementOrHash.elementID: 4683149328.1089>
-                                      StaticText, 0x105a7f300, {{80.7, 289.7}, {58.0, 20.3}}, label: 'Armenia' <AX element pid: 58366, elementOrHash.elementID: 4683150784.1090>
-                                      StaticText, 0x105a7f420, {{80.7, 312.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683151216.1091>
-                            Other, 0x105a7f540, {{38.0, 278.3}, {348.0, 0.3}} <AX element pid: 58366, elementOrHash.elementID: 4684319568.983>
-                            Cell, 0x105a7f660, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348634624.984>
-                              Other, 0x105a7f780, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674363792.1009>
-                                Other, 0x105a7f8a0, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674407664.1033>
-                                  Other, 0x105a7f9c0, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683551680.1056>
-                              Other, 0x105a7fae0, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674310656.1010>
-                                Other, 0x105a7fc00, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348636160.1034>
-                                  Other, 0x105a7fd20, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4682994816.1057>
-                                    Button, 0x105a7fe40, {{16.0, 338.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-aut', label: 'Austria, Austria, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683098896.1077>
-                                      StaticText, 0x105a7ff60, {{32.0, 357.7}, {34.0, 22.0}}, label: 'Austria' <AX element pid: 58366, elementOrHash.elementID: 4683578656.1092>
-                                      StaticText, 0x105a80080, {{78.0, 349.7}, {49.7, 20.3}}, label: 'Austria' <AX element pid: 58366, elementOrHash.elementID: 4683617936.1093>
-                                      StaticText, 0x105a801a0, {{78.0, 372.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683579440.1094>
-                            Other, 0x105a802c0, {{38.0, 338.3}, {348.0, 0.3}} <AX element pid: 58366, elementOrHash.elementID: 4684322224.985>
-                            Cell, 0x105a803e0, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348650496.986>
-                              Other, 0x105a80500, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674437424.1011>
-                                Other, 0x105a80620, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674443328.1035>
-                                  Other, 0x105a80740, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4682995600.1058>
-                              Other, 0x105a80860, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674364288.1012>
-                                Other, 0x105a80980, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348652032.1036>
-                                  Other, 0x105a80aa0, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683154128.1059>
-                                    Button, 0x105a80bc0, {{16.0, 398.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-aze', label: 'Azerbaijan, Azerbaijan, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683153232.1078>
-                                      StaticText, 0x105a80ce0, {{32.0, 417.7}, {33.0, 22.0}}, label: 'Azerbaijan' <AX element pid: 58366, elementOrHash.elementID: 4683139984.1095>
-                                      StaticText, 0x105a80e00, {{77.0, 409.7}, {73.3, 20.3}}, label: 'Azerbaijan' <AX element pid: 58366, elementOrHash.elementID: 4683141440.1096>
-                                      StaticText, 0x105a80f20, {{77.0, 432.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683141872.1097>
-                            Other, 0x105a81040, {{38.0, 398.3}, {348.0, 0.3}} <AX element pid: 58366, elementOrHash.elementID: 4684323088.987>
-                            Cell, 0x105a81160, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348666368.988>
-                              Other, 0x105a81280, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674448096.1013>
-                                Other, 0x105a813a0, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674479360.1037>
-                                  Other, 0x105a814c0, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683612016.1060>
-                              Other, 0x105a815e0, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674473456.1014>
-                                Other, 0x105a81700, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348667904.1038>
-                                  Other, 0x105a81820, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683107760.1061>
-                                    Button, 0x105a81940, {{16.0, 458.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-bel', label: 'Belgium, Belgium, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683106864.1079>
-                                      StaticText, 0x105a81a60, {{32.0, 477.7}, {32.0, 22.0}}, label: 'Belgium' <AX element pid: 58366, elementOrHash.elementID: 4683610320.1098>
-                                      StaticText, 0x105a81b80, {{76.0, 469.7}, {56.3, 20.3}}, label: 'Belgium' <AX element pid: 58366, elementOrHash.elementID: 4683530944.1099>
-                                      StaticText, 0x105a81ca0, {{76.0, 492.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683610752.1100>
-                            Other, 0x105a81dc0, {{38.0, 458.3}, {348.0, 0.3}} <AX element pid: 58366, elementOrHash.elementID: 4684324560.989>
-                            Cell, 0x105a81ee0, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348683776.990>
-                              Other, 0x105a82000, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674531744.1015>
-                                Other, 0x105a82120, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674539360.1039>
-                                  Other, 0x105a82240, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683469568.1062>
-                              Other, 0x105a82360, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674307040.1016>
-                                Other, 0x105a82480, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348685312.1040>
-                                  Other, 0x105a825a0, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683390912.1063>
-                                    Button, 0x105a826c0, {{16.0, 518.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-bih', label: 'Bosnia-Herzegovina, Bosnia-Herzegovina, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683390016.1080>
-                                      StaticText, 0x105a827e0, {{32.0, 537.7}, {31.3, 22.0}}, label: 'Bosnia-Herzegovina' <AX element pid: 58366, elementOrHash.elementID: 4683470352.1101>
-                                      StaticText, 0x105a82900, {{75.3, 529.7}, {138.3, 20.3}}, label: 'Bosnia-Herzegovina' <AX element pid: 58366, elementOrHash.elementID: 4683394784.1102>
-                                      StaticText, 0x105a82a20, {{75.3, 552.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683471136.1103>
-                            Other, 0x105a82b40, {{38.0, 518.3}, {348.0, 0.3}} <AX element pid: 58366, elementOrHash.elementID: 4684326032.991>
-                            Cell, 0x105a82c60, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348692480.992>
-                              Other, 0x105a82d80, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674532240.1017>
-                                Other, 0x105a82ea0, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4684029936.1041>
-                                  Other, 0x105a82fc0, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683171024.1064>
-                              Other, 0x105a830e0, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674533200.1018>
-                                Other, 0x105a83200, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348719616.1042>
-                                  Other, 0x105a83320, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683091040.1065>
-                                    Button, 0x105a83440, {{16.0, 578.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-bul', label: 'Bulgaria, Bulgaria, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683175120.1081>
-                                      StaticText, 0x105a83560, {{32.0, 597.7}, {33.3, 22.0}}, label: 'Bulgaria' <AX element pid: 58366, elementOrHash.elementID: 4683171808.1104>
-                                      StaticText, 0x105a83680, {{77.3, 589.7}, {57.3, 20.3}}, label: 'Bulgaria' <AX element pid: 58366, elementOrHash.elementID: 4683172240.1105>
-                                      StaticText, 0x105a837a0, {{77.3, 612.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683174336.1106>
-                            Other, 0x105a838c0, {{38.0, 578.3}, {348.0, 0.3}} <AX element pid: 58366, elementOrHash.elementID: 4684327504.993>
-                            Cell, 0x105a839e0, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348733952.994>
-                              Other, 0x105a83b00, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4684059552.1019>
-                                Other, 0x105a83c20, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4684065456.1043>
-                                  Other, 0x105a83d40, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683091472.1066>
-                              Other, 0x105a83e60, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4684021984.1020>
-                                Other, 0x105a83f80, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348737536.1044>
-                                  Other, 0x105a840a0, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4682960064.1067>
-                                    Button, 0x105a841c0, {{16.0, 638.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-cro', label: 'Croatia, Croatia, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4682959168.1082>
-                                      StaticText, 0x105a842e0, {{32.0, 657.7}, {34.7, 22.0}}, label: 'Croatia' <AX element pid: 58366, elementOrHash.elementID: 4683092256.1107>
-                                      StaticText, 0x105a84400, {{78.7, 649.7}, {49.7, 20.3}}, label: 'Croatia' <AX element pid: 58366, elementOrHash.elementID: 4682957952.1108>
-                                      StaticText, 0x105a84520, {{78.7, 672.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4682958384.1109>
-                            Other, 0x105a84640, {{38.0, 638.3}, {348.0, 0.3}} <AX element pid: 58366, elementOrHash.elementID: 4684328976.995>
-                            Cell, 0x105a84760, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348751872.996>
-                              Other, 0x105a84880, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4684095216.1021>
-                                Other, 0x105a849a0, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4684101120.1045>
-                                  Other, 0x105a84ac0, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4682960848.1068>
-                              Other, 0x105a84be0, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4684058048.1022>
-                                Other, 0x105a84d00, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348753408.1046>
-                                  Other, 0x105a84e20, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683067920.1069>
-                                    Button, 0x105a84f40, {{16.0, 698.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-cyp', label: 'Cyprus, Cyprus, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683067024.1083>
-                                      StaticText, 0x105a85060, {{32.0, 717.7}, {34.0, 22.0}}, label: 'Cyprus' <AX element pid: 58366, elementOrHash.elementID: 4682961632.1110>
-                                      StaticText, 0x105a85180, {{78.0, 709.7}, {49.3, 20.3}}, label: 'Cyprus' <AX element pid: 58366, elementOrHash.elementID: 4683065808.1111>
-                                      StaticText, 0x105a852a0, {{78.0, 732.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683066240.1112>
-                            Other, 0x105a853c0, {{38.0, 698.3}, {348.0, 0.3}} <AX element pid: 58366, elementOrHash.elementID: 4684330448.997>
-                            Cell, 0x105a854e0, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348767744.998>
-                              Other, 0x105a85600, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4684131136.1023>
-                                Other, 0x105a85720, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4684137344.1047>
-                                  Other, 0x105c7b710, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683582896.1070>
-                              Other, 0x105c7d610, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4684093712.1024>
-                                Other, 0x105c64530, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348769280.1048>
-                                  Other, 0x105c7cf30, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683050320.1071>
-                                    Button, 0x105c7b070, {{16.0, 758.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-cze', label: 'Czechia, Czechia, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683049424.1084>
-                                      StaticText, 0x105c7c4a0, {{32.0, 777.7}, {33.0, 22.0}}, label: 'Czechia' <AX element pid: 58366, elementOrHash.elementID: 4683583984.1113>
-                                      StaticText, 0x105c7ad00, {{77.0, 769.7}, {54.0, 20.3}}, label: 'Czechia' <AX element pid: 58366, elementOrHash.elementID: 4683628784.1114>
-                                      StaticText, 0x105c7b3c0, {{77.0, 792.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683048992.1115>
-                            Other, 0x105c759a0, {{38.0, 758.3}, {348.0, 0.3}} <AX element pid: 58366, elementOrHash.elementID: 4684331920.999>
-                            Cell, 0x105c7e750, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4347394560.1000>
-                              Other, 0x105c7d280, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674528784.1025>
-                                Other, 0x105c7dce0, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674518688.1049>
-                                  Other, 0x105c79f60, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683051440.1072>
-                              Other, 0x105c7e400, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4674471952.1026>
-                                Other, 0x105c75640, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4348682240.1050>
-                                  Other, 0x105c7ba60, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 58366, elementOrHash.elementID: 4683081072.1073>
-                                    Button, 0x105c6cbd0, {{16.0, 818.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-den', label: 'Denmark, Denmark, FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683055200.1085>
-                                      StaticText, 0x105a85840, {{32.0, 837.7}, {34.3, 22.0}}, label: 'Denmark' <AX element pid: 58366, elementOrHash.elementID: 4683052528.1116>
-                                      StaticText, 0x105a85960, {{78.3, 829.7}, {62.7, 20.3}}, label: 'Denmark' <AX element pid: 58366, elementOrHash.elementID: 4683053984.1117>
-                                      StaticText, 0x105a85a80, {{78.3, 852.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 58366, elementOrHash.elementID: 4683054416.1118>
-                            Other, 0x105a85ba0, {{38.0, 818.3}, {348.0, 0.3}} <AX element pid: 58366, elementOrHash.elementID: 4684333392.1001>
-                            Other, 0x105a85cc0, {{369.0, 180.0}, {30.0, 638.0}}, label: 'Vertical scroll bar, 10 pages', value: 0% <AX element pid: 58366, elementOrHash.elementID: 4684306816.1002>
-                              Other, 0x105a85de0, {{396.0, 183.0}, {3.0, 80.0}} <AX element pid: 58366, elementOrHash.elementID: 4674287952.1027>
-                            Other, 0x105a85f00, {{369.0, 180.0}, {30.0, 638.0}}, label: 'Vertical scroll bar, 10 pages', value: 0% <AX element pid: 58366, elementOrHash.elementID: 4684306816.1002>
-                              Other, 0x105a86020, {{396.0, 183.0}, {3.0, 80.0}} <AX element pid: 58366, elementOrHash.elementID: 4674287952.1027>
+Application, 0x10357d210, pid: 49019, label: 'Witness' <App element pid: 49019>
+  Window (Main), 0x10357d330, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 49019, elementOrHash.elementID: 4304558800.4>
+    Other, 0x10357d6f0, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 49019, elementOrHash.elementID: 4304570480.5>
+      Other, 0x10357d810, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4304572976.6>
+        Other, 0x10357d450, {{-354.0, -742.4}, {1110.0, 2413.3}} <AX element pid: 49019, elementOrHash.elementID: 4623836768.100>
+        Other, 0x10357d570, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4304490928.7>
+          Other, 0x10357d930, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4623654128.8>
+            Other, 0x10357da50, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4306718192.9>
+              Other, 0x10357db70, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4306723568.10>
+                Other, 0x10357dc90, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4303838336.12>
+                  Other, 0x10357ddb0, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4306728992.17>
+                    Other, 0x10357ded0, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4623669744.19>
+                      Other, 0x10357dff0, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4623668960.20>
+                        Other, 0x10357e110, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4304003200.21>
+                          NavigationBar, 0x103580db0, {{16.0, 113.8}, {370.0, 88.4}}, identifier: 'Timeline' <AX element pid: 49019, elementOrHash.elementID: 4304722224.22>
+                            Other, 0x103580ed0, {{30.7, 117.5}, {88.4, 33.1}}, label: 'TIMELINE' <AX element pid: 49019, elementOrHash.elementID: 4313770496.24>
+                              Other, 0x103580ff0, {{30.7, 117.5}, {88.4, 33.1}} <AX element pid: 49019, elementOrHash.elementID: 4304232848.30>
+                                StaticText, 0x103581110, {{30.7, 117.5}, {88.4, 33.1}}, label: 'TIMELINE' <AX element pid: 49019, elementOrHash.elementID: 4304231936.36>
+                            StaticText, 0x103581230, {{200.7, 133.8}, {0.9, 0.9}}, label: 'Timeline' <AX element pid: 49019, elementOrHash.elementID: 4312977408.25>
+                              Other, 0x1035617b0, {{200.7, 133.8}, {0.9, 0.9}} <AX element pid: 49019, elementOrHash.elementID: 4623686672.31>
+                                Other, 0x1035618d0, {{200.7, 133.8}, {0.9, 0.9}} <AX element pid: 49019, elementOrHash.elementID: 4623685888.37>
+                            Other, 0x1035619f0, {{299.5, 118.1}, {35.0, 32.2}}, identifier: 'timeline-big-games', label: 'Big games' <AX element pid: 49019, elementOrHash.elementID: 4313168896.26>
+                              Other, 0x103561b10, {{299.5, 118.1}, {35.0, 32.2}} <AX element pid: 49019, elementOrHash.elementID: 4304190272.32>
+                                Button, 0x103561c30, {{299.5, 118.1}, {35.0, 32.2}}, identifier: 'timeline-big-games', label: 'Big games' <AX element pid: 49019, elementOrHash.elementID: 4304188512.38>
+                            Other, 0x103561d50, {{341.8, 120.3}, {29.5, 27.9}}, identifier: 'add-menu', label: 'Add' <AX element pid: 49019, elementOrHash.elementID: 4313477632.27>
+                              Other, 0x103561e70, {{341.8, 120.3}, {29.5, 27.9}} <AX element pid: 49019, elementOrHash.elementID: 4304222528.33>
+                                Button, 0x103561f90, {{341.8, 120.3}, {29.5, 27.9}}, identifier: 'add-menu', label: 'Add' <AX element pid: 49019, elementOrHash.elementID: 4304220240.39>
+                                  Button, 0x1035620b0, {{341.8, 120.3}, {29.5, 27.9}} <AX element pid: 49019, elementOrHash.elementID: 4304195264.41>
+                                    Other, 0x1035621d0, {{341.8, 120.3}, {29.5, 27.9}} <AX element pid: 49019, elementOrHash.elementID: 4304224064.48>
+                                      Image, 0x1035622f0, {{341.8, 120.3}, {29.5, 27.9}}, identifier: 'plus', label: 'Add' <AX element pid: 49019, elementOrHash.elementID: 4304222960.52>
+                            SearchField, 0x103562410, {{30.7, 155.3}, {340.5, 33.1}}, label: 'Teams, places, years', placeholderValue: 'Teams, places, years' <AX element pid: 49019, elementOrHash.elementID: 4372431872.28>
+                              Image, 0x103562530, {{36.2, 162.9}, {18.7, 17.2}}, identifier: 'magnifyingglass', label: 'Search' <AX element pid: 49019, elementOrHash.elementID: 4304010064.34>
+                          Other, 0x103562650, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4304001760.23>
+                            Other, 0x103562770, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4307014224.29>
+                              Other, 0x103562890, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4304713824.35>
+                                Other, 0x1035629b0, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4306873984.40>
+                                  ScrollView, 0x10355f320, {{16.0, 62.0}, {370.0, 804.4}} <AX element pid: 49019, elementOrHash.elementID: 4312571392.42>
+                                    Other, 0x10355f440, {{16.0, 202.2}, {370.0, 33.1}} <AX element pid: 49019, elementOrHash.elementID: 4304001296.49>
+                                      Other, 0x10355f560, {{0.0, 0.0}, {0.0, 0.0}} <AX element pid: 49019, elementOrHash.elementID: 4306627712.53>
+                                    Other, 0x10355f680, {{355.6, 202.2}, {27.6, 587.8}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 49019, elementOrHash.elementID: 4304243840.50>
+                                      Other, 0x10355f7a0, {{380.5, 759.7}, {2.8, 27.6}} <AX element pid: 49019, elementOrHash.elementID: 4304244816.54>
+                                    Other, 0x103578500, {{355.6, 202.2}, {27.6, 587.8}}, label: 'Vertical scroll bar, 1 page', value: 0% <AX element pid: 49019, elementOrHash.elementID: 4304243840.50>
+                                      Other, 0x103578620, {{380.5, 759.7}, {2.8, 27.6}} <AX element pid: 49019, elementOrHash.elementID: 4304244816.54>
+                                  StaticText, 0x103578740, {{34.4, 336.1}, {312.6, 123.0}}, label: 'YOUR FIRST GAME GOES HERE.' <AX element pid: 49019, elementOrHash.elementID: 4306859984.43>
+                                  Button, 0x103578860, {{34.4, 485.1}, {333.2, 49.7}}, identifier: 'empty-add', label: 'ADD A GAME' <AX element pid: 49019, elementOrHash.elementID: 4306715888.44>
+                                  Button, 0x103578980, {{34.4, 545.8}, {333.2, 49.7}}, label: 'IMPORT A TICKET' <AX element pid: 49019, elementOrHash.elementID: 4306946432.45>
+                                  Button, 0x103578aa0, {{34.4, 606.6}, {333.2, 49.7}}, label: 'FIND GAMES IN MY PHOTOS' <AX element pid: 49019, elementOrHash.elementID: 4306662016.46>
+              TabBar, 0x103578bc0, {{16.0, 790.0}, {370.0, 76.4}}, label: 'Tab Bar' <AX element pid: 49019, elementOrHash.elementID: 4306720560.11>
+                Button, 0x103578ce0, {{17.8, 791.0}, {89.3, 44.2}}, label: 'Timeline', Selected <AX element pid: 49019, elementOrHash.elementID: 4306765488.13>
+                  Image, 0x103578e00, {{48.2, 793.4}, {27.6, 28.8}}, identifier: 'rectangle.stack.fill', label: 'Album' <AX element pid: 49019, elementOrHash.elementID: 4304588336.18>
+                Button, 0x103578f20, {{110.8, 791.0}, {88.4, 44.2}}, label: 'Map' <AX element pid: 49019, elementOrHash.elementID: 4304644016.14>
+                Button, 0x103579040, {{202.8, 791.0}, {89.3, 44.2}}, label: 'Passport' <AX element pid: 49019, elementOrHash.elementID: 4304658336.15>
+                Button, 0x103579160, {{295.8, 791.0}, {88.4, 44.2}}, label: 'You' <AX element pid: 49019, elementOrHash.elementID: 4303810480.16>
+    Other, 0x103579280, {{0.0, 0.0}, {402.0, 874.0}} <AX element pid: 49019, elementOrHash.elementID: 4623841760.97>
+      Other, 0x1035793a0, {{-402.0, -874.0}, {1206.0, 2622.0}} <AX element pid: 49019, elementOrHash.elementID: 4623835312.98>
+      Other, 0x1035794c0, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4623844704.99>
+        Other, 0x1035798c0, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4623847488.101>
+          Other, 0x1035799e0, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4623848208.102>
+            Other, 0x103579b00, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4624161440.103>
+              Other, 0x103579c20, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4623927856.104>
+                Other, 0x103579d40, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4306870816.105>
+                  NavigationBar, 0x103579e60, {{0.0, 72.0}, {402.0, 108.0}}, identifier: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4623863520.106>
+                    Button, 0x103579f80, {{0.0, 78.0}, {68.0, 44.0}}, identifier: 'BackButton', label: 'Plan a game' <AX element pid: 49019, elementOrHash.elementID: 105553144498688.977>
+                    StaticText, 0x10357a0a0, {{100.0, 88.0}, {202.3, 23.0}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4663322704.109>
+                    SearchField, 0x10357a1c0, {{16.0, 129.0}, {370.0, 36.0}}, label: 'Search FIBA national teams (men)', placeholderValue: 'Search FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4374828544.978>
+                      Image, 0x10357a2e0, {{22.0, 137.3}, {20.3, 18.7}}, identifier: 'magnifyingglass', label: 'Search' <AX element pid: 49019, elementOrHash.elementID: 4307380096.980>
+                  Other, 0x10357a400, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4306603776.107>
+                    Other, 0x10357a520, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4717972224.979>
+                      Other, 0x10357a640, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4717864080.981>
+                        Other, 0x10357a760, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4716703392.982>
+                          CollectionView, 0x10357a880, {{0.0, 72.0}, {402.0, 802.0}} <AX element pid: 49019, elementOrHash.elementID: 4374861824.983>
+                            Other, 0x10357a9a0, {{-16.0, -1424.0}, {434.0, 3732.3}} <AX element pid: 49019, elementOrHash.elementID: 4717161440.984>
+                            Cell, 0x10357aac0, {{16.0, 180.0}, {370.0, 38.7}} <AX element pid: 49019, elementOrHash.elementID: 4375248896.985>
+                              Other, 0x10357abe0, {{16.0, 180.0}, {370.0, 38.7}} <AX element pid: 49019, elementOrHash.elementID: 4717146192.1008>
+                              Other, 0x10357ad00, {{16.0, 180.0}, {370.0, 38.7}} <AX element pid: 49019, elementOrHash.elementID: 4717145264.1009>
+                                Other, 0x10357ae20, {{16.0, 180.0}, {370.0, 38.7}} <AX element pid: 49019, elementOrHash.elementID: 4375266816.1033>
+                                  Other, 0x10357af40, {{16.0, 180.0}, {370.0, 38.7}} <AX element pid: 49019, elementOrHash.elementID: 4717023520.1056>
+                                    StaticText, 0x10357b060, {{16.0, 180.0}, {370.0, 38.7}}, label: 'FIBA EUROPE · 42' <AX element pid: 49019, elementOrHash.elementID: 4717023088.1079>
+                            Cell, 0x10357b180, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4314297856.986>
+                              Other, 0x10357b2a0, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4663278848.1010>
+                                Other, 0x10357b3c0, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4663410160.1034>
+                                  Other, 0x10357b4e0, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716852176.1057>
+                              Other, 0x10357b600, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4663351472.1011>
+                                Other, 0x10357b720, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4316064256.1035>
+                                  Other, 0x10357b840, {{16.0, 218.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716888592.1058>
+                                    Button, 0x10357b960, {{16.0, 218.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-alb', label: 'Albania, Albania, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4716988320.1080>
+                                      StaticText, 0x10357ba80, {{32.0, 237.7}, {33.3, 22.0}}, label: 'Albania' <AX element pid: 49019, elementOrHash.elementID: 4716852608.1091>
+                                      StaticText, 0x10357bba0, {{77.3, 229.7}, {52.0, 20.3}}, label: 'Albania' <AX element pid: 49019, elementOrHash.elementID: 4717128208.1092>
+                                      StaticText, 0x10357bcc0, {{77.3, 252.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717128640.1093>
+                            Cell, 0x10357bde0, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4374618624.987>
+                              Other, 0x10357bf00, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4307454720.1012>
+                                Other, 0x10357c020, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716798176.1036>
+                                  Other, 0x10357c140, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716889024.1059>
+                              Other, 0x10357c260, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4307113936.1013>
+                                Other, 0x10357c380, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4374736384.1037>
+                                  Other, 0x10357c4a0, {{16.0, 278.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717204480.1060>
+                                    Button, 0x10357c5c0, {{16.0, 278.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-arm', label: 'Armenia, Armenia, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717203584.1081>
+                                      StaticText, 0x10357c6e0, {{32.0, 297.7}, {36.7, 22.0}}, label: 'Armenia' <AX element pid: 49019, elementOrHash.elementID: 4717197248.1094>
+                                      StaticText, 0x10357c800, {{80.7, 289.7}, {58.0, 20.3}}, label: 'Armenia' <AX element pid: 49019, elementOrHash.elementID: 4717202368.1095>
+                                      StaticText, 0x10357f320, {{80.7, 312.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717202800.1096>
+                            Other, 0x10357f440, {{38.0, 278.3}, {348.0, 0.3}} <AX element pid: 49019, elementOrHash.elementID: 4717161936.988>
+                            Cell, 0x10357f560, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4374721024.989>
+                              Other, 0x10357f680, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4307114864.1014>
+                                Other, 0x10357f7a0, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716785024.1038>
+                                  Other, 0x10357f8c0, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716796512.1061>
+                              Other, 0x10357f9e0, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4307488800.1015>
+                                Other, 0x10357fb00, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4374843904.1039>
+                                  Other, 0x10357fc20, {{16.0, 338.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717186528.1062>
+                                    Button, 0x10357fd40, {{16.0, 338.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-aut', label: 'Austria, Austria, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717183184.1082>
+                                      StaticText, 0x10357fe60, {{32.0, 357.7}, {34.0, 22.0}}, label: 'Austria' <AX element pid: 49019, elementOrHash.elementID: 4717206064.1097>
+                                      StaticText, 0x10357ff80, {{78.0, 349.7}, {49.7, 20.3}}, label: 'Austria' <AX element pid: 49019, elementOrHash.elementID: 4717207840.1098>
+                                      StaticText, 0x1035800a0, {{78.0, 372.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717208272.1099>
+                            Other, 0x1035801c0, {{38.0, 338.3}, {348.0, 0.3}} <AX element pid: 49019, elementOrHash.elementID: 4717164496.990>
+                            Cell, 0x1035802e0, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4374884352.991>
+                              Other, 0x103580400, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716832656.1016>
+                                Other, 0x103580520, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716839296.1040>
+                                  Other, 0x103568860, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717186960.1063>
+                              Other, 0x103568980, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716808656.1017>
+                                Other, 0x103568aa0, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4374557696.1041>
+                                  Other, 0x103568bc0, {{16.0, 398.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717191680.1064>
+                                    Button, 0x103568ce0, {{16.0, 398.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-aze', label: 'Azerbaijan, Azerbaijan, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717190784.1083>
+                                      StaticText, 0x103568e00, {{32.0, 417.7}, {33.0, 22.0}}, label: 'Azerbaijan' <AX element pid: 49019, elementOrHash.elementID: 4717187744.1100>
+                                      StaticText, 0x103568f20, {{77.0, 409.7}, {73.3, 20.3}}, label: 'Azerbaijan' <AX element pid: 49019, elementOrHash.elementID: 4717189200.1101>
+                                      StaticText, 0x103569040, {{77.0, 432.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717189632.1102>
+                            Other, 0x103569160, {{38.0, 398.3}, {348.0, 0.3}} <AX element pid: 49019, elementOrHash.elementID: 4717165008.992>
+                            Cell, 0x103569280, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375118848.993>
+                              Other, 0x1035693a0, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716869424.1018>
+                                Other, 0x1035694c0, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716875328.1042>
+                                  Other, 0x1035695e0, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717192112.1065>
+                              Other, 0x103569700, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716833152.1019>
+                                Other, 0x103569820, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375120384.1043>
+                                  Other, 0x103569940, {{16.0, 458.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717230432.1066>
+                                    Button, 0x103569a60, {{16.0, 458.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-bel', label: 'Belgium, Belgium, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717228608.1084>
+                                      StaticText, 0x103569b80, {{32.0, 477.7}, {32.0, 22.0}}, label: 'Belgium' <AX element pid: 49019, elementOrHash.elementID: 4717223488.1103>
+                                      StaticText, 0x103569ca0, {{76.0, 469.7}, {56.3, 20.3}}, label: 'Belgium' <AX element pid: 49019, elementOrHash.elementID: 4717223920.1104>
+                                      StaticText, 0x103569dc0, {{76.0, 492.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717226896.1105>
+                            Other, 0x103569ee0, {{38.0, 458.3}, {348.0, 0.3}} <AX element pid: 49019, elementOrHash.elementID: 4717166480.994>
+                            Cell, 0x10356a000, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375137792.995>
+                              Other, 0x10356a120, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716929824.1020>
+                                Other, 0x10356a240, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716938032.1044>
+                                  Other, 0x10356a360, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717230864.1067>
+                              Other, 0x10356a480, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716903872.1021>
+                                Other, 0x10356a5a0, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375139328.1045>
+                                  Other, 0x10356a6c0, {{16.0, 518.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717247152.1068>
+                                    Button, 0x10356a7e0, {{16.0, 518.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-bih', label: 'Bosnia-Herzegovina, Bosnia-Herzegovina, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717246256.1085>
+                                      StaticText, 0x10356a900, {{32.0, 537.7}, {31.3, 22.0}}, label: 'Bosnia-Herzegovina' <AX element pid: 49019, elementOrHash.elementID: 4717231648.1106>
+                                      StaticText, 0x10356aa20, {{75.3, 529.7}, {138.3, 20.3}}, label: 'Bosnia-Herzegovina' <AX element pid: 49019, elementOrHash.elementID: 4717240192.1107>
+                                      StaticText, 0x10356ab40, {{75.3, 552.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717245824.1108>
+                            Other, 0x10356ac60, {{38.0, 518.3}, {348.0, 0.3}} <AX element pid: 49019, elementOrHash.elementID: 4717167952.996>
+                            Cell, 0x10356ad80, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375153664.997>
+                              Other, 0x10356aea0, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716930320.1022>
+                                Other, 0x10356afc0, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716975056.1046>
+                                  Other, 0x10356b0e0, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717247584.1069>
+                              Other, 0x10356b200, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716931280.1023>
+                                Other, 0x10356b320, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375155200.1047>
+                                  Other, 0x10356b440, {{16.0, 578.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717285792.1070>
+                                    Button, 0x10356b560, {{16.0, 578.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-bul', label: 'Bulgaria, Bulgaria, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717284896.1086>
+                                      StaticText, 0x10356b680, {{32.0, 597.7}, {33.3, 22.0}}, label: 'Bulgaria' <AX element pid: 49019, elementOrHash.elementID: 4717249760.1109>
+                                      StaticText, 0x10356b7a0, {{77.3, 589.7}, {57.3, 20.3}}, label: 'Bulgaria' <AX element pid: 49019, elementOrHash.elementID: 4717283680.1110>
+                                      StaticText, 0x10356b8c0, {{77.3, 612.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717284112.1111>
+                            Other, 0x10356b9e0, {{38.0, 578.3}, {348.0, 0.3}} <AX element pid: 49019, elementOrHash.elementID: 4717169424.998>
+                            Cell, 0x10356bb00, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375169536.999>
+                              Other, 0x10356bc20, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717004672.1024>
+                                Other, 0x10356bd40, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717010576.1048>
+                                  Other, 0x10356be60, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717297248.1071>
+                              Other, 0x10356bf80, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716967104.1025>
+                                Other, 0x10356c0a0, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375173120.1049>
+                                  Other, 0x10356c1c0, {{16.0, 638.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717158864.1072>
+                                    Button, 0x10356c2e0, {{16.0, 638.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-cro', label: 'Croatia, Croatia, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717308128.1087>
+                                      StaticText, 0x10356c400, {{32.0, 657.7}, {34.7, 22.0}}, label: 'Croatia' <AX element pid: 49019, elementOrHash.elementID: 4717298032.1112>
+                                      StaticText, 0x10356c520, {{78.7, 649.7}, {49.7, 20.3}}, label: 'Croatia' <AX element pid: 49019, elementOrHash.elementID: 4717304784.1113>
+                                      StaticText, 0x10356c640, {{78.7, 672.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717305216.1114>
+                            Other, 0x10356c760, {{38.0, 638.3}, {348.0, 0.3}} <AX element pid: 49019, elementOrHash.elementID: 4717170896.1000>
+                            Cell, 0x10356c880, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375187456.1001>
+                              Other, 0x10356c9a0, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717040336.1026>
+                                Other, 0x10356cac0, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717046240.1050>
+                                  Other, 0x10356cbe0, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717159296.1073>
+                              Other, 0x10356cd00, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717003168.1027>
+                                Other, 0x10356ce20, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375188992.1051>
+                                  Other, 0x10356cf40, {{16.0, 698.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717324032.1074>
+                                    Button, 0x10356d060, {{16.0, 698.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-cyp', label: 'Cyprus, Cyprus, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4716816992.1088>
+                                      StaticText, 0x10356d180, {{32.0, 717.7}, {34.0, 22.0}}, label: 'Cyprus' <AX element pid: 49019, elementOrHash.elementID: 4716723520.1115>
+                                      StaticText, 0x10356d2a0, {{78.0, 709.7}, {49.3, 20.3}}, label: 'Cyprus' <AX element pid: 49019, elementOrHash.elementID: 4716987040.1116>
+                                      StaticText, 0x10356d3c0, {{78.0, 732.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4716816208.1117>
+                            Other, 0x10356d4e0, {{38.0, 698.3}, {348.0, 0.3}} <AX element pid: 49019, elementOrHash.elementID: 4717172368.1002>
+                            Cell, 0x10356d600, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375203328.1003>
+                              Other, 0x10356d720, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717076256.1028>
+                                Other, 0x10356d840, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717082464.1052>
+                                  Other, 0x10356d960, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717324464.1075>
+                              Other, 0x10356da80, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717038832.1029>
+                                Other, 0x10356dba0, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375204864.1053>
+                                  Other, 0x10356dcc0, {{16.0, 758.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717319904.1076>
+                                    Button, 0x10356dde0, {{16.0, 758.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-cze', label: 'Czechia, Czechia, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717319008.1089>
+                                      StaticText, 0x10356df00, {{32.0, 777.7}, {33.0, 22.0}}, label: 'Czechia' <AX element pid: 49019, elementOrHash.elementID: 4717325248.1118>
+                                      StaticText, 0x10356e020, {{77.0, 769.7}, {54.0, 20.3}}, label: 'Czechia' <AX element pid: 49019, elementOrHash.elementID: 4717326704.1119>
+                                      StaticText, 0x10356e140, {{77.0, 792.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717327136.1120>
+                            Other, 0x10356e260, {{38.0, 758.3}, {348.0, 0.3}} <AX element pid: 49019, elementOrHash.elementID: 4717173840.1004>
+                            Cell, 0x10356e380, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375136256.1005>
+                              Other, 0x10356e4a0, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716922640.1030>
+                                Other, 0x10356e5c0, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716917312.1054>
+                                  Other, 0x10356e6e0, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717320672.1077>
+                              Other, 0x10356e800, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4716906864.1031>
+                                Other, 0x10356e920, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4375134720.1055>
+                                  Other, 0x10356ea40, {{16.0, 818.7}, {370.0, 60.0}} <AX element pid: 49019, elementOrHash.elementID: 4717330768.1078>
+                                    Button, 0x10356eb60, {{16.0, 818.7}, {370.0, 60.0}}, identifier: 'team-row-fibam-den', label: 'Denmark, Denmark, FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717329872.1090>
+                                      StaticText, 0x10356ec80, {{32.0, 837.7}, {34.3, 22.0}}, label: 'Denmark' <AX element pid: 49019, elementOrHash.elementID: 4717321456.1121>
+                                      StaticText, 0x10356eda0, {{78.3, 829.7}, {62.7, 20.3}}, label: 'Denmark' <AX element pid: 49019, elementOrHash.elementID: 4717328656.1122>
+                                      StaticText, 0x10356eec0, {{78.3, 852.0}, {159.3, 15.7}}, label: 'FIBA national teams (men)' <AX element pid: 49019, elementOrHash.elementID: 4717329088.1123>
+                            Other, 0x10356efe0, {{38.0, 818.3}, {348.0, 0.3}} <AX element pid: 49019, elementOrHash.elementID: 4717175312.1006>
+                            Other, 0x10356f100, {{369.0, 180.0}, {30.0, 638.0}}, label: 'Vertical scroll bar, 10 pages', value: 0% <AX element pid: 49019, elementOrHash.elementID: 4307271232.1007>
+                              Other, 0x10356f220, {{396.0, 183.0}, {3.0, 80.0}} <AX element pid: 49019, elementOrHash.elementID: 4717121008.1032>
+                            Other, 0x10356f340, {{369.0, 180.0}, {30.0, 638.0}}, label: 'Vertical scroll bar, 10 pages', value: 0% <AX element pid: 49019, elementOrHash.elementID: 4307271232.1007>
+                              Other, 0x10356f460, {{396.0, 183.0}, {3.0, 80.0}} <AX element pid: 49019, elementOrHash.elementID: 4717121008.1032>
