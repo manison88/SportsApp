@@ -94,7 +94,7 @@ struct TripView: View {
             if let home, let away {
                 matchup = "\(home) VS \(away)"
             } else {
-                matchup = RecapFilmView.shortName(library.venue(g.venueId)?.name ?? "").uppercased()
+                matchup = RecapText.shortName(library.venue(g.venueId)?.name ?? "").uppercased()
             }
             return TripShareCard.GameRow(id: index, matchup: matchup, date: Fmt.short(g.date))
         }
@@ -206,7 +206,7 @@ struct TripView: View {
                         row(symbol: game.sport.symbol, date: game.date, chevron: true) {
                             HStack(spacing: 10) {
                                 ScoreBug(game: game)
-                                Text(RecapFilmView.shortName(library.venue(game.venueId)?.name ?? "").uppercased())
+                                Text(RecapText.shortName(library.venue(game.venueId)?.name ?? "").uppercased())
                                     .font(.condensed(.subheadline, weight: .heavy))
                                     .lineLimit(1)
                             }
