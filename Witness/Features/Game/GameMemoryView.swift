@@ -42,6 +42,7 @@ struct GameMemoryView: View {
         .ignoresSafeArea(edges: .top)
         .lightStatusBar()
         .inkBackground()
+        .onAppear { ReviewPrompt.noteGameOpened() }
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)

@@ -46,6 +46,7 @@ struct YouView: View {
             .padding(.bottom, Spacing.block)
         }
         .inkBackground()
+        .asksForReviewAfterAGame()
         .tabTitle("You")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

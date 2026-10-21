@@ -79,6 +79,7 @@ struct PassportView: View {
         }
         .inkBackground()
         .onAppear { if !sports.contains(sport), let first = sports.first { sport = first } }
+        .asksForReviewAfterAGame()
         .tabTitle("Passport")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
