@@ -236,10 +236,12 @@ enum VisitGrouping {
         scan.visits = visits.compactMap { k, value -> PhotoCluster? in
             // The photos that place the visit and time it: inside the fence, and within reach on its day.
             let core = (value.1 + (joined[k] ?? [])).sorted { $0.1 < $1.1 }
-            if let minimumStay {
-                guard core.count >= 2, core.last!.1.timeIntervalSince(core.first!.1) >= minimumStay else { return nil }
-            }
             let all = (core + (adopted[k] ?? [])).sorted { $0.1 < $1.1 }
+            // A fan's photos before and after the match (the walk in, the pub) show they stayed; the window the schedule is
+            // asked about stays the core's.
+            if let minimumStay {
+                guard core.count >= 2, all.last!.1.timeIntervalSince(all.first!.1) >= minimumStay else { return nil }
+            }
             let window = minimumStay == nil ? all : core
             return PhotoCluster(id: k, venue: value.0, start: window.first!.1, end: window.last!.1,
                                 assetIds: all.map(\.0), times: all.map(\.1),

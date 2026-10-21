@@ -390,6 +390,15 @@ final class ScanEndToEndTests: XCTestCase {
         XCTAssertTrue(review.possible.isEmpty, "possible \(review.possible.map(\.reason))")
     }
 
+    /// Two geotagged photos at the stadium a few minutes apart, with the pictures leading up to the match elsewhere in town: the
+    /// match is found (the walk-in photos show the stay; the stadium ones place and time it).
+    func testTwoStadiumPhotosMinutesApartWithTheBuildUpElsewhereIsAGame() async throws {
+        let review = await findInPhotos(model([Self.point("fan-zone", "10:05", 47.6000, -122.3330),
+                                               Self.point("bowl-1", "12:20", 47.5955, -122.3318),
+                                               Self.point("bowl-2", "12:25", 47.5956, -122.3319)]))
+        XCTAssertEqual(review.games.map(\.id), ["lumen-field|2026-06-24"], "others \(review.others.map(\.id))")
+    }
+
     /// A taxi past the ground with one red-light shot, and breakfast at home that morning: nothing.
     func testATaxiPastTheGroundAndBreakfastAtHomeIsNothing() async throws {
         let review = await findInPhotos(model([Self.point("breakfast", "07:40", 47.6740, -122.3870),

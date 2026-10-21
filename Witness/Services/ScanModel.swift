@@ -54,9 +54,9 @@ final class ScanModel {
     /// Set once the fan has seen the second pass's results.
     private(set) var deepReviewed = true
     /// The fan said no to the second pass; it is not offered again.
-    var deepDeclined: Bool {
-        get { UserDefaults.standard.bool(forKey: "deepScanDeclined") }
-        set { UserDefaults.standard.set(newValue, forKey: "deepScanDeclined") }
+    /// Stored (not read from UserDefaults on each access) so the screen redraws the moment it is set.
+    var deepDeclined: Bool = UserDefaults.standard.bool(forKey: "deepScanDeclined") {
+        didSet { UserDefaults.standard.set(deepDeclined, forKey: "deepScanDeclined") }
     }
 
     @ObservationIgnored private var task: Task<Void, Never>?
