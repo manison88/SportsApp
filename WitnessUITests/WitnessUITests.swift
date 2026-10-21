@@ -397,7 +397,9 @@ final class WitnessUITests: XCTestCase {
         for _ in 0..<12 where !league.exists { app.swipeUp() }
         XCTAssertTrue(league.exists, "Basketball's national teams are a league group")
         league.tap()
-        XCTAssertTrue(app.staticTexts["FIBA Europe \u{00B7} 42"].waitForExistence(timeout: 5), "The 132 sides are split by FIBA zone")
+        // The header is set in uppercase; some iOS builds report the label as shown, some as written.
+        let europe = app.staticTexts.matching(NSPredicate(format: "label ==[c] %@", "FIBA Europe \u{00B7} 42")).firstMatch
+        XCTAssertTrue(europe.waitForExistence(timeout: 5), "The 132 sides are split by FIBA zone")
         shot("fiba-league")
         search("Bosnia")
         let row = el("team-row-fibam-bih")
