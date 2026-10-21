@@ -399,6 +399,56 @@ final class ScanEndToEndTests: XCTestCase {
         XCTAssertEqual(review.games.map(\.id), ["lumen-field|2026-06-24"], "others \(review.others.map(\.id))")
     }
 
+    /// The owner's Nov 18 2025 in Vienna (photos in Chicago time): a morning at the basketball arena, the walk to the Ernst-Happel
+    /// with photos from 11:24, four inside the fence, and the match (Austria v Bosnia, 13:45 Vienna). The first scan offers it.
+    func testViennaDayOfBosniaAtAustriaIsFoundByTheFirstScan() async throws {
+        var raw = try String(contentsOf: XCTUnwrap(Bundle(for: Self.self).url(forResource: "fifa-world-scoreboard-20260624", withExtension: "json")), encoding: .utf8)
+        raw = raw.replacingOccurrences(of: "2026-06-24T19:00Z", with: "2025-11-18T19:45Z")
+            .replacingOccurrences(of: "Lumen Field", with: "Ernst-Happel-Stadion")
+        let match = Data(raw.utf8)
+        GameLookup.responder = { url in
+            let s = url.absoluteString
+            guard s.contains("/scoreboard?") else { return nil }
+            if s.contains("soccer/fifa.worldq.uefa/scoreboard?dates=20251118") || s.contains("soccer/fifa.worldq.uefa/scoreboard?dates=20251119") { return match }
+            return Data(#"{"events":[]}"#.utf8)
+        }
+        func at(_ id: String, _ t: String, _ lat: Double, _ lon: Double) -> PhotoPoint {
+            PhotoPoint(id: id, date: ISO8601DateFormatter().date(from: "2025-11-18T\(t):00-06:00"), latitude: lat, longitude: lon)
+        }
+        let arena = [at("a1", "04:57", 48.20818, 16.37145), at("a2", "04:58", 48.20819, 16.37163), at("a3", "05:01", 48.20855, 16.37233),
+                     at("a4", "07:32", 48.20803, 16.37163), at("a0", "04:50", 48.20826, 16.36611)]
+        let walk = [at("w1", "08:47", 48.21069, 16.40478), at("w2", "09:27", 48.21085, 16.40487), at("w3", "10:36", 48.21072, 16.40457),
+                    at("w4", "11:24", 48.20480, 16.41572), at("w5", "11:28", 48.20488, 16.41641), at("w6", "11:48", 48.20517, 16.41947)]
+        let inside = [at("h1", "13:58", 48.20836, 16.42134), at("h2", "14:02", 48.20842, 16.42089), at("h3", "14:11", 48.20850, 16.42030)]
+        let review = await findInPhotos(model(arena + walk + inside))
+        XCTAssertEqual(review.games.count, 1, "games \(review.games.map(\.id)) others \(review.others.map { "\($0.id) \($0.start)-\($0.end) \($0.assetIds.count)" }) possible \(review.possible.map(\.reason))")
+        XCTAssertEqual(review.games.first?.venue.id, "ernst-happel")
+    }
+
+    /// BiH v Canada (BMO Field, Jun 12 2026): the same day has a saved ballgame at Rogers Centre whose photos are also the day's
+    /// loose ones. Those photos ride along with the BMO visit but are not what places it, so the match is still offered.
+    func testAMatchWhosePhotosAlsoHoldASavedBallgameIsStillOffered() async throws {
+        var raw = try String(contentsOf: XCTUnwrap(Bundle(for: Self.self).url(forResource: "fifa-world-scoreboard-20260624", withExtension: "json")), encoding: .utf8)
+        raw = raw.replacingOccurrences(of: "2026-06-24T19:00Z", with: "2026-06-12T19:00Z").replacingOccurrences(of: "Lumen Field", with: "BMO Field")
+        let match = Data(raw.utf8)
+        GameLookup.responder = { url in
+            let s = url.absoluteString
+            guard s.contains("/scoreboard?") else { return nil }
+            if s.contains("soccer/fifa.world/scoreboard?dates=2026061") { return match }
+            return Data(#"{"events":[]}"#.utf8)
+        }
+        func at(_ id: String, _ t: String, _ lat: Double?, _ lon: Double?) -> PhotoPoint {
+            PhotoPoint(id: id, date: ISO8601DateFormatter().date(from: "2026-06-12T\(t):00-05:00"), latitude: lat, longitude: lon)
+        }
+        let points = [at("r1", "00:01", 43.64048, -79.39185), at("r2", "00:08", 43.64132, -79.38763), at("walk", "09:04", 43.64016, -79.39854),
+                      at("b1", "12:13", 43.63245, -79.41729), at("b2", "13:21", 43.63254, -79.41805), at("b3", "15:59", 43.63249, -79.41844),
+                      at("b4", "16:17", 43.63372, -79.41853), at("night", "19:51", 43.64236, -79.39400), at("nogps", "10:10", nil, nil)]
+        library.add(GameEntry(sport: .baseball, date: ISO8601DateFormatter().date(from: "2026-06-12T23:37:00Z")!, venueId: "mlb-tor",
+                              photos: ["r1", "r2", "night", "nogps", "walk"].map { PhotoRef.library($0) }, origin: .photos))
+        let review = await findInPhotos(model(points))
+        XCTAssertTrue(review.games.map(\.venue.id).contains("bmo-field"), "games \(review.games.map(\.id)) others \(review.others.map(\.id))")
+    }
+
     /// A taxi past the ground with one red-light shot, and breakfast at home that morning: nothing.
     func testATaxiPastTheGroundAndBreakfastAtHomeIsNothing() async throws {
         let review = await findInPhotos(model([Self.point("breakfast", "07:40", 47.6740, -122.3870),

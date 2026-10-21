@@ -207,24 +207,32 @@ enum VisitGrouping {
         // Photos without a stadium fix that were taken on a visit's day belong to that visit (edited copies,
         // a friend's shared photos, location switched off). The rest wait for the fan to tell us where.
         // Visits are indexed by time zone and local day so each loose photo is one lookup per zone, not per visit.
-        var visitByDay: [String: String] = [:]
+        // Two grounds on one day (an arena in the morning, the match in the afternoon): a loose photo belongs to the visit
+        // nearest to it in time, not to whichever ground sorts first.
+        var visitByDay: [String: [String]] = [:]
         var zones: [String: TimeZone] = [:]
         for (k, value) in visits.sorted(by: { $0.key < $1.key }) {
             let tz = value.0.tz
             zones[tz.identifier] = tz
             let dayKey = "\(tz.identifier)|\(k.split(separator: "|").last ?? "")"
-            if visitByDay[dayKey] == nil { visitByDay[dayKey] = k }
+            visitByDay[dayKey, default: []].append(k)
         }
-        for (from, to) in alias {
+        for (from, to) in alias.sorted(by: { $0.key < $1.key }) {
             guard let tz = visits[to]?.0.tz else { continue }
             let dayKey = "\(tz.identifier)|\(from.split(separator: "|").last ?? "")"
-            if visitByDay[dayKey] == nil { visitByDay[dayKey] = to }
+            if !(visitByDay[dayKey] ?? []).contains(to) { visitByDay[dayKey, default: []].append(to) }
+        }
+        func gap(_ date: Date, to k: String) -> TimeInterval {
+            let times = (visits[k]?.1 ?? []).map(\.1) + (joined[k] ?? []).map(\.1)
+            guard let first = times.min(), let last = times.max() else { return .infinity }
+            return date < first ? first.timeIntervalSince(date) : date > last ? date.timeIntervalSince(last) : 0
         }
         var byDay: [String: [(String, Date)]] = [:]
         for (id, date) in loose {
             var home: String?
             for (zoneId, tz) in zones {
-                if let k = visitByDay["\(zoneId)|\(days.day(date, tz: tz))"] { home = k; break }
+                if let keys = visitByDay["\(zoneId)|\(days.day(date, tz: tz))"],
+                   let k = keys.min(by: { gap(date, to: $0) < gap(date, to: $1) }) { home = k; break }
             }
             if let home {
                 adopted[home, default: []].append((id, date))

@@ -106,9 +106,12 @@ enum ReviewQueue {
         let gameTaken = gamePhotos(in: library, ledger: ledger)
         let saved = outings(library, venues: venues)
         var keyer = DayKeyer()
-        var kept = games.filter { !$0.assetIds.contains(where: gameTaken.contains) }
+        // What places a game or visit is the photos at the ground; the day's other photos ride along and say nothing about it
+        // (BiH v Canada at BMO Field carried the Rogers Centre photos of a saved ballgame that evening).
+        func placing(_ c: PhotoCluster) -> [String] { c.anchors.isEmpty ? c.assetIds : c.anchors }
+        var kept = games.filter { !placing($0).contains(where: gameTaken.contains) }
         var visits: [PhotoCluster] = []
-        for visit in others where !visit.assetIds.contains(where: taken.contains) {
+        for visit in others where !placing(visit).contains(where: taken.contains) {
             let day = keyer.day(visit.start, tz: visit.venue.tz)
             let ids = Set(visit.assetIds)
             if let at = kept.firstIndex(where: {

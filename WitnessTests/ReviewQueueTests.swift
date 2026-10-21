@@ -27,6 +27,23 @@ final class ReviewQueueTests: XCTestCase {
 
     private func day(_ s: String) -> Date { ISO8601DateFormatter().date(from: s)! }
 
+    /// BiH v Canada at BMO Field carried the day's other photos, and some were on a ballgame saved at Rogers Centre that evening.
+    /// What places a match is the photos at the ground, so the game is still offered.
+    func testAMatchIsNotDroppedForPhotosThatOnlyRodeAlongWithIt() throws {
+        let library = Library(storeURL: tempURL("library"))
+        let bmo = try venue("BMO Field", in: library)
+        var match = visit("match", at: bmo, day("2026-06-12T17:13:00Z"), photos: 4)
+        let loose = ["ballgame-photo-1", "ballgame-photo-2"]
+        match = PhotoCluster(id: match.id, venue: bmo, start: match.start, end: match.end, assetIds: match.assetIds + loose,
+                             times: match.times + [match.start, match.start], insideIds: match.assetIds)
+        var ballgame = GameEntry(sport: .baseball, date: day("2026-06-12T23:37:00Z"), venueId: "mlb-tor",
+                                 photos: loose.map { PhotoRef.library($0) }, origin: .photos)
+        ballgame.source = .init(provider: "espn", league: "baseball/mlb", eventId: "822803")
+        library.add(ballgame)
+        let kept = ReviewQueue.firstPass(games: [match], others: [], library: library.games, venues: library.venues, ledger: ReviewLedger())
+        XCTAssertEqual(kept.games.map(\.id), ["match"])
+    }
+
     func testTourAddedInOnboardingIsNotOfferedByTheBackgroundSearch() throws {
         let library = Library(storeURL: tempURL("library"))
         let scan = ScanModel(ledgerURL: tempURL("ledger"))
