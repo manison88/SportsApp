@@ -12,7 +12,7 @@
       },
       "expectedFailures" : 0,
       "failedTests" : 1,
-      "passedTests" : 241,
+      "passedTests" : 242,
       "skippedTests" : 24,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -23,11 +23,11 @@
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
   "failedTests" : 1,
-  "finishTime" : 1792521933.771,
-  "passedTests" : 241,
+  "finishTime" : 1792543487.313,
+  "passedTests" : 242,
   "result" : "Failed",
   "skippedTests" : 24,
-  "startTime" : 1792520392.857,
+  "startTime" : 1792542108.307,
   "statistics" : [
 
   ],
@@ -35,7 +35,7 @@
     {
       "failureText" : "XCTAssertTrue failed - The 132 sides are split by FIBA zone",
       "targetName" : "WitnessUITests",
-      "testIdentifier" : 256,
+      "testIdentifier" : 257,
       "testIdentifierString" : "WitnessUITests/testPlanBasketballNationalTeam()",
       "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testPlanBasketballNationalTeam",
       "testName" : "testPlanBasketballNationalTeam()"
@@ -45,9 +45,9 @@
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "41% of duration",
-      "text" : "3 longest test runs with outlier durations exceeding 12.19s (three standard deviations)"
+      "impact" : "42% of duration",
+      "text" : "3 longest test runs with outlier durations exceeding 11.16s (three standard deviations)"
     }
   ],
-  "totalTestCount" : 266
+  "totalTestCount" : 267
 }
