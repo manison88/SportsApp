@@ -7,6 +7,31 @@ final class LibraryTests: XCTestCase {
         FileManager.default.temporaryDirectory.appending(path: "library-\(UUID().uuidString).json")
     }
 
+    /// A person the fan added can be removed, and comes off every game they were on; the sample cast cannot.
+    func testRemovingAPersonTakesThemOffTheirGames() throws {
+        let url = tempURL()
+        let library = Library(storeURL: url)
+        library.startEmpty()
+        let steve = library.addPerson(named: "Steve")
+        var game = GameEntry(sport: .baseball, date: Date(), venueId: "mlb-chc", photos: [], origin: .manual)
+        game.companionIds = [steve.id]
+        library.add(game)
+        XCTAssertTrue(library.isCustomPerson(steve.id))
+        XCTAssertEqual(library.games(with: steve.id).count, 1)
+
+        library.removePerson(steve.id)
+        XCTAssertFalse(library.people.contains { $0.id == steve.id })
+        XCTAssertTrue(library.games(with: steve.id).isEmpty, "Off the game too")
+        XCTAssertTrue(Library(storeURL: url).people.isEmpty, "Gone after a relaunch")
+
+        let sample = Library(storeURL: tempURL())
+        sample.loadSample()
+        let cast = sample.people.count
+        XCTAssertGreaterThan(cast, 0)
+        sample.removePerson(sample.people[0].id)
+        XCTAssertEqual(sample.people.count, cast, "The sample library's people stay")
+    }
+
     func testAddPersistsAndReloads() throws {
         let url = tempURL()
         let library = Library(storeURL: url)

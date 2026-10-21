@@ -841,6 +841,19 @@ final class Library {
         return p
     }
 
+    /// Whether the fan added this person (the sample library's people cannot be removed).
+    func isCustomPerson(_ id: String) -> Bool { customPeople.contains { $0.id == id } }
+
+    /// Removes a person the fan added, and takes them off every game they were on.
+    func removePerson(_ id: String) {
+        guard isCustomPerson(id) else { return }
+        customPeople.removeAll { $0.id == id }
+        for i in games.indices where games[i].companionIds.contains(id) {
+            games[i].companionIds.removeAll { $0 == id }
+        }
+        save()
+    }
+
     /// Loads Sam's sample library so the app can be explored without data.
     func loadSample() {
         guard let sample: [GameEntry] = decode("library", subdirectory: "Sample") else { return }

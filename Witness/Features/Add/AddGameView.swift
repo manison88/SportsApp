@@ -236,7 +236,18 @@ struct AddGameView: View {
                             Text(p.name)
                         }
                     }
+                    .tint(Color.signal)
                     .accessibilityIdentifier("add-with-\(p.id)")
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        // Only people the fan added; the sample library's cast stays.
+                        if library.isCustomPerson(p.id) {
+                            Button(role: .destructive) {
+                                companionIds.remove(p.id)
+                                library.removePerson(p.id)
+                            } label: { Label("Delete", systemImage: "trash") }
+                            .accessibilityIdentifier("add-with-delete-\(p.id)")
+                        }
+                    }
                 }
                 HStack {
                     TextField("Add person", text: $newPerson)
