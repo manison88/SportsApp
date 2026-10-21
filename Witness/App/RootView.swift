@@ -30,7 +30,7 @@ struct RootView: View {
             switch modal {
             case .discovery: DiscoveryView()
             case .live: LiveCheckInView()
-            case .recap(let id): RecapFilmView(gameId: id)
+            case .recap(let id): RecapVideoView(gameId: id)
             case .wrapped(let year): WrappedView(year: year)
             default: EmptyView()
             }
