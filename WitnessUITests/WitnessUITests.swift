@@ -211,7 +211,9 @@ final class WitnessUITests: XCTestCase {
 
         tap("play-recap")
         XCTAssertTrue(el("recap-close").waitForExistence(timeout: 5))
-        sleep(2)
+        // The cut renders on the device first; CI's software encoder takes a while.
+        XCTAssertTrue(el("recap-pause").waitForExistence(timeout: 120), "The recap finishes cutting and plays")
+        sleep(1)
         snap("07-recap")
         tap("recap-pause")
         tap("recap-close")
