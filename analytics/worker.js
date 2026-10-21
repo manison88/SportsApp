@@ -22,6 +22,8 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === '/e' && request.method === 'POST') return ingest(request, env);
     if (url.pathname === '/health') return new Response('ok');
+    if (url.pathname === '/feedback' && request.method === 'POST') return feedback(request, env);
+    if (url.pathname === '/requests') return requests(request, env, url);
     if (url.pathname.startsWith('/packs/')) return servePack(request, env, url.pathname.slice(7));
     if (url.pathname.startsWith('/packs-admin/')) return adminPacks(request, env, url.pathname.slice(13));
     // The privacy policy and terms the App Store listing and the app link to: public, no sign-in.
@@ -88,6 +90,94 @@ function cleanProps(p) {
   }
   const s = JSON.stringify(out);
   return s.length > 600 ? null : s;
+}
+
+// MARK: Feedback and requests
+
+// What a fan sends from You → Feedback & requests: a kind, their words, an optional way to reach them. Listed at /requests
+// behind the dashboard password, newest first, with a Done button per row.
+const FEEDBACK_KINDS = { feature: 'Feature request', feedback: 'Feedback', sport: 'Sport or league to add', problem: "Something's wrong" };
+const FEEDBACK_PER_DEVICE_PER_DAY = 10;
+const FEEDBACK_MAX_TEXT = 2000;
+let feedbackReady = false;
+
+async function ensureFeedback(env) {
+  if (feedbackReady) return;
+  await env.DB.prepare(`CREATE TABLE IF NOT EXISTS feedback (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, ts INTEGER NOT NULL, kind TEXT NOT NULL, text TEXT NOT NULL, contact TEXT,
+    device TEXT NOT NULL, app_version TEXT, os TEXT, country TEXT, done INTEGER NOT NULL DEFAULT 0)`).run();
+  feedbackReady = true;
+}
+
+async function feedback(request, env) {
+  if (request.headers.get('x-witness-key') !== env.INGEST_KEY) return new Response('Unauthorized', { status: 401 });
+  const raw = await request.text();
+  if (raw.length > MAX_BODY) return new Response('Too large', { status: 413 });
+  let body;
+  try { body = JSON.parse(raw); } catch { return new Response('Bad JSON', { status: 400 }); }
+  const device = String(body.device || '');
+  if (!/^[0-9a-fA-F-]{20,40}$/.test(device)) return new Response('Bad device', { status: 400 });
+  const kind = String(body.kind || '');
+  if (!FEEDBACK_KINDS[kind]) return new Response('Bad kind', { status: 400 });
+  const text = String(body.text || '').trim().slice(0, FEEDBACK_MAX_TEXT);
+  if (!text) return new Response('Nothing to send', { status: 400 });
+  const clean = (v, n) => (typeof v === 'string' && v.trim() ? v.trim().slice(0, n) : null);
+  const contact = clean(body.contact, 120), version = clean(body.v, 20), os = clean(body.os, 20);
+  const country = request.cf && request.cf.country ? String(request.cf.country).slice(0, 2) : null;
+
+  await ensureFeedback(env);
+  const now = Date.now();
+  const today = await env.DB.prepare('SELECT COUNT(*) AS c FROM feedback WHERE device = ? AND ts > ?').bind(device, now - 86400 * 1000).first();
+  if (today && today.c >= FEEDBACK_PER_DEVICE_PER_DAY) return new Response('Slow down', { status: 429 });
+  await env.DB.prepare('INSERT INTO feedback (ts, kind, text, contact, device, app_version, os, country) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
+    .bind(now, kind, text, contact, device, version, os, country).run();
+  return new Response(null, { status: 204 });
+}
+
+async function requests(request, env, url) {
+  if (!authorized(request, env)) {
+    return new Response('Sign in', { status: 401, headers: { 'www-authenticate': 'Basic realm="Witness analytics"' } });
+  }
+  await ensureFeedback(env);
+  if (request.method === 'POST') {
+    const form = await request.formData();
+    const id = Number(form.get('id')), done = form.get('done') === '1' ? 1 : 0;
+    if (Number.isInteger(id)) await env.DB.prepare('UPDATE feedback SET done = ? WHERE id = ?').bind(done, id).run();
+    return new Response(null, { status: 303, headers: { location: '/requests' + (url.search || '') } });
+  }
+  const kind = FEEDBACK_KINDS[url.searchParams.get('kind')] ? url.searchParams.get('kind') : null;
+  const all = url.searchParams.get('show') === 'all';
+  const where = [all ? null : 'done = 0', kind ? 'kind = ?' : null].filter(Boolean).join(' AND ');
+  const rows = (await env.DB.prepare(`SELECT * FROM feedback${where ? ' WHERE ' + where : ''} ORDER BY ts DESC LIMIT 500`).bind(...(kind ? [kind] : [])).all()).results || [];
+  const counts = Object.fromEntries(((await env.DB.prepare('SELECT kind, COUNT(*) AS c FROM feedback WHERE done = 0 GROUP BY kind').all()).results || []).map((x) => [x.kind, x.c]));
+  const open = Object.values(counts).reduce((a, b) => a + b, 0);
+  const q = (k, v) => { const p = new URLSearchParams(url.search); if (v) p.set(k, v); else p.delete(k); const s = p.toString(); return '/requests' + (s ? '?' + s : ''); };
+  const filter = (label, href, on) => `<a class="f${on ? ' on' : ''}" href="${href}">${esc(label)}</a>`;
+  const when = (ts) => new Date(ts).toISOString().slice(0, 16).replace('T', ' ');
+  const html = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Witness requests</title><style>
+:root{color-scheme:dark}body{margin:0;background:#050506;color:#f5f1ea;font:15px/1.45 -apple-system,Inter,sans-serif;padding:24px;max-width:1100px;margin:0 auto}
+h1{font:800 34px 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;margin:0 0 4px}.sub{color:#9a958b;margin:0 0 18px}.sub a{color:#ffb547}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}.f{color:#f5f1ea;text-decoration:none;background:#121215;border-radius:999px;padding:7px 14px;font-size:13px}.f.on{background:#ffb547;color:#141413;font-weight:700}
+.item{background:#121215;border-radius:16px;padding:16px 18px;margin:0 0 10px;display:grid;grid-template-columns:1fr auto;gap:12px}
+.kind{font:700 12px Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#ffb547}.meta{color:#9a958b;font-size:13px;margin-top:6px}
+.text{white-space:pre-wrap;margin:6px 0 0;font-size:16px}.done .text{color:#9a958b}
+button{background:#24242a;color:#f5f1ea;border:0;border-radius:10px;padding:8px 14px;font:600 13px Inter,sans-serif;cursor:pointer;align-self:start}.none{color:#6a665e}
+</style></head><body>
+<h1>Requests and feedback</h1><p class="sub">${open} open · <a href="/">back to analytics</a></p>
+<div class="filters">
+${filter(`All open (${open})`, q('kind', null).replace(/[?&]show=all/, ''), !kind && !all)}
+${Object.entries(FEEDBACK_KINDS).map(([k, label]) => filter(`${label} (${counts[k] || 0})`, q('kind', k), kind === k)).join('')}
+${filter('Including done', q('show', 'all'), all)}
+</div>
+${rows.length ? rows.map((x) => `<div class="item${x.done ? ' done' : ''}"><div>
+<div class="kind">${esc(FEEDBACK_KINDS[x.kind] || x.kind)}${x.done ? ' · done' : ''}</div>
+<p class="text">${esc(x.text)}</p>
+<div class="meta">${when(x.ts)} UTC${x.contact ? ' · ' + esc(x.contact) : ''} · v${esc(x.app_version || '?')} · iOS ${esc(x.os || '?')}${x.country ? ' · ' + esc(x.country) : ''}</div>
+</div><form method="post"><input type="hidden" name="id" value="${x.id}"><input type="hidden" name="done" value="${x.done ? 0 : 1}"><button>${x.done ? 'Reopen' : 'Done'}</button></form></div>`).join('')
+  : '<p class="none">Nothing here</p>'}
+</body></html>`;
+  return new Response(html, { headers: { 'content-type': 'text/html;charset=utf-8', 'cache-control': 'no-store' } });
 }
 
 // MARK: Data packs
@@ -187,6 +277,8 @@ async function dashboard(request, env) {
   ]);
   const r = results.map((x) => x.results || []);
   const one = (i) => r[i][0] || {};
+  await ensureFeedback(env);
+  const openRequests = ((await env.DB.prepare('SELECT COUNT(*) AS c FROM feedback WHERE done = 0').first()) || {}).c || 0;
   const pct = (a, b) => (b ? Math.round((100 * (a || 0)) / b) + '%' : '–');
   const ret = one(6);
   const scan = one(9);
@@ -213,7 +305,7 @@ async function dashboard(request, env) {
 <title>Witness analytics</title><style>
 :root{color-scheme:dark}body{margin:0;background:#050506;color:#f5f1ea;font:15px/1.4 -apple-system,Inter,sans-serif;padding:24px;max-width:1100px;margin:0 auto}
 h1{font:800 34px 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;margin:0 0 4px}h2{font:700 13px Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#ffb547;margin:0 0 10px}
-.sub{color:#9a958b;margin:0 0 22px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.sub{color:#9a958b;margin:0 0 22px}.sub a{color:#ffb547}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
 .card{background:#121215;border-radius:16px;padding:18px}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
 .kpi{background:#121215;border-radius:16px;padding:16px}.kpi b{display:block;font:800 40px 'Barlow Condensed',Impact,sans-serif}.kpi span{color:#9a958b;font-size:13px}
 .bars .row{display:grid;grid-template-columns:minmax(90px,38%) 1fr 40px;gap:10px;align-items:center;margin:6px 0}.l{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -221,7 +313,7 @@ h1{font:800 34px 'Barlow Condensed',Impact,sans-serif;text-transform:uppercase;m
 .series{display:flex;align-items:flex-end;gap:3px;height:90px}.series i{flex:1;background:#ffb547;border-radius:3px 3px 0 0;min-height:2px}
 table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:6px 8px;border-bottom:1px solid #24242a;font-size:14px}th{color:#9a958b;font-weight:600}.none{color:#6a665e}
 </style></head><body>
-<h1>Witness analytics</h1><p class="sub">Anonymous usage. No photos, locations or names. Times are UTC.</p>
+<h1>Witness analytics</h1><p class="sub">Anonymous usage. No photos, locations or names. Times are UTC. · <a href="/requests">Requests and feedback (${openRequests} open)</a></p>
 <div class="kpis">
 <div class="kpi"><b>${one(0).c || 0}</b><span>phones seen, all time</span></div>
 <div class="kpi"><b>${one(1).c || 0}</b><span>opened today</span></div>

@@ -39,7 +39,7 @@ final class Analytics {
 
     static let endpoint = Backend.base + "/e"
     /// Ships inside the app, so it only keeps casual junk out. The Worker validates and limits everything anyway.
-    private static let key = "5ujo3n8yQh1uI6jbaVIoUucWMvja2S-9"
+    static let key = "5ujo3n8yQh1uI6jbaVIoUucWMvja2S-9"
 
     private(set) var enabled: Bool
     @ObservationIgnored private var queue: [[String: Any]] = []

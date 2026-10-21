@@ -120,6 +120,19 @@ struct YouView: View {
                 .foregroundStyle(Color.primaryText)
                 .accessibilityIdentifier("you-schedule-gaps")
             }
+            NavigationLink { FeedbackView() } label: {
+                HStack {
+                    Text("Feedback & requests").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
+                    Spacer()
+                    Image(systemName: "chevron.right").font(.footnote.weight(.bold)).foregroundStyle(Color.textTertiary)
+                        .accessibilityHidden(true)
+                }
+                .frame(minHeight: 56)
+                .contentShape(.rect)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(Color.primaryText)
+            .accessibilityIdentifier("you-feedback")
             NavigationLink { BackupView() } label: {
                 HStack {
                     Text("Back up & export").font(.condensed(.headline, weight: .heavy)).textCase(.uppercase)
