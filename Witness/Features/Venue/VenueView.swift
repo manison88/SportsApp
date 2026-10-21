@@ -60,13 +60,7 @@ struct VenueView: View {
                     key: "\(venue.id)-\(games.count)",
                     variants: { await shareVariants(venue, games: games) }
                 ) {
-                    Image(systemName: "square.and.arrow.up")
-                        .font(.body.weight(.bold))
-                        .foregroundStyle(Color.primaryText)
-                        .frame(width: 36, height: 36)
-                        .background(.ultraThinMaterial, in: .circle)
-                        .frame(width: 44, height: 44)
-                        .contentShape(.circle)
+                    HeroToolbarIcon(systemName: "square.and.arrow.up")
                 }
                 .accessibilityLabel("Share venue")
                 .accessibilityIdentifier("venue-share")

@@ -451,9 +451,7 @@ struct PlanView: View {
                         dismiss()
                     } label: { Label("Remove plan", systemImage: "trash") }
                 } label: {
-                    Image(systemName: "ellipsis").font(.body.weight(.bold)).foregroundStyle(Color.primaryText)
-                        .frame(width: 36, height: 36).background(.ultraThinMaterial, in: .circle)
-                        .frame(width: 44, height: 44).contentShape(.circle)
+                    HeroToolbarIcon(systemName: "ellipsis")
                 }
                 .accessibilityLabel("More")
                 .accessibilityIdentifier("plan-menu")

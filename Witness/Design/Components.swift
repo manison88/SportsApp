@@ -625,6 +625,27 @@ extension View {
     }
 }
 
+/// The glyph of a toolbar button over a photo hero (the bar's own background hidden). iOS 26 draws every toolbar item in its
+/// own glass capsule, so the glyph goes in bare, like every other toolbar button in the app: a material disc of our own inside
+/// that capsule read as an off-centre blob in a pill. Earlier systems draw nothing behind a hidden bar, so there the disc stays
+/// to keep the glyph readable on the photo.
+struct HeroToolbarIcon: View {
+    var systemName: String
+    var body: some View {
+        if #available(iOS 26.0, *) {
+            Image(systemName: systemName)
+        } else {
+            Image(systemName: systemName)
+                .font(.body.weight(.bold))
+                .foregroundStyle(Color.primaryText)
+                .frame(width: 36, height: 36)
+                .background(.ultraThinMaterial, in: .circle)
+                .frame(width: 44, height: 44)
+                .contentShape(.circle)
+        }
+    }
+}
+
 extension ToolbarContent {
     /// iOS 26 wraps every toolbar item in a glass capsule; a screen title should sit on the page, not in a button.
     @ToolbarContentBuilder

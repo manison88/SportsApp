@@ -380,13 +380,7 @@ struct GameMemoryView: View {
     /// Adds photos and videos from the library to this game, by hand.
     private var addPhotosButton: some View {
         PhotosPicker(selection: $adding, matching: .any(of: [.images, .videos]), photoLibrary: .shared()) {
-            Image(systemName: "plus")
-                .font(.body.weight(.bold))
-                .foregroundStyle(.white)
-                .frame(width: 36, height: 36)
-                .background(.ultraThinMaterial, in: .circle)
-                .frame(width: 44, height: 44)
-                .contentShape(.circle)
+            HeroToolbarIcon(systemName: "plus")
         }
         .accessibilityLabel("Add photos")
         .accessibilityIdentifier("game-add-photos")
@@ -408,13 +402,7 @@ struct GameMemoryView: View {
             Button(role: .destructive) { confirmDelete = true } label: { Label("Delete", systemImage: "trash") }
                 .accessibilityIdentifier("game-delete")
         } label: {
-            Image(systemName: "ellipsis")
-                .font(.body.weight(.bold))
-                .foregroundStyle(.white)
-                .frame(width: 36, height: 36)
-                .background(.ultraThinMaterial, in: .circle)
-                .frame(width: 44, height: 44)
-                .contentShape(.circle)
+            HeroToolbarIcon(systemName: "ellipsis")
         }
         .accessibilityLabel("More")
         .accessibilityIdentifier("game-menu")
