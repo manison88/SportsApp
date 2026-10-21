@@ -47,9 +47,10 @@ struct GameMemoryView: View {
         .toolbarBackground(.hidden, for: .navigationBar)
         .toolbarColorScheme(.dark, for: .navigationBar)
         .toolbar {
-            // One item, so the three buttons sit close; separate items get the system's wide gap.
+            // One item, so the three buttons share one capsule; separate items get the system's wide gap. Each is a 44 pt
+            // cell, so they sit evenly spaced.
             ToolbarItem(placement: .topBarTrailing) {
-                HStack(spacing: 2) { playButton(game); addPhotosButton; menu(game) }
+                HStack(spacing: 6) { playButton(game); addPhotosButton; menu(game) }
                     .accessibilityElement(children: .contain)
                     .accessibilityIdentifier("game-toolbar")
             }

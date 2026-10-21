@@ -633,7 +633,10 @@ struct HeroToolbarIcon: View {
     var systemName: String
     var body: some View {
         if #available(iOS 26.0, *) {
+            // The same 44 pt cell as the disc below and as a play button beside it, so a row of these spaces out evenly.
             Image(systemName: systemName)
+                .frame(width: 44, height: 44)
+                .contentShape(.rect)
         } else {
             Image(systemName: systemName)
                 .font(.body.weight(.bold))
