@@ -377,8 +377,8 @@ final class ScanModel {
         tickets = [:]
 
         // Games: a game on the schedule at the stadium that day. A visit with no game is a stadium visit (a tour, a walk
-        // around the ground) when `dwellPhotos` photos inside its fence, none on the move, span `dwellMinutes`
-        // (`PhotoCluster.isStadiumVisit`); the rest are dropped, and the review screen is the filter after that.
+        // around the ground) when `dwellPhotos` photos inside its fence, none on the move, span `dwellMinutes` (two, any
+        // spread, by default: `PhotoCluster.isStadiumVisit`); the rest are dropped, and the review screen is the filter after that.
         // One game, one card: photos split between two neighbouring grounds (the walk in by the ballpark, the match next
         // door) that found the same game become one visit.
         var confirmed: [PhotoCluster] = []

@@ -8,8 +8,9 @@ final class PhotoMatcherTests: XCTestCase {
         XCTAssertFalse(PhotoMatcher.looksLikeAGame([t0]))
     }
 
-    func testQuickBurstIsNotAGame() {
-        XCTAssertFalse(PhotoMatcher.looksLikeAGame([t0, t0.addingTimeInterval(60), t0.addingTimeInterval(300)]))
+    func testQuickBurstIsNotAGameWhenAStayIsAsked() {
+        XCTAssertFalse(PhotoMatcher.looksLikeAGame([t0, t0.addingTimeInterval(60), t0.addingTimeInterval(300)], minimumStay: 15 * 60))
+        XCTAssertTrue(PhotoMatcher.looksLikeAGame([t0, t0.addingTimeInterval(60)]), "By default two photos are enough")
     }
 
     func testPhotosAcrossAnEveningAreAGame() {

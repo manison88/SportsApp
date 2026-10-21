@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
 
   "fenceMeters": 200,
   "fenceBigMeters": 260,
@@ -16,11 +16,11 @@
   "movingDistanceMeters": 1000,
   "movingWindowMinutes": 5,
 
-  "visitStayMinutes": 15,
+  "visitStayMinutes": 0,
   "overnightGapHours": 6,
   "askGapHours": 12,
-  "dwellPhotos": 3,
-  "dwellMinutes": 20,
+  "dwellPhotos": 2,
+  "dwellMinutes": 0,
   "skipWindowHours": 3,
 
   "scheduleBeforeHours": 5,

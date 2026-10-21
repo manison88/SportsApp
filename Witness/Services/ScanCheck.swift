@@ -59,7 +59,7 @@ enum ScanCheck {
         let scan = VisitGrouping.group(points, venues: venues, minimumStay: stay, skipping: settled, moving: moving, settings: settings)
         let album = VisitGrouping.group(points, venues: venues, moving: moving, settings: settings)
         out.append("")
-        out.append("Visits (scan rule: a photo inside the fence, not on the move, and another inside or within reach of it, \(Int(settings.visitStayMinutes))+ min apart):")
+        out.append("Visits (scan rule: \(visitRule(settings))):")
         if scan.visits.isEmpty { out.append("  none") }
         for v in scan.visits { out.append("  " + describe(v, time: time)) }
         let dropped = album.visits.filter { a in !scan.visits.contains { $0.id == a.id } }
@@ -93,8 +93,8 @@ enum ScanCheck {
         out.append("Waiting for the background search (pending-visits.json): "
                    + (waiting.isEmpty ? "none" : waiting.map { describe($0, time: time) }.joined(separator: "; ")))
         let found = PhotoMatcher.found(in: points, venues: venues, existing: library, settings: settings)
-        out.append("Around a stadium, no photo inside its fence (within \(Int(settings.nearbyReachMeters)) m, \(settings.nearbyPhotos)+ photos, "
-                   + "\(Int(settings.visitStayMinutes))+ min; a possible game when the schedule has one):")
+        out.append("Around a stadium, no photo inside its fence (within \(Int(settings.nearbyReachMeters)) m, \(settings.nearbyPhotos)+ photos"
+                   + (settings.visitStayMinutes > 0 ? ", \(Int(settings.visitStayMinutes))+ min" : "") + "; a possible game when the schedule has one):")
         if found.nearby.isEmpty { out.append("  none") }
         for day in found.nearby { out.append("  " + describe(day, time: time)) }
         return out
@@ -244,10 +244,18 @@ enum ScanCheck {
             + (v.insideIds.map { " (\($0.count) inside the fence)" } ?? "")
     }
 
+    /// The visit rule in words, as the settings have it.
+    static func visitRule(_ settings: ScanSettings = .current) -> String {
+        "a photo inside the fence, not on the move, and another inside or within \(Int(settings.matchdayReachMeters)) m of it"
+            + (settings.visitStayMinutes > 0 ? ", \(Int(settings.visitStayMinutes))+ min apart" : "")
+    }
+
     /// Whether a visit with no game is offered as a stadium visit (a tour), and why.
     static func visitLine(_ visit: PhotoCluster, settings: ScanSettings = .current) -> String {
-        "stadium visit: \(visit.anchors.count) photos inside the fence over \(Int(visit.insideSpan / 60)) min \u{2014} "
-            + (visit.isStadiumVisit(settings) ? "offered" : "fewer than \(settings.dwellPhotos) or under \(Int(settings.dwellMinutes)) min, dropped")
+        let why = settings.dwellMinutes > 0 ? "fewer than \(settings.dwellPhotos) or under \(Int(settings.dwellMinutes)) min, dropped"
+                                            : "fewer than \(settings.dwellPhotos) inside the fence, dropped"
+        return "stadium visit: \(visit.anchors.count) photos inside the fence over \(Int(visit.insideSpan / 60)) min \u{2014} "
+            + (visit.isStadiumVisit(settings) ? "offered" : why)
     }
 
     /// The header's settings line ("settings v1 (built-in)") and one line per value that differs from the built-in defaults.

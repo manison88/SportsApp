@@ -52,12 +52,16 @@ final class ScanSettingsTests: XCTestCase {
         XCTAssertEqual(ScanSettings.defaults.clamped(), .defaults, "Today's values are inside every range")
     }
 
-    /// The pack source in the repo is the built-in defaults, key for key, so what is published is what the app ships with.
+    /// The pack source in the repo is the built-in defaults, key for key, so what is published is what the app ships with. Its
+    /// version may run ahead of the built-in one: that is how a rule change reaches phones on an earlier build.
     func testThePublishedSourceFileMatchesTheBuiltInDefaults() throws {
         let repo = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
         let file = repo.appending(path: "Tools/packs/scan-settings.json")
         guard let data = try? Data(contentsOf: file) else { throw XCTSkip("Tools/packs/scan-settings.json is not beside the tests") }
-        XCTAssertEqual(try JSONDecoder().decode(ScanSettings.self, from: data), .defaults)
+        var published = try JSONDecoder().decode(ScanSettings.self, from: data)
+        XCTAssertGreaterThanOrEqual(published.version, ScanSettings.defaults.version)
+        published.version = ScanSettings.defaults.version
+        XCTAssertEqual(published, .defaults)
         let keys = Set((try JSONSerialization.jsonObject(with: data) as? [String: Any])?.keys.map { $0 } ?? [])
         XCTAssertEqual(keys, Set(ScanSettings.CodingKeys.allCases.map(\.rawValue)), "Every setting is in the file, and nothing else")
     }
@@ -110,7 +114,7 @@ final class ScanSettingsTests: XCTestCase {
         changed.sceneElsewhereWords.append("golf")
         let lines = changed.differences()
         XCTAssertEqual(lines.count, 2, "\(lines)")
-        XCTAssertTrue(lines.contains("dwellMinutes: 60 (default 20)"), "\(lines)")
+        XCTAssertTrue(lines.contains("dwellMinutes: 60 (default 0)"), "\(lines)")
         XCTAssertTrue(lines.contains { $0.hasPrefix("sceneElsewhereWords: ") && $0.contains("entries (default") }, "\(lines)")
         XCTAssertEqual(ScanCheck.settingsLines(changed, source: .pack).first, "Settings: v1 (pack)")
     }
@@ -152,7 +156,7 @@ final class ScanSettingsTests: XCTestCase {
         XCTAssertEqual(newer.settings.version, 2)
         XCTAssertEqual(newer.settings.dwellMinutes, 60)
         XCTAssertEqual(newer.settings.neighborMeters, 5_000, "Clamped on the way in")
-        XCTAssertEqual(newer.settings.dwellPhotos, 3, "A key the pack leaves out keeps its default")
+        XCTAssertEqual(newer.settings.dwellPhotos, 2, "A key the pack leaves out keeps its default")
 
         try packs.publish(#"{"version": 1, "dwellMinutes": 60}"#)
         let same = ScanSettings.loaded(from: packs.directory, publicKey: packs.publicKey)
@@ -243,7 +247,7 @@ final class ScanSettingsTests: XCTestCase {
         XCTAssertFalse(visit.isStadiumVisit(hour))
         let waiting = await ScanModel.waitingDay(visit, venues: library.venues, settings: hour)
         XCTAssertNil(waiting, "The background search judges by the same settings")
-        XCTAssertEqual(ScanCheck.visitLine(visit, settings: hour), "stadium visit: 6 photos inside the fence over 40 min \u{2014} fewer than 3 or under 60 min, dropped")
+        XCTAssertEqual(ScanCheck.visitLine(visit, settings: hour), "stadium visit: 6 photos inside the fence over 40 min \u{2014} fewer than 2 or under 60 min, dropped")
 
         ScanSettings.install(hour, source: .pack)
         (scan, review) = await self.scan(tour)
@@ -251,7 +255,7 @@ final class ScanSettingsTests: XCTestCase {
         XCTAssertEqual(scan.skippedVisits, 1)
         XCTAssertTrue(scan.pendingVisits.isEmpty)
         XCTAssertEqual(ScanCheck.settingsLines().first, "Settings: v2 (pack)")
-        XCTAssertEqual(ScanCheck.settingsLines().dropFirst().first, "  changed: dwellMinutes: 60 (default 20)")
+        XCTAssertEqual(ScanCheck.settingsLines().dropFirst().first, "  changed: dwellMinutes: 60 (default 0)")
     }
 
     /// The fence tiers are settings too: a wider default fence takes in the bar across the street.

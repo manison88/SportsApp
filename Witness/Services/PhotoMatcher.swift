@@ -26,8 +26,9 @@ struct PhotoCluster: Identifiable, Hashable, Codable {
     }
 
     /// A stadium visit with no game on the schedule (a tour, a walk round the ground) is offered when `dwellPhotos` photos inside
-    /// the fence, none on the move, span `dwellMinutes` (three over twenty minutes): nobody lingers inside a fence that long by
-    /// accident. A plane over the ground is on the move; a drive past it leaves one photo; a bar across the street is outside the fence.
+    /// the fence, none on the move, span `dwellMinutes` (two, however close: a photo inside the fence that was not taken on the
+    /// move is a photo at the ground, and a wrong offer is one tap to skip). A plane over the ground is on the move; a drive past
+    /// it leaves one photo, which can be a stray fix; a bar across the street is outside the fence.
     var isStadiumVisit: Bool { isStadiumVisit(ScanSettings.current) }
     func isStadiumVisit(_ settings: ScanSettings) -> Bool {
         anchors.count >= settings.dwellPhotos && insideSpan >= settings.dwellMinutes * 60
@@ -296,8 +297,8 @@ enum PhotoMatcher {
         }.value
     }
 
-    /// A drive-by snapshot isn't a game: ask for at least two photos taken
-    /// at least `visitStayMinutes` (15 minutes) apart, the shortest plausible stay in the stands.
+    /// A drive-by snapshot isn't a game: ask for at least two photos, taken at least `visitStayMinutes` apart (0 by default:
+    /// two photos at the ground are enough).
     static func looksLikeAGame(_ times: [Date], minimumStay: TimeInterval? = nil, settings: ScanSettings = .current) -> Bool {
         guard times.count >= 2, let first = times.min(), let last = times.max() else { return false }
         return last.timeIntervalSince(first) >= (minimumStay ?? settings.visitStayMinutes * 60)

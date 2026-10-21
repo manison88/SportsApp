@@ -48,14 +48,16 @@ struct ScanSettings: Codable, Equatable, Sendable {
 
     // MARK: Visits (`VisitGrouping`, `PhotoCluster`)
 
-    /// A visit from library discovery needs its photos spread over this long (a drive-by is one photo).
-    var visitStayMinutes: Double = 15
+    /// A visit from library discovery needs its photos spread over this long. 0: no time rule, two photos at the ground (inside
+    /// the fence or within reach, not on the move) are a visit; the owner's call, a drive past the ground is one tap to skip.
+    var visitStayMinutes: Double = 0
     /// Photos at one venue on consecutive days no more than this apart are one visit (a night game); up to `askGapHours` we ask.
     var overnightGapHours: Double = 6
     var askGapHours: Double = 12
-    /// A visit with no game on the schedule is offered as a stadium visit when this many photos inside the fence span this long.
-    var dwellPhotos = 3
-    var dwellMinutes: Double = 20
+    /// A visit with no game on the schedule is offered as a stadium visit when this many photos inside the fence span this long
+    /// (0: however close together; one photo can be a stray fix, two inside the fence not on the move is a visit).
+    var dwellPhotos = 2
+    var dwellMinutes: Double = 0
     /// A skipped visit or possible game keeps away anything offered for the same outing: a candidate within this many hours of
     /// the skipped photos' first and last. A game hours later the same day is a different outing and is still offered.
     var skipWindowHours: Double = 3
@@ -383,11 +385,11 @@ struct ScanSettings: Codable, Equatable, Sendable {
         s.movingSpeed = m(s.movingSpeed, 5, 120)
         s.movingDistanceMeters = m(s.movingDistanceMeters, 50, 20_000)
         s.movingWindowMinutes = minutes(s.movingWindowMinutes)
-        s.visitStayMinutes = minutes(s.visitStayMinutes)
+        s.visitStayMinutes = minutes(s.visitStayMinutes, 0)
         s.overnightGapHours = m(s.overnightGapHours, 1, 48)
         s.askGapHours = m(s.askGapHours, 1, 48)
         s.dwellPhotos = n(s.dwellPhotos)
-        s.dwellMinutes = minutes(s.dwellMinutes)
+        s.dwellMinutes = minutes(s.dwellMinutes, 0)
         s.skipWindowHours = hours(s.skipWindowHours)
         s.scheduleBeforeHours = hours(s.scheduleBeforeHours)
         s.scheduleAfterHours = hours(s.scheduleAfterHours)
