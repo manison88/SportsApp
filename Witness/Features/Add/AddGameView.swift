@@ -245,6 +245,7 @@ struct AddGameView: View {
                                 companionIds.remove(p.id)
                                 library.removePerson(p.id)
                             } label: { Label("Delete", systemImage: "trash") }
+                            .tint(.red)  // The app tint is white, which made the swipe button a blank white pill.
                             .accessibilityIdentifier("add-with-delete-\(p.id)")
                         }
                     }
