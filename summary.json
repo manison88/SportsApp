@@ -12,7 +12,7 @@
       },
       "expectedFailures" : 0,
       "failedTests" : 0,
-      "passedTests" : 252,
+      "passedTests" : 253,
       "skippedTests" : 24,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -23,11 +23,11 @@
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
   "failedTests" : 0,
-  "finishTime" : 1792552112.396,
-  "passedTests" : 252,
+  "finishTime" : 1792555048.573,
+  "passedTests" : 253,
   "result" : "Passed",
   "skippedTests" : 24,
-  "startTime" : 1792550762.024,
+  "startTime" : 1792553675.273,
   "statistics" : [
 
   ],
@@ -38,9 +38,9 @@
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "39% of duration",
-      "text" : "3 longest test runs with outlier durations exceeding 9.15s (three standard deviations)"
+      "impact" : "34% of duration",
+      "text" : "2 longest test runs with outlier durations exceeding 10.84s (three standard deviations)"
     }
   ],
-  "totalTestCount" : 276
+  "totalTestCount" : 277
 }
