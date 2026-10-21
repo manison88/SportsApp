@@ -11,8 +11,8 @@
         "platform" : "iOS Simulator"
       },
       "expectedFailures" : 0,
-      "failedTests" : 1,
-      "passedTests" : 272,
+      "failedTests" : 0,
+      "passedTests" : 273,
       "skippedTests" : 24,
       "testPlanConfiguration" : {
         "configurationId" : "1",
@@ -22,31 +22,24 @@
   ],
   "environmentDescription" : "Witness · Built with macOS 15.7.9",
   "expectedFailures" : 0,
-  "failedTests" : 1,
-  "finishTime" : 1792559423.63,
-  "passedTests" : 268,
-  "result" : "Failed",
+  "failedTests" : 0,
+  "finishTime" : 1792590496.971,
+  "passedTests" : 269,
+  "result" : "Passed",
   "skippedTests" : 24,
-  "startTime" : 1792557768.446,
+  "startTime" : 1792588965.025,
   "statistics" : [
 
   ],
   "testFailures" : [
-    {
-      "failureText" : "XCTAssertTrue failed - Missing recap-pause",
-      "targetName" : "WitnessUITests",
-      "testIdentifier" : 275,
-      "testIdentifierString" : "WitnessUITests/testGameMemoryRecapAndYouWereThere()",
-      "testIdentifierURL" : "test://com.apple.xcode/Witness/WitnessUITests/WitnessUITests/testGameMemoryRecapAndYouWereThere",
-      "testName" : "testGameMemoryRecapAndYouWereThere()"
-    }
+
   ],
   "title" : "Test - Witness",
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "50% of duration",
-      "text" : "5 longest test runs with outlier durations exceeding 12.57s (three standard deviations)"
+      "impact" : "39% of duration",
+      "text" : "3 longest test runs with outlier durations exceeding 11.83s (three standard deviations)"
     }
   ],
   "totalTestCount" : 293
