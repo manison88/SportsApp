@@ -58,7 +58,17 @@ final class Analytics {
             device = UUID().uuidString
             d.set(device, forKey: "analytics.device")
         }
-        active = !ProcessInfo.processInfo.arguments.contains("-uitest") && Backend.isOnline
+        active = !Self.isTestOrSimulator && Backend.isOnline
+    }
+
+    /// Automated runs and the simulator (the CI builds) never send numbers, so the dashboard only holds real phones.
+    private static var isTestOrSimulator: Bool {
+        let info = ProcessInfo.processInfo
+        #if targetEnvironment(simulator)
+        return true
+        #else
+        return info.arguments.contains("-uitest") || info.environment["XCTestConfigurationFilePath"] != nil
+        #endif
     }
 
     func setEnabled(_ on: Bool) {
