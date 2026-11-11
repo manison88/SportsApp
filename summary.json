@@ -3,7 +3,7 @@
     {
       "device" : {
         "architecture" : "arm64",
-        "deviceId" : "291E4B86-C951-41A7-8327-84BF0304D0A9",
+        "deviceId" : "8F571767-87A3-448E-AF82-29C992EC2D5E",
         "deviceName" : "iPhone 16 Pro",
         "modelName" : "iPhone 16 Pro",
         "osBuildNumber" : "23C54",
@@ -20,14 +20,14 @@
       }
     }
   ],
-  "environmentDescription" : "Witness · Built with macOS 15.7.9",
+  "environmentDescription" : "Witness · Built with macOS 15.8.2",
   "expectedFailures" : 0,
   "failedTests" : 0,
-  "finishTime" : 1792859352.731,
+  "finishTime" : 1794403451.332,
   "passedTests" : 269,
   "result" : "Passed",
   "skippedTests" : 24,
-  "startTime" : 1792858025.537,
+  "startTime" : 1794401882.542,
   "statistics" : [
 
   ],
@@ -38,8 +38,8 @@
   "topInsights" : [
     {
       "category" : "Longest Test Runs",
-      "impact" : "46% of duration",
-      "text" : "4 longest test runs with outlier durations exceeding 11.36s (three standard deviations)"
+      "impact" : "49% of duration",
+      "text" : "5 longest test runs with outlier durations exceeding 12.47s (three standard deviations)"
     }
   ],
   "totalTestCount" : 293
