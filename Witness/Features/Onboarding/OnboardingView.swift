@@ -59,22 +59,18 @@ struct OnboardingView: View {
 
     private var controls: some View {
         VStack(spacing: 6) {
-            Button("Allow photo access") { presenter.scan.start(library: library) }
+            // App Review 5.1.1: this page explains, iOS asks. One button, straight to the system prompt; the choice
+            // (full, limited or none) is made there, and the other ways in are offered only after a no.
+            Text("Next, your iPhone asks if Witness can see your photos. You choose there.")
+                .font(.footnote)
+                .foregroundStyle(Color.textSecondary)
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+                .padding(.bottom, 6)
+                .accessibilityIdentifier("onboarding-next-note")
+            Button("Continue") { presenter.scan.start(library: library) }
                 .buttonStyle(PrimaryButtonStyle(fill: .signal, onFill: .black))
                 .accessibilityIdentifier("onboarding-allow")
-            HStack(spacing: 0) {
-                Button("Choose an album") { presenter.modal = .importAlbum }
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .accessibilityIdentifier("onboarding-album")
-                Rectangle().fill(Color.hairline).frame(width: 1, height: 18)
-                Button("Not now") { library.loadSample() }
-                    .frame(maxWidth: .infinity, minHeight: 44)
-                    .accessibilityIdentifier("onboarding-notnow")
-            }
-            .font(.condensed(.subheadline, weight: .heavy))
-            .textCase(.uppercase)
-            .tracking(1.2)
-            .foregroundStyle(Color.primaryText)
             HStack(spacing: 18) {
                 Button("Privacy policy") { legal = LegalContent.privacy }
                     .accessibilityIdentifier("onboarding-privacy")
