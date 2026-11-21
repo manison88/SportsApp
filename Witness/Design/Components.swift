@@ -1,6 +1,7 @@
 import SwiftUI
 import Photos
 import AVKit
+import os
 import UniformTypeIdentifiers
 
 // MARK: - Formatting
@@ -257,15 +258,20 @@ struct PhotoView: View {
     var contentMode: ContentMode = .fill
     /// Shows a play badge with the length on a video.
     var showsMediaBadge = false
+    /// Grid tiles ask for a small picture: far quicker than a full-size one, and it stays in memory for more photos.
+    var thumbnail = false
     @State private var image: UIImage?
     @State private var failed = false
 
-    init(ref: PhotoRef, contentMode: ContentMode = .fill, showsMediaBadge: Bool = false) {
+    private var size: CGSize { thumbnail ? PhotoLoader.thumbSize : PhotoLoader.fullSize }
+
+    init(ref: PhotoRef, contentMode: ContentMode = .fill, showsMediaBadge: Bool = false, thumbnail: Bool = false) {
         self.ref = ref
         self.contentMode = contentMode
         self.showsMediaBadge = showsMediaBadge
+        self.thumbnail = thumbnail
         // A photo already loaded shows on the first frame: no blank flash when a card switches to its cover.
-        _image = State(initialValue: PhotoLoader.cached(ref))
+        _image = State(initialValue: PhotoLoader.cached(ref, size: thumbnail ? PhotoLoader.thumbSize : PhotoLoader.fullSize))
     }
 
     var body: some View {
@@ -281,7 +287,8 @@ struct PhotoView: View {
                     } else if failed {
                         ZStack {
                             Color.panel
-                            Image(systemName: "photo").foregroundStyle(Color.textTertiary)
+                            // Plainly visible, so a photo that could not load never looks like one still loading.
+                            Image(systemName: "exclamationmark.triangle").foregroundStyle(Color.textSecondary)
                         }
                     } else {
                         Color.panel
@@ -306,11 +313,14 @@ struct PhotoView: View {
             }
             .task(id: ref) {
                 // Reset first so a reused cell never shows the previous photo; a cached one shows at once.
-                image = PhotoLoader.cached(ref)
+                image = PhotoLoader.cached(ref, size: size)
                 failed = false
                 if image != nil { return }
-                image = await PhotoLoader.load(ref)
-                failed = image == nil
+                let loaded = await PhotoLoader.load(ref, size: size)
+                // A cell scrolled away mid-load is not a failure; it loads again when it comes back.
+                if Task.isCancelled { return }
+                image = loaded
+                failed = loaded == nil
             }
         .accessibilityHidden(true)
     }
@@ -342,6 +352,10 @@ enum MediaInfo {
 }
 
 enum PhotoLoader {
+    static let fullSize = CGSize(width: 1400, height: 1400)
+    static let thumbSize = CGSize(width: 480, height: 480)
+    private static let log = Logger(subsystem: "app.witness", category: "photos")
+
     private static let cache: NSCache<NSString, UIImage> = {
         let c = NSCache<NSString, UIImage>()
         c.countLimit = 160
@@ -349,12 +363,12 @@ enum PhotoLoader {
     }()
 
     /// A library photo already in memory at this size, without waiting.
-    static func cached(_ ref: PhotoRef, size: CGSize = CGSize(width: 1400, height: 1400)) -> UIImage? {
+    static func cached(_ ref: PhotoRef, size: CGSize = PhotoLoader.fullSize) -> UIImage? {
         guard case .library(let id) = ref else { return nil }
         return cache.object(forKey: "\(id)@\(Int(size.width))" as NSString)
     }
 
-    static func load(_ ref: PhotoRef, size: CGSize = CGSize(width: 1400, height: 1400)) async -> UIImage? {
+    static func load(_ ref: PhotoRef, size: CGSize = PhotoLoader.fullSize) async -> UIImage? {
         switch ref {
         case .bundled(let name):
             return UIImage(named: name)
@@ -368,7 +382,8 @@ enum PhotoLoader {
             // iCloud, so ask again a couple of times before giving up.
             var standIn: UIImage?
             for attempt in 0..<3 {
-                let got = await request(id, size: size)
+                // The last try drops the fast-resize shortcut, which some assets (some videos and Live Photos) refuse.
+                let got = await request(id, size: size, plain: attempt == 2)
                 if let image = got.image, !got.standIn {
                     cache.setObject(image, forKey: key)
                     return image
@@ -404,29 +419,56 @@ enum PhotoLoader {
 
     /// Asks Photos for one image. Photos can sit on a request indefinitely (a stalled iCloud download, or a queue full of
     /// scan requests), so after `timeout` the request is cancelled and the low-quality stand-in, if any, is used instead.
-    private static func request(_ id: String, size: CGSize, timeout: TimeInterval = 8) async -> (image: UIImage?, standIn: Bool) {
-        guard let asset = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil).firstObject else { return (nil, false) }
+    private static func request(_ id: String, size: CGSize, plain: Bool = false, timeout: TimeInterval = 8) async -> (image: UIImage?, standIn: Bool) {
+        guard let asset = PHAsset.fetchAssets(withLocalIdentifiers: [id], options: nil).firstObject else {
+            log.error("photo \(id, privacy: .public) is not in the library (deleted, hidden or no access)")
+            return (nil, false)
+        }
         let options = PHImageRequestOptions()
         options.deliveryMode = .opportunistic
-        options.resizeMode = .fast
+        options.resizeMode = plain ? .none : .fast
         options.isNetworkAccessAllowed = true
         let once = Once()
         let stand = Stand()
-        return await withCheckedContinuation { (cont: CheckedContinuation<(UIImage?, Bool), Never>) in
-            let requestId = PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { image, info in
-                // A low-quality stand-in is followed by the real image; keep it, and wait for that one.
-                if (info?[PHImageResultIsDegradedKey] as? Bool) == true {
-                    if let image { stand.set(image) }
-                    return
+        let box = RequestBox()
+        return await withTaskCancellationHandler {
+            await withCheckedContinuation { (cont: CheckedContinuation<(UIImage?, Bool), Never>) in
+                let requestId = PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: options) { image, info in
+                    if image == nil {
+                        let error = (info?[PHImageErrorKey] as? NSError).map { "\($0.domain) \($0.code)" } ?? "none"
+                        let inCloud = (info?[PHImageResultIsInCloudKey] as? Bool) == true
+                        log.error("photo \(id, privacy: .public) gave no image: error \(error, privacy: .public), in iCloud \(inCloud), media type \(asset.mediaType.rawValue)")
+                    }
+                    // A low-quality stand-in is followed by the real image; keep it, and wait for that one.
+                    if (info?[PHImageResultIsDegradedKey] as? Bool) == true {
+                        if let image { stand.set(image) }
+                        return
+                    }
+                    guard once.take() else { return }
+                    if let image { cont.resume(returning: (image, false)) } else { cont.resume(returning: (stand.get(), true)) }
                 }
-                guard once.take() else { return }
-                if let image { cont.resume(returning: (image, false)) } else { cont.resume(returning: (stand.get(), true)) }
+                box.set(requestId) { once.take() ? { cont.resume(returning: (stand.get(), true)) } : nil }
+                DispatchQueue.global().asyncAfter(deadline: .now() + timeout) { box.finish(cancelRequest: true) }
             }
-            DispatchQueue.global().asyncAfter(deadline: .now() + timeout) {
-                guard once.take() else { return }
-                PHImageManager.default().cancelImageRequest(requestId)
-                cont.resume(returning: (stand.get(), true))
-            }
+        } onCancel: {
+            // A tile scrolled away: stop asking Photos for it, so visible tiles are not stuck behind it.
+            box.finish(cancelRequest: true)
+        }
+    }
+
+    /// Lets a timeout or a cancelled task cancel the Photos request and finish the continuation exactly once.
+    private final class RequestBox: @unchecked Sendable {
+        private let lock = NSLock()
+        private var requestId: PHImageRequestID?
+        private var finisher: (() -> (() -> Void)?)?
+        func set(_ id: PHImageRequestID, finisher: @escaping () -> (() -> Void)?) {
+            lock.lock(); requestId = id; self.finisher = finisher; lock.unlock()
+        }
+        func finish(cancelRequest: Bool) {
+            lock.lock(); let id = requestId; let f = finisher; lock.unlock()
+            guard let resume = f?() else { return }
+            if cancelRequest, let id { PHImageManager.default().cancelImageRequest(id) }
+            resume()
         }
     }
 }
